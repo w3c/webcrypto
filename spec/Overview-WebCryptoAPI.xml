@@ -1,0 +1,3440 @@
+<?xml version='1.0'?>
+
+<!--
+Overview.xml
+I reuse WebIDL.xsl 
+
+This is written in XHTML 1.0 Strict with an inline <options> element that
+helps the WebIDL.xsl stylesheet process the document (generating a table
+of contents, section numbers, certain processing instructions).
+-->
+
+<?xml-stylesheet href='WebIDL.xsl' type='text/xsl'?>
+
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:x='http://mcc.id.au/ns/local' xml:lang='en'>
+  <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>Web Cryptography API</title>
+
+    <meta name='revision' content='$Id: Overview-WebCryptoAPI.xml,v 1.53 2012-11-12 13:16:44 hhalpin Exp $'/>
+
+    <link rel='stylesheet' href='webcrypto.css' type='text/css'/>
+    <script src='section-links.js' type='application/ecmascript'/>
+    <script src='dfn.js' type='application/ecmascript'/>
+    <!--[if IE]>
+        <style type='text/css'>
+        .ignore {
+        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=50);
+        }
+        </style>
+        <![endif]-->
+
+    <options xmlns='http://mcc.id.au/ns/local'>
+      <versions>
+        <cvs href='http://www.w3.org/2012/webcrypto/WebCryptoAPI' />
+        <this href='http://www.w3.org/2012/webcrypto/WebCryptoAPI' />
+        <previous href='http://www.w3.org/TR/2012/webcrypto/' />
+        <latest href='http://www.w3.org/TR/WebCryptoAPI/' />
+      </versions>
+      <editors>
+        <person homepage='http://ddahl.com/' email='ddahl@mozilla.com'>
+          <name>David Dahl</name>
+          <affiliation>Mozilla Corporation</affiliation>
+        </person>
+        <person homepage='http://www.google.com/' email='sleevi@google.com'>
+          <name>Ryan Sleevi</name>
+          <affiliation>Google, Inc.</affiliation>
+        </person>
+      </editors>
+      <maturity>ED</maturity>
+      <participate qual="STND"></participate>  
+    </options>
+  </head>
+
+  <body>
+    <?top?>
+
+    <div class='section'>
+      <h2>Abstract</h2>
+      <p>
+  
+
+This specification describes a JavaScript API for performing basic
+cryptographic operations in web applications, such as hashing,
+signature generation and verification, and encryption and decryption.
+Additionally, it describes an API for applications to generate and/or
+manage the keying material necessary to perform these operations. Key
+storage is provided for both temporary and permanent keys. Access to
+keying material is contingent on the same origin policy. Uses for this
+API range from user or service authentication, document or code
+signing, and the confidentiality and integrity of communications.
+      </p>
+  
+      <?revision-note?>
+    </div>
+
+    <div class='section'>
+      <h2>Status of this Document</h2>
+<p>
+The Web Cryptography Working Group invites discussion and feedback on this draft document by web developers, companies, standardization bodies or forums interested in deployment of secure services with web applications. Specifically, Web Cryptography Working Group is looking for feedback on:
+</p>
+<ul>
+    <li>developer convenience for managing keys and algorithms;</li>
+    <li>comments on open issues the WG is currently dealing with, highlighted in this working draft;</li>
+    <li>potential missing functionalities to deploy secure web applications.</li>
+</ul>
+      <p>
+        This is the W3C Editor's Draft of the Web Cryptography API. Please send comments to
+        public-webcrypto-comments@w3.org (archived). This is an unfinished <strong>work in progress</strong>.
+      </p>
+      <p>
+        Previous discussion of this specification has taken place on three other
+        mailing lists: <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a>
+
+        (<a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2011-May/031741.html">archive</a>)
+        , <a href="mailto:public-websecurity@w3.org">public-websecurity@w3.org</a>
+        (<a href="http://lists.w3.org/Archives/Public/public-web-security/2011Jun/0000.html">archive</a>), and 
+        <a href="mailto:public-identity@w3.org">public-identity@w3.org</a> (<a href="http://www.w3.org/Search/Mail/Public/search?type-index=public-identity&amp;index-type=t&amp;keywords=DOMCrypt&amp;search=Search">archive</a>).
+        Ongoing discussion will be on the <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a>
+        mailing list.
+      </p>
+      <p>
+        <em>This section describes the status of this document at the time of its publication.
+        Other documents may supersede this document, since it is only an editor's draft.
+        A list of current <acronym title="World Wide Web Consortium">W3C</acronym>
+        publications and the latest revision of this technical report can be found in the 
+        <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym>
+        technical reports index</a> at <a href="http://www.w3.org/TR/">http://www.w3.org/TR/</a>.</em>
+      </p>
+      
+      <p>
+        This document is produced by the <a href="http://www.w3.org/2012/webcrypto">Web <acronym title="Cryptography">Cryptography</acronym>
+        <acronym title="Working Group">WG</acronym></a> of the <acronym title="World Wide Web Consortium">W3C</acronym>.
+      </p>
+      <p>
+        Web content and browser developers are encouraged to review this draft. Please send comments to
+        <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
+        the <acronym title="World Wide Web Consortium">W3C</acronym>'s public email list for issues related
+        to Web <acronym title="Cryptography">Cryptography</acronym>.
+        <a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the public list and
+        <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a> of the member's-only list
+        are available.
+      </p>
+      <p>
+        Changes made to this document can be found in the
+        <a href='http://dev.w3.org/cvsweb/2012/webcrypto/Overview-FA.xml'>W3C public CVS server</a>.
+      </p>
+      <?sotd-bottom http://www.w3.org/2004/01/pp-impl/42538/status?>
+    </div>
+
+    <div id='toc'>
+      <h2>Table of Contents</h2>
+      <?toc sections appendices?>
+    </div>
+
+    <div id='sections'>
+      <div id='introduction' class='section'>
+        <h2>Introduction</h2>
+        <p class='norm'>This section is non-normative.</p>
+        <p>
+          The Web Cryptography API defines a low-level interface to interacting with cryptographic
+          key material that is managed or exposed by user agents. The API itself is agnostic of
+          the underlying implementation of key storage, but provides a common set of interfaces
+          that allow rich web applications to perform operations such as signature generation and
+          verification, hashing and verification, encryption and decryption, without requiring
+          access to the raw keying material.
+        </p>
+        <p>
+          Cryptographic transformations are exposed via the
+          <a href="#dfn-CryptoOperation">CryptoOperation</a> interface, which defines a common set
+          of methods and events for dealing with initialization, processing data, and completing
+          the operation to yield the final output. In addition to operations such as signature
+          generation and verification, hashing and verification, and encryption and decryption,
+          the API provides interfaces for key generation, key derivation, key import and export,
+          and key discovery.
+        </p>
+      </div>
+
+      <div id="use-cases" class="section">
+        <h2>Use Cases</h2>
+        <p class='norm'>This section is non-normative</p>
+        <div class="ednote">
+          <dl>
+            <dt><a href="https://www.w3.org/2012/webcrypto/track/actions/13">ACTION-13</a></dt>
+            <dd>Add missing use cases.</dd>
+            <dt><a href="https://www.w3.org/2012/webcrypto/track/actions/15">ACTION-15</a></dt>
+            <dd>Insert in "right place" a description of high-level example</dd>
+            <dt><a href="https://www.w3.org/2012/webcrypto/track/actions/27">ACTION-27</a></dt>
+            <dd>Add additional primary use cases.</dd>
+          </dl>
+          <p>
+            Should these use cases be migrated to the <a href="#introduction">Introduction</a>
+            section, and include non-normative examples of how the API can be used to perform
+            each operation?
+          </p>
+        </div>
+        <div id="multifactor-authentication" class="section">
+          <h3>Multi-factor Authentication</h3>
+          <p>
+            A web application may wish to extend or replace existing username/password based
+            authentication schemes with authentication methods based on proving that the user has
+            access to some secret keying material. Rather than using transport-layer authentication,
+            such as TLS client certificates, the web application may wish to provide a rich user
+            experience by providing authentication within the application itself.
+          </p>
+          <p>
+            Using the Web Cryptography API, such an application could locate suitable client keys,
+            which may have been previously generated via the user agent or pre-provisioned
+            out-of-band by the web application. It could then perform cryptographic operations such
+            as decrypting an authentication challenge followed by signing an authentication response.
+          </p>
+          <p>
+            Further, the authentication data could be further enhanced by binding the authentication
+            to the TLS session that the client is authenticating over, by deriving a key based on
+            properties of the underlying transport.
+          </p>
+          <p>
+            If a user did not already have a key associated with their account, the web application
+            could direct the user agent to either generate a new key or to re-use an existing key of
+            the user's choosing. 
+          </p>
+        </div>
+
+        <div id="protected-document" class="section">
+          <h3>Protected Document Exchange</h3>
+          <p>
+            When exchanging documents that may contain sensitive or personal information, a
+            web application may wish to ensure that only certain users can view the documents, even
+            after they have been securely received, such as over TLS. One way that a web application
+            can do so is by encrypting the documents with a secret key, and then wrapping that key
+            with the public keys associated with authorized users.
+          </p>
+          <p>
+            When a user agent navigates to such a web application, the application may send the
+            encrypted form of the document. The user agent is then instructed to unwrap the encryption
+            key, using the user's private key, and from there, decrypt and display the document.
+          </p>
+        </div>
+
+        <div id="cloud-storage" class="section">
+          <h3>Cloud Storage</h3>
+          <p>
+            When storing data with remote service providers, users may wish to protect the
+            confidentiality of their documents and data prior to uploading them. The Web
+            Cryptography API allows an application to have a user select a private or secret key,
+            to either derive encryption keys from the selected key or to directly encrypt documents
+            using this key, and then to upload the transformed/encrypted data to the service provider
+            using existing APIs.
+          </p>
+          <p>
+            This use case is similar to the <a href="#protected-document">Protected Document
+            Exchange</a> use case because Cloud Storage can be considered as a user exchanging
+            protected data with himself in the future.
+          </p>
+        </div>
+
+        <div id="document-signing" class="section">
+          <h3>Document Signing</h3>
+          <p>
+            A web application may wish to accept electronic signatures on documents, in lieu of
+            requiring physical signatures. An authorized signature may use a key that was
+            pre-provisioned out-of-band by the web application, or it may be using a key that the
+            client generated specifically for the web application.
+          </p>
+          <p>
+            The web application must be able to locate any appropriate keys for signatures, then
+            direct the user to perform a signing operation over some data, as proof that they accept
+            the document.
+          </p>
+        </div>
+
+        <div id="data-integrity-protection" class="section">
+          <h3>Data Integrity Protection</h3>
+          <p>
+            When caching data locally, an application may wish to ensure that this data cannot be
+            modified in an offline attack. In such a case, the server may sign the data that it
+            intends the client to cache, with a private key held by the server. The web application
+            that subsequently uses this cached data may contain a public key that enables it to
+            validate that the cache contents have not been modified by anyone else.
+          </p>
+        </div>
+
+        <div id="secure-messaging" class="section">
+          <h3>Secure Messaging</h3>
+          <p>
+            In addition to a number of web applications already offering chat based services, the
+            rise of WebSockets and RTCWEB allows a great degree of flexibility in inter-user-agent
+            messaging. While TLS/DTLS may be used to protect messages to web applications, users
+            may wish to directly secure messages using schemes such as off-the-record (OTR) messaging.
+          </p>
+          <p>
+            The Web Cryptography API enables OTR, by allowing key agreement to be performed so that
+            the two parties can negotiate shared encryption keys and message authentication code (MAC)
+            keys, to allow encryption and decryption of messages, and to prevent tampering of
+            messages through the MACs.
+          </p>
+        </div>
+
+        <div id="jose" class="section">
+          <h3>Javascript Object Signing and Encryption (JOSE)</h3>
+          <p>
+            A web application wishes to make use of the structures and format of
+            messages defined by the IETF Javascript Object Signing and Encryption
+            (JOSE) Working Group. The web application wishes to manipulate public
+            keys encoded in the JSON key format (JWK), messages that have been
+            integrity protected using digital signatures or MACs (JWS), or that
+            have been encrypted (JWE).
+          </p>
+        </div>
+
+        <div id="out-of-band-keys" class="section">
+          <h3>Out-of-Band Key Provisioning</h3>
+          <p>
+            Web applications may wish to use keys that have been provisioned through means outside
+            the scope of this API. This may include keys that are provisioned through
+            platform-specific native APIs, stored in secure elements such as smart cards or trusted
+            platform modules (TPMs), or individually bound to devices at time of manufacturing.
+            Such keys may, for example, be used to assist in identifying a client to a specific
+            web service. User agents may choose to expose such keys to web applications after
+            implementing appropriate security and privacy mitigations, such as gaining user consent
+            or other out-of-band authorization.
+          </p>
+          <p>
+            In this scenario, a web application discovers a pre-provisioned key based on its
+            attributes and uses it to perform authorized cryptographic operations as part of a
+            protocol with a server. The server may utilize knowledge obtained out-of-band regarding
+            the key's provisioning to make access control and policy decisions, such as inferring
+            the identity of the user and/or device and customizing its responses based on that.
+          </p>
+        </div>
+
+      </div>
+      
+      <div id='conformance' class='section'>
+        <h2>Conformance</h2>
+        <p>
+          As well as sections marked as non-normative, all authoring guidelines, diagrams,
+          examples, and notes in this specification are non-normative. Everything else in
+          this specification is normative.
+        </p>
+        <p>
+          The keywords <span class='RFC2119'>MUST</span>,
+          <span class='RFC2119'>MUST NOT</span>,
+          <span class='RFC2119'>REQUIRED</span>,
+          <span class='RFC2119'>SHALL</span>,
+          <span class='RFC2119'>SHALL NOT</span>,
+          <span class='RFC2119'>RECOMMENDED</span>,
+          <span class='RFC2119'>MAY</span>,
+          <span class='RFC2119'>OPTIONAL</span>,
+          in this specification are to be interpreted as described in 
+          <cite><a href='http://www.ietf.org/rfc/rfc2119'>Key words for use in RFCs to
+          Indicate Requirement Levels</a></cite> [<a href='#RFC2119'>RFC2119</a>].
+        </p>
+        <p>
+          The following conformance classes are defined by this specification:
+        </p>
+        <dl>
+          <dt><dfn id='dfn-conforming-implementation'>conforming user agent</dfn></dt>
+          <dd>
+            <p>
+              A user agent is considered to be a
+              <a class='dfnref' href='#dfn-conforming-implementation'>conforming user agent</a>
+              if it satisfies all of the <span class='RFC2119'>MUST</span>-,
+              <span class='RFC2119'>REQUIRED</span>- and <span class='RFC2119'>SHALL</span>-level
+              criteria in this specification that apply to implementations. This specification
+              uses both the terms "conforming user agent" and "user agent" to refer to this
+              product class.
+            </p>
+            <p>
+              User agents <span class='RFC2119'>MAY</span> implement algorithms in this
+              specification in any way desired, so long as the end result is indistinguishable
+              from the result that would be obtained from the specification's algorithms.
+            </p>
+          </dd>         
+        </dl>
+        <p>
+          User agents that use ECMAScript to implement the APIs defined in this specification
+          <span class='RFC2119'>MUST</span> implement them in a manner consistent with the
+          ECMAScript Bindings defined in the Web IDL specification [<a href="#WebIDL">WEBIDL</a>]
+          as this specification uses that specification and terminology.
+        </p>
+      </div>
+
+      <div id='scope' class='section'>
+        <h2>Scope</h2>
+        <p class='norm'>This section is non-normative.</p>
+        <div class="section" id="scope-abstraction">
+          <h3>Level of abstraction</h3>
+          <p>
+            The specification attempts to focus on the common functionality and features between
+            various platform-specific or standardized cryptographic APIs, and avoid features and
+            functionality that is specific to one or two implementations. As such this API allows key
+            generation, management, exchange and discovery with a level of abstraction that avoids
+            developers to care about the implementation of the underlying key storage. The API is focused
+            specifically around Key objects, as an abstraction for the underlying raw cryptographic
+            keying material. The intent behind this is to allow an API that is generic enough to allow
+            conforming user agents to expose keys that are stored and managed directly by the user agent,
+            that may be stored or managed using isolated storage APIs such as per-user key stores provided
+            by some operating systems, or within key storage devices such as secure elements, while allowing
+            rich web applications to manipulate the keys and without requiring the web application be
+            aware of the nature of the underlying key storage.
+          </p>
+        </div>
+        <div class="section" id="scope-algorithms">
+          <h3>Cryptographic algorithms</h3>
+          <p>
+            Because the underlying cryptographic implementations will vary between conforming user agents,
+            and may be subject to local policy, including but not limited to concerns such as government
+            or industry regulation, security best practices, intellectual property concerns, and
+            constrained operational environments, this specification does not dictate a mandatory set of
+            algorithms that <span class="RFC2119">MUST</span> be implemented. Instead, it defines a
+            common set of bindings that can be used in an algorithm-independent manner, a common
+            framework for discovering if a user agent or key handle supports the underlying algorithm,
+            and a set of conformance requirements for the behaviours of individual algorithms, if
+            implemented.
+          </p>
+        </div>
+        <div class="section" id="scope-operations">
+          <h3>Operations</h3>
+          <p>
+            Although the API does not expose the notion of cryptographic providers or modules, each
+            key is internally bound to a cryptographic provider or module, so web applications can
+            rest assured that the right cryptographic provider or module will be used to perform
+            cryptographic operations involving that key.
+          </p>
+        </div>
+        <div class="section" id="scope-out-of-scope">
+          <h3>Out of scope</h3>
+          <p>
+            This API, while allowing applications to generate, retrieve, and manipulate keying material,
+            does not specifically address the provisioning of keys in particular types of key
+            storage, such as secure elements or smart cards. This is due to such provisioning operations
+            often being burdened with vendor-specific details that make defining a vendor-agnostic
+            interface an unsuitably unbounded task. Additionally, this API does not deal with or address
+            the discovery of cryptographic modules, as such concepts are dependent upon the underlying
+            user agent and are not concepts that are portable between common operating systems,
+            cryptographic libraries, and implementations.
+          </p>
+        </div>
+      </div>
+
+      <div id="security" class="section">
+        <h2>Security considerations</h2>
+        <p class='norm'>This section is non-normative.</p>
+        <div id="security-implementers" class="section">
+          <h2>Security considerations for implementers</h2>
+          <p>
+            User agents should take care before exposing keys that were not explicitly generated
+            via the API in this specification or exposing keys that were generated in the
+            context of other origins. Two applications with access to the same key handle may be
+            able to spoof messages to each other, as both valid and hostile messages will appear
+            to be valid for the given key. Because of this, user agents are recommended to obtain
+            express permission from the user before re-using keys, unless there is a prearranged
+            trust relationship.
+          </p>
+          <p>
+            User agents should be aware of the security considerations of each algorithm
+            implemented and exposed to applications. For a number of algorithms, their
+            cryptographic strength is relative to the amount of work necessary to compute the
+            result, whether this be through the generation of significantly large prime numbers or
+            through the repeatedly iterating through the same algorithm to reduce its
+            susceptibility to brute force. Implementations should therefore take measures to
+            ensure against misuse. Such measures may include requiring express user permission to
+            compute some expensive operations, rate limiting the number of times the application
+            may call certain APIs/algorithms, and defining implementation-specific upper limits
+            for inputs such as key sizes or iteration counts, as appropriate for the device on
+            which the implementation executes.
+          </p>
+          <p>
+            In some cases, the same underlying cryptographic key material may be re-usable for
+            multiple algorithms. One such example is an RSA key, which may be used for both
+            signing and encryption, or with RSA-PKCS1v1.5 and RSA-PSS. In some cases, the re-use
+            of this key material may undermine the security properties of the key and allow
+            applications to recover the raw material.
+          </p>
+          <div class="ednote">
+            <ul>
+              <li>
+                <a href="https://www.w3.org/2012/webcrypto/track/issues/33">ISSUE-33</a>
+                One proposed technical solution for user agents is to implement "key tainting", in
+                which it records how a particular key has been used (eg: algorithms, parameters), and
+                prevents it from being re-used in a manner that is unsafe or contrary to the security -
+                such as preventing a PKCS1-v1.5 key from being used with RSA-PSS, or preventing an
+                RSA-OAEP w/ MGF1-SHA1 from being used with RSA-OAEP w/ MGF1-SHA256. Questions exist
+                about whether this should be encouraged or permitted, and the interoperability concerns
+                it might cause.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="security-developers" class="section">
+          <h2>Security considerations for developers</h2>
+          <p>
+            While this API provides important functionality for the development of secure
+            applications, it does not try to address all of the issues that may arise from the
+            web security model. As such, application developers must take care to ensure against
+            common attacks such as script injection by making use of appropriate security
+            functionality such as Content Security Policy and the use of TLS.
+          </p>
+          <p>
+            This API includes a variety of cryptographic operations, some of which may have known
+            security issues when used inappropriately. Application developers should take care to
+            review the appropriate cryptographic literature before making use of certain algorithms,
+            and should avoid attempting to develop new cryptographic protocols whenever possible.
+          </p>
+          <p>
+            While the API in this specification provides a means to protect keys from future access
+            by web applications, it makes no statements as to how the actual keying material will
+            be stored by an implementation. As such, although a key may be inaccessible to web
+            content, it should not be presumed that it is inaccessible to end-users. For example, a
+            conforming user agent may choose to implement key storage by storing key material in
+            plain text on device storage. Although the user agent prevents access to the raw keying
+            material to web applications, any user with access to device storage may be able to recover
+            the key.
+          </p>
+          <p>
+            In some situations, allowing low-level access to key handles, such as to permit the
+            signing or encryption of arbitrary text, may allow an attacker to construct an oracle
+            that can be used to recover key material. Application developers are thus encouraged to
+            be careful about permitting the signing of arbitrary messages, and should consider the
+            use of existing cryptographic messaging protocols as appropriate.
+          </p>
+        </div>
+      </div>
+
+      <div id="privacy" class="section">
+        <h2>Privacy considerations</h2>
+        <p class='norm'>This section is non-normative.</p>
+        <dl>
+          <dt>Fingerprinting</dt>
+          <dd>
+            Malicious applications may be able to fingerprint users or user agents by detecting or
+            enumerating the list of algorithms that are supported. This is especially true if an
+            implementation exposes details about users' smart cards or secure element storage, as the
+            combination of algorithms supported by such devices may be used to fingerprint devices
+            more accurately than just the particular user agent.
+          </dd>
+          <dt>Tracking</dt>
+          <dd>
+            If user agents permit keys to be re-used between origins, without performing any
+            secondary operations such as key derivation that includes the origin, then it may be
+            possible for two origins to collude and track a unique user by recording their ability
+            to access a common key.
+          </dd>
+          <dt>Super-cookies</dt>
+          <dd>
+            With the exception of ephemeral keys, its often desirable for applications to strongly
+            associate users with keys. These associations may be used to enhance the security of
+            authenticating to the application, such as using a key stored in a secure element as a
+            second factor, or may be used by users to assert some identity, such as an e-mail
+            signing identity. As such, these keys often live longer than their counterparts such
+            as usernames and passwords, and it may be undesirable or prohibitive for users to
+            revoke these keys.
+            Because of this, keys may exist longer than the lifetime of the browsing context
+            [<a href="#HTML">HTML</a>] and beyond the lifetime of items such as cookies, thus
+            presenting a risk that a user may be tracked even after clearing such data. This is
+            especially true for keys that were pre-provisioned for particular origins and for which
+            no user interaction was provided.
+          </dd>
+        </dl>
+      </div>
+
+      <div id='dependencies' class='section'>
+        <h3>Dependencies</h3>
+        <p>This specification relies on underlying specifications.</p>
+        <dl>
+          <dt>DOM</dt>
+          <dd>
+            <p>
+              A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support at
+              least the subset of the functionality defined in DOM4 that this specification relies
+              upon; in particular, it MUST support <code>EventTarget</code>.
+              [<a href="#DOM4">DOM4</a>]
+            </p>
+          </dd>
+          <dt>HTML</dt>
+          <dd>
+            <p>
+              A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support at
+              least the subset of the functionality defined in HTML that this specification relies
+              upon; in particular, it MUST support <a href="#event-loops">event loops</a> and
+              <a href="#event-handler-attributes">event handler attributes</a>.
+              [<a href="#HTML">HTML</a>]
+            </p>
+          </dd>
+          <dt>Web IDL</dt>
+          <dd>
+            <p>
+              A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST be a
+              conforming implementation of the IDL fragments in this specification, as described in
+              the Web IDL specification. [<a href="#WebIDL">WebIDL</a>]
+            </p>
+          </dd>
+          <dt>Typed Arrays</dt>
+          <dd>
+            <p>
+              A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support the
+              Typed Arrays specification [<a href="#TypedArrays">TypedArrays</a>].
+            </p>
+          </dd>
+        </dl>
+      </div>
+   
+      <div id='terminology' class='section'>
+        <h2>Terminology</h2>
+        <p>
+          The terms and algorithms
+          <dfn id="document">document</dfn>,
+          <dfn id="event-handler-attributes">event handler attributes</dfn>,
+          <dfn id="event-handler-event-type">event handler event type</dfn>,
+          <dfn id="origin">origin</dfn>,
+          <dfn id="same-origin">same origin</dfn>,
+          <dfn id="event-loops">event loops</dfn>,
+          <dfn id="dfn-task">task</dfn>,
+          <dfn id="task-source">task source</dfn>,
+          <dfn id="df-URL">URL</dfn>,
+          <dfn id="queue-a-task">queue a task</dfn>,
+          are defined by the HTML specification [<a href="#HTML">HTML</a>].
+        </p>
+        <p>
+          When this specification says to <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>,
+          the user agent must terminate the algorithm after finishing the step it is on. The algorithm
+          referred to is the set of specification-defined processing steps, rather than the underlying
+          cryptographic algorithm that may be in the midst of processing.
+        </p>
+      </div>
+
+      <div id="algorithm-dictionary" class="section">
+        <h2>Algorithm dictionary</h2>
+        <p>
+          The Algorithm object is a dictionary object [<cite><a href="#WebIDL">WebIDL</a></cite>]
+          which is used to specify an algorithm and any additional parameters required to fully
+          specify the desired operation.
+        </p>
+        <x:codeblock language="idl">
+<span class="comment">// TBD: <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a></span>
+typedef (<a href="#dfn-Algorithm">Algorithm</a> or DOMString) <dfn id="dfn-AlgorithmIdentifier">AlgorithmIdentifier</dfn>;
+
+dictionary <dfn id="dfn-AlgorithmParameters">AlgorithmParameters</dfn> {
+};
+
+dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
+  DOMString <a href="#dfn-Algorithm-name">name</a>;
+  <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> <a href="#dfn-Algorithm-params">params</a>;
+};
+        </x:codeblock>
+        <div class="ednote">
+          <ul>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a>:
+              Should algorithms permit short-names (string identifiers) as equivalent to
+              specifying Algorithm dictionaries, or should Algorithm dictionaries be the only
+              accepted form?
+            </li>
+          </ul>
+        </div>
+        <div id="algorithm-dictionary-members" class="section">
+          <h3><a href="#dfn-Algorithm">Algorithm</a> Dictionary Members</h3>
+          <dl>
+            <dt id="dfn-Algorithm-name">
+              <code>name</code>
+            </dt>
+            <dd>
+              The name of the <a href="#algorithms">registered algorithm</a> to use.
+            </dd>
+            <dt id="dfn-Algorithm-params">
+              <code>params</code>
+            </dt>
+            <dd>
+              The <a href="#algorithm-specific-params">algorithm-specific parameters</a> used to
+              fully specify the operation to perform.
+            </dd>
+          </dl>
+        </div>
+      </div>
+      
+      <div id="key-interface" class="section">
+        <h2>Key interface</h2>
+        <p>
+          The Key object represents an opaque reference to keying material that is managed by the
+          user agent.
+        </p>
+        <x:codeblock language="idl">
+<span class="comment">
+// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/17">ISSUE-17</a>
+interface <dfn id="dfn-KeyAttributes">KeyAttributes</dfn> {
+  getter DOMString getAttribute(DOMString name);
+  setter creator void setAttribute(DOMString name, DOMString value);
+  deleter void removeAttribute(DOMString name);
+};
+</span>
+
+enum <dfn id="dfn-KeyType">KeyType</dfn> {
+  "secret",
+  "public",
+  "private"
+};
+
+enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
+  "encrypt",
+  "decrypt",
+  "sign",
+  "verify",
+  "derive"
+};
+
+interface <dfn id="dfn-Key">Key</dfn> {
+  readonly attribute DOMString <a href="#dfn-Key-id">id</a>;
+  readonly attribute KeyType <a href="#dfn-Key-type">type</a>;
+  readonly attribute bool <a href="#dfn-Key-extractable">extractable</a>;
+  readonly attribute bool <a href="#dfn-Key-temporary">temporary</a>;
+  readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-Key-algorithm">algorithm</a>;
+  readonly attribute <a href="#dfn-KeyUsage">KeyUsage</a>[] <a href="#dfn-Key-keyUsage">keyUsage</a>;
+
+  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a></span>
+  readonly attribute Date? <a href="#dfn-Key-startDate">startDate</a>;
+  readonly attribute Date? <a href="#dfn-Key-endDate">endDate</a>;
+
+  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/17">ISSUE-17</a></span>
+  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/25">ISSUE-25</a></span>
+  attribute <a href="#dfn-KeyAttributes">KeyAttributes</a> <a href="#dfn-Key-extra">extra</a>;
+};
+        </x:codeblock>
+        <div id="key-interface-description" class="section">
+          <h3>Description</h3>
+          <span class="normative">This section is non-normative</span>
+          <p>
+            This specification provides a uniform interface for many different kinds of keying material
+            managed by the user agent. This may include keys that have been generated by the user agent,
+            derived from other keys by the user agent, imported to the user agent through user actions
+            or using this API, pre-provisioned within software or hardware to which the user agent has
+            access or made available to the user agent in other ways. The term key refers broadly to
+            any keying material including actual keys for cryptographic operations and secret
+            values obtained within key derivation or exchange operations.
+          </p>
+          <p>
+            The Key object is not required to directly interface with the underlying key storage
+            mechanism, and may instead simply be a reference for the user agent to understand how
+            to obtain the keying material when needed, eg. via a
+            <a href="#dfn-CryptoOperation">CryptoOperation</a>.
+          </p>
+        </div>
+        <div id="key-interface-members" class="section">
+          <h3>Key interface members</h3>
+          <dl>
+            <dt id="dfn-Key-id"><code>id</code></dt>
+            <dd>
+              <p>
+                For all <code>Key</code>s visible within a given origin, each <code>Key</code> shall
+                have a unique, opaque identifier assigned that may be used to uniquely identify that
+                <code>Key</code> within the set of keys.
+              </p>
+              <p>
+                Within the same origin, if two <code>Key</code>s are created from the same underlying
+                keying material, they <span class="RFC2119">MUST</span> share the same <code>id</code>.
+              </p>
+              <p>
+                Within multiple origins, if two <code>Key</code>s are created from the same underlying
+                keying material, they <span class="RFC2119">SHOULD</span> be assigned <em>distinct</em>
+                key identifiers.
+              </p> 
+            </dd>
+            <dt id="dfn-Key-type"><code>type</code></dt>
+            <dd>
+              The type of the underlying keys. Opaque keying material, including that used for
+              symmetric algorithms, are represented by <code>"secret"</code>, while keys used as
+              part of asymmetric algorithms composed of public/private keypairs will be either
+              <code>"public"</code> or <code>"private"</code>.
+            </dd>
+            <dt id="dfn-Key-extractable"><code>extractable</code></dt>
+            <dd>
+              Whether or not the raw keying material may be exported by the application.
+            </dd>
+            <dt id="dfn-Key-temporary"><code>temporary</code></dt>
+            <dd>
+              Whether or not the keying material persists beyond the lifetime of the current
+              top-level browsing context.
+            </dd>
+            <dt id="dfn-Key-algorithm"><code>algorithm</code></dt>
+            <dd>
+              The <a href="#dfn-Algorithm"><code>Algorithm</code></a> used to generate the key.
+            </dd>
+            <dt id="dfn-Key-keyUsage"><code>keyUsage</code></dt>
+            <dd>
+              An <code>Array</code> of <a href="#dfn-KeyUsage"><code>KeyUsages</code></a> that
+              indicate what <a href="#dfn-CryptoOperation">CryptoOperations</a> may be used with this
+              key.
+            </dd>
+            <dt id="dfn-Key-startDate"><code>startDate</code></dt>
+            <dd>
+              <p>
+                The effective start date for the validity of the key. This is not enforced by the
+                Web Cryptography API, and is provided for informative purposes only. May be
+                <code>null</code>, indicating that the start date is unknown or undefined.
+              </p>
+              <div class="ednote">
+                <p>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a>
+                  TBD: The semantics of key expiration.
+                </p>
+              </div>
+            </dd>
+            <dt id="dfn-Key-endDate"><code>endDate</code></dt>
+            <dd>
+              <p>
+                The effective end date for the validity of the key. This is not enforced by the
+                Web Cryptography API, and is provided for informative purposes only. May be
+                <code>null</code>, indicating that the end date is unknown or undefined.
+              </p>
+              <div class="ednote">
+                <p>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a>
+                  TBD: The semantics of key expiration.
+                </p>
+              </div>
+            </dd>
+            <dt id="dfn-Key-extra"><code>extra</code></dt>
+            <dd>
+              Application-defined attributes that are associated with a key.
+              <div class="ednote">
+                <p>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/17">ISSUE-17</a>
+                  TBD: Whether or not key-specific storage is exposed to the application or if it is
+                  left up to <a href="http://www.w3.org/TR/webstorage/">Web Storage</a> or
+                  <a href="http://www.w3.org/TR/IndexedDB/">IndexedDB</a>.
+                </p>
+                <p>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/25">ISSUE-25</a>
+                  TBD: Whether pre-provisioned keys should support some well-known attribute that
+                  defines a pre-provisioned ID, or whether such definitions are application-specific
+                  and not part of the spec.
+                </p>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div id="cryptooperation-interface" class="section">
+        <h2>CryptoOperation interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-EventTarget">EventTarget</a> {
+  void <a href="#dfn-CryptoOperation-method-init">init</a>();
+  void <a href="#dfn-CryptoOperation-method-processData">processData</a>(<a href="#dfn-ArrayBuffer">ArrayBufferView</a> buffer);
+  void <a href="#dfn-CryptoOperation-method-complete">complete</a>();
+  void <a href="#dfn-CryptoOperation-method-abort">abort</a>();
+
+  readonly attribute <a href="#dfn-Key">Key</a>? <a href="#dfn-CryptoOperation-key">key</a>;
+  readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-CryptoOperation-algorithm">algorithm</a>;
+  readonly attribute any <a href="#dfn-CryptoOperation-result">result</a>;
+
+  [TreatNonCallableasNull] attribute Function? <a href="#dfn-CryptoOperation-onabort">onabort</a>;
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onerror">onerror</a>;
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oninit">oninit</a>;
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onprogress">onprogress</a>;
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oncomplete">oncomplete</a>;
+};
+        </x:codeblock>
+        <div class="ednote">
+          <ul>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/22">ISSUE-22</a>:
+              Should CryptoOperations be clonable? If so, under what states?</li>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/23">ISSUE-23</a>:
+              Should CryptoOperations be
+              <a href="http://dev.w3.org/html5/spec/single-page.html#transferable-objects">transferable</a>?
+            </li>
+          </ul>
+        </div>
+        <div id="CryptoOperation-states" class="section">
+          <h3>CryptoOperation states</h3>
+          <p>
+            The <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code> can be in any one of
+            five states. This state is tracked internal to the
+            <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code> and may be used to
+            determine what methods may be called.
+          </p>
+          <dl>
+            <dt id="dfn-CryptoOperation-state-empty"><code>"empty"</code></dt>
+            <dd>
+              The <code>CryptoOperation</code> has been constructed, and
+              <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> has not yet been called.
+              This is the default state of a newly constructed <code>CryptoOperation</code> object,
+              until <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> is called.
+            </dd>
+            <dt id="dfn-CryptoOperation-state-initializing"><code>"initializing"</code></dt>
+            <dd>
+              The <code>CryptoOperation</code> is in the midst of performing necessary
+              initialization steps as the result of
+              <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> being called. The
+              <code>CryptoOperation</code> is not yet ready to accept data supplied via
+              <code><a href="#dfn-CryptoOperation-method-processData">processData()</a></code>.
+            </dd>
+            <dt id="dfn-CryptoOperation-state-processing"><code>"processing"</code></dt>
+            <dd>
+              The <code>CryptoOperation</code> has completed initialization and is ready to process
+              data. More data to be processed may be supplied via
+              <code><a href="#dfn-CryptoOperation-method-processData">processData()</a></code>, or the
+              operation may be concluded by calling
+              <code><a href="#dfn-CryptoOperation-method-complete">complete()</a></code>.
+            </dd>
+            <dt id="dfn-CryptoOperation-state-completing"><code>"completing"</code></dt>
+            <dd>
+              The <code>CryptoOperation</code> is in the midst of performing the necessary finishing
+              steps to compute the final <a href="#dfn-CryptoOperation-result"><code>result</code></a>,
+              as a result of calling the <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+              method. No further data may be provided via the
+              <a href="#dfn-CryptoOperation-method-processData"><code>processData()</code></a>
+              method.
+            </dd>
+            <dt id="dfn-CryptoOperation-state-complete"><code>"complete"</code></dt>
+            <dd>
+              The <code>CryptoOperation</code> has finished processing data, OR an error occurred
+              during initialization, OR an error occurred during processing, OR the operation was
+              aborted using <code><a href="#dfn-CryptoOperation-method-abort">abort()</a></code>. The
+              <code>CryptoOperation</code> is no longer able to be used to process data.
+            </dd>
+          </dl>
+        </div>
+        <div id="cryptooperation-task-source" class="section">
+          <h3>The CryptoOperation Task Source</h3>
+          <p>
+            The <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> interface enables
+            asynchronous cryptographic processing by firing events. Unless stated otherwise, the
+            <a href="#task-source">task source</a> that is used in this specification is the
+            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>. This task source is
+            used for events that are asynchronously fired, and for event <a href="#queue-a-task">
+            tasks that are queued</a> for firing.
+          </p>
+        </div>
+        <div id="cryptooperation-events" class="section">
+          <h3>Event Handler Attributes</h3>
+          <p>
+            The following are the <a href="#event-handler-attributes">event handler attributes</a>
+            (and their corresponding <a href="#event-handler-event-type">event handler event
+            types</a>) that user agents must support on the <a href="#dfn-CryptoOperation">
+            <code>CryptoOperation</code></a> as DOM attributes:
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <a href="#event-handler-attributes" title="event handler attributes">event
+                  handler attributes</a>
+                </th>
+                <th>
+                  <a href="#event-handler-event-type" title="event handler event types">event
+                  handler event type</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><dfn id="dfn-CryptoOperation-onabort">onabort</dfn></td>
+                <td><a href="#dfn-onabort-event">abort</a></td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-CryptoOperation-onerror">onerror</dfn></td>
+                <td><a href="#dfn-onerror-event">error</a></td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-CryptoOperation-oninit">oninit</dfn></td>
+                <td><a href="#dfn-oninit-event">init</a></td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-CryptoOperation-onprogress">onprogress</dfn></td>
+                <td><a href="#dfn-onprogress-event">progress</a></td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-CryptoOperation-oncomplete">oncomplete</dfn></td>
+                <td><a href="#dfn-oncomplete-event">complete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="CryptoOperation-attributes" class="section">
+          <h3>Attributes</h3>
+          <dl>
+            <dt id="dfn-CryptoOperation-key"><code>key</code></dt>
+            <dd>
+              <p>
+                On getting, the <code>key</code> attribute returns the
+                <a href="#dfn-Key"><code>Key</code></a> used to initialize the <code>CryptoOperation</code>.
+              </p>
+              <p>
+                If the <code>CryptoOperation</code> represents a keyless-operation, such as digesting,
+                then <code>key</code> <span class="RFC2119">MUST</span> return <code>null</code>.
+              </p>
+            </dd>
+            <dt id="dfn-CryptoOperation-algorithm"><code>algorithm</code></dt>
+            <dd>
+              On getting, the <code>algorithm</code> attribute returns the
+              <a href="#algorithm-normalizing-rules">normalized algorithm</a> of the algorithm used
+              to initialize the <code>CryptoOperation</code>.
+            </dd>
+            <dt id="dfn-CryptoOperation-result"><code>result</code></dt>
+            <dd>
+              On getting, the <code>result</code> attribute returns the
+              <a href="#algorithm-result">algorithm-specific result</a> for the current
+              <code>CryptoOperation</code>.
+              <ul>
+                <li>
+                  <p>
+                    On getting, if the internal state of the CryptoOperation is the
+                    <a href="#dfn-CryptoOperation-state-empty"><code>"empty"</code></a> state,
+                    then the <code>result</code> attribute <span class="RFC2119">MUST</span>
+                    return <code>null</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    On getting, if an error in performing the operation has occurred, then the
+                    <code>result</code> attribute <span class="RFC2119">MUST</span> return <code>null</code>.
+                  </p>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+        <div id="CryptoOperation-methods" class="section">
+          <h3>Methods and Parameters</h3>
+          <div id="CryptoOperation-method-init" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-init"><code>init</code></dfn> method</h4>
+            <p>
+              When <a href="#dfn-CryptoOperation-method-init"><code>init</code></a> method is called,
+              the user agent must run the steps below.
+            </p>
+            <ol>
+              <li>
+                If the internal <a href="#CryptoOperation-states">state</a> is not in the
+                <code><a href="#dfn-CryptoOperation-state-empty">"empty"</a></code> state,
+                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
+                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+              </li>
+              <li>
+                Set the internal <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-initializing">"initializing"</a></code>.
+              </li>
+              <li>
+                Return from the <code>init()</code> method, but continue processing the steps in this
+                algorithm.
+              </li>
+              <li>
+                If an error occurs during initialization, set the internal
+                <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
+                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
+                error steps below.
+                <ol>
+                  <li>
+                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
+                  </li>
+                  <li>
+                    Terminate this algorithm.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                When the <code>CryptoOperation</code> is fully initialized, set the
+                <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-processing">processing</a></code>.
+              </li>
+              <li>
+                Fire an event called <code><a href="#dfn-oninit-event">init</a></code>.
+              </li>
+              <li>
+                Terminate this algorithm.
+              </li>
+            </ol>
+          </div>
+          <div id="CryptoOperation-method-processData" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-processData"><code>processData(ArrayBufferView buffer)</code></dfn> method</h4>
+            <p>
+              When <a href="#dfn-CryptoOperation-method-processData"><code>processData(ArrayBufferView buffer)</code></a>
+              method is called, the user agent must run the steps below.
+            </p>
+            <ol>
+              <li>
+                If the internal <a href="#CryptoOperation-states">state</a> is not in the
+                <code><a href="#dfn-CryptoOperation-state-processing">"processing"</a></code> state,
+                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
+                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+              </li>
+              <li>
+                Return from the <code>processData()</code> method, but continue processing the steps in
+                this algorithm.
+              </li>
+              <li>
+                If an error occurs during processing, set the internal
+                <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
+                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
+                error steps below.
+                <ol>
+                  <li>
+                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
+                  </li>
+                  <li>
+                    Terminate this algorithm.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Perform the algorithm-specific processing.
+              </li>
+              <li>
+                If processing resulted in <code>output</code>, perform the following steps.
+                <ol>
+                  <li>
+                    Queue a task to update <code><a href="#dfn-CryptoOperation-result">result</a></code>
+                    with the <code>output</code>
+                  </li>
+                  <li>
+                    Fire an event called <code><a href="#dfn-onprogress-event">progress</a></code>.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Terminate this algorithm.
+              </li>
+            </ol>          
+          </div>
+          <div id="CryptoOperation-method-complete" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-complete"><code>complete()</code></dfn> method</h4>
+            <p>
+              When <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+              method is called, the user agent must run the steps below.
+            </p>
+            <ol>
+              <li>
+                If the internal <a href="#CryptoOperation-states">state</a> is not in the
+                <code><a href="#dfn-CryptoOperation-state-processing">"processing"</a></code> state,
+                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
+                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+              </li>
+              <li>
+                Set the internal <a href="#CryptoOperation-states">state</a> to
+                <a href="#dfn-CryptoOperation-state-completing"><code>completing</code></a>.
+              </li>
+              <li>
+                Return from the <code>complete()</code> method, but continue processing the steps in
+                this algorithm.
+              </li>
+              <li>
+                If an error occurs during processing, set the internal
+                <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
+                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
+                error steps below.
+                <ol>
+                  <li>
+                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
+                  </li>
+                  <li>
+                    Terminate this algorithm.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Perform the algorithm-specific processing.
+              </li>
+              <li>
+                Let <var>output</var> be the result of the algorithm-specific processing.
+              </li>
+              <li>
+                Queue a task to update <code><a href="#dfn-CryptoOperation-result">result</a></code>
+                with the <var>output</var>
+              </li>
+              <li>
+                Fire an event called <code><a href="#dfn-onprogress-event">progress</a></code>.
+              </li>
+              <li>
+                Set the internal <a href="#CryptoOperation-states">state</a> to
+                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code>.
+              </li>
+              <li>
+                Fire an event called <code><a href="#dfn-oncomplete-event">complete</a></code>.
+              </li>
+              <li>
+                Terminate this algorithm.
+              </li>
+            </ol>
+          </div>
+          <div id="CryptoOperation-method-abort" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-abort"><code>abort()</code></dfn> method</h4>
+            <p>
+              When <a href="#dfn-CryptoOperation-method-abort"><code>abort()</code></a>
+              method is called, the user agent must run the steps below.
+            </p>
+            <ol>
+              <li>
+                If the internal <a href="#CryptoOperation-states">state</a> is either
+                <a href="#dfn-CryptoOperation-state-empty"><code>"empty"</code></a> or
+                <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>, set
+                <a href="#dfn-CryptoOperation-result"><code>result</code></a> to <code>null</code>
+                and terminate this overall set of steps without doing anything else.
+              </li>
+              <li>
+                <p>
+                  If the internal <a href="#CryptoOperation-states">state</a> is
+                  <a href="#dfn-CryptoOperation-state-initializing"><code>"initializing"</code></a>,
+                  then perform the following steps:
+                </p>
+                <ol>
+                  <li>
+                    Set the internal <a href="#CryptoOperation-states">state</a> to
+                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
+                  </li>
+                  <li>
+                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
+                    <code>null</code>.
+                  </li>
+                  <li>
+                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
+                    <a href="#dfn-CryptoOperation-method-init"><code>init()</code></a> method.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <p>
+                  If the internal <a href="#CryptoOperation-states">state</a> is
+                  <a href="#dfn-CryptoOperation-state-processing"><code>"processing"</code></a>,
+                  then perform the following steps:
+                </p>
+                <ol>
+                  <li>
+                    Set the internal <a href="#CryptoOperation-states">state</a> to
+                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
+                  </li>
+                  <li>
+                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
+                    <code>null</code>.
+                  </li>
+                  <li>
+                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
+                    <a href="#dfn-CryptoOperation-method-processData"><code>processData()</code></a>
+                    method.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <p>
+                  If the internal <a href="#CryptoOperation-states">state</a> is
+                  <a href="#dfn-CryptoOperation-state-completing"><code>"completing"</code></a>,
+                  then perform the following steps:
+                </p>
+                <ol>
+                  <li>
+                    Set the internal <a href="#CryptoOperation-states">state</a> to
+                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
+                  </li>
+                  <li>
+                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
+                    <code>null</code>.
+                  </li>
+                  <li>
+                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
+                    <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+                    method.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                If there are any tasks from the object's
+                <a href="#cryptooperation-task-source"><code>CryptoOperation</code> task source</a> in
+                one of the task queues, then remove those tasks.
+              </li>
+              <li>
+                Fire an event called <a href="#dfn-onabort-event"><code>abort</code></a>.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div id="KeyOperation-interface" class="section">
+        <h2>KeyOperation interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyOperation">KeyOperation</dfn> : EventTarget {
+  readonly attribute any <a href="#dfn-KeyOperation-result">result</a>;
+
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-KeyGenerator-onerror">onerror</a>;
+  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-KeyGenerator-oncomplete">oncomplete</a>;
+};
+        </x:codeblock>
+      </div>
+      
+      <div id="KeyGenerator-interface" class="section">
+        <h2>KeyGenerator interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyGenerator">KeyGenerator</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
+  void <a href="#dfn-KeyOperation-generate-method">generate</a>();
+};
+        </x:codeblock>
+      </div>
+
+      <div id="KeyDeriver-interface" class="section">
+        <h2>KeyDeriver interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyDeriver">KeyDeriver</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
+  void <a href="#dfn-KeyOperation-derive-method">derive</a>();
+};
+        </x:codeblock>
+      </div>
+
+      <div id="KeyImporter-interface" class="section">
+        <h2>KeyImporter interface</h2>
+        <x:codeblock language="idl">
+enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
+  <span class="comment">// An unformatted sequence of bytes. Intended for secret keys.</span>
+  "raw",
+  <span class="comment">// The BER encoding of the RSAPublicKey structure from RFC 3447.</span>
+  <span class="comment">// Only usable with RSA keys.</span>
+  "pkcs1-public",
+  <span class="comment">// The BER encoding of the RSAPrivateKey structure from RFC 3447.</span>
+  <span class="comment">// Only usable with RSA keys.</span>
+  "pkcs1-private",
+  <span class="comment">// The BER encoding of the PrivateKeyInfo structure from RFC 5208.</span>
+  "pkcs8",
+  <span class="comment">// The key is represented as JSON according to the JSON Web Key format.</span>
+  "jwk",
+};
+
+interface <dfn id="dfn-KeyImporter">KeyImporter</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
+  void <a href="#dfn-KeyOperation-import-method">import</a>();
+  
+  readonly attribute <a href="#dfn-KeyFormat">KeyFormat</a> format;
+};
+        </x:codeblock>
+      </div>
+      
+      <div id="KeyExporter-interface" class="section">
+        <h2>KeyExporter interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyExporter">KeyExporter</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
+  void <a href="#dfn-KeyExporter-generate-method">export</a>();
+
+  readonly attribute <a href="#dfn-KeyFormat">KeyFormat</a> format;
+};
+        </x:codeblock>
+      </div>
+      
+      <div id="KeyStorage-interface" class="section">
+        <h2>KeyStorage interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyStorage">KeyStorage</dfn> {
+  readonly attribute unsigned long <a href="#dfn-KeyStorage-attribute-length">length</a>;
+
+  getter <a href="#dfn-Key">Key</a> <a href="#dfn-KeyStorage-method-getKey">getKey</a>(unsigned long index);
+  deleter void <a href="#dfn-KeyStorage-method-removeKey">removeKey</a>(unsigned long index);
+
+  getter <a href="#dfn-Key">Key</a> <a href="#dfn-KeyStorage-method-getKeyById">getKeyById</a>(DOMString keyId);
+  deleter void <a href="#dfn-KeyStorage-method-removeKeyById">removeKeyById</a>(DOMString keyId);
+  void <a href="#dfn-KeyStorage-method-clear">clear</a>();
+};
+        </x:codeblock>
+        <p>
+          Each <a href="#dfn-KeyStorage"><code>KeyStorage</code></a> object provides access to a
+          collection of <a href="#dfn-Key"><code>Key</code></a> objects that have been previously
+          authorized for an origin.
+        </p>
+        <p>
+          Each <a href="#dfn-KeyStorage"><code>KeyStorage</code></a> object is associated with a
+          list of <a href="#dfn-Key"><code>Key</code></a>s when it is created, as defined in the
+          section on the <a href="#dfn-Crypto-keys"><code>keys</code></a> attribute.
+        </p>
+        <p>
+          An object <var>storage</var> implementing <a href="#dfn-KeyStorage"><code>KeyStorage</code></a>
+          supports indexed properties with indices in the range 0 ≤ <var>index</var> &lt;
+          <code>storage.length</code>
+        </p>
+        <p>
+          Such objects also support a named property for every name that, if passed to
+          <a href="#dfn-KeyStorage-method-getKeyById"><code>getKeyById</code></a>, would
+          return a non-null value.
+        </p>
+        <p>
+          The <dfn id="dfn-KeyStorage-attribute-length"><code>length</code></dfn> attribute must return the
+          number of keys present in the <a href="#dfn-KeyStorage"><code>KeyStorage</code></a>.
+        </p>
+        <p>
+          The <span>supported property names</span> on a <code><a href="#dfn-KeyStorage">KeyStorage</a></code>
+          object are the values of the <a href="#dfn-Key-id"><code>id</code></a> attribute of
+          all <a href="#dfn-Key"><code>Key</code></a> objects within storage.
+        </p>
+        <p>
+          The <dfn id="dfn-KeyStorage-method-getKeyById"><code>getKeyById</code></dfn>(<var>keyId</var>) method must
+          first check to see if there exists within the list a <a href="#dfn-Key"><code>Key</code></a> object whose
+          <a href="#dfn-Key-id"><code>id</code></a> attribute is equal to <var>keyId</var>. If no such
+          <a href="#dfn-Key"><code>Key</code></a> exists within the list, then this method
+          must return <code>null</code>.
+        </p>
+        <div class="ednote">
+          <ul>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/31">ISSUE-31</a>:
+              KeyStorage is currently a synchronous API, but, depending on implementation, may
+              need to access storage such as disk or secure element.
+            </li>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/31">ISSUE-31</a>:
+              KeyStorage does not provide a way to discover keys based on particular attributes,
+              either intrinsic attributes or custom, user-defined attributes.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="crypto-interface" class="section">
+        <h2>Crypto interface</h2>
+        <x:codeblock language="idl">
+<span class="comment">// TBD: <a href="http://www.w3.org/2012/webcrypto/track/issues/37">ISSUE-37</a></span>
+interface <dfn id="dfn-crypto">Crypto</dfn> {
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createEncrypter">createEncrypter</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createDecrypter">createDecrypter</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createSigner">createSigner</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createVerifier">createVerifier</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, ArrayBufferView signature);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createDigester">createDigester</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm);
+
+  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
+  <a href="#dfn-KeyGenerator">KeyGenerator</a> <a href="#dfn-Crypto-method-createKeyGenerator">createKeyGenerator</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                           bool temporary = true,
+                           bool extractable = false,
+                           <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
+  <a href="#dfn-KeyDeriver">KeyDeriver</a> <a href="#dfn-Crypto-method-createKeyDeriver">createKeyDeriver</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                         <a href="#dfn-Key">Key</a> baseKey,
+                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
+                         bool temporary = true,
+                         bool extractable = false,
+                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
+  
+  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
+  <a href="#dfn-KeyImporter">KeyImporter</a> <a href="#dfn-Crypto-method-createKeyImporter">createKeyImporter</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+                         ArrayBufferView key,
+                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
+                         bool temporary = true,
+                         bool extractable = false,
+                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
+  <a href="#dfn-KeyExporter">KeyExporter</a> <a href="#dfn-Crypto-method-createKeyExporter">createKeyExporter</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
+  readonly attribute <a href="#dfn-KeyStorage">KeyStorage</a> <a href="#dfn-Crypto-keys">keys</a>;
+
+  ArrayBufferView <a href="#dfn-Crypto-method-getRandomValues">getRandomValues</a>(ArrayBufferView array);
+};
+
+partial interface Window {
+  readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
+};
+        </x:codeblock>
+        <div class="ednote">
+          <ul>
+            <li>
+              The <a href="#dfn-Crypto-method-getRandomValues"><code>getRandomValues</code></a>
+              function has been implemented in several WebKit-based browsers,
+              including Google Chrome and Apple Safari. If the specification of
+              this function changes, steps will need to be taken to resolve the
+              inconsistency - including possibly renaming the function.
+            </li>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/26">ISSUE-26</a>:
+              When generating, importing, or deriving a key, should it be possible to specify
+              multiple origins that the key is automatically authorized for, beyond the
+              current origin executing the script?
+            </li>
+            <li>
+              <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a>:
+              There is an open question as to how the API should support key wrap and unwrap
+              operations. Should they be distinct operations, independent from key import/export,
+              or should they be part of the parameters supplied during import/export.
+            </li>
+            <li>
+              <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a>:
+              Further distinction is needed to clarify the differences between key generation and
+              key derivation. Should they be distinguished by their inputs (Key generation takes
+              parameters, while key derivation takes parameters + key(s)), by their outputs (Key
+              generation generates Keys, key derivation generates opaque bytes as secret material),
+              or is there some other construct to distinguish the two?
+            </li>
+            <li>
+              <a href="http://www.w3.org/2012/webcrypto/track/issues/37">ISSUE-37</a>:
+              Consider alternative method naming schemes, to reduce the use of "create" as a prefix
+              and "er" as a suffix, including the possible use of distinct objects with defined
+              Constructors.
+            </li>
+          </ul>
+        </div>
+        <div id="crypto-interface-methods" class="section">
+          <h3>Methods and Parameters</h3>
+          <div id="Crypto-method-createEncrypter" class="section">
+            <h4>The createEncrypter method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-createEncrypter"><code>createEncrypter</code></dfn>
+              method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+              object that will encrypt data using the specified
+              <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
+              the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act
+              as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the encrypt
+                  operation, throw a <code>NotSupportedError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  <var>S</var> with the following characteristics:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
+                      = <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
+                      = <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-result"><code>result</code></a>
+                      = null.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="Crypto-method-createDecrypter" class="section">
+            <h4>The createDecrypter method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-createDecrypter"><code>createDecrypter</code></dfn>
+              method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+              object that will decrypt data using the specified
+              <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
+              the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act
+              as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the decrypt
+                  operation, throw a <code>NotSupportedError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  <var>S</var> with the following characteristics:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
+                      = <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
+                      = <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-result"><code>result</code></a>
+                      = null.
+                    </p>
+                  </li>                
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="Crypto-method-createSigner" class="section">
+            <h4>The createSigner method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-createSigner"><code>createSigner</code></dfn> method
+              returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+              object that will sign data using the specified
+              <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
+              the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the sign
+                  operation, throw a <code>NotSupportedError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  <var>S</var> with the following characteristics:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
+                      = <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
+                      = <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-result"><code>result</code></a>
+                      = null.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="Crypto-method-createVerifier" class="section">
+            <h4>The createVerifier method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-createVerifier"><code>createVerifier</code></dfn> method
+              returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+              object that will verify data using the specified
+              <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
+              the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the verify
+                  operation, throw a <code>NotSupportedError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  <var>S</var> with the following characteristics:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
+                      = <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
+                      = <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-result"><code>result</code></a>
+                      = null.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="Crypto-method-createDigester" class="section">
+            <h4>The createDigester method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-createDigester"><code>createDigester</code></dfn> method returns
+              a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+              object that will digest data using the specified
+              <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a>.
+              It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the digest
+                  operation, throw a <code>NotSupportedError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  <var>S</var> with the following characteristics:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
+                      = <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
+                      = <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <var>S</var>.<a href="#dfn-CryptoOperation-result"><code>result</code></a>
+                      = null.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="Crypto-method-createKeyGenerator" class="section">
+            <h4>The createKeyGenerator method</h4>
+            <p>
+            </p>
+            <div class="ednote">
+              <ul>
+                <li>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/26">ISSUE-26</a>:
+                  Should callers be allowed to specify a list of origins to authorized the
+                  key to be shared with?
+                </li>
+                <li>
+                  <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a>:
+                  Should callers be able to specify key lifetime?
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div id="Crypto-method-createKeyDeriver" class="section">
+            <h4>The createKeyDeriver method</h4>
+            <p></p>
+          </div>
+          <div id="Crypto-method-createKeyImporter" class="section">
+            <h4>The createKeyImporter method</h4>
+            <p></p>
+          </div>
+          <div id="Crypto-method-createKeyExporter" class="section">
+            <h4>The createKeyExporter method</h4>
+            <p></p>
+          </div>
+          
+          <div id="Crypto-attribute-keys" class="section">
+            <h4>The keys attribute</h4>
+            <p>
+              The <dfn id="dfn-Crypto-Keys"><code>keys</code></dfn> attribute provides access to the
+              key storage of a particular origin. Keys that have been generated by, imported into, or
+              have otherwise had access granted, such as through out-of-band pre-provisioning, will
+              be available through this method.
+            </p>
+            <div class="ednote">
+              <p>
+                The availability of <a href="#dfn-Key"><code>Key</code></a> objects via
+                this attribute does not necessarily mean that the underlying keying material is available
+                to be used. For example, if a user agent were to generate keying material on removable
+                storage, it may register that there exists an authorized <code>Key</code>, but
+                attempting to use it with any <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
+                or <a href="#dfn-KeyOperation"><code>KeyOperation</code></a> may cause an error to be
+                raised once it was discovered that the underlying key was not available.
+              </p>
+              <p>
+                It is expected that the user agent will not need to attempt to obtain the underlying
+                keying material when returning a <a href="#dfn-Key"><code>Key</code></a>. Instead,
+                the underlying keying material is obtained when instantiating a
+                <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> that
+                makes use of the key.
+              </p>
+            </div>
+          </div>
+
+          <div id="Crypto-method-getRandomValues" class="section">
+            <h4>The getRandomValues method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-getRandomValues"><code>getRandomValues</code></dfn>
+              method generates cryptographically random values. It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  If <var>array</var> is not of an integer type (i.e., Int8Array, Uint8Array,
+                  Int16Array, Uint16Array, Int32Array, or Uint32Array), throw a
+                  <code>TypeMismatchError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <code>byteLength</code> of <var>array</var> is greater than 65536, throw a
+                  <code>QuotaExceededError</code> and
+                  <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Overwrite all elements of <var>array</var> with cryptographically random values of
+                  the appropriate type.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>array</var>.
+                </p>
+              </li>
+            </ol>
+            <p>
+              Do not generate keys using the <code>getRandomValues</code> method. Use the
+              <a href="#dfn-Crypto-method-createKeyGenerator"><code>createKeyGenerator</code></a> method instead.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div id="WorkerCrypto-interface" class="section">
+        <h2>WorkerCrypto interface</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-WorkerCrypto">WorkerCrypto</dfn> {
+  ArrayBufferView <a href="#dfn-WorkerCrypto-method-getRandomValues">getRandomValues</a>(ArrayBufferView array);
+};
+
+partial interface <a href="http://www.w3.org/TR/workers/#workerglobalscope">WorkerGlobalScope</a> {
+  readonly attribute <a href="#dfn-WorkerCrypto">WorkerCrypto</a> crypto;
+};
+        </x:codeblock>
+        <div id="WorkerCrypto-description" class="section">
+          <h3>Description</h3>
+          <p>
+            The <a href="#dfn-WorkerCrypto">WorkerCrypto</a> interface provides cryptographic
+            functionality for background scripts, as specified by Web Workers [
+            <a href="">Web Workers</a>].
+          </p>
+          <div class="ednote">
+            <p>
+              A unique interface exposing only a subset of the <a href="#crypto-interface"><code>Crypto</code></a>
+              is provided as it has not yet been determined how <a href="#key-interface"><code>Key</code></a>s
+              should be shared amongst threads, nor how user interaction should be managed for
+              operations that may require user consent.
+            </p>
+          </div>
+        </div>
+        <div id="WorkerCrypto-methods" class="section">
+          <h3>Methods and Parameters</h3>
+          <div id="WorkerCrypto-method-getRandomValues" class="section">
+            <h4>The getRandomValues method</h4>
+            <p>
+              The <dfn id="dfn-WorkerCrypto-method-getRandomValues">getRandomValues</dfn> method shall behave
+              identical to the <a href="#dfn-Crypto"><code>Crypto</code></a>.<a href="#dfn-Crypto-method-getRandomValues"><code>getRandomValues</code></a> method.
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="big-integer" class="section">
+        <h2>BigInteger</h2>
+        <x:codeblock language="idl">
+typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
+        </x:codeblock>
+        <p>
+          The <a href="#dfn-BigInteger">BigInteger</a> typedef is a <code>Uint8Array</code>
+          that holds a multiple-precision unsigned integer. Each Uint8
+          element in the array represents a base-256 digit of the integer.
+          The digits are in big-endian order: the first Uint8 element in the array
+          is the most significant digit. A leading zero Uint8 element
+          is not needed if the most significant bit of the integer is set.
+        </p>
+      </div>
+      
+      <div id="keypair" class="section">
+        <h2>KeyPair</h2>
+        <x:codeblock language="idl">
+interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
+  <a href="#dfn-Key">Key</a> publicKey;
+  <a href="#dfn-Key">Key</a> privateKey;
+};
+        </x:codeblock>
+        <p>
+          The <a href="#dfn-KeyPair">KeyPair</a> interface represents an
+          asymmetric key pair that is comprised of both public and private keys.
+        </p>
+      </div>
+
+      <div id="named-curve" class="section">
+        <h2>NamedCurve</h2>
+        <x:codeblock language="idl">
+enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
+  <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
+  <dfn id="dfn-NamedCurve-p256">"P-256"</dfn>,
+  <span class="comment">// NIST recommended curve P-384, also known as secp384r1.</span>
+  <dfn id="dfn-NamedCurve-p384">"P-384"</dfn>,
+  <span class="comment">// NIST recommended curve P-521, also known as secp521r1.</span>
+  <dfn id="dfn-NamedCurve-p521">"P-521"</dfn>
+};
+        </x:codeblock>
+        <p>
+          The <a href="#dfn-NamedCurve">NamedCurve</a> enumeration type represents named elliptic curves, which
+          are a convenient way to specify the domain parameters of well-known elliptic curves.
+        </p>
+      </div>
+
+      <div id="ec-point" class="section">
+        <h2>ECPoint</h2>
+        <x:codeblock language="idl">
+typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
+        </x:codeblock>
+        <p>
+          The <a href="#dfn-ECPoint">ECPoint</a> typedef is a <code>Uint8Array</code> holding an
+          elliptic curve point. An elliptic curve point is converted to an array of Uint8 elements
+          using the procedure specified in <a href="#X9.62">X9.62</a> Annex A.5.7.
+        </p>
+      </div>
+
+      <div id="algorithms" class="section">
+        <h2>Algorithms</h2>
+        <div id="recommended-algorithms" class="section">
+          <h3>Recommended algorithms</h3>
+          <p class="norm">This section is non-normative</p>
+          <p>
+            As the API is meant to be extensible in order to keep up with future developments within
+            cryptography and to provide flexibility, there are no strictly required algorithms. Thus
+            users of this API should check to see what algorithms are currently recommended and
+            supported by implementations.
+          </p>
+          <p>
+            However, in order to promote interoperability for developers, there are a number of
+            recommended algorithms. The recommended algorithms are: 
+            <ul>
+              <li><a href="#hmac">HMAC</a> using <a href="#alg-sha-256">SHA-256</a></li>
+              <li><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a> using <a href="#alg-sha-256">SHA-256</a></li>
+              <li><a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a> curve and <a href="#alg-sha-256">SHA-256</a></li>
+              <li><a href="#aes-cbc">AES-CBC</a></li>
+            </ul>
+          </p>
+          <p>To see the results of test-cases between implementations, please see the [@@Upcoming]
+            Web Cryptography Test Cases Working Group.
+          </p>
+        </div>
+        <div id="defining-an-algorithm" class="section">
+          <h3>Defining an algorithm</h3>
+          <p>
+            Each algorithm that is to be exposed via the Web Cryptography API
+            <span class="RFC2119">SHOULD</span> be registered via the Web Cryptography working group,
+            and <span class="RFC2119">MUST</span> include all of the following details. Algorithms
+            that are not registered via these means, but are exposed via this API,
+            <span class="RFC2119">MUST</span> be processed as if the sections had been defined.
+          </p>
+          <div id="recognized-algorithm-name" class="section">
+            <h4>Recognized algorithm name</h4>
+            <p>
+              Each registered algorithm <span class="RFC2119">MUST</span> have a canonical name
+              for which applications can refer to the algorithm. The canonical name
+              <span class="RFC2119">MUST</span> contain only ASCII characters and
+              <span class="RFC2119">MUST NOT</span> equal any other canonical name or
+              <a href="#dfn-algorithm-alias">algorithm alias</a> when every character in both names
+              are converted to lower case.
+            </p>
+          </div>
+          <div id="supported-operations" class="section">
+            <h4>Supported operations</h4>
+            <p>
+              Each registered algorithm <span class="RFC2119">MUST</span> define the operations
+              that it supports.
+            </p>
+          </div>
+          <div id="algorithm-specific-params" class="section">
+            <h4>Algorithm-specific parameters</h4>
+            <p>
+              Each registered algorithm <span class="RFC2119">MUST</span> define the expected
+              contents of the <a href="#dfn-Algorithm-params"><code>params</code></a> member of
+              the <a href="#dfn-Algorithm">Algorithm</a> object for every
+              <a href="#supported-operations">supported operation</a>.
+            </p>
+            <p>
+              Each registered algorithm <span class="RFC2119">MUST</span> define the normalization
+              rules for the contents of the <a href="#dfn-Algorithm-params"><code>params</code></a>
+              member of the <a href="#dfn-Algorithm">Algorithm</a> object for every
+              <a href="#supported-operations">supported operation</a>. 
+            </p>
+          </div>
+          <div id="algorithm-result" class="section">
+            <h4>Algorithm results</h4>
+            <p>
+              Each registered algorithm <span class="RFC2119">MUST</span> define the contents
+              of the <a href="#dfn-CryptoOperation-result"><code>result</code></a> attribute of the
+              <a href="#dfn-CryptoOperation">CryptoOperation</a> object for every
+              <a href="#supported-operations">supported operation</a> and for every
+              <a href="#CryptoOperation-states"><code>state</code></a>.
+            </p>
+          </div>
+          <div id="algorithm-alias" class="section">
+            <h4><dfn id="dfn-algorithm-alias">Algorithm aliases</dfn></h4>
+            <p>
+              Each registered algorithm <span class="RFC2119">MAY</span> define one or more aliases
+              that may define a fully normalized <a href="#dfn-Algorithm">Algorithm</a> object.
+            </p>
+            <p>
+              Each algorithm alias <span class="RFC2119">MUST</span> follow the same naming rules
+              as the <a href="#recognized-algorithm-name">recognized algorithm name</a>.
+            </p>
+            <div class="ednote">
+              <ul>
+                <li>
+                  <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a>:
+                  Should algorithms permit short-names (string identifiers) as equivalent to
+                  specifying Algorithm dictionaries, or should Algorithm dictionaries be the only
+                  accepted form?
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="rsaes-pkcs1" class="section">
+          <h3>RSAES-PKCS1-v1_5</h3>
+          <div id="rsaes-pkcs1-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"RSAES-PKCS1-v1_5"</code> algorithm identifier is used to perform encryption
+              and decryption ordering to the RSAES-PKCS1-v1_5 algorithm specified in
+              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+            </p>
+          </div>
+          <div id="rsaes-pkcs1-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"RSAES-PKCS1-v1_5"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>encrypt</td>
+                  <td>None</td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>decrypt</td>
+                  <td>None</td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="RsaKeyGenParams-dictionary" class="section">
+            <h4>RsaKeyGenParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The length, in bits, of the RSA modulus</span>
+  unsigned long modulusLength;
+  <span class="comment">// The RSA public exponent</span>
+  BigInteger publicExponent;
+};
+            </x:codeblock>
+          </div>
+          <div id="rsaes-pkcs1-operations" class="section">
+            <h4>Operations</h4>
+            <dl>
+              <dt>Encrypt</dt>
+              <dd>
+                When encrypting, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
+                shall behave as follows:
+                <ol>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    <ol>
+                      <li>
+                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
+                        RSA public key, raise an error and
+                        <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                      </li>                  
+                      <li>
+                        Let <var>M</var> be an empty sequence of bytes.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    <ol>
+                      <li>
+                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                      </li>
+                      <li>
+                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
+                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
+                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        No output is returned.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    <ol>
+                      <li>
+                        Perform the RSAES-PKCS1-V1_5-ENCRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
+                        Section 7.2.1, with <var>M</var> as the message, and with <var>n</var> and
+                        <var>e</var> obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                      </li>
+                      <li>
+                        If the operation resulted in an error, raise an error and
+                        <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                      </li>
+                      <li>
+                        Let <var>C</var> be an array of bytes resulting from performing the
+                        RSAES-PKCS1-V1_5-ENCRYPT operation.
+                      </li>
+                      <li>
+                        Let <var>output</var> be an <code>ArrayBuffer</code> with enough bytes to hold
+                        <code>C.length</code> bytes, with the contents of the underlying buffer
+                        initialized to the contents of <var>C</var>.
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Decrypt</dt>
+              <dd>
+                When decrypting, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
+                shall behave as follows:
+                <ol>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    <ol>
+                      <li>
+                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
+                        RSA private key, raise an error and
+                        <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                      </li>                  
+                      <li>
+                        Let <var>C</var> be an empty sequence of bytes.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    <ol>
+                      <li>
+                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                      </li>
+                      <li>
+                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
+                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
+                        of the <code>ArrayBufferView</code>, and append those bytes to <var>C</var>.
+                      </li>
+                      <li>
+                        No output is returned.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    <ol>
+                      <li>
+                        Perform the RSAES-PKCS1-V1_5-DECRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
+                        Section 7.2.2, with <var>C</var> as the ciphertext, and with <var>K</var>
+                        obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                      </li>
+                      <li>
+                        If the operation resulted in an error, raise an error and
+                        <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                      </li>
+                      <li>
+                        Let <var>M</var> be an array of bytes resulting from performing the
+                        RSAES-PKCS1-V1_5-DECRYPT operation.
+                      </li>
+                      <li>
+                        Let <var>output</var> be an <code>ArrayBuffer</code> with enough bytes to hold
+                        <code>M.length</code> bytes, with the contents of the underlying buffer
+                        initialized to the contents of <var>M</var>.
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                When generating a key pair, the resultant <code><a href="#dfn-KeyGenerator">KeyGenerator</a></code>
+                shall behave as follows:
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+        <div id="rsassa-pkcs1" class="section">
+          <h3>RSASSA-PKCS1-v1_5</h3>
+          <div id="rsassa-pkcs1-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
+              signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
+              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+            </p>
+          </div>
+          <div id="rsassa-pkcs1-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"RSASSA-PKCS1-v1_5"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#dfn-RsaSsaParams">RsaSsaParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>verify</td>
+                  <td><a href="#dfn-RsaSsaParams">RsaSsaParams</a></td>
+                  <td>boolean?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="RsaSsaParams-dictionary" class="section">
+            <h4>RsaSsaParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The hash algorithm to use</span> 
+  AlgorithmIdentifier hash;
+};
+            </x:codeblock>
+          </div>
+          <div id="rsassa-pkcs1-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Sign</li>
+              <li>Verify</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="rsa-pss" class="section">
+          <h3>RSA-PSS</h3>
+          <div id="rsa-pss-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
+              and verification using the RSASSA-PSS algorithm specified in
+              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+            </p>
+          </div>
+          <div id="rsa-pss-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"RSA-PSS"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#dfn-RsaPssParams">RsaPssParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>verify</td>
+                  <td><a href="#dfn-RsaPssParams">RsaPssParams</a></td>
+                  <td>boolean?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="rsa-pss-params" class="section">
+            <h4>RsaPssParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The hash function to apply to the message</span>
+  AlgorithmIdentifier hash;
+  <span class="comment">// The mask generation function</span>
+  AlgorithmIdentifier mgf;
+  <span class="comment">// The desired length of the random salt</span>
+  unsigned long saltLength;
+};
+            </x:codeblock>
+          </div>
+          <div id="rsa-pss-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Sign</li>
+              <li>Verify</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="rsa-oaep" class="section">
+          <h3>RSA-OAEP</h3>
+          <div id="rsa-oaep-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
+              and decryption ordering to the RSAES-OAEP algorithm specified in
+              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+            </p>
+          </div>
+          <div id="rsa-oaep-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"RSA-OAEP"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>encrypt</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>decrypt</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="rsa-oaep-params" class="section">
+            <h4>RsaOaepParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The hash function to apply to the message</span>
+  AlgorithmIdentifier hash;
+  <span class="comment">// The mask generation function</span>
+  AlgorithmIdentifier mgf;
+  <span class="comment">// The optional label/application data to associate with the message</span>
+  ArrayBufferView? label;
+};
+            </x:codeblock>
+          </div>
+          <div id="rsa-oaep-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Encrypt</li>
+              <li>Decrypt</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="ecdsa" class="section">
+          <h3>ECDSA</h3>
+          <div id="ecdsa-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"ECDSA"</code> algorithm identifier is used to perform signing
+              and verification using the ECDSA algorithm specified in
+              [<cite><a href="#X9.62">X9.62</a></cite>].
+            </p>
+          </div>
+          <div id="ecdsa-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"ECDSA"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>verify</td>
+                  <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
+                  <td>boolean?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-EcKeyGenParams">EcKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div id="EcdsaParams-dictionary" class="section">
+            <h4>EcdsaParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The hash algorithm to use</span>
+  AlgorithmIdentifier hash;
+};
+            </x:codeblock>
+          </div>
+          <div id="EcKeyGenParams-dictionary" class="section">
+            <h4>EcKeyGenParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// A named curve</span>
+  NamedCurve namedCurve;
+};
+            </x:codeblock>
+          </div>
+          <div id="ecdsa-operations" class="section">
+            <h4>Operations</h4>
+            <dl>
+              <dt>Sign</dt>
+              <dd>
+                When signing, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
+                shall behave as follows:
+                <ol>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    <ol>
+                      <li>
+                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
+                        ECDSA private key, raise an error and terminate this algorithm.
+                      </li>                  
+                      <li>
+                        Let <var>M</var> be an empty sequence of bytes.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    <ol>
+                      <li>
+                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                      </li>
+                      <li>
+                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
+                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
+                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        No output is returned.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    <ol>
+                      <li>
+                        Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
+                        Section 7.3, with <var>M</var> as the message, with EC domain parameters and
+                        private key <var>d</var> obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>,
+                        and with the hash function obtained from the EcdsaParams dictionary.
+                      </li>
+                      <li>
+                        If the operation resulted in an error, raise an error and terminate this
+                        algorithm.
+                      </li>
+                      <li>
+                        Let <var>r</var> and <var>s</var> be a pair of integers resulting from performing the
+                        ECDSA signing process.
+                      </li>
+                      <li>
+                        Let <var>output</var> be an <code>ArrayBuffer</code> holding
+                        the concatenation of <var>r</var> and <var>s</var>, each as a ceil(ceil(log2(n))/8)
+                        byte sequence, where n (a prime number) is the order of the base point generator.
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Verify</dt>
+              <dd>
+                When verifying, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
+                shall behave as follows:
+                <ol>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    <ol>
+                      <li>
+                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
+                        ECDSA public key, raise an error and terminate this algorithm.
+                      </li>                  
+                      <li>
+                        Let <var>M'</var> be an empty sequence of bytes.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    <ol>
+                      <li>
+                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                      </li>
+                      <li>
+                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
+                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
+                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M'</var>.
+                      </li>
+                      <li>
+                        No output is returned.
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    <ol>
+                      <li>
+                        Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
+                        Section 7.4, with <var>M'</var> as the received message, with the EC domain
+                        parameters and public key <var>Q</var> obtained from the
+                        <code><a href="#dfn-CryptoOperation-key">Key</a></code>, and with the hash
+                        function obtained from the EcdsaParams dictionary.
+                      </li>
+                      <li>
+                        If the operation resulted in an error, raise an error and terminate this
+                        algorithm.
+                      </li>
+                      <li>
+                        Let <var>output</var> be a <code>boolean</code> that indicates whether the
+                        purported signature is valid (<code>true</code>) or not (<code>false</code>).
+                      </li>
+                    </ol>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                When generating a key pair, the resultant <code><a href="#dfn-KeyGenerator">KeyGenerator</a></code>
+                shall behave as follows:
+              </dd>
+            </dl>
+          </div>
+        </div>
+
+        <div id="ecdh" class="section">
+          <h3>ECDH</h3>
+          <div id="ecdh-description" class="section">
+            <h4>Description</h4>
+            <p>
+              This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key agreement, as
+              specified by <a href="#X9.63">X9.63</a>.
+            </p>
+          </div>
+          <div id="ecdh-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"ECDH"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-EcKeyGenParams">EcKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+                <tr>
+                  <td>deriveKey</td>
+                  <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="dh-EcdhKeyDeriveParams" class="section">
+            <h4>EcdhKeyDeriveParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The peer's EC public key.</span>
+  ECPoint public;
+};
+            </x:codeblock>
+          </div>
+          <div id="ecdh-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Generate Key</li>
+              <li>Derive Key</li>
+              <p>
+                Perform the standard ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1.
+                The output of ECDH key agreement is the x-coordinate of the shared secret value <var>P</var>.
+              </p>
+              <p>
+                Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP 800-56A</a>
+                Section 5.7.1.2 specify a modified ECDH primitive that multiplies the shared secret value by
+                the cofactor of the curve. The cofactor of the NIST recommended curves P-256, P-384, and P-521
+                is 1, so the standard and modified ECDH primitives are equivalent for those curves.
+              </p>
+            </ul>
+          </div>
+        </div>
+
+        <div id="aes-ctr" class="section">
+          <h3>AES-CTR</h3>
+          <div id="aes-ctr-description" class="section">
+            <h4>Description</h4>
+            <p>
+            </p>
+          </div>
+          <div id="aes-ctr-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"AES-CTR"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>encrypt</td>
+                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>decrypt</td>
+                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="aes-ctr-params" class="section">
+            <h4>AesCtrParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The initial value of the counter block. counter <span class="RFC2119">MUST</span> be 16 bytes
+  // (the AES block size). The counter bits are the rightmost length
+  // bits of the counter block. The rest of the counter block is for
+  // the nonce. The counter bits are incremented using the standard
+  // incrementing function specified in NIST SP 800-38A Appendix B.1:
+  // the counter bits are interpreted as a big-endian integer and
+  // incremented by one.</span>
+  ArrayBuffer counter;
+  <span class="comment">// The length, in bits, of the rightmost part of the counter block
+  // that is incremented.</span>
+  [EnforceRange] octet length;
+};
+            </x:codeblock>
+          </div>
+          <div id="aes-keygen-params" class="section">
+            <h4>AesKeyGenParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The length, in bits, of the key.</span>
+  [EnforceRange] unsigned short length;
+};
+            </x:codeblock>
+          </div>
+          <div id="aes-ctr-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Encrypt</li>
+              <li>Decrypt</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="aes-cbc" class="section">
+          <h3>AES-CBC</h3>
+          <div id="aes-cbc-description" class="section">
+            <h4>Description</h4>
+          </div>
+          <div id="aes-cbc-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"AES-CBC"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>encrypt</td>
+                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>decrypt</td>
+                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="aes-cbc-params" class="section">
+            <h4>AesCbcParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
+  ArrayBufferView iv;
+};
+            </x:codeblock>
+          </div>
+          <div id="aes-cbc-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Encrypt</li>
+              <li>Decrypt</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="aes-gcm" class="section">
+          <h3>AES-GCM</h3>
+          <div id="aes-gcm-description" class="section">
+            <h4>Description</h4>
+          </div>
+          <div id="aes-gcm-registration" class="section">
+             <h4>Registration</h4>
+             <p>
+               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+               this algorithm is <code>"AES-GCM"</code>.
+             </p>
+             <table>
+               <thead>
+                 <tr>
+                   <th><a href="#supported-operations">Operation</a></th>
+                   <th><a href="#algorithm-specific-params">Parameters</a></th>
+                   <th><a href="#algorithm-result">Result</a></th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>encrypt</td>
+                   <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
+                   <td>ArrayBufferView?</td>
+                 </tr>
+                 <tr>
+                   <td>decrypt</td>
+                   <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
+                   <td>ArrayBufferView?</td>
+                 </tr>
+                 <tr>
+                   <td>generateKey</td>
+                   <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                   <td><a href="#dfn-Key">Key</a>?</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+          <div id="aes-gcm-params" class="section">
+            <h4>AesGcmParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
+  ArrayBufferView? iv;
+  <span class="comment">// The additional authentication data to include.</span>
+  ArrayBufferView? additionalData;
+  <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
+  [EnforceRange] octet? tagLength = 0;
+};
+            </x:codeblock>
+          </div>
+          <div id="aes-gcm-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Encrypt</li>
+              <li>Decrypt</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="hmac" class="section">
+          <h3>HMAC</h3>
+          <div id="hmac-description" class="section">
+            <h4>Description</h4>
+          </div>
+          <div id="hmac-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"HMAC"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sign</td>
+                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>verify</td>
+                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td>boolean?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-HmacKeyGenParams">HmacKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="hmac-params" class="section">
+            <h4>HmacParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The inner hash function to use.</span>
+  AlgorithmIdentifier hash;
+};
+            </x:codeblock>
+          </div>
+          <div id="hmac-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Sign</li>
+              <li>Verify</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+        <div id="dh" class="section">
+          <h3>Diffie-Hellman</h3>
+          <div id="dh-description" class="section">
+            <h4>Description</h4>
+            <p>
+              This describes using Diffie-Hellman for key generation and key agreement, as specified
+              by <a href="#PKCS3">PKCS #3</a>.
+            </p>
+          </div>
+          <div id="dh-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"DH"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-DhKeyGenParams">DhKeyGenParams</a></td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                </tr>
+                <tr>
+                  <td>deriveKey</td>
+                  <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="dh-DhKeyGenParams" class="section">
+            <h4>DhKeyGenParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The prime p.</span>
+  BigInteger prime;
+  <span class="comment">// The base g.</span>
+  BigInteger generator;
+};
+            </x:codeblock>
+          </div>
+          <div id="dh-DhKeyDeriveParams" class="section">
+            <h4>DhKeyDeriveParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The peer's public value.</span>
+  BigInteger public;
+};
+            </x:codeblock>
+          </div>
+          <div id="dh-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Generate Key</li>
+              <li>Derive Key</li>
+            </ul>
+          </div>
+        </div>
+        <div id="sha" class="section">
+          <h3>SHA</h3>
+          <div id="sha-description" class="section">
+            <h4>Description</h4>
+            <p>
+              This describes the SHA-1 and SHA-2 families, as specified by
+              [<a href="#FIPS180-4">FIPS 180-4</a>].
+            </p>
+          </div>
+          <div id="sha-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The following algorithms are added as <a href="#recognized-algorithm-name">
+              recognized algorithm names</a>:
+            </p>
+            <dl>
+              <dt id="alg-sha-1"><code>"SHA-1"</code></dt>
+              <dd>The SHA-1 algorithm as specified in Section 6.1</dd>
+              <dt id="alg-sha-224"><code>"SHA-224"</code></dt>
+              <dd>The SHA-224 algorithm as specified in Section 6.3</dd>
+              <dt id="alg-sha-256"><code>"SHA-256"</code></dt>
+              <dd>The SHA-256 algorithm as specified in Section 6.2</dd>
+              <dt id="alg-sha-384"><code>"SHA-384"</code></dt>
+              <dd>The SHA-384 algorithm as specified in Section 6.5</dd>
+              <dt id="alg-sha-512"><code>"SHA-512"</code></dt>
+              <dd>The SHA-512 algorithm as specified in Section 6.4</dd>
+            </dl>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>digest</td>
+                  <td>None</td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="sha-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Digest</li>
+            </ul>
+          </div>
+        </div>
+        <div id="pbkdf2" class="section">
+          <h3>PBKDF2</h3>
+          <div id="pbkdf2-description" class="section">
+            <h4>Description</h4>
+          </div>
+          <div id="pbkdf2-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"PBKDF2"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>deriveKey</td>
+                  <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="pbkdf2-params" class="section">
+            <h4>Pbkdf2Params dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  ArrayBufferView salt;
+  [Clamp] unsigned long iterations;
+  AlgorithmIdentifier prf;
+  ArrayBufferView? password;
+};
+            </x:codeblock>
+            <div class="ednote">
+              <p>
+                In the above snippet, <code>password</code> is an optional field. The intent is
+                that conforming user agents <span class="RFC2119">MAY</span> support applications
+                that wish to use PBKDF2 by providing password entry via an un-spoofable (by the
+                web application) UI.
+              </p>
+            </div>
+          </div>
+          <div id="pbkdf2-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Derive Key</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+ 
+      <div id="algorithm-normalizing-rules" class="section">
+        <h2>Algorithm normalizing rules</h2>
+        <p>
+          The <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> typedef
+          permits algorithms to be specified as either a <code>dictionary</code> or a DOMString.
+          In order to ensure consistency, conforming user agents must normalize all AlgorithmIdentifier
+          inputs into a single, canonical form. When normalization is indicated, it must act as
+          follows:
+        </p>
+        <ol>
+          <li>
+            Let <var>O</var> be the
+            <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> to be
+            normalized.
+          </li>
+          <li>If <var>O</var> is a DOMString, then:
+            <ol>
+              <li>
+                If <var>O</var> contains any non-ASCII characters, throw a <code>SyntaxError</code>
+                and return from this algorithm.
+              </li>
+              <li>
+                Convert every character in <var>O</var> to lower case.
+              </li>
+              <li>
+                If <var>O</var> contains a recognized <a href="#dfn-algorithm-alias">algorithm alias</a>
+                then let <var>O</var> be re-initialized to the aliased dictionary and this algorithm
+                restarted.
+              </li>
+              <li>
+                Otherwise, throw an <a href="#dfn-InvalidAlgorithmError"><code>InvalidAlgorithmError</code></a>
+                exception and return from this algorithm.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Let <var>name</var> be the <a href="#dfn-Algorithm-name"><code>name</code></a> member of the
+            <a href="#dfn-Algorithm"><code>Algorithm</code></a> dictionary.
+          </li>
+          <li>
+            If <var>name</var> contains any non-ASCII characters, throw a <code>SyntaxError</code>
+            and return from this algorithm.
+          </li>
+          <li>
+            Convert every character in <var>name</var> to lower case.
+          </li>
+          <li>
+            If <var>name</var> does not contain a recognized
+            <a href="#recognized-algorithm-name">algorithm name</a>, throw an
+            <a href="#dfn-InvalidAlgorithmError"><code>InvalidAlgorithmError</code></a> exception
+            and return from this algorithm.
+          </li>
+          <li>
+            Let <var>params</var> be the <a href="#dfn-Algorithm-params"><code>params</code></a> member
+            of the <a href="#dfn-Algorithm"><code>Algorithm</code></a> dictionary.
+          </li>
+          <li>
+            Process <var>params</var> according to the algorithm-defined
+            <a href="#algorithm-params-normalizing-rules">algorithm parameter normalizing rules</a>.
+          </li>
+          <li>
+            If an exception was raised during parameter processing, propagate the exception.
+          </li>
+          <li>
+            Return an <code>Algorithm</code> object, with its
+            <a href="#dfn-Algorithm-name"><code>name</code></a> set to <var>name</var> and its
+            <a href="#dfn-Algorithm-params"><code>params</code></a> set to <var>params</var>.
+          </li>
+        </ol>
+      </div>
+      <div id="examples-section" class="section">
+        <h2>JavaScript Example Code</h2>
+        <div id="examples-signing" class="section">
+          <h3>Generate a signing key pair, sign some data</h3>
+        
+        <x:codeblock language="es">
+var publicExponent = new Uint8Array([0x01, 0x00, 0x01]); 
+
+<span class="comment">// Algorithm Object</span>
+var algorithmKeyGen = {
+  name: "RSASSA-PKCS1-v1_5",
+  <span class="comment">// <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></span>
+  params: {
+    modulusLength: 2048,
+    publicExponent: publicExponent
+  }
+};
+
+var algorithmSign = {
+  name: "RSASSA-PKCS1-v1_5",
+  <span class="comment">// <a href="#dfn-RsaSsaParams">RsaSsaParams</a></span>
+  params: {
+    hash: {
+      name: "SHA-256",
+    }
+  }
+};
+
+var keyGen = window.crypto.createKeyGenerator(algorithmKeyGen,
+                                              false, <span class="comment">// temporary</span>
+                                              false, <span class="comment">// extractable</span>
+                                              ["sign"]);
+
+keyGen.oncomplete = function onKeyGenComplete(event)
+{
+  <span class="comment">// The keyGen operation is complete</span>
+  console.log("Public Key ID: " + event.target.result.publicKey.id);
+
+  <span class="comment">// create a "signer" CryptoOperation object</span>
+  var signer = window.crypto.createSigner(algorithmSign, event.target.result.privateKey.id);
+  signer.oncomplete = function signer_oncomplete(event)
+  {
+    console.log("The signer CryptoOperation is finished, the signature is: " +
+                event.target.result);
+  };
+  signer.onerror = function signer_onerror(event)
+  {
+    console.log("The signer CryptoOperation failed");
+  };
+
+  signer.oninit = function signer_oninit(event)
+  {
+    signer.processData(myData);
+  };
+
+  signer.onprogress = function signer_onprogress(event)
+  {
+    signer.complete();
+  };
+
+  <span class="comment">// Sign some data:</span>
+  signer.init();
+};
+
+keyGen.onerror = function onKeyGenError(event)
+{
+  console.error("KeyGen failed");
+};
+
+<span class="comment">// Generate the keypair, the key object is available inside the oncomplete handler</span>
+keyGen.generate();
+        </x:codeblock>
+        </div>
+        <div id="examples-key-storage" class="section">
+          <h3>Key Storage</h3>
+        <x:codeblock language="es">
+var encryptionKey = window.crypto.keys.getKeyById("78966b83-b003-46ac-8122-3771e9d7f78");
+
+<span class="comment">// This key is no longer needed, I should remove it:</span>
+window.crypto.keys.removeKeyById(encryptionKey.id);
+
+var otherEncryptionKey = window.crypto.keys.getKeyById("5edbeebe-bbbf-4d60-9846-8bbdb81e3215");
+        </x:codeblock>
+        </div>
+        <div id="examples-symmetric-encryption" class="section">
+          <h3>Symmetric Encryption</h3>
+        <x:codeblock language="es">
+var clearDataArrayBufferView = convertPlainTextToArrayBufferView("Plain Text Data");
+<span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
+
+var aesAlgorithmKeyGen = {
+  name: "AES-CBC",
+  <span class="comment">// <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></span>
+  params: {
+    length: 128
+  }
+};
+
+var myIV = new Uint8Array(16);
+
+var aesAlgorithmEncrypt = {
+  name: "AES-CBC",
+  <span class="comment">// <a href="#dfn-AesCbcParams">AesCbcParams</a></span>
+  params: {
+    iv: window.crypto.getRandomValues(myIV)
+  }
+};
+
+<span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
+var cryptoKeyGen = window.crypto.createKeyGenerator(aesAlgorithmKeyGen,
+                                                    false, <span class="comment">// temporary</span>
+                                                    false, <span class="comment">// extractable</span>
+                                                    ["encrypt"]);
+
+cryptoKeyGen.oncomplete = function ckg_onComplete(event)
+{
+<span class="comment">
+  // Optionally get the keyId and key via the id:
+  // var aesKeyId = event.target.result.id;
+  // var aesKey = window.crypto.keys.getKeyByKeyId(aesKeyId);
+</span>
+
+  var aesKey = event.target.result;
+
+  var aesSymmetricCryptoOp = window.crypto.createEncrypter(aesAlgorithmEncrypt, aesKey);
+  aesSymmetricCryptoOp.oncomplete = function aes_oncomplete(event)
+  {
+    <span class="comment">// the clearData array has been encrypted</span>
+    var resultCipherDataArrayBufferView = event.target.result; <span class="comment">// ArrayBufferView</span>
+  };
+
+  aesSymmetricCryptoOp.oninit = function aes_oninit(event)
+  {
+    aesSymmetricCryptoOp.processData(clearDataArrayBufferView);
+  };
+
+  aesSymmetricCryptoOp.onprogress = function aes_onprogress(event)
+  {
+    aesSymmetricCryptoOp.complete();
+  };
+
+  aesSymmetricCryptoOp.onerror = function aes_onerror(event)
+  {
+    console.error("AES encryption failed");
+  };
+
+  aesSymmetricCryptoOp.init();
+};
+
+cryptoKeyGen.generate();
+        </x:codeblock>
+      </div>
+    </div>
+      <div id="acknowledgements-section" class="section">
+        <h2>Acknowledgements</h2>
+        <p>
+          The editors would like to thank Adam Barth, Ali Asad, Arun Ranganathan, Brian Smith,
+          Brian Warner, Channy Yun, Kai Engert, Mark Watson, Vijay Bharadwaj, Virginie Galindo,
+          and Wan-Teh Chang for their technical feedback and assistance.
+        </p>
+        <p>
+          Thanks to the W3C Web Cryptography WG, and to participants on the public-webcrypto@w3.org
+          mailing list.
+        </p>
+        <p>
+         The W3C would like to thank the <a href="http://www.northropgrumman.com/cybersecurity/presskit_research_co.html">Northrop Grumman Cybersecurity
+Research Consortium</a> for supporting W3C/MIT. 
+        </p>
+        <p>
+          The <a href="#dfn-Crypto-method-getRandomValues"><code>getRandomValues</code></a> method
+          in the <code>Crypto</code> interface was originally proposed by Adam Barth to the
+          <a href="http://wiki.whatwg.org/wiki/Crypto">WHATWG</a>.
+        </p>
+      </div>
+      <div id='references' class='section'>
+         <h2>References</h2>
+         <div id="normative-references" class="section">
+           <h3>Normative References</h3>
+           <dl>
+             <dt id="RFC2119">RFC2119</dt>
+             <dd>
+               <cite><a href='http://www.ietf.org/rfc/rfc2119'>Key words for use in RFCs to
+               Indicate Requirement Levels</a></cite>, S. Bradner. IETF.
+             </dd>
+             <dt id="WebIDL">WebIDL Specification</dt>
+             <dd>
+               <cite><a href="http://www.w3.org/TR/WebIDL/">WebIDL (work in progress)</a></cite>,
+               C. McCormack.
+             </dd>
+             <dt id="DOM4">DOM4</dt>
+             <dd>
+               <cite><a href="http://www.w3.org/TR/domcore/">DOM4 (work in progress)</a></cite>,
+               A. Gregor, A. van Kesteren, Ms2ger. W3C.
+             </dd>
+             <dt id="HTML">HTML</dt>
+             <dd>
+               <cite><a href="http://dev.w3.org/html5/spec/Overview.html">HTML5: A vocabulary and
+               associated APIs for HTML and XHTML (work in progress)</a></cite>, I. Hickson. W3C.
+             </dd>
+             <dt id="TypedArrays">Typed Arrays</dt>
+             <dd>
+               <cite><a href="https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/TypedArray-spec.html">
+               Typed Arrays (work in progress)</a></cite>, V. Vukicevic, K. Russell. Khronos Group.
+             </dd>
+             <dt id="RFC3447">RFC3447</dt>
+             <dd>
+               <cite><a href="http://www.ietf.org/rfc/rfc3447">Public-Key Cryptography Standards
+               (PKCS) #1: RSA Cryptography Specifications Version 2.1</a></cite>, J. Jonsson,
+               B. Kaliski. IETF.
+             </dd>
+             <dt id="PKCS3">PKCS3</dt>
+             <dd>
+               <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2126">PKCS #3: Diffie-Hellman
+               Key-Agreement Standard</a></cite>, RSA Laboratories.
+             </dd>
+             <dt id="X9.62">X9.62</dt>
+             <dd>
+               <cite>ANS X9.62–2005: Public Key Cryptography for the Financial Services Industry,
+               The Elliptic Curve Digital Signature Algorithm (ECDSA)</cite>, ANSI.
+             </dd>
+             <dt id="X9.63">X9.63</dt>
+             <dd>
+               <cite>ANS X9.63–2001: Public Key Cryptography for the Financial Services Industry,
+               Key Agreement and Key Transport Using Elliptic Curve Cryptography</cite>, ANSI.
+             </dd>
+             <dt id="ECMA-262">ECMAScript</dt>
+             <dd>
+               <cite><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">
+               ECMAScript 5th Edition</a></cite>, A. Wirfs-Brock, P. Lakshman et al.
+             </dd>
+             <dt id="FIPS180-4">FIPS 180-4</dt>
+             <dd>
+               <cite><a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf">
+               FIPS PUB 180-4: Secure Hash Standard</a></cite>, NIST.
+             </dd>
+           </dl>
+        </div>
+        <div id="informative-references" class="section">
+          <h3>Informative References</h3>
+          <dl>
+            <dt id="PKCS11">PKCS11</dt>
+            <dd>
+              <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2133">PKCS #11: Cryptographic
+              Token Interface Standard</a></cite>, RSA Laboratories.
+            </dd>
+            <dt id="CryptoAPI">CryptoAPI</dt>
+            <dd>
+              <cite><a href="http://msdn.microsoft.com/en-us/library/aa380256.aspx">Cryptography
+              Reference</a></cite>, Microsoft Corporation.
+            </dd>
+            <dt id="CNG">CNG</dt>
+            <dd>
+              <cite><a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa376210(v=vs.85).aspx">
+              Cryptography API: Next Generation</a></cite>, Microsoft Corporation.
+            </dd>
+            <dt id="CDSA">CDSA</dt>
+            <dd>
+              <cite><a href="http://www.opengroup.org/security/cdsa.htm">Common Security: CDSA and
+              CSSM, Version 2 (with corrigenda)</a></cite>, the Open Group.
+            </dd>
+            <dt id="SP800-56A">NIST SP 800-56A</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56A/SP800-56A_Revision1_Mar08-2007.pdf">
+              NIST SP 800-56A: Recommendation for Pair-Wise Key Establishment Schemes Using Discrete
+              Logarithm Cryptography (Revised)</a></cite>, March 2007, NIST.
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>  
