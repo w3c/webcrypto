@@ -12,9 +12,10 @@
               media-type='application/xhtml+xml; charset=UTF-8'/>
 
   <xsl:variable name='options' select='/*/h:head/x:options'/>
-  <xsl:variable name='id' select='/*/h:head/h:meta[@name="revision"]/@content'/>
-  <xsl:variable name='rev' select='substring-before(substring-after(substring-after($id, " "), " "), " ")'/>
   <xsl:variable name='tocpi' select='//processing-instruction("toc")[1]'/>
+
+  <xsl:param name='rev'>??</xsl:param>
+  <xsl:param name='now'>12340506</xsl:param>
 
   <xsl:template match='/'>
     <xsl:text>&#xa;</xsl:text>
@@ -183,7 +184,7 @@
     <xsl:variable name='date'>
       <xsl:choose>
         <xsl:when test='$options/x:maturity="ED"'>
-          <xsl:value-of select='translate(substring-before(substring-after(substring-after(substring-after($id, " "), " "), " "), " "), "/", "")'/>
+          <xsl:value-of select='$now'/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select='substring($options/x:versions/x:this/@href, string-length($options/x:versions/x:this/@href) - 8, 8)'/>
@@ -348,7 +349,6 @@
     <xsl:if test='$options/x:maturity="ED"'>
       <div class='ednote'>
         <div class='ednoteHeader'>Editorial note</div>
-        <p>This is revision <xsl:value-of select='$id'/>.</p>
         <xsl:variable name='n' select='count(//h:div[@class="ednote"])'/>
         <xsl:if test='$n'>
           <p>There are <xsl:value-of select='$n'/> further editorial notes in the document.</p>
