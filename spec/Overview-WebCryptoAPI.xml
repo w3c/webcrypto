@@ -1775,36 +1775,6 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
         </p>
       </div>
 
-      <div id="named-curve" class="section">
-        <h2>NamedCurve</h2>
-        <x:codeblock language="idl">
-enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
-  <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
-  <dfn id="dfn-NamedCurve-p256">"P-256"</dfn>,
-  <span class="comment">// NIST recommended curve P-384, also known as secp384r1.</span>
-  <dfn id="dfn-NamedCurve-p384">"P-384"</dfn>,
-  <span class="comment">// NIST recommended curve P-521, also known as secp521r1.</span>
-  <dfn id="dfn-NamedCurve-p521">"P-521"</dfn>
-};
-        </x:codeblock>
-        <p>
-          The <a href="#dfn-NamedCurve">NamedCurve</a> enumeration type represents named elliptic curves, which
-          are a convenient way to specify the domain parameters of well-known elliptic curves.
-        </p>
-      </div>
-
-      <div id="ec-point" class="section">
-        <h2>ECPoint</h2>
-        <x:codeblock language="idl">
-typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
-        </x:codeblock>
-        <p>
-          The <a href="#dfn-ECPoint">ECPoint</a> typedef is a <code>Uint8Array</code> holding an
-          elliptic curve point. An elliptic curve point is converted to an array of Uint8 elements
-          using the procedure specified in <a href="#X9.62">X9.62</a> Annex A.5.7.
-        </p>
-      </div>
-
       <div id="key-discovery" class="section">
         <h2>Key Discovery</h2>
         <p class="norm">This section is non-normative.</p>
@@ -2383,12 +2353,26 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
           <div id="EcKeyGenParams-dictionary" class="section">
             <h4>EcKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
+enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
+  <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
+  <dfn id="dfn-NamedCurve-p256">"P-256"</dfn>,
+  <span class="comment">// NIST recommended curve P-384, also known as secp384r1.</span>
+  <dfn id="dfn-NamedCurve-p384">"P-384"</dfn>,
+  <span class="comment">// NIST recommended curve P-521, also known as secp521r1.</span>
+  <dfn id="dfn-NamedCurve-p521">"P-521"</dfn>
+};
+
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
   <span class="comment">// A named curve</span>
   NamedCurve namedCurve;
 };
             </x:codeblock>
+            <p>
+              The <a href="#dfn-NamedCurve">NamedCurve</a> enumeration type represents named elliptic curves, which
+              are a convenient way to specify the domain parameters of well-known elliptic curves.
+            </p>
           </div>
+
           <div id="ecdsa-operations" class="section">
             <h4>Operations</h4>
             <dl>
@@ -2555,11 +2539,18 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           <div id="dh-EcdhKeyDeriveParams" class="section">
             <h4>EcdhKeyDeriveParams dictionary</h4>
             <x:codeblock language="idl">
+typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
+
 dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
   <span class="comment">// The peer's EC public key.</span>
   ECPoint public;
 };
             </x:codeblock>
+            <p>
+              The <a href="#dfn-ECPoint">ECPoint</a> typedef is a <code>Uint8Array</code> holding an
+              elliptic curve point. An elliptic curve point is converted to an array of Uint8 elements
+              using the procedure specified in <a href="#X9.62">X9.62</a> Annex A.5.7.
+            </p>
           </div>
           <div id="ecdh-operations" class="section">
             <h4>Operations</h4>
