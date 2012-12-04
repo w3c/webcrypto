@@ -62,11 +62,10 @@ This specification describes a JavaScript API for performing basic
 cryptographic operations in web applications, such as hashing,
 signature generation and verification, and encryption and decryption.
 Additionally, it describes an API for applications to generate and/or
-manage the keying material necessary to perform these operations. Key
-storage is provided for both temporary and permanent keys. Access to
-keying material is contingent on the same origin policy. Uses for this
-API range from user or service authentication, document or code
-signing, and the confidentiality and integrity of communications.
+manage the keying material necessary to perform these operations. 
+Uses for this API range from user or service authentication, document
+or code signing, and the confidentiality and integrity of
+communications.
       </p>
   
       <?revision-note?>
@@ -367,9 +366,9 @@ The Web Cryptography Working Group invites discussion and feedback on this draft
           <p>
             The specification attempts to focus on the common functionality and features between
             various platform-specific or standardized cryptographic APIs, and avoid features and
-            functionality that is specific to one or two implementations. As such this API allows key
-            generation, management, exchange and discovery with a level of abstraction that avoids
-            developers to care about the implementation of the underlying key storage. The API is focused
+            functionality that are specific to one or two implementations. As such this API allows key
+            generation, management, and exchange with a level of abstraction that avoids developers
+            needing to care about the implementation of the underlying key storage. The API is focused
             specifically around Key objects, as an abstraction for the underlying raw cryptographic
             keying material. The intent behind this is to allow an API that is generic enough to allow
             conforming user agents to expose keys that are stored and managed directly by the user agent,
@@ -592,7 +591,8 @@ The Web Cryptography Working Group invites discussion and feedback on this draft
           <dfn id="dfn-task">task</dfn>,
           <dfn id="task-source">task source</dfn>,
           <dfn id="df-URL">URL</dfn>,
-          <dfn id="queue-a-task">queue a task</dfn>,
+          <dfn id="queue-a-task">queue a task</dfn>, and
+          <dfn id="structured-clone">structured clone</dfn>,
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
         <p>
@@ -772,7 +772,6 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
 };
 
 interface <dfn id="dfn-Key">Key</dfn> {
-  readonly attribute DOMString <a href="#dfn-Key-id">id</a>;
   readonly attribute KeyType <a href="#dfn-Key-type">type</a>;
   readonly attribute bool <a href="#dfn-Key-extractable">extractable</a>;
   readonly attribute bool <a href="#dfn-Key-temporary">temporary</a>;
@@ -807,26 +806,10 @@ interface <dfn id="dfn-Key">Key</dfn> {
             <a href="#dfn-CryptoOperation">CryptoOperation</a>.
           </p>
         </div>
+
         <div id="key-interface-members" class="section">
           <h3>Key interface members</h3>
           <dl>
-            <dt id="dfn-Key-id"><code>id</code></dt>
-            <dd>
-              <p>
-                For all <code>Key</code>s visible within a given origin, each <code>Key</code> shall
-                have a unique, opaque identifier assigned that may be used to uniquely identify that
-                <code>Key</code> within the set of keys.
-              </p>
-              <p>
-                Within the same origin, if two <code>Key</code>s are created from the same underlying
-                keying material, they <span class="RFC2119">MUST</span> share the same <code>id</code>.
-              </p>
-              <p>
-                Within multiple origins, if two <code>Key</code>s are created from the same underlying
-                keying material, they <span class="RFC2119">SHOULD</span> be assigned <em>distinct</em>
-                key identifiers.
-              </p> 
-            </dd>
             <dt id="dfn-Key-type"><code>type</code></dt>
             <dd>
               The type of the underlying keys. Opaque keying material, including that used for
@@ -901,6 +884,43 @@ interface <dfn id="dfn-Key">Key</dfn> {
             </dd>
           </dl>
         </div>
+
+        <div id="key-interface-clone" class="section">
+          <h3>Structured clone algorithm</h3>
+          <p>
+            When a user agent is required to obtain a <a href="#dfn-structured-clone">structured clone</a>
+            of a <a href="#dfn-Key">Key</a> object, it must run the following algorithm.
+          </p>
+          <ol>
+            <li>
+              Let <var>input</var> and <var>memory</var> be the corresponding inputs defined
+              by the <a href="#dfn-structured-clone">internal structured cloning algorithm</a>,
+              where <var>input</var> represents a <a href="#dfn-Key">Key</a> object to be cloned.
+            </li>
+            <li>Let <var>output</var> be a newly constructed <a href="#dfn-Key">Key</a> object.</li>
+            <li>
+              Let the following attributes of <var>output</var> be equal to the value obtained by
+              invoking the internal structured clone algorithm recursively, using the corresponding
+              attribute on <var>input</var> as the new "<var>input</var>" argument and <var>memory</var>
+              as the new "<var>memory</var>" argument:
+              <ul>
+                <li><a href="#dfn-Key-type">type</a></li>
+                <li><a href="#dfn-Key-extractable">extractable</a></li>
+                <li><a href="#dfn-Key-temporary">temporary</a></li>
+                <li><a href="#dfn-Key-Algorithm">Algorithm</a></li>
+                <li><a href="#dfn-Key-KeyUsage">KeyUsage</a></li>
+                <li><a href="#dfn-Key-startDate">startDate</a></li>
+                <li><a href="#dfn-Key-endDate">endDate</a></li>
+                <li><a href="#dfn-Key-KeyAttributes">keyAttributes</a></li>
+              </ul>
+            </li>
+            <li>
+              Let <var>output</var> refer to the same underlying cryptographic material and
+              cryptographic material key storage of <var>input</var>.
+            </li>
+          </ol>
+        </div>
+
       </div>
 
       <div id="cryptooperation-interface" class="section">
@@ -1408,72 +1428,6 @@ interface <dfn id="dfn-KeyExporter">KeyExporter</dfn> : <a href="#dfn-KeyOperati
         </x:codeblock>
       </div>
       
-      <div id="KeyStorage-interface" class="section">
-        <h2>KeyStorage interface</h2>
-        <x:codeblock language="idl">
-interface <dfn id="dfn-KeyStorage">KeyStorage</dfn> {
-  readonly attribute unsigned long <a href="#dfn-KeyStorage-attribute-length">length</a>;
-
-  getter <a href="#dfn-Key">Key</a> <a href="#dfn-KeyStorage-method-getKey">getKey</a>(unsigned long index);
-  deleter void <a href="#dfn-KeyStorage-method-removeKey">removeKey</a>(unsigned long index);
-
-  getter <a href="#dfn-Key">Key</a> <a href="#dfn-KeyStorage-method-getKeyById">getKeyById</a>(DOMString keyId);
-  deleter void <a href="#dfn-KeyStorage-method-removeKeyById">removeKeyById</a>(DOMString keyId);
-  void <a href="#dfn-KeyStorage-method-clear">clear</a>();
-};
-        </x:codeblock>
-        <p>
-          Each <a href="#dfn-KeyStorage"><code>KeyStorage</code></a> object provides access to a
-          collection of <a href="#dfn-Key"><code>Key</code></a> objects that have been previously
-          authorized for an origin.
-        </p>
-        <p>
-          Each <a href="#dfn-KeyStorage"><code>KeyStorage</code></a> object is associated with a
-          list of <a href="#dfn-Key"><code>Key</code></a>s when it is created, as defined in the
-          section on the <a href="#dfn-Crypto-keys"><code>keys</code></a> attribute.
-        </p>
-        <p>
-          An object <var>storage</var> implementing <a href="#dfn-KeyStorage"><code>KeyStorage</code></a>
-          supports indexed properties with indices in the range 0 ≤ <var>index</var> &lt;
-          <code>storage.length</code>
-        </p>
-        <p>
-          Such objects also support a named property for every name that, if passed to
-          <a href="#dfn-KeyStorage-method-getKeyById"><code>getKeyById</code></a>, would
-          return a non-null value.
-        </p>
-        <p>
-          The <dfn id="dfn-KeyStorage-attribute-length"><code>length</code></dfn> attribute must return the
-          number of keys present in the <a href="#dfn-KeyStorage"><code>KeyStorage</code></a>.
-        </p>
-        <p>
-          The <span>supported property names</span> on a <code><a href="#dfn-KeyStorage">KeyStorage</a></code>
-          object are the values of the <a href="#dfn-Key-id"><code>id</code></a> attribute of
-          all <a href="#dfn-Key"><code>Key</code></a> objects within storage.
-        </p>
-        <p>
-          The <dfn id="dfn-KeyStorage-method-getKeyById"><code>getKeyById</code></dfn>(<var>keyId</var>) method must
-          first check to see if there exists within the list a <a href="#dfn-Key"><code>Key</code></a> object whose
-          <a href="#dfn-Key-id"><code>id</code></a> attribute is equal to <var>keyId</var>. If no such
-          <a href="#dfn-Key"><code>Key</code></a> exists within the list, then this method
-          must return <code>null</code>.
-        </p>
-        <div class="ednote">
-          <ul>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/31">ISSUE-31</a>:
-              KeyStorage is currently a synchronous API, but, depending on implementation, may
-              need to access storage such as disk or secure element.
-            </li>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/31">ISSUE-31</a>:
-              KeyStorage does not provide a way to discover keys based on particular attributes,
-              either intrinsic attributes or custom, user-defined attributes.
-            </li>
-          </ul>
-        </div>
-      </div>
-
       <div id="crypto-interface" class="section">
         <h2>Crypto interface</h2>
         <x:codeblock language="idl">
@@ -1505,7 +1459,6 @@ interface <dfn id="dfn-crypto">Crypto</dfn> {
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   <a href="#dfn-KeyExporter">KeyExporter</a> <a href="#dfn-Crypto-method-createKeyExporter">createKeyExporter</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
-  readonly attribute <a href="#dfn-KeyStorage">KeyStorage</a> <a href="#dfn-Crypto-keys">keys</a>;
 };
 
 <a href="#dfn-Crypto">Crypto</a> implements <a href="#dfn-RandomSource">RandomSource</a>;
@@ -1850,33 +1803,6 @@ partial interface Window {
             <p></p>
           </div>
           
-          <div id="Crypto-attribute-keys" class="section">
-            <h4>The keys attribute</h4>
-            <p>
-              The <dfn id="dfn-Crypto-Keys"><code>keys</code></dfn> attribute provides access to the
-              key storage of a particular origin. Keys that have been generated by, imported into, or
-              have otherwise had access granted, such as through out-of-band pre-provisioning, will
-              be available through this method.
-            </p>
-            <div class="ednote">
-              <p>
-                The availability of <a href="#dfn-Key"><code>Key</code></a> objects via
-                this attribute does not necessarily mean that the underlying keying material is available
-                to be used. For example, if a user agent were to generate keying material on removable
-                storage, it may register that there exists an authorized <code>Key</code>, but
-                attempting to use it with any <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-                or <a href="#dfn-KeyOperation"><code>KeyOperation</code></a> may cause an error to be
-                raised once it was discovered that the underlying key was not available.
-              </p>
-              <p>
-                It is expected that the user agent will not need to attempt to obtain the underlying
-                keying material when returning a <a href="#dfn-Key"><code>Key</code></a>. Instead,
-                the underlying keying material is obtained when instantiating a
-                <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> that
-                makes use of the key.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -3266,17 +3192,6 @@ keyGen.onerror = function onKeyGenError(event)
 
 <span class="comment">// Generate the keypair, the key object is available inside the oncomplete handler</span>
 keyGen.generate();
-        </x:codeblock>
-        </div>
-        <div id="examples-key-storage" class="section">
-          <h3>Key Storage</h3>
-        <x:codeblock language="es">
-var encryptionKey = window.crypto.keys.getKeyById("78966b83-b003-46ac-8122-3771e9d7f78");
-
-<span class="comment">// This key is no longer needed, I should remove it:</span>
-window.crypto.keys.removeKeyById(encryptionKey.id);
-
-var otherEncryptionKey = window.crypto.keys.getKeyById("5edbeebe-bbbf-4d60-9846-8bbdb81e3215");
         </x:codeblock>
         </div>
         <div id="examples-symmetric-encryption" class="section">
