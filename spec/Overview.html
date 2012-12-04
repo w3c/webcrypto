@@ -1320,14 +1320,10 @@ interface <dfn id="dfn-KeyDeriver">KeyDeriver</dfn> : <a href="#dfn-KeyOperation
 enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
   <span class="comment">// An unformatted sequence of bytes. Intended for secret keys.</span>
   "raw",
-  <span class="comment">// The BER encoding of the RSAPublicKey structure from RFC 3447.</span>
-  <span class="comment">// Only usable with RSA keys.</span>
-  "pkcs1-public",
-  <span class="comment">// The BER encoding of the RSAPrivateKey structure from RFC 3447.</span>
-  <span class="comment">// Only usable with RSA keys.</span>
-  "pkcs1-private",
-  <span class="comment">// The BER encoding of the PrivateKeyInfo structure from RFC 5208.</span>
+  <span class="comment">// The DER encoding of the PrivateKeyInfo structure from <a href="#RFC5208">RFC 5208</a>.</span>
   "pkcs8",
+  <span class="comment">// The DER encoding of the SubjectPublicKeyInfo structure from <a href="#RFC5280">RFC 5280</a>.</span>
+  "spki",
   <span class="comment">// The key is represented as JSON according to the JSON Web Key format.</span>
   "jwk",
 };
@@ -3230,6 +3226,18 @@ Research Consortium</a> for supporting W3C/MIT.
                <cite><a href="http://www.ietf.org/rfc/rfc3447">Public-Key Cryptography Standards
                (PKCS) #1: RSA Cryptography Specifications Version 2.1</a></cite>, J. Jonsson,
                B. Kaliski. IETF.
+             </dd>
+             <dt id="RFC5208">RFC5208</dt>
+             <dd>
+              <cite><a href="http://www.ietf.org/rfc/rfc5208">Public-Key Cryptography Standards
+              (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</a></cite>,
+              B. Kaliski. IETF.
+             </dd>
+             <dt id="RFC5280">RFC5280</dt>
+             <dd>
+              <cite><a href="http://www.ietf.org/rfc/rfc5280">Internet X.509 Public Key
+              Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
+              D. Cooper, S. Santesson, S. Farrell, S. Boeyen, R. Housley, W. Polk. IETF.
              </dd>
              <dt id="PKCS3">PKCS3</dt>
              <dd>
