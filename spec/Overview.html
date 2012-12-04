@@ -46,7 +46,7 @@ or code signing, and the confidentiality and integrity of
 communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 13 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 11 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -774,11 +774,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
   readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-Key-algorithm">algorithm</a>;
   readonly attribute <a href="#dfn-KeyUsage">KeyUsage</a>[] <a href="#dfn-Key-keyUsage">keyUsage</a>;
 
-  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a></span>
-  readonly attribute Date? <a href="#dfn-Key-startDate">startDate</a>;
-  readonly attribute Date? <a href="#dfn-Key-endDate">endDate</a>;
-
-  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/17">ISSUE-17</a></span>
+ <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/17">ISSUE-17</a></span>
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/25">ISSUE-25</a></span>
   attribute <a href="#dfn-KeyAttributes">KeyAttributes</a> <a href="#dfn-Key-extra">extra</a>;
 };
@@ -832,34 +828,6 @@ interface <dfn id="dfn-Key">Key</dfn> {
               indicate what <a href="#dfn-CryptoOperation">CryptoOperations</a> may be used with this
               key.
             </dd>
-            <dt id="dfn-Key-startDate"><code>startDate</code></dt>
-            <dd>
-              <p>
-                The effective start date for the validity of the key. This is not enforced by the
-                Web Cryptography API, and is provided for informative purposes only. May be
-                <code>null</code>, indicating that the start date is unknown or undefined.
-              </p>
-              <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                <p>
-                  <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a>
-                  TBD: The semantics of key expiration.
-                </p>
-              </div>
-            </dd>
-            <dt id="dfn-Key-endDate"><code>endDate</code></dt>
-            <dd>
-              <p>
-                The effective end date for the validity of the key. This is not enforced by the
-                Web Cryptography API, and is provided for informative purposes only. May be
-                <code>null</code>, indicating that the end date is unknown or undefined.
-              </p>
-              <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                <p>
-                  <a href="https://www.w3.org/2012/webcrypto/track/issues/16">ISSUE-16</a>
-                  TBD: The semantics of key expiration.
-                </p>
-              </div>
-            </dd>
             <dt id="dfn-Key-extra"><code>extra</code></dt>
             <dd>
               Application-defined attributes that are associated with a key.
@@ -905,8 +873,6 @@ interface <dfn id="dfn-Key">Key</dfn> {
                 <li><a href="#dfn-Key-temporary">temporary</a></li>
                 <li><a href="#dfn-Key-Algorithm">Algorithm</a></li>
                 <li><a href="#dfn-Key-KeyUsage">KeyUsage</a></li>
-                <li><a href="#dfn-Key-startDate">startDate</a></li>
-                <li><a href="#dfn-Key-endDate">endDate</a></li>
                 <li><a href="#dfn-Key-KeyAttributes">keyAttributes</a></li>
               </ul>
             </li>
