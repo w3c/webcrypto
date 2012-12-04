@@ -286,27 +286,6 @@ communications.
           </p>
         </div>
 
-        <div id="out-of-band-keys" class="section">
-          <h3>Out-of-Band Key Provisioning</h3>
-          <p>
-            Web applications may wish to use keys that have been provisioned through means outside
-            the scope of this API. This may include keys that are provisioned through
-            platform-specific native APIs, stored in secure elements such as smart cards or trusted
-            platform modules (TPMs), or individually bound to devices at time of manufacturing.
-            Such keys may, for example, be used to assist in identifying a client to a specific
-            web service. User agents may choose to expose such keys to web applications after
-            implementing appropriate security and privacy mitigations, such as gaining user consent
-            or other out-of-band authorization.
-          </p>
-          <p>
-            In this scenario, a web application discovers a pre-provisioned key based on its
-            attributes and uses it to perform authorized cryptographic operations as part of a
-            protocol with a server. The server may utilize knowledge obtained out-of-band regarding
-            the key's provisioning to make access control and policy decisions, such as inferring
-            the identity of the user and/or device and customizing its responses based on that.
-          </p>
-        </div>
-
       </div>
       
       <div id='conformance' class='section'>
@@ -1816,6 +1795,49 @@ typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
         </p>
       </div>
 
+      <div id="key-discovery" class="section">
+        <h2>Key Discovery</h2>
+        <p class="norm">This section is non-normative.</p>
+        <div class="ednote">
+          <p>
+            The Working Group is actively discussing means of discovering <code><a href="#dfn-Key">Key</a></code>
+            objects that are not not directly created by the application via
+            <code><a href="#Crypto-method-createKeyGenerator">createKeyGenerator</a></code>, or allowing
+            web applications to dicate how and where the cryptographic keying material associated with
+            <code>Key</code> objects is stored. Examples of such <code>Key</code> objects or interfaces that
+            may be exposed include:
+          </p>
+          <ul>
+            <li>
+              Named keys that have been pre-provisioned for a particular device or origin
+              (e.g.: device specific keys).
+            </li>
+            <li>
+              Keys that are stored in secure elements (e.g.: smart cards, TPMs), particularly
+              those that may be inserted or removed at any time.
+            </li>
+            <li>
+              Keys that are associated with X.509 certificates matching some criteria.
+            </li>
+            <li>
+              Keys derived from material associated with a particular origin (e.g.:
+              derived from exported TLS keying material [<a href="#RFC5705">RFC5705</a>] or
+              origin bound certificates [<a href="#draft-tls-obc">DRAFT-TLS-OBC</a>]).
+            </li>
+          </ul>
+          <p>
+            There is currently no consensus within the Web Cryptography Working Group about how
+            and where such interfaces should be specified, nor is there consensus with regards
+            various proposals to address specific use cases.
+          </p>
+          <p>
+            Such features bring a variety of concerns, most notably unique concerns regarding
+            privacy, security, and user interaction, that may be best addressed through separate
+            specifications that expand on sources for generating or storing <code>Key</code> objects.
+          </p>
+        </div>
+      </div>
+
       <div id="algorithms" class="section">
         <h2>Algorithms</h2>
         <div id="recommended-algorithms" class="section">
@@ -3274,6 +3296,16 @@ Research Consortium</a> for supporting W3C/MIT.
         <div id="informative-references" class="section">
           <h3>Informative References</h3>
           <dl>
+            <dt id="draft-TLS-OBC">draft-balfanz-tls-obc-01</dt>
+            <dd>
+              <cite><a href="http://tools.ietf.org/html/draft-balfanz-tls-obc-01">TLS Origin-Bound
+              Certificates</a></cite>, D. Balfanz, D. Smetters, M. Upadhyay, A. Barth. IETF.
+            </dd>
+            <dt id="RFC5705">RFC 5705</dt>
+            <dd>
+              <cite><a href="http://tools.ietf.org/html/rfc5705">Keying Material Exporters for
+              Transport Layer Security (TLS)</a></cite>, E. Rescorla. IETF.
+            </dd>
             <dt id="PKCS11">PKCS11</dt>
             <dd>
               <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2133">PKCS #11: Cryptographic
