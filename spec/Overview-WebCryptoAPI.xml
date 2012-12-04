@@ -2939,6 +2939,69 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </ul>
           </div>
         </div>
+        <div id="concatkdf" class="section">
+          <h3>Concat KDF</h3>
+          <div id="concatkdf-description" class="section">
+            <h4>Description</h4>
+            <p>
+              The <code>"CONCAT"</code> algorithm identifier is used to perform key derivation
+              using the key derivation algorithm defined in Section 5.8.1 of NIST SP 800-56A
+              [<a href="#SP800-56A">SP800-56A</a>].
+            </p>
+          </div>
+          <div id="concatkdf-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"CONCAT"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>deriveKey</td>
+                  <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="concat-params" class="section">
+            <h4>ConcatParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The digest method to use to derive the keying material.</span>
+  AlgorithmIdentifier hash;
+
+  <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
+  <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
+  <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
+  ArrayBufferView algorithmId;
+
+  <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
+  ArrayBufferView partyUInfo;
+  <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
+  ArrayBufferView partyVInfo;
+  <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
+  ArrayBufferView? publicInfo;
+  <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
+  ArrayBufferView? privateInfo;
+};
+            </x:codeblock>
+          </div>
+          <div id="concat-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Derive Key</li>
+            </ul>
+          </div>
+        </div>
         <div id="pbkdf2" class="section">
           <h3>PBKDF2</h3>
           <div id="pbkdf2-description" class="section">
