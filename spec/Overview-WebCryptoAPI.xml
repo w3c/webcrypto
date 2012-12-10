@@ -3527,15 +3527,13 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
           <h3>Generate a signing key pair, sign some data</h3>
         
         <x:codeblock language="es">
-var publicExponent = new Uint8Array([0x01, 0x00, 0x01]); 
-
 <span class="comment">// Algorithm Object</span>
 var algorithmKeyGen = {
   name: "RSASSA-PKCS1-v1_5",
   <span class="comment">// <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></span>
   params: {
     modulusLength: 2048,
-    publicExponent: publicExponent
+    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  <span class="comment">// Equivalent to 65537</span>
   }
 };
 
@@ -3550,46 +3548,33 @@ var algorithmSign = {
 };
 
 var keyGen = window.crypto.generateKey(algorithmKeyGen,
-                                              false, <span class="comment">// extractable</span>
-                                              ["sign"]);
+                                       false, <span class="comment">// extractable</span>
+                                       ["sign"]);
 
-keyGen.oncomplete = function onKeyGenComplete(event)
-{
-  <span class="comment">// The keyGen operation is complete</span>
+keyGen.oncomplete = function(event) {
+  <span class="comment">// Because we are not supplying data to .sign(), a multi-part
+  // CryptoOperation will be returned, which requires us to call .process()
+  // and .finish().</span>
+  var signer = window.crypt.sign(algorithmSign, event.target.result.privateKey);
+  signer.oncomplete = function(event) {
+    console.log("The signature is: " + event.target.result);
+  }
+  signer.onerror = function(event) {
+    console.error("Unable to sign");
+  }
 
-  <span class="comment">// create a "signer" CryptoOperation object</span>
-  var signer = window.crypto.sign(algorithmSign, event.target.result.privateKey);
-  signer.oncomplete = function signer_oncomplete(event)
-  {
-    console.log("The signer CryptoOperation is finished, the signature is: " +
-                event.target.result);
-  };
-  signer.onerror = function signer_onerror(event)
-  {
-    console.log("The signer CryptoOperation failed");
-  };
+  var dataPart1 = convertPlainTextToArrayBufferView("hello,");
+  var dataPart2 = convertPlainTextToArrayBufferView(" world!");
+  <span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
 
-  signer.oninit = function signer_oninit(event)
-  {
-    signer.process(myData);
-  };
-
-  signer.onprogress = function signer_onprogress(event)
-  {
-    signer.finish();
-  };
-
-  <span class="comment">// Sign some data:</span>
-  signer.init();
+  signer.process(dataPart1);
+  signer.process(dataPart2);
+  signer.finish();
 };
 
-keyGen.onerror = function onKeyGenError(event)
-{
-  console.error("KeyGen failed");
+keyGen.onerror = function(event) {
+  console.error("Unable to generate a key.");
 };
-
-<span class="comment">// Generate the keypair, the key object is available inside the oncomplete handler</span>
-keyGen.generate();
         </x:codeblock>
         </div>
         <div id="examples-symmetric-encryption" class="section">
@@ -3606,51 +3591,34 @@ var aesAlgorithmKeyGen = {
   }
 };
 
-var myIV = new Uint8Array(16);
-
 var aesAlgorithmEncrypt = {
   name: "AES-CBC",
   <span class="comment">// <a href="#dfn-AesCbcParams">AesCbcParams</a></span>
   params: {
-    iv: window.crypto.getRandomValues(myIV)
+    iv: window.crypto.getRandomValues(new Uint8Array(16))
   }
 };
 
 <span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
 var cryptoKeyGen = window.crypto.generateKey(aesAlgorithmKeyGen,
-                                                    false, <span class="comment">// extractable</span>
-                                                    ["encrypt"]);
+                                             false, <span class="comment">// extractable</span>
+                                             ["encrypt"]);
 
-cryptoKeyGen.oncomplete = function ckg_onComplete(event)
-{
+cryptoKeyGen.oncomplete = function(event) {
+  <span class="comment">// A new, random AES key has been generated.</span>
   var aesKey = event.target.result;
 
-  var aesSymmetricCryptoOp = window.crypto.encrypt(aesAlgorithmEncrypt, aesKey);
-  aesSymmetricCryptoOp.oncomplete = function aes_oncomplete(event)
-  {
-    <span class="comment">// the clearData array has been encrypted</span>
-    var resultCipherDataArrayBufferView = event.target.result; <span class="comment">// ArrayBufferView</span>
+  <span class="comment">// Unlike the signing example, which showed multi-part encryption, here we
+  // will perform the entire AES operation in a single call.</span>
+  var aesOp = window.crypto.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
+  aesOp.oncomplete = function(event) {
+    <span class="comment">// The clearData has been encrypted.</span>
+    var ciphertext = event.target.result; <span class="comment">// ArrayBufferView</span>
   };
-
-  aesSymmetricCryptoOp.oninit = function aes_oninit(event)
-  {
-    aesSymmetricCryptoOp.process(clearDataArrayBufferView);
+  aesOp.onerror = function(event) {
+    console.error("Unable to AES encrypt.");
   };
-
-  aesSymmetricCryptoOp.onprogress = function aes_onprogress(event)
-  {
-    aesSymmetricCryptoOp.finish();
-  };
-
-  aesSymmetricCryptoOp.onerror = function aes_onerror(event)
-  {
-    console.error("AES encryption failed");
-  };
-
-  aesSymmetricCryptoOp.init();
 };
-
-cryptoKeyGen.generate();
         </x:codeblock>
       </div>
     </div>
