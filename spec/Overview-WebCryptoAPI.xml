@@ -674,7 +674,7 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
             </ol>
             <p>
               Do not generate keys using the <code>getRandomValues</code> method. Use the
-              <a href="#dfn-Crypto-method-createKeyGenerator"><code>createKeyGenerator</code></a> method instead.
+              <a href="#dfn-Crypto-method-generateKey"><code>generateKey</code></a> method instead.
             </p>
           </div>
         </div>
@@ -1313,24 +1313,6 @@ interface <dfn id="dfn-KeyOperation">KeyOperation</dfn> : EventTarget {
         </x:codeblock>
       </div>
       
-      <div id="KeyGenerator-interface" class="section">
-        <h2>KeyGenerator interface</h2>
-        <x:codeblock language="idl">
-interface <dfn id="dfn-KeyGenerator">KeyGenerator</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
-  void <a href="#dfn-KeyOperation-generate-method">generate</a>();
-};
-        </x:codeblock>
-      </div>
-
-      <div id="KeyDeriver-interface" class="section">
-        <h2>KeyDeriver interface</h2>
-        <x:codeblock language="idl">
-interface <dfn id="dfn-KeyDeriver">KeyDeriver</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
-  void <a href="#dfn-KeyOperation-derive-method">derive</a>();
-};
-        </x:codeblock>
-      </div>
-
       <div id="KeyImporter-interface" class="section">
         <h2>KeyImporter interface</h2>
         <x:codeblock language="idl">
@@ -1346,8 +1328,6 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
 };
 
 interface <dfn id="dfn-KeyImporter">KeyImporter</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
-  void <a href="#dfn-KeyOperation-import-method">import</a>();
-  
   readonly attribute <a href="#dfn-KeyFormat">KeyFormat</a> format;
 };
         </x:codeblock>
@@ -1357,8 +1337,6 @@ interface <dfn id="dfn-KeyImporter">KeyImporter</dfn> : <a href="#dfn-KeyOperati
         <h2>KeyExporter interface</h2>
         <x:codeblock language="idl">
 interface <dfn id="dfn-KeyExporter">KeyExporter</dfn> : <a href="#dfn-KeyOperation">KeyOperation</a> {
-  void <a href="#dfn-KeyExporter-generate-method">export</a>();
-
   readonly attribute <a href="#dfn-KeyFormat">KeyFormat</a> format;
 };
         </x:codeblock>
@@ -1367,31 +1345,30 @@ interface <dfn id="dfn-KeyExporter">KeyExporter</dfn> : <a href="#dfn-KeyOperati
       <div id="crypto-interface" class="section">
         <h2>Crypto interface</h2>
         <x:codeblock language="idl">
-<span class="comment">// TBD: <a href="http://www.w3.org/2012/webcrypto/track/issues/37">ISSUE-37</a></span>
 interface <dfn id="dfn-crypto">Crypto</dfn> {
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createEncrypter">createEncrypter</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createDecrypter">createDecrypter</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createSigner">createSigner</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createVerifier">createVerifier</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, ArrayBufferView signature);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-createDigester">createDigester</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, ArrayBufferView signature);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm);
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
-  <a href="#dfn-KeyGenerator">KeyGenerator</a> <a href="#dfn-Crypto-method-createKeyGenerator">createKeyGenerator</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-KeyGenerator">KeyGenerator</a> <a href="#dfn-Crypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                            bool extractable = false,
                            <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
-  <a href="#dfn-KeyDeriver">KeyDeriver</a> <a href="#dfn-Crypto-method-createKeyDeriver">createKeyDeriver</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-KeyDeriver">KeyDeriver</a> <a href="#dfn-Crypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> baseKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
-  <a href="#dfn-KeyImporter">KeyImporter</a> <a href="#dfn-Crypto-method-createKeyImporter">createKeyImporter</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  <a href="#dfn-KeyImporter">KeyImporter</a> <a href="#dfn-Crypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          ArrayBufferView key,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
-  <a href="#dfn-KeyExporter">KeyExporter</a> <a href="#dfn-Crypto-method-createKeyExporter">createKeyExporter</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-KeyExporter">KeyExporter</a> <a href="#dfn-Crypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
 };
 
 <a href="#dfn-Crypto">Crypto</a> implements <a href="#dfn-RandomSource">RandomSource</a>;
@@ -1416,20 +1393,14 @@ partial interface Window {
               generation generates Keys, key derivation generates opaque bytes as secret material),
               or is there some other construct to distinguish the two?
             </li>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/37">ISSUE-37</a>:
-              Consider alternative method naming schemes, to reduce the use of "create" as a prefix
-              and "er" as a suffix, including the possible use of distinct objects with defined
-              Constructors.
-            </li>
           </ul>
         </div>
         <div id="crypto-interface-methods" class="section">
           <h3>Methods and Parameters</h3>
-          <div id="Crypto-method-createEncrypter" class="section">
-            <h4>The createEncrypter method</h4>
+          <div id="Crypto-method-encrypt" class="section">
+            <h4>The encrypt method</h4>
             <p>
-              The <dfn id="dfn-Crypto-method-createEncrypter"><code>createEncrypter</code></dfn>
+              The <dfn id="dfn-Crypto-method-encrypt"><code>encrypt</code></dfn>
               method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will encrypt data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1481,10 +1452,10 @@ partial interface Window {
             </ol>
           </div>
 
-          <div id="Crypto-method-createDecrypter" class="section">
-            <h4>The createDecrypter method</h4>
+          <div id="Crypto-method-decrypt" class="section">
+            <h4>The decrypt method</h4>
             <p>
-              The <dfn id="dfn-Crypto-method-createDecrypter"><code>createDecrypter</code></dfn>
+              The <dfn id="dfn-Crypto-method-decrypt"><code>decrypt</code></dfn>
               method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will decrypt data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1536,10 +1507,10 @@ partial interface Window {
             </ol>
           </div>
 
-          <div id="Crypto-method-createSigner" class="section">
-            <h4>The createSigner method</h4>
+          <div id="Crypto-method-sign" class="section">
+            <h4>The sign method</h4>
             <p>
-              The <dfn id="dfn-Crypto-method-createSigner"><code>createSigner</code></dfn> method
+              The <dfn id="dfn-Crypto-method-sign"><code>sign</code></dfn> method
               returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will sign data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1590,10 +1561,10 @@ partial interface Window {
             </ol>
           </div>
 
-          <div id="Crypto-method-createVerifier" class="section">
-            <h4>The createVerifier method</h4>
+          <div id="Crypto-method-verify" class="section">
+            <h4>The verify method</h4>
             <p>
-              The <dfn id="dfn-Crypto-method-createVerifier"><code>createVerifier</code></dfn> method
+              The <dfn id="dfn-Crypto-method-verify"><code>verify</code></dfn> method
               returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will verify data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1644,10 +1615,10 @@ partial interface Window {
             </ol>
           </div>
 
-          <div id="Crypto-method-createDigester" class="section">
-            <h4>The createDigester method</h4>
+          <div id="Crypto-method-digest" class="section">
+            <h4>The digest method</h4>
             <p>
-              The <dfn id="dfn-Crypto-method-createDigester"><code>createDigester</code></dfn> method returns
+              The <dfn id="dfn-Crypto-method-digest"><code>digest</code></dfn> method returns
               a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will digest data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a>.
@@ -1698,8 +1669,8 @@ partial interface Window {
             </ol>
           </div>
 
-          <div id="Crypto-method-createKeyGenerator" class="section">
-            <h4>The createKeyGenerator method</h4>
+          <div id="Crypto-method-generateKey" class="section">
+            <h4>The generateKey method</h4>
             <p>
             </p>
             <div class="ednote">
@@ -1712,16 +1683,16 @@ partial interface Window {
             </div>
           </div>
           
-          <div id="Crypto-method-createKeyDeriver" class="section">
-            <h4>The createKeyDeriver method</h4>
+          <div id="Crypto-method-deriveKey" class="section">
+            <h4>The deriveKey method</h4>
             <p></p>
           </div>
-          <div id="Crypto-method-createKeyImporter" class="section">
-            <h4>The createKeyImporter method</h4>
+          <div id="Crypto-method-importKey" class="section">
+            <h4>The importKey method</h4>
             <p></p>
           </div>
-          <div id="Crypto-method-createKeyExporter" class="section">
-            <h4>The createKeyExporter method</h4>
+          <div id="Crypto-method-exportKey" class="section">
+            <h4>The exportKey method</h4>
             <p></p>
           </div>
           
@@ -1794,7 +1765,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           <p>
             The Working Group is actively discussing means of discovering <code><a href="#dfn-Key">Key</a></code>
             objects that are not not directly created by the application via
-            <code><a href="#Crypto-method-createKeyGenerator">createKeyGenerator</a></code>, or allowing
+            <code><a href="#Crypto-method-generateKey">generateKey</a></code>, or allowing
             web applications to dicate how and where the cryptographic keying material associated with
             <code>Key</code> objects is stored. Examples of such <code>Key</code> objects or interfaces that
             may be exposed include:
@@ -3168,7 +3139,7 @@ var algorithmSign = {
   }
 };
 
-var keyGen = window.crypto.createKeyGenerator(algorithmKeyGen,
+var keyGen = window.crypto.generateKey(algorithmKeyGen,
                                               false, <span class="comment">// extractable</span>
                                               ["sign"]);
 
@@ -3177,7 +3148,7 @@ keyGen.oncomplete = function onKeyGenComplete(event)
   <span class="comment">// The keyGen operation is complete</span>
 
   <span class="comment">// create a "signer" CryptoOperation object</span>
-  var signer = window.crypto.createSigner(algorithmSign, event.target.result.privateKey);
+  var signer = window.crypto.sign(algorithmSign, event.target.result.privateKey);
   signer.oncomplete = function signer_oncomplete(event)
   {
     console.log("The signer CryptoOperation is finished, the signature is: " +
@@ -3236,7 +3207,7 @@ var aesAlgorithmEncrypt = {
 };
 
 <span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
-var cryptoKeyGen = window.crypto.createKeyGenerator(aesAlgorithmKeyGen,
+var cryptoKeyGen = window.crypto.generateKey(aesAlgorithmKeyGen,
                                                     false, <span class="comment">// extractable</span>
                                                     ["encrypt"]);
 
@@ -3244,7 +3215,7 @@ cryptoKeyGen.oncomplete = function ckg_onComplete(event)
 {
   var aesKey = event.target.result;
 
-  var aesSymmetricCryptoOp = window.crypto.createEncrypter(aesAlgorithmEncrypt, aesKey);
+  var aesSymmetricCryptoOp = window.crypto.encrypt(aesAlgorithmEncrypt, aesKey);
   aesSymmetricCryptoOp.oncomplete = function aes_oncomplete(event)
   {
     <span class="comment">// the clearData array has been encrypted</span>
