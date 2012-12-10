@@ -856,8 +856,8 @@ interface <dfn id="dfn-Key">Key</dfn> {
         <x:codeblock language="idl">
 interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-EventTarget">EventTarget</a> {
   void <a href="#dfn-CryptoOperation-method-init">init</a>();
-  void <a href="#dfn-CryptoOperation-method-processData">processData</a>(<a href="#dfn-ArrayBuffer">ArrayBufferView</a> buffer);
-  void <a href="#dfn-CryptoOperation-method-complete">complete</a>();
+  void <a href="#dfn-CryptoOperation-method-process">process</a>(<a href="#dfn-ArrayBuffer">ArrayBufferView</a> buffer);
+  void <a href="#dfn-CryptoOperation-method-finish">finish</a>();
   void <a href="#dfn-CryptoOperation-method-abort">abort</a>();
 
   readonly attribute <a href="#dfn-Key">Key</a>? <a href="#dfn-CryptoOperation-key">key</a>;
@@ -905,23 +905,23 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               initialization steps as the result of
               <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> being called. The
               <code>CryptoOperation</code> is not yet ready to accept data supplied via
-              <code><a href="#dfn-CryptoOperation-method-processData">processData()</a></code>.
+              <code><a href="#dfn-CryptoOperation-method-process">process()</a></code>.
             </dd>
             <dt id="dfn-CryptoOperation-state-processing"><code>"processing"</code></dt>
             <dd>
               The <code>CryptoOperation</code> has completed initialization and is ready to process
               data. More data to be processed may be supplied via
-              <code><a href="#dfn-CryptoOperation-method-processData">processData()</a></code>, or the
+              <code><a href="#dfn-CryptoOperation-method-process">process()</a></code>, or the
               operation may be concluded by calling
-              <code><a href="#dfn-CryptoOperation-method-complete">complete()</a></code>.
+              <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>.
             </dd>
             <dt id="dfn-CryptoOperation-state-completing"><code>"completing"</code></dt>
             <dd>
               The <code>CryptoOperation</code> is in the midst of performing the necessary finishing
               steps to compute the final <a href="#dfn-CryptoOperation-result"><code>result</code></a>,
-              as a result of calling the <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+              as a result of calling the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
               method. No further data may be provided via the
-              <a href="#dfn-CryptoOperation-method-processData"><code>processData()</code></a>
+              <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
               method.
             </dd>
             <dt id="dfn-CryptoOperation-state-complete"><code>"complete"</code></dt>
@@ -1084,10 +1084,10 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               </li>
             </ol>
           </div>
-          <div id="CryptoOperation-method-processData" class="section">
-            <h4>The <dfn id="dfn-CryptoOperation-method-processData"><code>processData(ArrayBufferView buffer)</code></dfn> method</h4>
+          <div id="CryptoOperation-method-process" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-process"><code>process(ArrayBufferView buffer)</code></dfn> method</h4>
             <p>
-              When <a href="#dfn-CryptoOperation-method-processData"><code>processData(ArrayBufferView buffer)</code></a>
+              When <a href="#dfn-CryptoOperation-method-process"><code>process(ArrayBufferView buffer)</code></a>
               method is called, the user agent must run the steps below.
             </p>
             <ol>
@@ -1098,7 +1098,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
                 <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
               </li>
               <li>
-                Return from the <code>processData()</code> method, but continue processing the steps in
+                Return from the <code>process()</code> method, but continue processing the steps in
                 this algorithm.
               </li>
               <li>
@@ -1136,10 +1136,10 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               </li>
             </ol>          
           </div>
-          <div id="CryptoOperation-method-complete" class="section">
-            <h4>The <dfn id="dfn-CryptoOperation-method-complete"><code>complete()</code></dfn> method</h4>
+          <div id="CryptoOperation-method-finish" class="section">
+            <h4>The <dfn id="dfn-CryptoOperation-method-finish"><code>finish()</code></dfn> method</h4>
             <p>
-              When <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+              When <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
               method is called, the user agent must run the steps below.
             </p>
             <ol>
@@ -1154,7 +1154,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
                 <a href="#dfn-CryptoOperation-state-completing"><code>completing</code></a>.
               </li>
               <li>
-                Return from the <code>complete()</code> method, but continue processing the steps in
+                Return from the <code>finish()</code> method, but continue processing the steps in
                 this algorithm.
               </li>
               <li>
@@ -1249,7 +1249,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
                   </li>
                   <li>
                     <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
-                    <a href="#dfn-CryptoOperation-method-processData"><code>processData()</code></a>
+                    <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
                     method.
                   </li>
                 </ol>
@@ -1271,7 +1271,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
                   </li>
                   <li>
                     <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
-                    <a href="#dfn-CryptoOperation-method-complete"><code>complete()</code></a>
+                    <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
                     method.
                   </li>
                 </ol>
@@ -1994,7 +1994,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
                         Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
@@ -2010,7 +2010,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>:
                     <ol>
                       <li>
                         Perform the RSAES-PKCS1-V1_5-ENCRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
@@ -2053,7 +2053,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
                         Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
@@ -2069,7 +2069,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>:
                     <ol>
                       <li>
                         Perform the RSAES-PKCS1-V1_5-DECRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
@@ -2394,7 +2394,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
                         Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
@@ -2410,7 +2410,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>:
                     <ol>
                       <li>
                         Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
@@ -2453,7 +2453,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-processData">processData</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
                         Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
@@ -2469,7 +2469,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                     </ol>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-complete">complete</a></code>:
+                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>:
                     <ol>
                       <li>
                         Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
@@ -3178,12 +3178,12 @@ keyGen.oncomplete = function onKeyGenComplete(event)
 
   signer.oninit = function signer_oninit(event)
   {
-    signer.processData(myData);
+    signer.process(myData);
   };
 
   signer.onprogress = function signer_onprogress(event)
   {
-    signer.complete();
+    signer.finish();
   };
 
   <span class="comment">// Sign some data:</span>
@@ -3241,12 +3241,12 @@ cryptoKeyGen.oncomplete = function ckg_onComplete(event)
 
   aesSymmetricCryptoOp.oninit = function aes_oninit(event)
   {
-    aesSymmetricCryptoOp.processData(clearDataArrayBufferView);
+    aesSymmetricCryptoOp.process(clearDataArrayBufferView);
   };
 
   aesSymmetricCryptoOp.onprogress = function aes_onprogress(event)
   {
-    aesSymmetricCryptoOp.complete();
+    aesSymmetricCryptoOp.finish();
   };
 
   aesSymmetricCryptoOp.onerror = function aes_onerror(event)
