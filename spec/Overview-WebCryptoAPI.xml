@@ -1346,11 +1346,11 @@ interface <dfn id="dfn-KeyExporter">KeyExporter</dfn> : <a href="#dfn-KeyOperati
         <h2>Crypto interface</h2>
         <x:codeblock language="idl">
 interface <dfn id="dfn-crypto">Crypto</dfn> {
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, ArrayBufferView signature);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, optional ArrayBufferView? buffer = null);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, optional ArrayBufferView? buffer = null);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, optional ArrayBufferView? buffer = null);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, <a href="#dfn-Key">Key</a> key, ArrayBufferView signature, optional ArrayBufferView? buffer = null);
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm, optional ArrayBufferView? buffer = null);
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   <a href="#dfn-KeyGenerator">KeyGenerator</a> <a href="#dfn-Crypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1425,7 +1425,7 @@ partial interface Window {
               </li>
               <li>
                 <p>
-                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
                   <var>S</var> with the following characteristics:
                 </p>
                 <ol>
@@ -1448,6 +1448,53 @@ partial interface Window {
                     </p>
                   </li>
                 </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>buffer</var> is specified:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
+                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
+                      method on the new object.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  <p>
+                    Supporting single-part operations is intended to address two use cases:
+                  </p>
+                  <ol>
+                    <li>
+                      <p>
+                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
+                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        User agents that can optimize implementation when there is only a single operation being performed.
+                      </p>
+                    </li>
+                  </ol>
+                  <p>
+                    Having the single-part operation return a <code>CryptoOperation</code> may change,
+                    as may make it easier for developers if a <em>Promise</em> type object (whether through
+                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Return the new object.
+                </p>
               </li>
             </ol>
           </div>
@@ -1480,7 +1527,7 @@ partial interface Window {
               </li>
               <li>
                 <p>
-                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
                   <var>S</var> with the following characteristics:
                 </p>
                 <ol>
@@ -1503,6 +1550,53 @@ partial interface Window {
                     </p>
                   </li>                
                 </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>buffer</var> is specified:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
+                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
+                      method on the new object.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  <p>
+                    Supporting single-part operations is intended to address two use cases:
+                  </p>
+                  <ol>
+                    <li>
+                      <p>
+                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
+                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        User agents that can optimize implementation when there is only a single operation being performed.
+                      </p>
+                    </li>
+                  </ol>
+                  <p>
+                    Having the single-part operation return a <code>CryptoOperation</code> may change,
+                    as may make it easier for developers if a <em>Promise</em> type object (whether through
+                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Return the new object.
+                </p>
               </li>
             </ol>
           </div>
@@ -1534,7 +1628,7 @@ partial interface Window {
               </li>
               <li>
                 <p>
-                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
                   <var>S</var> with the following characteristics:
                 </p>
                 <ol>
@@ -1557,6 +1651,53 @@ partial interface Window {
                     </p>
                   </li>
                 </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>buffer</var> is specified:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
+                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
+                      method on the new object.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  <p>
+                    Supporting single-part operations is intended to address two use cases:
+                  </p>
+                  <ol>
+                    <li>
+                      <p>
+                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
+                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        User agents that can optimize implementation when there is only a single operation being performed.
+                      </p>
+                    </li>
+                  </ol>
+                  <p>
+                    Having the single-part operation return a <code>CryptoOperation</code> may change,
+                    as may make it easier for developers if a <em>Promise</em> type object (whether through
+                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Return the new object.
+                </p>
               </li>
             </ol>
           </div>
@@ -1588,7 +1729,7 @@ partial interface Window {
               </li>
               <li>
                 <p>
-                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
                   <var>S</var> with the following characteristics:
                 </p>
                 <ol>
@@ -1611,6 +1752,53 @@ partial interface Window {
                     </p>
                   </li>
                 </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>buffer</var> is specified:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
+                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
+                      method on the new object.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  <p>
+                    Supporting single-part operations is intended to address two use cases:
+                  </p>
+                  <ol>
+                    <li>
+                      <p>
+                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
+                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        User agents that can optimize implementation when there is only a single operation being performed.
+                      </p>
+                    </li>
+                  </ol>
+                  <p>
+                    Having the single-part operation return a <code>CryptoOperation</code> may change,
+                    as may make it easier for developers if a <em>Promise</em> type object (whether through
+                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Return the new object.
+                </p>
               </li>
             </ol>
           </div>
@@ -1642,7 +1830,7 @@ partial interface Window {
               </li>
               <li>
                 <p>
-                  Return a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
+                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
                   <var>S</var> with the following characteristics:
                 </p>
                 <ol>
@@ -1665,6 +1853,53 @@ partial interface Window {
                     </p>
                   </li>
                 </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>buffer</var> is specified:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
+                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
+                      method on the new object.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  <p>
+                    Supporting single-part operations is intended to address two use cases:
+                  </p>
+                  <ol>
+                    <li>
+                      <p>
+                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
+                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        User agents that can optimize implementation when there is only a single operation being performed.
+                      </p>
+                    </li>
+                  </ol>
+                  <p>
+                    Having the single-part operation return a <code>CryptoOperation</code> may change,
+                    as may make it easier for developers if a <em>Promise</em> type object (whether through
+                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  Return the new object.
+                </p>
               </li>
             </ol>
           </div>
