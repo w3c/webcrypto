@@ -821,7 +821,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <h3>Structured clone algorithm</h3>
           <p>
             When a user agent is required to obtain a <a href="#dfn-structured-clone">structured clone</a>
-            of a <a href="#dfn-Key">Key</a> object, it must run the following algorithm.
+            of a <a href="#dfn-Key">Key</a> object, it must run the following steps.
           </p>
           <ol>
             <li>
@@ -855,7 +855,6 @@ interface <dfn id="dfn-Key">Key</dfn> {
         <h2>CryptoOperation interface</h2>
         <x:codeblock language="idl">
 interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-EventTarget">EventTarget</a> {
-  void <a href="#dfn-CryptoOperation-method-init">init</a>();
   void <a href="#dfn-CryptoOperation-method-process">process</a>(<a href="#dfn-ArrayBuffer">ArrayBufferView</a> buffer);
   void <a href="#dfn-CryptoOperation-method-finish">finish</a>();
   void <a href="#dfn-CryptoOperation-method-abort">abort</a>();
@@ -866,7 +865,6 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
 
   [TreatNonCallableasNull] attribute Function? <a href="#dfn-CryptoOperation-onabort">onabort</a>;
   [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onerror">onerror</a>;
-  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oninit">oninit</a>;
   [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onprogress">onprogress</a>;
   [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oncomplete">oncomplete</a>;
 };
@@ -883,66 +881,234 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
             </li>
           </ul>
         </div>
-        <div id="CryptoOperation-states" class="section">
-          <h3>CryptoOperation states</h3>
+        <div id="CryptoOperation-processing-model" class="section">
+          <h3>Processing Model</h3>
           <p>
-            The <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code> can be in any one of
-            five states. This state is tracked internal to the
-            <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code> and may be used to
-            determine what methods may be called.
+            Every <code>CryptoOperation</code> object must have a <dfn id="dfn-CryptoOperation-list-of-pending-data">list
+            of pending data</dfn>. Each item in the lists represents data that should be transformed by the
+            cryptographic operation. The list functions as a queue that observes first-in, first-out ordering. That is,
+            the order in which items are added shall reflect the order in which items are removed.
           </p>
-          <dl>
-            <dt id="dfn-CryptoOperation-state-empty"><code>"empty"</code></dt>
-            <dd>
-              The <code>CryptoOperation</code> has been constructed, and
-              <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> has not yet been called.
-              This is the default state of a newly constructed <code>CryptoOperation</code> object,
-              until <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> is called.
-            </dd>
-            <dt id="dfn-CryptoOperation-state-initializing"><code>"initializing"</code></dt>
-            <dd>
-              The <code>CryptoOperation</code> is in the midst of performing necessary
-              initialization steps as the result of
-              <code><a href="#dfn-CryptoOperation-method-init">init()</a></code> being called. The
-              <code>CryptoOperation</code> is not yet ready to accept data supplied via
-              <code><a href="#dfn-CryptoOperation-method-process">process()</a></code>.
-            </dd>
-            <dt id="dfn-CryptoOperation-state-processing"><code>"processing"</code></dt>
-            <dd>
-              The <code>CryptoOperation</code> has completed initialization and is ready to process
-              data. More data to be processed may be supplied via
-              <code><a href="#dfn-CryptoOperation-method-process">process()</a></code>, or the
-              operation may be concluded by calling
-              <code><a href="#dfn-CryptoOperation-method-finish">finish()</a></code>.
-            </dd>
-            <dt id="dfn-CryptoOperation-state-completing"><code>"completing"</code></dt>
-            <dd>
-              The <code>CryptoOperation</code> is in the midst of performing the necessary finishing
-              steps to compute the final <a href="#dfn-CryptoOperation-result"><code>result</code></a>,
-              as a result of calling the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-              method. No further data may be provided via the
-              <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-              method.
-            </dd>
-            <dt id="dfn-CryptoOperation-state-complete"><code>"complete"</code></dt>
-            <dd>
-              The <code>CryptoOperation</code> has finished processing data, OR an error occurred
-              during initialization, OR an error occurred during processing, OR the operation was
-              aborted using <code><a href="#dfn-CryptoOperation-method-abort">abort()</a></code>. The
-              <code>CryptoOperation</code> is no longer able to be used to process data.
-            </dd>
-          </dl>
-        </div>
-        <div id="cryptooperation-task-source" class="section">
-          <h3>The CryptoOperation Task Source</h3>
           <p>
-            The <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> interface enables
-            asynchronous cryptographic processing by firing events. Unless stated otherwise, the
-            <a href="#task-source">task source</a> that is used in this specification is the
-            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>. This task source is
-            used for events that are asynchronously fired, and for event <a href="#queue-a-task">
-            tasks that are queued</a> for firing.
+            When a CryptoOperation is said to <dfn id="dfn-CryptoOperation-process-data">process data</dfn>, the user
+            agent must execute the following steps:
           </p>
+          <ol>
+            <li>
+              <p>
+                If there are no items in the <a href="dfn-CryptoOperation-list-of-pending-data">list of pending
+                data</a>, the algorithm is complete.
+              </p>
+            </li>
+            <li>
+              <dl class="switch">
+                <dt>
+                  If the underlying cryptographic implementation does not support multi-part cryptographic operations for
+                  the current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, perform the following steps:
+                </dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <p>
+                        Let <var>bytes</var> be an empty sequence of bytes.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        For each item in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>:
+                      </p>
+                      <ol>
+                        <li>
+                          <p>
+                            Let <var>item</var> be the oldest remaining item in the
+                            <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Remove <var>item</var> from the <a href="#dfn-CryptoOperation-list-of-pending-data">list of
+                            pending data</a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Convert <var>item</var> to a sequence of <code>byteLength</code> bytes from the underlying
+                            <code>ArrayBuffer</code>, starting at the <code>byteOffset</code> of the <code>ArrayBufferView</code>,
+                            and append those bytes to <var>bytes</var>
+                          </p>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <p>
+                        Perform the underlying cryptographic algorithm, using <var>bytes</var> as the input data.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        If the cryptographic operation fails, proceed to the error steps below:
+                      </p>
+                      <ol>
+                        <li>
+                          <p>
+                            Update the internal state to <code>"error"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="queue-a-task">Queue a task</a> to
+                            <a href="#fire-a-simple-event">fire a simple event</a> named
+                            <a href="#dfn-CryptoOperation-onerror"><code>onerror</code></a> at the
+                            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="#terminate-an-algorithm">Terminate this algorithm</a>.
+                          </p>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <p>
+                        Let <var>output</var> be the result of the underlying cryptographic algorithm.
+                      </p>
+                    </li>
+                  </ol>
+                </dd>
+                <dt>
+                  Otherwise, if the underlying cryptographic implementation supports multi-part cryptographic operations
+                  for the current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, perform the following
+                  algorithm:
+                </dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <p>
+                        Let <var>bytes</var> be an empty sequence of bytes.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Let <var>item</var> be the oldest remaining item in the
+                        <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Remove <var>data</var> from the <a href="#dfn-CryptoOperation-list-of-pending-data">list of
+                        pending data</a>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Convert <var>item</var> to a sequence of <code>byteLength</code> bytes from the underlying
+                        <code>ArrayBuffer</code>, starting at the <code>byteOffset</code> of the <code>ArrayBufferView</code>,
+                        and append those bytes to <var>bytes</var>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        A <a href="#dfn-conforming-implementation">conforming user agent</a> <span class="RFC2119">MAY</span>
+                        repeat the preceeding steps as many times as desired, for as long as items remain in the
+                        <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>, provided that the
+                        output of the underlying cryptographic algorithm is indistinguishable from when only a single item is
+                        processed at a time.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Perform the underlying cryptographic algorithm, using <var>bytes</var> as the input data.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        If the cryptographic operation fails, proceed to the error steps below:
+                      </p>
+                      <ol>
+                        <li>
+                          <p>
+                            Clear the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Update the internal state to <code>"error"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="queue-a-task">Queue a task</a> to
+                            <a href="#fire-a-simple-event">fire a simple event</a> named
+                            <a href="#dfn-CryptoOperation-onerror"><code>onerror</code></a> at the
+                            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="#terminate-an-algorithm">Terminate this algorithm</a>.
+                          </p>
+                        </li>
+                      </ol>
+                    </li>
+                    <li>
+                      <p>
+                        Let <var>output</var> be the result of the underlying cryptographic algorithm.
+                      </p>
+                    </li>
+                  </ol>
+                </dd>
+              </dl>
+            </li>
+            <li>
+              <p>
+                Update <a href="#dfn-CryptoOperation-result"><code>result</code></a> with the algorithm-specific
+                result using <var>output</var>.
+              </p>
+              <div class="ednote">
+                <p>
+                  The wording here is presently ambiguous. It is modeled after the [FILE API], which has <code>result</code>
+                  accumulating the output as it becomes available. However, given that support for multi-part input exists,
+                  an interface to support streaming/progressive output has also been requested. How such an interface would
+                  be implemented, if at all, remains TBD.
+                </p>
+              </div>
+            </li>
+            <li>
+              <p>
+                <a href="#fire-a-simple-event">Fire an event</a> named <a href="#dfn-CryptoOperation-onprogress"><code>onprogress</code></a>
+                at the <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If the underlying cryptograophic implementation supports multi-part cryptographic operations for the
+                current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, repeat these steps for each item remaining
+                in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+              </p>
+            </li>
+          </ol>
+          <div class="ednote">
+            <ul>
+              <li>
+                <p>
+                  The above algorithm is meant to describe a possible way of supporting multi-part input (also called "streaming"
+                  input, but not to be confused with the [STREAMS API]. The downside to the above algorithm is that it does not
+                  describe a good interface for supporting algorithms that may support multiple multi-part inputs.
+                </p>
+                <p>
+                  An example of such an algorithm would be AES-GCM, which has two sources of input - the encrypted-and-authenticated
+                  data ("ciphertext") and the authenticated data ("additional authenticated data"). A truly multi-part implementation
+                  would allow both the plaintext/ciphertext and the authenticated data to be supplied independently, and in parts,
+                  until <code>finish()</code> was called.
+                </p>
+                <p>
+                  However, at present, several major cryptographic APIs (CDSA, CNG, PKCS#11) do not support this, and so for now, the
+                  details for handling multi-source multi-part data have been omitted.
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
         <div id="cryptooperation-events" class="section">
           <h3>Event Handler Attributes</h3>
@@ -973,10 +1139,6 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               <tr>
                 <td><dfn id="dfn-CryptoOperation-onerror">onerror</dfn></td>
                 <td><a href="#dfn-onerror-event">error</a></td>
-              </tr>
-              <tr>
-                <td><dfn id="dfn-CryptoOperation-oninit">oninit</dfn></td>
-                <td><a href="#dfn-oninit-event">init</a></td>
               </tr>
               <tr>
                 <td><dfn id="dfn-CryptoOperation-onprogress">onprogress</dfn></td>
@@ -1017,16 +1179,9 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               <ul>
                 <li>
                   <p>
-                    On getting, if the internal state of the CryptoOperation is the
-                    <a href="#dfn-CryptoOperation-state-empty"><code>"empty"</code></a> state,
-                    then the <code>result</code> attribute <span class="RFC2119">MUST</span>
-                    return <code>null</code>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     On getting, if an error in performing the operation has occurred, then the
-                    <code>result</code> attribute <span class="RFC2119">MUST</span> return <code>null</code>.
+                    <code>result</code> attribute <span class="RFC2119">MUST</span> return
+                    <code>null</code>.
                   </p>
                 </li>
               </ul>
@@ -1034,107 +1189,46 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
           </dl>
         </div>
         <div id="CryptoOperation-methods" class="section">
-          <h3>Methods and Parameters</h3>
-          <div id="CryptoOperation-method-init" class="section">
-            <h4>The <dfn id="dfn-CryptoOperation-method-init"><code>init</code></dfn> method</h4>
+          <h3>Methods</h3>
+          <div id="CryptoOperation-method-process" class="section">
+            <h4><dfn id="dfn-CryptoOperation-method-process"><code>process(ArrayBufferView data)</code></dfn></h4>
             <p>
-              When <a href="#dfn-CryptoOperation-method-init"><code>init</code></a> method is called,
-              the user agent must run the steps below.
+              When the <code>process(ArrayBufferView data)</code> method is called, the user agent must run
+              the following steps:
             </p>
             <ol>
               <li>
-                If the internal <a href="#CryptoOperation-states">state</a> is not in the
-                <code><a href="#dfn-CryptoOperation-state-empty">"empty"</a></code> state,
-                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
-                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                <p>
+                  If the internal state is in the <code>"error"</code> state, throw an
+                  <code>InvalidStateError</code> exception and abort these steps.
+                </p>
               </li>
               <li>
-                Set the internal <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-initializing">"initializing"</a></code>.
+                <p>
+                  Let <var>data</var> be the data to be processed.
+                </p>
               </li>
               <li>
-                Return from the <code>init()</code> method, but continue processing the steps in this
-                algorithm.
+                <p>
+                  Add <var>data</var> to the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                </p>
               </li>
               <li>
-                If an error occurs during initialization, set the internal
-                <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
-                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
-                error steps below.
-                <ol>
-                  <li>
-                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
-                  </li>
-                  <li>
-                    Terminate this algorithm.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                When the <code>CryptoOperation</code> is fully initialized, set the
-                <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-processing">processing</a></code>.
-              </li>
-              <li>
-                Fire an event called <code><a href="#dfn-oninit-event">init</a></code>.
-              </li>
-              <li>
-                Terminate this algorithm.
+                <p>
+                  If the underlying cryptographic implementation for the specified
+                  <a href="#dfn-CryptoOperation-algorithm">algorithm</a> supports multi-part cryptographic operations,
+                  asynchrously <a href="#dfn-CryptoOperation-process-data">process data</a>, allowing the task that
+                  invoked this algorithm to continue.
+                </p>
+                <div class="ednote">
+                  <p>
+                    Warning: The text here is currently ambiguous in terms of defining how the <code>event loop</code>
+                    processes events; in particular, it leaves under-specified how the <a href="#dfn-CryptoOperation-method-abort">
+                    <code>abort()</code></a> method should be handled when data is being processed.
+                  </p>
+                </div>
               </li>
             </ol>
-          </div>
-          <div id="CryptoOperation-method-process" class="section">
-            <h4>The <dfn id="dfn-CryptoOperation-method-process"><code>process(ArrayBufferView buffer)</code></dfn> method</h4>
-            <p>
-              When <a href="#dfn-CryptoOperation-method-process"><code>process(ArrayBufferView buffer)</code></a>
-              method is called, the user agent must run the steps below.
-            </p>
-            <ol>
-              <li>
-                If the internal <a href="#CryptoOperation-states">state</a> is not in the
-                <code><a href="#dfn-CryptoOperation-state-processing">"processing"</a></code> state,
-                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
-                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
-              </li>
-              <li>
-                Return from the <code>process()</code> method, but continue processing the steps in
-                this algorithm.
-              </li>
-              <li>
-                If an error occurs during processing, set the internal
-                <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
-                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
-                error steps below.
-                <ol>
-                  <li>
-                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
-                  </li>
-                  <li>
-                    Terminate this algorithm.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                Perform the algorithm-specific processing.
-              </li>
-              <li>
-                If processing resulted in <code>output</code>, perform the following steps.
-                <ol>
-                  <li>
-                    Queue a task to update <code><a href="#dfn-CryptoOperation-result">result</a></code>
-                    with the <code>output</code>
-                  </li>
-                  <li>
-                    Fire an event called <code><a href="#dfn-onprogress-event">progress</a></code>.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                Terminate this algorithm.
-              </li>
-            </ol>          
           </div>
           <div id="CryptoOperation-method-finish" class="section">
             <h4>The <dfn id="dfn-CryptoOperation-method-finish"><code>finish()</code></dfn> method</h4>
@@ -1144,56 +1238,32 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
             </p>
             <ol>
               <li>
-                If the internal <a href="#CryptoOperation-states">state</a> is not in the
-                <code><a href="#dfn-CryptoOperation-state-processing">"processing"</a></code> state,
-                throw an <code>InvalidStateError</code> exception [<a href="#DOM4">DOM4</a>] and
-                <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>.
+                <p>
+                  If the internal state is in the <code>"error"</code> state, throw an
+                  <code>InvalidStateError</code> exception and abort these steps.
+                </p>
               </li>
               <li>
-                Set the internal <a href="#CryptoOperation-states">state</a> to
-                <a href="#dfn-CryptoOperation-state-completing"><code>completing</code></a>.
+                <p>
+                  Set the internal state to <code>"complete"</code>.
+                </p>
               </li>
               <li>
-                Return from the <code>finish()</code> method, but continue processing the steps in
-                this algorithm.
+                <p>
+                  If the underlying cryptographic implementation for the specified
+                  <a href="#dfn-CryptoOperation-algorithm">algorithm</a> does not support multi-part cryptographic
+                  operations, asynchronously <a href="#dfn-CryptoOperation-process-data">process data</a>, allowing the task
+                  that invoked this algorithm to continue.
+                </p>
               </li>
               <li>
-                If an error occurs during processing, set the internal
-                <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code> and set
-                <code><a href="#dfn-CryptoOperation-result">result</a></code> to null. Proceed to the
-                error steps below.
-                <ol>
-                  <li>
-                    Fire an event called <code><a href="#dfn-onerror-event">error</a></code>.
-                  </li>
-                  <li>
-                    Terminate this algorithm.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                Perform the algorithm-specific processing.
-              </li>
-              <li>
-                Let <var>output</var> be the result of the algorithm-specific processing.
-              </li>
-              <li>
-                Queue a task to update <code><a href="#dfn-CryptoOperation-result">result</a></code>
-                with the <var>output</var>
-              </li>
-              <li>
-                Fire an event called <code><a href="#dfn-onprogress-event">progress</a></code>.
-              </li>
-              <li>
-                Set the internal <a href="#CryptoOperation-states">state</a> to
-                <code><a href="#dfn-CryptoOperation-state-complete">complete</a></code>.
-              </li>
-              <li>
-                Fire an event called <code><a href="#dfn-oncomplete-event">complete</a></code>.
-              </li>
-              <li>
-                Terminate this algorithm.
+                <p>
+                  Once all items in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> have
+                  been <a href="#dfn-CryptoOperation-process-data">processed</a>, <a href="#queue-a-task">queue a task</a>
+                  to <a href="#fire-a-simple-event">fire an event</a> called
+                  <a href="#dfn-CryptoOperation-oncomplete"><code>oncomplete</code></a> at the
+                  <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
+                </p>
               </li>
             </ol>
           </div>
@@ -1205,76 +1275,13 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
             </p>
             <ol>
               <li>
-                If the internal <a href="#CryptoOperation-states">state</a> is either
-                <a href="#dfn-CryptoOperation-state-empty"><code>"empty"</code></a> or
-                <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>, set
-                <a href="#dfn-CryptoOperation-result"><code>result</code></a> to <code>null</code>
-                and terminate this overall set of steps without doing anything else.
+                <p>
+                  If the internal state is in the <code>"error"</code> state, throw an
+                  <code>InvalidStateError</code> exception and abort these steps.
+                </p>
               </li>
               <li>
-                <p>
-                  If the internal <a href="#CryptoOperation-states">state</a> is
-                  <a href="#dfn-CryptoOperation-state-initializing"><code>"initializing"</code></a>,
-                  then perform the following steps:
-                </p>
-                <ol>
-                  <li>
-                    Set the internal <a href="#CryptoOperation-states">state</a> to
-                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
-                  </li>
-                  <li>
-                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
-                    <code>null</code>.
-                  </li>
-                  <li>
-                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
-                    <a href="#dfn-CryptoOperation-method-init"><code>init()</code></a> method.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                <p>
-                  If the internal <a href="#CryptoOperation-states">state</a> is
-                  <a href="#dfn-CryptoOperation-state-processing"><code>"processing"</code></a>,
-                  then perform the following steps:
-                </p>
-                <ol>
-                  <li>
-                    Set the internal <a href="#CryptoOperation-states">state</a> to
-                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
-                  </li>
-                  <li>
-                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
-                    <code>null</code>.
-                  </li>
-                  <li>
-                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
-                    <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                    method.
-                  </li>
-                </ol>
-              </li>
-              <li>
-                <p>
-                  If the internal <a href="#CryptoOperation-states">state</a> is
-                  <a href="#dfn-CryptoOperation-state-completing"><code>"completing"</code></a>,
-                  then perform the following steps:
-                </p>
-                <ol>
-                  <li>
-                    Set the internal <a href="#CryptoOperation-states">state</a> to
-                    <a href="#dfn-CryptoOperation-state-complete"><code>"complete"</code></a>.
-                  </li>
-                  <li>
-                    Set <a href="#dfn-CryptoOperation-result"><code>result</code></a> to
-                    <code>null</code>.
-                  </li>
-                  <li>
-                    <a href="#terminate-the-algorithm">Terminate the algorithm</a> for the
-                    <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                    method.
-                  </li>
-                </ol>
+                <p>Abort <a href="#dfn-CryptoOperation-process-data">processing data</a>.</p>
               </li>
               <li>
                 If there are any tasks from the object's
@@ -1285,6 +1292,11 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
                 Fire an event called <a href="#dfn-onabort-event"><code>abort</code></a>.
               </li>
             </ol>
+            <div class="ednote">
+              <p>
+                The above algorithm is underspecified.
+              </p>
+            </div>
           </div>
         </div>
       </div>
