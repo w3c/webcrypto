@@ -54,15 +54,26 @@ communications.
 
     <div class="section">
       <h2>Status of this Document</h2>
+      <p><em>
+        This section describes the status of this document at the time of
+        its publication.  Other documents may supersede this document. A list
+        of current W3C publications and the latest revision of this technical
+        report can be found in the <a href="http://www.w3.org/TR/">W3C technical
+          reports index</a> at http://www.w3.org/TR/.
+      </em></p><p>
+        This document is the 17 December 2012 <b>Editor’s Draft</b> of the
+        <cite>Web Cryptography API</cite> specification.
+      
+      Please send comments about this document to
+      <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>
+      (<a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">archived</a>).
+    </p>
+
       <p>
-        <em>
-          This section describes the status of this document at the time of its publication.
-          Other documents may supersede this document. A list of current W3C publications and
-          the most recently formally published revision of this technical report can be found
-          in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
-          http://www.w3.org/TR/.
-        </em>
+        This document is produced by the <a href="http://www.w3.org/2012/webcrypto">Web Cryptography
+        <acronym title="Working Group">WG</acronym></a> of the <acronym title="World Wide Web Consortium">W3C</acronym>.
       </p>
+
       <p class="XXX">
         Implementors should be aware that this specification is not stable.
         <strong>Implementors who are not taking part in the discussions are likely to find the
@@ -82,12 +93,6 @@ communications.
         <li>potential missing functionalities to deploy secure web applications.</li>
       </ul>
       <p>
-        This is the W3C Editor's Draft of the Web Cryptography API. Please send comments to
-        <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>
-        (<a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments">archived</a>).
-        This is an unfinished <strong>work in progress</strong>.
-      </p>
-      <p>
         Previous discussion of this specification has taken place on three other
         mailing lists: <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a>
 
@@ -98,19 +103,7 @@ communications.
         Ongoing discussion will be on the <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a>
         mailing list.
       </p>
-      <p>
-        <em>This section describes the status of this document at the time of its publication.
-        Other documents may supersede this document, since it is only an editor's draft.
-        A list of current <acronym title="World Wide Web Consortium">W3C</acronym>
-        publications and the latest revision of this technical report can be found in the 
-        <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym>
-        technical reports index</a> at <a href="http://www.w3.org/TR/">http://www.w3.org/TR/</a>.</em>
-      </p>
       
-      <p>
-        This document is produced by the <a href="http://www.w3.org/2012/webcrypto">Web Cryptography
-        <acronym title="Working Group">WG</acronym></a> of the <acronym title="World Wide Web Consortium">W3C</acronym>.
-      </p>
       <p>
         Web content and browser developers are encouraged to review this draft. Please send comments to
         <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
@@ -124,6 +117,7 @@ communications.
         Changes made to this document can be found in the
         <a href="https://dvcs.w3.org/hg/webcrypto-api/file/tip/spec/">W3C public Mercurial server</a>.
       </p>
+
       <p>
           Publication as an Editor’s Draft does not imply endorsement by the
           W3C Membership.  This is a draft document and may be updated, replaced
@@ -133,7 +127,7 @@ communications.
       This document was produced by a group operating under the
       <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February
         2004 W3C Patent Policy</a>. W3C maintains a
-      <a href="http://www.w3.org/2004/01/pp-impl/42538/status">public list of
+      <a href="http://www.w3.org/2004/01/pp-impl/54174/status">public list of
         any patent disclosures</a> made in connection with the deliverables of
       the group; that page also includes instructions for disclosing a patent.
       An individual who has actual knowledge of a patent which the individual
@@ -806,13 +800,13 @@ interface <dfn id="dfn-Key">Key</dfn> {
         <div id="key-interface-clone" class="section">
           <h3>11.3. Structured clone algorithm</h3>
           <p>
-            When a user agent is required to obtain a <a href="#dfn-structured-clone">structured clone</a>
+            When a user agent is required to obtain a <a href="#structured-clone">structured clone</a>
             of a <a href="#dfn-Key">Key</a> object, it must run the following steps.
           </p>
           <ol>
             <li>
               Let <var>input</var> and <var>memory</var> be the corresponding inputs defined
-              by the <a href="#dfn-structured-clone">internal structured cloning algorithm</a>,
+              by the <a href="#structured-clone">internal structured cloning algorithm</a>,
               where <var>input</var> represents a <a href="#dfn-Key">Key</a> object to be cloned.
             </li>
             <li>Let <var>output</var> be a newly constructed <a href="#dfn-Key">Key</a> object.</li>
@@ -848,8 +842,8 @@ interface <dfn id="dfn-Key">Key</dfn> {
       <div id="cryptooperation-interface" class="section">
         <h2>12. CryptoOperation interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-EventTarget">EventTarget</a> {
-  void <a href="#dfn-CryptoOperation-method-process">process</a>(<a href="#dfn-ArrayBuffer">ArrayBufferView</a> buffer);
+interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
+  void <a href="#dfn-CryptoOperation-method-process">process</a>(ArrayBufferView buffer);
   void <a href="#dfn-CryptoOperation-method-finish">finish</a>();
   void <a href="#dfn-CryptoOperation-method-abort">abort</a>();
 
@@ -1144,19 +1138,19 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
             <tbody>
               <tr>
                 <td><dfn id="dfn-CryptoOperation-onabort">onabort</dfn></td>
-                <td><a href="#dfn-onabort-event">abort</a></td>
+                <td>abort</td>
               </tr>
               <tr>
                 <td><dfn id="dfn-CryptoOperation-onerror">onerror</dfn></td>
-                <td><a href="#dfn-onerror-event">error</a></td>
+                <td>error</td>
               </tr>
               <tr>
                 <td><dfn id="dfn-CryptoOperation-onprogress">onprogress</dfn></td>
-                <td><a href="#dfn-onprogress-event">progress</a></td>
+                <td>progress</td>
               </tr>
               <tr>
                 <td><dfn id="dfn-CryptoOperation-oncomplete">oncomplete</dfn></td>
-                <td><a href="#dfn-oncomplete-event">complete</a></td>
+                <td>complete</td>
               </tr>
             </tbody>
           </table>
@@ -1300,7 +1294,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
               <li>
                 <a href="#queue-a-task">Queue a task</a> to
                 <a href="#fire-a-simple-event">fire a simple event</a> called
-                <a href="#dfn-onabort-event"><code>onabort</code></a> at the
+                <a href="#dfn-CryptoOperation-onabort"><code>onabort</code></a> at the
                 <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
               </li>
             </ol>
@@ -1319,10 +1313,10 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : <a href="#dfn-Ev
         <h2>13. KeyOperation interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 interface <dfn id="dfn-KeyOperation">KeyOperation</dfn> : EventTarget {
-  readonly attribute any result;
+  readonly attribute any <dfn id="dfn-KeyOperation-result">result</dfn>;
 
-  [TreatNonCallableAsNull] attribute Function? onerror;
-  [TreatNonCallableAsNull] attribute Function? oncomplete;
+  [TreatNonCallableAsNull] attribute Function? <dfn id="dfn-KeyOperation-onerror">onerror</dfn>;
+  [TreatNonCallableAsNull] attribute Function? <dfn id="dfn-KeyOperation-oncomplete">oncomplete</dfn>;
 };
         </code></pre></div></div>
       </div>
@@ -1341,7 +1335,7 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
   "jwk",
 };
 
-interface <dfn id="dfn-crypto">Crypto</dfn> {
+interface <dfn id="dfn-Crypto">Crypto</dfn> {
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-Crypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
                           optional ArrayBufferView? buffer = null);
@@ -2120,11 +2114,11 @@ partial interface Window {
           </div>
 
           <div id="Crypto-method-importKey" class="section">
-            <h4>14.1.8. The importKey method</h4>
+            <h4>14.1.8. The <dfn id="dfn-Crypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
           </div>
           <div id="Crypto-method-exportKey" class="section">
-            <h4>14.1.9. The exportKey method</h4>
+            <h4>14.1.9. The <dfn id="dfn-Crypto-method-exportKey">exportKey</dfn> method</h4>
             <p></p>
           </div>
           
@@ -2134,7 +2128,7 @@ partial interface Window {
       <div id="WorkerCrypto-interface" class="section">
         <h2>15. WorkerCrypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-interface WorkerCrypto {
+interface <dfn id="dfn-WorkerCrypto">WorkerCrypto</dfn> {
 };
 
 <a href="#dfn-WorkerCrypto">WorkerCrypto</a> implements <a href="#dfn-RandomSource">RandomSource</a>;
@@ -2247,13 +2241,13 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           <p>
             However, in order to promote interoperability for developers, there are a number of
             recommended algorithms. The recommended algorithms are: 
-            <ul>
-              <li><a href="#hmac">HMAC</a> using <a href="#alg-sha-256">SHA-256</a></li>
-              <li><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a> using <a href="#alg-sha-256">SHA-256</a></li>
-              <li><a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a> curve and <a href="#alg-sha-256">SHA-256</a></li>
-              <li><a href="#aes-cbc">AES-CBC</a></li>
-            </ul>
           </p>
+          <ul>
+            <li><a href="#hmac">HMAC</a> using <a href="#alg-sha-256">SHA-256</a></li>
+            <li><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a> using <a href="#alg-sha-256">SHA-256</a></li>
+            <li><a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a> curve and <a href="#alg-sha-256">SHA-256</a></li>
+            <li><a href="#aes-cbc">AES-CBC</a></li>
+          </ul>
           <p>To see the results of test-cases between implementations, please see the [@@Upcoming]
             Web Cryptography Test Cases Working Group.
           </p>
@@ -2306,8 +2300,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
               Each registered algorithm <span class="RFC2119">MUST</span> define the contents
               of the <a href="#dfn-CryptoOperation-result"><code>result</code></a> attribute of the
               <a href="#dfn-CryptoOperation">CryptoOperation</a> object for every
-              <a href="#supported-operations">supported operation</a> and for every
-              <a href="#CryptoOperation-states"><code>state</code></a>.
+              <a href="#supported-operations">supported operation</a>.
             </p>
           </div>
           <div id="algorithm-alias" class="section">
@@ -2807,7 +2800,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 shall behave as follows:
                 <ol>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    Upon invoking <code>init</code>:
                     <ol>
                       <li>
                         If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
@@ -2866,7 +2859,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 shall behave as follows:
                 <ol>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-init">init</a></code>:
+                    Upon invoking <code>init</code>:
                     <ol>
                       <li>
                         If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
@@ -2979,17 +2972,18 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             <h4>19.8.4. Operations</h4>
             <ul>
               <li>Generate Key</li>
-              <li>Derive Key</li>
-              <p>
-                Perform the standard ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1.
-                The output of ECDH key agreement is the x-coordinate of the shared secret value <var>P</var>.
-              </p>
-              <p>
-                Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP 800-56A</a>
-                Section 5.7.1.2 specify a modified ECDH primitive that multiplies the shared secret value by
-                the cofactor of the curve. The cofactor of the NIST recommended curves P-256, P-384, and P-521
-                is 1, so the standard and modified ECDH primitives are equivalent for those curves.
-              </p>
+              <li>Derive Key
+                <p>
+                  Perform the standard ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1.
+                  The output of ECDH key agreement is the x-coordinate of the shared secret value <var>P</var>.
+                </p>
+                <p>
+                  Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP 800-56A</a>
+                  Section 5.7.1.2 specify a modified ECDH primitive that multiplies the shared secret value by
+                  the cofactor of the curve. The cofactor of the NIST recommended curves P-256, P-384, and P-521
+                  is 1, so the standard and modified ECDH primitives are equivalent for those curves.
+                </p>
+              </li>
             </ul>
           </div>
         </div>
@@ -3222,7 +3216,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 </tr>
                 <tr>
                   <td>generateKey</td>
-                  <td><a href="#dfn-HmacKeyGenParams">HmacKeyGenParams</a></td>
+                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
                   <td><a href="#dfn-Key">Key</a>?</td>
                 </tr>
               </tbody>
@@ -3511,7 +3505,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 restarted.
               </li>
               <li>
-                Otherwise, throw an <a href="#dfn-InvalidAlgorithmError"><code>InvalidAlgorithmError</code></a>
+                Otherwise, throw an <code>InvalidAlgorithmError</code>
                 exception and return from this algorithm.
               </li>
             </ol>
@@ -3530,7 +3524,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
           <li>
             If <var>name</var> does not contain a recognized
             <a href="#recognized-algorithm-name">algorithm name</a>, throw an
-            <a href="#dfn-InvalidAlgorithmError"><code>InvalidAlgorithmError</code></a> exception
+            <code>InvalidAlgorithmError</code> exception
             and return from this algorithm.
           </li>
           <li>
@@ -3538,8 +3532,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             of the <a href="#dfn-Algorithm"><code>Algorithm</code></a> dictionary.
           </li>
           <li>
-            Process <var>params</var> according to the algorithm-defined
-            <a href="#algorithm-params-normalizing-rules">algorithm parameter normalizing rules</a>.
+            Process <var>params</var> according to the algorithm-defined algorithm parameter normalizing rules.
           </li>
           <li>
             If an exception was raised during parameter processing, propagate the exception.
