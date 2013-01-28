@@ -3254,6 +3254,70 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
           </div>
         </div>
 
+        <div id="aes-cfb" class="section">
+          <h3>AES-CFB</h3>
+          <div id="aes-cfb-description" class="section">
+            <h4>Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"AES-CFB"</code> algorithm identifier is used to perform
+              encryption and decryption using AES in Cipher Feedback mode,
+              as described in Section 6.3 of NIST SP 800-38A
+              [<a href="#SP800-38A">SP800-38A</a>].
+            </p>
+          </div>
+          <div id="aes-cfb-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"AES-CFB"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>encrypt</td>
+                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>decrypt</td>
+                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="aes-cfb-params" class="section">
+            <h4>AesCfbParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
+  ArrayBufferView iv;
+};
+            </x:codeblock>
+          </div>
+          <div id="aes-cfb-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Encrypt</li>
+              <li>Decrypt</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
         <div id="hmac" class="section">
           <h3>HMAC</h3>
           <div id="hmac-description" class="section">
