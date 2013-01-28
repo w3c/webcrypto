@@ -2599,7 +2599,8 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             <p>
               The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
               and verification using the RSASSA-PSS algorithm specified in
-              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+              [<cite><a href="#RFC3447">RFC3447</a></cite>], using the mask generation
+              formula MGF-1.
             </p>
           </div>
           <div id="rsa-pss-registration" class="section">
@@ -2641,8 +2642,6 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
-  <span class="comment">// The mask generation function</span>
-  AlgorithmIdentifier mgf;
   <span class="comment">// The desired length of the random salt</span>
   unsigned long saltLength;
 };
@@ -2665,7 +2664,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             <p>
               The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-OAEP algorithm specified in
-              [<cite><a href="#RFC3447">RFC3447</a></cite>].
+              [<cite><a href="#RFC3447">RFC3447</a></cite>], using the mask
+              generation function MGF-1.
             </p>
           </div>
           <div id="rsa-oaep-registration" class="section">
@@ -2708,8 +2708,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
-  <span class="comment">// The mask generation function</span>
-  AlgorithmIdentifier mgf;
   <span class="comment">// The optional label/application data to associate with the message</span>
   ArrayBufferView? label;
 };
