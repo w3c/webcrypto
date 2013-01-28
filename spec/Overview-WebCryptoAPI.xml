@@ -3475,6 +3475,75 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </ul>
           </div>
         </div>
+        <div id="hkdf-ctr" class="section">
+          <h3>HKDF-CTR</h3>
+          <div id="hkdf-ctr-description" class="section">
+            <h4>Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"HKDF-CTR"</code> algorithm identifier is used to
+              perform key derivation using the algorithm described in
+              RFC 5869 [<a href="#RFC5869">RFC5869</a>] and NIST SP 800-56C
+              [<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode,
+              as described in Section 5.1 of NIST SP 800-108
+              [<a href="#SP800-108">SP800-108</a>].
+            </p>
+          </div>
+          <div id="hkdf-ctr-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a>
+              for this algorithm is <code>"HKDF-CTR"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>deriveKey</td>
+                  <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="hkdf-ctr-params" class="section">
+            <h4>HkdfCtrParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+  <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a></span>
+  AlgorithmIdentifier hashAlg;
+  <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
+  ArrayBufferView label;
+  <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
+  ArrayBufferView context;
+};
+            </x:codeblock>
+            <div class="ednote">
+              <p>
+                The definition of HKDF allows the caller to supply an optional pseudorandom salt
+                value, which is used as the key during the extract phase. If this value is not
+                supplied, an all zero string is used instead. However, support for an explicit
+                salt value is not widely implemented in existing APIs, nor is it required by
+                existing usages of HKDF. Should this be an optional parameter, and if so, what
+                should the behaviour be of a user agent that does not support explicit salt
+                values (is it conforming or non-conforming?)
+              </p>
+            </div>
+          </div>
+          <div id="hkdf2-ctr-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Derive Key</li>
+            </ul>
+          </div>
+        </div>
+
         <div id="pbkdf2" class="section">
           <h3>PBKDF2</h3>
           <div id="pbkdf2-description" class="section">
@@ -3835,11 +3904,28 @@ Research Consortium</a> for supporting W3C/MIT.
               <cite><a href="http://tools.ietf.org/html/rfc5705">Keying Material Exporters for
               Transport Layer Security (TLS)</a></cite>, E. Rescorla. IETF.
             </dd>
+            <dt id="RFC5869">RFC 5869</dt>
+            <dd>
+              <cite><a href="https://tools.ietf.org/html/rfc5869">HMAC-based Extract-and-Expand
+              Key Derivation Function (HKDF)</a></cite>, H. Krawczyk, P. Eronen. IETF.
+            </dd>
             <dt id="SP800-56A">NIST SP 800-56A</dt>
             <dd>
               <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56A/SP800-56A_Revision1_Mar08-2007.pdf">
-              NIST SP 800-56A: Recommendation for Pair-Wise Key Establishment Schemes Using Discrete
-              Logarithm Cryptography (Revised)</a></cite>, March 2007, NIST.
+              NIST Special Publication 800-56A: Recommendation for Pair-Wise Key Establishment
+              Schemes Using Discrete Logarithm Cryptography (Revised)</a></cite>, March 2007, NIST.
+            </dd>
+            <dt id="SP800-56C">NIST SP 800-56C</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56C/SP-800-56C.pdf">
+              NIST Special Publication 800-56C: Recommendation for Key Derivation through
+              Extraction-then-Expansion</a></cite>, November 2011, NIST.
+            </dd>
+            <dt id="SP800-108">NIST SP 800-108</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-108/sp800-108.pdf">
+              NIST Special Publication 800-108: Recommendation for Key Derivation Using
+              Pseudorandom Functions (Revised)</a></cite>, October 2009, NIST.
             </dd>
             <dt id="StreamsAPI">StreamsAPI</dt>
             <dd>
