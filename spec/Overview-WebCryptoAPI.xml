@@ -2234,9 +2234,25 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             recommended algorithms. The recommended algorithms are: 
           </p>
           <ul>
-            <li><a href="#hmac">HMAC</a> using <a href="#alg-sha-256">SHA-256</a></li>
-            <li><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a> using <a href="#alg-sha-256">SHA-256</a></li>
-            <li><a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a> curve and <a href="#alg-sha-256">SHA-256</a></li>
+            <li>
+                <a href="#hmac">HMAC</a> using <a href="#alg-sha-256">SHA-256</a>
+            </li>
+            <li>
+                <a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a> using
+                <a href="#alg-sha-256">SHA-1</a>
+            </li>
+            <li>
+                <a href="#rsa-pss">RSA-PSS</a> using <a href="#alg-sha-256">SHA-256</a>
+                and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+            </li>
+            <li>
+                <a href="#rsa-oaep">RSA-OAEP</a> using <a href="#alg-sha-256">SHA-256</a>
+                and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+            </li>
+            <li>
+                <a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a>
+                curve and <a href="#alg-sha-256">SHA-256</a>
+            </li>
             <li><a href="#aes-cbc">AES-CBC</a></li>
           </ul>
           <p>To see the results of test-cases between implementations, please see the [@@Upcoming]
