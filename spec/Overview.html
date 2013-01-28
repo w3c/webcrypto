@@ -3135,6 +3135,20 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
           <h3>20.10. AES-CBC</h3>
           <div id="aes-cbc-description" class="section">
             <h4>20.10.1. Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"AES-CBC"</code> algorithm identifier is used to perform
+              encryption and decryption using AES in Cipher Block Chaining mode,
+              as described in NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>].
+            </p>
+            <p>
+              When operating in CBC mode, messages that are not exact multiples
+              of the AES block size (16 bytes) can be padded under a variety of
+              padding schemes. In the Web Crypto API, the only padding mode that
+              is supported is that of PKCS#5 and PKCS#7, as described by
+              Section 6.1.1, p4 of RFC 2898 [<a href="#RFC2898">RFC2898</a>] and
+              Section 10.3, p2 of RFC 2315 [<a href="#RFC2315">RFC2315</a>].
+            </p>
           </div>
           <div id="aes-cbc-registration" class="section">
             <h4>20.10.2. Registration</h4>
@@ -3908,6 +3922,16 @@ Research Consortium</a> for supporting W3C/MIT.
               <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2133">PKCS #11: Cryptographic
               Token Interface Standard</a></cite>, RSA Laboratories.
             </dd>
+            <dt id="RFC2315">RFC 2315</dt>
+            <dd>
+              <cite><a href="http://tools.ietf.org/html/rfc2315">PKCS #7: Cryptographic
+              Message Syntax, Version 1.5</a></cite>, B. Kaliski. RSA Laboratories.
+            </dd>
+            <dt id="RFC2898">RFC 2898</dt>
+            <dd>
+              <cite><a href="http://tools.ietf.org/html/rfc2898">PKCS #5: Password-Based
+              Cryptography Specification, Version 2.0</a></cite>, B. Kaliski. RSA Laboratories
+            </dd>
             <dt id="RFC5705">RFC 5705</dt>
             <dd>
               <cite><a href="http://tools.ietf.org/html/rfc5705">Keying Material Exporters for
@@ -3917,6 +3941,12 @@ Research Consortium</a> for supporting W3C/MIT.
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc5869">HMAC-based Extract-and-Expand
               Key Derivation Function (HKDF)</a></cite>, H. Krawczyk, P. Eronen. IETF.
+            </dd>
+            <dt id="SP800-38A">NIST SP 800-38A</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf">
+              NIST Special Publication 800-38A: Recommendation for Block Cipher
+              Modes of Operation, Methods and Techniques</a></cite>, December 2001, NIST.
             </dd>
             <dt id="SP800-56A">NIST SP 800-56A</dt>
             <dd>
