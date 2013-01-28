@@ -3193,6 +3193,60 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
           </div>
         </div>
 
+        <div id="aes-cmac" class="section">
+          <h3>AES-CMAC</h3>
+          <div id="aes-cmac-description" class="section">
+            <h4>Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"AES-CMAC"</code> algorithm identifier is used to perform
+              message authentication using AES with a cipher-based MAC, as
+              described in NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>].
+            </p>
+          </div>
+          <div id="aes-cmac-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"AES-CMAC"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>sign</td>
+                  <td>None</td>
+                  <td>ArrayBufferView?</td>
+                </tr>
+                <tr>
+                  <td>verify</td>
+                  <td>None</td>
+                  <td>boolean?</td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="aes-cmac-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Sign</li>
+              <li>Verify</li>
+              <li>Generate Key</li>
+            </ul>
+          </div>
+        </div>
+
         <div id="aes-gcm" class="section">
           <h3>AES-GCM</h3>
           <div id="aes-gcm-description" class="section">
@@ -4002,6 +4056,12 @@ Research Consortium</a> for supporting W3C/MIT.
               <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf">
               NIST Special Publication 800-38A: Recommendation for Block Cipher
               Modes of Operation, Methods and Techniques</a></cite>, December 2001, NIST.
+            </dd>
+            <dt id="SP800-38B">NIST SP 800-38B</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38B/SP_800-38B.pdf">
+              NIST Special Publication 800-38B: Recommendation for Block Cipher Modes of Operation:
+              The CMAC Mode for Authentication</a></cite>, May 2005, NIST.
             </dd>
             <dt id="SP800-56A">NIST SP 800-56A</dt>
             <dd>
