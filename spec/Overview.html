@@ -677,12 +677,8 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
 <span class="comment">// TBD: <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a></span>
 typedef (<a href="#dfn-Algorithm">Algorithm</a> or DOMString) <dfn id="dfn-AlgorithmIdentifier">AlgorithmIdentifier</dfn>;
 
-dictionary <dfn id="dfn-AlgorithmParameters">AlgorithmParameters</dfn> {
-};
-
 dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
   DOMString <a href="#dfn-Algorithm-name">name</a>;
-  <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> <a href="#dfn-Algorithm-params">params</a>;
 };
         </code></pre></div></div>
         <div class="ednote"><div class="ednoteHeader">Editorial note</div>
@@ -703,13 +699,6 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
             </dt>
             <dd>
               The name of the <a href="#algorithms">registered algorithm</a> to use.
-            </dd>
-            <dt id="dfn-Algorithm-params">
-              <code>params</code>
-            </dt>
-            <dd>
-              The <a href="#algorithm-specific-params">algorithm-specific parameters</a> used to
-              fully specify the operation to perform.
             </dd>
           </dl>
         </div>
@@ -2357,15 +2346,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             <h4>20.2.3. Algorithm-specific parameters</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the expected
-              contents of the <a href="#dfn-Algorithm-params"><code>params</code></a> member of
-              the <a href="#dfn-Algorithm">Algorithm</a> object for every
-              <a href="#supported-operations">supported operation</a>.
-            </p>
-            <p>
-              Each registered algorithm <span class="RFC2119">MUST</span> define the normalization
-              rules for the contents of the <a href="#dfn-Algorithm-params"><code>params</code></a>
-              member of the <a href="#dfn-Algorithm">Algorithm</a> object for every
-              <a href="#supported-operations">supported operation</a>. 
+              parameters, if any, that should be exposed via the <a href="#dfn-Algorithm">Algorithm</a>
+              dictionary for every <a href="#supported-operations">supported operation</a>.
             </p>
           </div>
           <div id="algorithm-result" class="section">
@@ -2446,7 +2428,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           <div id="RsaKeyGenParams-dictionary" class="section">
             <h4>20.3.3. RsaKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
   unsigned long modulusLength;
   <span class="comment">// The RSA public exponent</span>
@@ -2634,7 +2616,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
           <div id="RsaSsaParams-dictionary" class="section">
             <h4>20.4.3. RsaSsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span> 
   AlgorithmIdentifier hash;
 };
@@ -2697,7 +2679,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
           <div id="rsa-pss-params" class="section">
             <h4>20.5.3. RsaPssParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
   <span class="comment">// The desired length of the random salt</span>
@@ -2763,7 +2745,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           <div id="rsa-oaep-params" class="section">
             <h4>20.6.3. RsaOaepParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
   <span class="comment">// The optional label/application data to associate with the message</span>
@@ -2828,7 +2810,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
           <div id="EcdsaParams-dictionary" class="section">
             <h4>20.7.3. EcdsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
   AlgorithmIdentifier hash;
 };
@@ -2846,7 +2828,7 @@ enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
   <dfn id="dfn-NamedCurve-p521">"P-521"</dfn>
 };
 
-dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
   NamedCurve namedCurve;
 };
@@ -3029,7 +3011,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
 
-dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's EC public key.</span>
   ECPoint public;
 };
@@ -3104,7 +3086,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
           <div id="aes-ctr-params" class="section">
             <h4>20.9.3. AesCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initial value of the counter block. counter <span class="RFC2119">MUST</span> be 16 bytes
   // (the AES block size). The counter bits are the rightmost length
   // bits of the counter block. The rest of the counter block is for
@@ -3122,7 +3104,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
           <div id="aes-keygen-params" class="section">
             <h4>20.9.4. AesKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
   [EnforceRange] unsigned short length;
 };
@@ -3193,7 +3175,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
           <div id="aes-cbc-params" class="section">
             <h4>20.10.3. AesCbcParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
   ArrayBufferView iv;
 };
@@ -3304,7 +3286,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
           <div id="aes-gcm-params" class="section">
             <h4>20.12.3. AesGcmParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
   ArrayBufferView? iv;
   <span class="comment">// The additional authentication data to include.</span>
@@ -3372,7 +3354,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
           <div id="aes-cfb-params" class="section">
             <h4>20.13.3. AesCfbParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
   ArrayBufferView iv;
 };
@@ -3429,7 +3411,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
           <div id="hmac-params" class="section">
             <h4>20.14.3. HmacParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   AlgorithmIdentifier hash;
 };
@@ -3484,7 +3466,7 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-AlgorithmPa
           <div id="dh-DhKeyGenParams" class="section">
             <h4>20.15.3. DhKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The prime p.</span>
   BigInteger prime;
   <span class="comment">// The base g.</span>
@@ -3495,7 +3477,7 @@ dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Alg
           <div id="dh-DhKeyDeriveParams" class="section">
             <h4>20.15.4. DhKeyDeriveParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's public value.</span>
   BigInteger public;
 };
@@ -3596,7 +3578,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
           <div id="concat-params" class="section">
             <h4>20.17.3. ConcatParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The digest method to use to derive the keying material.</span>
   AlgorithmIdentifier hash;
 
@@ -3663,7 +3645,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
           <div id="hkdf-ctr-params" class="section">
             <h4>20.18.3. HkdfCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a></span>
   AlgorithmIdentifier hashAlg;
   <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
@@ -3723,7 +3705,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
           <div id="pbkdf2-params" class="section">
             <h4>20.19.3. Pbkdf2Params dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-AlgorithmParameters">AlgorithmParameters</a> {
+dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   ArrayBufferView salt;
   [Clamp] unsigned long iterations;
   AlgorithmIdentifier prf;
@@ -3763,6 +3745,9 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> to be
             normalized.
           </li>
+          <li>
+            Let <var>result</var> be the normalized output.
+          </li>
           <li>If <var>O</var> is a DOMString, then:
             <ol>
               <li>
@@ -3774,8 +3759,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
               </li>
               <li>
                 If <var>O</var> contains a recognized <a href="#dfn-algorithm-alias">algorithm alias</a>
-                then let <var>O</var> be re-initialized to the aliased dictionary and this algorithm
-                restarted.
+                then let <var>result</var> be re-initialized to the aliased dictionary and this algorithm
+                restarted, using <var>result</var> as the input to be normalized.
               </li>
               <li>
                 Otherwise, throw an <code>InvalidAlgorithmError</code>
@@ -3783,37 +3768,26 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
               </li>
             </ol>
           </li>
-          <li>
-            Let <var>name</var> be the <a href="#dfn-Algorithm-name"><code>name</code></a> member of the
-            <a href="#dfn-Algorithm"><code>Algorithm</code></a> dictionary.
+          <li>For each key <var>K</var> in <var>O</var> with an associated value <var>V</var>:
+            <ul>
+              <li>
+                If the associated value <var>V</var> is an AlgorithmIdentifier, set
+                the associated value for <var>K</var> in <var>result</var> to be the result
+                of executing the algorithm normalization rules.
+              </li>
+              <li>
+                If the associated value <var>V</var> is a dictionary, set the associated
+                value for <var>K</var> in <var>result</var> to be the result of executing
+                this algorithm recursively for every value in the dictionary.
+              </li>
+              <li>
+                Otherwise, let the associated value for key <var>K</var> in <var>result</var>
+                be the associated value for key <var>K</var> in <var>O</var>.
+              </li>
+            </ul>
           </li>
           <li>
-            If <var>name</var> contains any non-ASCII characters, throw a <code>SyntaxError</code>
-            and return from this algorithm.
-          </li>
-          <li>
-            Convert every character in <var>name</var> to lower case.
-          </li>
-          <li>
-            If <var>name</var> does not contain a recognized
-            <a href="#recognized-algorithm-name">algorithm name</a>, throw an
-            <code>InvalidAlgorithmError</code> exception
-            and return from this algorithm.
-          </li>
-          <li>
-            Let <var>params</var> be the <a href="#dfn-Algorithm-params"><code>params</code></a> member
-            of the <a href="#dfn-Algorithm"><code>Algorithm</code></a> dictionary.
-          </li>
-          <li>
-            Process <var>params</var> according to the algorithm-defined algorithm parameter normalizing rules.
-          </li>
-          <li>
-            If an exception was raised during parameter processing, propagate the exception.
-          </li>
-          <li>
-            Return an <code>Algorithm</code> object, with its
-            <a href="#dfn-Algorithm-name"><code>name</code></a> set to <var>name</var> and its
-            <a href="#dfn-Algorithm-params"><code>params</code></a> set to <var>params</var>.
+            Return <var>result</var>.
           </li>
         </ol>
       </div>
@@ -3827,19 +3801,15 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
 var algorithmKeyGen = {
   name: "RSASSA-PKCS1-v1_5",
   <span class="comment">// <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></span>
-  params: {
-    modulusLength: 2048,
-    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  <span class="comment">// Equivalent to 65537</span>
-  }
+  modulusLength: 2048,
+  publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  <span class="comment">// Equivalent to 65537</span>
 };
 
 var algorithmSign = {
   name: "RSASSA-PKCS1-v1_5",
   <span class="comment">// <a href="#dfn-RsaSsaParams">RsaSsaParams</a></span>
-  params: {
-    hash: {
-      name: "SHA-256",
-    }
+  hash: {
+    name: "SHA-256",
   }
 };
 
@@ -3882,17 +3852,13 @@ var clearDataArrayBufferView = convertPlainTextToArrayBufferView("Plain Text Dat
 var aesAlgorithmKeyGen = {
   name: "AES-CBC",
   <span class="comment">// <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></span>
-  params: {
-    length: 128
-  }
+  length: 128
 };
 
 var aesAlgorithmEncrypt = {
   name: "AES-CBC",
   <span class="comment">// <a href="#dfn-AesCbcParams">AesCbcParams</a></span>
-  params: {
-    iv: window.crypto.getRandomValues(new Uint8Array(16))
-  }
+  iv: window.crypto.getRandomValues(new Uint8Array(16))
 };
 
 <span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
