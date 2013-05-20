@@ -672,16 +672,6 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
   DOMString <a href="#dfn-Algorithm-name">name</a>;
 };
         </x:codeblock>
-        <div class="ednote">
-          <ul>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a>:
-              Should algorithms permit short-names (string identifiers) as equivalent to
-              specifying Algorithm dictionaries, or should Algorithm dictionaries be the only
-              accepted form?
-            </li>
-          </ul>
-        </div>
         <div id="algorithm-dictionary-members" class="section">
           <h3><a href="#dfn-Algorithm">Algorithm</a> Dictionary Members</h3>
           <dl>
@@ -830,18 +820,6 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
   [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oncomplete">oncomplete</a>;
 };
         </x:codeblock>
-        <div class="ednote">
-          <ul>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/22">ISSUE-22</a>:
-              Should CryptoOperations be clonable? If so, under what states?</li>
-            <li>
-              <a href="http://www.w3.org/2012/webcrypto/track/issues/23">ISSUE-23</a>:
-              Should CryptoOperations be
-              <a href="http://dev.w3.org/html5/spec/single-page.html#transferable-objects">transferable</a>?
-            </li>
-          </ul>
-        </div>
         <div id="CryptoOperation-processing-model" class="section">
           <h3>Processing Model</h3>
           <p>
@@ -1362,12 +1340,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
         <div class="ednote">
           <ul>
             <li>
-              <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a>:
-              There is an open question as to how the API should support key wrap and unwrap
-              operations. Should they be distinct operations, independent from key import/export,
-              or should they be part of the parameters supplied during import/export.
-            </li>
-            <li>
               <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a>:
               Further distinction is needed to clarify the differences between key generation and
               key derivation. Should they be distinguished by their inputs (Key generation takes
@@ -1404,20 +1376,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             which may represent the composition and security parameters in a unique manner that
             necessitate the use of the raw algorithms.
           </p>
-          <div class="ednote">
-            <p>
-              Because of the subtleties associated with this API, the Web Cryptography Working
-              Group is also investigating providing a high-level API which provides a
-              comprehensive secure construction and messaging format, to allow new web
-              applications to exchange information without having to be aware of the cryptographic
-              subtleties associated with these individual algorithms.
-            </p>
-            <p>
-              It is likely that such a high-level API will produce messages using algorithms and
-              formats defined in the IETF JOSE Working Group, although this is still a topic of
-              discussion.
-            </p>
-          </div>
         </div>
         <div id="subtlecrypto-interface-methods" class="section">
           <h3>Methods and Parameters</h3>
@@ -2002,28 +1960,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </ol>
               </li>
             </ol>
-            <div class="ednote">
-              <ul>
-                <li>
-                  <p>
-                    The handling for <var>extractable</var> and <var>keyUsages</var> are currently
-                    underspecified. The <em>intent</em> is that any derived secret/private keys will
-                    reflect whatever the caller specified. However, the exact wording of how to specify
-                    that remains TBD.
-                  </p>
-                  <p>
-                    Consider, for example, generation of an RSA key pair. The intent may be that the public
-                    key has the "verify" usage, and the private key has the "sign" usage, but there is no
-                    way in the API to specify that. The same concern applies for "encrypt" and "decrypt".
-                  </p>
-                  <p>
-                    An alternative would be to allow the caller to write to the attributes on individual
-                    <a href="#dfn-Key"><code>Key</code></a> objects themselves, after generation, and then
-                    have some operation to finalize the object itself, but this as well remains TBD.
-                  </p>
-                </li>
-              </ul>
-            </div>
           </div>
           
           <div id="SubtleCrypto-method-deriveKey" class="section">
@@ -2110,29 +2046,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </ol>
               </li>
             </ol>
-            <div class="ednote">
-              <ul>
-                <li>
-                  <p>
-                    The handling for <var>extractable</var> and <var>keyUsages</var> are currently
-                    underspecified. The <em>intent</em> is that any derived secret/private keys will
-                    reflect whatever the caller specified. However, the exact wording of how to specify
-                    that remains TBD.
-                  </p>
-                  <p>
-                    Consider, for example, when derivation results in multiple key handles. The intent
-                    may be that one <code>Key</code> object is used for <code>encrypt</code>ing, while
-                    another is used for <code>decrypt</code>ing. However, the current way of specifying
-                    <code>KeyUsage</code> does not provide a means for callers to do so.
-                  </p>
-                  <p>
-                    An alternative would be to allow the caller to write to the attributes on individual
-                    <a href="#dfn-Key"><code>Key</code></a> objects themselves, after generation, and then
-                    have some operation to finalize the object itself, but this as well remains TBD.
-                  </p>
-                </li>
-              </ul>
-            </div>
           </div>
 
           <div id="SubtleCrypto-method-importKey" class="section">
@@ -2204,49 +2117,6 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           The <a href="#dfn-KeyPair">KeyPair</a> interface represents an
           asymmetric key pair that is comprised of both public and private keys.
         </p>
-      </div>
-
-      <div id="key-discovery" class="section">
-        <h2>Key Discovery</h2>
-        <p class="norm">This section is non-normative.</p>
-        <div class="ednote">
-          <p>
-            The Working Group is actively discussing means of discovering <code><a href="#dfn-Key">Key</a></code>
-            objects that are not not directly created by the application via
-            <code><a href="#SubtleCrypto-method-generateKey">generateKey</a></code>, or allowing
-            web applications to indicate how and where the cryptographic keying material associated with
-            <code>Key</code> objects is stored. Examples of such <code>Key</code> objects or interfaces that
-            may be exposed include:
-          </p>
-          <ul>
-            <li>
-              Named keys that have been pre-provisioned for a particular device or origin
-              (e.g.: device specific keys).
-            </li>
-            <li>
-              Keys that are stored in secure elements (e.g.: smart cards, TPMs), particularly
-              those that may be inserted or removed at any time.
-            </li>
-            <li>
-              Keys that are associated with X.509 certificates matching some criteria.
-            </li>
-            <li>
-              Keys derived from material associated with a particular origin (e.g.:
-              derived from exported TLS keying material [<a href="#RFC5705">RFC5705</a>] or
-              origin bound certificates [<a href="#draft-TLS-OBC">DRAFT-TLS-OBC</a>]).
-            </li>
-          </ul>
-          <p>
-            There is currently no consensus within the Web Cryptography Working Group about how
-            and where such interfaces should be specified, nor is there consensus with regards
-            to various proposals intended to address specific use cases.
-          </p>
-          <p>
-            Such features bring a variety of concerns, most notably unique concerns regarding
-            privacy, security, and user interaction, that may be best addressed through separate
-            specifications that expand on sources for generating or storing <code>Key</code> objects.
-          </p>
-        </div>
       </div>
 
       <div id="algorithms" class="section">
@@ -2358,16 +2228,6 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
               Each algorithm alias <span class="RFC2119">MUST</span> follow the same naming rules
               as the <a href="#recognized-algorithm-name">recognized algorithm name</a>.
             </p>
-            <div class="ednote">
-              <ul>
-                <li>
-                  <a href="http://www.w3.org/2012/webcrypto/track/issues/28">ISSUE-28</a>:
-                  Should algorithms permit short-names (string identifiers) as equivalent to
-                  specifying Algorithm dictionaries, or should Algorithm dictionaries be the only
-                  accepted form?
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
