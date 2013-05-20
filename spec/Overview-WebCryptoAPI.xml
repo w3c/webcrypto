@@ -703,7 +703,9 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
   "decrypt",
   "sign",
   "verify",
-  "derive"
+  "derive",
+  "wrap",
+  "unwrap"
 };
 
 interface <dfn id="dfn-Key">Key</dfn> {
@@ -1335,6 +1337,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
+
+  <span class="comment">// Note: wrap and unwrap remain "Features at Risk"</span>
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-wrapKey">wrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+                       <a href="#dfn-Key">Key</a> key,
+                       <a href="#dfn-Key">Key</a> wrappingKey,
+                       <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+                         ArrayBufferView wrappedKey,
+                         <a href="#dfn-Key">Key</a> unwrappingKey,
+                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
+                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier?</a> unwrappedKeyAlgorithm,
+                         bool extractable = false,
+                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
 };
         </x:codeblock>
         <div class="ednote">
@@ -2052,11 +2067,253 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <h4>The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
           </div>
+
           <div id="SubtleCrypto-method-exportKey" class="section">
             <h4>The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
-            <p></p>
           </div>
-          
+
+          <div id="SubtleCrypto-method-wrapKey" class="section">
+            <h4>The <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method</h4>
+            <p>
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>wrapAlgorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the wrapKey
+                  operation, throw a <code>NotSupportedError</code> and
+                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>keyOp</var> be a newly created object implementing the
+                  <a href="#dfn-KeyOperation"><code>KeyOperation</code></a> interface.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>keyOp</var> to the task that invoked this <code>wrapKey</code>, while
+                  continuing the remaining steps of this algorithm.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Queue up an operation to run the following steps:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>wrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>keyUsage</code></a> does not
+                      contain the <code>"wrap"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                      <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>KeyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>Key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
+                      <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>KeyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>bytes</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>
+                      algorithm, with the <var>keyFormat</var> as <code>keyFormat</code> and with <var>key</var> as
+                      <code>key</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                     If the key export algorithm failed, <a href="#queue-a-task">queue a task</a> to
+                     <a href="#fire-a-simple-event">fire a simple event</a>
+                     called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                     <var>keyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                     Let <var>result</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>
+                     algorithm, with <var>wrappingKey</var> as <code>Key</code>, <var>normalizedAlgorithm</var> as
+                     <code>algorithm</code>, and with <var>bytes</var> as <code>buffer</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the encrypt algorithm failed, <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>keyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Otherwise, if the encrypt method completed successfully,
+                      let <var>result</var> be the result of that operation.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set <var>keyOp</var>.<a href="#dfn-KeyOperation-result"><code>result</code></a> =
+                      <var>result</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <a href="#queue-a-task">Queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a> called
+                      <a href="#dfn-KeyOperation-oncomplete"><code>oncomplete</code></a> at
+                      <var>KeyOp</var>
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
+
+          <div id="SubtleCrypto-method-unwrapKey" class="section">
+            <h4>The <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method</h4>
+            <p>
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedUnwrapAlgorithm</var> be the result of processing
+                  <code>unwrapAlgorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedUnwrapAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the wrapKey
+                  operation, throw a <code>NotSupportedError</code> and
+                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <ul>
+                  <li>
+                    <p>If <code>unwrappedKeyAlgorithm</code> is defined:</p>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedKeyAlgorithm</var> be the result of processing
+                          <code>unwrappedKeyAlgorithm</code> according to the
+                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>normalizedKeyAlgorithm</var> does not describe a
+                          <a href="#algorithms">registered algorithm</a> that supports the wrapKey
+                          operation, throw a <code>NotSupportedError</code> and
+                          <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                        </p>
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    <p>Otherwise, let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  Let <var>keyOp</var> be a newly created object implementing the
+                  <a href="#dfn-KeyOperation"><code>KeyOperation</code></a> interface.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>keyOp</var> to the task that invoked this <code>unwrapKey</code>, while
+                  continuing the remaining steps of this algorithm.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Queue up an operation to run the following steps:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>unwrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>keyUsage</code></a> does not
+                      contain the <code>"unwrap"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                      <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>KeyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>bytes</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>
+                      algorithm, with <var>unwrapAlgorithm</var> as <code>algorithm</code>, <var>unwrapKey</var>
+                      as <code>key</code>, and with <var>wrappedKey</var> as <code>buffer</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key decrypt algorithm failed, <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>keyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be the result of executing the <a href="#dfn-SubtleCrytpo-method-importKey">importKey</a>
+                      algorithm, with <var>format</var> as <code>format</code>, with <var>bytes</var> as
+                      <code>keyData</code>, with <var>unwrappedKeyAlgorithm</var> as <code>algorithm</code>, with <var>extractable</var>
+                      as <code>extractable</code>, and <var>keyUsages</var> as <code>keyUsages</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key import algorithm failed, <a href="#queue-a-task">queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a>
+                      called <a href="#dfn-KeyOperation-onerror"><code>onerror</code></a> at
+                      <var>keyOp</var> and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Otherwise, if the algorithm-specific key unwrapping method completed successfully,
+                      let <var>result</var> be the result of that operation.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set <var>keyOp</var>.<a href="#dfn-KeyOperation-result"><code>result</code></a> =
+                      <var>result</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <a href="#queue-a-task">Queue a task</a> to
+                      <a href="#fire-a-simple-event">fire a simple event</a> called
+                      <a href="#dfn-KeyOperation-oncomplete"><code>oncomplete</code></a> at
+                      <var>KeyOp</var>
+                    </p>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
 
@@ -2587,6 +2844,16 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
                   <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
                 </tr>
+                <tr>
+                  <td>wrap</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td>ArrayBuffer?</td>
+                </tr>
+                <tr>
+                  <td>unwrap</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td><a href="#dfn-Key">Key</a>?</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -2604,11 +2871,18 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
           </div>
           <div id="rsa-oaep-operations" class="section">
             <h4>Operations</h4>
-            <ul>
-              <li>Encrypt</li>
-              <li>Decrypt</li>
-              <li>Generate Key</li>
-            </ul>
+            <dl>
+              <dt>Encrypt</dt>
+              <dd></dd>
+              <dt>Decrypt</dt>
+              <dd></dd>
+              <dt>Generate Key</dt>
+              <dd></dd>
+              <dt>Wrap</dt>
+              <dd></dd>
+              <dt>Unwrap</dt>
+              <dd></dd>
+            </dl>
           </div>
         </div>
 
