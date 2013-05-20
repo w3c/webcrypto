@@ -637,7 +637,7 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
             <div class="note">
               <p>
                 Do not generate keys using the <code>getRandomValues</code> method. Use the
-                <a href="#dfn-SubtleSubtleCrypto-method-generateKey"><code>generateKey</code></a> method instead.
+                <a href="#dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></a> method instead.
               </p>
             </div>
           </div>
@@ -1302,39 +1302,39 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
 };
 
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
                           optional ArrayBufferView? buffer = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
                           optional ArrayBufferView? buffer = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
                        optional ArrayBufferView? buffer = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> key,
                          ArrayBufferView signature,
                          optional ArrayBufferView? buffer = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          optional ArrayBufferView? buffer = null);
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
-  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                            bool extractable = false,
                            <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
-  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> baseKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
-  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          ArrayBufferView keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
                          bool extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
-  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleSubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
+  <a href="#dfn-KeyOperation">KeyOperation</a> <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
 };
         </x:codeblock>
         <div class="ednote">
@@ -1382,7 +1382,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-encrypt" class="section">
             <h4>The encrypt method</h4>
             <p>
-              The <dfn id="dfn-SubtleSubtleCrypto-method-encrypt"><code>encrypt</code></dfn>
+              The <dfn id="dfn-SubtleCrypto-method-encrypt"><code>encrypt</code></dfn>
               method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will encrypt data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1484,7 +1484,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-decrypt" class="section">
             <h4>The decrypt method</h4>
             <p>
-              The <dfn id="dfn-SubtleSubtleCrypto-method-decrypt"><code>decrypt</code></dfn>
+              The <dfn id="dfn-SubtleCrypto-method-decrypt"><code>decrypt</code></dfn>
               method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will decrypt data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1586,7 +1586,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-sign" class="section">
             <h4>The sign method</h4>
             <p>
-              The <dfn id="dfn-SubtleSubtleCrypto-method-sign"><code>sign</code></dfn> method
+              The <dfn id="dfn-SubtleCrypto-method-sign"><code>sign</code></dfn> method
               returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will sign data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1687,7 +1687,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-verify" class="section">
             <h4>The verify method</h4>
             <p>
-              The <dfn id="dfn-SubtleSubtleCrypto-method-verify"><code>verify</code></dfn> method
+              The <dfn id="dfn-SubtleCrypto-method-verify"><code>verify</code></dfn> method
               returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will verify data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
@@ -1788,7 +1788,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-digest" class="section">
             <h4>The digest method</h4>
             <p>
-              The <dfn id="dfn-SubtleSubtleCrypto-method-digest"><code>digest</code></dfn> method returns
+              The <dfn id="dfn-SubtleCrypto-method-digest"><code>digest</code></dfn> method returns
               a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
               object that will digest data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a>.
@@ -1889,7 +1889,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-generateKey" class="section">
             <h4>The generateKey method</h4>
             <p>
-              When invoked, <dfn id="dfn-SubtleSubtleCrypto-method-generateKey"><code>generateKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, <dfn id="dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -1965,7 +1965,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-deriveKey" class="section">
             <h4>The deriveKey method</h4>
             <p>
-              When invoked, <dfn id="dfn-SubtleSubtleCrypto-method-deriveKey"><code>deriveKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveKey"><code>deriveKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -2049,11 +2049,11 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-importKey" class="section">
-            <h4>The <dfn id="dfn-SubtleSubtleCrypto-method-importKey">importKey</dfn> method</h4>
+            <h4>The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
           </div>
           <div id="SubtleCrypto-method-exportKey" class="section">
-            <h4>The <dfn id="dfn-SubtleSubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
+            <h4>The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
             <p></p>
           </div>
           
