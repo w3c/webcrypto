@@ -796,45 +796,45 @@ interface <dfn id="dfn-Key">Key</dfn> {
       <div id="cryptooperation-interface" class="section">
         <h2>CryptoOperation interface</h2>
         <x:codeblock language="idl">
-interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
-  void <a href="#dfn-CryptoOperation-method-process">process</a>(ArrayBufferView buffer);
-  void <a href="#dfn-CryptoOperation-method-finish">finish</a>();
-  void <a href="#dfn-CryptoOperation-method-abort">abort</a>();
+interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Future {
+  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(ArrayBufferView buffer);
+  CryptoOperation <a href="#dfn-CryptoOperation-method-finish">finish</a>();
+  CryptoOperation <a href="#dfn-CryptoOperation-method-abort">abort</a>();
 
   readonly attribute <a href="#dfn-Key">Key</a>? <a href="#dfn-CryptoOperation-key">key</a>;
   readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-CryptoOperation-algorithm">algorithm</a>;
-  readonly attribute any <a href="#dfn-CryptoOperation-result">result</a>;
-
-  [TreatNonCallableasNull] attribute Function? <a href="#dfn-CryptoOperation-onabort">onabort</a>;
-  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onerror">onerror</a>;
-  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-onprogress">onprogress</a>;
-  [TreatNonCallableAsNull] attribute Function? <a href="#dfn-CryptoOperation-oncomplete">oncomplete</a>;
 };
         </x:codeblock>
+        
         <div id="CryptoOperation-processing-model" class="section">
-          <h3>Processing Model</h3>
+          <h4>Processing Model</h4>
           <p>
-            Every <code>CryptoOperation</code> object must have a <dfn id="dfn-CryptoOperation-list-of-pending-data">list
-            of pending data</dfn>. Each item in the list represents data that should be transformed by the
-            cryptographic operation. The list functions as a queue that observes first-in, first-out ordering. That is,
-            the order in which items are added shall reflect the order in which items are removed.
+            Every <code>CryptoOperation</code> is said to have an associated <code>resolver</code>, an
+            internal state, an associated algorithm, an internal count of available bytes, and a
+            <dfn id="dfn-CryptoOperation-list-of-pending-data">list of pending data</dfn>.
           </p>
           <p>
-            When a CryptoOperation is said to <dfn id="dfn-CryptoOperation-process-data">process data</dfn>, the user
-            agent must execute the following steps:
+            Each object in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> represents
+            data that should undergo the associated cryptographic transformation. The order in which items are added
+            to the list shall be reflected in the order in which items are processed, with the first item added being
+            the first item processed.
+          </p>
+          <p>
+            When a <code>CryptoOperation</code> is said to <dfn id="dfn-CryptoOperation">process data</dfn>, the user
+            agent must execute the following algorithm:
           </p>
           <ol>
             <li>
               <p>
-                If there are no items in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending
-                data</a>, the algorithm is complete.
+                If the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> contains no
+                items, terminate the algorithm.
               </p>
             </li>
             <li>
               <dl class="switch">
                 <dt>
-                  If the underlying cryptographic implementation does not support multi-part cryptographic operations for
-                  the current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, perform the following steps:
+                  If the underlying implementation does not support multi-part cryptographic operations for the
+                  associated algorithm:
                 </dt>
                 <dd>
                   <ol>
@@ -850,21 +850,17 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
                       <ol>
                         <li>
                           <p>
-                            Let <var>item</var> be the oldest remaining item in the
-                            <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                            Let <var>item</var> be the oldest remaining item in the list of pending data.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Remove <var>item</var> from the <a href="#dfn-CryptoOperation-list-of-pending-data">list of
-                            pending data</a>.
+                            Remove <var>item</var> from the list of pending data.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Convert <var>item</var> to a sequence of <code>byteLength</code> bytes from the underlying
-                            <code>ArrayBuffer</code>, starting at the <code>byteOffset</code> of the <code>ArrayBufferView</code>,
-                            and append those bytes to <var>bytes</var>
+                            Convert <var>item</var> to a sequence of bytes and append those bytes to <var>bytes</var>.
                           </p>
                         </li>
                       </ol>
@@ -876,43 +872,33 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
                     </li>
                     <li>
                       <p>
-                        If the cryptographic operation fails, proceed to the error steps below:
+                        If the cryptographic operation fails, execute the associated resolver's <code>reject(value)</code>
+                        algorithm, with <var>value</var> set to <code>null</code>, and terminate the algorithm.
                       </p>
-                      <ol>
-                        <li>
-                          <p>
-                            Update the internal state to <code>"error"</code>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <a href="#queue-a-task">Queue a task</a> to
-                            <a href="#fire-a-simple-event">fire a simple event</a> named
-                            <a href="#dfn-CryptoOperation-onerror"><code>onerror</code></a> at the
-                            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <a href="#terminate-the-algorithm">Terminate the algorithm</a>.
-                          </p>
-                        </li>
-                      </ol>
                     </li>
                     <li>
                       <p>
-                        Let <var>output</var> be the result of the underlying cryptographic algorithm.
+                        Let <var>output</var> be the result of the underlying cryptographic operation.
                       </p>
                     </li>
                   </ol>
                 </dd>
                 <dt>
-                  Otherwise, if the underlying cryptographic implementation supports multi-part cryptographic operations
-                  for the current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, perform the following
-                  algorithm:
+                  Otherwise, if the underlying implementation supports multi-part cryptographic operations for the
+                  associated algorithm.
+                  <div class="ednote">
+                    This section is a feature at risk, in light of ongoing discussions related
+                    to Streams, ProgressFuture, and idiomatic progressive outputting.
+                  </div>
                 </dt>
                 <dd>
                   <ol>
+                    <li>
+                      <p>
+                        If the internal count of available bytes does not contain enough data for the underlying
+                        cryptographic operation to yield output, terminate this algorithm.
+                      </p>
+                    </li>
                     <li>
                       <p>
                         Let <var>bytes</var> be an empty sequence of bytes.
@@ -920,31 +906,29 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
                     </li>
                     <li>
                       <p>
-                        Let <var>item</var> be the oldest remaining item in the
-                        <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
+                        Execute the following algorithm for each item in the list of pending data,
+                        ordered such that the oldest item is iterated first, until <var>bytes</var>
+                        contains sufficient data for the underlying cryptographic operation to yield output.
+                        Implementations <span class="RFC2119">MAY</span> process additional data, provided
+                        the result of doing so is indistinguishable from the algorithm described here.
                       </p>
-                    </li>
-                    <li>
-                      <p>
-                        Remove <var>item</var> from the <a href="#dfn-CryptoOperation-list-of-pending-data">list of
-                        pending data</a>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Convert <var>item</var> to a sequence of <code>byteLength</code> bytes from the underlying
-                        <code>ArrayBuffer</code>, starting at the <code>byteOffset</code> of the <code>ArrayBufferView</code>,
-                        and append those bytes to <var>bytes</var>
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        A <a href="#dfn-conforming-implementation">conforming user agent</a> <span class="RFC2119">MAY</span>
-                        repeat the preceeding steps as many times as desired, for as long as items remain in the
-                        <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>, provided that the
-                        output of the underlying cryptographic algorithm is indistinguishable from when only a single item is
-                        processed at a time.
-                      </p>
+                      <ol>
+                        <li>
+                          <p>
+                            Let <var>item</var> be the oldest remaining item in the list of pending data.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Remove <var>item</var> from the list of pending data.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Convert <var>item</var> to a sequence of bytes and append those bytes to <var>bytes</var>.
+                          </p>
+                        </li>
+                      </ol>
                     </li>
                     <li>
                       <p>
@@ -953,150 +937,31 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
                     </li>
                     <li>
                       <p>
-                        If the cryptographic operation fails, proceed to the error steps below:
+                        If the cryptographic operation fails, execute the associated resolver's <code>reject(value)</code>
+                        algorithm, with <var>value</var> set to <code>null</code>, and terminate the algorithm.
                       </p>
-                      <ol>
-                        <li>
-                          <p>
-                            Clear the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Update the internal state to <code>"error"</code>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <a href="#queue-a-task">Queue a task</a> to
-                            <a href="#fire-a-simple-event">fire a simple event</a> named
-                            <a href="#dfn-CryptoOperation-onerror"><code>onerror</code></a> at the
-                            <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <a href="#terminate-the-algorithm">Terminate the algorithm</a>.
-                          </p>
-                        </li>
-                      </ol>
                     </li>
                     <li>
                       <p>
-                        Let <var>output</var> be the result of the underlying cryptographic algorithm.
+                        Let <var>output</var> be the result of the underlying cryptographic operation.
                       </p>
+                    </li>
+                    <li>
+                      <p>
+                        Append <var>output</var> to the <var>result</var> field.
+                      </p>
+                      <div class="ednote">
+                        The intent of this section is to permit the use of <code>ProgressFuture</code>, allowing the
+                        CryptoOperation to progressively notify of progress being made.
+                      </div>
                     </li>
                   </ol>
                 </dd>
               </dl>
             </li>
-            <li>
-              <p>
-                Update <a href="#dfn-CryptoOperation-result"><code>result</code></a> with the algorithm-specific
-                result using <var>output</var>.
-              </p>
-              <div class="ednote">
-                <ul>
-                  <li>
-                    <p>
-                      <a href="http://www.w3.org/2012/webcrypto/track/issues/18">ISSUE-18</a>:
-                      The wording here is presently ambiguous. It is modeled after the File API [<a href="#FileAPI">FileAPI</a>],
-                      which has <code>result</code> accumulating the output as it becomes available. Because of this behaviour,
-                      the entire cryptographic output is stored in <code>result</code> at the end of the operation.
-                    </p>
-                    <p>
-                      In order to reduce the need to keep the entire cryptographic output in <code>result</code>, it has also been
-                      requested to have an interface to support streaming/progressive output, in which only as much cryptographic
-                      output as desired/requested is made available. How such functionality would be implemented, if at all,
-                      remains to be determined.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <p>
-                <a href="#queue-a-task">Queue a task</a> to
-                <a href="#fire-a-simple-event">fire a simple event</a> named
-                <a href="#dfn-CryptoOperation-onprogress"><code>onprogress</code></a>
-                at the <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
-              </p>
-            </li>
-            <li>
-              <p>
-                If the underlying cryptographic implementation supports multi-part cryptographic operations for the
-                current <a href="#dfn-CryptoOperation-algorithm">algorithm</a>, repeat these steps for each item remaining
-                in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
-              </p>
-            </li>
           </ol>
-          <div class="ednote">
-            <ul>
-              <li>
-                <p>
-                  The above algorithm is meant to describe a possible way of supporting multi-part input (sometimes called "streaming"
-                  or "progressive" input, but not to be confused with the Streams API [<a href="#StreamsAPI">StreamsAPI</a>]). The downside to the
-                  above algorithm is that it does not describe a good interface for supporting algorithms that may support
-                  multiple multi-part inputs.
-                </p>
-                <p>
-                  An example of such an algorithm would be AES-GCM, which has two sources of input - the encrypted-and-authenticated
-                  data ("ciphertext") and the authenticated data ("additional authenticated data"). A truly multi-part implementation
-                  would allow both the plaintext/ciphertext and the authenticated data to be supplied independently, and in parts,
-                  until <code>finish()</code> was called.
-                </p>
-                <p>
-                  However, at present, several major cryptographic APIs (CDSA, CNG, PKCS#11) do not support such uses, and so for now, the
-                  details for handling multiple multi-part inputs have been omitted.
-                </p>
-              </li>
-              <li>
-                The above algorithm does not fully describe how to handle <a href="#dfn-CryptoOperation-method-abort"><code>abort</code></a>ing an in-progress operation.
-              </li>
-            </ul>
-          </div>
         </div>
-        <div id="cryptooperation-events" class="section">
-          <h3>Event Handler Attributes</h3>
-          <p>
-            The following are the <a href="#event-handler-idl-attributes">event handler IDL attributes</a>
-            (and their corresponding <a href="#event-handler-event-type">event handler event
-            types</a>) that user agents must support on the <a href="#dfn-CryptoOperation">
-            <code>CryptoOperation</code></a> as DOM attributes:
-          </p>
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <a href="#event-handler-idl-attributes" title="event handler IDL attributes">event
-                  handler IDL attributes</a>
-                </th>
-                <th>
-                  <a href="#event-handler-event-type" title="event handler event types">event
-                  handler event type</a>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><dfn id="dfn-CryptoOperation-onabort">onabort</dfn></td>
-                <td>abort</td>
-              </tr>
-              <tr>
-                <td><dfn id="dfn-CryptoOperation-onerror">onerror</dfn></td>
-                <td>error</td>
-              </tr>
-              <tr>
-                <td><dfn id="dfn-CryptoOperation-onprogress">onprogress</dfn></td>
-                <td>progress</td>
-              </tr>
-              <tr>
-                <td><dfn id="dfn-CryptoOperation-oncomplete">oncomplete</dfn></td>
-                <td>complete</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
         <div id="CryptoOperation-attributes" class="section">
           <h3>Attributes</h3>
           <dl>
@@ -1117,23 +982,9 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
               <a href="#algorithm-normalizing-rules">normalized algorithm</a> of the algorithm used
               to initialize the <code>CryptoOperation</code>.
             </dd>
-            <dt id="dfn-CryptoOperation-result"><code>result</code></dt>
-            <dd>
-              On getting, the <code>result</code> attribute returns the
-              <a href="#algorithm-result">algorithm-specific result</a> for the current
-              <code>CryptoOperation</code>.
-              <ul>
-                <li>
-                  <p>
-                    On getting, if an error in performing the operation has occurred, then the
-                    <code>result</code> attribute <span class="RFC2119">MUST</span> return
-                    <code>null</code>.
-                  </p>
-                </li>
-              </ul>
-            </dd>
           </dl>
         </div>
+
         <div id="CryptoOperation-methods" class="section">
           <h3>Methods</h3>
           <div id="CryptoOperation-method-process" class="section">
@@ -1145,8 +996,12 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
             <ol>
               <li>
                 <p>
-                  If the internal state is in the <code>"error"</code> state, throw an
-                  <code>InvalidStateError</code> exception and abort these steps.
+                  If the associated resolver's resolved flag is set, terminate this algorithm.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the internal state of the CryptoOperation is not "processing", terminate this algorithm.
                 </p>
               </li>
               <li>
@@ -1161,18 +1016,8 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
               </li>
               <li>
                 <p>
-                  If the underlying cryptographic implementation for the specified
-                  <a href="#dfn-CryptoOperation-algorithm">algorithm</a> supports multi-part cryptographic operations,
-                  asynchrously <a href="#dfn-CryptoOperation-process-data">process data</a>, allowing the task that
-                  invoked this algorithm to continue.
+                  Return the current <code>CryptoOperation</code>.
                 </p>
-                <div class="ednote">
-                  <p>
-                    Warning: The text here is currently ambiguous in terms of defining how the <a href="#event-loops">event loop</a>
-                    processes events; in particular, it leaves under-specified how the <a href="#dfn-CryptoOperation-method-abort">
-                    <code>abort()</code></a> method should be handled when data is being processed.
-                  </p>
-                </div>
               </li>
             </ol>
           </div>
@@ -1185,31 +1030,54 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
             <ol>
               <li>
                 <p>
-                  If the internal state is in the <code>"error"</code> state, throw an
-                  <code>InvalidStateError</code> exception and abort these steps.
+                  If the associated resolver's resolved flag is set, terminate this algorithm.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the internal state to <code>"complete"</code>.
+                  Set the internal state to "complete".
                 </p>
               </li>
               <li>
-                <p>
-                  If the underlying cryptographic implementation for the specified
-                  <a href="#dfn-CryptoOperation-algorithm">algorithm</a> does not support multi-part cryptographic
-                  operations, asynchronously <a href="#dfn-CryptoOperation-process-data">process data</a>, allowing the task
-                  that invoked this algorithm to continue.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Once all items in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> have
-                  been <a href="#dfn-CryptoOperation-process-data">processed</a>, <a href="#queue-a-task">queue a task</a>
-                  to <a href="#fire-a-simple-event">fire a simple event</a> called
-                  <a href="#dfn-CryptoOperation-oncomplete"><code>oncomplete</code></a> at the
-                  <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
-                </p>
+                <dl class="switch">
+                  <dt>
+                    If the list of pending data is empty, perform the following steps:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Execute the associated <var>resolver</var>'s <code>resolve(value)</code> algorithm,
+                          with <var>output</var> as <code>value</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Terminate the algorithm.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>
+                    Otherwise, return to the task that invoked this algorithm and continue the
+                    remaining steps asynchronously.
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Process data until the list of pending data is empty.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Execute the associated <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                          <var>output</var> as <code>value</code>.
+                        </p>
+                      </li>
+                    </ol> 
+                  </dd>
+                </dl>
               </li>
             </ol>
           </div>
@@ -1222,31 +1090,26 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : EventTarget {
             <ol>
               <li>
                 <p>
-                  If the internal state is in the <code>"error"</code> state, throw an
-                  <code>InvalidStateError</code> exception and abort these steps.
+                  If the associated resolver's resolved flag is set, terminate this algorithm.
                 </p>
               </li>
               <li>
-                <p>Abort <a href="#dfn-CryptoOperation-process-data">processing data</a>.</p>
+                <p>
+                  Set the internal state to "error"
+                </p>
               </li>
               <li>
-                If there are any pending tasks for the <code>CryptoOperation</code>, then remove those
-                tasks.
+                <p>
+                  Clear the list of pending data.
+                </p>
               </li>
               <li>
-                <a href="#queue-a-task">Queue a task</a> to
-                <a href="#fire-a-simple-event">fire a simple event</a> called
-                <a href="#dfn-CryptoOperation-onabort"><code>onabort</code></a> at the
-                <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>.
+                <p>
+                  Execute the associate <var>resolver</var>'s <code>reject(value)</code> algorithm,
+                  with <var>value</var> set to <code>null</code>.
+                </p>
               </li>
             </ol>
-            <div class="ednote">
-              <p>
-                The above algorithm is underspecified, both for user agents that do not implement abortable processing and
-                because the <a href="#dfn-CryptoOperation-process-data">process data algorithm</a> does not define how
-                to abort midstream.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -1425,19 +1288,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Return the new object and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   If <var>buffer</var> is specified:
                 </p>
                 <ol>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
+                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                      method on the new object.
+                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
                     </p>
                   </li>
                 </ol>
@@ -1458,17 +1325,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       </p>
                     </li>
                   </ol>
-                  <p>
-                    Having the single-part operation return a <code>CryptoOperation</code> may change,
-                    as may make it easier for developers if a <em>Promise</em> type object (whether through
-                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
-                  </p>
                 </div>
-              </li>
-              <li>
-                <p>
-                  Return the new object.
-                </p>
               </li>
             </ol>
           </div>
@@ -1527,19 +1384,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Return the new object and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   If <var>buffer</var> is specified:
                 </p>
                 <ol>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
+                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                      method on the new object.
+                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
                     </p>
                   </li>
                 </ol>
@@ -1560,17 +1421,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       </p>
                     </li>
                   </ol>
-                  <p>
-                    Having the single-part operation return a <code>CryptoOperation</code> may change,
-                    as may make it easier for developers if a <em>Promise</em> type object (whether through
-                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
-                  </p>
                 </div>
-              </li>
-              <li>
-                <p>
-                  Return the new object.
-                </p>
               </li>
             </ol>
           </div>
@@ -1628,19 +1479,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Return the new object and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   If <var>buffer</var> is specified:
                 </p>
                 <ol>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
+                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                      method on the new object.
+                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
                     </p>
                   </li>
                 </ol>
@@ -1661,17 +1516,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       </p>
                     </li>
                   </ol>
-                  <p>
-                    Having the single-part operation return a <code>CryptoOperation</code> may change,
-                    as may make it easier for developers if a <em>Promise</em> type object (whether through
-                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
-                  </p>
                 </div>
-              </li>
-              <li>
-                <p>
-                  Return the new object.
-                </p>
               </li>
             </ol>
           </div>
@@ -1729,19 +1574,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Return the new object and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   If <var>buffer</var> is specified:
                 </p>
                 <ol>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
+                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                      method on the new object.
+                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
                     </p>
                   </li>
                 </ol>
@@ -1762,17 +1611,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       </p>
                     </li>
                   </ol>
-                  <p>
-                    Having the single-part operation return a <code>CryptoOperation</code> may change,
-                    as may make it easier for developers if a <em>Promise</em> type object (whether through
-                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
-                  </p>
                 </div>
-              </li>
-              <li>
-                <p>
-                  Return the new object.
-                </p>
               </li>
             </ol>
           </div>
@@ -1830,19 +1669,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Return the new object and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   If <var>buffer</var> is specified:
                 </p>
                 <ol>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-process"><code>process()</code></a>
-                      method on the new object, with <var>buffer</var> as the <code>buffer</code> argument.
+                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
+                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Queue a task to invoke the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-                      method on the new object.
+                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
                     </p>
                   </li>
                 </ol>
@@ -1863,17 +1706,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       </p>
                     </li>
                   </ol>
-                  <p>
-                    Having the single-part operation return a <code>CryptoOperation</code> may change,
-                    as may make it easier for developers if a <em>Promise</em> type object (whether through
-                    TC39 or through DOM) is returned, since the only possible results are "success" and "error".
-                  </p>
                 </div>
-              </li>
-              <li>
-                <p>
-                  Return the new object.
-                </p>
               </li>
             </ol>
           </div>
