@@ -3747,34 +3747,25 @@ var algorithmSign = {
   }
 };
 
-var keyGen = window.crypto.subtle.generateKey(algorithmKeyGen,
-                                       false, <span class="comment">// extractable</span>
-                                       ["sign"]);
+window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
+  function(key) {
+    var dataPart1 = convertPlainTextToArrayBufferView("hello,");
+    var dataPart2 = convertPlainTextToArrayBufferView(" world!");
+    <span class="comment">// TODO: create example utility function that converts text -&gt; ArrayBufferView</span>
 
-keyGen.oncomplete = function(event) {
-  <span class="comment">// Because we are not supplying data to .sign(), a multi-part
-  // CryptoOperation will be returned, which requires us to call .process()
-  // and .finish().</span>
-  var signer = window.crypt.sign(algorithmSign, event.target.result.privateKey);
-  signer.oncomplete = function(event) {
-    console.log("The signature is: " + event.target.result);
-  }
-  signer.onerror = function(event) {
-    console.error("Unable to sign");
-  }
-
-  var dataPart1 = convertPlainTextToArrayBufferView("hello,");
-  var dataPart2 = convertPlainTextToArrayBufferView(" world!");
-  <span class="comment">// TODO: create example utility function that converts text -&gt; ArrayBufferView</span>
-
-  signer.process(dataPart1);
-  signer.process(dataPart2);
-  signer.finish();
-};
-
-keyGen.onerror = function(event) {
-  console.error("Unable to generate a key.");
-};
+    <span class="comment">// Because we are not supplying data to .sign(), a multi-part
+    // CryptoOperation will be returned, which requires us to call .process()
+    // and .finish().</span>
+    return window.crypto.subtle.sign(algorithmSign, key.privateKey)
+      .process(dataPart1)
+      .process(dataPart2)
+      .finish();
+  },
+  console.error.bind(console, "Unable to generate a key")
+).then(
+  console.log.bind(console, "The signature is: "),
+  console.error.bind(console, "Unable to sign")
+);
         </code></pre></div></div>
         </div>
         <div id="examples-symmetric-encryption" class="section">
@@ -3796,25 +3787,14 @@ var aesAlgorithmEncrypt = {
 };
 
 <span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
-var cryptoKeyGen = window.crypto.subtle.generateKey(aesAlgorithmKeyGen,
-                                             false, <span class="comment">// extractable</span>
-                                             ["encrypt"]);
-
-cryptoKeyGen.oncomplete = function(event) {
-  <span class="comment">// A new, random AES key has been generated.</span>
-  var aesKey = event.target.result;
-
-  <span class="comment">// Unlike the signing example, which showed multi-part encryption, here we
-  // will perform the entire AES operation in a single call.</span>
-  var aesOp = window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
-  aesOp.oncomplete = function(event) {
-    <span class="comment">// The clearData has been encrypted.</span>
-    var ciphertext = event.target.result; <span class="comment">// ArrayBufferView</span>
-  };
-  aesOp.onerror = function(event) {
-    console.error("Unable to AES encrypt.");
-  };
-};
+window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
+  function(aesKey) {
+    <span class="comment">// Unlike the signing operation, which showed a multi-part operation,
+    // here we perform the entire AES operation in a single call.</span>
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
+  }
+).then(console.log.bind(console, "The ciphertext is: "),
+       console.error.bind(console, "Unable to encrypt"));
         </code></pre></div></div>
       </div>
     </div>
