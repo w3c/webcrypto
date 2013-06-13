@@ -2727,12 +2727,6 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
 
           <div id="ecdsa-operations" class="section">
             <h4>Operations</h4>
-            <div class="ednote">
-              <p>
-                Note: The following processing algorithms have not been updated to match the processing algorithm
-                described in the <a href="#CryptoOperation-processing-model">CryptoOperation processing model</a>.
-              </p>
-            </div>
             <dl>
               <dt>Sign</dt>
               <dd>
@@ -2740,57 +2734,85 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 shall behave as follows:
                 <ol>
                   <li>
-                    Upon invoking <code>init</code>:
-                    <ol>
-                      <li>
-                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
-                        ECDSA private key, raise an error and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>                  
-                      <li>
-                        Let <var>M</var> be an empty sequence of bytes.
-                      </li>
-                    </ol>
+                    <p>
+                      If the context object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>
+                      does not refer to an ECDSA private key, terminate the algorithm with an error.
+                    </p>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
-                    <ol>
-                      <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
-                      </li>
-                      <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M</var>.
-                      </li>
-                      <li>
-                        No output is returned.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish</a></code>:
-                    <ol>
-                      <li>
-                        Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
-                        Section 7.3, with <var>M</var> as the message, with EC domain parameters and
-                        private key <var>d</var> obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>,
-                        and with the hash function obtained from the EcdsaParams dictionary.
-                      </li>
-                      <li>
-                        If the operation resulted in an error, raise an error and terminate this
-                        algorithm.
-                      </li>
-                      <li>
-                        Let <var>r</var> and <var>s</var> be a pair of integers resulting from performing the
-                        ECDSA signing process.
-                      </li>
-                      <li>
-                        Let <var>output</var> be an <code>ArrayBuffer</code> holding
-                        the concatenation of <var>r</var> and <var>s</var>, each as a ceil(ceil(log2(n))/8)
-                        byte sequence, where n (a prime number) is the order of the base point generator.
-                      </li>
-                    </ol>
-                  </li>
+                    <p>
+                      Upon the first attempt to process data, let <var>hash</var> be an initialized to an
+                      instance of the underlying hash algorithm indicated by the <code>"hash"</code>
+                      identifier of the context object's associated
+                      <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>bytes</var> be the sequence of bytes to be processed.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     If the context object's internal state is not <code>"complete"</code>, return an
+                     empty <code>ArrayBuffer</code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>d</var> be the ECDSA private key associated with the context object's
+                     associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>params</var> be the EC domain parameters associated with the context
+                     object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
+                     Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
+                     EC domain parameters, and with <var>d</var> as the private key.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>r</var> and <var>s</var> be the pair of integers resulting from
+                     performing the ECDSA signing process.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>result</var> be a new <code>ArrayBuffer</code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Convert <var>r</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Convert <var>s</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Return <var>result</var>.
+                   </p>
+                 </li>
                 </ol>
               </dd>
               <dt>Verify</dt>
@@ -2799,53 +2821,70 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 shall behave as follows:
                 <ol>
                   <li>
-                    Upon invoking <code>init</code>:
-                    <ol>
-                      <li>
-                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
-                        ECDSA public key, raise an error and <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>                  
-                      <li>
-                        Let <var>M'</var> be an empty sequence of bytes.
-                      </li>
-                    </ol>
+                    <p>
+                      If the context object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>
+                      does not refer to an ECDSA public key, terminate the algorithm with an error.
+                    </p>
                   </li>
                   <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
-                    <ol>
-                      <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
-                      </li>
-                      <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M'</var>.
-                      </li>
-                      <li>
-                        No output is returned.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish</a></code>:
-                    <ol>
-                      <li>
-                        Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
-                        Section 7.4, with <var>M'</var> as the received message, with the EC domain
-                        parameters and public key <var>Q</var> obtained from the
-                        <code><a href="#dfn-CryptoOperation-key">Key</a></code>, and with the hash
-                        function obtained from the EcdsaParams dictionary.
-                      </li>
-                      <li>
-                        If the operation resulted in an error, raise an error and terminate this
-                        algorithm.
-                      </li>
-                      <li>
-                        Let <var>output</var> be a <code>boolean</code> that indicates whether the
-                        purported signature is valid (<code>true</code>) or not (<code>false</code>).
-                      </li>
-                    </ol>
-                  </li>
+                    <p>
+                      Upon the first attempt to process data, let <var>hash</var> be an initialized to an
+                      instance of the underlying hash algorithm indicated by the <code>"hash"</code>
+                      identifier of the context object's associated
+                      <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>bytes</var> be the sequence of bytes to be processed.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     If the context object's internal state is not <code>"complete"</code>, terminate the algorithm.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>Q</var> be the ECDSA public key associated with the context object's
+                     associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>params</var> be the EC domain parameters associated with the context
+                     object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
+                     Section 7.4, with <var>M</var> as the received message, using <var>params</var> as the
+                     EC domain parameters, and with <var>Q</var> as the public key.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Let <var>result</var> be a boolean indicating whether or not the purported
+                     signature is valid, with <code>true</code> indicating the signature is valid
+                     and <code>false</code> indicating it is invalid.
+                   </p>
+                 </li>
+                 <li>
+                   <p>
+                     Return <var>result</var>.
+                   </p>
+                 </li>
                 </ol>
               </dd>
               <dt>Generate Key</dt>
