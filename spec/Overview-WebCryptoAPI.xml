@@ -1194,6 +1194,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
         <div class="ednote">
           <ul>
             <li>
+              <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a>:
+              The specification for wrap/unwrap does not specify how authors that do not trust
+              the execution environment may indicate required attributes for keys that are
+              unwrapped. An example is unwrapping a key with a non-extractable key, marking
+              the newly unwrapped key as non extractable, and then further indicating that all
+              keys unwrapped with the newly unwrapped key are also non-extractable.
+            </li>
+            <li>
               <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a>:
               Further distinction is needed to clarify the differences between key generation and
               key derivation. Should they be distinguished by their inputs (Key generation takes
