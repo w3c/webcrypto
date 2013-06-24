@@ -17,11 +17,6 @@ of contents, section numbers, certain processing instructions).
     <title>Web Cryptography API</title>
 
     <link rel='stylesheet' href='webcrypto.css' type='text/css'/>
-    <style type="text/css">
-      .XXX { color: #E50000; background: white; border: solid red; padding: 0.5em; margin: 1em 0; }
-      .XXX > :first-child { margin-top: 0; }
-      p .XXX { line-height: 3em; }
-    </style>
     <script src='section-links.js' type='application/ecmascript'/>
     <script src='dfn.js' type='application/ecmascript'/>
     <!--[if IE]>
@@ -819,7 +814,7 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
             the first item processed.
           </p>
           <p>
-            When a <code>CryptoOperation</code> is said to <dfn id="dfn-CryptoOperation">process data</dfn>, the user
+            When a <code>CryptoOperation</code> is said to <dfn id="dfn-CryptoOperation-process-data">process data</dfn>, the user
             agent must execute the following algorithm:
           </p>
           <ol>
@@ -1865,7 +1860,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
-            <h4>The <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method</h4>
+            <h4>The wrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -1961,7 +1956,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-unwrapKey" class="section">
-            <h4>The <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method</h4>
+            <h4>The unwrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -2748,9 +2743,9 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      Upon the first attempt to process data, let <var>hash</var> be an initialized to an
-                      instance of the underlying hash algorithm indicated by the <code>"hash"</code>
-                      identifier of the context object's associated
+                      Upon the first attempt to <a href="#dfn-CryptoOperation-process-data">process data</a>,
+                      let <var>hash</var> be an initialized to an instance of the underlying hash algorithm
+                      indicated by the <code>"hash"</code> identifier of the context object's associated
                       <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
                    </p>
                  </li>
@@ -2835,9 +2830,9 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      Upon the first attempt to process data, let <var>hash</var> be an initialized to an
-                      instance of the underlying hash algorithm indicated by the <code>"hash"</code>
-                      identifier of the context object's associated
+                      Upon the first attempt to <a href="#dfn-CryptoOperation-process-data">process data</a>,
+                      let <var>hash</var> be an initialized to an instance of the underlying hash algorithm
+                      indicated by the <code>"hash"</code> identifier of the context object's associated
                       <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
                    </p>
                  </li>
