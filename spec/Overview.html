@@ -136,7 +136,7 @@ communications.
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(ArrayBufferView data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.8. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.9. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.10. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.11. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#recommended-algorithms">18.1. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.2. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.2.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.2.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.2.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.2.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.2.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.3. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.3.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.3.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.3.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.3.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.4. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.4.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.5. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.5.1. Description</a></li><li><a href="#rsa-pss-registration">18.5.2. Registration</a></li><li><a href="#rsa-pss-params">18.5.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.6. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.6.1. Description</a></li><li><a href="#rsa-oaep-registration">18.6.2. Registration</a></li><li><a href="#rsa-oaep-params">18.6.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.6.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.7. ECDSA</a><ul><li><a href="#ecdsa-description">18.7.1. Description</a></li><li><a href="#ecdsa-registration">18.7.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.7.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.7.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.7.5. Operations</a></li></ul></li><li><a href="#ecdh">18.8. ECDH</a><ul><li><a href="#ecdh-description">18.8.1. Description</a></li><li><a href="#ecdh-registration">18.8.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.8.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.8.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.9. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.9.1. Description</a></li><li><a href="#aes-ctr-registration">18.9.2. Registration</a></li><li><a href="#aes-ctr-params">18.9.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.9.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.9.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.10. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.10.1. Description</a></li><li><a href="#aes-cbc-registration">18.10.2. Registration</a></li><li><a href="#aes-cbc-params">18.10.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.10.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.11. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.11.1. Description</a></li><li><a href="#aes-cmac-registration">18.11.2. Registration</a></li><li><a href="#aes-cmac-operations">18.11.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.12. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.12.1. Description</a></li><li><a href="#aes-gcm-registration">18.12.2. Registration</a></li><li><a href="#aes-gcm-params">18.12.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.12.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.13. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.13.1. Description</a></li><li><a href="#aes-cfb-registration">18.13.2. Registration</a></li><li><a href="#aes-cfb-params">18.13.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.13.4. Operations</a></li></ul></li><li><a href="#hmac">18.14. HMAC</a><ul><li><a href="#hmac-description">18.14.1. Description</a></li><li><a href="#hmac-registration">18.14.2. Registration</a></li><li><a href="#hmac-params">18.14.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.14.4. Operations</a></li></ul></li><li><a href="#dh">18.15. Diffie-Hellman</a><ul><li><a href="#dh-description">18.15.1. Description</a></li><li><a href="#dh-registration">18.15.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.15.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.15.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.15.5. Operations</a></li></ul></li><li><a href="#sha">18.16. SHA</a><ul><li><a href="#sha-description">18.16.1. Description</a></li><li><a href="#sha-registration">18.16.2. Registration</a></li><li><a href="#sha-operations">18.16.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.17. Concat KDF</a><ul><li><a href="#concatkdf-description">18.17.1. Description</a></li><li><a href="#concatkdf-registration">18.17.2. Registration</a></li><li><a href="#concat-params">18.17.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.17.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.18. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.18.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.18.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.18.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.18.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.19. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.19.1. Description</a></li><li><a href="#pbkdf2-registration">18.19.2. Registration</a></li><li><a href="#pbkdf2-params">18.19.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.19.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.8. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.9. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.10. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.11. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#recommended-algorithms">18.1. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.2. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.2.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.2.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.2.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.2.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.2.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.3. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.3.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.3.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.3.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.3.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.4. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.4.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.5. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.5.1. Description</a></li><li><a href="#rsa-pss-registration">18.5.2. Registration</a></li><li><a href="#rsa-pss-params">18.5.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.6. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.6.1. Description</a></li><li><a href="#rsa-oaep-registration">18.6.2. Registration</a></li><li><a href="#rsa-oaep-params">18.6.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.6.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.7. ECDSA</a><ul><li><a href="#ecdsa-description">18.7.1. Description</a></li><li><a href="#ecdsa-registration">18.7.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.7.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.7.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.7.5. Operations</a></li></ul></li><li><a href="#ecdh">18.8. ECDH</a><ul><li><a href="#ecdh-description">18.8.1. Description</a></li><li><a href="#ecdh-registration">18.8.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.8.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.8.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.9. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.9.1. Description</a></li><li><a href="#aes-ctr-registration">18.9.2. Registration</a></li><li><a href="#aes-ctr-params">18.9.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.9.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.9.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.10. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.10.1. Description</a></li><li><a href="#aes-cbc-registration">18.10.2. Registration</a></li><li><a href="#aes-cbc-params">18.10.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.10.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.11. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.11.1. Description</a></li><li><a href="#aes-cmac-registration">18.11.2. Registration</a></li><li><a href="#aes-cmac-operations">18.11.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.12. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.12.1. Description</a></li><li><a href="#aes-gcm-registration">18.12.2. Registration</a></li><li><a href="#aes-gcm-params">18.12.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.12.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.13. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.13.1. Description</a></li><li><a href="#aes-cfb-registration">18.13.2. Registration</a></li><li><a href="#aes-cfb-params">18.13.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.13.4. Operations</a></li></ul></li><li><a href="#hmac">18.14. HMAC</a><ul><li><a href="#hmac-description">18.14.1. Description</a></li><li><a href="#hmac-registration">18.14.2. Registration</a></li><li><a href="#hmac-params">18.14.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.14.4. Operations</a></li></ul></li><li><a href="#dh">18.15. Diffie-Hellman</a><ul><li><a href="#dh-description">18.15.1. Description</a></li><li><a href="#dh-registration">18.15.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.15.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.15.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.15.5. Operations</a></li></ul></li><li><a href="#sha">18.16. SHA</a><ul><li><a href="#sha-description">18.16.1. Description</a></li><li><a href="#sha-registration">18.16.2. Registration</a></li><li><a href="#sha-operations">18.16.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.17. Concat KDF</a><ul><li><a href="#concatkdf-description">18.17.1. Description</a></li><li><a href="#concatkdf-registration">18.17.2. Registration</a></li><li><a href="#concat-params">18.17.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.17.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.18. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.18.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.18.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.18.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.18.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.19. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.19.1. Description</a></li><li><a href="#pbkdf2-registration">18.19.2. Registration</a></li><li><a href="#pbkdf2-params">18.19.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.19.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
     </div>
 
     <div id="sections">
@@ -797,8 +797,10 @@ interface <dfn id="dfn-Key">Key</dfn> {
       <div id="cryptooperation-interface" class="section">
         <h2>12. CryptoOperation interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
+
 interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
-  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(ArrayBufferView buffer);
+  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(CryptoOperationData data);
   CryptoOperation <a href="#dfn-CryptoOperation-method-finish">finish</a>();
   CryptoOperation <a href="#dfn-CryptoOperation-method-abort">abort</a>();
 
@@ -989,9 +991,9 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
         <div id="CryptoOperation-methods" class="section">
           <h3>12.3. Methods</h3>
           <div id="CryptoOperation-method-process" class="section">
-            <h4>12.3.1. <dfn id="dfn-CryptoOperation-method-process"><code>process(ArrayBufferView data)</code></dfn></h4>
+            <h4>12.3.1. <dfn id="dfn-CryptoOperation-method-process"><code>process(CryptoOperationData data)</code></dfn></h4>
             <p>
-              When the <code>process(ArrayBufferView data)</code> method is called, the user agent must run
+              When the <code>process(CryptoOperationData data)</code> method is called, the user agent must run
               the following steps:
             </p>
             <ol>
@@ -1147,19 +1149,19 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
-                          optional ArrayBufferView? buffer = null);
+                          optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
-                          optional ArrayBufferView? buffer = null);
+                          optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
-                       optional ArrayBufferView? buffer = null);
+                       optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> key,
-                         ArrayBufferView signature,
-                         optional ArrayBufferView? buffer = null);
+                         CryptoOperationData signature,
+                         optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                         optional ArrayBufferView? buffer = null);
+                         optional sequence&lt;CryptoOperationData&gt;? data = null);
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1173,7 +1175,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         ArrayBufferView keyData,
+                         CryptoOperationData keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
                          boolean extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
@@ -1185,7 +1187,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                        <a href="#dfn-Key">Key</a> wrappingKey,
                        <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         ArrayBufferView wrappedKey,
+                         CryptoOperationData wrappedKey,
                          <a href="#dfn-Key">Key</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier?</a> unwrappedKeyAlgorithm,
@@ -2338,12 +2340,17 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
                       </li>
                       <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M</var>.
+                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
+                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
+                        bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
                       </li>
                       <li>
                         No output is returned.
@@ -2397,12 +2404,17 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
                       </li>
                       <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>C</var>.
+                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
+                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
+                        bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
                       </li>
                       <li>
                         No output is returned.
@@ -2630,7 +2642,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
   <span class="comment">// The optional label/application data to associate with the message</span>
-  ArrayBufferView? label;
+  CryptoOperationData? label;
 };
             </code></pre></div></div>
           </div>
@@ -3021,7 +3033,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
   // incrementing function specified in NIST SP 800-38A Appendix B.1:
   // the counter bits are interpreted as a big-endian integer and
   // incremented by one.</span>
-  ArrayBufferView counter;
+  CryptoOperationData counter;
   <span class="comment">// The length, in bits, of the rightmost part of the counter block
   // that is incremented.</span>
   [EnforceRange] octet length;
@@ -3104,7 +3116,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-  ArrayBufferView iv;
+  CryptoOperationData iv;
 };
             </code></pre></div></div>
           </div>
@@ -3215,9 +3227,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
-  ArrayBufferView? iv;
+  CryptoOperationData? iv;
   <span class="comment">// The additional authentication data to include.</span>
-  ArrayBufferView? additionalData;
+  CryptoOperationData? additionalData;
   <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
   [EnforceRange] octet? tagLength;
 };
@@ -3283,7 +3295,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-  ArrayBufferView iv;
+  CryptoOperationData iv;
 };
             </code></pre></div></div>
           </div>
@@ -3512,16 +3524,16 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
   <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
   <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
   <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
-  ArrayBufferView algorithmId;
+  CryptoOperationData algorithmId;
 
   <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView partyUInfo;
+  CryptoOperationData partyUInfo;
   <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView partyVInfo;
+  CryptoOperationData partyVInfo;
   <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView? publicInfo;
+  CryptoOperationData? publicInfo;
   <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView? privateInfo;
+  CryptoOperationData? privateInfo;
 };
             </code></pre></div></div>
           </div>
@@ -3576,9 +3588,9 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a>)</span>
   AlgorithmIdentifier hash;
   <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
-  ArrayBufferView label;
+  CryptoOperationData label;
   <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
-  ArrayBufferView context;
+  CryptoOperationData context;
 };
             </code></pre></div></div>
             <div class="ednote"><div class="ednoteHeader">Editorial note</div>
@@ -3633,10 +3645,10 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             <h4>18.19.3. Pbkdf2Params dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  ArrayBufferView salt;
+  CryptoOperationData salt;
   [Clamp] unsigned long iterations;
   AlgorithmIdentifier prf;
-  ArrayBufferView? password;
+  CryptoOperationData? password;
 };
             </code></pre></div></div>
             <div class="ednote"><div class="ednoteHeader">Editorial note</div>
@@ -3784,7 +3796,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
     <span class="comment">// Unlike the signing operation, which showed a multi-part operation,
     // here we perform the entire AES operation in a single call.</span>
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
   }
 ).then(console.log.bind(console, "The ciphertext is: "),
        console.error.bind(console, "Unable to encrypt"));

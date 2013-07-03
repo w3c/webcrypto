@@ -788,8 +788,10 @@ interface <dfn id="dfn-Key">Key</dfn> {
       <div id="cryptooperation-interface" class="section">
         <h2>CryptoOperation interface</h2>
         <x:codeblock language="idl">
+typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
+
 interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
-  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(ArrayBufferView buffer);
+  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(CryptoOperationData data);
   CryptoOperation <a href="#dfn-CryptoOperation-method-finish">finish</a>();
   CryptoOperation <a href="#dfn-CryptoOperation-method-abort">abort</a>();
 
@@ -980,9 +982,9 @@ interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
         <div id="CryptoOperation-methods" class="section">
           <h3>Methods</h3>
           <div id="CryptoOperation-method-process" class="section">
-            <h4><dfn id="dfn-CryptoOperation-method-process"><code>process(ArrayBufferView data)</code></dfn></h4>
+            <h4><dfn id="dfn-CryptoOperation-method-process"><code>process(CryptoOperationData data)</code></dfn></h4>
             <p>
-              When the <code>process(ArrayBufferView data)</code> method is called, the user agent must run
+              When the <code>process(CryptoOperationData data)</code> method is called, the user agent must run
               the following steps:
             </p>
             <ol>
@@ -1138,19 +1140,19 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
-                          optional ArrayBufferView? buffer = null);
+                          optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> key,
-                          optional ArrayBufferView? buffer = null);
+                          optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
-                       optional ArrayBufferView? buffer = null);
+                       optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> key,
-                         ArrayBufferView signature,
-                         optional ArrayBufferView? buffer = null);
+                         CryptoOperationData signature,
+                         optional sequence&lt;CryptoOperationData&gt;? data = null);
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                         optional ArrayBufferView? buffer = null);
+                         optional sequence&lt;CryptoOperationData&gt;? data = null);
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1164,7 +1166,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         ArrayBufferView keyData,
+                         CryptoOperationData keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
                          boolean extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
@@ -1176,7 +1178,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                        <a href="#dfn-Key">Key</a> wrappingKey,
                        <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         ArrayBufferView wrappedKey,
+                         CryptoOperationData wrappedKey,
                          <a href="#dfn-Key">Key</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier?</a> unwrappedKeyAlgorithm,
@@ -2329,12 +2331,17 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
                       </li>
                       <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>M</var>.
+                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
+                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
+                        bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
                       </li>
                       <li>
                         No output is returned.
@@ -2388,12 +2395,17 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
                     <ol>
                       <li>
-                        Let <var>buffer</var> be the <code>ArrayBufferView</code> to be processed. 
+                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
                       </li>
                       <li>
-                        Convert <var>buffer</var> to a sequence of <code>byteLength</code> bytes from
-                        the underlying <code>ArrayBuffer</code>, starting at the <code>byteOffset</code>
-                        of the <code>ArrayBufferView</code>, and append those bytes to <var>C</var>.
+                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
+                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
+                        bytes to <var>M</var>.
+                      </li>
+                      <li>
+                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
+                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
                       </li>
                       <li>
                         No output is returned.
@@ -2621,7 +2633,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
   <span class="comment">// The hash function to apply to the message</span>
   AlgorithmIdentifier hash;
   <span class="comment">// The optional label/application data to associate with the message</span>
-  ArrayBufferView? label;
+  CryptoOperationData? label;
 };
             </x:codeblock>
           </div>
@@ -3012,7 +3024,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
   // incrementing function specified in NIST SP 800-38A Appendix B.1:
   // the counter bits are interpreted as a big-endian integer and
   // incremented by one.</span>
-  ArrayBufferView counter;
+  CryptoOperationData counter;
   <span class="comment">// The length, in bits, of the rightmost part of the counter block
   // that is incremented.</span>
   [EnforceRange] octet length;
@@ -3095,7 +3107,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-  ArrayBufferView iv;
+  CryptoOperationData iv;
 };
             </x:codeblock>
           </div>
@@ -3206,9 +3218,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
-  ArrayBufferView? iv;
+  CryptoOperationData? iv;
   <span class="comment">// The additional authentication data to include.</span>
-  ArrayBufferView? additionalData;
+  CryptoOperationData? additionalData;
   <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
   [EnforceRange] octet? tagLength;
 };
@@ -3274,7 +3286,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-  ArrayBufferView iv;
+  CryptoOperationData iv;
 };
             </x:codeblock>
           </div>
@@ -3503,16 +3515,16 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
   <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
   <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
   <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
-  ArrayBufferView algorithmId;
+  CryptoOperationData algorithmId;
 
   <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView partyUInfo;
+  CryptoOperationData partyUInfo;
   <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView partyVInfo;
+  CryptoOperationData partyVInfo;
   <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView? publicInfo;
+  CryptoOperationData? publicInfo;
   <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
-  ArrayBufferView? privateInfo;
+  CryptoOperationData? privateInfo;
 };
             </x:codeblock>
           </div>
@@ -3567,9 +3579,9 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a>)</span>
   AlgorithmIdentifier hash;
   <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
-  ArrayBufferView label;
+  CryptoOperationData label;
   <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
-  ArrayBufferView context;
+  CryptoOperationData context;
 };
             </x:codeblock>
             <div class="ednote">
@@ -3624,10 +3636,10 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             <h4>Pbkdf2Params dictionary</h4>
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  ArrayBufferView salt;
+  CryptoOperationData salt;
   [Clamp] unsigned long iterations;
   AlgorithmIdentifier prf;
-  ArrayBufferView? password;
+  CryptoOperationData? password;
 };
             </x:codeblock>
             <div class="ednote">
@@ -3775,7 +3787,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
     <span class="comment">// Unlike the signing operation, which showed a multi-part operation,
     // here we perform the entire AES operation in a single call.</span>
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
   }
 ).then(console.log.bind(console, "The ciphertext is: "),
        console.error.bind(console, "Unable to encrypt"));
