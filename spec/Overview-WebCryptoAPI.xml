@@ -693,7 +693,7 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
 
 interface <dfn id="dfn-Key">Key</dfn> {
   readonly attribute KeyType <a href="#dfn-Key-type">type</a>;
-  readonly attribute bool <a href="#dfn-Key-extractable">extractable</a>;
+  readonly attribute boolean <a href="#dfn-Key-extractable">extractable</a>;
   readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-Key-algorithm">algorithm</a>;
   readonly attribute <a href="#dfn-KeyUsage">KeyUsage</a>[] <a href="#dfn-Key-usages">usages</a>;
 };
@@ -1156,19 +1156,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                           bool extractable = false,
+                           boolean extractable = false,
                            <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> baseKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
-                         bool extractable = false,
+                         boolean extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          ArrayBufferView keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? algorithm,
-                         bool extractable = false,
+                         boolean extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
 
@@ -1182,7 +1182,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-Key">Key</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier?</a> unwrappedKeyAlgorithm,
-                         bool extractable = false,
+                         boolean extractable = false,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
 };
         </x:codeblock>
