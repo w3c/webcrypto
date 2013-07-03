@@ -687,8 +687,8 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
   "sign",
   "verify",
   "derive",
-  "wrap",
-  "unwrap"
+  "wrapKey",
+  "unwrapKey"
 };
 
 interface <dfn id="dfn-Key">Key</dfn> {
@@ -1172,7 +1172,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
 
-  <span class="comment">// Note: wrap and unwrap remain "Features at Risk"</span>
+  <span class="comment">// Note: wrapKey and unwrapKey remain "Features at Risk"</span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-wrapKey">wrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                       <a href="#dfn-Key">Key</a> key,
                       <a href="#dfn-Key">Key</a> wrappingKey,
@@ -1190,7 +1190,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <ul>
             <li>
               <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a>:
-              The specification for wrap/unwrap does not specify how authors that do not trust
+              The specification for wrapKey/unwrapKey does not specify how authors that do not trust
               the execution environment may indicate required attributes for keys that are
               unwrapped. An example is unwrapping a key with a non-extractable key, marking
               the newly unwrapped key as non extractable, and then further indicating that all
@@ -1912,7 +1912,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>wrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
-                  contain the <code>"wrap"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  contain the <code>"wrapKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
                   terminate this algorithm with an error.
                 </p>
               </li>
@@ -2035,7 +2035,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>unwrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
-                  contain the <code>"unwrap"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  contain the <code>"unwrapKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
                   terminate this algorithm with an error.
                 </p>
               </li>
@@ -2610,12 +2610,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
                 </tr>
                 <tr>
-                  <td>wrap</td>
+                  <td>wrapKey</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
                   <td>ArrayBuffer?</td>
                 </tr>
                 <tr>
-                  <td>unwrap</td>
+                  <td>unwrapKey</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
                   <td><a href="#dfn-Key">Key</a>?</td>
                 </tr>
@@ -2643,9 +2643,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <dd></dd>
               <dt>Generate Key</dt>
               <dd></dd>
-              <dt>Wrap</dt>
+              <dt>Wrap Key</dt>
               <dd></dd>
-              <dt>Unwrap</dt>
+              <dt>Unwrap Key</dt>
               <dd></dd>
             </dl>
           </div>
