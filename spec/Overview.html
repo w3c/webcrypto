@@ -1927,7 +1927,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>Key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
+                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
                   terminate this algorithm with an error.
                 </p>         
               </li>
@@ -1980,7 +1980,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>normalizedUnwrapAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the wrapKey
+                  <a href="#algorithms">registered algorithm</a> that supports the unwrapKey
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
                 </p>
@@ -2048,17 +2048,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   terminate this algorithm with an error.
                 </p>
               </li>
-              
-              <li>
-                <p>
-                  If <var>Key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
-                  terminate this algorithm with an error.
-                </p>         
-              </li>
               <li>
                  <p>
                    Let <var>bytes</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>
-                   algorithm, with <var>unwrapAlgorithm</var> as <code>algorithm</code>, <var>unwrapKey</var>
+                   algorithm, with <var>unwrapAlgorithm</var> as <code>algorithm</code>, <var>unwrappingKey</var>
                    as <code>key</code>, and with <var>wrappedKey</var> as <code>buffer</code>.
                  </p>
               </li>
