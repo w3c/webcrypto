@@ -693,7 +693,7 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
   "decrypt",
   "sign",
   "verify",
-  "derive",
+  "deriveKey",
   "wrapKey",
   "unwrapKey"
 };
@@ -1840,7 +1840,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>baseKey</var>.<a href="#dfn-Key-usages"><code>usages</code></a> does not
-                  contain the <code>"derive"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  contain the <code>"deriveKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
                   terminate this algorithm with an error.
                 </p>
               </li>
@@ -1884,7 +1884,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the derive
+                  <a href="#algorithms">registered algorithm</a> that supports the deriveKey
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
                 </p>
