@@ -2238,17 +2238,17 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <tr>
                   <td>encrypt</td>
                   <td>None</td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>decrypt</td>
                   <td>None</td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
               </tbody>
             </table>
@@ -2404,6 +2404,10 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
               <dt>Generate Key</dt>
               <dd>
               </dd>
+              <dt>Import Key</dt>
+              <dd></dd>
+              <dt>Export Key</dt>
+              <dd></dd>
             </dl>
           </div>
         </div>
@@ -2436,7 +2440,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                 <tr>
                   <td>sign</td>
                   <td><a href="#dfn-RsaSsaParams">RsaSsaParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
@@ -2446,7 +2450,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
               </tbody>
             </table>
@@ -2466,6 +2470,8 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
               <li>Sign</li>
               <li>Verify</li>
               <li>Generate Key</li>
+              <li>Import Key</li>
+              <li>Export Key</li>
             </ul>
           </div>
         </div>
@@ -2499,7 +2505,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>sign</td>
                   <td><a href="#dfn-RsaPssParams">RsaPssParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
@@ -2509,7 +2515,17 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
                 </tr>
               </tbody>
             </table>
@@ -2531,6 +2547,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               <li>Sign</li>
               <li>Verify</li>
               <li>Generate Key</li>
+              <li>Import Key</li>
+              <li>Export Key</li>
             </ul>
           </div>
         </div>
@@ -2564,27 +2582,37 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>encrypt</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>decrypt</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>wrapKey</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>unwrapKey</td>
                   <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
                 </tr>
               </tbody>
             </table>
@@ -2646,7 +2674,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 <tr>
                   <td>sign</td>
                   <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
@@ -2656,7 +2684,17 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-EcKeyGenParams">EcKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
                 </tr>
 
               </tbody>
@@ -2890,13 +2928,24 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-EcKeyGenParams">EcKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>deriveKey</td>
                   <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
               </tbody>
             </table>
           </div>
@@ -2961,17 +3010,27 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 <tr>
                   <td>encrypt</td>
                   <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>decrypt</td>
                   <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
                 </tr>
               </tbody>
             </table>
@@ -3010,6 +3069,9 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
               <li>Encrypt</li>
               <li>Decrypt</li>
               <li>Generate Key</li>
+              <li>Import Key</li>
+              <li>Export Key</li>
+
             </ul>
           </div>
         </div>
@@ -3051,18 +3113,29 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                 <tr>
                   <td>encrypt</td>
                   <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>decrypt</td>
                   <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
               </tbody>
             </table>
           </div>
@@ -3081,7 +3154,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <li>Encrypt</li>
               <li>Decrypt</li>
               <li>Generate Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
 
@@ -3114,7 +3189,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>sign</td>
                   <td>None</td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
@@ -3124,8 +3199,19 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
               </tbody>
             </table>
           </div>
@@ -3135,7 +3221,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <li>Sign</li>
               <li>Verify</li>
               <li>Generate Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
 
@@ -3162,18 +3250,29 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                  <tr>
                    <td>encrypt</td>
                    <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                   <td>ArrayBuffer?</td>
+                   <td>ArrayBuffer</td>
                  </tr>
                  <tr>
                    <td>decrypt</td>
                    <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                   <td>ArrayBuffer?</td>
+                   <td>ArrayBuffer</td>
                  </tr>
                  <tr>
                    <td>generateKey</td>
                    <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
-                   <td><a href="#dfn-Key">Key</a>?</td>
+                   <td><a href="#dfn-Key">Key</a></td>
                  </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
                </tbody>
              </table>
            </div>
@@ -3196,7 +3295,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <li>Encrypt</li>
               <li>Decrypt</li>
               <li>Generate Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
 
@@ -3230,18 +3331,29 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>encrypt</td>
                   <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>decrypt</td>
                   <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
               </tbody>
             </table>
           </div>
@@ -3260,7 +3372,9 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <li>Encrypt</li>
               <li>Decrypt</li>
               <li>Generate Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
 
@@ -3287,7 +3401,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>sign</td>
                   <td><a href="#dfn-HmacParams">HmacParams</a></td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
@@ -3297,7 +3411,17 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-HmacParams">HmacParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
                 </tr>
               </tbody>
             </table>
@@ -3317,7 +3441,9 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
               <li>Sign</li>
               <li>Verify</li>
               <li>Generate Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
         <div id="dh" class="section">
@@ -3347,13 +3473,24 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
                 <tr>
                   <td>generateKey</td>
                   <td><a href="#dfn-DhKeyGenParams">DhKeyGenParams</a></td>
-                  <td><a href="#dfn-KeyPair">KeyPair</a>?</td>
+                  <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>deriveKey</td>
                   <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
               </tbody>
             </table>
           </div>
@@ -3382,7 +3519,9 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             <ul>
               <li>Generate Key</li>
               <li>Derive Key</li>
-            </ul>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
           </div>
         </div>
         <div id="sha" class="section">
@@ -3424,7 +3563,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
                 <tr>
                   <td>digest</td>
                   <td>None</td>
-                  <td>ArrayBuffer?</td>
+                  <td>ArrayBuffer</td>
                 </tr>
               </tbody>
             </table>
@@ -3464,7 +3603,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
                 <tr>
                   <td>deriveKey</td>
                   <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
@@ -3531,7 +3670,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
                 <tr>
                   <td>deriveKey</td>
                   <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
@@ -3591,7 +3730,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                 <tr>
                   <td>deriveKey</td>
                   <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
-                  <td><a href="#dfn-Key">Key</a>?</td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
