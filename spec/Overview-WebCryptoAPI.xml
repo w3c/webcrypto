@@ -430,13 +430,14 @@ communications.
           </div>
         </div>
         <div id="security-developers" class="section">
-          <h2>Security considerations for developers</h2>
+          <h2>Security considerations for authors</h2>
           <p>
             While this API provides important functionality for the development of secure
-            applications, it does not try to address all of the issues that may arise from the
-            web security model. As such, application developers must take care to ensure against
-            common attacks such as script injection by making use of appropriate security
-            functionality such as Content Security Policy and the use of TLS.
+            applications, it does not attempt to provide a mitigation for existing threats to
+            the web security model, such as script injection or hostile intermediaries. As such,
+            application developers must take care to ensure applications are secured against
+            common and traditional attacks, such as script injection, by making use of appropriate
+            existing functionality such as Content Security Policy and the use of TLS.
           </p>
           <p>
             This API includes a variety of cryptographic operations, some of which may have known
@@ -574,23 +575,23 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
             The <a href="#dfn-RandomSource">RandomSource</a> interface represents an interface to a
             cryptographically strong pseudo-random number generator seeded with truly random values.
           </p>
-          <p class="implementation-note">
-            Implementation note: Implementations should generate cryptographically random values using
+          <div class="note">
+            Implementations should generate cryptographically random values using
             well-established cryptographic pseudo-random number generators seeded with high-quality
             entropy, such as from an operating-system entropy source (e.g., "/dev/urandom"). This
             specification provides no lower-bound on the information theoretic entropy present in
             cryptographically random values, but implementations should make a best effort to provide
             as much entropy as practicable.
-          </p>
-          <p class="implementation-note">
-            Implementation note: This interface defines a synchronous method for obtaining cryptographically
+          </div>
+          <div class="note">
+            This interface defines a synchronous method for obtaining cryptographically
             random values. While some devices and implementations may support truly random cryptographic
             number generators or provide interfaces that block when there is insufficient entropy,
-            implementations are encouraged not to use these sources when implementing getRandomValues,
+            implementations are discouraged from using these sources when implementing getRandomValues,
             both for performance and to avoid depleting the system of entropy. Instead, these sources
             should be used to seed a cryptographic pseudo-random number generator that can then return
             suitable values efficiently.
-          </p>
+          </div>
         </div>
         <div id="RandomSource-interface-methods" class="section">
           <h3>Methods and Parameters</h3>
@@ -3733,9 +3734,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         <h2>Acknowledgements</h2>
         <p>
           The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
-          Brian Smith, Brian Warner, Channy Yun, Jim Schaad, Kai Engert, Mark Watson, Nick Van den Bleeken,
-          Richard Barnes, Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical
-          feedback and assistance.
+          Brian Smith, Brian Warner, Channy Yun, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
+          Mark Watson, Michael Hutchinson, Michael Jones, Nick Van den Bleeken, Richard Barnes,
+          Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical feedback and
+          assistance.
         </p>
         <p>
           Thanks to the W3C Web Cryptography WG, and to participants on the public-webcrypto@w3.org
