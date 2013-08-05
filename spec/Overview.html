@@ -44,7 +44,7 @@ or code signing, and the confidentiality and integrity of
 communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 20 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 12 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -136,7 +136,7 @@ communications.
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.2.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.12. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#rsa-pss-params">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.5. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-cmac-operations">18.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#hmac">18.15. HMAC</a><ul><li><a href="#hmac-description">18.15.1. Description</a></li><li><a href="#hmac-registration">18.15.2. Registration</a></li><li><a href="#hmac-params">18.15.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.15.4. Operations</a></li></ul></li><li><a href="#dh">18.16. Diffie-Hellman</a><ul><li><a href="#dh-description">18.16.1. Description</a></li><li><a href="#dh-registration">18.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.16.5. Operations</a></li></ul></li><li><a href="#sha">18.17. SHA</a><ul><li><a href="#sha-description">18.17.1. Description</a></li><li><a href="#sha-registration">18.17.2. Registration</a></li><li><a href="#sha-operations">18.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.18. Concat KDF</a><ul><li><a href="#concatkdf-description">18.18.1. Description</a></li><li><a href="#concatkdf-registration">18.18.2. Registration</a></li><li><a href="#concat-params">18.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.20.1. Description</a></li><li><a href="#pbkdf2-registration">18.20.2. Registration</a></li><li><a href="#pbkdf2-params">18.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#crypto-interface">12. Crypto interface</a></li><li><a href="#subtlecrypto-interface">13. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">13.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">13.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">13.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">13.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">13.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">13.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">13.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">13.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">13.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">13.2.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">13.2.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">13.2.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">13.2.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">13.2.12. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">14. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">14.1. Description</a></li></ul></li><li><a href="#big-integer">15. BigInteger</a></li><li><a href="#keypair">16. KeyPair</a></li><li><a href="#algorithms">17. Algorithms</a><ul><li><a href="#algorithms-index">17.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">17.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">17.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">17.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">17.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">17.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">17.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">17.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">17.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">17.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">17.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">17.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">17.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">17.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">17.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">17.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">17.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">17.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">17.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">17.6.1. Description</a></li><li><a href="#rsa-pss-registration">17.6.2. Registration</a></li><li><a href="#rsa-pss-params">17.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">17.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">17.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">17.7.1. Description</a></li><li><a href="#rsa-oaep-registration">17.7.2. Registration</a></li><li><a href="#rsa-oaep-params">17.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">17.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">17.8. ECDSA</a><ul><li><a href="#ecdsa-description">17.8.1. Description</a></li><li><a href="#ecdsa-registration">17.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">17.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">17.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">17.8.5. Operations</a></li></ul></li><li><a href="#ecdh">17.9. ECDH</a><ul><li><a href="#ecdh-description">17.9.1. Description</a></li><li><a href="#ecdh-registration">17.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">17.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">17.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">17.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">17.10.1. Description</a></li><li><a href="#aes-ctr-registration">17.10.2. Registration</a></li><li><a href="#aes-ctr-params">17.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">17.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">17.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">17.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">17.11.1. Description</a></li><li><a href="#aes-cbc-registration">17.11.2. Registration</a></li><li><a href="#aes-cbc-params">17.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">17.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">17.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">17.12.1. Description</a></li><li><a href="#aes-cmac-registration">17.12.2. Registration</a></li><li><a href="#aes-cmac-operations">17.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">17.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">17.13.1. Description</a></li><li><a href="#aes-gcm-registration">17.13.2. Registration</a></li><li><a href="#aes-gcm-params">17.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">17.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">17.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">17.14.1. Description</a></li><li><a href="#aes-cfb-registration">17.14.2. Registration</a></li><li><a href="#aes-cfb-params">17.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">17.14.4. Operations</a></li></ul></li><li><a href="#hmac">17.15. HMAC</a><ul><li><a href="#hmac-description">17.15.1. Description</a></li><li><a href="#hmac-registration">17.15.2. Registration</a></li><li><a href="#hmac-params">17.15.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">17.15.4. Operations</a></li></ul></li><li><a href="#dh">17.16. Diffie-Hellman</a><ul><li><a href="#dh-description">17.16.1. Description</a></li><li><a href="#dh-registration">17.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">17.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">17.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">17.16.5. Operations</a></li></ul></li><li><a href="#sha">17.17. SHA</a><ul><li><a href="#sha-description">17.17.1. Description</a></li><li><a href="#sha-registration">17.17.2. Registration</a></li><li><a href="#sha-operations">17.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">17.18. Concat KDF</a><ul><li><a href="#concatkdf-description">17.18.1. Description</a></li><li><a href="#concatkdf-registration">17.18.2. Registration</a></li><li><a href="#concat-params">17.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">17.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">17.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">17.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">17.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">17.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">17.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">17.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">17.20.1. Description</a></li><li><a href="#pbkdf2-registration">17.20.2. Registration</a></li><li><a href="#pbkdf2-params">17.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">17.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">18. Algorithm normalizing rules</a></li><li><a href="#examples-section">19. JavaScript Example Code</a><ul><li><a href="#examples-signing">19.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">19.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">20. Acknowledgements</a></li><li><a href="#references">21. References</a><ul><li><a href="#normative-references">21.1. Normative References</a></li><li><a href="#informative-references">21.2. Informative References</a></li></ul></li></ul></div>
     </div>
 
     <div id="sections">
@@ -153,7 +153,7 @@ communications.
         </p>
         <p>
           Cryptographic transformations are exposed via the
-          <a href="#dfn-CryptoOperation">CryptoOperation</a> interface, which defines a common set
+          <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface, which defines a common set
           of methods and events for dealing with initialization, processing data, and completing
           the operation to yield the final output. In addition to operations such as signature
           generation and verification, hashing and verification, and encryption and decryption,
@@ -721,8 +721,8 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <p>
             The Key object is not required to directly interface with the underlying key storage
             mechanism, and may instead simply be a reference for the user agent to understand how
-            to obtain the keying material when needed, eg. when performing a
-            <a href="#dfn-CryptoOperation">CryptoOperation</a>.
+            to obtain the keying material when needed, eg. when performing a cryptographic
+            operation.
           </p>
         </div>
 
@@ -747,8 +747,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
             <dt id="dfn-Key-usages"><code>usages</code></dt>
             <dd>
               An <code>Array</code> of <a href="#dfn-KeyUsage"><code>KeyUsages</code></a> that
-              indicate what <a href="#dfn-CryptoOperation">CryptoOperations</a> may be used with this
-              key.
+              indicate what cryptographic operations may be used with this key.
             </dd>
           </dl>
         </div>
@@ -795,331 +794,8 @@ interface <dfn id="dfn-Key">Key</dfn> {
 
       </div>
 
-      <div id="cryptooperation-interface" class="section">
-        <h2>12. CryptoOperation interface</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
-
-interface <dfn id="dfn-CryptoOperation">CryptoOperation</dfn> : Promise {
-  CryptoOperation <a href="#dfn-CryptoOperation-method-process">process</a>(CryptoOperationData data);
-  CryptoOperation <a href="#dfn-CryptoOperation-method-finish">finish</a>();
-  CryptoOperation <a href="#dfn-CryptoOperation-method-abort">abort</a>();
-
-  readonly attribute <a href="#dfn-Key">Key</a>? <a href="#dfn-CryptoOperation-key">key</a>;
-  readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-CryptoOperation-algorithm">algorithm</a>;
-};
-        </code></pre></div></div>
-        
-        <div id="CryptoOperation-processing-model" class="section">
-          <h4>12.1. Processing Model</h4>
-          <p>
-            Every <code>CryptoOperation</code> is said to have an associated <code>resolver</code>, an
-            internal state, an associated algorithm, an internal count of available bytes, and a
-            <dfn id="dfn-CryptoOperation-list-of-pending-data">list of pending data</dfn>.
-          </p>
-          <p>
-            Each object in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> represents
-            data that should undergo the associated cryptographic transformation. The order in which items are added
-            to the list shall be reflected in the order in which items are processed, with the first item added being
-            the first item processed.
-          </p>
-          <p>
-            When a <code>CryptoOperation</code> is said to <dfn id="dfn-CryptoOperation-process-data">process data</dfn>, the user
-            agent must execute the following algorithm:
-          </p>
-          <ol>
-            <li>
-              <p>
-                If the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a> contains no
-                items, terminate the algorithm.
-              </p>
-            </li>
-            <li>
-              <dl class="switch">
-                <dt>
-                  If the underlying implementation does not support multi-part cryptographic operations for the
-                  associated algorithm:
-                </dt>
-                <dd>
-                  <ol>
-                    <li>
-                      <p>
-                        Let <var>bytes</var> be an empty sequence of bytes.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        For each item in the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>:
-                      </p>
-                      <ol>
-                        <li>
-                          <p>
-                            Let <var>item</var> be the oldest remaining item in the list of pending data.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Remove <var>item</var> from the list of pending data.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Convert <var>item</var> to a sequence of bytes and append those bytes to <var>bytes</var>.
-                          </p>
-                        </li>
-                      </ol>
-                    </li>
-                    <li>
-                      <p>
-                        Perform the underlying cryptographic algorithm, using <var>bytes</var> as the input data.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        If the cryptographic operation fails, execute the associated resolver's <code>reject(value)</code>
-                        algorithm, with <var>value</var> set to <code>null</code>, and terminate the algorithm.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Let <var>output</var> be the result of the underlying cryptographic operation.
-                      </p>
-                    </li>
-                  </ol>
-                </dd>
-                <dt>
-                  Otherwise, if the underlying implementation supports multi-part cryptographic operations for the
-                  associated algorithm.
-                </dt>
-                <dd>
-                  <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                    This section is a feature at risk, in light of ongoing discussions related
-                    to Streams, ProgressPromise, and idiomatic progressive outputting.
-                  </div>
-                  <ol>
-                    <li>
-                      <p>
-                        If the internal count of available bytes does not contain enough data for the underlying
-                        cryptographic operation to yield output, terminate this algorithm.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Let <var>bytes</var> be an empty sequence of bytes.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Execute the following algorithm for each item in the list of pending data,
-                        ordered such that the oldest item is iterated first, until <var>bytes</var>
-                        contains sufficient data for the underlying cryptographic operation to yield output.
-                        Implementations <span class="RFC2119">MAY</span> process additional data, provided
-                        the result of doing so is indistinguishable from the algorithm described here.
-                      </p>
-                      <ol>
-                        <li>
-                          <p>
-                            Let <var>item</var> be the oldest remaining item in the list of pending data.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Remove <var>item</var> from the list of pending data.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Convert <var>item</var> to a sequence of bytes and append those bytes to <var>bytes</var>.
-                          </p>
-                        </li>
-                      </ol>
-                    </li>
-                    <li>
-                      <p>
-                        Perform the underlying cryptographic algorithm, using <var>bytes</var> as the input data.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        If the cryptographic operation fails, execute the associated resolver's <code>reject(value)</code>
-                        algorithm, with <var>value</var> set to <code>null</code>, and terminate the algorithm.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Let <var>output</var> be the result of the underlying cryptographic operation.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Append <var>output</var> to the <var>result</var> field.
-                      </p>
-                      <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                        The intent of this section is to permit the use of <code>ProgressPromise</code>, allowing the
-                        CryptoOperation to progressively notify of progress being made.
-                      </div>
-                    </li>
-                  </ol>
-                </dd>
-              </dl>
-            </li>
-          </ol>
-        </div>
-
-        <div id="CryptoOperation-attributes" class="section">
-          <h3>12.2. Attributes</h3>
-          <dl>
-            <dt id="dfn-CryptoOperation-key"><code>key</code></dt>
-            <dd>
-              <p>
-                On getting, the <code>key</code> attribute returns the
-                <a href="#dfn-Key"><code>Key</code></a> used to initialize the <code>CryptoOperation</code>.
-              </p>
-              <p>
-                If the <code>CryptoOperation</code> represents a keyless-operation, such as digesting,
-                then <code>key</code> <span class="RFC2119">MUST</span> return <code>null</code>.
-              </p>
-            </dd>
-            <dt id="dfn-CryptoOperation-algorithm"><code>algorithm</code></dt>
-            <dd>
-              On getting, the <code>algorithm</code> attribute returns the
-              <a href="#algorithm-normalizing-rules">normalized algorithm</a> of the algorithm used
-              to initialize the <code>CryptoOperation</code>.
-            </dd>
-          </dl>
-        </div>
-
-        <div id="CryptoOperation-methods" class="section">
-          <h3>12.3. Methods</h3>
-          <div id="CryptoOperation-method-process" class="section">
-            <h4>12.3.1. <dfn id="dfn-CryptoOperation-method-process"><code>process(CryptoOperationData data)</code></dfn></h4>
-            <p>
-              When the <code>process(CryptoOperationData data)</code> method is called, the user agent must run
-              the following steps:
-            </p>
-            <ol>
-              <li>
-                <p>
-                  If the associated resolver's resolved flag is set, terminate this algorithm.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the internal state of the CryptoOperation is not "processing", terminate this algorithm.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>data</var> be the data to be processed.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Add <var>data</var> to the <a href="#dfn-CryptoOperation-list-of-pending-data">list of pending data</a>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the current <code>CryptoOperation</code>.
-                </p>
-              </li>
-            </ol>
-          </div>
-          <div id="CryptoOperation-method-finish" class="section">
-            <h4>12.3.2. The <dfn id="dfn-CryptoOperation-method-finish"><code>finish()</code></dfn> method</h4>
-            <p>
-              When <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a>
-              method is called, the user agent must run the steps below.
-            </p>
-            <ol>
-              <li>
-                <p>
-                  If the associated resolver's resolved flag is set, terminate this algorithm.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Set the internal state to "complete".
-                </p>
-              </li>
-              <li>
-                <dl class="switch">
-                  <dt>
-                    If the list of pending data is empty, perform the following steps:
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Execute the associated <var>resolver</var>'s <code>resolve(value)</code> algorithm,
-                          with <var>output</var> as <code>value</code>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Terminate the algorithm.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>
-                    Otherwise, return to the task that invoked this algorithm and continue the
-                    remaining steps asynchronously.
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          <a href="#dfn-CryptoOperation-process-data">Process data</a> until the list of pending data is empty.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Execute the associated <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
-                          <var>output</var> as <code>value</code>.
-                        </p>
-                      </li>
-                    </ol> 
-                  </dd>
-                </dl>
-              </li>
-            </ol>
-          </div>
-          <div id="CryptoOperation-method-abort" class="section">
-            <h4>12.3.3. The <dfn id="dfn-CryptoOperation-method-abort"><code>abort()</code></dfn> method</h4>
-            <p>
-              When <a href="#dfn-CryptoOperation-method-abort"><code>abort()</code></a>
-              method is called, the user agent must run the steps below.
-            </p>
-            <ol>
-              <li>
-                <p>
-                  If the associated resolver's resolved flag is set, terminate this algorithm.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Set the internal state to "error"
-                </p>
-              </li>
-              <li>
-                <p>
-                  Clear the list of pending data.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Execute the associate <var>resolver</var>'s <code>reject(value)</code> algorithm,
-                  with <var>value</var> set to <code>null</code>.
-                </p>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    
       <div id="crypto-interface" class="section">
-        <h2>13. Crypto interface</h2>
+        <h2>12. Crypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 interface <dfn id="dfn-Crypto">Crypto</dfn> {
   readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
@@ -1134,7 +810,7 @@ partial interface Window {
       </div>
 
       <div id="subtlecrypto-interface" class="section">
-        <h2>14. SubtleCrypto interface</h2>
+        <h2>13. SubtleCrypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
   <span class="comment">// An unformatted sequence of bytes. Intended for secret keys.</span>
@@ -1147,22 +823,24 @@ enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
   "jwk",
 };
 
+typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
+
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                          <a href="#dfn-Key">Key</a> key,
-                          optional sequence&lt;CryptoOperationData&gt;? data = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                          <a href="#dfn-Key">Key</a> key,
-                          optional sequence&lt;CryptoOperationData&gt;? data = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
-                       optional sequence&lt;CryptoOperationData&gt;? data = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                         <a href="#dfn-Key">Key</a> key,
-                         CryptoOperationData signature,
-                         optional sequence&lt;CryptoOperationData&gt;? data = null);
-  <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                         optional sequence&lt;CryptoOperationData&gt;? data = null);
+                       sequence&lt;CryptoOperationData&gt; data);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                       <a href="#dfn-Key">Key</a> key,
+                       sequence&lt;CryptoOperationData&gt; data);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                    <a href="#dfn-Key">Key</a> key,
+                    sequence&lt;CryptoOperationData&gt; data);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                      <a href="#dfn-Key">Key</a> key,
+                      CryptoOperationData signature,
+                      sequence&lt;CryptoOperationData&gt; data);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                      sequence&lt;CryptoOperationData&gt; data);
 
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                            optional boolean extractable = false,
@@ -1173,8 +851,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          optional boolean extractable = false,
                          optional <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                         <a href="#dfn-Key">Key</a> baseKey,
-                         unsigned long length);
+                          <a href="#dfn-Key">Key</a> baseKey,
+                          unsigned long length);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
@@ -1208,18 +886,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               the newly unwrapped key as non extractable, and then further indicating that all
               keys unwrapped with the newly unwrapped key are also non-extractable.
             </li>
-            <li>
-              <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a>:
-              Further distinction is needed to clarify the differences between key generation and
-              key derivation. Should they be distinguished by their inputs (Key generation takes
-              parameters, while key derivation takes parameters + key(s)), by their outputs (Key
-              generation generates Keys, key derivation generates opaque bytes as secret material),
-              or is there some other construct to distinguish the two?
-            </li>
           </ul>
         </div>
         <div id="subtlecrypto-interface-description" class="section">
-          <h3>14.1. Description</h3>
+          <h3>13.1. Description</h3>
           <p class="norm">This section is non-normative.</p>
           <p>
             The <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface provides a set of
@@ -1246,14 +916,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             necessitate the use of the raw algorithms.
           </p>
         </div>
+
         <div id="subtlecrypto-interface-methods" class="section">
-          <h3>14.2. Methods and Parameters</h3>
+          <h3>13.2. Methods and Parameters</h3>
           <div id="SubtleCrypto-method-encrypt" class="section">
-            <h4>14.2.1. The encrypt method</h4>
+            <h4>13.2.1. The encrypt method</h4>
             <p>
               The <dfn id="dfn-SubtleCrypto-method-encrypt"><code>encrypt</code></dfn>
-              method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-              object that will encrypt data using the specified
+              method returns a new Promise object that will encrypt data using
+              the specified 
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
               the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act
               as follows:
@@ -1276,23 +947,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
-                  <var>S</var> with the following characteristics:
+                  Create a new Promise object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
-                      = <var>normalizedAlgorithm</var>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
-                      = <var>key</var>.
-                    </p>
-                  </li>
-                </ol>
               </li>
               <li>
                 <p>
@@ -1301,49 +957,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>buffer</var> is specified:
+                  Let <var>resolver</var> be the returned Promise's associated resolver object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
-                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    Supporting single-part operations is intended to address two use cases:
-                  </p>
-                  <ol>
-                    <li>
-                      <p>
-                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
-                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        User agents that can optimize implementation when there is only a single operation being performed.
-                      </p>
-                    </li>
-                  </ol>
-                </div>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of performing the underlying cryptographic
+                  algorithm specified by <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as <var>value</var>.
+                </p>
               </li>
             </ol>
           </div>
 
           <div id="SubtleCrypto-method-decrypt" class="section">
-            <h4>14.2.2. The decrypt method</h4>
+            <h4>13.2.2. The decrypt method</h4>
             <p>
               The <dfn id="dfn-SubtleCrypto-method-decrypt"><code>decrypt</code></dfn>
-              method returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-              object that will decrypt data using the specified
+              method returns a new Promise object that will decrypt data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
               the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act
               as follows:
@@ -1366,23 +1002,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
-                  <var>S</var> with the following characteristics:
+                  Create a new Promise object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
-                      = <var>normalizedAlgorithm</var>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
-                      = <var>key</var>.
-                    </p>
-                  </li>
-                </ol>
               </li>
               <li>
                 <p>
@@ -1391,49 +1012,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>buffer</var> is specified:
+                  Let <var>resolver</var> be the returned Promise's associated resolver object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
-                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    Supporting single-part operations is intended to address two use cases:
-                  </p>
-                  <ol>
-                    <li>
-                      <p>
-                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
-                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        User agents that can optimize implementation when there is only a single operation being performed.
-                      </p>
-                    </li>
-                  </ol>
-                </div>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of performing the underlying cryptographic
+                  algorithm specified by <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as <var>value</var>.
+                </p>
               </li>
             </ol>
           </div>
 
           <div id="SubtleCrypto-method-sign" class="section">
-            <h4>14.2.3. The sign method</h4>
+            <h4>13.2.3. The sign method</h4>
             <p>
               The <dfn id="dfn-SubtleCrypto-method-sign"><code>sign</code></dfn> method
-              returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-              object that will sign data using the specified
+              returns a new Promise object that will sign data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
               the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act as follows:
             </p>
@@ -1455,23 +1056,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
-                  <var>S</var> with the following characteristics:
+                  Create a new Promise object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
-                      = <var>normalizedAlgorithm</var>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
-                      = <var>key</var>.
-                    </p>
-                  </li>
-                </ol>
               </li>
               <li>
                 <p>
@@ -1480,49 +1066,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>buffer</var> is specified:
+                  Let <var>resolver</var> be the returned Promise's associated resolver object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
-                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    Supporting single-part operations is intended to address two use cases:
-                  </p>
-                  <ol>
-                    <li>
-                      <p>
-                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
-                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        User agents that can optimize implementation when there is only a single operation being performed.
-                      </p>
-                    </li>
-                  </ol>
-                </div>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of performing the underlying cryptographic
+                  algorithm specified by <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as <var>value</var>.
+                </p>
               </li>
             </ol>
           </div>
 
           <div id="SubtleCrypto-method-verify" class="section">
-            <h4>14.2.4. The verify method</h4>
+            <h4>13.2.4. The verify method</h4>
             <p>
               The <dfn id="dfn-SubtleCrypto-method-verify"><code>verify</code></dfn> method
-              returns a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-              object that will verify data using the specified
+              returns a new CryptoOperation object that will verify data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
               the supplied <a href="#dfn-Key"><code>Key</code></a>. It must act as follows:
             </p>
@@ -1544,23 +1110,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
-                  <var>S</var> with the following characteristics:
+                  Create a new Promise object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
-                      = <var>normalizedAlgorithm</var>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-key"><code>key</code></a>
-                      = <var>key</var>.
-                    </p>
-                  </li>
-                </ol>
               </li>
               <li>
                 <p>
@@ -1569,49 +1120,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>buffer</var> is specified:
+                  Let <var>resolver</var> be the returned Promise's associated resolver object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
-                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    Supporting single-part operations is intended to address two use cases:
-                  </p>
-                  <ol>
-                    <li>
-                      <p>
-                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
-                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        User agents that can optimize implementation when there is only a single operation being performed.
-                      </p>
-                    </li>
-                  </ol>
-                </div>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of performing the underlying cryptographic
+                  algorithm specified by <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as <var>value</var>.
+                </p>
               </li>
             </ol>
           </div>
 
           <div id="SubtleCrypto-method-digest" class="section">
-            <h4>14.2.5. The digest method</h4>
+            <h4>13.2.5. The digest method</h4>
             <p>
               The <dfn id="dfn-SubtleCrypto-method-digest"><code>digest</code></dfn> method returns
-              a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a>
-              object that will digest data using the specified
+              a new Promise object that will digest data using the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a>.
               It must act as follows:
             </p>
@@ -1633,17 +1164,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Create a new <a href="#dfn-CryptoOperation"><code>CryptoOperation</code></a> object
-                  <var>S</var> with the following characteristics:
+                  Create a new Promise object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      <var>S</var>.<a href="#dfn-CryptoOperation-algorithm"><code>algorithm</code></a>
-                      = <var>normalizedAlgorithm</var>.
-                    </p>
-                  </li>
-                </ol>
               </li>
               <li>
                 <p>
@@ -1652,45 +1174,26 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>buffer</var> is specified:
+                  Let <var>resolver</var> be the returned Promise's associated resolver object.
                 </p>
-                <ol>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-process"><code>process(buffer)</code></a>
-                      algorithm, with <var>buffer</var> as the <code>buffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Execute the <a href="#dfn-CryptoOperation-method-finish"><code>finish()</code></a> algorithm.
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    Supporting single-part operations is intended to address two use cases:
-                  </p>
-                  <ol>
-                    <li>
-                      <p>
-                        Developers that "just" want to perform a simple operation. The single-method invocation best matches
-                        existing JavaScript cryptographic libraries, particularly the synchronous aspect.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        User agents that can optimize implementation when there is only a single operation being performed.
-                      </p>
-                    </li>
-                  </ol>
-                </div>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of performing the underlying cryptographic
+                  algorithm specified by <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as <var>value</var>.
+                </p>
               </li>
             </ol>
           </div>
 
           <div id="SubtleCrypto-method-generateKey" class="section">
-            <h4>14.2.6. The generateKey method</h4>
+            <h4>13.2.6. The generateKey method</h4>
              <p>
               When invoked, <dfn id="dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
             </p>
@@ -1755,7 +1258,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
           
           <div id="SubtleCrypto-method-deriveKey" class="section">
-            <h4>14.2.7. The deriveKey method</h4>
+            <h4>13.2.7. The deriveKey method</h4>
             <p>
               When invoked, <dfn id="dfn-SubtleCrypto-method-deriveKey"><code>deriveKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
             </p>
@@ -1827,7 +1330,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-deriveBits" class="section">
-            <h4>14.2.8. The deriveBits method</h4>
+            <h4>13.2.8. The deriveBits method</h4>
             <p>
               When invoked, <dfn id="dfn-SubtleCrypto-method-deriveBits"><code>deriveBits</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
             </p>
@@ -1899,16 +1402,16 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-importKey" class="section">
-            <h4>14.2.9. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
+            <h4>13.2.9. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
           </div>
 
           <div id="SubtleCrypto-method-exportKey" class="section">
-            <h4>14.2.10. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
+            <h4>13.2.10. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
-            <h4>14.2.11. The wrapKey method</h4>
+            <h4>13.2.11. The wrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -2004,7 +1507,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-unwrapKey" class="section">
-            <h4>14.2.12. The unwrapKey method</h4>
+            <h4>13.2.12. The unwrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -2124,7 +1627,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
       </div>
 
       <div id="WorkerCrypto-interface" class="section">
-        <h2>15. WorkerCrypto interface</h2>
+        <h2>14. WorkerCrypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 interface <dfn id="dfn-WorkerCrypto">WorkerCrypto</dfn> {
 };
@@ -2136,7 +1639,7 @@ partial interface <a href="http://www.w3.org/TR/workers/#workerglobalscope">Work
 };
         </code></pre></div></div>
         <div id="WorkerCrypto-description" class="section">
-          <h3>15.1. Description</h3>
+          <h3>14.1. Description</h3>
           <p>
             The <a href="#dfn-WorkerCrypto">WorkerCrypto</a> interface provides cryptographic
             functionality for background scripts, as specified by Web Workers [
@@ -2154,7 +1657,7 @@ partial interface <a href="http://www.w3.org/TR/workers/#workerglobalscope">Work
       </div>
 
       <div id="big-integer" class="section">
-        <h2>16. BigInteger</h2>
+        <h2>15. BigInteger</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </code></pre></div></div>
@@ -2169,7 +1672,7 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
       </div>
       
       <div id="keypair" class="section">
-        <h2>17. KeyPair</h2>
+        <h2>16. KeyPair</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
   <a href="#dfn-Key">Key</a> publicKey;
@@ -2183,7 +1686,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
       </div>
 
       <div id="algorithms" class="section">
-        <h2>18. Algorithms</h2>
+        <h2>17. Algorithms</h2>
         <div class="ednote"><div class="ednoteHeader">Editorial note</div>
           <p>
             Note: All algorithms listed should be considered as "features at risk",
@@ -2198,7 +1701,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           </p>
         </div>
         <div id="algorithms-index" class="section">
-          <h3>18.1. Registered algorithms</h3>
+          <h3>17.1. Registered algorithms</h3>
           <table>
             <thead>
               <tr>
@@ -2522,7 +2025,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           </table>
         </div>
         <div id="recommended-algorithms" class="section">
-          <h3>18.2. Recommended algorithms</h3>
+          <h3>17.2. Recommended algorithms</h3>
           <p class="norm">This section is non-normative</p>
           <p>
             As the API is meant to be extensible in order to keep up with future developments within
@@ -2562,7 +2065,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           </p>
         </div>
         <div id="defining-an-algorithm" class="section">
-          <h3>18.3. Defining an algorithm</h3>
+          <h3>17.3. Defining an algorithm</h3>
           <p>
             Each algorithm that is to be exposed via the Web Cryptography API
             <span class="RFC2119">SHOULD</span> be registered via the Web Cryptography working group,
@@ -2571,7 +2074,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             <span class="RFC2119">MUST</span> be processed as if the sections had been defined.
           </p>
           <div id="recognized-algorithm-name" class="section">
-            <h4>18.3.1. Recognized algorithm name</h4>
+            <h4>17.3.1. Recognized algorithm name</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> have a canonical name
               for which applications can refer to the algorithm. The canonical name
@@ -2582,14 +2085,14 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="supported-operations" class="section">
-            <h4>18.3.2. Supported operations</h4>
+            <h4>17.3.2. Supported operations</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the operations
               that it supports.
             </p>
           </div>
           <div id="algorithm-specific-params" class="section">
-            <h4>18.3.3. Algorithm-specific parameters</h4>
+            <h4>17.3.3. Algorithm-specific parameters</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the expected
               parameters, if any, that should be exposed via the <a href="#dfn-Algorithm">Algorithm</a>
@@ -2597,16 +2100,15 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="algorithm-result" class="section">
-            <h4>18.3.4. Algorithm results</h4>
+            <h4>17.3.4. Algorithm results</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the contents
-              of the <a href="#dfn-CryptoOperation-result"><code>result</code></a> attribute of the
-              <a href="#dfn-CryptoOperation">CryptoOperation</a> object for every
+              of the result of performing the underlying cryptographic operation for every
               <a href="#supported-operations">supported operation</a>.
             </p>
           </div>
           <div id="algorithm-alias" class="section">
-            <h4>18.3.5. <dfn id="dfn-algorithm-alias">Algorithm aliases</dfn></h4>
+            <h4>17.3.5. <dfn id="dfn-algorithm-alias">Algorithm aliases</dfn></h4>
             <p>
               Each registered algorithm <span class="RFC2119">MAY</span> define one or more aliases
               that may define a fully normalized <a href="#dfn-Algorithm">Algorithm</a> object.
@@ -2619,9 +2121,9 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
         </div>
 
         <div id="rsaes-pkcs1" class="section">
-          <h3>18.4. RSAES-PKCS1-v1_5</h3>
+          <h3>17.4. RSAES-PKCS1-v1_5</h3>
           <div id="rsaes-pkcs1-description" class="section">
-            <h4>18.4.1. Description</h4>
+            <h4>17.4.1. Description</h4>
             <p>
               The <code>"RSAES-PKCS1-v1_5"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-PKCS1-v1_5 algorithm specified in
@@ -2629,7 +2131,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="rsaes-pkcs1-registration" class="section">
-            <h4>18.4.2. Registration</h4>
+            <h4>17.4.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSAES-PKCS1-v1_5"</code>.
@@ -2672,7 +2174,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </table>
           </div>
           <div id="RsaKeyGenParams-dictionary" class="section">
-            <h4>18.4.3. RsaKeyGenParams dictionary</h4>
+            <h4>17.4.3. RsaKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
@@ -2683,141 +2185,13 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </code></pre></div></div>
           </div>
           <div id="rsaes-pkcs1-operations" class="section">
-            <h4>18.4.4. Operations</h4>
-            <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-              <p>
-                Note: The following processing algorithms have not been updated to match the processing algorithm
-                described in the <a href="#CryptoOperation-processing-model">CryptoOperation processing model</a>.
-              </p>
-            </div>
+            <h4>17.4.4. Operations</h4>
             <dl>
               <dt>Encrypt</dt>
               <dd>
-                When encrypting, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
-                shall behave as follows:
-                <ol>
-                  <li>
-                    When initializing the <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>:
-                    <ol>
-                      <li>
-                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
-                        RSA public key, raise an error and
-                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>                  
-                      <li>
-                        Let <var>M</var> be an empty sequence of bytes.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
-                    <ol>
-                      <li>
-                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
-                      </li>
-                      <li>
-                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
-                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
-                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
-                        bytes to <var>M</var>.
-                      </li>
-                      <li>
-                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
-                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
-                      </li>
-                      <li>
-                        No output is returned.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish</a></code>:
-                    <ol>
-                      <li>
-                        Perform the RSAES-PKCS1-V1_5-ENCRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
-                        Section 7.2.1, with <var>M</var> as the message, and with <var>n</var> and
-                        <var>e</var> obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                      </li>
-                      <li>
-                        If the operation resulted in an error, raise an error and
-                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>
-                      <li>
-                        Let <var>C</var> be an array of bytes resulting from performing the
-                        RSAES-PKCS1-V1_5-ENCRYPT operation.
-                      </li>
-                      <li>
-                        Let <var>output</var> be an <code>ArrayBuffer</code> with enough bytes to hold
-                        <code>C.length</code> bytes, with the contents of the underlying buffer
-                        initialized to the contents of <var>C</var>.
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
               </dd>
               <dt>Decrypt</dt>
               <dd>
-                When decrypting, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
-                shall behave as follows:
-                <ol>
-                  <li>
-                    When initializing the <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>:
-                    <ol>
-                      <li>
-                        If <code><a href="#dfn-CryptoOperation-key">key</a></code> does not describe an
-                        RSA private key, raise an error and
-                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>                  
-                      <li>
-                        Let <var>C</var> be an empty sequence of bytes.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-process">process</a></code>:
-                    <ol>
-                      <li>
-                        Let <var>buffer</var> be the <code>CryptoOperationData</code> to be processed. 
-                      </li>
-                      <li>
-                        If <var>buffer</var> is an <code>ArrayBufferView</code>, convert it to a sequence of
-                        <code>byteLength</code> bytes from the underlying <code>ArrayBuffer</code>, starting
-                        at the <code>byteOffset</code> of the <code>ArrayBufferView</code>, and append those
-                        bytes to <var>M</var>.
-                      </li>
-                      <li>
-                        If <var>buffer</var> is an <code>ArrayBuffer</code>, convert it to a sequence of
-                        <code>byteLength</code> bytes, and append those bytes to <var>M</var>
-                      </li>
-                      <li>
-                        No output is returned.
-                      </li>
-                    </ol>
-                  </li>
-                  <li>
-                    Upon invoking <code><a href="#dfn-CryptoOperation-method-finish">finish</a></code>:
-                    <ol>
-                      <li>
-                        Perform the RSAES-PKCS1-V1_5-DECRYPT operation, as specified in <a href="#RFC3447">RFC3447</a>,
-                        Section 7.2.2, with <var>C</var> as the ciphertext, and with <var>K</var>
-                        obtained from the <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                      </li>
-                      <li>
-                        If the operation resulted in an error, raise an error and
-                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </li>
-                      <li>
-                        Let <var>M</var> be an array of bytes resulting from performing the
-                        RSAES-PKCS1-V1_5-DECRYPT operation.
-                      </li>
-                      <li>
-                        Let <var>output</var> be an <code>ArrayBuffer</code> with enough bytes to hold
-                        <code>M.length</code> bytes, with the contents of the underlying buffer
-                        initialized to the contents of <var>M</var>.
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
               </dd>
               <dt>Generate Key</dt>
               <dd>
@@ -2831,9 +2205,9 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
         </div>
 
         <div id="rsassa-pkcs1" class="section">
-          <h3>18.5. RSASSA-PKCS1-v1_5</h3>
+          <h3>17.5. RSASSA-PKCS1-v1_5</h3>
           <div id="rsassa-pkcs1-description" class="section">
-            <h4>18.5.1. Description</h4>
+            <h4>17.5.1. Description</h4>
             <p>
               The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
               signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
@@ -2841,7 +2215,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </p>
           </div>
           <div id="rsassa-pkcs1-registration" class="section">
-            <h4>18.5.2. Registration</h4>
+            <h4>17.5.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSASSA-PKCS1-v1_5"</code>.
@@ -2884,7 +2258,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </table>
           </div>
           <div id="RsaSsaParams-dictionary" class="section">
-            <h4>18.5.3. RsaSsaParams dictionary</h4>
+            <h4>17.5.3. RsaSsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span> 
@@ -2893,7 +2267,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="rsassa-pkcs1-operations" class="section">
-            <h4>18.5.4. Operations</h4>
+            <h4>17.5.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -2905,9 +2279,9 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="rsa-pss" class="section">
-          <h3>18.6. RSA-PSS</h3>
+          <h3>17.6. RSA-PSS</h3>
           <div id="rsa-pss-description" class="section">
-            <h4>18.6.1. Description</h4>
+            <h4>17.6.1. Description</h4>
             <p>
               The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
               and verification using the RSASSA-PSS algorithm specified in
@@ -2916,7 +2290,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="rsa-pss-registration" class="section">
-            <h4>18.6.2. Registration</h4>
+            <h4>17.6.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSA-PSS"</code>.
@@ -2959,7 +2333,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="rsa-pss-params" class="section">
-            <h4>18.6.3. RsaPssParams dictionary</h4>
+            <h4>17.6.3. RsaPssParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
@@ -2970,7 +2344,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="rsa-pss-operations" class="section">
-            <h4>18.6.4. Operations</h4>
+            <h4>17.6.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -2982,9 +2356,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="rsa-oaep" class="section">
-          <h3>18.7. RSA-OAEP</h3>
+          <h3>17.7. RSA-OAEP</h3>
           <div id="rsa-oaep-description" class="section">
-            <h4>18.7.1. Description</h4>
+            <h4>17.7.1. Description</h4>
             <p>
               The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-OAEP algorithm specified in
@@ -2993,7 +2367,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="rsa-oaep-registration" class="section">
-            <h4>18.7.2. Registration</h4>
+            <h4>17.7.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSA-OAEP"</code>.
@@ -3047,7 +2421,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           </div>
 
           <div id="rsa-oaep-params" class="section">
-            <h4>18.7.3. RsaOaepParams dictionary</h4>
+            <h4>17.7.3. RsaOaepParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
@@ -3058,7 +2432,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </code></pre></div></div>
           </div>
           <div id="rsa-oaep-operations" class="section">
-            <h4>18.7.4. Operations</h4>
+            <h4>17.7.4. Operations</h4>
             <dl>
               <dt>Encrypt</dt>
               <dd></dd>
@@ -3075,9 +2449,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
         </div>
 
         <div id="ecdsa" class="section">
-          <h3>18.8. ECDSA</h3>
+          <h3>17.8. ECDSA</h3>
           <div id="ecdsa-description" class="section">
-            <h4>18.8.1. Description</h4>
+            <h4>17.8.1. Description</h4>
             <p>
               The <code>"ECDSA"</code> algorithm identifier is used to perform signing
               and verification using the ECDSA algorithm specified in
@@ -3085,7 +2459,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </p>
           </div>
           <div id="ecdsa-registration" class="section">
-            <h4>18.8.2. Registration</h4>
+            <h4>17.8.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"ECDSA"</code>.
@@ -3129,7 +2503,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </table>
           </div>
           <div id="EcdsaParams-dictionary" class="section">
-            <h4>18.8.3. EcdsaParams dictionary</h4>
+            <h4>17.8.3. EcdsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
@@ -3138,7 +2512,7 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
             </code></pre></div></div>
           </div>
           <div id="EcKeyGenParams-dictionary" class="section">
-            <h4>18.8.4. EcKeyGenParams dictionary</h4>
+            <h4>17.8.4. EcKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
   <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
@@ -3161,165 +2535,154 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           </div>
 
           <div id="ecdsa-operations" class="section">
-            <h4>18.8.5. Operations</h4>
+            <h4>17.8.5. Operations</h4>
             <dl>
               <dt>Sign</dt>
               <dd>
-                When signing, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
-                shall behave as follows:
+                When signing, the following algorithm should be used:
                 <ol>
                   <li>
                     <p>
-                      If the context object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>
-                      does not refer to an ECDSA private key, terminate the algorithm with an error.
+                      If <var>key</var> does not refer to an ECDSA private key, terminate the algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Upon the first attempt to <a href="#dfn-CryptoOperation-process-data">process data</a>,
-                      let <var>hash</var> be an initialized to an instance of the underlying hash algorithm
-                      indicated by the <code>"hash"</code> identifier of the context object's associated
-                      <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>bytes</var> be the sequence of bytes to be processed.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     If the context object's internal state is not <code>"complete"</code>, return an
-                     empty <code>ArrayBuffer</code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>d</var> be the ECDSA private key associated with the context object's
-                     associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>params</var> be the EC domain parameters associated with the context
-                     object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
-                     Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
-                     EC domain parameters, and with <var>d</var> as the private key.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>r</var> and <var>s</var> be the pair of integers resulting from
-                     performing the ECDSA signing process.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>result</var> be a new <code>ArrayBuffer</code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Convert <var>r</var> to a bitstring and append the sequence of bytes to <var>result</var>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Convert <var>s</var> to a bitstring and append the sequence of bytes to <var>result</var>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Return <var>result</var>.
-                   </p>
-                 </li>
+                      Let <var>hash</var> be initialized to an instance of the underlying hash algorithm
+                      indicated by <var>hash</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>bytes</var> be the sequence of bytes to be processed.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the context object's internal state is not <code>"complete"</code>, return an
+                      empty <code>ArrayBuffer</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>d</var> be the ECDSA private key associated with <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>params</var> be the EC domain parameters associated with <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
+                      Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
+                      EC domain parameters, and with <var>d</var> as the private key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>r</var> and <var>s</var> be the pair of integers resulting from
+                      performing the ECDSA signing process.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <code>ArrayBuffer</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Convert <var>r</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Convert <var>s</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Verify</dt>
               <dd>
-                When verifying, the resultant <code><a href="#dfn-CryptoOperation">CryptoOperation</a></code>
-                shall behave as follows:
+                When verifying, the following algorithm should be used:
                 <ol>
                   <li>
                     <p>
-                      If the context object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>
-                      does not refer to an ECDSA public key, terminate the algorithm with an error.
+                      If <var>key</var> does not refer to an ECDSA public key, terminate the algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Upon the first attempt to <a href="#dfn-CryptoOperation-process-data">process data</a>,
-                      let <var>hash</var> be an initialized to an instance of the underlying hash algorithm
-                      indicated by the <code>"hash"</code> identifier of the context object's associated
-                      <code><a href="#dfn-CryptoOperation-Algorithm">algorithm</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>bytes</var> be the sequence of bytes to be processed.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     If the context object's internal state is not <code>"complete"</code>, terminate the algorithm.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>Q</var> be the ECDSA public key associated with the context object's
-                     associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>params</var> be the EC domain parameters associated with the context
-                     object's associated <code><a href="#dfn-CryptoOperation-key">Key</a></code>.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
-                     Section 7.4, with <var>M</var> as the received message, using <var>params</var> as the
-                     EC domain parameters, and with <var>Q</var> as the public key.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Let <var>result</var> be a boolean indicating whether or not the purported
-                     signature is valid, with <code>true</code> indicating the signature is valid
-                     and <code>false</code> indicating it is invalid.
-                   </p>
-                 </li>
-                 <li>
-                   <p>
-                     Return <var>result</var>.
-                   </p>
-                 </li>
+                      Let <var>hash</var> be initialized to an instance of the underlying hash algorithm
+                      indicated by <var>hash</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>bytes</var> be the sequence of bytes to be processed.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the context object's internal state is not <code>"complete"</code>, terminate the algorithm.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>Q</var> be the ECDSA public key associated with <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>params</var> be the EC domain parameters associated with
+                      <var>key</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
+                      Section 7.4, with <var>M</var> as the received message, using <var>params</var> as the
+                      EC domain parameters, and with <var>Q</var> as the public key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a boolean indicating whether or not the purported
+                      signature is valid, with <code>true</code> indicating the signature is valid
+                      and <code>false</code> indicating it is invalid.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Generate Key</dt>
@@ -3330,16 +2693,16 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
         </div>
 
         <div id="ecdh" class="section">
-          <h3>18.9. ECDH</h3>
+          <h3>17.9. ECDH</h3>
           <div id="ecdh-description" class="section">
-            <h4>18.9.1. Description</h4>
+            <h4>17.9.1. Description</h4>
             <p>
               This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key agreement, as
               specified by <a href="#X9.63">X9.63</a>.
             </p>
           </div>
           <div id="ecdh-registration" class="section">
-            <h4>18.9.2. Registration</h4>
+            <h4>17.9.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"ECDH"</code>.
@@ -3383,7 +2746,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             </table>
           </div>
           <div id="dh-EcdhKeyDeriveParams" class="section">
-            <h4>18.9.3. EcdhKeyDeriveParams dictionary</h4>
+            <h4>17.9.3. EcdhKeyDeriveParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
 
@@ -3399,7 +2762,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             </p>
           </div>
           <div id="ecdh-operations" class="section">
-            <h4>18.9.4. Operations</h4>
+            <h4>17.9.4. Operations</h4>
             <ul>
               <li>Generate Key</li>
               <li>Derive Key
@@ -3420,14 +2783,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
         </div>
 
         <div id="aes-ctr" class="section">
-          <h3>18.10. AES-CTR</h3>
+          <h3>17.10. AES-CTR</h3>
           <div id="aes-ctr-description" class="section">
-            <h4>18.10.1. Description</h4>
+            <h4>17.10.1. Description</h4>
             <p>
             </p>
           </div>
           <div id="aes-ctr-registration" class="section">
-            <h4>18.10.2. Registration</h4>
+            <h4>17.10.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CTR"</code>.
@@ -3471,7 +2834,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
           </div>
 
           <div id="aes-ctr-params" class="section">
-            <h4>18.10.3. AesCtrParams dictionary</h4>
+            <h4>17.10.3. AesCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initial value of the counter block. counter <span class="RFC2119">MUST</span> be 16 bytes
@@ -3489,7 +2852,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-keygen-params" class="section">
-            <h4>18.10.4. AesKeyGenParams dictionary</h4>
+            <h4>17.10.4. AesKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
@@ -3498,7 +2861,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </code></pre></div></div>
           </div>
           <div id="aes-ctr-operations" class="section">
-            <h4>18.10.5. Operations</h4>
+            <h4>17.10.5. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3511,9 +2874,9 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
         </div>
 
         <div id="aes-cbc" class="section">
-          <h3>18.11. AES-CBC</h3>
+          <h3>17.11. AES-CBC</h3>
           <div id="aes-cbc-description" class="section">
-            <h4>18.11.1. Description</h4>
+            <h4>17.11.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CBC"</code> algorithm identifier is used to perform
@@ -3530,7 +2893,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </p>
           </div>
           <div id="aes-cbc-registration" class="section">
-            <h4>18.11.2. Registration</h4>
+            <h4>17.11.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CBC"</code>.
@@ -3574,7 +2937,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </table>
           </div>
           <div id="aes-cbc-params" class="section">
-            <h4>18.11.3. AesCbcParams dictionary</h4>
+            <h4>17.11.3. AesCbcParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
@@ -3583,7 +2946,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-cbc-operations" class="section">
-            <h4>18.11.4. Operations</h4>
+            <h4>17.11.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3595,9 +2958,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-cmac" class="section">
-          <h3>18.12. AES-CMAC</h3>
+          <h3>17.12. AES-CMAC</h3>
           <div id="aes-cmac-description" class="section">
-            <h4>18.12.1. Description</h4>
+            <h4>17.12.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CMAC"</code> algorithm identifier is used to perform
@@ -3606,7 +2969,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="aes-cmac-registration" class="section">
-            <h4>18.12.2. Registration</h4>
+            <h4>17.12.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CMAC"</code>.
@@ -3650,7 +3013,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="aes-cmac-operations" class="section">
-            <h4>18.12.3. Operations</h4>
+            <h4>17.12.3. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -3662,12 +3025,12 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-gcm" class="section">
-          <h3>18.13. AES-GCM</h3>
+          <h3>17.13. AES-GCM</h3>
           <div id="aes-gcm-description" class="section">
-            <h4>18.13.1. Description</h4>
+            <h4>17.13.1. Description</h4>
           </div>
           <div id="aes-gcm-registration" class="section">
-             <h4>18.13.2. Registration</h4>
+             <h4>17.13.2. Registration</h4>
              <p>
                The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
                this algorithm is <code>"AES-GCM"</code>.
@@ -3711,7 +3074,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
              </table>
            </div>
           <div id="aes-gcm-params" class="section">
-            <h4>18.13.3. AesGcmParams dictionary</h4>
+            <h4>17.13.3. AesGcmParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
@@ -3724,7 +3087,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-gcm-operations" class="section">
-            <h4>18.13.4. Operations</h4>
+            <h4>17.13.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3736,9 +3099,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-cfb" class="section">
-          <h3>18.14. AES-CFB</h3>
+          <h3>17.14. AES-CFB</h3>
           <div id="aes-cfb-description" class="section">
-            <h4>18.14.1. Description</h4>
+            <h4>17.14.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CFB"</code> algorithm identifier is used to perform
@@ -3748,7 +3111,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="aes-cfb-registration" class="section">
-            <h4>18.14.2. Registration</h4>
+            <h4>17.14.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CFB"</code>.
@@ -3792,7 +3155,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="aes-cfb-params" class="section">
-            <h4>18.14.3. AesCfbParams dictionary</h4>
+            <h4>17.14.3. AesCfbParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
@@ -3801,7 +3164,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-cfb-operations" class="section">
-            <h4>18.14.4. Operations</h4>
+            <h4>17.14.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3813,12 +3176,12 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="hmac" class="section">
-          <h3>18.15. HMAC</h3>
+          <h3>17.15. HMAC</h3>
           <div id="hmac-description" class="section">
-            <h4>18.15.1. Description</h4>
+            <h4>17.15.1. Description</h4>
           </div>
           <div id="hmac-registration" class="section">
-            <h4>18.15.2. Registration</h4>
+            <h4>17.15.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"HMAC"</code>.
@@ -3861,7 +3224,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="hmac-params" class="section">
-            <h4>18.15.3. HmacParams dictionary</h4>
+            <h4>17.15.3. HmacParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
@@ -3870,7 +3233,7 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
             </code></pre></div></div>
           </div>
           <div id="hmac-operations" class="section">
-            <h4>18.15.4. Operations</h4>
+            <h4>17.15.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -3881,16 +3244,16 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
           </div>
         </div>
         <div id="dh" class="section">
-          <h3>18.16. Diffie-Hellman</h3>
+          <h3>17.16. Diffie-Hellman</h3>
           <div id="dh-description" class="section">
-            <h4>18.16.1. Description</h4>
+            <h4>17.16.1. Description</h4>
             <p>
               This describes using Diffie-Hellman for key generation and key agreement, as specified
               by <a href="#PKCS3">PKCS #3</a>.
             </p>
           </div>
           <div id="dh-registration" class="section">
-            <h4>18.16.2. Registration</h4>
+            <h4>17.16.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"DH"</code>.
@@ -3934,7 +3297,7 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
             </table>
           </div>
           <div id="dh-DhKeyGenParams" class="section">
-            <h4>18.16.3. DhKeyGenParams dictionary</h4>
+            <h4>17.16.3. DhKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The prime p.</span>
@@ -3945,7 +3308,7 @@ dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Alg
             </code></pre></div></div>
           </div>
           <div id="dh-DhKeyDeriveParams" class="section">
-            <h4>18.16.4. DhKeyDeriveParams dictionary</h4>
+            <h4>17.16.4. DhKeyDeriveParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's public value.</span>
@@ -3954,7 +3317,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </code></pre></div></div>
           </div>
           <div id="dh-operations" class="section">
-            <h4>18.16.5. Operations</h4>
+            <h4>17.16.5. Operations</h4>
             <ul>
               <li>Generate Key</li>
               <li>Derive Key</li>
@@ -3965,16 +3328,16 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
           </div>
         </div>
         <div id="sha" class="section">
-          <h3>18.17. SHA</h3>
+          <h3>17.17. SHA</h3>
           <div id="sha-description" class="section">
-            <h4>18.17.1. Description</h4>
+            <h4>17.17.1. Description</h4>
             <p>
               This describes the SHA-1 and SHA-2 families, as specified by
               [<a href="#FIPS180-4">FIPS 180-4</a>].
             </p>
           </div>
           <div id="sha-registration" class="section">
-            <h4>18.17.2. Registration</h4>
+            <h4>17.17.2. Registration</h4>
             <p>
               The following algorithms are added as <a href="#recognized-algorithm-name">
               recognized algorithm names</a>:
@@ -4009,16 +3372,16 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </table>
           </div>
           <div id="sha-operations" class="section">
-            <h4>18.17.3. Operations</h4>
+            <h4>17.17.3. Operations</h4>
             <ul>
               <li>Digest</li>
             </ul>
           </div>
         </div>
         <div id="concatkdf" class="section">
-          <h3>18.18. Concat KDF</h3>
+          <h3>17.18. Concat KDF</h3>
           <div id="concatkdf-description" class="section">
-            <h4>18.18.1. Description</h4>
+            <h4>17.18.1. Description</h4>
             <p>
               The <code>"CONCAT"</code> algorithm identifier is used to perform key derivation
               using the key derivation algorithm defined in Section 5.8.1 of NIST SP 800-56A
@@ -4026,7 +3389,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </p>
           </div>
           <div id="concatkdf-registration" class="section">
-            <h4>18.18.2. Registration</h4>
+            <h4>17.18.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"CONCAT"</code>.
@@ -4054,7 +3417,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </table>
           </div>
           <div id="concat-params" class="section">
-            <h4>18.18.3. ConcatParams dictionary</h4>
+            <h4>17.18.3. ConcatParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The digest method to use to derive the keying material.</span>
@@ -4077,7 +3440,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="concat-operations" class="section">
-            <h4>18.18.4. Operations</h4>
+            <h4>17.18.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
               <li>Derive Bits</li>
@@ -4085,9 +3448,9 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
           </div>
         </div>
         <div id="hkdf-ctr" class="section">
-          <h3>18.19. HKDF-CTR</h3>
+          <h3>17.19. HKDF-CTR</h3>
           <div id="hkdf-ctr-description" class="section">
-            <h4>18.19.1. Description</h4>
+            <h4>17.19.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"HKDF-CTR"</code> algorithm identifier is used to
@@ -4099,7 +3462,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="hkdf-ctr-registration" class="section">
-            <h4>18.19.2. Registration</h4>
+            <h4>17.19.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a>
               for this algorithm is <code>"HKDF-CTR"</code>.
@@ -4127,7 +3490,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="hkdf-ctr-params" class="section">
-            <h4>18.19.3. HkdfCtrParams dictionary</h4>
+            <h4>17.19.3. HkdfCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a>)</span>
@@ -4151,7 +3514,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             </div>
           </div>
           <div id="hkdf2-ctr-operations" class="section">
-            <h4>18.19.4. Operations</h4>
+            <h4>17.19.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
               <li>Derive Bits</li>
@@ -4160,12 +3523,12 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
         </div>
 
         <div id="pbkdf2" class="section">
-          <h3>18.20. PBKDF2</h3>
+          <h3>17.20. PBKDF2</h3>
           <div id="pbkdf2-description" class="section">
-            <h4>18.20.1. Description</h4>
+            <h4>17.20.1. Description</h4>
           </div>
           <div id="pbkdf2-registration" class="section">
-            <h4>18.20.2. Registration</h4>
+            <h4>17.20.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"PBKDF2"</code>.
@@ -4193,7 +3556,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             </table>
           </div>
           <div id="pbkdf2-params" class="section">
-            <h4>18.20.3. Pbkdf2Params dictionary</h4>
+            <h4>17.20.3. Pbkdf2Params dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   CryptoOperationData salt;
@@ -4212,7 +3575,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             </div>
           </div>
           <div id="pbkdf2-operations" class="section">
-            <h4>18.20.4. Operations</h4>
+            <h4>17.20.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
               <li>Derive Bits</li>
@@ -4222,7 +3585,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
       </div>
  
       <div id="algorithm-normalizing-rules" class="section">
-        <h2>19. Algorithm normalizing rules</h2>
+        <h2>18. Algorithm normalizing rules</h2>
         <p>
           The <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> typedef
           permits algorithms to be specified as either a <code>dictionary</code> or a DOMString.
@@ -4283,9 +3646,9 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         </ol>
       </div>
       <div id="examples-section" class="section">
-        <h2>20. JavaScript Example Code</h2>
+        <h2>19. JavaScript Example Code</h2>
         <div id="examples-signing" class="section">
-          <h3>20.1. Generate a signing key pair, sign some data</h3>
+          <h3>19.1. Generate a signing key pair, sign some data</h3>
         
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 <span class="comment">// Algorithm Object</span>
@@ -4310,13 +3673,7 @@ window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
     var dataPart2 = convertPlainTextToArrayBufferView(" world!");
     <span class="comment">// TODO: create example utility function that converts text -&gt; ArrayBufferView</span>
 
-    <span class="comment">// Because we are not supplying data to .sign(), a multi-part
-    // CryptoOperation will be returned, which requires us to call .process()
-    // and .finish().</span>
-    return window.crypto.subtle.sign(algorithmSign, key.privateKey)
-      .process(dataPart1)
-      .process(dataPart2)
-      .finish();
+    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPar2]);
   },
   console.error.bind(console, "Unable to generate a key")
 ).then(
@@ -4326,7 +3683,7 @@ window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
         </code></pre></div></div>
         </div>
         <div id="examples-symmetric-encryption" class="section">
-          <h3>20.2. Symmetric Encryption</h3>
+          <h3>19.2. Symmetric Encryption</h3>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 var clearDataArrayBufferView = convertPlainTextToArrayBufferView("Plain Text Data");
 <span class="comment">// TODO: create example utility function that converts text -&gt; ArrayBufferView</span>
@@ -4346,8 +3703,6 @@ var aesAlgorithmEncrypt = {
 <span class="comment">// Create a keygenerator to produce a one-time-use AES key to encrypt some data</span>
 window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
-    <span class="comment">// Unlike the signing operation, which showed a multi-part operation,
-    // here we perform the entire AES operation in a single call.</span>
     return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
   }
 ).then(console.log.bind(console, "The ciphertext is: "),
@@ -4356,7 +3711,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
       </div>
     </div>
       <div id="acknowledgements-section" class="section">
-        <h2>21. Acknowledgements</h2>
+        <h2>20. Acknowledgements</h2>
         <p>
           The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
           Brian Smith, Brian Warner, Channy Yun, Jim Schaad, Kai Engert, Mark Watson, Nick Van den Bleeken,
@@ -4378,9 +3733,9 @@ Research Consortium</a> for supporting W3C/MIT.
         </p>
       </div>
       <div id="references" class="section">
-         <h2>22. References</h2>
+         <h2>21. References</h2>
          <div id="normative-references" class="section">
-           <h3>22.1. Normative References</h3>
+           <h3>21.1. Normative References</h3>
            <dl>
              <dt id="DOM4">DOM4</dt>
              <dd>
@@ -4454,7 +3809,7 @@ Research Consortium</a> for supporting W3C/MIT.
            </dl>
         </div>
         <div id="informative-references" class="section">
-          <h3>22.2. Informative References</h3>
+          <h3>21.2. Informative References</h3>
           <dl>
             <dt id="CDSA">CDSA</dt>
             <dd>
