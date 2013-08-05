@@ -136,7 +136,7 @@ communications.
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.8. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.9. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.10. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.11. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#recommended-algorithms">18.1. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.2. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.2.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.2.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.2.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.2.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.2.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.3. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.3.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.3.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.3.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.3.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.4. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.4.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.5. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.5.1. Description</a></li><li><a href="#rsa-pss-registration">18.5.2. Registration</a></li><li><a href="#rsa-pss-params">18.5.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.6. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.6.1. Description</a></li><li><a href="#rsa-oaep-registration">18.6.2. Registration</a></li><li><a href="#rsa-oaep-params">18.6.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.6.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.7. ECDSA</a><ul><li><a href="#ecdsa-description">18.7.1. Description</a></li><li><a href="#ecdsa-registration">18.7.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.7.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.7.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.7.5. Operations</a></li></ul></li><li><a href="#ecdh">18.8. ECDH</a><ul><li><a href="#ecdh-description">18.8.1. Description</a></li><li><a href="#ecdh-registration">18.8.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.8.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.8.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.9. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.9.1. Description</a></li><li><a href="#aes-ctr-registration">18.9.2. Registration</a></li><li><a href="#aes-ctr-params">18.9.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.9.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.9.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.10. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.10.1. Description</a></li><li><a href="#aes-cbc-registration">18.10.2. Registration</a></li><li><a href="#aes-cbc-params">18.10.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.10.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.11. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.11.1. Description</a></li><li><a href="#aes-cmac-registration">18.11.2. Registration</a></li><li><a href="#aes-cmac-operations">18.11.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.12. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.12.1. Description</a></li><li><a href="#aes-gcm-registration">18.12.2. Registration</a></li><li><a href="#aes-gcm-params">18.12.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.12.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.13. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.13.1. Description</a></li><li><a href="#aes-cfb-registration">18.13.2. Registration</a></li><li><a href="#aes-cfb-params">18.13.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.13.4. Operations</a></li></ul></li><li><a href="#hmac">18.14. HMAC</a><ul><li><a href="#hmac-description">18.14.1. Description</a></li><li><a href="#hmac-registration">18.14.2. Registration</a></li><li><a href="#hmac-params">18.14.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.14.4. Operations</a></li></ul></li><li><a href="#dh">18.15. Diffie-Hellman</a><ul><li><a href="#dh-description">18.15.1. Description</a></li><li><a href="#dh-registration">18.15.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.15.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.15.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.15.5. Operations</a></li></ul></li><li><a href="#sha">18.16. SHA</a><ul><li><a href="#sha-description">18.16.1. Description</a></li><li><a href="#sha-registration">18.16.2. Registration</a></li><li><a href="#sha-operations">18.16.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.17. Concat KDF</a><ul><li><a href="#concatkdf-description">18.17.1. Description</a></li><li><a href="#concatkdf-registration">18.17.2. Registration</a></li><li><a href="#concat-params">18.17.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.17.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.18. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.18.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.18.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.18.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.18.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.19. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.19.1. Description</a></li><li><a href="#pbkdf2-registration">18.19.2. Registration</a></li><li><a href="#pbkdf2-params">18.19.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.19.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.8. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.9. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.10. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.11. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#rsa-pss-params">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.5. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-cmac-operations">18.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#hmac">18.15. HMAC</a><ul><li><a href="#hmac-description">18.15.1. Description</a></li><li><a href="#hmac-registration">18.15.2. Registration</a></li><li><a href="#hmac-params">18.15.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.15.4. Operations</a></li></ul></li><li><a href="#dh">18.16. Diffie-Hellman</a><ul><li><a href="#dh-description">18.16.1. Description</a></li><li><a href="#dh-registration">18.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.16.5. Operations</a></li></ul></li><li><a href="#sha">18.17. SHA</a><ul><li><a href="#sha-description">18.17.1. Description</a></li><li><a href="#sha-registration">18.17.2. Registration</a></li><li><a href="#sha-operations">18.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.18. Concat KDF</a><ul><li><a href="#concatkdf-description">18.18.1. Description</a></li><li><a href="#concatkdf-registration">18.18.2. Registration</a></li><li><a href="#concat-params">18.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.20.1. Description</a></li><li><a href="#pbkdf2-registration">18.20.2. Registration</a></li><li><a href="#pbkdf2-params">18.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
     </div>
 
     <div id="sections">
@@ -2122,8 +2122,311 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             altered in future revisions.
           </p>
         </div>
+        <div id="algorithms-index" class="section">
+          <h3>18.1. Registered algorithms</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Algorithm name</th>
+                <th scope="col">encrypt</th>
+                <th scope="col">decrypt</th>
+                <th scope="col">sign</th>
+                <th scope="col">verify</th>
+                <th scope="col">digest</th>
+                <th scope="col">generateKey</th>
+                <th scope="col">deriveKey</th>
+                <th scope="col">importKey</th>
+                <th scope="col">exportKey</th>
+                <th scope="col">wrapKey</th>
+                <th scope="col">unwrapKey</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="#rsaes-pkcs1">RSAES-PKCS1-v1_5</a></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#rsa-pss">RSA-PSS</a></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#rsa-oaep">RSA-OAEP</a></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#ecdsa">ECDSA</a></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#ecdh">ECDH</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#aes-ctr">AES-CTR</a></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#aes-cbc">AES-CBC</a></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#aes-cmac">AES-CMAC</a></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#aes-gcm">AES-GCM</a></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#hmac">HMAC</a></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#dh">DH</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#alg-sha-1">SHA-1</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#alg-sha-224">SHA-224</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#alg-sha-256">SHA-256</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#alg-sha-384">SHA-384</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#alg-sha-512">SHA-512</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#concatkdf">CONCAT</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#hkdf-ctr">HKDF-CTR</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><a href="#pbkdf2">PBKDF2</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div id="recommended-algorithms" class="section">
-          <h3>18.1. Recommended algorithms</h3>
+          <h3>18.2. Recommended algorithms</h3>
           <p class="norm">This section is non-normative</p>
           <p>
             As the API is meant to be extensible in order to keep up with future developments within
@@ -2163,7 +2466,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
           </p>
         </div>
         <div id="defining-an-algorithm" class="section">
-          <h3>18.2. Defining an algorithm</h3>
+          <h3>18.3. Defining an algorithm</h3>
           <p>
             Each algorithm that is to be exposed via the Web Cryptography API
             <span class="RFC2119">SHOULD</span> be registered via the Web Cryptography working group,
@@ -2172,7 +2475,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             <span class="RFC2119">MUST</span> be processed as if the sections had been defined.
           </p>
           <div id="recognized-algorithm-name" class="section">
-            <h4>18.2.1. Recognized algorithm name</h4>
+            <h4>18.3.1. Recognized algorithm name</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> have a canonical name
               for which applications can refer to the algorithm. The canonical name
@@ -2183,14 +2486,14 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="supported-operations" class="section">
-            <h4>18.2.2. Supported operations</h4>
+            <h4>18.3.2. Supported operations</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the operations
               that it supports.
             </p>
           </div>
           <div id="algorithm-specific-params" class="section">
-            <h4>18.2.3. Algorithm-specific parameters</h4>
+            <h4>18.3.3. Algorithm-specific parameters</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the expected
               parameters, if any, that should be exposed via the <a href="#dfn-Algorithm">Algorithm</a>
@@ -2198,7 +2501,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="algorithm-result" class="section">
-            <h4>18.2.4. Algorithm results</h4>
+            <h4>18.3.4. Algorithm results</h4>
             <p>
               Each registered algorithm <span class="RFC2119">MUST</span> define the contents
               of the <a href="#dfn-CryptoOperation-result"><code>result</code></a> attribute of the
@@ -2207,7 +2510,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="algorithm-alias" class="section">
-            <h4>18.2.5. <dfn id="dfn-algorithm-alias">Algorithm aliases</dfn></h4>
+            <h4>18.3.5. <dfn id="dfn-algorithm-alias">Algorithm aliases</dfn></h4>
             <p>
               Each registered algorithm <span class="RFC2119">MAY</span> define one or more aliases
               that may define a fully normalized <a href="#dfn-Algorithm">Algorithm</a> object.
@@ -2220,9 +2523,9 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
         </div>
 
         <div id="rsaes-pkcs1" class="section">
-          <h3>18.3. RSAES-PKCS1-v1_5</h3>
+          <h3>18.4. RSAES-PKCS1-v1_5</h3>
           <div id="rsaes-pkcs1-description" class="section">
-            <h4>18.3.1. Description</h4>
+            <h4>18.4.1. Description</h4>
             <p>
               The <code>"RSAES-PKCS1-v1_5"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-PKCS1-v1_5 algorithm specified in
@@ -2230,7 +2533,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </p>
           </div>
           <div id="rsaes-pkcs1-registration" class="section">
-            <h4>18.3.2. Registration</h4>
+            <h4>18.4.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSAES-PKCS1-v1_5"</code>.
@@ -2273,7 +2576,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             </table>
           </div>
           <div id="RsaKeyGenParams-dictionary" class="section">
-            <h4>18.3.3. RsaKeyGenParams dictionary</h4>
+            <h4>18.4.3. RsaKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
@@ -2284,7 +2587,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </code></pre></div></div>
           </div>
           <div id="rsaes-pkcs1-operations" class="section">
-            <h4>18.3.4. Operations</h4>
+            <h4>18.4.4. Operations</h4>
             <div class="ednote"><div class="ednoteHeader">Editorial note</div>
               <p>
                 Note: The following processing algorithms have not been updated to match the processing algorithm
@@ -2432,9 +2735,9 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
         </div>
 
         <div id="rsassa-pkcs1" class="section">
-          <h3>18.4. RSASSA-PKCS1-v1_5</h3>
+          <h3>18.5. RSASSA-PKCS1-v1_5</h3>
           <div id="rsassa-pkcs1-description" class="section">
-            <h4>18.4.1. Description</h4>
+            <h4>18.5.1. Description</h4>
             <p>
               The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
               signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
@@ -2442,7 +2745,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </p>
           </div>
           <div id="rsassa-pkcs1-registration" class="section">
-            <h4>18.4.2. Registration</h4>
+            <h4>18.5.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSASSA-PKCS1-v1_5"</code>.
@@ -2485,7 +2788,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             </table>
           </div>
           <div id="RsaSsaParams-dictionary" class="section">
-            <h4>18.4.3. RsaSsaParams dictionary</h4>
+            <h4>18.5.3. RsaSsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span> 
@@ -2494,7 +2797,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="rsassa-pkcs1-operations" class="section">
-            <h4>18.4.4. Operations</h4>
+            <h4>18.5.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -2506,9 +2809,9 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="rsa-pss" class="section">
-          <h3>18.5. RSA-PSS</h3>
+          <h3>18.6. RSA-PSS</h3>
           <div id="rsa-pss-description" class="section">
-            <h4>18.5.1. Description</h4>
+            <h4>18.6.1. Description</h4>
             <p>
               The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
               and verification using the RSASSA-PSS algorithm specified in
@@ -2517,7 +2820,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="rsa-pss-registration" class="section">
-            <h4>18.5.2. Registration</h4>
+            <h4>18.6.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSA-PSS"</code>.
@@ -2560,7 +2863,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="rsa-pss-params" class="section">
-            <h4>18.5.3. RsaPssParams dictionary</h4>
+            <h4>18.6.3. RsaPssParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
@@ -2571,7 +2874,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="rsa-pss-operations" class="section">
-            <h4>18.5.4. Operations</h4>
+            <h4>18.6.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -2583,9 +2886,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="rsa-oaep" class="section">
-          <h3>18.6. RSA-OAEP</h3>
+          <h3>18.7. RSA-OAEP</h3>
           <div id="rsa-oaep-description" class="section">
-            <h4>18.6.1. Description</h4>
+            <h4>18.7.1. Description</h4>
             <p>
               The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-OAEP algorithm specified in
@@ -2594,7 +2897,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="rsa-oaep-registration" class="section">
-            <h4>18.6.2. Registration</h4>
+            <h4>18.7.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"RSA-OAEP"</code>.
@@ -2648,7 +2951,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           </div>
 
           <div id="rsa-oaep-params" class="section">
-            <h4>18.6.3. RsaOaepParams dictionary</h4>
+            <h4>18.7.3. RsaOaepParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash function to apply to the message</span>
@@ -2659,7 +2962,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </code></pre></div></div>
           </div>
           <div id="rsa-oaep-operations" class="section">
-            <h4>18.6.4. Operations</h4>
+            <h4>18.7.4. Operations</h4>
             <dl>
               <dt>Encrypt</dt>
               <dd></dd>
@@ -2676,9 +2979,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
         </div>
 
         <div id="ecdsa" class="section">
-          <h3>18.7. ECDSA</h3>
+          <h3>18.8. ECDSA</h3>
           <div id="ecdsa-description" class="section">
-            <h4>18.7.1. Description</h4>
+            <h4>18.8.1. Description</h4>
             <p>
               The <code>"ECDSA"</code> algorithm identifier is used to perform signing
               and verification using the ECDSA algorithm specified in
@@ -2686,7 +2989,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </p>
           </div>
           <div id="ecdsa-registration" class="section">
-            <h4>18.7.2. Registration</h4>
+            <h4>18.8.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"ECDSA"</code>.
@@ -2730,7 +3033,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </table>
           </div>
           <div id="EcdsaParams-dictionary" class="section">
-            <h4>18.7.3. EcdsaParams dictionary</h4>
+            <h4>18.8.3. EcdsaParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
@@ -2739,7 +3042,7 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
             </code></pre></div></div>
           </div>
           <div id="EcKeyGenParams-dictionary" class="section">
-            <h4>18.7.4. EcKeyGenParams dictionary</h4>
+            <h4>18.8.4. EcKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
   <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
@@ -2762,7 +3065,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           </div>
 
           <div id="ecdsa-operations" class="section">
-            <h4>18.7.5. Operations</h4>
+            <h4>18.8.5. Operations</h4>
             <dl>
               <dt>Sign</dt>
               <dd>
@@ -2931,16 +3234,16 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
         </div>
 
         <div id="ecdh" class="section">
-          <h3>18.8. ECDH</h3>
+          <h3>18.9. ECDH</h3>
           <div id="ecdh-description" class="section">
-            <h4>18.8.1. Description</h4>
+            <h4>18.9.1. Description</h4>
             <p>
               This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key agreement, as
               specified by <a href="#X9.63">X9.63</a>.
             </p>
           </div>
           <div id="ecdh-registration" class="section">
-            <h4>18.8.2. Registration</h4>
+            <h4>18.9.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"ECDH"</code>.
@@ -2979,7 +3282,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             </table>
           </div>
           <div id="dh-EcdhKeyDeriveParams" class="section">
-            <h4>18.8.3. EcdhKeyDeriveParams dictionary</h4>
+            <h4>18.9.3. EcdhKeyDeriveParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
 
@@ -2995,7 +3298,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             </p>
           </div>
           <div id="ecdh-operations" class="section">
-            <h4>18.8.4. Operations</h4>
+            <h4>18.9.4. Operations</h4>
             <ul>
               <li>Generate Key</li>
               <li>Derive Key
@@ -3015,14 +3318,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
         </div>
 
         <div id="aes-ctr" class="section">
-          <h3>18.9. AES-CTR</h3>
+          <h3>18.10. AES-CTR</h3>
           <div id="aes-ctr-description" class="section">
-            <h4>18.9.1. Description</h4>
+            <h4>18.10.1. Description</h4>
             <p>
             </p>
           </div>
           <div id="aes-ctr-registration" class="section">
-            <h4>18.9.2. Registration</h4>
+            <h4>18.10.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CTR"</code>.
@@ -3066,7 +3369,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
           </div>
 
           <div id="aes-ctr-params" class="section">
-            <h4>18.9.3. AesCtrParams dictionary</h4>
+            <h4>18.10.3. AesCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initial value of the counter block. counter <span class="RFC2119">MUST</span> be 16 bytes
@@ -3084,7 +3387,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-keygen-params" class="section">
-            <h4>18.9.4. AesKeyGenParams dictionary</h4>
+            <h4>18.10.4. AesKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
@@ -3093,7 +3396,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </code></pre></div></div>
           </div>
           <div id="aes-ctr-operations" class="section">
-            <h4>18.9.5. Operations</h4>
+            <h4>18.10.5. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3106,9 +3409,9 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
         </div>
 
         <div id="aes-cbc" class="section">
-          <h3>18.10. AES-CBC</h3>
+          <h3>18.11. AES-CBC</h3>
           <div id="aes-cbc-description" class="section">
-            <h4>18.10.1. Description</h4>
+            <h4>18.11.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CBC"</code> algorithm identifier is used to perform
@@ -3125,7 +3428,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </p>
           </div>
           <div id="aes-cbc-registration" class="section">
-            <h4>18.10.2. Registration</h4>
+            <h4>18.11.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CBC"</code>.
@@ -3169,7 +3472,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
             </table>
           </div>
           <div id="aes-cbc-params" class="section">
-            <h4>18.10.3. AesCbcParams dictionary</h4>
+            <h4>18.11.3. AesCbcParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
@@ -3178,7 +3481,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-cbc-operations" class="section">
-            <h4>18.10.4. Operations</h4>
+            <h4>18.11.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3190,9 +3493,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-cmac" class="section">
-          <h3>18.11. AES-CMAC</h3>
+          <h3>18.12. AES-CMAC</h3>
           <div id="aes-cmac-description" class="section">
-            <h4>18.11.1. Description</h4>
+            <h4>18.12.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CMAC"</code> algorithm identifier is used to perform
@@ -3201,7 +3504,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="aes-cmac-registration" class="section">
-            <h4>18.11.2. Registration</h4>
+            <h4>18.12.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CMAC"</code>.
@@ -3245,7 +3548,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="aes-cmac-operations" class="section">
-            <h4>18.11.3. Operations</h4>
+            <h4>18.12.3. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -3257,12 +3560,12 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-gcm" class="section">
-          <h3>18.12. AES-GCM</h3>
+          <h3>18.13. AES-GCM</h3>
           <div id="aes-gcm-description" class="section">
-            <h4>18.12.1. Description</h4>
+            <h4>18.13.1. Description</h4>
           </div>
           <div id="aes-gcm-registration" class="section">
-             <h4>18.12.2. Registration</h4>
+             <h4>18.13.2. Registration</h4>
              <p>
                The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
                this algorithm is <code>"AES-GCM"</code>.
@@ -3306,7 +3609,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
              </table>
            </div>
           <div id="aes-gcm-params" class="section">
-            <h4>18.12.3. AesGcmParams dictionary</h4>
+            <h4>18.13.3. AesGcmParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^56 bytes long.</span>
@@ -3319,7 +3622,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-gcm-operations" class="section">
-            <h4>18.12.4. Operations</h4>
+            <h4>18.13.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3331,9 +3634,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="aes-cfb" class="section">
-          <h3>18.13. AES-CFB</h3>
+          <h3>18.14. AES-CFB</h3>
           <div id="aes-cfb-description" class="section">
-            <h4>18.13.1. Description</h4>
+            <h4>18.14.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"AES-CFB"</code> algorithm identifier is used to perform
@@ -3343,7 +3646,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="aes-cfb-registration" class="section">
-            <h4>18.13.2. Registration</h4>
+            <h4>18.14.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"AES-CFB"</code>.
@@ -3387,7 +3690,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="aes-cfb-params" class="section">
-            <h4>18.13.3. AesCfbParams dictionary</h4>
+            <h4>18.14.3. AesCfbParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
@@ -3396,7 +3699,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="aes-cfb-operations" class="section">
-            <h4>18.13.4. Operations</h4>
+            <h4>18.14.4. Operations</h4>
             <ul>
               <li>Encrypt</li>
               <li>Decrypt</li>
@@ -3408,12 +3711,12 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
         </div>
 
         <div id="hmac" class="section">
-          <h3>18.14. HMAC</h3>
+          <h3>18.15. HMAC</h3>
           <div id="hmac-description" class="section">
-            <h4>18.14.1. Description</h4>
+            <h4>18.15.1. Description</h4>
           </div>
           <div id="hmac-registration" class="section">
-            <h4>18.14.2. Registration</h4>
+            <h4>18.15.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"HMAC"</code>.
@@ -3456,7 +3759,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="hmac-params" class="section">
-            <h4>18.14.3. HmacParams dictionary</h4>
+            <h4>18.15.3. HmacParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
@@ -3465,7 +3768,7 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
             </code></pre></div></div>
           </div>
           <div id="hmac-operations" class="section">
-            <h4>18.14.4. Operations</h4>
+            <h4>18.15.4. Operations</h4>
             <ul>
               <li>Sign</li>
               <li>Verify</li>
@@ -3476,16 +3779,16 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
           </div>
         </div>
         <div id="dh" class="section">
-          <h3>18.15. Diffie-Hellman</h3>
+          <h3>18.16. Diffie-Hellman</h3>
           <div id="dh-description" class="section">
-            <h4>18.15.1. Description</h4>
+            <h4>18.16.1. Description</h4>
             <p>
               This describes using Diffie-Hellman for key generation and key agreement, as specified
               by <a href="#PKCS3">PKCS #3</a>.
             </p>
           </div>
           <div id="dh-registration" class="section">
-            <h4>18.15.2. Registration</h4>
+            <h4>18.16.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"DH"</code>.
@@ -3524,7 +3827,7 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
             </table>
           </div>
           <div id="dh-DhKeyGenParams" class="section">
-            <h4>18.15.3. DhKeyGenParams dictionary</h4>
+            <h4>18.16.3. DhKeyGenParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The prime p.</span>
@@ -3535,7 +3838,7 @@ dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Alg
             </code></pre></div></div>
           </div>
           <div id="dh-DhKeyDeriveParams" class="section">
-            <h4>18.15.4. DhKeyDeriveParams dictionary</h4>
+            <h4>18.16.4. DhKeyDeriveParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's public value.</span>
@@ -3544,7 +3847,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </code></pre></div></div>
           </div>
           <div id="dh-operations" class="section">
-            <h4>18.15.5. Operations</h4>
+            <h4>18.16.5. Operations</h4>
             <ul>
               <li>Generate Key</li>
               <li>Derive Key</li>
@@ -3554,16 +3857,16 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
           </div>
         </div>
         <div id="sha" class="section">
-          <h3>18.16. SHA</h3>
+          <h3>18.17. SHA</h3>
           <div id="sha-description" class="section">
-            <h4>18.16.1. Description</h4>
+            <h4>18.17.1. Description</h4>
             <p>
               This describes the SHA-1 and SHA-2 families, as specified by
               [<a href="#FIPS180-4">FIPS 180-4</a>].
             </p>
           </div>
           <div id="sha-registration" class="section">
-            <h4>18.16.2. Registration</h4>
+            <h4>18.17.2. Registration</h4>
             <p>
               The following algorithms are added as <a href="#recognized-algorithm-name">
               recognized algorithm names</a>:
@@ -3598,16 +3901,16 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </table>
           </div>
           <div id="sha-operations" class="section">
-            <h4>18.16.3. Operations</h4>
+            <h4>18.17.3. Operations</h4>
             <ul>
               <li>Digest</li>
             </ul>
           </div>
         </div>
         <div id="concatkdf" class="section">
-          <h3>18.17. Concat KDF</h3>
+          <h3>18.18. Concat KDF</h3>
           <div id="concatkdf-description" class="section">
-            <h4>18.17.1. Description</h4>
+            <h4>18.18.1. Description</h4>
             <p>
               The <code>"CONCAT"</code> algorithm identifier is used to perform key derivation
               using the key derivation algorithm defined in Section 5.8.1 of NIST SP 800-56A
@@ -3615,7 +3918,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </p>
           </div>
           <div id="concatkdf-registration" class="section">
-            <h4>18.17.2. Registration</h4>
+            <h4>18.18.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"CONCAT"</code>.
@@ -3638,7 +3941,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             </table>
           </div>
           <div id="concat-params" class="section">
-            <h4>18.17.3. ConcatParams dictionary</h4>
+            <h4>18.18.3. ConcatParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The digest method to use to derive the keying material.</span>
@@ -3661,16 +3964,16 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </code></pre></div></div>
           </div>
           <div id="concat-operations" class="section">
-            <h4>18.17.4. Operations</h4>
+            <h4>18.18.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
             </ul>
           </div>
         </div>
         <div id="hkdf-ctr" class="section">
-          <h3>18.18. HKDF-CTR</h3>
+          <h3>18.19. HKDF-CTR</h3>
           <div id="hkdf-ctr-description" class="section">
-            <h4>18.18.1. Description</h4>
+            <h4>18.19.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"HKDF-CTR"</code> algorithm identifier is used to
@@ -3682,7 +3985,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </p>
           </div>
           <div id="hkdf-ctr-registration" class="section">
-            <h4>18.18.2. Registration</h4>
+            <h4>18.19.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a>
               for this algorithm is <code>"HKDF-CTR"</code>.
@@ -3705,7 +4008,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             </table>
           </div>
           <div id="hkdf-ctr-params" class="section">
-            <h4>18.18.3. HkdfCtrParams dictionary</h4>
+            <h4>18.19.3. HkdfCtrParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a>)</span>
@@ -3729,7 +4032,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             </div>
           </div>
           <div id="hkdf2-ctr-operations" class="section">
-            <h4>18.18.4. Operations</h4>
+            <h4>18.19.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
             </ul>
@@ -3737,12 +4040,12 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
         </div>
 
         <div id="pbkdf2" class="section">
-          <h3>18.19. PBKDF2</h3>
+          <h3>18.20. PBKDF2</h3>
           <div id="pbkdf2-description" class="section">
-            <h4>18.19.1. Description</h4>
+            <h4>18.20.1. Description</h4>
           </div>
           <div id="pbkdf2-registration" class="section">
-            <h4>18.19.2. Registration</h4>
+            <h4>18.20.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
               this algorithm is <code>"PBKDF2"</code>.
@@ -3765,7 +4068,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             </table>
           </div>
           <div id="pbkdf2-params" class="section">
-            <h4>18.19.3. Pbkdf2Params dictionary</h4>
+            <h4>18.20.3. Pbkdf2Params dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   CryptoOperationData salt;
@@ -3784,7 +4087,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             </div>
           </div>
           <div id="pbkdf2-operations" class="section">
-            <h4>18.19.4. Operations</h4>
+            <h4>18.20.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
             </ul>
