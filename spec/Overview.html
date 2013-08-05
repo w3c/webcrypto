@@ -44,7 +44,7 @@ or code signing, and the confidentiality and integrity of
 communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 19 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 20 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -136,7 +136,7 @@ communications.
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.8. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.9. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.10. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.11. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#rsa-pss-params">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.5. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-cmac-operations">18.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#hmac">18.15. HMAC</a><ul><li><a href="#hmac-description">18.15.1. Description</a></li><li><a href="#hmac-registration">18.15.2. Registration</a></li><li><a href="#hmac-params">18.15.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.15.4. Operations</a></li></ul></li><li><a href="#dh">18.16. Diffie-Hellman</a><ul><li><a href="#dh-description">18.16.1. Description</a></li><li><a href="#dh-registration">18.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.16.5. Operations</a></li></ul></li><li><a href="#sha">18.17. SHA</a><ul><li><a href="#sha-description">18.17.1. Description</a></li><li><a href="#sha-registration">18.17.2. Registration</a></li><li><a href="#sha-operations">18.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.18. Concat KDF</a><ul><li><a href="#concatkdf-description">18.18.1. Description</a></li><li><a href="#concatkdf-registration">18.18.2. Registration</a></li><li><a href="#concat-params">18.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.20.1. Description</a></li><li><a href="#pbkdf2-registration">18.20.2. Registration</a></li><li><a href="#pbkdf2-params">18.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for developers</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li></ul></li><li><a href="#cryptooperation-interface">12. CryptoOperation interface</a><ul><li><a href="#CryptoOperation-processing-model">12.1. Processing Model</a></li><li><a href="#CryptoOperation-attributes">12.2. Attributes</a></li><li><a href="#CryptoOperation-methods">12.3. Methods</a><ul><li><a href="#CryptoOperation-method-process">12.3.1. process(CryptoOperationData data)</a></li><li><a href="#CryptoOperation-method-finish">12.3.2. The finish() method</a></li><li><a href="#CryptoOperation-method-abort">12.3.3. The abort() method</a></li></ul></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">14.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.2.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.2.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.2.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.2.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.2.12. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">18.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">18.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#rsa-pss-params">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.5. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">18.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-cmac-operations">18.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#hmac">18.15. HMAC</a><ul><li><a href="#hmac-description">18.15.1. Description</a></li><li><a href="#hmac-registration">18.15.2. Registration</a></li><li><a href="#hmac-params">18.15.3. HmacParams dictionary</a></li><li><a href="#hmac-operations">18.15.4. Operations</a></li></ul></li><li><a href="#dh">18.16. Diffie-Hellman</a><ul><li><a href="#dh-description">18.16.1. Description</a></li><li><a href="#dh-registration">18.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">18.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">18.16.5. Operations</a></li></ul></li><li><a href="#sha">18.17. SHA</a><ul><li><a href="#sha-description">18.17.1. Description</a></li><li><a href="#sha-registration">18.17.2. Registration</a></li><li><a href="#sha-operations">18.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.18. Concat KDF</a><ul><li><a href="#concatkdf-description">18.18.1. Description</a></li><li><a href="#concatkdf-registration">18.18.2. Registration</a></li><li><a href="#concat-params">18.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.20.1. Description</a></li><li><a href="#pbkdf2-registration">18.20.2. Registration</a></li><li><a href="#pbkdf2-params">18.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
     </div>
 
     <div id="sections">
@@ -694,6 +694,7 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
   "sign",
   "verify",
   "deriveKey",
+  "deriveBits",
   "wrapKey",
   "unwrapKey"
 };
@@ -1163,7 +1164,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          optional sequence&lt;CryptoOperationData&gt;? data = null);
 
-  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                            optional boolean extractable = false,
                            optional <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
@@ -1172,6 +1172,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
                          optional boolean extractable = false,
                          optional <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                         <a href="#dfn-Key">Key</a> baseKey,
+                         unsigned long length);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
@@ -1823,17 +1826,89 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             </ol>
           </div>
 
+          <div id="SubtleCrypto-method-deriveBits" class="section">
+            <h4>14.2.8. The deriveBits method</h4>
+            <p>
+              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveBits"><code>deriveBits</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the derive
+                  operation, throw a <code>NotSupportedError</code> and
+                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <div class="ednote"><div class="ednoteHeader">Editorial note</div>Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>baseKey</var>.<a href="#dfn-Key-usages"><code>usages</code></a> does not
+                  contain the <code>"deriveBits"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of executing the key derivation algorithm
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as the <code>value</code> argument.
+                </p>
+              </li>
+            </ol>
+          </div>
+
           <div id="SubtleCrypto-method-importKey" class="section">
-            <h4>14.2.8. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
+            <h4>14.2.9. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
           </div>
 
           <div id="SubtleCrypto-method-exportKey" class="section">
-            <h4>14.2.9. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
+            <h4>14.2.10. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
-            <h4>14.2.10. The wrapKey method</h4>
+            <h4>14.2.11. The wrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -1929,7 +2004,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-unwrapKey" class="section">
-            <h4>14.2.11. The unwrapKey method</h4>
+            <h4>14.2.12. The unwrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
@@ -2135,6 +2210,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <th scope="col">digest</th>
                 <th scope="col">generateKey</th>
                 <th scope="col">deriveKey</th>
+                <th scope="col">deriveBits</th>
                 <th scope="col">importKey</th>
                 <th scope="col">exportKey</th>
                 <th scope="col">wrapKey</th>
@@ -2151,6 +2227,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td>✔</td>
                 <td></td>
+                <td></td>
                 <td>✔</td>
                 <td>✔</td>
                 <td></td>
@@ -2164,6 +2241,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td>✔</td>
                 <td>✔</td>
@@ -2179,6 +2257,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td>✔</td>
                 <td></td>
+                <td></td>
                 <td>✔</td>
                 <td>✔</td>
                 <td></td>
@@ -2193,6 +2272,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td>✔</td>
                 <td></td>
+                <td></td> 
                 <td>✔</td>
                 <td>✔</td>
                 <td></td>
@@ -2206,6 +2286,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td>✔</td>
                 <td>✔</td>
@@ -2223,6 +2304,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td>✔</td>
                 <td>✔</td>
+                <td>✔</td>
                 <td></td>
                 <td></td>
               </tr>
@@ -2234,6 +2316,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td>✔</td>
                 <td>✔</td>
@@ -2249,6 +2332,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td>✔</td>
                 <td></td>
+                <td></td>
                 <td>✔</td>
                 <td>✔</td>
                 <td></td>
@@ -2262,6 +2346,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td>✔</td>
                 <td>✔</td>
@@ -2277,6 +2362,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td>✔</td>
                 <td></td>
+                <td></td>
                 <td>✔</td>
                 <td>✔</td>
                 <td></td>
@@ -2290,6 +2376,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td>✔</td>
                 <td>✔</td>
@@ -2307,11 +2394,12 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>✔</td>
                 <td>✔</td>
                 <td>✔</td>
+                <td>✔</td>
                 <td></td>
                 <td></td>
               </tr>
               <tr>
-                <td><a href="#alg-sha-1">SHA-1</a></td>
+                <td><a href="#sha">SHA-1</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2323,9 +2411,10 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               <tr>
-                <td><a href="#alg-sha-224">SHA-224</a></td>
+                <td><a href="#sha">SHA-224</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2337,9 +2426,10 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               <tr>
-                <td><a href="#alg-sha-256">SHA-256</a></td>
+                <td><a href="#sha">SHA-256</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2351,9 +2441,10 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               <tr>
-                <td><a href="#alg-sha-384">SHA-384</a></td>
+                <td><a href="#sha">SHA-384</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2365,14 +2456,16 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
               </tr>
               <tr>
-                <td><a href="#alg-sha-512">SHA-512</a></td>
+                <td><a href="#sha">SHA-512</a></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td>✔</td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2389,6 +2482,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td>✔</td>
+                <td>✔</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2403,6 +2497,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td>✔</td>
+                <td>✔</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -2416,6 +2511,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td></td>
                 <td></td>
                 <td></td>
+                <td>✔</td>
                 <td>✔</td>
                 <td></td>
                 <td></td>
@@ -3268,6 +3364,11 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
                   <td>importKey</td>
                   <td>None</td>
                   <td><a href="#dfn-Key">Key</a></td>
@@ -3313,6 +3414,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   is 1, so the standard and modified ECDH primitives are equivalent for those curves.
                 </p>
               </li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -3813,6 +3915,11 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
                   <td>importKey</td>
                   <td>None</td>
                   <td><a href="#dfn-Key">Key</a></td>
@@ -3851,6 +3958,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             <ul>
               <li>Generate Key</li>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
               <li>Import Key</li>
               <li>Export Key</li>
            </ul>
@@ -3937,6 +4045,11 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
                   <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -3967,6 +4080,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             <h4>18.18.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -4004,6 +4118,11 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
                   <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -4035,6 +4154,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             <h4>18.19.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -4064,6 +4184,11 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                   <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -4090,6 +4215,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             <h4>18.20.4. Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>

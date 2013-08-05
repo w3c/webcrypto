@@ -685,6 +685,7 @@ enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
   "sign",
   "verify",
   "deriveKey",
+  "deriveBits",
   "wrapKey",
   "unwrapKey"
 };
@@ -1154,7 +1155,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   <a href="#dfn-CryptoOperation">CryptoOperation</a> <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          optional sequence&lt;CryptoOperationData&gt;? data = null);
 
-  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/36">ISSUE-36</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                            optional boolean extractable = false,
                            optional <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
@@ -1163,6 +1163,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
                          optional boolean extractable = false,
                          optional <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages = []);
+  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+                         <a href="#dfn-Key">Key</a> baseKey,
+                         unsigned long length);
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
@@ -1814,6 +1817,78 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             </ol>
           </div>
 
+          <div id="SubtleCrypto-method-deriveBits" class="section">
+            <h4>The deriveBits method</h4>
+            <p>
+              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveBits"><code>deriveBits</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <code>algorithm</code> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the derive
+                  operation, throw a <code>NotSupportedError</code> and
+                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>baseKey</var>.<a href="#dfn-Key-usages"><code>usages</code></a> does not
+                  contain the <code>"deriveBits"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of executing the key derivation algorithm
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as the <code>value</code> argument.
+                </p>
+              </li>
+            </ol>
+          </div>
+
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p></p>
@@ -2126,6 +2201,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <th scope="col">digest</th>
                 <th scope="col">generateKey</th>
                 <th scope="col">deriveKey</th>
+                <th scope="col">deriveBits</th>
                 <th scope="col">importKey</th>
                 <th scope="col">exportKey</th>
                 <th scope="col">wrapKey</th>
@@ -2142,6 +2218,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2155,6 +2232,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>&#10004;</td>
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
@@ -2170,6 +2248,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2184,6 +2263,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td /> 
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2197,6 +2277,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>&#10004;</td>
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
@@ -2214,6 +2295,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td>&#10004;</td>
+                <td>&#10004;</td>
                 <td />
                 <td />
               </tr>
@@ -2225,6 +2307,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
@@ -2240,6 +2323,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2253,6 +2337,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td>&#10004;</td>
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
@@ -2268,6 +2353,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2282,6 +2368,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td />
+                <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
@@ -2294,6 +2381,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td>&#10004;</td>
@@ -2314,6 +2402,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td />
               </tr>
               <tr>
                 <td><a href="#sha">SHA-224</a></td>
@@ -2322,6 +2411,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td />
                 <td />
@@ -2342,6 +2432,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td />
               </tr>
               <tr>
                 <td><a href="#sha">SHA-384</a></td>
@@ -2350,6 +2441,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td>&#10004;</td>
+                <td />
                 <td />
                 <td />
                 <td />
@@ -2370,6 +2462,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td />
               </tr>
               <tr>
                 <td><a href="#concatkdf">CONCAT</a></td>
@@ -2379,6 +2472,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
                 <td />
@@ -2394,6 +2488,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td>&#10004;</td>
+                <td>&#10004;</td>
                 <td />
                 <td />
                 <td />
@@ -2407,6 +2502,7 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td />
                 <td />
+                <td>&#10004;</td>
                 <td>&#10004;</td>
                 <td />
                 <td />
@@ -3259,6 +3355,11 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
                   <td>importKey</td>
                   <td>None</td>
                   <td><a href="#dfn-Key">Key</a></td>
@@ -3304,6 +3405,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   is 1, so the standard and modified ECDH primitives are equivalent for those curves.
                 </p>
               </li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -3804,6 +3906,11 @@ dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
                   <td>importKey</td>
                   <td>None</td>
                   <td><a href="#dfn-Key">Key</a></td>
@@ -3842,6 +3949,7 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
             <ul>
               <li>Generate Key</li>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
               <li>Import Key</li>
               <li>Export Key</li>
            </ul>
@@ -3928,6 +4036,11 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
                   <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -3958,6 +4071,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             <h4>Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -3995,6 +4109,11 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
                   <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -4026,6 +4145,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             <h4>Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
@@ -4055,6 +4175,11 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                   <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
+                <tr>
+                  <td>deriveBits</td>
+                  <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
+                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -4081,6 +4206,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             <h4>Operations</h4>
             <ul>
               <li>Derive Key</li>
+              <li>Derive Bits</li>
             </ul>
           </div>
         </div>
