@@ -1999,6 +1999,21 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
               </tr>
               <tr>
+                <td><a href="#aes-kw">AES-KW</a></td>
+                <td></td>
+                <td></td>
+                <td />
+                <td />
+                <td />
+                <td>&#10004;</td>
+                <td />
+                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
+                <td>&#10004;</td>
+                <td>&#10004;</td>
+              </tr>
+              <tr>
                 <td><a href="#hmac">HMAC</a></td>
                 <td />
                 <td />
@@ -3302,6 +3317,73 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
           </div>
         </div>
 
+        <div id="aes-kw" class="section">
+          <h3>AES-KW</h3>
+          <div id="aes-kw-description" class="section">
+            <h4>Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"AES-KW"</code> algorithm identifier is used to perform
+              key wrapping using AES, as
+              described in [<a href="#rfc3394">RFC3394</a>].
+            </p>
+          </div>
+          <div id="aes-kw-registration" class="section">
+            <h4>Registration</h4>
+            <p>
+              The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
+              this algorithm is <code>"AES-KW"</code>.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th><a href="#supported-operations">Operation</a></th>
+                  <th><a href="#algorithm-specific-params">Parameters</a></th>
+                  <th><a href="#algorithm-result">Result</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>wrap</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrap</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>generateKey</td>
+                  <td><a href="#dfn-AesKeyGenParams">AesKeyGenParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>exportKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div id="aes-kw-operations" class="section">
+            <h4>Operations</h4>
+            <ul>
+              <li>Warp</li>
+              <li>Unwrap</li>
+              <li>Generate Key</li>
+              <li>Import Key</li>
+              <li>Export Key</li>
+           </ul>
+          </div>
+        </div>
+
         <div id="hmac" class="section">
           <h3>HMAC</h3>
           <div id="hmac-description" class="section">
@@ -4094,6 +4176,10 @@ Research Consortium</a> for supporting W3C/MIT.
              <dt id="jwk">JSON Web Key</dt>
              <dd>
                 <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-key">JSON Web Key (work in progress)</a></cite>, M. Jones, Microsoft.
+             </dd>
+             <dt id="rfc3394">RFC3394</dt>
+             <dd>
+                <cite><a href="http://www.ietf.org/rfc/rfc3394.txt">Advanced Encryption Standard (AES) Key Wrap Algorithm</a></cite>, J. Schaad, R. Housley, IETF.
              </dd>
            </dl>
         </div>
