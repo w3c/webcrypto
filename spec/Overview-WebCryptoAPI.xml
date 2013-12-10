@@ -3850,6 +3850,150 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         </x:codeblock>
       </div>
     </div>
+    <div id="iana-section" class="section">
+    <h2>IANA Considerations</h2>
+        <div id="iana-section-jws-jwa" class="section">
+
+            <h3>JSON Web Signature and Encryption Algorithms Registration</h3>
+
+            <p>
+                This section registers the following algorithm identifiers in the IANA JSON Web Signature and Encryption Algorithms Registry for use with JSON Web Key.
+                Note that the 'Implementation Requirements' field in the template refers to use with JSON Web Signature and JSON Web Encryption specifically, in which
+                case use of unauthenticated encryption is prohibited.
+            </p>
+            
+            <ul>
+                <li>Algorithm Name: "A128CBC"</li>
+                <li>Algorithm Description: AES CBC using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+
+            <ul>
+                <li>Algorithm Name: "A192CBC"</li>
+                <li>Algorithm Description: AES CBC using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CBC"</li>
+                <li>Algorithm Description: AES CBC using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A128CTR"</li>
+                <li>Algorithm Description: AES CTR using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A192CTR"</li>
+                <li>Algorithm Description: AES CTR using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CTR"</li>
+                <li>Algorithm Description: AES CTR using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Optional</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+        </div>
+        
+        <div id="iana-section-jwk" class="section">
+            <h3>JSON Web Key Parameters Registry</h3>
+            <ul>
+                <li>Parameter Name: "ext"</li>
+                <li>Used with "kty" Value(s): *</li>
+                <li>Parameter Information Class: Public</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-ext">JSON Web Key "ext" attribute</a> in this document</li>
+            </ul>
+        </div>
+
+        <div id="iana-section-jwk-use" class="section">
+            <h3>JSON Web Key Use Registry</h3>
+            <ul>
+                <li>Use Member Value: "enconly"</li>
+                <li>Use Description: Encryption</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+
+            <ul>
+                <li>Use Member Value: "deconly"</li>
+                <li>Use Description: Decryption</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "sigonly"</li>
+                <li>Use Description: Signature</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "vfyonly"</li>
+                <li>Use Description: Signature and HMAC verification</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "drvkey"</li>
+                <li>Use Description: Key derivation</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "drvbits"</li>
+                <li>Use Description: Secret derivation</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "wrap"</li>
+                <li>Use Description: Key wrapping</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "unwrap"</li>
+                <li>Use Description: Key unwrapping</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Values: All comma-separated non-whitespace-containing duplicate-free non-empty lists of non-comma-containing registered values</li>
+                <li>Use Description: The union of the listed uses</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+        </div>
+    </div>
       <div id="acknowledgements-section" class="section">
         <h2>Acknowledgements</h2>
         <p>

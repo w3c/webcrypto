@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>9 December 2013</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>10 December 2013</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@ communications.
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 9 December 2013 <b>Editor’s Draft</b> of the
+        This document is the 10 December 2013 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -136,7 +136,7 @@ communications.
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for authors</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li><li><a href="#key-interface-jwk">11.4. Representation using JSON Web Key</a><ul><li><a href="#key-interface-jwk-algorithms">11.4.1. JSON Web Key algorithm names for WebCrypto algorithms</a></li><li><a href="#key-interface-jwk-use">11.4.2. JSON Web Key use attribute</a></li><li><a href="#key-interface-jwk-ext">11.4.3. JSON Web Key ext attribute</a></li></ul></li></ul></li><li><a href="#crypto-interface">12. Crypto interface</a></li><li><a href="#subtlecrypto-interface">13. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">13.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">13.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">13.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">13.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">13.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">13.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">13.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">13.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">13.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">13.2.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">13.2.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">13.2.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">13.2.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">13.2.12. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">14. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">14.1. Description</a></li></ul></li><li><a href="#big-integer">15. BigInteger</a></li><li><a href="#keypair">16. KeyPair</a></li><li><a href="#algorithms">17. Algorithms</a><ul><li><a href="#algorithms-index">17.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">17.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">17.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">17.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">17.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">17.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">17.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">17.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">17.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">17.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">17.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">17.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">17.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">17.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">17.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">17.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">17.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">17.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">17.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">17.6.1. Description</a></li><li><a href="#rsa-pss-registration">17.6.2. Registration</a></li><li><a href="#rsa-pss-params">17.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">17.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">17.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">17.7.1. Description</a></li><li><a href="#rsa-oaep-registration">17.7.2. Registration</a></li><li><a href="#rsa-oaep-params">17.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">17.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">17.8. ECDSA</a><ul><li><a href="#ecdsa-description">17.8.1. Description</a></li><li><a href="#ecdsa-registration">17.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">17.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">17.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">17.8.5. Operations</a></li></ul></li><li><a href="#ecdh">17.9. ECDH</a><ul><li><a href="#ecdh-description">17.9.1. Description</a></li><li><a href="#ecdh-registration">17.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">17.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">17.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">17.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">17.10.1. Description</a></li><li><a href="#aes-ctr-registration">17.10.2. Registration</a></li><li><a href="#aes-ctr-params">17.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">17.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">17.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">17.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">17.11.1. Description</a></li><li><a href="#aes-cbc-registration">17.11.2. Registration</a></li><li><a href="#aes-cbc-params">17.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">17.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">17.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">17.12.1. Description</a></li><li><a href="#aes-cmac-registration">17.12.2. Registration</a></li><li><a href="#aes-cmac-operations">17.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">17.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">17.13.1. Description</a></li><li><a href="#aes-gcm-registration">17.13.2. Registration</a></li><li><a href="#aes-gcm-params">17.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">17.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">17.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">17.14.1. Description</a></li><li><a href="#aes-cfb-registration">17.14.2. Registration</a></li><li><a href="#aes-cfb-params">17.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">17.14.4. Operations</a></li></ul></li><li><a href="#hmac">17.15. HMAC</a><ul><li><a href="#hmac-description">17.15.1. Description</a></li><li><a href="#hmac-registration">17.15.2. Registration</a></li><li><a href="#hmac-params">17.15.3. HmacParams dictionary</a></li><li><a href="#hmac-key-params">17.15.4. HmacKeyParams dictionary</a></li><li><a href="#hmac-operations">17.15.5. Operations</a></li></ul></li><li><a href="#dh">17.16. Diffie-Hellman</a><ul><li><a href="#dh-description">17.16.1. Description</a></li><li><a href="#dh-registration">17.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">17.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">17.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">17.16.5. Operations</a></li></ul></li><li><a href="#sha">17.17. SHA</a><ul><li><a href="#sha-description">17.17.1. Description</a></li><li><a href="#sha-registration">17.17.2. Registration</a></li><li><a href="#sha-operations">17.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">17.18. Concat KDF</a><ul><li><a href="#concatkdf-description">17.18.1. Description</a></li><li><a href="#concatkdf-registration">17.18.2. Registration</a></li><li><a href="#concat-params">17.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">17.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">17.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">17.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">17.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">17.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">17.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">17.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">17.20.1. Description</a></li><li><a href="#pbkdf2-registration">17.20.2. Registration</a></li><li><a href="#pbkdf2-params">17.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">17.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">18. Algorithm normalizing rules</a></li><li><a href="#examples-section">19. JavaScript Example Code</a><ul><li><a href="#examples-signing">19.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">19.2. Symmetric Encryption</a></li></ul></li><li><a href="#acknowledgements-section">20. Acknowledgements</a></li><li><a href="#references">21. References</a><ul><li><a href="#normative-references">21.1. Normative References</a></li><li><a href="#informative-references">21.2. Informative References</a></li></ul></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for authors</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-interface">11. Key interface</a><ul><li><a href="#key-interface-description">11.1. Description</a></li><li><a href="#key-interface-members">11.2. Key interface members</a></li><li><a href="#key-interface-clone">11.3. Structured clone algorithm</a></li><li><a href="#key-interface-jwk">11.4. Representation using JSON Web Key</a><ul><li><a href="#key-interface-jwk-algorithms">11.4.1. JSON Web Key algorithm names for WebCrypto algorithms</a></li><li><a href="#key-interface-jwk-use">11.4.2. JSON Web Key use attribute</a></li><li><a href="#key-interface-jwk-ext">11.4.3. JSON Web Key ext attribute</a></li></ul></li></ul></li><li><a href="#crypto-interface">12. Crypto interface</a></li><li><a href="#subtlecrypto-interface">13. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">13.1. Description</a></li><li><a href="#subtlecrypto-interface-methods">13.2. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">13.2.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">13.2.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">13.2.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">13.2.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">13.2.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">13.2.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">13.2.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">13.2.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">13.2.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">13.2.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">13.2.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">13.2.12. The unwrapKey method</a></li></ul></li></ul></li><li><a href="#WorkerCrypto-interface">14. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">14.1. Description</a></li></ul></li><li><a href="#big-integer">15. BigInteger</a></li><li><a href="#keypair">16. KeyPair</a></li><li><a href="#algorithms">17. Algorithms</a><ul><li><a href="#algorithms-index">17.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">17.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">17.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">17.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">17.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">17.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">17.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">17.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">17.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">17.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">17.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">17.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#rsaes-pkcs1-operations">17.4.4. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">17.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">17.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">17.5.2. Registration</a></li><li><a href="#RsaSsaParams-dictionary">17.5.3. RsaSsaParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">17.5.4. Operations</a></li></ul></li><li><a href="#rsa-pss">17.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">17.6.1. Description</a></li><li><a href="#rsa-pss-registration">17.6.2. Registration</a></li><li><a href="#rsa-pss-params">17.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">17.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">17.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">17.7.1. Description</a></li><li><a href="#rsa-oaep-registration">17.7.2. Registration</a></li><li><a href="#rsa-oaep-params">17.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">17.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">17.8. ECDSA</a><ul><li><a href="#ecdsa-description">17.8.1. Description</a></li><li><a href="#ecdsa-registration">17.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">17.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">17.8.4. EcKeyGenParams dictionary</a></li><li><a href="#ecdsa-operations">17.8.5. Operations</a></li></ul></li><li><a href="#ecdh">17.9. ECDH</a><ul><li><a href="#ecdh-description">17.9.1. Description</a></li><li><a href="#ecdh-registration">17.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">17.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">17.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">17.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">17.10.1. Description</a></li><li><a href="#aes-ctr-registration">17.10.2. Registration</a></li><li><a href="#aes-ctr-params">17.10.3. AesCtrParams dictionary</a></li><li><a href="#aes-keygen-params">17.10.4. AesKeyGenParams dictionary</a></li><li><a href="#aes-ctr-operations">17.10.5. Operations</a></li></ul></li><li><a href="#aes-cbc">17.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">17.11.1. Description</a></li><li><a href="#aes-cbc-registration">17.11.2. Registration</a></li><li><a href="#aes-cbc-params">17.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">17.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">17.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">17.12.1. Description</a></li><li><a href="#aes-cmac-registration">17.12.2. Registration</a></li><li><a href="#aes-cmac-operations">17.12.3. Operations</a></li></ul></li><li><a href="#aes-gcm">17.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">17.13.1. Description</a></li><li><a href="#aes-gcm-registration">17.13.2. Registration</a></li><li><a href="#aes-gcm-params">17.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">17.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">17.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">17.14.1. Description</a></li><li><a href="#aes-cfb-registration">17.14.2. Registration</a></li><li><a href="#aes-cfb-params">17.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">17.14.4. Operations</a></li></ul></li><li><a href="#hmac">17.15. HMAC</a><ul><li><a href="#hmac-description">17.15.1. Description</a></li><li><a href="#hmac-registration">17.15.2. Registration</a></li><li><a href="#hmac-params">17.15.3. HmacParams dictionary</a></li><li><a href="#hmac-key-params">17.15.4. HmacKeyParams dictionary</a></li><li><a href="#hmac-operations">17.15.5. Operations</a></li></ul></li><li><a href="#dh">17.16. Diffie-Hellman</a><ul><li><a href="#dh-description">17.16.1. Description</a></li><li><a href="#dh-registration">17.16.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">17.16.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">17.16.4. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-operations">17.16.5. Operations</a></li></ul></li><li><a href="#sha">17.17. SHA</a><ul><li><a href="#sha-description">17.17.1. Description</a></li><li><a href="#sha-registration">17.17.2. Registration</a></li><li><a href="#sha-operations">17.17.3. Operations</a></li></ul></li><li><a href="#concatkdf">17.18. Concat KDF</a><ul><li><a href="#concatkdf-description">17.18.1. Description</a></li><li><a href="#concatkdf-registration">17.18.2. Registration</a></li><li><a href="#concat-params">17.18.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">17.18.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">17.19. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">17.19.1. Description</a></li><li><a href="#hkdf-ctr-registration">17.19.2. Registration</a></li><li><a href="#hkdf-ctr-params">17.19.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">17.19.4. Operations</a></li></ul></li><li><a href="#pbkdf2">17.20. PBKDF2</a><ul><li><a href="#pbkdf2-description">17.20.1. Description</a></li><li><a href="#pbkdf2-registration">17.20.2. Registration</a></li><li><a href="#pbkdf2-params">17.20.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">17.20.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">18. Algorithm normalizing rules</a></li><li><a href="#examples-section">19. JavaScript Example Code</a><ul><li><a href="#examples-signing">19.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">19.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">20. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">20.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">20.2. JSON Web Key Parameters Registry</a></li><li><a href="#iana-section-jwk-use">20.3. JSON Web Key Use Registry</a></li></ul></li><li><a href="#acknowledgements-section">21. Acknowledgements</a></li><li><a href="#references">22. References</a><ul><li><a href="#normative-references">22.1. Normative References</a></li><li><a href="#informative-references">22.2. Informative References</a></li></ul></li></ul></div>
     </div>
 
     <div id="sections">
@@ -3863,8 +3863,152 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         </code></pre></div></div>
       </div>
     </div>
+    <div id="iana-section" class="section">
+    <h2>20. IANA Considerations</h2>
+        <div id="iana-section-jws-jwa" class="section">
+
+            <h3>20.1. JSON Web Signature and Encryption Algorithms Registration</h3>
+
+            <p>
+                This section registers the following algorithm identifiers in the IANA JSON Web Signature and Encryption Algorithms Registry for use with JSON Web Key.
+                Note that the 'Implementation Requirements' field in the template refers to use with JSON Web Signature and JSON Web Encryption specifically, in which
+                case use of unauthenticated encryption is prohibited.
+            </p>
+            
+            <ul>
+                <li>Algorithm Name: "A128CBC"</li>
+                <li>Algorithm Description: AES CBC using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+
+            <ul>
+                <li>Algorithm Name: "A192CBC"</li>
+                <li>Algorithm Description: AES CBC using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CBC"</li>
+                <li>Algorithm Description: AES CBC using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A128CTR"</li>
+                <li>Algorithm Description: AES CTR using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A192CTR"</li>
+                <li>Algorithm Description: AES CTR using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CTR"</li>
+                <li>Algorithm Description: AES CTR using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>Implementation Requirements: Optional</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+        </div>
+        
+        <div id="iana-section-jwk" class="section">
+            <h3>20.2. JSON Web Key Parameters Registry</h3>
+            <ul>
+                <li>Parameter Name: "ext"</li>
+                <li>Used with "kty" Value(s): *</li>
+                <li>Parameter Information Class: Public</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-ext">JSON Web Key "ext" attribute</a> in this document</li>
+            </ul>
+        </div>
+
+        <div id="iana-section-jwk-use" class="section">
+            <h3>20.3. JSON Web Key Use Registry</h3>
+            <ul>
+                <li>Use Member Value: "enconly"</li>
+                <li>Use Description: Encryption</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+
+            <ul>
+                <li>Use Member Value: "deconly"</li>
+                <li>Use Description: Decryption</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "sigonly"</li>
+                <li>Use Description: Signature</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "vfyonly"</li>
+                <li>Use Description: Signature and HMAC verification</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "drvkey"</li>
+                <li>Use Description: Key derivation</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "drvbits"</li>
+                <li>Use Description: Secret derivation</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "wrap"</li>
+                <li>Use Description: Key wrapping</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Value: "unwrap"</li>
+                <li>Use Description: Key unwrapping</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Use Member Values: All comma-separated non-whitespace-containing duplicate-free non-empty lists of non-comma-containing registered values</li>
+                <li>Use Description: The union of the listed uses</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
+            </ul>
+        </div>
+    </div>
       <div id="acknowledgements-section" class="section">
-        <h2>20. Acknowledgements</h2>
+        <h2>21. Acknowledgements</h2>
         <p>
           The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
           Brian Smith, Brian Warner, Channy Yun, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
@@ -3887,9 +4031,9 @@ Research Consortium</a> for supporting W3C/MIT.
         </p>
       </div>
       <div id="references" class="section">
-         <h2>21. References</h2>
+         <h2>22. References</h2>
          <div id="normative-references" class="section">
-           <h3>21.1. Normative References</h3>
+           <h3>22.1. Normative References</h3>
            <dl>
              <dt id="DOM4">DOM4</dt>
              <dd>
@@ -3967,7 +4111,7 @@ Research Consortium</a> for supporting W3C/MIT.
            </dl>
         </div>
         <div id="informative-references" class="section">
-          <h3>21.2. Informative References</h3>
+          <h3>22.2. Informative References</h3>
           <dl>
             <dt id="CDSA">CDSA</dt>
             <dd>
