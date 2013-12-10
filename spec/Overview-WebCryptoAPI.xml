@@ -780,6 +780,130 @@ interface <dfn id="dfn-Key">Key</dfn> {
           </div>
         </div>
 
+        <div id="key-interface-jwk" class="section">
+        
+            <h3>Representation using JSON Web Key</h3>
+            <p>
+                The <a href="#dfn-KeyFormat">KeyFormat</a> value <code>jwk</code> enables <a href="#dfn-Key">Key</a> objects to be imported or exported in <a href="#jwk">JSON Web Key</a> format.
+            </p>
+            <p>
+                This specification defines additional <a href="#jwk">JSON Web Key</a> attributes and attribute values that may be used for this purpose as follows:
+                <ul>
+                    <li>Additional <code>alg</code> names for algorithms supported by WebCrypto not already defined for <a href="#jwk">JSON Web Key</a></li>
+                    <li>Additional <code>use</code> values for WebCrypto usages, enabling multiple specific usages to be associated with a key</li>
+                    <li>A new <code>ext</code> attribute providing the value of the <a href="#dfn-Key">Key</a>'s <a href="#dfn-Key-extractable">extractable</a> attribute.</li>
+                </ul>
+
+            </p>
+            <div id="key-interface-jwk-algorithms" class="section">
+                <h4>JSON Web Key algorithm names for WebCrypto algorithms</h4>
+                <p>
+                    This specification defines additional <a href="#jwk">JSON Web Key</a> algorithm names associated with WebCrypto algorithms as listed in the following table:
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>WebCrypto Algorithm</td>
+                            <td>Key Size (bits)</td>
+                            <td>JWK <code>alg</code> value</td>
+                        </tr>
+                    
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AES-CTR</td>
+                            <td>128</td>
+                            <td><code>A128CTR</code></td>
+                        </tr>
+                        <tr>
+                            <td>AES-CTR</td>
+                            <td>192</td>
+                            <td><code>A192CTR</code></td>
+                        </tr>
+                        <tr>
+                            <td>AES-CTR</td>
+                            <td>256</td>
+                            <td><code>A256CTR</code></td>
+                        </tr>
+                        <tr>
+                            <td>AES-CBC</td>
+                            <td>128</td>
+                            <td><code>A128CBC</code></td>
+                        </tr>
+                        <tr>
+                            <td>AES-CBC</td>
+                            <td>192</td>
+                            <td><code>A192CBC</code></td>
+                        </tr>
+                        <tr>
+                            <td>AES-CBC</td>
+                            <td>256</td>
+                            <td><code>A256CBC</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="key-interface-jwk-use" class="section">
+                <h4>JSON Web Key <code>use</code> attribute</h4>
+                <p>
+                    This specification defines additional values for the <a href="#jwk">JSON Web Key</a> attribute <code>use</code> that enable accurate representation of <a href="#dfn-Key-usages">KeyUsage</a> values.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>WebCrypto <a href="#dfn-Key-usages">KeyUsage</a> value</td>
+                            <td>Value in <a href="#jwk">JSON Web Key</a> <code>use</code> string</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>encrypt</code></td>
+                            <td><code>enconly</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>decrypt</code></td>
+                            <td><code>deconly</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>sign</code></td>
+                            <td><code>sigonly</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>verify</code></td>
+                            <td><code>vfyonly</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>deriveKey</code></td>
+                            <td><code>drvkey</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>deriveBits</code></td>
+                            <td><code>drvbits</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>wrapKey</code></td>
+                            <td><code>wrap</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>unwrapKey</code></td>
+                            <td><code>unwrap</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>
+                    The <a href="#jwk">JSON Web Key</a> <code>use</code> value may contain a single registered value or a comma-separated list of distinct values, with no whitespace.
+
+                    Note that with these definitions, the <a href="#jwk">JSON Web Key</a> <code>use</code> value <code>enc</code> is equivalent to the value <code>enconly,deconly,wrap,unwrap</code> and the value <code>sig</code> is equivalent to the value <code>sigonly,vfyonly</code>.
+                </p>
+            </div>
+            <div id="key-interface-jwk-ext" class="section">
+                <h4>JSON Web Key <code>ext</code> attribute</h4>
+                <p>
+                This specification defines a new <a href="#jwk">JSON Web Key</a> attribute <code>ext</code> that enables the value of the <a href="#dfn-Key-extractable">extractable</a> attribute of a <a href="#dfn-Key">Key</a> to be included in a <a href="#jwk">JSON Web Key</a> object. The <code>ext</code> attribute SHALL have a Boolean value.
+                </p>
+            </div>
+        </div>
       </div>
 
       <div id="crypto-interface" class="section">
