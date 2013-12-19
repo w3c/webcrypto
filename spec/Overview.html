@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>10 December 2013</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>19 December 2013</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -44,7 +44,7 @@ or code signing, and the confidentiality and integrity of
 communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 12 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 14 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -56,7 +56,7 @@ communications.
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 10 December 2013 <b>Editor’s Draft</b> of the
+        This document is the 19 December 2013 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -1528,11 +1528,160 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>13.2.9. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
-            <p></p>
+            <p>                  
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
+            </p>
+            <ol>
+              <li>
+                <ul>
+                  <li>
+                    <p>If <code>algorithm</code> is defined:</p>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedAlgorithm</var> be the result of processing
+                          <code>algorithm</code> according to the
+                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>normalizedAlgorithm</var> does not describe a
+                          <a href="#algorithms">registered algorithm</a> that supports the importKey
+                          operation, throw a <code>NotSupportedError</code> and
+                          <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                        </p>
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    <p>Otherwise, let <var>normalizedAlgorithm</var> be <code>null</code>.</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  Let <var>format</var>, <var>keyData</var>, <var>extractable</var> and <var>usages</var> be the <code>format</code>, <code>keyData</code>,
+                  <code>extractable</code> and <code>usages</code> parameters to the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method respectively.
+                </p>
+              
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <div class="ednote"><div class="ednoteHeader">Editorial note</div>Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+              
+              <li>
+                <p>
+                  If <var>keyData</var>, interpreted accoding to <var>format</var>, specifies parameters that are
+                  inconsistent with the parameters supplied to <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                    Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that results from interpreting
+                    <var>keyData</var> accoding to <var>format</var> using the key import algorithm indicated in <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                    Set <var>result</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> to be <var>extractable</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                    Set <var>result</var>.<a href="#dfn-Key-usages"><code>usages</code></a> to be <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
+                  <var>result</var> as the <code>value</code> argument.
+                </p>
+              </li>
+            </ol>
           </div>
 
           <div id="SubtleCrypto-method-exportKey" class="section">
             <h4>13.2.10. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
+            <p>
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let <var>key</var> and <var>format</var> be the values of the <code>key</code> and <code>format</code> parameters to the
+                  <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method respectively.
+                </p>
+              </li>
+            
+              <li>
+                  <p>
+                    Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <div class="ednote"><div class="ednoteHeader">Editorial note</div>Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <ol>
+                  <li>
+                    <p>
+                        Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                        Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                        <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+              </li>
+              <li>
+                <p>
+                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
+                  terminate this algorithm with an error.
+                </p>         
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of encoding <var>key</var> according to <var>format</var>.
+                </p>
+              </li>
+            </ol>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
@@ -1667,7 +1816,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           If <var>normalizedKeyAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the wrapKey
+                          <a href="#algorithms">registered algorithm</a> that supports the importKey
                           operation, throw a <code>NotSupportedError</code> and
                           <a href="#terminate-the-algorithm">terminate the algorithm</a>.
                         </p>
@@ -1733,6 +1882,11 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   algorithm, with <var>format</var> as <code>format</code>, with <var>bytes</var> as
                   <code>keyData</code>, with <var>unwrappedKeyAlgorithm</var> as <code>algorithm</code>, with <var>extractable</var>
                   as <code>extractable</code>, and <var>keyUsages</var> as <code>keyUsages</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                 If <var>result</var> describes a <a href="#dfn-Key"><code>Key</code></a> object that is incompatible with the parameters associated with <var>unwrappingKey</var>, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
