@@ -790,119 +790,287 @@ interface <dfn id="dfn-Key">Key</dfn> {
                 This specification defines additional <a href="#jwk">JSON Web Key</a> attributes and attribute values that may be used for this purpose as follows:
                 <ul>
                     <li>Additional <code>alg</code> names for algorithms supported by WebCrypto not already defined for <a href="#jwk">JSON Web Key</a></li>
-                    <li>Additional <code>use</code> values for WebCrypto usages, enabling multiple specific usages to be associated with a key</li>
                     <li>A new <code>ext</code> attribute providing the value of the <a href="#dfn-Key">Key</a>'s <a href="#dfn-Key-extractable">extractable</a> attribute.</li>
                 </ul>
 
             </p>
-            <div id="key-interface-jwk-algorithms" class="section">
-                <h4>JSON Web Key algorithm names for WebCrypto algorithms</h4>
-                <p>
-                    This specification defines additional <a href="#jwk">JSON Web Key</a> algorithm names associated with WebCrypto algorithms as listed in the following table:
-                </p>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>WebCrypto Algorithm</td>
-                            <td>Key Size (bits)</td>
-                            <td>JWK <code>alg</code> value</td>
-                        </tr>
+            <div id="key-interface-jwk-extensions" class="section">
+              <h4>Extensions to JSON Web Key</h4>
+              <div id="key-interface-jwk-algorithms" class="section">
+                  <h5>JSON Web Key algorithm names for WebCrypto algorithms</h5>
+                  <p>
+                      This specification defines additional <a href="#jwk">JSON Web Key</a> algorithm names:
+                        <code>A128CTR</code>,
+                        <code>A192CTR</code>,
+                        <code>A256CTR</code>,
+                        <code>A128CBC</code>,
+                        <code>A192CBC</code>,
+                        <code>A256CBC</code>,
+                        <code>A128CMAC</code>,
+                        <code>A192CMAC</code>,
+                        <code>A256CMAC</code>,
+                        <code>A128CFB</code>,
+                        <code>A192CFB</code>,
+                        <code>A256CFB</code>,
+                        <code>HS1</code>,
+                        <code>HS224</code>.
                     
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>AES-CTR</td>
-                            <td>128</td>
-                            <td><code>A128CTR</code></td>
-                        </tr>
-                        <tr>
-                            <td>AES-CTR</td>
-                            <td>192</td>
-                            <td><code>A192CTR</code></td>
-                        </tr>
-                        <tr>
-                            <td>AES-CTR</td>
-                            <td>256</td>
-                            <td><code>A256CTR</code></td>
-                        </tr>
-                        <tr>
-                            <td>AES-CBC</td>
-                            <td>128</td>
-                            <td><code>A128CBC</code></td>
-                        </tr>
-                        <tr>
-                            <td>AES-CBC</td>
-                            <td>192</td>
-                            <td><code>A192CBC</code></td>
-                        </tr>
-                        <tr>
-                            <td>AES-CBC</td>
-                            <td>256</td>
-                            <td><code>A256CBC</code></td>
-                        </tr>
-                    </tbody>
-                </table>
+                      These are associated with WebCrypto algorithms as defined in the mapping tables below.
+                  </p>
+              </div>
+              <div id="key-interface-jwk-ext" class="section">
+                  <h5>JSON Web Key <code>ext</code> attribute</h5>
+                  <p>
+                  This specification defines a new <a href="#jwk">JSON Web Key</a> attribute <code>ext</code> that enables the value of the <a href="#dfn-Key-extractable">extractable</a> attribute of a <a href="#dfn-Key">Key</a> to be included in a <a href="#jwk">JSON Web Key</a> object. The <code>ext</code> attribute SHALL have a Boolean value.
+                  </p>
+              </div>
             </div>
-            <div id="key-interface-jwk-use" class="section">
-                <h4>JSON Web Key <code>use</code> attribute</h4>
-                <p>
-                    This specification defines additional values for the <a href="#jwk">JSON Web Key</a> attribute <code>use</code> that enable accurate representation of <a href="#dfn-Key-usages">KeyUsage</a> values.
-                </p>
+            <div id="key-interface-jwk-mapping" class="section">
+              <h4>Mapping between WebCrypto and JSON Web Key</h4>
+              <p>This section defines the mapping between WebCrypto <a href="#dfn-Key">Key</a> objects and <a href="#jwk">JSON Web Key</a> objects.</p>
+              <div id="key-interface-jwk-mapping-alg" class="section">
+                  <h5>Mapping of algorithms</h5>
+                  <p>The JSON Web Key <code>alg</code> member shall be mapped to / from the <code>name</code>, <code>length</code> and <code>hash</code> members of the <code>algorithm</code> attribute
+                  of the Key object according to the following tables:</p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <td>WebCrypto <code>Key.algorithm.name</code></td>
+                              <td>JWK <code>alg</code> value</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>RSAES-PKCS1-V1_5</code></td>
+                              <td><code>RSA1_5</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSA-OAEP</code></td>
+                              <td><code>RSA-OAEP</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>ECDH</code></td>
+                              <td><code>ECDH-ES</code></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <p></p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <td>WebCrypto <code>Key.algorithm.name</code></td>
+                              <td>WebCrypto <code>Key.algorithm.length</code></td>
+                              <td>JWK <code>alg</code> value</td>
+                          </tr>
+                      
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>AES-CTR</code></td>
+                              <td>128</td>
+                              <td><code>A128CTR</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-CTR</code></td>
+                              <td>192</td>
+                              <td><code>A192CTR</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-CTR</code></td>
+                              <td>256</td>
+                              <td><code>A256CTR</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-CBC</code></td>
+                              <td>128</td>
+                              <td><code>A128CBC</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-CBC</code></td>
+                              <td>192</td>
+                              <td><code>A192CBC</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-CBC</code></td>
+                              <td>256</td>
+                              <td><code>A256CBC</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>128</td>
+                              <td><code>A128KW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>192</td>
+                              <td><code>A192KW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>256</td>
+                              <td><code>A256KW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-GCM</code></td>
+                              <td>128</td>
+                              <td><code>A128GCM</code> or <code>A128GCMKW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-GCM</code></td>
+                              <td>192</td>
+                              <td><code>A192GCM</code> or <code>A128GCMKW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-GCM</code></td>
+                              <td>256</td>
+                              <td><code>A256GCM</code> or <code>A128GCMKW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>128</td>
+                              <td><code>A128KW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>192</td>
+                              <td><code>A192KW</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>AES-KW</code></td>
+                              <td>256</td>
+                              <td><code>A256KW</code></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <p></p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <td>WebCrypto <code>Key.algorithm.name</code></td>
+                              <td>WebCrypto <code>Key.algorithm.hash</code></td>
+                              <td>JWK <code>alg</code> value</td>
+                          </tr>
+                      </thead>
+                      <tbody>
 
-                <table>
+                          <tr>
+                              <td><code>HMAC</code></td>
+                              <td><code>SHA-1</code></td>
+                              <td><code>HS1</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>HMAC</code></td>
+                              <td><code>SHA-224</code></td>
+                              <td><code>HS224</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>HMAC</code></td>
+                              <td><code>SHA-256</code></td>
+                              <td><code>HS256</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>HMAC</code></td>
+                              <td><code>SHA-384</code></td>
+                              <td><code>HS384</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>HMAC</code></td>
+                              <td><code>SHA-512</code></td>
+                              <td><code>HS512</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSASSA-PKCS1-v1_5</code></td>
+                              <td><code>SHA-256</code></td>
+                              <td><code>RS256</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSASSA-PKCS1-v1_5</code></td>
+                              <td><code>SHA-384</code></td>
+                              <td><code>RS384</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSASSA-PKCS1-v1_5</code></td>
+                              <td><code>SHA-512</code></td>
+                              <td><code>RS512</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSA-PSS</code></td>
+                              <td><code>SHA-256</code></td>
+                              <td><code>PS256</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSA-PSS</code></td>
+                              <td><code>SHA-384</code></td>
+                              <td><code>PS384</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>RSA-PSS</code></td>
+                              <td><code>SHA-512</code></td>
+                              <td><code>PS512</code></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                <p></p>
+                  <table>
+                      <thead>
+                          <tr>
+                              <td>WebCrypto <code>Key.algorithm.name</code></td>
+                              <td>WebCrypto <code>Key.algorithm.namedCurve</code></td>
+                              <td>JWK <code>alg</code> value</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>ECDSA</code></td>
+                              <td><code>P-256</code></td>
+                              <td><code>ES256</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>ECDSA</code></td>
+                              <td><code>P-384</code></td>
+                              <td><code>ES384</code></td>
+                          </tr>
+                          <tr>
+                              <td><code>ECDSA</code></td>
+                              <td><code>P-512</code></td>
+                              <td><code>ES512</code></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              <div id="key-interface-jwk-mapping-use" class="section">
+                <h5>Mapping of usages</h5>
+                <p>When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of the <a href="#dfn-Key">Key</a>.usages array shall be copied into the JWK <code>key_ops</code> member where each WebCryto <a href="#dfn-KeyUsage">KeyUsage</a> value maps to the JWK <code>key_ops</code> value of the same name. The <code>use</code> member shall not be present.</p>
+                <p>When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object, if the <code>key_ops</code> member is present then the
+                  WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be equal to the values listed in <code>key_ops</code>  where each JWK <code>key_ops</code> value maps to the WebCryto <a href="#dfn-KeyUsage">KeyUsage</a> value of the same name. If the <code>key_ops</code> member is not present and the <code>use</code> member is present, then the WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be as specified in the following table:
+                  </p>
+                  
+                  <table>
                     <thead>
-                        <tr>
-                            <td>WebCrypto <a href="#dfn-Key-usages">KeyUsage</a> value</td>
-                            <td>Value in <a href="#jwk">JSON Web Key</a> <code>use</code> string</td>
-                        </tr>
+                      <tr>
+                        <td>JWK <code>use</code> value</td>
+                        <td>WebCrypto Key.usages value</td>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><code>encrypt</code></td>
-                            <td><code>enconly</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>decrypt</code></td>
-                            <td><code>deconly</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>sign</code></td>
-                            <td><code>sigonly</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>verify</code></td>
-                            <td><code>vfyonly</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>deriveKey</code></td>
-                            <td><code>drvkey</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>deriveBits</code></td>
-                            <td><code>drvbits</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>wrapKey</code></td>
-                            <td><code>wrap</code></td>
-                        </tr>
-                        <tr>
-                            <td><code>unwrapKey</code></td>
-                            <td><code>unwrap</code></td>
-                        </tr>
+                      <tr>
+                        <td><code>enc</code></td>
+                        <td><code>[ "encrypt", "decrypt", "wrap", "unwrap" ]</code></td>
+                      </tr>
+                      <tr>
+                        <td><code>sig</code></td>
+                        <td><code>[ "sign", "verify" ]</code></td>
+                      </tr>
                     </tbody>
-                </table>
-                <p>
-                    The <a href="#jwk">JSON Web Key</a> <code>use</code> value may contain a single registered value or a comma-separated list of distinct values, with no whitespace.
-
-                    Note that with these definitions, the <a href="#jwk">JSON Web Key</a> <code>use</code> value <code>enc</code> is equivalent to the value <code>enconly,deconly,wrap,unwrap</code> and the value <code>sig</code> is equivalent to the value <code>sigonly,vfyonly</code>.
-                </p>
-            </div>
-            <div id="key-interface-jwk-ext" class="section">
-                <h4>JSON Web Key <code>ext</code> attribute</h4>
-                <p>
-                This specification defines a new <a href="#jwk">JSON Web Key</a> attribute <code>ext</code> that enables the value of the <a href="#dfn-Key-extractable">extractable</a> attribute of a <a href="#dfn-Key">Key</a> to be included in a <a href="#jwk">JSON Web Key</a> object. The <code>ext</code> attribute SHALL have a Boolean value.
-                </p>
-            </div>
+                  </table>
+              </div>
+              <div id="key-interface-jwk-mapping-ext" class="section">
+                <h5>Mapping of extractable</h5>
+                <p>When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of the JWK <code>ext</code> attribute shall be <code>true</code>.</p>
+                <p>When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object, if the <code>ext</code> member is present then the
+                  WebCryto <a href="#dfn-Key-extractable">extractable</a> value specified by this JWK shall be equal to the <code>ext</code> member value.</p>
+              </div>
+           </div>
         </div>
       </div>
 
@@ -4102,7 +4270,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A128CBC"</li>
                 <li>Algorithm Description: AES CBC using 128 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Prohibited</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4111,7 +4279,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A192CBC"</li>
                 <li>Algorithm Description: AES CBC using 192 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Prohibited</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4120,7 +4288,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A256CBC"</li>
                 <li>Algorithm Description: AES CBC using 256 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Prohibited</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4129,7 +4297,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A128CTR"</li>
                 <li>Algorithm Description: AES CTR using 128 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Prohibited</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4138,7 +4306,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A192CTR"</li>
                 <li>Algorithm Description: AES CTR using 192 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Prohibited</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4147,7 +4315,79 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Algorithm Name: "A256CTR"</li>
                 <li>Algorithm Description: AES CTR using 256 bit key</li>
                 <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>Implementation Requirements: Optional</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+          
+            <ul>
+                <li>Algorithm Name: "A128CMAC"</li>
+                <li>Algorithm Description: AES CMAC using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A192CMAC"</li>
+                <li>Algorithm Description: AES CMAC using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CMAC"</li>
+                <li>Algorithm Description: AES CMAC using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+          
+            <ul>
+                <li>Algorithm Name: "A128CFB"</li>
+                <li>Algorithm Description: AES CFB using 128 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A192CFB"</li>
+                <li>Algorithm Description: AES CFB using 192 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "A256CFB"</li>
+                <li>Algorithm Description: AES CFB using 256 bit key</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+          
+            <ul>
+                <li>Algorithm Name: "HS1"</li>
+                <li>Algorithm Description: HMAC using SHA-1</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
+                <li>Change Controller: W3C WebCrypto working group</li>
+                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+            </ul>
+            
+            <ul>
+                <li>Algorithm Name: "HS224"</li>
+                <li>Algorithm Description: HMAC using SHA-224</li>
+                <li>Algorithm Usage Location(s): "JWK"</li>
+                <li>JOSE Implementation Requirements: Prohibited</li>
                 <li>Change Controller: W3C WebCrypto working group</li>
                 <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
             </ul>
@@ -4163,73 +4403,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <li>Specification Document(s): <a href="#key-interface-jwk-ext">JSON Web Key "ext" attribute</a> in this document</li>
             </ul>
         </div>
-
-        <div id="iana-section-jwk-use" class="section">
-            <h3>JSON Web Key Use Registry</h3>
-            <ul>
-                <li>Use Member Value: "enconly"</li>
-                <li>Use Description: Encryption</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-
-            <ul>
-                <li>Use Member Value: "deconly"</li>
-                <li>Use Description: Decryption</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "sigonly"</li>
-                <li>Use Description: Signature</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "vfyonly"</li>
-                <li>Use Description: Signature and HMAC verification</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "drvkey"</li>
-                <li>Use Description: Key derivation</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "drvbits"</li>
-                <li>Use Description: Secret derivation</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "wrap"</li>
-                <li>Use Description: Key wrapping</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Value: "unwrap"</li>
-                <li>Use Description: Key unwrapping</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Use Member Values: All comma-separated non-whitespace-containing duplicate-free non-empty lists of non-comma-containing registered values</li>
-                <li>Use Description: The union of the listed uses</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s):  <a href="#key-interface-jwk-use">JSON Web Key "use" attribute</a> in this document</li>
-            </ul>
-        </div>
-    </div>
+      </div>
       <div id="acknowledgements-section" class="section">
         <h2>Acknowledgements</h2>
         <p>
