@@ -1231,6 +1231,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>key</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"encrypt"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
                   Create a new Promise object.
                 </p>
               </li>
@@ -1282,6 +1289,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <a href="#algorithms">registered algorithm</a> that supports the decrypt
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>key</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"decrypt"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -1340,6 +1354,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>key</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"sign"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
                   Create a new Promise object.
                 </p>
               </li>
@@ -1390,6 +1411,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <a href="#algorithms">registered algorithm</a> that supports the verify
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>key</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"verify"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -1564,6 +1592,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>baseKey</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"deriveKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
                 </p>
               </li>
@@ -1632,6 +1667,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <a href="#algorithms">registered algorithm</a> that supports the derive
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>baseKey</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
+                  contain the <code>"deriveBits"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  terminate this algorithm with an error.
                 </p>
               </li>
               <li>
