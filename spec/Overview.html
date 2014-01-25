@@ -1917,21 +1917,17 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>bytes</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>
-                  algorithm, with the <var>keyFormat</var> as <code>keyFormat</code> and with <var>key</var> as
-                  <code>key</code>.
+                  Let <var>bytes</var> be the result of encoding <var>key</var> according to <var>keyFormat</var>.
                 </p>
               </li>
               <li>
                 <p>
-                 If the key export algorithm failed, terminate this algorithm with an error.
+                 If the encoding operation failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                 Let <var>result</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>
-                 algorithm, with <var>wrappingKey</var> as <code>Key</code>, <var>normalizedAlgorithm</var> as
-                 <code>algorithm</code>, and with <var>bytes</var> as <code>buffer</code>.
+                 Let <var>result</var> be the result of performing the underlying cryptographic algorithm specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as input data.
                 </p>
               </li>
               <li>
@@ -2034,9 +2030,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                  <p>
-                   Let <var>bytes</var> be the result of executing the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>
-                   algorithm, with <var>unwrapAlgorithm</var> as <code>algorithm</code>, <var>unwrappingKey</var>
-                   as <code>key</code>, and with <var>wrappedKey</var> as <code>buffer</code>.
+                   Let <var>bytes</var> be the result of performing the underlying cryptographic algorithm specified by <var>normalizedUnwrapAlgorithm</var>
+                   witk key <var>unwrappingKey</var> and input data <var>wrappedKey</var>.
                  </p>
               </li>
               <li>
@@ -2046,10 +2041,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the <a href="#dfn-SubtleCrytpo-method-importKey">importKey</a>
-                  algorithm, with <var>format</var> as <code>format</code>, with <var>bytes</var> as
-                  <code>keyData</code>, with <var>unwrappedKeyAlgorithm</var> as <code>algorithm</code>, with <var>extractable</var>
-                  as <code>extractable</code>, and <var>keyUsages</var> as <code>keyUsages</code>.
+                If <var>bytes</var>, interpreted accoding to <var>format</var>, specifies parameters that are inconsistent with the parameters supplied to <a href="#dfn-SubtleCrytpo-method-unwrapKey">unwrapKey</a>, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                    Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that results from interpreting
+                    <var>bytes</var> accoding to <var>format</var> using the key import algorithm indicated in <var>normalizedKeyAlgorithm</var>.
                 </p>
               </li>
               <li>
