@@ -2211,8 +2211,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#rsassa-pkcs1">RSASSA-PKCS1-v1_5</a></td>
@@ -2256,8 +2256,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td /> 
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#ecdsa">ECDSA</a></td>
@@ -2301,8 +2301,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#aes-cbc">AES-CBC</a></td>
@@ -2316,8 +2316,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#aes-cmac">AES-CMAC</a></td>
@@ -2346,8 +2346,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#aes-cfb">AES-CFB</a></td>
@@ -2361,8 +2361,8 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
                 <td>&#10004;</td>
                 <td>&#10004;</td>
-                <td />
-                <td />
+                <td>&#10004;</td>
+                <td>&#10004;</td>
               </tr>
               <tr>
                 <td><a href="#aes-kw">AES-KW</a></td>
@@ -2678,6 +2678,16 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
+                <tr>
+                  <td>wrapKey</td>
+                  <td>None</td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td>None</td>
+                  <td>Key</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -2923,6 +2933,16 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>wrapKey</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
@@ -3337,6 +3357,16 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
+                <tr>
+                  <td>wrapKey</td>
+                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -3440,7 +3470,16 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
+                <tr>
+                  <td>wrapKey</td>
+                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -3577,7 +3616,16 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
+                <tr>
+                  <td>wrapKey</td>
+                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
                </tbody>
              </table>
            </div>
@@ -3658,7 +3706,16 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
+                <tr>
+                  <td>wrapKey</td>
+                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
+                  <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>unwrapKey</td>
+                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
               </tbody>
             </table>
           </div>
