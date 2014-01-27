@@ -2149,13 +2149,18 @@ partial interface <a href="http://www.w3.org/TR/workers/#workerglobalscope">Work
 typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </code></pre></div></div>
         <p>
-          The <a href="#dfn-BigInteger">BigInteger</a> typedef is a <code>Uint8Array</code>
-          that holds a multiple-precision unsigned integer. Each Uint8
-          element in the array represents a base-256 digit of the integer.
-          The digits are in big-endian order: the first Uint8 element in the array
-          is the most significant digit. A leading zero Uint8 element
-          is not needed if the most significant bit of the integer is set.
+          The <a href="#dfn-BigInteger">BigInteger</a> typedef is a <code>Uint8Array</code> that
+          holds an arbitrary magnitude unsigned integer in big-endian order. Values read from
+          the API SHALL have minimal typed array length (that is, at most 7 leading zero bits,
+          except the value 0 which shall have length 8 bits). The API SHALL accept values with
+          any number of leading zero bits.
         </p>
+
+        <div class="note"><div class="noteHeader">Note</div>
+            <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
+            is NOT a sign bit. Implementors should take care when mapping to big integer implementations
+            that expected signed integers.
+        </div>
       </div>
       
       <div id="keypair" class="section">
