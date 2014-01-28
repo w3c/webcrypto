@@ -674,25 +674,12 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
           user agent.
         </p>
         <x:codeblock language="idl">
-enum <dfn id="dfn-KeyType">KeyType</dfn> {
-  "secret",
-  "public",
-  "private"
-};
+typedef DOMString <a href="#dfn-KeyType">KeyType</a>;
 
-enum <dfn id="dfn-KeyUsage">KeyUsage</dfn> {
-  "encrypt",
-  "decrypt",
-  "sign",
-  "verify",
-  "deriveKey",
-  "deriveBits",
-  "wrapKey",
-  "unwrapKey"
-};
+typedef DOMString <a href="#dfn-KeyUsage">KeyUsage</a>;
 
 interface <dfn id="dfn-Key">Key</dfn> {
-  readonly attribute KeyType <a href="#dfn-Key-type">type</a>;
+  readonly attribute <a href="#dfn-KeyType">KeyType</a> <a href="#dfn-Key-type">type</a>;
   readonly attribute boolean <a href="#dfn-Key-extractable">extractable</a>;
   readonly attribute <a href="#dfn-Algorithm">Algorithm</a> <a href="#dfn-Key-algorithm">algorithm</a>;
   readonly attribute <a href="#dfn-KeyUsage">KeyUsage</a>[] <a href="#dfn-Key-usages">usages</a>;
@@ -718,15 +705,35 @@ interface <dfn id="dfn-Key">Key</dfn> {
           </p>
         </div>
 
+        <div id="key-interface-types" class="section">
+          <h3>Key interface data types</h3>
+          <dl>
+            <dt id="dfn-KeyType"><code>KeyType</code></dt>
+            <dd>The type of a key. The recognized <code>KeyType</code> values are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
+                Opaque keying material, including that used for symmetric algorithms, is represented by <code>"secret"</code>,
+                while keys used as part of asymmetric algorithms composed of public/private keypairs will be either
+                <code>"public"</code> or <code>"private"</code>.
+            </dd>
+            <dt id="dfn-KeyUsage"><code>KeyUsage</code></dt>
+            <dd>A type of operation that may be performed using a key. The recognized <code>KeyUsage</code> values are
+                    <code>"encrypt"</code>,
+                    <code>"decrypt"</code>,
+                    <code>"sign"</code>,
+                    <code>"verify"</code>,
+                    <code>"deriveKey"</code>,
+                    <code>"deriveBits"</code>,
+                    <code>"wrapKey"</code> and
+                    <code>"unwrapKey"</code>.
+            </dd>
+          </dl>
+        </div>
+
         <div id="key-interface-members" class="section">
           <h3>Key interface members</h3>
           <dl>
             <dt id="dfn-Key-type"><code>type</code></dt>
             <dd>
-              The type of the underlying key. Opaque keying material, including that used for
-              symmetric algorithms, is represented by <code>"secret"</code>, while keys used as
-              part of asymmetric algorithms composed of public/private keypairs will be either
-              <code>"public"</code> or <code>"private"</code>.
+              The type of the underlying key.
             </dd>
             <dt id="dfn-Key-extractable"><code>extractable</code></dt>
             <dd>
@@ -1046,7 +1053,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
                 <h5>Mapping of usages</h5>
                 <p>When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of the <a href="#dfn-Key">Key</a>.usages array shall be copied into the JWK <code>key_ops</code> member where each WebCryto <a href="#dfn-KeyUsage">KeyUsage</a> value maps to the JWK <code>key_ops</code> value of the same name. The <code>use</code> member shall not be present.</p>
                 <p>When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object, if the <code>key_ops</code> member is present then the
-                  WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be equal to the values listed in <code>key_ops</code>  where each JWK <code>key_ops</code> value maps to the WebCryto <a href="#dfn-KeyUsage">KeyUsage</a> value of the same name. If the <code>key_ops</code> member is not present and the <code>use</code> member is present, then the WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be as specified in the following table:
+                  WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be equal to the values listed in <code>key_ops</code>  where each JWK <code>key_ops</code> value maps to the WebCryto <a href="#dfn-KeyUsage">KeyUsage</a> value of the same name, except that unrecognized values SHALL be ignored. If the <code>key_ops</code> member is not present and the <code>use</code> member is present, then the WebCryto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be as specified in the following table:
                   </p>
                   
                   <table>
@@ -1096,16 +1103,7 @@ partial interface Window {
       <div id="subtlecrypto-interface" class="section">
         <h2>SubtleCrypto interface</h2>
         <x:codeblock language="idl">
-enum <dfn id="dfn-KeyFormat">KeyFormat</dfn> {
-  <span class="comment">// An unformatted sequence of bytes. Intended for secret keys.</span>
-  "raw",
-  <span class="comment">// The DER encoding of the PrivateKeyInfo structure from <a href="#RFC5208">RFC 5208</a>.</span>
-  "pkcs8",
-  <span class="comment">// The DER encoding of the SubjectPublicKeyInfo structure from <a href="#RFC5280">RFC 5280</a>.</span>
-  "spki",
-  <span class="comment">// The key is represented as JSON according to the JSON Web Key format.</span>
-  "jwk",
-};
+typedef DOMString <a href="#dfn-KeyFormat"><code>KeyFormat</code></a>;
 
 typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
 
@@ -1199,6 +1197,25 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             which may represent the composition and security parameters in a unique manner that
             necessitate the use of the raw algorithms.
           </p>
+        </div>
+
+        <div id="subtlecrypto-interface-datatypes" class="section">
+          <h3>Data Types</h3>
+          <dl>
+            <dt id="dfn-KeyFormat"><code>KeyFormat</code></dt>
+            <dd>Specifies a serialization format for a key. The following values are recognized:
+              <dl>
+                <dt><code>raw</code></dt>
+                <dd>An unformatted sequence of bytes. Intended for secret keys.</dd>
+                <dt><code>pkcs8</code></dt>
+                <dd>The DER encoding of the PrivateKeyInfo structure from <a href="#RFC5208">RFC 5208</a>.</dd>
+                <dt><code>spki</code></dt>
+                <dd>The DER encoding of the SubjectPublicKeyInfo structure from <a href="#RFC5280">RFC 5280</a>.</dd>
+                <dt><code>jwk</code></dt>
+                <dd>The key is represented as JSON according to the JSON Web Key format.</dd>
+              </dl>
+            </dd>
+          </dl>
         </div>
 
         <div id="subtlecrypto-interface-methods" class="section">
@@ -1527,6 +1544,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
                 </p>
               </li>
@@ -1595,6 +1618,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If <code>baseKey</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
                   contain the <code>"deriveKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
                   terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
@@ -1762,6 +1791,18 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>format</var>, <var>keyData</var>, <var>extractable</var> and <var>usages</var> be the <code>format</code>, <code>keyData</code>,
                   <code>extractable</code> and <code>usages</code> parameters to the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method respectively.
                 </p>
@@ -1835,6 +1876,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
+            
+              <li>
+                <p>
+                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>key</var> and <var>format</var> be the values of the <code>key</code> and <code>format</code> parameters to the
@@ -1904,6 +1952,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <a href="#algorithms">registered algorithm</a> that supports the deriveKey
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
@@ -2024,6 +2078,18 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     <p>Otherwise, let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</p>
                   </li>
                 </ul>
+              </li>
+              <li>
+                <p>
+                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                </p>
               </li>
               <li>
                 <p>
@@ -3050,14 +3116,7 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
           <div id="EcKeyGenParams-dictionary" class="section">
             <h4>EcKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
-enum <dfn id="dfn-NamedCurve">NamedCurve</dfn> {
-  <span class="comment">// NIST recommended curve P-256, also known as secp256r1.</span>
-  <dfn id="dfn-NamedCurve-p256">"P-256"</dfn>,
-  <span class="comment">// NIST recommended curve P-384, also known as secp384r1.</span>
-  <dfn id="dfn-NamedCurve-p384">"P-384"</dfn>,
-  <span class="comment">// NIST recommended curve P-521, also known as secp521r1.</span>
-  <dfn id="dfn-NamedCurve-p521">"P-521"</dfn>
-};
+typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
 
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
@@ -3065,8 +3124,16 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
 };
             </x:codeblock>
             <p>
-              The <a href="#dfn-NamedCurve">NamedCurve</a> enumeration type represents named elliptic curves, which
-              are a convenient way to specify the domain parameters of well-known elliptic curves.
+              The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves, which
+              are a convenient way to specify the domain parameters of well-known elliptic curves. The following values are recognized:
+              <dl>
+                <dt id="dfn-NamedCurve-p256"><code>P-256</code></dt>
+                <dd>NIST recommended curve P-256, also known as <code>secp256r1</code>.</dd>
+                <dt id="dfn-NamedCurve-p2384"><code>P-384</code></dt>
+                <dd>NIST recommended curve P-384, also known as <code>secp384r1</code>.</dd>
+                <dt id="dfn-NamedCurve-p521"><code>P-521</code></dt>
+                <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
+              </dl>
             </p>
           </div>
 
