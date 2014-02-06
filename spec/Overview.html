@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>27 January 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>6 February 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@ communications.
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 27 January 2014 <b>Editor’s Draft</b> of the
+        This document is the 6 February 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -718,13 +718,13 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <h3>11.2. Key interface data types</h3>
           <dl>
             <dt id="dfn-KeyType"><code>KeyType</code></dt>
-            <dd>The type of a key. The recognized <code>KeyType</code> values are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
+            <dd>The type of a key. The <dfn id="dfn-RecognizedKeyType">recognized key type values</dfn> are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
                 Opaque keying material, including that used for symmetric algorithms, is represented by <code>"secret"</code>,
                 while keys used as part of asymmetric algorithms composed of public/private keypairs will be either
                 <code>"public"</code> or <code>"private"</code>.
             </dd>
             <dt id="dfn-KeyUsage"><code>KeyUsage</code></dt>
-            <dd>A type of operation that may be performed using a key. The recognized <code>KeyUsage</code> values are
+            <dd>A type of operation that may be performed using a key. The <dfn id="dfn-RecognizedKeyUsage">recognized key usage values</dfn> are
                     <code>"encrypt"</code>,
                     <code>"decrypt"</code>,
                     <code>"sign"</code>,
@@ -1212,7 +1212,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <h3>13.2. Data Types</h3>
           <dl>
             <dt id="dfn-KeyFormat"><code>KeyFormat</code></dt>
-            <dd>Specifies a serialization format for a key. The following values are recognized:
+            <dd>Specifies a serialization format for a key. The <dfn id="dfn-RecognizedKeyFormats">recognized key format values</dfn> are:
               <dl>
                 <dt><code>raw</code></dt>
                 <dd>An unformatted sequence of bytes. Intended for secret keys.</dd>
@@ -1553,7 +1553,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1631,7 +1631,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1800,13 +1800,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1888,7 +1888,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1965,7 +1965,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>

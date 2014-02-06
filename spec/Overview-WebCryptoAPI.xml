@@ -709,13 +709,13 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <h3>Key interface data types</h3>
           <dl>
             <dt id="dfn-KeyType"><code>KeyType</code></dt>
-            <dd>The type of a key. The recognized <code>KeyType</code> values are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
+            <dd>The type of a key. The <dfn id="dfn-RecognizedKeyType">recognized key type values</dfn> are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
                 Opaque keying material, including that used for symmetric algorithms, is represented by <code>"secret"</code>,
                 while keys used as part of asymmetric algorithms composed of public/private keypairs will be either
                 <code>"public"</code> or <code>"private"</code>.
             </dd>
             <dt id="dfn-KeyUsage"><code>KeyUsage</code></dt>
-            <dd>A type of operation that may be performed using a key. The recognized <code>KeyUsage</code> values are
+            <dd>A type of operation that may be performed using a key. The <dfn id="dfn-RecognizedKeyUsage">recognized key usage values</dfn> are
                     <code>"encrypt"</code>,
                     <code>"decrypt"</code>,
                     <code>"sign"</code>,
@@ -1203,7 +1203,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <h3>Data Types</h3>
           <dl>
             <dt id="dfn-KeyFormat"><code>KeyFormat</code></dt>
-            <dd>Specifies a serialization format for a key. The following values are recognized:
+            <dd>Specifies a serialization format for a key. The <dfn id="dfn-RecognizedKeyFormats">recognized key format values</dfn> are:
               <dl>
                 <dt><code>raw</code></dt>
                 <dd>An unformatted sequence of bytes. Intended for secret keys.</dd>
@@ -1544,7 +1544,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1622,7 +1622,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1791,13 +1791,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
+                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1879,7 +1879,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
@@ -1956,7 +1956,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
                   a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
