@@ -3349,7 +3349,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
               and decryption ordering to the RSAES-OAEP algorithm specified in
               [<cite><a href="#RFC3447">RFC3447</a></cite>], using the mask
-              generation function MGF-1.
+              generation function MGF1.
             </p>
           </div>
           <div id="rsa-oaep-registration" class="section">
@@ -3381,16 +3381,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <td>generateKey</td>
                   <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
-                </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
                   <td>importKey</td>
@@ -3431,10 +3421,141 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             <h4>17.7.4. Operations</h4>
             <dl>
               <dt>Encrypt</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                    <li>
+                        <p>
+                            If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
+                        </p>
+                    </li>
+                    <li>
+                      <p>
+                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      </p>
+                    </li>
+                    <li>
+                        <p>
+                            Perform the encrytion operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA public key, the contents of <var>plaintext</var> as the message to be encrypted, M, and <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with the hash function identified by <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
+                            <ol>
+                                <li>
+                                    <p>
+                                        If performing the operation results in an error, terminate this algorithm with an error.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code> containing the value C that results from performing the operation.
+                                    </p>
+                                </li>
+                            </ol>
+                        </p>
+                    </li>
+                </ol>
+              </dd>
               <dt>Decrypt</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                    <li>
+                        <p>
+                            If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                        </p>
+                    </li>
+                    <li>
+                      <p>
+                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      </p>
+                    </li>
+                    <li>
+                        <p>
+                            Perform the decryption operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA private key, the contents of <var>ciphertext</var> as the cipertext to be decrypted, C, and <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with the hash function identified by <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
+                            <ol>
+                                <li>
+                                    <p>
+                                        If performing the operation results in an error, terminate this algorithm with an error.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code> containing the value M that results from performing the operation.
+                                    </p>
+                                </li>
+                            </ol>
+                        </p>
+                    </li>
+                </ol>
+              </dd>
               <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      <ul>
+                        <li>
+                          <p>
+                          If generation of the key pair fails, terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise,
+                            <ol>
+                              <li>
+                                <p>
+                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Return <var>result</var>.
+                                </p>
+                              </li>
+                            </ol>
+                          </p>
+                        </li>
+                      </ul>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd></dd>
+              <dt>Export Key</dt>
               <dd></dd>
               <dt>Wrap Key</dt>
               <dd></dd>
