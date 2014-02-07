@@ -1270,14 +1270,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the underlying cryptographic
-                  algorithm specified by <var>normalizedAlgorithm</var>.
+                  Let <var>ciphertext</var> be the result of performing the encrypt
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
+                  and <code>data</code> as <var>plaintext</var>.
                 </p>
               </li>
               <li>
                 <p>
                   Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
-                  <var>result</var> as <var>value</var>.
+                  <var>ciphertext</var> as <var>value</var>.
                 </p>
               </li>
             </ol>
@@ -1332,14 +1333,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the underlying cryptographic
-                  algorithm specified by <var>normalizedAlgorithm</var>.
+                  Let <var>plaintext</var> be the result of performing the underlying decrypt
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
+                  and <code>data</code> as <var>ciphertext</var>.
                 </p>
               </li>
               <li>
                 <p>
                   Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
-                  <var>result</var> as <var>value</var>.
+                  <var>plaintext</var> as <var>value</var>.
                 </p>
               </li>
             </ol>
@@ -1393,8 +1395,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the underlying cryptographic
-                  algorithm specified by <var>normalizedAlgorithm</var>.
+                  Let <var>result</var> be the result of performing the signature
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
+                  and <code>data</code> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1454,8 +1457,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the underlying cryptographic
-                  algorithm specified by <var>normalizedAlgorithm</var>.
+                  Let <var>result</var> be the result of performing the signature verification
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>,
+                  <code>signature</code> as <var>signature</var> and <code>data</code> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1580,7 +1584,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of executing the key generation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var>.
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> with <code>extractable</code> as <var>extractable</var>
+                  and <code>keyUsages</code> as <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -2781,16 +2786,134 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
             <dl>
               <dt>Encrypt</dt>
               <dd>
+                <ol>
+                    <li>
+                        <p>
+                            If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Perform the encrytion operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA public key and the contents of <var>plaintext</var> as M.
+                            <ol>
+                                <li>
+                                    <p>
+                                        If performing the operation results in an error, terminate this algorithm with an error.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code> containing the value C that results from performing the operation.
+                                    </p>
+                                </li>
+                            </ol>
+                        </p>
+                    </li>
+                </ol>
               </dd>
               <dt>Decrypt</dt>
               <dd>
+                <ol>
+                    <li>
+                        <p>
+                            If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Perform the decryption operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA private key and the contents of <var>ciphertext</var> as C.
+                            <ol>
+                                <li>
+                                    <p>
+                                        If performing the operation results in an error, terminate this algorithm with an error.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code> containing the value M that results from performing the operation.
+                                    </p>
+                                </li>
+                            </ol>
+                        </p>
+                    </li>
+                </ol>
               </dd>
               <dt>Generate Key</dt>
               <dd>
+                <ol>
+                  <li>
+                    <p>
+                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      <ul>
+                        <li>
+                          <p>
+                          If generation of the key pair fails, terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise,
+                            <ol>
+                              <li>
+                                <p>
+                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Return <var>result</var>.
+                                </p>
+                              </li>
+                            </ol>
+                          </p>
+                        </li>
+                      </ul>
+                    </p>
+                  </li>
+                </ol>
               </dd>
               <dt>Import Key</dt>
               <dd></dd>
               <dt>Export Key</dt>
+              <dd></dd>
+              <dt>Wrap Key</dt>
+              <dd></dd>
+              <dt>Unwrap Key</dt>
               <dd></dd>
             </dl>
           </div>
@@ -2860,13 +2983,144 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
           </div>
           <div id="rsassa-pkcs1-operations" class="section">
             <h4>Operations</h4>
-            <ul>
-              <li>Sign</li>
-              <li>Verify</li>
-              <li>Generate Key</li>
-              <li>Import Key</li>
-              <li>Export Key</li>
-            </ul>
+              <dt>Sign</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                        If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                        Perform the signature generation operation defined in Section 8.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's private key and the contents of <var>message</var> as M and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                      <ol>
+                        <li>
+                          <p>
+                            If performing the operation results in an error, terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise, let <var>signature</var> be the value S that results from performing the operation.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+
+              <dt>Verify</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                        If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                        If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                        Perform the signature verification operation defined in Section 8.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's RSA public key and the contents of <var>message</var> as M and <var>signature</var> as S and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                      <ol>
+                        <li>
+                          <p>
+                            If performing the operation results in an error, terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise, let <var>result</var> be a boolean with value true if the result of the operations was "valid signature" and a boolean with value false otherwise.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      <ul>
+                        <li>
+                          <p>
+                          If generation of the key pair fails, terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise,
+                            <ol>
+                              <li>
+                                <p>
+                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "verify" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                </p>
+                              </li>
+                                                      <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "sign" ]</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Return <var>result</var>.
+                                </p>
+                              </li>
+                            </ol>
+                          </p>
+                        </li>
+                      </ul>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd></dd>
+              <dt>Export Key</dt>
+              <dd></dd>
           </div>
         </div>
 
