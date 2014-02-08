@@ -44,7 +44,7 @@ or code signing, and the confidentiality and integrity of
 communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 14 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 17 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -1629,6 +1629,27 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  If <code>derivedKeyType</code> is null, let <var>normalizedDerivedKeyAlgorithm</var> be null. Otherwise,
+                  <ol>
+                    <li>
+                      <p>
+                        Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
+                        <code>derivedKeyType</code> according to the
+                        <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
+                        <a href="#algorithms">registered algorithm</a> throw a <code>NotSupportedError</code> and
+                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                      </p>
+                    </li>
+                  </ol>
+                </p>
+              </li>
+              <li>
+                <p>
                   If <code>baseKey</code>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
                   contain the <code>"deriveKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
                   terminate this algorithm with an error.
@@ -1679,7 +1700,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of executing the key derivation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var>.
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> using <code>key</code> as <var>key</var>,
+                  <code>extractable</code> as <var>extractable</var> and <code>keyUsages</code> as <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -3881,22 +3903,163 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
           </div>
           <div id="ecdh-operations" class="section">
             <h4>17.9.4. Operations</h4>
-            <ul>
-              <li>Generate Key</li>
-              <li>Derive Key
-                <p>
-                  Perform the standard ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1.
-                  The output of ECDH key agreement is the x-coordinate of the shared secret value <var>P</var>.
-                </p>
-                <p>
+            <dt>Generate Key</dt>
+            <dd>
+              <ol>
+                <li>
+                  <p>
+                  If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If <var>usages</var> contains a value which is not either <code>deriveKey</code> or <code>dervieBits</code>,
+                    terminate this algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  Generate an Eliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>] with domain parameters for the curve identified by <var>normalizedAlgorithm</var><code>.namedCurve</code>.
+                    <ul>
+                      <li>
+                        <p>
+                        If generation of the key pair fails, terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Otherwise,
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.keyUsages</code> be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.keyUsages</code> be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>result</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </p>
+                      </li>
+                    </ul>
+                  </p>
+                </li>
+              </ol>
+            </dd>
+            <dt>Derive Key</dt>
+            <dd>
+              <ol>
+                  <li>
+                    <p>
+                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    If any of the members of <a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                <li>
+                  <p>
+                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1 with <var>key</var> as the EC
+                    private key d and <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
+                    <ol>
+                      <li>
+                        <p>
+                          If performing the operation results in an error, terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Otherwise, let <var>result</var> be the output of the ECDH primitive.
+                        </p>
+                      </li>
+                    </ol>
+                  </p>
+                </li>
+                <div class="note"><div class="noteHeader">Note</div>
                   Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP 800-56A</a>
                   Section 5.7.1.2 specify a modified ECDH primitive that multiplies the shared secret value by
                   the cofactor of the curve. The cofactor of the NIST recommended curves P-256, P-384, and P-521
                   is 1, so the standard and modified ECDH primitives are equivalent for those curves.
-                </p>
-              </li>
-              <li>Derive Bits</li>
-            </ul>
+                </div>
+                <li>
+                  <div class="ednote"><div class="ednoteHeader">Editorial note</div>Define how the finite field member <var>result</var> is converted to a bit string</div>
+                </li>
+                <li>
+                  <div class="ednote"><div class="ednoteHeader">Editorial note</div>Define how a key for algorithm <var>normalizedDerivedKeyAlgorithm</var> is derived from a bit string</div>
+                </li>
+              </ol>
+            </dd>
+            <dt>Derive Bits</dt>
+            <dd>
+              <ol>
+                  <li>
+                    <p>
+                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                    If any of the members of <a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                <li>
+                  <p>
+                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1 with <var>key</var> as the EC
+                    private key d and <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
+                    <ol>
+                      <li>
+                        <p>
+                          If performing the operation results in an error, terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Otherwise, let <var>result</var> be the output of the ECDH primitive.
+                        </p>
+                      </li>
+                    </ol>
+                  </p>
+                </li>
+                <li>
+                  <div class="ednote"><div class="ednoteHeader">Editorial note</div>Define how the finite field member <var>result</var> is converted to a bit string</div>
+                </li>
+              </ol>
+            </dd>
+
           </div>
         </div>
 
