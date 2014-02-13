@@ -758,6 +758,38 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
         </div>
       </div>
 
+      <div id="key-algorithm-interface" class="section">
+        <h2>KeyAlgorithm interface</h2>
+        <p>
+          The KeyAlgorithm interface represents information about the contents of a given
+          <a href="#dfn-Key">Key</a> object.
+        </p>
+        <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  readonly attribute DOMString <a href="#dfn-key-algorithm-name">name</a>
+};
+        </x:codeblock>
+        <div id="key-algorithm-interface-description" class="section">
+          <h3>Description</h3>
+          <p class="norm">This section is non-normative</p>
+          <p>
+            The <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> interface is a supplemental interface
+            used to reflect the static, public properties of a <a href="#dfn-Key">Key</a> back to an
+            application. These properties can be used for determination of strength (e.g.: an
+            attribute that indicates the size of the key or the parameters of its creation) as well
+            as for protocol negotiations (e.g.: a particular instance of an inner hash).
+          </p>
+        </div>
+        <div id="key-algorithm-interface-members" class="section">
+          <h3>KeyAlgorithm interface members</h3>
+          <dl>
+            <dt id="dfn-key-algorithm-name">name</dt>
+            <dd>The name of the algorithm used to generate the <a href="#dfn-Key">Key</a></dd>
+          </dl>
+        </div>
+      </div>
+          
       <div id="key-interface" class="section">
         <h2>Key interface</h2>
         <p>
@@ -835,7 +867,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
             </dd>
             <dt id="dfn-Key-algorithm"><code>algorithm</code></dt>
             <dd>
-              The <a href="#dfn-Algorithm"><code>Algorithm</code></a> used to generate the key.
+              The <a href="#dfn-KeyAlgorithm"><code>KeyAlgorithm</code></a> used to generate the key.
             </dd>
             <dt id="dfn-Key-usages"><code>usages</code></dt>
             <dd>
@@ -2671,7 +2703,18 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
   <span class="comment">// The length, in bits, of the RSA modulus</span>
   unsigned long modulusLength;
   <span class="comment">// The RSA public exponent</span>
-  BigInteger publicExponent;
+  <a href="#dfn-BigInteger">BigInteger</a> publicExponent;
+};
+            </x:codeblock>
+          </div>
+          <div id="RsaKeyAlgorithm-interface" class="section">
+            <h4>RsaKeyAlgorithm interface</h4>
+            <x:codeblock language="idl">
+interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The length, in bits, of the RSA modulus</span>
+  unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
+  <span class="comment">// The RSA public exponent</span>
+  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
 };
             </x:codeblock>
           </div>
@@ -2891,9 +2934,6 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                               to <code>"public"</code>
                             </p>
                           </li>
-                          <li>
-                            <p>Return <var>key</var>.</p>
-                          </li>
                         </ol>
                       </dd>
                       <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
@@ -3056,13 +3096,27 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                   <li>
                     <p>
                       Let <var>algorithm</var> be a new
-                      <a href="#dfn-Algorithm">Algorithm</a>.
+                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Algorithm-name">name</a> property of <var>
-                      algorithm</var> to <code>"RSAES-PKCS1-v1_5"</code>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"RSAES-PKCS1-v1_5"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
+                      property of <var>algorithm</var> to the length, in bits, of the RSA public
+                      modulus.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
+                      property of <var>algorithm</var> to the <a href="#dfn-BigInteger">BigInteger</a>
+                      representation of the RSA public exponent.
                     </p>
                   </li>
                   <li>
@@ -3075,10 +3129,6 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                     <p>Return <var>key</var>.</p>
                   </li>
                 </ol>
-                <div class="ednote">
-                  Specify additional fields for the Key.algorithm to indicate the
-                  modulus size and exponent.
-                </div>
               </dd>
               <dt>Export Key</dt>
               <dd></dd>
@@ -3117,22 +3167,22 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
               <tbody>
                 <tr>
                   <td>sign</td>
-                  <td><a href="#dfn-RsaSsaParams">RsaSsaParams</a></td>
+                  <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
-                  <td><a href="#dfn-RsaSsaParams">RsaSsaParams</a></td>
+                  <td>None</td>
                   <td>boolean</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
-                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a></td>
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>importKey</td>
-                  <td>None</td>
+                  <td><a href="#dfn-RsaHashedImportParams">RsaHashedImportParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
@@ -3143,14 +3193,39 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
               </tbody>
             </table>
           </div>
-          <div id="RsaSsaParams-dictionary" class="section">
-            <h4>RsaSsaParams dictionary</h4>
+          <div id="RsaHashedKeyGenParams-dictionary" class="section">
+            <h4>RsaHashedKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
-dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> {
   <span class="comment">// The hash algorithm to use</span> 
-  AlgorithmIdentifier hash;
+  <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
 };
             </x:codeblock>
+          </div>
+          <div id="RsaHashedKeyAlgorithm-interface" class="section">
+            <h4>RsaHashedKeyAlgorithm interface</h4>
+            <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
+  <span class="comment">// The hash algorithm that is used with this key</span>
+  readonly attribute <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
+};
+            </x:codeblock>
+          </div>
+          <div id="RsaHashedImportParams-dictionary" class="section">
+            <h4>RsaHashedImportParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
+  <span class="comment">// The hash algorithm to use</span>
+  <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
+};
+            </x:codeblock>
+            <div class="ednote">
+              <p>
+                Should this be folded into RsaHashedKeyGenParams and rely on the optional nature of the
+                dictionary fields?
+              </p>
+            </div>
           </div>
           <div id="rsassa-pkcs1-operations" class="section">
             <h4>Operations</h4>
@@ -3161,13 +3236,6 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                     <p>
                       If <var>key</var> does not have key type <code>private</code>, terminate this
                       algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not
-                      present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate
-                      this algorithm with an error.
                     </p>
                   </li>
                   <li>
@@ -3208,13 +3276,6 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are
-                      not present in <var>normalizedAlgorithm</var>, or have incorrect types,
-                      terminate this algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
                       Perform the signature verification operation defined in Section 8.2 of
                       [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
                       <var>key</var> as the signer's RSA public key and the contents of
@@ -3245,7 +3306,7 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a>
+                      If any of the members of <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a>
                       are not present in <var>normalizedAlgorithm</var>, or have incorrect types,
                       terminate this algorithm with an error.
                     </p>
@@ -3256,73 +3317,83 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                       href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
                       <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
                       exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
-                      <ul>
-                        <li>
-                          <p>
-                            If generation of the key pair fails, terminate this algorithm with an
-                            error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise,
-                            <ol>
-                              <li>
-                                <p>
-                                  Let <var>result</var> be a new <a
-                                  href="#dfn-KeyPair"><code>KeyPair</code></a> object
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a
-                                  href="#dfn-Key"><code>Key</code></a> object representing the
-                                  public key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be
-                                  <code>true</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "verify" ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a
-                                  href="#dfn-Key"><code>Key</code></a> object representing the
-                                  private key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be
-                                  <var>extractable</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "sign" ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Return <var>result</var>.
-                                </p>
-                              </li>
-                            </ol>
-                          </p>
-                        </li>
-                      </ul>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If generation of the key pair fails, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a
+                      href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.publicKey</code> be a new <a
+                      href="#dfn-Key"><code>Key</code></a> object representing the
+                      public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.publicKey.extractable</code> be
+                      <code>true</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                      intersection of <var>usages</var> and <code>[ "verify" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.privateKey</code> be a new <a
+                      href="#dfn-Key"><code>Key</code></a> object representing the
+                      private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.privateKey.extractable</code> be
+                      <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                      intersection of <var>usages</var> and <code>[ "sign" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  <p>
+                    TODO: Specify how both the publicKey.algorithm and privateKey.algorithm
+                    are instances of <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
+                  </p>
+                  <p>
+                    TODO: Specify that the operation should fail if KeyUsages other than
+                    <code>"sign"</code> and <code>"verify"</code> are used.
+                  </p>
+                  <p>
+                    TODO: Specify how the normalizedAlgorithm needs to be an instance of
+                    the relevant RsaHashed*Params dictionary, with particular attention to the fact
+                    that WebIDL violations should be handled asynchronously.
+                  </p>
+                  <p>
+                    TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
+                    functions (and back to OID).
+                  </p>
+                </div>
               </dd>
               <dt>Import Key</dt>
               <dd></dd>
@@ -3369,12 +3440,12 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 </tr>
                 <tr>
                   <td>generateKey</td>
-                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a></td>
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>importKey</td>
-                  <td>None</td>
+                  <td><a href="#dfn-RsaHashedImportParams">RsaHashedImportParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
@@ -3385,12 +3456,10 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
               </tbody>
             </table>
           </div>
-          <div id="rsa-pss-params" class="section">
+          <div id="RsaPssParams-dictionary" class="section">
             <h4>RsaPssParams dictionary</h4>
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  <span class="comment">// The hash function to apply to the message</span>
-  AlgorithmIdentifier hash;
   <span class="comment">// The desired length of the random salt</span>
   unsigned long saltLength;
 };
@@ -3420,7 +3489,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                     as the signer's private key, K, and the contents of <var>message</var> as the
                     message to be signed, M, and using the hash function specified in
-                    <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1
+                    <var>key</var><code>.algorithm.hash</code> as the Hash option, MGF1
                     (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                     the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
                     salt length option for the EMM-PSS-ENCODE operation.
@@ -3465,7 +3534,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                     as the signer's RSA public key and the contents of <var>message</var> as M and
                     the contents of <var>signature</var> as S and using the hash function specified
-                    in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1
+                    in <var>key</var><code>.algorithm.hash</code> as the Hash option, MGF1
                     (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                     the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
                     salt length option for the EMSA-PSS-VERIFY operation.
@@ -3488,6 +3557,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
               </ol>
             </dd>
+
             <dt>Generate Key</dt>
             <dd>
               <ol>
@@ -3577,6 +3647,26 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             <dt>Export Key</dt>
             <dd></dd>
           </div>
+
+          <div class="ednote">
+            <p>
+              TODO: Specify how both the publicKey.algorithm and privateKey.algorithm
+              are instances of <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
+            </p>
+            <p>
+              TODO: Specify that the operation should fail if KeyUsages other than
+              <code>"sign"</code> and <code>"verify"</code> are used.
+            </p>
+            <p>
+              TODO: Specify how the normalizedAlgorithm needs to be an instance of
+              the relevant RsaHashed*Params dictionary, with particular attention to the fact
+              that WebIDL violations should be handled asynchronously.
+            </p>
+            <p>
+              TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
+              functions (and back to OID).
+            </p>
+          </div>
         </div>
 
         <div id="rsa-oaep" class="section">
@@ -3617,12 +3707,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </tr>
                 <tr>
                   <td>generateKey</td>
-                  <td><a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></td>
+                  <td><a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a></td>
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
                   <td>importKey</td>
-                  <td>None</td>
+                  <td><a href="#dfn-RsaHashedImportParams">RsaHashedImportParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
@@ -3648,8 +3738,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             <h4>RsaOaepParams dictionary</h4>
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  <span class="comment">// The hash function to apply to the message</span>
-  AlgorithmIdentifier hash;
   <span class="comment">// The optional label/application data to associate with the message</span>
   CryptoOperationData? label;
 };
@@ -3844,6 +3932,25 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <dd></dd>
             </dl>
           </div>
+          <div class="ednote">
+            <p>
+              TODO: Specify how both the publicKey.algorithm and privateKey.algorithm
+              are instances of <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
+            </p>
+            <p>
+              TODO: Specify that the operation should fail if KeyUsages other than
+              <code>"sign"</code> and <code>"verify"</code> are used.
+            </p>
+            <p>
+              TODO: Specify how the normalizedAlgorithm needs to be an instance of
+              the relevant RsaHashed*Params dictionary, with particular attention to the fact
+              that WebIDL violations should be handled asynchronously.
+            </p>
+            <p>
+              TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
+              functions (and back to OID).
+            </p>
+          </div>
         </div>
 
         <div id="ecdsa" class="section">
@@ -3909,6 +4016,15 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
 };
             </x:codeblock>
           </div>
+          <div id="EcKeyAlgorithm-interface" class="section">
+            <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The named curve that the key uses</span>
+  readonly attribute <a href="#dfn-NamedCurve">NamedCurve</a> namedCurve;
+};
+            </x:codeblock>
+          </div>
           <div id="EcKeyGenParams-dictionary" class="section">
             <h4>EcKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
@@ -3916,7 +4032,7 @@ typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
 
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
-  NamedCurve namedCurve;
+  <a href="#dfn-NamedCurve">NamedCurve</a> namedCurve;
 };
             </x:codeblock>
             <p>
@@ -4095,9 +4211,25 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 </ol>
               </dd>
               <dt>Generate Key</dt>
-              <dd>
-              </dd>
+              <dd></dd>
+              <dt>Import Key</dt>
+              <dd></dd>
+              <dt>Export Key</dt>
+              <dd></dd>
             </dl>
+          </div>
+          <div class="ednote">
+            <p>
+              TODO: Figure out what to do if "alg" is present on a JWK when importing, as "alg"
+              also (potentially) indicates an inner hash algorithm (e.g. "ES256" indicates a
+              namedCurve of "P-256", but also a hash of "SHA-256"). However, "alg" is optional,
+              and all that is required when importing is a "kty" of "EC". This also requires
+              thinking through the export/wrap case.
+            </p>
+            <p>
+              TODO: Fix-up the processing model, which refers to the (much outdated) CryptoOperation
+              model.
+            </p>
           </div>
         </div>
 
@@ -4318,6 +4450,15 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </div>
                 </li>
               </ol>
+              <div class="ednote">
+                <p>
+                  Define how the finite field member <var>result</var> is converted to a bit-string.
+                </p>
+                <p>
+                  Define how a key for the <var>normalizedDerivedKeyAlgorithm</var> is derived from
+                  a given bit string (when not feeding into another KDF, such as Concat).
+                </p>
+              </div>
             </dd>
             <dt>Derive Bits</dt>
             <dd>
@@ -4356,13 +4497,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     </ol>
                   </p>
                 </li>
-                <li>
-                  <div class="ednote">
-                    Define how the finite field member <var>result</var> is converted to a bit
-                    string.
-                  </div>
-                </li>
               </ol>
+              <div class="ednote">
+                <p>
+                  Define how the finite field member <var>result</var> is converted to a bit
+                  string.
+                </p>
+              </div>
             </dd>
 
           </div>
@@ -4447,6 +4588,15 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
 };
             </x:codeblock>
           </div>
+          <div id="AesKeyAlgorithm-interface" class="section">
+            <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The length, in bits, of the key.</span>
+  readonly attribute unsigned short length;
+};
+            </x:codeblock>
+          </div>
           <div id="aes-keygen-params" class="section">
             <h4>AesKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
@@ -4464,7 +4614,6 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
               <li>Generate Key</li>
               <li>Import Key</li>
               <li>Export Key</li>
-
             </ul>
           </div>
         </div>
@@ -4887,22 +5036,22 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <tbody>
                 <tr>
                   <td>sign</td>
-                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
-                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td>None</td>
                   <td>boolean</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
-                  <td><a href="#dfn-HmacKeyParams">HmacKeyParams</a></td>
+                  <td><a href="#dfn-HmacKeyParams">HmacKeyGenParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
                   <td>importKey</td>
-                  <td><a href="#dfn-HmacParams">HmacParams</a></td>
+                  <td><a href="#dfn-HmacParams">HmacImportParams</a></td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
@@ -4913,19 +5062,28 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               </tbody>
             </table>
           </div>
-          <div id="hmac-params" class="section">
-            <h4>HmacParams dictionary</h4>
+          <div id="hmac-importparams" class="section">
+            <h4>HmacImportParams dictionary</h4>
             <x:codeblock language="idl">
-dictionary <dfn id="dfn-HmacParams">HmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   AlgorithmIdentifier hash;
 };
             </x:codeblock>
           </div>
-          <div id="hmac-key-params" class="section">
+          <div id="hmac-keyalgorithm" class="section">
+            <h4>HmacKeyAlgorithm interface</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The inner hash function to use.</span>
+  KeyAlgorithm hash;
+};
+            </x:codeblock>
+          </div>
+          <div id="hmac-keygen-params" class="section">
             <h4>HmacKeyParams dictionary</h4>
             <x:codeblock language="idl">
-dictionary <dfn id="dfn-HmacKeyParams">HmacKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   AlgorithmIdentifier hash;
   <span class="comment">// The length (in bytes) of the key to generate. If unspecified, the
@@ -5010,6 +5168,18 @@ dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Alg
 };
             </x:codeblock>
           </div>
+          <div id="dh-DhKeyAlgorithm" class="section">
+            <h4>DhKeyAlgorithm interface</h4>
+            <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <dfn id="dfn-DhKeyAlgorithm">DhKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The prime p.</span>
+  readonly attribute BigInteger prime;
+  <span class="comment">// The base g.</span>
+  readonly attribute BigInteger generator;
+};
+            </x:codeblock>
+          </div>
           <div id="dh-DhKeyDeriveParams" class="section">
             <h4>DhKeyDeriveParams dictionary</h4>
             <x:codeblock language="idl">
@@ -5028,6 +5198,14 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
               <li>Import Key</li>
               <li>Export Key</li>
            </ul>
+          </div>
+          <div class="ednote">
+            <p>
+              TODO: This interface is broken for import/export. Generate is defined in terms of
+              PKCS#3 - meaning it takes base/g and prime/p - whereas the dhpublicnumber used by
+              X.509/RFC 3279 uses the X9.42 form - meaning it takes base/g, prime/p, and subprime/q.
+              The inconsistency here needs to be resolved before this can be reliably implemented.
+            </p>
           </div>
         </div>
         <div id="sha" class="section">
@@ -5347,6 +5525,14 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             Return <var>result</var>.
           </li>
         </ol>
+        <div class="ednote">
+          <p>
+            WARNING: This section is broken for purpose. Further, normalization at this degree is
+            is no longer required, as the algorithm is never reflected back to the caller. Instead,
+            specify how specific algorithms can/should validate the parameters - and how to perform
+            DOMString substitutions.
+          </p>
+        </div>
       </div>
       <div id="examples-section" class="section">
         <h2>JavaScript Example Code</h2>
