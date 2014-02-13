@@ -56,14 +56,14 @@ of contents, section numbers, certain processing instructions).
     <div class='section'>
       <h2>Abstract</h2>
       <p>
-This specification describes a JavaScript API for performing basic
-cryptographic operations in web applications, such as hashing,
-signature generation and verification, and encryption and decryption.
-Additionally, it describes an API for applications to generate and/or
-manage the keying material necessary to perform these operations. 
-Uses for this API range from user or service authentication, document
-or code signing, and the confidentiality and integrity of
-communications.
+        This specification describes a JavaScript API for performing basic
+        cryptographic operations in web applications, such as hashing,
+        signature generation and verification, and encryption and decryption.
+        Additionally, it describes an API for applications to generate and/or
+        manage the keying material necessary to perform these operations. 
+        Uses for this API range from user or service authentication, document
+        or code signing, and the confidentiality and integrity of
+        communications.
       </p>
   
       <?revision-note?>
@@ -99,7 +99,6 @@ communications.
       <p>
         Previous discussion of this specification has taken place on three other
         mailing lists: <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a>
-
         (<a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2011-May/031741.html">archive</a>)
         , <a href="mailto:public-websecurity@w3.org">public-websecurity@w3.org</a>
         (<a href="http://lists.w3.org/Archives/Public/public-web-security/2011Jun/0000.html">archive</a>), and 
@@ -109,13 +108,13 @@ communications.
       </p>
       
       <p>
-        Web content and browser developers are encouraged to review this draft. Please send comments to
-        <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
-        the <acronym title="World Wide Web Consortium">W3C</acronym>'s public email list for issues related
-        to Web Cryptography.
-        <a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the public list and
-        <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a> of the member's-only list
-        are available.
+        Web content and browser developers are encouraged to review this draft. Please send comments
+        to <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
+        the <acronym title="World Wide Web Consortium">W3C</acronym>'s public email list for issues
+        related to Web Cryptography. <a
+        href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the
+        public list and <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>
+        of the member's-only list are available.
       </p>
       <p>
         Changes made to this document can be found in the
@@ -330,30 +329,31 @@ communications.
           <p>
             The specification attempts to focus on the common functionality and features between
             various platform-specific or standardized cryptographic APIs, and avoid features and
-            functionality that are specific to one or two implementations. As such this API allows key
-            generation, management, and exchange with a level of abstraction that avoids developers
-            needing to care about the implementation of the underlying key storage. The API is focused
-            specifically around Key objects, as an abstraction for the underlying raw cryptographic
-            keying material. The intent behind this is to allow an API that is generic enough to allow
-            conforming user agents to expose keys that are stored and managed directly by the user agent,
-            that may be stored or managed using isolated storage APIs such as per-user key stores provided
-            by some operating systems, or within key storage devices such as secure elements, while allowing
-            rich web applications to manipulate the keys and without requiring the web application be
-            aware of the nature of the underlying key storage.
+            functionality that are specific to one or two implementations. As such this API allows
+            key generation, management, and exchange with a level of abstraction that avoids
+            developers needing to care about the implementation of the underlying key storage. The
+            API is focused specifically around Key objects, as an abstraction for the underlying raw
+            cryptographic keying material. The intent behind this is to allow an API that is generic
+            enough to allow conforming user agents to expose keys that are stored and managed
+            directly by the user agent, that may be stored or managed using isolated storage APIs
+            such as per-user key stores provided by some operating systems, or within key storage
+            devices such as secure elements, while allowing rich web applications to manipulate the
+            keys and without requiring the web application be aware of the nature of the underlying
+            key storage.
           </p>
         </div>
         <div class="section" id="scope-algorithms">
           <h3>Cryptographic algorithms</h3>
           <p>
-            Because the underlying cryptographic implementations will vary between conforming user agents,
-            and may be subject to local policy, including but not limited to concerns such as government
-            or industry regulation, security best practices, intellectual property concerns, and
-            constrained operational environments, this specification does not dictate a mandatory set of
-            algorithms that <span class="RFC2119">MUST</span> be implemented. Instead, it defines a
-            common set of bindings that can be used in an algorithm-independent manner, a common
-            framework for discovering if a user agent or key handle supports the underlying algorithm,
-            and a set of conformance requirements for the behaviours of individual algorithms, if
-            implemented.
+            Because the underlying cryptographic implementations will vary between conforming user
+            agents, and may be subject to local policy, including but not limited to concerns such
+            as government or industry regulation, security best practices, intellectual property
+            concerns, and constrained operational environments, this specification does not dictate
+            a mandatory set of algorithms that <span class="RFC2119">MUST</span> be implemented.
+            Instead, it defines a common set of bindings that can be used in an
+            algorithm-independent manner, a common framework for discovering if a user agent or key
+            handle supports the underlying algorithm, and a set of conformance requirements for the
+            behaviours of individual algorithms, if implemented.
           </p>
         </div>
         <div class="section" id="scope-operations">
@@ -368,14 +368,14 @@ communications.
         <div class="section" id="scope-out-of-scope">
           <h3>Out of scope</h3>
           <p>
-            This API, while allowing applications to generate, retrieve, and manipulate keying material,
-            does not specifically address the provisioning of keys in particular types of key
-            storage, such as secure elements or smart cards. This is due to such provisioning operations
-            often being burdened with vendor-specific details that make defining a vendor-agnostic
-            interface an unsuitably unbounded task. Additionally, this API does not deal with or address
-            the discovery of cryptographic modules, as such concepts are dependent upon the underlying
-            user agent and are not concepts that are portable between common operating systems,
-            cryptographic libraries, and implementations.
+            This API, while allowing applications to generate, retrieve, and manipulate keying
+            material, does not specifically address the provisioning of keys in particular types of
+            key storage, such as secure elements or smart cards. This is due to such provisioning
+            operations often being burdened with vendor-specific details that make defining a
+            vendor-agnostic interface an unsuitably unbounded task. Additionally, this API does not
+            deal with or address the discovery of cryptographic modules, as such concepts are
+            dependent upon the underlying user agent and are not concepts that are portable between
+            common operating systems, cryptographic libraries, and implementations.
           </p>
         </div>
       </div>
@@ -419,12 +419,12 @@ communications.
               <li>
                 <a href="https://www.w3.org/2012/webcrypto/track/issues/33">ISSUE-33</a>
                 One proposed technical solution for user agents is to implement "key tainting", in
-                which it records how a particular key has been used (eg: algorithms, parameters), and
-                prevents it from being re-used in a manner that is unsafe or contrary to the security -
-                such as preventing a PKCS1-v1.5 key from being used with RSA-PSS, or preventing an
-                RSA-OAEP w/ MGF1-SHA1 from being used with RSA-OAEP w/ MGF1-SHA256. Questions exist
-                about whether this should be encouraged or permitted, and the interoperability concerns
-                it might cause.
+                which it records how a particular key has been used (eg: algorithms, parameters),
+                and prevents it from being re-used in a manner that is unsafe or contrary to the
+                security - such as preventing a PKCS1-v1.5 key from being used with RSA-PSS, or
+                preventing an RSA-OAEP w/ MGF1-SHA1 from being used with RSA-OAEP w/ MGF1-SHA256.
+                Questions exist about whether this should be encouraged or permitted, and the
+                interoperability concerns it might cause.
               </li>
             </ul>
           </div>
@@ -447,13 +447,13 @@ communications.
           </p>
           <p>
             While the API in this specification provides a means to protect keys from future access
-            by web applications, it makes no statements as to how the actual keying material will
-            be stored by an implementation. As such, although a key may be inaccessible to web
-            content, it should not be presumed that it is inaccessible to end-users. For example, a
+            by web applications, it makes no statements as to how the actual keying material will be
+            stored by an implementation. As such, although a key may be inaccessible to web content,
+            it should not be presumed that it is inaccessible to end-users. For example, a
             conforming user agent may choose to implement key storage by storing key material in
             plain text on device storage. Although the user agent prevents access to the raw keying
-            material to web applications, any user with access to device storage may be able to recover
-            the key.
+            material to web applications, any user with access to device storage may be able to
+            recover the key.
           </p>
         </div>
       </div>
@@ -466,9 +466,9 @@ communications.
           <dd>
             Malicious applications may be able to fingerprint users or user agents by detecting or
             enumerating the list of algorithms that are supported. This is especially true if an
-            implementation exposes details about users' smart cards or secure element storage, as the
-            combination of algorithms supported by such devices may be used to fingerprint devices
-            more accurately than just the particular user agent.
+            implementation exposes details about users' smart cards or secure element storage, as
+            the combination of algorithms supported by such devices may be used to fingerprint
+            devices more accurately than just the particular user agent.
           </dd>
           <dt>Tracking</dt>
           <dd>
@@ -483,9 +483,9 @@ communications.
             associate users with keys. These associations may be used to enhance the security of
             authenticating to the application, such as using a key stored in a secure element as a
             second factor, or may be used by users to assert some identity, such as an e-mail
-            signing identity. As such, these keys often live longer than their counterparts such
-            as usernames and passwords, and it may be undesirable or prohibitive for users to
-            revoke these keys.
+            signing identity. As such, these keys often live longer than their counterparts such as
+            usernames and passwords, and it may be undesirable or prohibitive for users to revoke
+            these keys.
             Because of this, keys may exist longer than the lifetime of the browsing context
             [<a href="#HTML">HTML</a>] and beyond the lifetime of items such as cookies, thus
             presenting a risk that a user may be tracked even after clearing such data. This is
@@ -554,10 +554,10 @@ communications.
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
         <p>
-          When this specification says to <dfn id="terminate-the-algorithm">terminate the algorithm</dfn>,
-          the user agent must terminate the algorithm after finishing the step it is on. The algorithm
-          referred to is the set of specification-defined processing steps, rather than the underlying
-          cryptographic algorithm that may be in the midst of processing.
+          When this specification says to <dfn id="terminate-the-algorithm">terminate the
+          algorithm</dfn>, the user agent must terminate the algorithm after finishing the step it
+          is on. The algorithm referred to is the set of specification-defined processing steps,
+          rather than the underlying cryptographic algorithm that may be in the midst of processing.
         </p>
       </div>
 
@@ -584,13 +584,13 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
             as much entropy as practicable.
           </div>
           <div class="note">
-            This interface defines a synchronous method for obtaining cryptographically
-            random values. While some devices and implementations may support truly random cryptographic
+            This interface defines a synchronous method for obtaining cryptographically random
+            values. While some devices and implementations may support truly random cryptographic
             number generators or provide interfaces that block when there is insufficient entropy,
-            implementations are discouraged from using these sources when implementing getRandomValues,
-            both for performance and to avoid depleting the system of entropy. Instead, these sources
-            should be used to seed a cryptographic pseudo-random number generator that can then return
-            suitable values efficiently.
+            implementations are discouraged from using these sources when implementing
+            getRandomValues, both for performance and to avoid depleting the system of entropy.
+            Instead, these sources should be used to seed a cryptographic pseudo-random number
+            generator that can then return suitable values efficiently.
           </div>
         </div>
         <div id="RandomSource-interface-methods" class="section">
@@ -632,7 +632,8 @@ interface <dfn id="dfn-RandomSource">RandomSource</dfn> {
             <div class="note">
               <p>
                 Do not generate keys using the <code>getRandomValues</code> method. Use the
-                <a href="#dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></a> method instead.
+                <a href="#dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></a> method
+                instead.
               </p>
             </div>
           </div>
@@ -689,19 +690,18 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <h3>Description</h3>
           <span class="normative">This section is non-normative</span>
           <p>
-            This specification provides a uniform interface for many different kinds of keying material
-            managed by the user agent. This may include keys that have been generated by the user agent,
-            derived from other keys by the user agent, imported to the user agent through user actions
-            or using this API, pre-provisioned within software or hardware to which the user agent has
-            access or made available to the user agent in other ways. The term key refers broadly to
-            any keying material including actual keys for cryptographic operations and secret
-            values obtained within key derivation or exchange operations.
+            This specification provides a uniform interface for many different kinds of keying
+            material managed by the user agent. This may include keys that have been generated by
+            the user agent, derived from other keys by the user agent, imported to the user agent
+            through user actions or using this API, pre-provisioned within software or hardware to
+            which the user agent has access or made available to the user agent in other ways. The
+            term key refers broadly to any keying material including actual keys for cryptographic
+            operations and secret values obtained within key derivation or exchange operations.
           </p>
           <p>
             The Key object is not required to directly interface with the underlying key storage
-            mechanism, and may instead simply be a reference for the user agent to understand how
-            to obtain the keying material when needed, eg. when performing a cryptographic
-            operation.
+            mechanism, and may instead simply be a reference for the user agent to understand how to
+            obtain the keying material when needed, eg. when performing a cryptographic operation.
           </p>
         </div>
 
@@ -709,21 +709,25 @@ interface <dfn id="dfn-Key">Key</dfn> {
           <h3>Key interface data types</h3>
           <dl>
             <dt id="dfn-KeyType"><code>KeyType</code></dt>
-            <dd>The type of a key. The <dfn id="dfn-RecognizedKeyType">recognized key type values</dfn> are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
-                Opaque keying material, including that used for symmetric algorithms, is represented by <code>"secret"</code>,
-                while keys used as part of asymmetric algorithms composed of public/private keypairs will be either
-                <code>"public"</code> or <code>"private"</code>.
+            <dd>
+              The type of a key. The <dfn id="dfn-RecognizedKeyType">recognized key type values</dfn>
+              are <code>"public"</code>, <code>"private"</code> and <code>"secret"</code>.
+              Opaque keying material, including that used for symmetric algorithms, is represented by
+              <code>"secret"</code>, while keys used as part of asymmetric algorithms composed of
+              public/private keypairs will be either <code>"public"</code> or <code>"private"</code>.
             </dd>
             <dt id="dfn-KeyUsage"><code>KeyUsage</code></dt>
-            <dd>A type of operation that may be performed using a key. The <dfn id="dfn-RecognizedKeyUsage">recognized key usage values</dfn> are
-                    <code>"encrypt"</code>,
-                    <code>"decrypt"</code>,
-                    <code>"sign"</code>,
-                    <code>"verify"</code>,
-                    <code>"deriveKey"</code>,
-                    <code>"deriveBits"</code>,
-                    <code>"wrapKey"</code> and
-                    <code>"unwrapKey"</code>.
+            <dd>
+              A type of operation that may be performed using a key. The
+              <dfn id="dfn-RecognizedKeyUsage">recognized key usage values</dfn> are
+              <code>"encrypt"</code>,
+              <code>"decrypt"</code>,
+              <code>"sign"</code>,
+              <code>"verify"</code>,
+              <code>"deriveKey"</code>,
+              <code>"deriveBits"</code>,
+              <code>"wrapKey"</code> and
+              <code>"unwrapKey"</code>.
             </dd>
           </dl>
         </div>
@@ -767,8 +771,8 @@ interface <dfn id="dfn-Key">Key</dfn> {
             <li>
               Let the following attributes of <var>output</var> be equal to the value obtained by
               invoking the internal structured clone algorithm recursively, using the corresponding
-              attribute on <var>input</var> as the new "<var>input</var>" argument and <var>memory</var>
-              as the new "<var>memory</var>" argument:
+              attribute on <var>input</var> as the new "<var>input</var>" argument and
+              <var>memory</var> as the new "<var>memory</var>" argument:
               <ul>
                 <li><a href="#dfn-Key-type">type</a></li>
                 <li><a href="#dfn-Key-extractable">extractable</a></li>
@@ -783,303 +787,340 @@ interface <dfn id="dfn-Key">Key</dfn> {
           </ol>
           <div class="note">
             <strong>Implementation Note:</strong> When performing the structured clone algorithm for
-            a <code>Key</code> object, it is important that the underlying cryptographic key material
-            not be exposed to a JavaScript implementation. Such a situation may arise if an implementation
-            fails to implement the structured clone algorithm correctly, such as by allowing a <code>Key</code> object
-            to be serialized as part of a structured clone implementation, but then deserializing it as
-            a <code>DOMString</code>, rather than as a <code>Key</code> object.
+            a <code>Key</code> object, it is important that the underlying cryptographic key
+            material not be exposed to a JavaScript implementation. Such a situation may arise if an
+            implementation fails to implement the structured clone algorithm correctly, such as by
+            allowing a <code>Key</code> object to be serialized as part of a structured clone
+            implementation, but then deserializing it as a <code>DOMString</code>, rather than as a
+            <code>Key</code> object.
           </div>
         </div>
 
         <div id="key-interface-jwk" class="section">
-        
-            <h3>Representation using JSON Web Key</h3>
-            <p>
-                The <a href="#dfn-KeyFormat">KeyFormat</a> value <code>jwk</code> enables <a href="#dfn-Key">Key</a> objects to be imported or exported in <a href="#jwk">JSON Web Key</a> format.
-            </p>
-            <p>
-                This specification defines additional <a href="#jwk">JSON Web Key</a> attributes and attribute values that may be used for this purpose as follows:
-                <ul>
-                    <li>Additional <code>alg</code> names for algorithms supported by WebCrypto not already defined for <a href="#jwk">JSON Web Key</a></li>
-                    <li>A new <code>ext</code> attribute providing the value of the <a href="#dfn-Key">Key</a>'s <a href="#dfn-Key-extractable">extractable</a> attribute.</li>
-                </ul>
-
-            </p>
+          <h3>Representation using JSON Web Key</h3>
+          <p>
+            The <a href="#dfn-KeyFormat">KeyFormat</a> value <code>jwk</code> enables <a
+            href="#dfn-Key">Key</a> objects to be imported or exported in <a href="#jwk">JSON Web
+            Key</a> format.
+          </p>
+          <p>
+            This specification defines additional <a href="#jwk">JSON Web Key</a> attributes and
+            attribute values that may be used for this purpose as follows:
+            <ul>
+              <li>
+                Additional <code>alg</code> names for algorithms supported by WebCrypto not already
+                defined for <a href="#jwk">JSON Web Key</a>
+              </li>
+              <li>
+                A new <code>ext</code> attribute providing the value of the <a
+                href="#dfn-Key">Key</a>'s <a href="#dfn-Key-extractable">extractable</a> attribute.
+              </li>
+            </ul>
+          </p>
             <div id="key-interface-jwk-extensions" class="section">
               <h4>Extensions to JSON Web Key</h4>
               <div id="key-interface-jwk-algorithms" class="section">
-                  <h5>JSON Web Key algorithm names for WebCrypto algorithms</h5>
-                  <p>
-                      This specification defines additional <a href="#jwk">JSON Web Key</a> algorithm names:
-                        <code>A128CTR</code>,
-                        <code>A192CTR</code>,
-                        <code>A256CTR</code>,
-                        <code>A128CBC</code>,
-                        <code>A192CBC</code>,
-                        <code>A256CBC</code>,
-                        <code>A128CMAC</code>,
-                        <code>A192CMAC</code>,
-                        <code>A256CMAC</code>,
-                        <code>A128CFB</code>,
-                        <code>A192CFB</code>,
-                        <code>A256CFB</code>,
-                        <code>HS1</code>,
-                        <code>HS224</code>.
-                    
-                      These are associated with WebCrypto algorithms as defined in the mapping tables below.
-                  </p>
+                <h5>JSON Web Key algorithm names for WebCrypto algorithms</h5>
+                <p>
+                  This specification defines additional <a href="#jwk">JSON Web Key</a> algorithm names:
+                  <code>A128CTR</code>,
+                  <code>A192CTR</code>,
+                  <code>A256CTR</code>,
+                  <code>A128CBC</code>,
+                  <code>A192CBC</code>,
+                  <code>A256CBC</code>,
+                  <code>A128CMAC</code>,
+                  <code>A192CMAC</code>,
+                  <code>A256CMAC</code>,
+                  <code>A128CFB</code>,
+                  <code>A192CFB</code>,
+                  <code>A256CFB</code>,
+                  <code>HS1</code>,
+                  <code>HS224</code>.
+                  These are associated with WebCrypto algorithms as defined in the mapping tables
+                  below.
+                </p>
               </div>
               <div id="key-interface-jwk-ext" class="section">
-                  <h5>JSON Web Key <code>ext</code> attribute</h5>
-                  <p>
-                  This specification defines a new <a href="#jwk">JSON Web Key</a> attribute <code>ext</code> that enables the value of the <a href="#dfn-Key-extractable">extractable</a> attribute of a <a href="#dfn-Key">Key</a> to be included in a <a href="#jwk">JSON Web Key</a> object. The <code>ext</code> attribute SHALL have a Boolean value.
-                  </p>
+                <h5>JSON Web Key <code>ext</code> attribute</h5>
+                <p>
+                  This specification defines a new <a href="#jwk">JSON Web Key</a> attribute
+                  <code>ext</code> that enables the value of the
+                  <a href="#dfn-Key-extractable">extractable</a> attribute of a
+                  <a href="#dfn-Key">Key</a> to be included in a <a href="#jwk">JSON Web Key</a>
+                  object. The <code>ext</code> attribute SHALL have a Boolean value.
+                </p>
               </div>
             </div>
             <div id="key-interface-jwk-mapping" class="section">
               <h4>Mapping between WebCrypto and JSON Web Key</h4>
-              <p>This section defines the mapping between WebCrypto <a href="#dfn-Key">Key</a> objects and <a href="#jwk">JSON Web Key</a> objects.</p>
+              <p>
+                This section defines the mapping between WebCrypto <a href="#dfn-Key">Key</a>
+                objects and <a href="#jwk">JSON Web Key</a> objects.
+              </p>
               <div id="key-interface-jwk-mapping-alg" class="section">
-                  <h5>Mapping of algorithms</h5>
-                  <p>The JSON Web Key <code>alg</code> member shall be mapped to / from the <code>name</code>, <code>length</code> and <code>hash</code> members of the <code>algorithm</code> attribute
-                  of the Key object according to the following tables:</p>
-                  <table>
-                      <thead>
-                          <tr>
-                              <td>WebCrypto <code>Key.algorithm.name</code></td>
-                              <td>JWK <code>alg</code> value</td>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td><code>RSAES-PKCS1-V1_5</code></td>
-                              <td><code>RSA1_5</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSA-OAEP</code></td>
-                              <td><code>RSA-OAEP</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>ECDH</code></td>
-                              <td><code>ECDH-ES</code></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <p></p>
-                  <table>
-                      <thead>
-                          <tr>
-                              <td>WebCrypto <code>Key.algorithm.name</code></td>
-                              <td>WebCrypto <code>Key.algorithm.length</code></td>
-                              <td>JWK <code>alg</code> value</td>
-                          </tr>
-                      
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td><code>AES-CTR</code></td>
-                              <td>128</td>
-                              <td><code>A128CTR</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-CTR</code></td>
-                              <td>192</td>
-                              <td><code>A192CTR</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-CTR</code></td>
-                              <td>256</td>
-                              <td><code>A256CTR</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-CBC</code></td>
-                              <td>128</td>
-                              <td><code>A128CBC</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-CBC</code></td>
-                              <td>192</td>
-                              <td><code>A192CBC</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-CBC</code></td>
-                              <td>256</td>
-                              <td><code>A256CBC</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>128</td>
-                              <td><code>A128KW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>192</td>
-                              <td><code>A192KW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>256</td>
-                              <td><code>A256KW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-GCM</code></td>
-                              <td>128</td>
-                              <td><code>A128GCM</code> or <code>A128GCMKW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-GCM</code></td>
-                              <td>192</td>
-                              <td><code>A192GCM</code> or <code>A128GCMKW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-GCM</code></td>
-                              <td>256</td>
-                              <td><code>A256GCM</code> or <code>A128GCMKW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>128</td>
-                              <td><code>A128KW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>192</td>
-                              <td><code>A192KW</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>AES-KW</code></td>
-                              <td>256</td>
-                              <td><code>A256KW</code></td>
-                          </tr>
-                      </tbody>
-                  </table>
-                  <p></p>
-                  <table>
-                      <thead>
-                          <tr>
-                              <td>WebCrypto <code>Key.algorithm.name</code></td>
-                              <td>WebCrypto <code>Key.algorithm.hash</code></td>
-                              <td>JWK <code>alg</code> value</td>
-                          </tr>
-                      </thead>
-                      <tbody>
-
-                          <tr>
-                              <td><code>HMAC</code></td>
-                              <td><code>SHA-1</code></td>
-                              <td><code>HS1</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>HMAC</code></td>
-                              <td><code>SHA-224</code></td>
-                              <td><code>HS224</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>HMAC</code></td>
-                              <td><code>SHA-256</code></td>
-                              <td><code>HS256</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>HMAC</code></td>
-                              <td><code>SHA-384</code></td>
-                              <td><code>HS384</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>HMAC</code></td>
-                              <td><code>SHA-512</code></td>
-                              <td><code>HS512</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSASSA-PKCS1-v1_5</code></td>
-                              <td><code>SHA-256</code></td>
-                              <td><code>RS256</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSASSA-PKCS1-v1_5</code></td>
-                              <td><code>SHA-384</code></td>
-                              <td><code>RS384</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSASSA-PKCS1-v1_5</code></td>
-                              <td><code>SHA-512</code></td>
-                              <td><code>RS512</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSA-PSS</code></td>
-                              <td><code>SHA-256</code></td>
-                              <td><code>PS256</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSA-PSS</code></td>
-                              <td><code>SHA-384</code></td>
-                              <td><code>PS384</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>RSA-PSS</code></td>
-                              <td><code>SHA-512</code></td>
-                              <td><code>PS512</code></td>
-                          </tr>
-                      </tbody>
-                  </table>
+                <h5>Mapping of algorithms</h5>
+                <p>
+                  The JSON Web Key <code>alg</code> member shall be mapped to / from the
+                  <code>name</code>, <code>length</code> and <code>hash</code> members of the
+                  <code>algorithm</code> attribute of the Key object according to the following
+                  tables:
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>WebCrypto <code>Key.algorithm.name</code></td>
+                      <td>JWK <code>alg</code> value</td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>RSAES-PKCS1-V1_5</code></td>
+                      <td><code>RSA1_5</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>RSA-OAEP</code></td>
+                      <td><code>RSA-OAEP</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>ECDH</code></td>
+                      <td><code>ECDH-ES</code></td>
+                    </tr>
+                  </tbody>
+                </table>
                 <p></p>
-                  <table>
-                      <thead>
-                          <tr>
-                              <td>WebCrypto <code>Key.algorithm.name</code></td>
-                              <td>WebCrypto <code>Key.algorithm.namedCurve</code></td>
-                              <td>JWK <code>alg</code> value</td>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td><code>ECDSA</code></td>
-                              <td><code>P-256</code></td>
-                              <td><code>ES256</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>ECDSA</code></td>
-                              <td><code>P-384</code></td>
-                              <td><code>ES384</code></td>
-                          </tr>
-                          <tr>
-                              <td><code>ECDSA</code></td>
-                              <td><code>P-512</code></td>
-                              <td><code>ES512</code></td>
-                          </tr>
-                      </tbody>
-                  </table>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>WebCrypto <code>Key.algorithm.name</code></td>
+                      <td>WebCrypto <code>Key.algorithm.length</code></td>
+                      <td>JWK <code>alg</code> value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>AES-CTR</code></td>
+                      <td>128</td>
+                      <td><code>A128CTR</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-CTR</code></td>
+                      <td>192</td>
+                      <td><code>A192CTR</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-CTR</code></td>
+                      <td>256</td>
+                      <td><code>A256CTR</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-CBC</code></td>
+                      <td>128</td>
+                      <td><code>A128CBC</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-CBC</code></td>
+                      <td>192</td>
+                      <td><code>A192CBC</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-CBC</code></td>
+                      <td>256</td>
+                      <td><code>A256CBC</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>128</td>
+                      <td><code>A128KW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>192</td>
+                      <td><code>A192KW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>256</td>
+                      <td><code>A256KW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-GCM</code></td>
+                      <td>128</td>
+                      <td><code>A128GCM</code> or <code>A128GCMKW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-GCM</code></td>
+                      <td>192</td>
+                      <td><code>A192GCM</code> or <code>A128GCMKW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-GCM</code></td>
+                      <td>256</td>
+                      <td><code>A256GCM</code> or <code>A128GCMKW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>128</td>
+                      <td><code>A128KW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>192</td>
+                      <td><code>A192KW</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>AES-KW</code></td>
+                      <td>256</td>
+                      <td><code>A256KW</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p></p>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>WebCrypto <code>Key.algorithm.name</code></td>
+                      <td>WebCrypto <code>Key.algorithm.hash</code></td>
+                      <td>JWK <code>alg</code> value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>HMAC</code></td>
+                      <td><code>SHA-1</code></td>
+                      <td><code>HS1</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>HMAC</code></td>
+                      <td><code>SHA-224</code></td>
+                      <td><code>HS224</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>HMAC</code></td>
+                      <td><code>SHA-256</code></td>
+                      <td><code>HS256</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>HMAC</code></td>
+                      <td><code>SHA-384</code></td>
+                      <td><code>HS384</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>HMAC</code></td>
+                      <td><code>SHA-512</code></td>
+                      <td><code>HS512</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>RSASSA-PKCS1-v1_5</code></td>
+                      <td><code>SHA-256</code></td>
+                      <td><code>RS256</code></td>
+                    </tr>
+                    <tr>
+                       <td><code>RSASSA-PKCS1-v1_5</code></td>
+                      <td><code>SHA-384</code></td>
+                      <td><code>RS384</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>RSASSA-PKCS1-v1_5</code></td>
+                      <td><code>SHA-512</code></td>
+                      <td><code>RS512</code></td>
+                    </tr>
+                    <tr>
+                       <td><code>RSA-PSS</code></td>
+                      <td><code>SHA-256</code></td>
+                      <td><code>PS256</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>RSA-PSS</code></td>
+                      <td><code>SHA-384</code></td>
+                      <td><code>PS384</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>RSA-PSS</code></td>
+                      <td><code>SHA-512</code></td>
+                      <td><code>PS512</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p></p>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>WebCrypto <code>Key.algorithm.name</code></td>
+                      <td>WebCrypto <code>Key.algorithm.namedCurve</code></td>
+                      <td>JWK <code>alg</code> value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>ECDSA</code></td>
+                      <td><code>P-256</code></td>
+                      <td><code>ES256</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>ECDSA</code></td>
+                      <td><code>P-384</code></td>
+                      <td><code>ES384</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>ECDSA</code></td>
+                      <td><code>P-512</code></td>
+                      <td><code>ES512</code></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <div id="key-interface-jwk-mapping-use" class="section">
                 <h5>Mapping of usages</h5>
-                <p>When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of the <a href="#dfn-Key">Key</a>.usages array shall be copied into the JWK <code>key_ops</code> member where each WebCrypto <a href="#dfn-KeyUsage">KeyUsage</a> value maps to the JWK <code>key_ops</code> value of the same name. The <code>use</code> member shall not be present.</p>
-                <p>When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object, if the <code>key_ops</code> member is present then the
-                  WebCrypto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be equal to the values listed in <code>key_ops</code>  where each JWK <code>key_ops</code> value maps to the WebCrypto <a href="#dfn-KeyUsage">KeyUsage</a> value of the same name, except that unrecognized values SHALL be ignored. If the <code>key_ops</code> member is not present and the <code>use</code> member is present, then the WebCrypto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be as specified in the following table:
-                  </p>
-                  
-                  <table>
-                    <thead>
-                      <tr>
-                        <td>JWK <code>use</code> value</td>
-                        <td>WebCrypto Key.usages value</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><code>enc</code></td>
-                        <td><code>[ "encrypt", "decrypt", "wrapKey", "unwrapKey" ]</code></td>
-                      </tr>
-                      <tr>
-                        <td><code>sig</code></td>
-                        <td><code>[ "sign", "verify" ]</code></td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <p>
+                  When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of
+                  the <a href="#dfn-Key">Key</a>.usages array shall be copied into the JWK
+                  <code>key_ops</code> member where each WebCrypto <a href="#dfn-KeyUsage">KeyUsage</a>
+                  value maps to the JWK <code>key_ops</code> value of the same name. The
+                  <code>use</code> member shall not be present.
+                </p>
+                <p>
+                  When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object,
+                  if the <code>key_ops</code> member is present then the WebCrypto
+                  <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be equal to the
+                  values listed in <code>key_ops</code>  where each JWK <code>key_ops</code> value
+                  maps to the WebCrypto <a href="#dfn-KeyUsage">KeyUsage</a> value of the same name,
+                  except that unrecognized values SHALL be ignored. If the <code>key_ops</code>
+                  member is not present and the <code>use</code> member is present, then the
+                  WebCrypto <a href="#dfn-KeyUsage">KeyUsages</a> specified by this JWK shall be as
+                  specified in the following table:
+                </p>  
+                <table>
+                  <thead>
+                    <tr>
+                      <td>JWK <code>use</code> value</td>
+                      <td>WebCrypto Key.usages value</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>enc</code></td>
+                      <td><code>[ "encrypt", "decrypt", "wrapKey", "unwrapKey" ]</code></td>
+                    </tr>
+                    <tr>
+                      <td><code>sig</code></td>
+                      <td><code>[ "sign", "verify" ]</code></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <div id="key-interface-jwk-mapping-ext" class="section">
                 <h5>Mapping of extractable</h5>
-                <p>When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of the JWK <code>ext</code> attribute shall be <code>true</code>.</p>
-                <p>When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object, if the <code>ext</code> member is present then the
-                  WebCrypto <a href="#dfn-Key-extractable">extractable</a> value specified by this JWK shall be equal to the <code>ext</code> member value.</p>
+                <p>
+                  When exporting a WebCrypto <a href="#dfn-Key">Key</a> in JWK format, the value of
+                  the JWK <code>ext</code> attribute shall be <code>true</code>.
+                </p>
+                <p>
+                  When importing a JWK format key into a WebCrypto <a href="#dfn-Key">Key</a> object,
+                  if the <code>ext</code> member is present then the WebCrypto
+                  <a href="#dfn-Key-extractable">extractable</a> value specified by this JWK shall
+                  be equal to the <code>ext</code> member value.
+                </p>
               </div>
            </div>
         </div>
@@ -1334,8 +1375,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>plaintext</var> be the result of performing the underlying decrypt
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
-                  and <code>data</code> as <var>ciphertext</var>.
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as
+                  <var>key</var> and <code>data</code> as <var>ciphertext</var>.
                 </p>
               </li>
               <li>
@@ -1395,9 +1436,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the signature
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
-                  and <code>data</code> as <var>message</var>.
+                  Let <var>result</var> be the result of performing the signature algorithm
+                  specified by <var>normalizedAlgorithm</var> with <code>key</code> as
+                  <var>key</var> and <code>data</code> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1458,8 +1499,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the signature verification
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>,
-                  <code>signature</code> as <var>signature</var> and <code>data</code> as <var>message</var>.
+                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as
+                  <var>key</var>, <code>signature</code> as <var>signature</var> and
+                  <code>data</code> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1528,7 +1570,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-generateKey" class="section">
             <h4>The generateKey method</h4>
              <p>
-              When invoked, <dfn id="dfn-SubtleCrypto-method-generateKey"><code>generateKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, <dfn id="dfn-SubtleCrypto-method-generateKey">
+              <code>generateKey</code></dfn> <span class="RFC2119">MUST</span> perform the
+              following steps:
             </p>
             <ol>
               <li>
@@ -1548,13 +1592,16 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>keyUsages</code> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
+                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
+                  the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
+                  its associated resolver.
                 </p>
               </li>
               <li>
@@ -1566,7 +1613,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -1584,8 +1634,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of executing the key generation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> with <code>extractable</code> as <var>extractable</var>
-                  and <code>keyUsages</code> as <var>usages</var>.
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> with
+                  <code>extractable</code> as <var>extractable</var> and <code>keyUsages</code> as
+                  <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -1600,7 +1651,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-deriveKey" class="section">
             <h4>The deriveKey method</h4>
             <p>
-              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveKey"><code>deriveKey</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveKey"><code>deriveKey</code></dfn>
+              <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -1620,7 +1672,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>derivedKeyType</code> is null, let <var>normalizedDerivedKeyAlgorithm</var> be null. Otherwise,
+                  If <code>derivedKeyType</code> is null, let
+                  <var>normalizedDerivedKeyAlgorithm</var> be null. Otherwise,
                   <ol>
                     <li>
                       <p>
@@ -1632,7 +1685,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     <li>
                       <p>
                         If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
-                        <a href="#algorithms">registered algorithm</a> throw a <code>NotSupportedError</code> and
+                        <a href="#algorithms">registered algorithm</a> throw a
+                        <code>NotSupportedError</code> and
                         <a href="#terminate-the-algorithm">terminate the algorithm</a>.
                       </p>
                     </li>
@@ -1648,13 +1702,16 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>keyUsages</code> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
+                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the
+                  algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
+                  its associated resolver.
                 </p>
               </li>
               <li>
@@ -1666,7 +1723,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -1691,8 +1751,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of executing the key derivation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> using <code>key</code> as <var>key</var>,
-                  <code>extractable</code> as <var>extractable</var> and <code>keyUsages</code> as <var>usages</var>.
+                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> using
+                  <code>key</code> as <var>key</var>, <code>extractable</code> as
+                  <var>extractable</var> and <code>keyUsages</code> as <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -1707,7 +1768,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-deriveBits" class="section">
             <h4>The deriveBits method</h4>
             <p>
-              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveBits"><code>deriveBits</code></dfn> <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, <dfn id="dfn-SubtleCrypto-method-deriveBits"><code>deriveBits</code></dfn>
+              <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -1734,7 +1796,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
+                  its associated resolver.
                 </p>
               </li>
               <li>
@@ -1746,7 +1809,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
+                  result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -1786,7 +1852,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
             <p>                  
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method
+              <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -1818,26 +1885,31 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, throw a <code>NotSupportedError</code> and
+                  <a href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>keyUsages</code> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
+                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
+                  the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>format</var>, <var>keyData</var>, <var>extractable</var> and <var>usages</var> be the <code>format</code>, <code>keyData</code>,
-                  <code>extractable</code> and <code>usages</code> parameters to the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method respectively.
+                  Let <var>format</var>, <var>keyData</var>, <var>extractable</var> and
+                  <var>usages</var> be the <code>format</code>, <code>keyData</code>,
+                  <code>extractable</code> and <code>usages</code> parameters to the
+                  <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method respectively.
                 </p>
-              
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
+                  its associated resolver.
                 </p>
               </li>
               <li>
@@ -1849,7 +1921,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -1867,20 +1942,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               
               <li>
                 <p>
-                  If <var>keyData</var>, interpreted accoding to <var>format</var>, specifies parameters that are
-                  inconsistent with the parameters supplied to <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn>,
-                  terminate this algorithm with an error.
+                  If <var>keyData</var>, interpreted accoding to <var>format</var>, specifies
+                  parameters that are inconsistent with the parameters supplied to
+                  <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn>, terminate this
+                  algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                    Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that results from interpreting
-                    <var>keyData</var> accoding to <var>format</var> using the key import algorithm indicated in <var>normalizedAlgorithm</var>.
+                  Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that
+                  results from interpreting <var>keyData</var> accoding to <var>format</var> using
+                  the key import algorithm indicated in <var>normalizedAlgorithm</var>.
                 </p>
               </li>
               <li>
                 <p>
-                    Set <var>result</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> to be <var>extractable</var>.
+                  Set <var>result</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a>
+                  to be <var>extractable</var>.
                 </p>
               </li>
               <li>
@@ -1900,38 +1978,44 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-exportKey" class="section">
             <h4>The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
             <p>
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method
+              <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
-            
               <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, throw a <code>NotSupportedError</code> and <a
+                  href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>key</var> and <var>format</var> be the values of the <code>key</code> and <code>format</code> parameters to the
-                  <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method respectively.
+                  Let <var>key</var> and <var>format</var> be the values of the <code>key</code> and
+                  <code>format</code> parameters to the <dfn
+                  id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method respectively.
                 </p>
-              </li>
-            
-              <li>
-                  <p>
-                    Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
-                  </p>
               </li>
               <li>
                 <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Let <var>promise</var> be a new <code>Promise</code> object and
+                  <var>resolver</var> its associated resolver.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and continue executing the remaining steps
+                  asynchronously.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
+                  result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -1948,13 +2032,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
-                  terminate this algorithm with an error.
+                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is
+                  not true, terminate this algorithm with an error.
                 </p>         
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of encoding <var>key</var> according to <var>format</var>.
+                  Let <var>result</var> be the result of encoding <var>key</var> according to
+                  <var>format</var>.
                 </p>
               </li>
             </ol>
@@ -1963,7 +2048,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-wrapKey" class="section">
             <h4>The wrapKey method</h4>
             <p>
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span
+              class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -1983,25 +2069,31 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key format value</a>, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, throw a <code>NotSupportedError</code> and <a
+                  href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and
+                  <var>resolver</var> its associated resolver.
                 </p>
               </li>
               <li>
                 <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and continue executing the remaining steps
+                  asynchronously.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
+                  result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -2025,13 +2117,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is not true,
-                  terminate this algorithm with an error.
+                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is
+                  not true, terminate this algorithm with an error.
                 </p>         
               </li>
               <li>
                 <p>
-                  Let <var>bytes</var> be the result of encoding <var>key</var> according to <var>keyFormat</var>.
+                  Let <var>bytes</var> be the result of encoding <var>key</var> according to
+                  <var>keyFormat</var>.
                 </p>
               </li>
               <li>
@@ -2041,7 +2134,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                 Let <var>result</var> be the result of performing the underlying cryptographic algorithm specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as input data.
+                 Let <var>result</var> be the result of performing the underlying cryptographic
+                 algorithm specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as
+                 input data.
                 </p>
               </li>
               <li>
@@ -2061,7 +2156,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-unwrapKey" class="section">
             <h4>The unwrapKey method</h4>
             <p>
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps: 
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method
+              <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
             <ol>
               <li>
@@ -2108,19 +2204,24 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>format</code> is not a recognized
+                  <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw a
+                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
+                  the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw
-                  a <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  If <code>keyUsages</code> includes a value that is not a recognized
+                  <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw a
+                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
+                  the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
+                  its associated resolver.
                 </p>
               </li>
               <li>
@@ -2132,7 +2233,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">Determine whether to reject the algorithm with a DOMError or a <code>null</code> result.</div>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
                 <ol>
                   <li>
                     <p>
@@ -2156,8 +2260,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                  <p>
-                   Let <var>bytes</var> be the result of performing the underlying cryptographic algorithm specified by <var>normalizedUnwrapAlgorithm</var>
-                   witk key <var>unwrappingKey</var> and input data <var>wrappedKey</var>.
+                   Let <var>bytes</var> be the result of performing the underlying cryptographic
+                   algorithm specified by <var>normalizedUnwrapAlgorithm</var> witk key
+                   <var>unwrappingKey</var> and input data <var>wrappedKey</var>.
                  </p>
               </li>
               <li>
@@ -2167,18 +2272,24 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                If <var>bytes</var>, interpreted accoding to <var>format</var>, specifies parameters that are inconsistent with the parameters supplied to <a href="#dfn-SubtleCrytpo-method-unwrapKey">unwrapKey</a>, terminate this algorithm with an error.
+                  If <var>bytes</var>, interpreted accoding to <var>format</var>, specifies
+                  parameters that are inconsistent with the parameters supplied to <a
+                  href="#dfn-SubtleCrytpo-method-unwrapKey">unwrapKey</a>, terminate this algorithm
+                  with an error.
                 </p>
               </li>
               <li>
                 <p>
-                    Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that results from interpreting
-                    <var>bytes</var> accoding to <var>format</var> using the key import algorithm indicated in <var>normalizedKeyAlgorithm</var>.
+                  Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that
+                  results from interpreting <var>bytes</var> accoding to <var>format</var> using
+                  the key import algorithm indicated in <var>normalizedKeyAlgorithm</var>.
                 </p>
               </li>
               <li>
                 <p>
-                 If <var>result</var> describes a <a href="#dfn-Key"><code>Key</code></a> object that is incompatible with the parameters associated with <var>unwrappingKey</var>, terminate this algorithm with an error.
+                   If <var>result</var> describes a <a href="#dfn-Key"><code>Key</code></a> object
+                   that is incompatible with the parameters associated with
+                   <var>unwrappingKey</var>, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -2241,9 +2352,9 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </p>
 
         <div class="note">
-            <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
-            is NOT a sign bit. Implementors should take care when mapping to big integer implementations
-            that expected signed integers.
+          <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
+          is NOT a sign bit. Implementors should take care when mapping to big integer
+          implementations that expected signed integers.
         </div>
       </div>
       
@@ -2809,55 +2920,67 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
               <dt>Encrypt</dt>
               <dd>
                 <ol>
-                    <li>
-                        <p>
-                            If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Perform the encrytion operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA public key and the contents of <var>plaintext</var> as M.
-                            <ol>
-                                <li>
-                                    <p>
-                                        If performing the operation results in an error, terminate this algorithm with an error.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code> containing the value C that results from performing the operation.
-                                    </p>
-                                </li>
-                            </ol>
-                        </p>
-                    </li>
+                  <li>
+                    <p>
+                      If <var>key</var> does not have key type <code>public</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the encrytion operation defined in Section 7.2 of [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                      as the recipient's RSA public key and the contents of <var>plaintext</var> as
+                      M.
+                      <ol>
+                        <li>
+                          <p>
+                            If performing the operation results in an error, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
+                            containing the value C that results from performing the operation.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Decrypt</dt>
               <dd>
                 <ol>
-                    <li>
-                        <p>
-                            If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            Perform the decryption operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA private key and the contents of <var>ciphertext</var> as C.
-                            <ol>
-                                <li>
-                                    <p>
-                                        If performing the operation results in an error, terminate this algorithm with an error.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code> containing the value M that results from performing the operation.
-                                    </p>
-                                </li>
-                            </ol>
-                        </p>
-                    </li>
+                  <li>
+                    <p>
+                      If <var>key</var> does not have key type <code>private</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the decryption operation defined in Section 7.2 of [<cite><a
+                     href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                     as the recipient's RSA private key and the contents of <var>ciphertext</var> as
+                     C.
+                      <ol>
+                        <li>
+                          <p>
+                            If performing the operation results in an error, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code>
+                            containing the value M that results from performing the operation.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Generate Key</dt>
@@ -2865,12 +2988,17 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                 <ol>
                   <li>
                     <p>
-                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      Generate an RSA key pair, as defined in [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
+                      <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
+                      exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
                       <ul>
                         <li>
                           <p>
@@ -2883,37 +3011,48 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                             <ol>
                               <li>
                                 <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                  Let <var>result</var> be a new <a
+                                  href="#dfn-KeyPair"><code>KeyPair</code></a> object
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                  Let <var>result</var><code>.publicKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  public key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be
+                                  <code>true</code>
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
+                                  ]</code>.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                  Let <var>result</var><code>.privateKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  private key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                  Let <var>result</var><code>.privateKey.extractable</code> be
+                                  <var>extractable</var>.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "decrypt",
+                                  "unwrapKey" ]</code>.
                                 </p>
                               </li>
                               <li>
@@ -3010,26 +3149,36 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                      If <var>key</var> does not have key type <code>private</code>, terminate this
+                      algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                        If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not
+                      present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate
+                      this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                        Perform the signature generation operation defined in Section 8.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's private key and the contents of <var>message</var> as M and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                      Perform the signature generation operation defined in Section 8.2 of
+                      [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
+                      <var>key</var> as the signer's private key and the contents of
+                      <var>message</var> as M and using the hash function specified in
+                      <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the
+                      EMSA-PKCS1-v1_5 encoding method.
                       <ol>
                         <li>
                           <p>
-                            If performing the operation results in an error, terminate this algorithm with an error.
+                            If performing the operation results in an error, terminate this
+                            algorithm with an error.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Otherwise, let <var>signature</var> be the value S that results from performing the operation.
+                            Otherwise, let <var>signature</var> be the value S that results from
+                            performing the operation.
                           </p>
                         </li>
                       </ol>
@@ -3043,26 +3192,37 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                        If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
+                      If <var>key</var> does not have key type <code>public</code>, terminate this
+                      algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                        If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      If any of the members of <a href="#dfn-RsaSsaParams">RsaSsaParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                        Perform the signature verification operation defined in Section 8.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's RSA public key and the contents of <var>message</var> as M and <var>signature</var> as S and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                      Perform the signature verification operation defined in Section 8.2 of
+                      [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
+                      <var>key</var> as the signer's RSA public key and the contents of
+                      <var>message</var> as M and <var>signature</var> as S and using the hash
+                      function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the
+                      Hash option for the EMSA-PKCS1-v1_5 encoding method.
                       <ol>
                         <li>
                           <p>
-                            If performing the operation results in an error, terminate this algorithm with an error.
+                            If performing the operation results in an error, terminate this
+                            algorithm with an error.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Otherwise, let <var>result</var> be a boolean with value true if the result of the operations was "valid signature" and a boolean with value false otherwise.
+                            Otherwise, let <var>result</var> be a boolean with value true if the
+                            result of the operations was "valid signature" and a boolean with value
+                            false otherwise.
                           </p>
                         </li>
                       </ol>
@@ -3075,16 +3235,22 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a>
+                      are not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      Generate an RSA key pair, as defined in [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
+                      <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
+                      exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
                       <ul>
                         <li>
                           <p>
-                          If generation of the key pair fails, terminate this algorithm with an error.
+                            If generation of the key pair fails, terminate this algorithm with an
+                            error.
                           </p>
                         </li>
                         <li>
@@ -3093,37 +3259,46 @@ dictionary <dfn id="dfn-RsaSsaParams">RsaSsaParams</dfn> : <a href="#dfn-Algorit
                             <ol>
                               <li>
                                 <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                  Let <var>result</var> be a new <a
+                                  href="#dfn-KeyPair"><code>KeyPair</code></a> object
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                  Let <var>result</var><code>.publicKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  public key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be
+                                  <code>true</code>
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "verify" ]</code>.
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "verify" ]</code>.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
-                                </p>
-                              </li>
-                                                      <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                  Let <var>result</var><code>.privateKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  private key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "sign" ]</code>.
+                                  Let <var>result</var><code>.privateKey.extractable</code> be
+                                  <var>extractable</var>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "sign" ]</code>.
                                 </p>
                               </li>
                               <li>
@@ -3218,26 +3393,38 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               <ol>
                 <li>
                   <p>
-                      If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
+                    If <var>key</var> does not have key type <code>private</code>, terminate this
+                    algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                      If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not
+                    present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate
+                    this algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                      Perform the signature generation operation defined in Section 8.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's private key, K, and the contents of <var>message</var> as the message to be signed, M, and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the salt length option for the EMM-PSS-ENCODE operation.
+                    Perform the signature generation operation defined in Section 8.1 of [<cite><a
+                    href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                    as the signer's private key, K, and the contents of <var>message</var> as the
+                    message to be signed, M, and using the hash function specified in
+                    <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1
+                    (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
+                    the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
+                    salt length option for the EMM-PSS-ENCODE operation.
                     <ol>
                       <li>
                         <p>
-                          If performing the operation results in an error, terminate this algorithm with an error.
+                          If performing the operation results in an error, terminate this algorithm
+                          with an error.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Otherwise, let <var>signature</var> be a new <code>ArrayBuffer</code> containing the signature, S, that results from performing the operation.
+                          Otherwise, let <var>signature</var> be a new <code>ArrayBuffer</code>
+                          containing the signature, S, that results from performing the operation.
                         </p>
                       </li>
                     </ol>
@@ -3251,26 +3438,39 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               <ol>
                 <li>
                   <p>
-                      If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
+                    If <var>key</var> does not have key type <code>public</code>, terminate this
+                    algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                      If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not
+                    present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate
+                    this algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                      Perform the signature verification operation defined in Section 8.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the signer's RSA public key and the contents of <var>message</var> as M and the contents of <var>signature</var> as S and using the hash function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the salt length option for the EMSA-PSS-VERIFY operation.
+                    Perform the signature verification operation defined in Section 8.1 of [<cite><a
+                    href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                    as the signer's RSA public key and the contents of <var>message</var> as M and
+                    the contents of <var>signature</var> as S and using the hash function specified
+                    in <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option, MGF1
+                    (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
+                    the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
+                    salt length option for the EMSA-PSS-VERIFY operation.
                     <ol>
                       <li>
                         <p>
-                          If performing the operation results in an error, terminate this algorithm with an error.
+                          If performing the operation results in an error, terminate this algorithm
+                          with an error.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Otherwise, let <var>result</var> be a boolean with value true if the result of the operation was "valid signature" and a boolean with value false otherwise.
+                          Otherwise, let <var>result</var> be a boolean with value true if the
+                          result of the operation was "valid signature" and a boolean with value
+                          false otherwise.
                         </p>
                       </li>
                     </ol>
@@ -3283,16 +3483,22 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               <ol>
                 <li>
                   <p>
-                  If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are
+                    not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                    terminate this algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                  Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                    Generate an RSA key pair, as defined in [<cite><a
+                    href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
+                    <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
+                    exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
                     <ul>
                       <li>
                         <p>
-                        If generation of the key pair fails, terminate this algorithm with an error.
+                          If generation of the key pair fails, terminate this algorithm with an
+                          error.
                         </p>
                       </li>
                       <li>
@@ -3301,37 +3507,46 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <ol>
                             <li>
                               <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                Let <var>result</var> be a new <a
+                                href="#dfn-KeyPair"><code>KeyPair</code></a> object
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                Let <var>result</var><code>.publicKey</code> be a new <a
+                                href="#dfn-Key"><code>Key</code></a> object representing the public
+                                key of the generated key pair.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                Let <var>result</var><code>.publicKey.extractable</code> be
+                                <code>true</code>
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "verify" ]</code>.
+                                Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "verify" ]</code>.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
-                              </p>
-                            </li>
-                                                    <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                Let <var>result</var><code>.privateKey</code> be a new <a
+                                href="#dfn-Key"><code>Key</code></a> object representing the private
+                                key of the generated key pair.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "sign" ]</code>.
+                                Let <var>result</var><code>.privateKey.extractable</code> be
+                                <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "sign" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -3436,65 +3651,91 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <dt>Encrypt</dt>
               <dd>
                 <ol>
-                    <li>
-                        <p>
-                            If <var>key</var> does not have key type <code>public</code>, terminate this algorithm with an error.
-                        </p>
-                    </li>
-                    <li>
-                      <p>
-                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
-                      </p>
-                    </li>
-                    <li>
-                        <p>
-                            Perform the encrytion operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA public key, the contents of <var>plaintext</var> as the message to be encrypted, M, and <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with the hash function identified by <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
-                            <ol>
-                                <li>
-                                    <p>
-                                        If performing the operation results in an error, terminate this algorithm with an error.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code> containing the value C that results from performing the operation.
-                                    </p>
-                                </li>
-                            </ol>
-                        </p>
-                    </li>
+                  <li>
+                    <p>
+                      If <var>key</var> does not have key type <code>public</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the encrytion operation defined in Section 7.1 of [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                      as the recipient's RSA public key, the contents of <var>plaintext</var> as the
+                      message to be encrypted, M, and
+                      <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with
+                      the hash function identified by
+                      <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1
+                      (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
+                      the MGF option.
+                      <ol>
+                        <li>
+                          <p>
+                            If performing the operation results in an error, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
+                            containing the value C that results from performing the operation.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Decrypt</dt>
               <dd>
                 <ol>
-                    <li>
-                        <p>
-                            If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
-                        </p>
-                    </li>
-                    <li>
-                      <p>
-                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
-                      </p>
-                    </li>
-                    <li>
-                        <p>
-                            Perform the decryption operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var> as the recipient's RSA private key, the contents of <var>ciphertext</var> as the cipertext to be decrypted, C, and <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with the hash function identified by <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
-                            <ol>
-                                <li>
-                                    <p>
-                                        If performing the operation results in an error, terminate this algorithm with an error.
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code> containing the value M that results from performing the operation.
-                                    </p>
-                                </li>
-                            </ol>
-                        </p>
-                    </li>
+                  <li>
+                    <p>
+                      If <var>key</var> does not have key type <code>private</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Perform the decryption operation defined in Section 7.1 of [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                      as the recipient's RSA private key, the contents of <var>ciphertext</var> as
+                      the cipertext to be decrypted, C, and
+                      <var>normalizedAlgorithm</var><code>.label</code> as the label, L, and with
+                      the hash function identified by
+                      <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1
+                      (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
+                      the MGF option.
+                      <ol>
+                        <li>
+                           <p>
+                              If performing the operation results in an error, terminate this
+                              algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                           <p>
+                              Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code>
+                              containing the value M that results from performing the operation.
+                          </p>
+                        </li>
+                      </ol>
+                    </p>
+                  </li>
                 </ol>
               </dd>
               <dt>Generate Key</dt>
@@ -3502,16 +3743,22 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 <ol>
                   <li>
                     <p>
-                    If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
+                      If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a>
+                      are not present in <var>normalizedAlgorithm</var>, or have incorrect types,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                    Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
+                      Generate an RSA key pair, as defined in [<cite><a
+                      href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
+                      <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
+                      exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
                       <ul>
                         <li>
                           <p>
-                          If generation of the key pair fails, terminate this algorithm with an error.
+                            If generation of the key pair fails, terminate this algorithm with an
+                            error.
                           </p>
                         </li>
                         <li>
@@ -3520,37 +3767,48 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                             <ol>
                               <li>
                                 <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                  Let <var>result</var> be a new <a
+                                  href="#dfn-KeyPair"><code>KeyPair</code></a> object
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                  Let <var>result</var><code>.publicKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  public key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                  Let <var>result</var><code>.publicKey.extractable</code> be
+                                  <code>true</code>
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
+                                  ]</code>.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                  Let <var>result</var><code>.privateKey</code> be a new <a
+                                  href="#dfn-Key"><code>Key</code></a> object representing the
+                                  private key of the generated key pair.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                  Let <var>result</var><code>.privateKey.extractable</code> be
+                                  <var>extractable</var>.
                                 </p>
                               </li>
                               <li>
                                 <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the intersection of <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                  intersection of <var>usages</var> and <code>[ "decrypt",
+                                  "unwrapKey" ]</code>.
                                 </p>
                               </li>
                               <li>
@@ -3652,8 +3910,9 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
 };
             </x:codeblock>
             <p>
-              The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves, which
-              are a convenient way to specify the domain parameters of well-known elliptic curves. The following values are recognized:
+              The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves,
+              which are a convenient way to specify the domain parameters of well-known elliptic
+              curves. The following values are recognized:
               <dl>
                 <dt id="dfn-NamedCurve-p256"><code>P-256</code></dt>
                 <dd>NIST recommended curve P-256, also known as <code>secp256r1</code>.</dd>
@@ -3674,13 +3933,14 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 <ol>
                   <li>
                     <p>
-                      If <var>key</var> does not refer to an ECDSA private key, terminate the algorithm with an error.
+                      If <var>key</var> does not refer to an ECDSA private key, terminate the
+                      algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>hash</var> be initialized to an instance of the underlying hash algorithm
-                      indicated by <var>hash</var>
+                      Let <var>hash</var> be initialized to an instance of the underlying hash
+                      algorithm indicated by <var>hash</var>
                     </p>
                   </li>
                   <li>
@@ -3695,13 +3955,14 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      If the context object's internal state is not <code>"complete"</code>, return an
-                      empty <code>ArrayBuffer</code>.
+                      If the context object's internal state is not <code>"complete"</code>, return
+                      an empty <code>ArrayBuffer</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                      Let <var>M</var> be the result of finalizing the hash algorithm of
+                      <var>hash</var>.
                     </p>
                   </li>
                   <li>
@@ -3711,7 +3972,8 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      Let <var>params</var> be the EC domain parameters associated with <var>key</var>.
+                      Let <var>params</var> be the EC domain parameters associated with
+                      <var>key</var>.
                     </p>
                   </li>
                   <li>
@@ -3734,12 +3996,14 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      Convert <var>r</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                      Convert <var>r</var> to a bitstring and append the sequence of bytes to
+                     <var>result</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Convert <var>s</var> to a bitstring and append the sequence of bytes to <var>result</var>.
+                      Convert <var>s</var> to a bitstring and append the sequence of bytes to
+                      <var>result</var>.
                     </p>
                   </li>
                   <li>
@@ -3755,13 +4019,14 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                 <ol>
                   <li>
                     <p>
-                      If <var>key</var> does not refer to an ECDSA public key, terminate the algorithm with an error.
+                      If <var>key</var> does not refer to an ECDSA public key, terminate the
+                      algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>hash</var> be initialized to an instance of the underlying hash algorithm
-                      indicated by <var>hash</var>
+                      Let <var>hash</var> be initialized to an instance of the underlying hash
+                      algorithm indicated by <var>hash</var>
                     </p>
                   </li>
                   <li>
@@ -3776,12 +4041,14 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      If the context object's internal state is not <code>"complete"</code>, terminate the algorithm.
+                      If the context object's internal state is not <code>"complete"</code>,
+                      terminate the algorithm.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>M</var> be the result of finalizing the hash algorithm of <var>hash</var>.
+                      Let <var>M</var> be the result of finalizing the hash algorithm of
+                      <var>hash</var>.
                     </p>
                   </li>
                   <li>
@@ -3797,9 +4064,10 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   </li>
                   <li>
                     <p>
-                      Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>,
-                      Section 7.4, with <var>M</var> as the received message, using <var>params</var> as the
-                      EC domain parameters, and with <var>Q</var> as the public key.
+                      Perform the ECDSA verifying process, as specified in <a
+                      href="#X9.62">X9.62</a>, Section 7.4, with <var>M</var> as the received
+                      message, using <var>params</var> as the EC domain parameters, and with
+                      <var>Q</var> as the public key.
                     </p>
                   </li>
                   <li>
@@ -3828,8 +4096,8 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           <div id="ecdh-description" class="section">
             <h4>Description</h4>
             <p>
-              This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key agreement, as
-              specified by <a href="#X9.63">X9.63</a>.
+              This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key
+              agreement, as specified by <a href="#X9.63">X9.63</a>.
             </p>
           </div>
           <div id="ecdh-registration" class="section">
@@ -3888,8 +4156,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             </x:codeblock>
             <p>
               The <a href="#dfn-ECPoint">ECPoint</a> typedef is a <code>Uint8Array</code> holding an
-              elliptic curve point. An elliptic curve point is converted to an array of Uint8 elements
-              using the procedure specified in <a href="#X9.62">X9.62</a> Annex A.5.7.
+              elliptic curve point. An elliptic curve point is converted to an array of Uint8
+              elements using the procedure specified in <a href="#X9.62">X9.62</a> Annex A.5.7.
             </p>
           </div>
           <div id="ecdh-operations" class="section">
@@ -3899,22 +4167,27 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
               <ol>
                 <li>
                   <p>
-                  If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If <var>usages</var> contains a value which is not either <code>deriveKey</code> or <code>dervieBits</code>,
+                    If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
+                    not present in <var>normalizedAlgorithm</var>, or have incorrect types,
                     terminate this algorithm with an error.
                   </p>
                 </li>
                 <li>
                   <p>
-                  Generate an Eliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>] with domain parameters for the curve identified by <var>normalizedAlgorithm</var><code>.namedCurve</code>.
+                    If <var>usages</var> contains a value which is not either <code>deriveKey</code>
+                    or <code>dervieBits</code>, terminate this algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Generate an Eliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>]
+                    with domain parameters for the curve identified by
+                    <var>normalizedAlgorithm</var><code>.namedCurve</code>.
                     <ul>
                       <li>
                         <p>
-                        If generation of the key pair fails, terminate this algorithm with an error.
+                          If generation of the key pair fails, terminate this algorithm with an
+                          error.
                         </p>
                       </li>
                       <li>
@@ -3923,37 +4196,46 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <ol>
                             <li>
                               <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                                Let <var>result</var> be a new <a
+                                href="#dfn-KeyPair"><code>KeyPair</code></a> object
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public key of the generated key pair.
+                                Let <var>result</var><code>.publicKey</code> be a new <a
+                                href="#dfn-Key"><code>Key</code></a> object representing the public
+                                key of the generated key pair.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey.extractable</code> be <code>true</code>
+                                Let <var>result</var><code>.publicKey.extractable</code> be
+                                <code>true</code>
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.publicKey.keyUsages</code> be <var>usages</var>.
+                                Let <var>result</var><code>.publicKey.keyUsages</code> be
+                                <var>usages</var>.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private key of the generated key pair.
+                                Let <var>result</var><code>.privateKey</code> be a new <a
+                                href="#dfn-Key"><code>Key</code></a> object representing the private
+                                key of the generated key pair.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.privateKey.extractable</code> be <var>extractable</var>.
+                                Let <var>result</var><code>.privateKey.extractable</code> be
+                                <var>extractable</var>.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Let <var>result</var><code>.privateKey.keyUsages</code> be <var>usages</var>.
+                                Let <var>result</var><code>.privateKey.keyUsages</code> be
+                                <var>usages</var>.
                               </p>
                             </li>
                             <li>
@@ -3972,24 +4254,30 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             <dt>Derive Key</dt>
             <dd>
               <ol>
-                  <li>
-                    <p>
-                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                    If any of the members of <a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
-                    </p>
-                  </li>
                 <li>
                   <p>
-                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1 with <var>key</var> as the EC
-                    private key d and <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
+                    If <var>key</var> does not have key type <code>private</code>, terminate this
+                    algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If any of the members of <a
+                    href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in
+                    <var>normalizedAlgorithm</var>, or have incorrect types, terminate this
+                    algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
+                    with <var>key</var> as the EC private key d and
+                    <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
                     <ol>
                       <li>
                         <p>
-                          If performing the operation results in an error, terminate this algorithm with an error.
+                          If performing the operation results in an error, terminate this algorithm
+                          with an error.
                         </p>
                       </li>
                       <li>
@@ -4001,40 +4289,53 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </p>
                 </li>
                 <div class="note">
-                  Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP 800-56A</a>
-                  Section 5.7.1.2 specify a modified ECDH primitive that multiplies the shared secret value by
-                  the cofactor of the curve. The cofactor of the NIST recommended curves P-256, P-384, and P-521
-                  is 1, so the standard and modified ECDH primitives are equivalent for those curves.
+                  Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP
+                  800-56A</a> Section 5.7.1.2 specify a modified ECDH primitive that multiplies the
+                  shared secret value by the cofactor of the curve. The cofactor of the NIST
+                  recommended curves P-256, P-384, and P-521 is 1, so the standard and modified ECDH
+                  primitives are equivalent for those curves.
                 </div>
                 <li>
-                  <div class="ednote">Define how the finite field member <var>result</var> is converted to a bit string</div>
+                  <div class="ednote">
+                    Define how the finite field member <var>result</var> is converted to a bit
+                    string
+                  </div>
                 </li>
                 <li>
-                  <div class="ednote">Define how a key for algorithm <var>normalizedDerivedKeyAlgorithm</var> is derived from a bit string</div>
+                  <div class="ednote">
+                    Define how a key for algorithm <var>normalizedDerivedKeyAlgorithm</var> is
+                    derived from a bit string
+                  </div>
                 </li>
               </ol>
             </dd>
             <dt>Derive Bits</dt>
             <dd>
               <ol>
-                  <li>
-                    <p>
-                        If <var>key</var> does not have key type <code>private</code>, terminate this algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                    If any of the members of <a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in <var>normalizedAlgorithm</var>, or have incorrect types, terminate this algorithm with an error.
-                    </p>
-                  </li>
                 <li>
                   <p>
-                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1 with <var>key</var> as the EC
-                    private key d and <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
+                    If <var>key</var> does not have key type <code>private</code>, terminate this
+                    algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If any of the members of <a
+                    href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in
+                    <var>normalizedAlgorithm</var>, or have incorrect types, terminate this
+                    algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
+                    with <var>key</var> as the EC private key d and
+                    <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
                     <ol>
                       <li>
                         <p>
-                          If performing the operation results in an error, terminate this algorithm with an error.
+                          If performing the operation results in an error, terminate this algorithm
+                          with an error.
                         </p>
                       </li>
                       <li>
@@ -4046,7 +4347,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </p>
                 </li>
                 <li>
-                  <div class="ednote">Define how the finite field member <var>result</var> is converted to a bit string</div>
+                  <div class="ednote">
+                    Define how the finite field member <var>result</var> is converted to a bit
+                    string.
+                  </div>
                 </li>
               </ol>
             </dd>
@@ -4977,8 +5281,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         <h2>Algorithm normalizing rules</h2>
         <p>
           The <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> typedef
-          permits algorithms to be specified as either a <code>dictionary</code> or a DOMString.
-          In order to ensure consistency, conforming user agents must normalize all AlgorithmIdentifier
+          permits algorithms to be specified as either a <code>dictionary</code> or a DOMString. In
+          order to ensure consistency, conforming user agents must normalize all AlgorithmIdentifier
           inputs into a single, canonical form. When normalization is indicated, it must act as
           follows:
         </p>
@@ -5001,9 +5305,9 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 Convert every character in <var>O</var> to lower case.
               </li>
               <li>
-                If <var>O</var> contains a recognized <a href="#dfn-algorithm-alias">algorithm alias</a>
-                then let <var>result</var> be re-initialized to the aliased dictionary and this algorithm
-                restarted, using <var>result</var> as the input to be normalized.
+                If <var>O</var> contains a recognized <a href="#dfn-algorithm-alias">algorithm
+                alias</a> then let <var>result</var> be re-initialized to the aliased dictionary and
+                this algorithm restarted, using <var>result</var> as the input to be normalized.
               </li>
               <li>
                 Otherwise, throw an <code>InvalidAlgorithmError</code>
@@ -5102,151 +5406,136 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
     <div id="iana-section" class="section">
     <h2>IANA Considerations</h2>
         <div id="iana-section-jws-jwa" class="section">
-
-            <h3>JSON Web Signature and Encryption Algorithms Registration</h3>
-
-            <p>
-                This section registers the following algorithm identifiers in the IANA JSON Web Signature and Encryption Algorithms Registry for use with JSON Web Key.
-                Note that the 'Implementation Requirements' field in the template refers to use with JSON Web Signature and JSON Web Encryption specifically, in which
-                case use of unauthenticated encryption is prohibited.
-            </p>
-            
-            <ul>
-                <li>Algorithm Name: "A128CBC"</li>
-                <li>Algorithm Description: AES CBC using 128 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-
-            <ul>
-                <li>Algorithm Name: "A192CBC"</li>
-                <li>Algorithm Description: AES CBC using 192 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A256CBC"</li>
-                <li>Algorithm Description: AES CBC using 256 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A128CTR"</li>
-                <li>Algorithm Description: AES CTR using 128 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A192CTR"</li>
-                <li>Algorithm Description: AES CTR using 192 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A256CTR"</li>
-                <li>Algorithm Description: AES CTR using 256 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-          
-            <ul>
-                <li>Algorithm Name: "A128CMAC"</li>
-                <li>Algorithm Description: AES CMAC using 128 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A192CMAC"</li>
-                <li>Algorithm Description: AES CMAC using 192 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A256CMAC"</li>
-                <li>Algorithm Description: AES CMAC using 256 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-          
-            <ul>
-                <li>Algorithm Name: "A128CFB"</li>
-                <li>Algorithm Description: AES CFB using 128 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A192CFB"</li>
-                <li>Algorithm Description: AES CFB using 192 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "A256CFB"</li>
-                <li>Algorithm Description: AES CFB using 256 bit key</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-          
-            <ul>
-                <li>Algorithm Name: "HS1"</li>
-                <li>Algorithm Description: HMAC using SHA-1</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
-            
-            <ul>
-                <li>Algorithm Name: "HS224"</li>
-                <li>Algorithm Description: HMAC using SHA-224</li>
-                <li>Algorithm Usage Location(s): "JWK"</li>
-                <li>JOSE Implementation Requirements: Prohibited</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
-            </ul>
+          <h3>JSON Web Signature and Encryption Algorithms Registration</h3>
+          <p>
+            This section registers the following algorithm identifiers in the IANA JSON Web
+            Signature and Encryption Algorithms Registry for use with JSON Web Key. Note that the
+            'Implementation Requirements' field in the template refers to use with JSON Web
+            Signature and JSON Web Encryption specifically, in which case use of unauthenticated
+            encryption is prohibited.
+          </p>
+          <ul>
+            <li>Algorithm Name: "A128CBC"</li>
+            <li>Algorithm Description: AES CBC using 128 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A192CBC"</li>
+            <li>Algorithm Description: AES CBC using 192 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>            
+          <ul>
+            <li>Algorithm Name: "A256CBC"</li>
+            <li>Algorithm Description: AES CBC using 256 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>            
+          <ul>
+            <li>Algorithm Name: "A128CTR"</li>
+            <li>Algorithm Description: AES CTR using 128 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>            
+          <ul>
+            <li>Algorithm Name: "A192CTR"</li>
+            <li>Algorithm Description: AES CTR using 192 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A256CTR"</li>
+            <li>Algorithm Description: AES CTR using 256 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A128CMAC"</li>
+            <li>Algorithm Description: AES CMAC using 128 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>          
+          <ul>
+            <li>Algorithm Name: "A192CMAC"</li>
+            <li>Algorithm Description: AES CMAC using 192 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A256CMAC"</li>
+            <li>Algorithm Description: AES CMAC using 256 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A128CFB"</li>
+            <li>Algorithm Description: AES CFB using 128 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A192CFB"</li>
+            <li>Algorithm Description: AES CFB using 192 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "A256CFB"</li>
+            <li>Algorithm Description: AES CFB using 256 bit key</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "HS1"</li>
+            <li>Algorithm Description: HMAC using SHA-1</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "HS224"</li>
+            <li>Algorithm Description: HMAC using SHA-224</li>
+            <li>Algorithm Usage Location(s): "JWK"</li>
+            <li>JOSE Implementation Requirements: Prohibited</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-algorithms">JSON Web Key algorithm names for WebCrypto algorithms</a> in this document</li>
+          </ul>
         </div>
-        
         <div id="iana-section-jwk" class="section">
-            <h3>JSON Web Key Parameters Registry</h3>
-            <ul>
-                <li>Parameter Name: "ext"</li>
-                <li>Used with "kty" Value(s): *</li>
-                <li>Parameter Information Class: Public</li>
-                <li>Change Controller: W3C WebCrypto working group</li>
-                <li>Specification Document(s): <a href="#key-interface-jwk-ext">JSON Web Key "ext" attribute</a> in this document</li>
-            </ul>
+          <h3>JSON Web Key Parameters Registry</h3>
+          <ul>
+            <li>Parameter Name: "ext"</li>
+            <li>Used with "kty" Value(s): *</li>
+            <li>Parameter Information Class: Public</li>
+            <li>Change Controller: W3C WebCrypto working group</li>
+            <li>Specification Document(s): <a href="#key-interface-jwk-ext">JSON Web Key "ext" attribute</a> in this document</li>
+          </ul>
         </div>
       </div>
       <div id="acknowledgements-section" class="section">
@@ -5263,12 +5552,13 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
           mailing list.
         </p>
         <p>
-         The W3C would like to thank the <a href="http://www.northropgrumman.com/cybersecurity/presskit_research_co.html">Northrop Grumman Cybersecurity
-Research Consortium</a> for supporting W3C/MIT. 
+         The W3C would like to thank the <a
+         href="http://www.northropgrumman.com/cybersecurity/presskit_research_co.html">Northrop
+         Grumman Cybersecurity Research Consortium</a> for supporting W3C/MIT.
         </p>
         <p>
-          The <a href="#dfn-RandomSource-method-getRandomValues"><code>getRandomValues</code></a> method
-          in the <code>Crypto</code> interface was originally proposed by Adam Barth to the
+          The <a href="#dfn-RandomSource-method-getRandomValues"><code>getRandomValues</code></a>
+          method in the <code>Crypto</code> interface was originally proposed by Adam Barth to the
           <a href="http://wiki.whatwg.org/wiki/Crypto">WHATWG</a>.
         </p>
       </div>
