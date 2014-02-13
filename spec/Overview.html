@@ -2738,20 +2738,13 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       Perform the encrytion operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                       as the recipient's RSA public key and the contents of <var>plaintext</var> as
                       M.
-                      <ol>
-                        <li>
-                          <p>
-                            If performing the operation results in an error, terminate this
-                            algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
-                            containing the value C that results from performing the operation.
-                          </p>
-                        </li>
-                      </ol>
+                      <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
+                            containing the value C that results from performing the operation.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -2770,20 +2763,14 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       Perform the decryption operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                      as the recipient's RSA private key and the contents of <var>ciphertext</var> as
                      C.
-                      <ol>
-                        <li>
-                          <p>
-                            If performing the operation results in an error, terminate this
-                            algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code>
-                            containing the value M that results from performing the operation.
-                          </p>
-                        </li>
-                      </ol>
+                     
+                      <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Let <var>plaintext</var> be a new <code>ArrayBuffer</code>
+                            containing the value M that results from performing the operation.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -2803,68 +2790,63 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
                       <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
                       exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
-                      <ul>
-                        <li>
-                          <p>
-                          If generation of the key pair fails, terminate this algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise,
-                            <ol>
-                              <li>
-                                <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
-                                  public key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be
-                                  <code>true</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
-                                  ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
-                                  private key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be
-                                  <var>extractable</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "decrypt",
-                                  "unwrapKey" ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Return <var>result</var>.
-                                </p>
-                              </li>
-                            </ol>
-                          </p>
-                        </li>
-                      </ul>
+                      <dl class="switch">
+                        <dt>If generation of the key pair fails:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
+                                public key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.extractable</code> be
+                                <code>true</code>
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
+                                ]</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
+                                private key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.extractable</code> be
+                                <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "decrypt",
+                                "unwrapKey" ]</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>result</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3241,20 +3223,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       <var>message</var> as M and using the hash function specified in
                       <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option for the
                       EMSA-PKCS1-v1_5 encoding method.
-                      <ol>
-                        <li>
-                          <p>
-                            If performing the operation results in an error, terminate this
-                            algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise, let <var>signature</var> be the value S that results from
-                            performing the operation.
-                          </p>
-                        </li>
-                      </ol>
+                      
+                      <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Let <var>signature</var> be the value S that results from
+                            performing the operation.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3277,21 +3253,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       <var>message</var> as M and <var>signature</var> as S and using the hash
                       function specified in <var>normalizedAlgorithm</var><code>.hash</code> as the
                       Hash option for the EMSA-PKCS1-v1_5 encoding method.
-                      <ol>
-                        <li>
-                          <p>
-                            If performing the operation results in an error, terminate this
-                            algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise, let <var>result</var> be a boolean with value true if the
+                      <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Let <var>result</var> be a boolean with value true if the
                             result of the operations was "valid signature" and a boolean with value
-                            false otherwise.
-                          </p>
-                        </li>
-                      </ol>
+                            false otherwise.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3483,20 +3452,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                     the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
                     salt length option for the EMM-PSS-ENCODE operation.
-                    <ol>
-                      <li>
-                        <p>
-                          If performing the operation results in an error, terminate this algorithm
-                          with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise, let <var>signature</var> be a new <code>ArrayBuffer</code>
-                          containing the signature, S, that results from performing the operation.
-                        </p>
-                      </li>
-                    </ol>
+                    <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Let <var>signature</var> be a new <code>ArrayBuffer</code>
+                          containing the signature, S, that results from performing the operation.</dd>
+                    </dl>
                   </p>
                 </li>
               </ol>
@@ -3527,21 +3489,14 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                     the MGF option and <var>normalizedAlgorithm</var><code>.saltLength</code> as the
                     salt length option for the EMSA-PSS-VERIFY operation.
-                    <ol>
-                      <li>
-                        <p>
-                          If performing the operation results in an error, terminate this algorithm
-                          with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise, let <var>result</var> be a boolean with value true if the
-                          result of the operation was "valid signature" and a boolean with value
-                          false otherwise.
-                        </p>
-                      </li>
-                    </ol>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Let <var>result</var> be a boolean with value true if the
+                        result of the operation was "valid signature" and a boolean with value
+                        false otherwise.</dd>
+                    </dl>
                   </p>
                 </li>
               </ol>
@@ -3562,67 +3517,61 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
                     <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
                     exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
-                    <ul>
-                      <li>
-                        <p>
-                          If generation of the key pair fails, terminate this algorithm with an
-                          error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise,
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public
-                                key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey.extractable</code> be
-                                <code>true</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey.keyUsages</code> be the
-                                intersection of <var>usages</var> and <code>[ "verify" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private
-                                key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey.extractable</code> be
-                                <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey.keyUsages</code> be the
-                                intersection of <var>usages</var> and <code>[ "sign" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>result</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </p>
-                      </li>
-                    </ul>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public
+                              key of the generated key pair.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey.extractable</code> be
+                              <code>true</code>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                              intersection of <var>usages</var> and <code>[ "verify" ]</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private
+                              key of the generated key pair.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey.extractable</code> be
+                              <var>extractable</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                              intersection of <var>usages</var> and <code>[ "sign" ]</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Return <var>result</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
                   </p>
                 </li>
               </ol>
@@ -3757,20 +3706,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1
                       (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                       the MGF option.
-                      <ol>
-                        <li>
-                          <p>
-                            If performing the operation results in an error, terminate this
-                            algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise, let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
-                            containing the value C that results from performing the operation.
-                          </p>
-                        </li>
-                      </ol>
+                      <dl class="switch">
+                          <dt>If performing the operation results in an error:</dt>
+                          <dd>Terminate this algorithm with an error.</dd>
+                          <dt>Otherwise:</dt>
+                          <dd>Let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
+                              containing the value C that results from performing the operation.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3801,20 +3743,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       <var>normalizedAlgorithm</var><code>.hash</code> as the Hash option and MGF1
                       (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                       the MGF option.
-                      <ol>
-                        <li>
-                           <p>
-                              If performing the operation results in an error, terminate this
-                              algorithm with an error.
-                          </p>
-                        </li>
-                        <li>
-                           <p>
-                              Otherwise, let <var>plaintext</var> be a new <code>ArrayBuffer</code>
-                              containing the value M that results from performing the operation.
-                          </p>
-                        </li>
-                      </ol>
+                      <dl class="switch">
+                          <dt>If performing the operation results in an error:</dt>
+                          <dd>Terminate this algorithm with an error.</dd>
+                          <dt>Otherwise:</dt>
+                          <dd>let <var>plaintext</var> be a new <code>ArrayBuffer</code>
+                                containing the value M that results from performing the operation.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3834,69 +3769,63 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       Generate an RSA key pair, as defined in [<cite><a href="#RFC3447">RFC3447</a></cite>], with RSA modulus length
                       <var>normalizedAlgorithm</var><code>.modulusLength</code> and RSA public
                       exponent <var>normalizedAlgorithm</var><code>.publicExponent</code>.
-                      <ul>
-                        <li>
-                          <p>
-                            If generation of the key pair fails, terminate this algorithm with an
-                            error.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Otherwise,
-                            <ol>
-                              <li>
-                                <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
-                                  public key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.extractable</code> be
-                                  <code>true</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.publicKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
-                                  ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
-                                  private key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.extractable</code> be
-                                  <var>extractable</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var><code>.privateKey.keyUsages</code> be the
-                                  intersection of <var>usages</var> and <code>[ "decrypt",
-                                  "unwrapKey" ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Return <var>result</var>.
-                                </p>
-                              </li>
-                            </ol>
-                          </p>
-                        </li>
-                      </ul>
+                      <dl class="switch">
+                        <dt>If performing the operation results in an error:</dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
+                                public key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.extractable</code> be
+                                <code>true</code>
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.publicKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "encrypt", "wrapKey"
+                                ]</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the
+                                private key of the generated key pair.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.extractable</code> be
+                                <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>result</var><code>.privateKey.keyUsages</code> be the
+                                intersection of <var>usages</var> and <code>[ "decrypt",
+                                "unwrapKey" ]</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>result</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -4303,67 +4232,61 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     Generate an Eliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>]
                     with domain parameters for the curve identified by
                     <var>normalizedAlgorithm</var><code>.namedCurve</code>.
-                    <ul>
-                      <li>
-                        <p>
-                          If generation of the key pair fails, terminate this algorithm with an
-                          error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise,
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public
-                                key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey.extractable</code> be
-                                <code>true</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.publicKey.keyUsages</code> be
-                                <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private
-                                key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey.extractable</code> be
-                                <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var><code>.privateKey.keyUsages</code> be
-                                <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>result</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </p>
-                      </li>
-                    </ul>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>result</var> be a new <a href="#dfn-KeyPair"><code>KeyPair</code></a> object
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the public
+                              key of the generated key pair.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey.extractable</code> be
+                              <code>true</code>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.publicKey.keyUsages</code> be
+                              <var>usages</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey</code> be a new <a href="#dfn-Key"><code>Key</code></a> object representing the private
+                              key of the generated key pair.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey.extractable</code> be
+                              <var>extractable</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var><code>.privateKey.keyUsages</code> be
+                              <var>usages</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Return <var>result</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
                   </p>
                 </li>
               </ol>
@@ -4389,19 +4312,12 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
                     with <var>key</var> as the EC private key d and
                     <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
-                    <ol>
-                      <li>
-                        <p>
-                          If performing the operation results in an error, terminate this algorithm
-                          with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise, let <var>result</var> be the output of the ECDH primitive.
-                        </p>
-                      </li>
-                    </ol>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Let <var>result</var> be the output of the ECDH primitive.</dd>
+                    </dl>
                   </p>
                 </li>
                 <div class="note"><div class="noteHeader">Note</div>
@@ -4455,19 +4371,12 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
                     with <var>key</var> as the EC private key d and
                     <var>normalizedAlgorithm</var><code>.public</code> as the EC public key Q.
-                    <ol>
-                      <li>
-                        <p>
-                          If performing the operation results in an error, terminate this algorithm
-                          with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Otherwise, let <var>result</var> be the output of the ECDH primitive.
-                        </p>
-                      </li>
-                    </ol>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Let <var>result</var> be the output of the ECDH primitive.</dd>
+                    </dl>
                   </p>
                 </li>
               </ol>
