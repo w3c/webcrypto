@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 17 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 18 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -567,6 +567,96 @@
           is on. The algorithm referred to is the set of specification-defined processing steps,
           rather than the underlying cryptographic algorithm that may be in the midst of processing.
         </p>
+        <p>
+          When this specification says to <dfn id="concept-parse-an-asn1-structure">parse an ASN.1
+          structure</dfn>, the user agent must perform the following steps:
+        </p>
+        <ol>
+          <li>
+            <p>
+              Let <var>data</var> be a sequence of bytes to be parsed.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <var>structure</var> be the ASN.1 structure to be parsed.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <var>exactData</var> be an optional boolean value. If it is not supplied,
+              let it be initialized to <code>true</code>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Parse <var>data</var> according to the Distinguished Encoding Rules of
+              <a href="#X690">X.690 (11/08)</a>, using <var>structure</var> as the ASN.1 structure
+              to be decoded.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <var>exactData</var> was specified, and all of the bytes of <var>data</var> were
+              not consumed during the parsing phase, terminate this algorithm with an error.
+            </p>
+          </li>
+          <li>
+            <p>
+              Return the parsed ASN.1 structure.
+            </p>
+          </li>
+        </ol>
+        <p>
+          When this specification says to <dfn id="concept-parse-a-spki">parse a
+          subjectPublicKeyInfo</dfn>, the user agent must
+          <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>, with
+          <var>data</var> set to the sequence of bytes to be parsed, <var>structure</var> as the
+          ASN.1 structure of subjectPublicKeyInfo, as specified in <a href="#RFC5280">RFC 5280</a>,
+          and <var>exactData</var> set to <code>true</code>.
+        </p>
+        <p>
+          When this specification says to <dfn id="concept-parse-a-privateKeyInfo">parse a
+          PrivateKeyInfo</dfn>, the user agent must <a href="#concept-parse-an-asn1-structure">parse
+          an ASN.1 structure</a> with <var>data</var> set to the sequence of bytes to be parsed,
+          <var>structure</var> as the ASN.1 structure of PrivateKeyInfo, as specified in
+          <a href="#RFC5208">RFC 5208</a>, and <var>exactData</var> set to <code>true</code>.
+        </p>
+        <p>
+          When this specification says to <dfn id="concept-parse-a-jwk">parse a JWK</dfn>, the user
+          agent must run the following steps:
+        </p>
+        <ol>
+          <li>
+            <p>
+              Let <var>data</var> be the sequence of bytes to be parsed.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <var>result</var> be the result of translating <var>data</var> into an internal
+              object using the grammar specified in Section 15.12 of <a href="#ECMA-262">ECMA
+              262</a>.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <var>result</var> does not describe an Object type, terminate this algorithm with
+              an error.
+            </p>
+          </li>
+          <li>
+            <p>
+              If the <code>"kty"</code> field of <var>result</var> is not present, or is not a
+              string value, terminate this algorithm with an error.
+            </p>
+          </li>
+          <li>
+            <p>
+              Return <var>result</var>.
+            </p>
+          </li>
+        </ol>
       </div>
 
       <div id="RandomSource-interface" class="section">
@@ -3064,7 +3154,254 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
                 </ol>
               </dd>
               <dt>Import Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>Let <var>keyData</var> be the key data to be imported.</p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>spki</var> be the result of running the
+                              <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              the error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>algorithm</code> object identifier field of the
+                              <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var>
+                              is not equivalent to the <code>rsaEncryption</code> OID defined in
+                              Section 2.3.1 of <a href="#RFC3279">RFC 3279</a>, terminate this
+                              algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>publicKey</var> be the result of performing the <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                              algorithm, with <var>data</var> as the
+                              <code>subjectPublicKeyInfo</code> field of <var>spki</var>,
+                              <var>structure</var> as the <code>RSAPublicKey</code> structure
+                              specified in Section A.1.1 of <a href="#RFC3447">RFC 3447</a>, and
+                              <var>exactData</var> set to true.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the RSA public key identified by <var>publicKey</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-Type">type</a> property of <var>key</var>
+                              to <code>"public"</code>
+                            </p>
+                          </li>
+                          <li>
+                            <p>Return <var>key</var>.</p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>privateKeyInfo</var> be the result of running the
+                              <a href="#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>algorithm</code> object identifier field of the
+                              <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
+                              of <var>privateKeyInfo</var> is not equivalent to the
+                              <code>rsaEncryption</code> OID defined in Section 2.3.1 of
+                              <a href="#RFC3279">RFC 3279</a>, terminate this algorithm with an
+                              error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>rsaPrivateKey</var> be the result of performing the <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                              algorithm, with <var>data</var> as the
+                              <code>privateKey</code> field of <var>privateKeyInfo</var>,
+                              <var>structure</var> as the <code>RSAPrivateKey</code> structure
+                              specified in Section A.1.2 of <a href="#RFC3447">RFC 3447</a>, and
+                              <var>exactData</var> set to true.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the RSA private key identified by <var>rsaPrivateKey</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-Type">type</a> property of <var>key</var>
+                              to <code>"private"</code>
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not a
+                              case-sensitive string match to <code>"RSA"</code>, terminate
+                              this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not a case-sensitive string match to <code>"enc"</code>, terminate
+                              this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              does not contain all of the specified <var>usages</var> values,
+                              terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not a case-sensitive string match to <code>"RSA1_5"</code>, terminate
+                              this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <code>"d"</code> field of <var>jwk</var> is present:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not describe a valid JSON Web Key as
+                                      specified in Section 6.3.2 of <a href="#jwa">JSON Web
+                                      Algorithms</a>, terminate this algorithm with an error.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the RSA private key identified by interpreting
+                                      <var>jwk</var> according to Section 6.3.2 of <a href="#jwa">
+                                      JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-Type">type</a> property of
+                                      <var>key</var> to <code>"private"</code>
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not describe a valid JSON Web Key as
+                                      specified in Section 6.3.1 of <a href="#jwa">JSON Web
+                                      Algorithms</a>, terminate this algorithm with an error.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the RSA public key identified by interpreting
+                                      <var>jwk</var> according to Section 6.3.1 of <a href="#jwa">
+                                      JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-Type">type</a> property of
+                                      <var>key</var> to <code>"public"</code>
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-Algorithm">Algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Algorithm-name">name</a> property of <var>
+                      algorithm</var> to <code>"RSAES-PKCS1-v1_5"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>Return <var>key</var>.</p>
+                  </li>
+                </ol>
+                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                  Specify additional fields for the Key.algorithm to indicate the
+                  modulus size and exponent.
+                </div>
+              </dd>
               <dt>Export Key</dt>
               <dd></dd>
               <dt>Wrap Key</dt>
