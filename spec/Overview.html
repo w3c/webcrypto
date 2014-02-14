@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>13 February 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>14 February 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 28 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 29 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 13 February 2014 <b>Editor’s Draft</b> of the
+        This document is the 14 February 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -4395,7 +4395,11 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
           <h3>18.10. AES-CTR</h3>
           <div id="aes-ctr-description" class="section">
             <h4>18.10.1. Description</h4>
+            <p class="norm">This section is non-normative.</p>
             <p>
+              The <code>"AES-CTR"</code> algorithm identifier is used to perform
+              encryption and decryption using AES in Counter mode,
+              as described in NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>].
             </p>
           </div>
           <div id="aes-ctr-registration" class="section">
@@ -4463,10 +4467,10 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
   // incrementing function specified in NIST SP 800-38A Appendix B.1:
   // the counter bits are interpreted as a big-endian integer and
   // incremented by one.</span>
-  CryptoOperationData counter;
+  CryptoOperationData <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
   <span class="comment">// The length, in bits, of the rightmost part of the counter block
   // that is incremented.</span>
-  [EnforceRange] octet length;
+  [EnforceRange] octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
 };
             </code></pre></div></div>
           </div>
@@ -4475,7 +4479,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
 [NoInterfaceObject]
 interface <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
-  readonly attribute unsigned short length;
+  readonly attribute unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
 };
             </code></pre></div></div>
           </div>
@@ -4484,19 +4488,443 @@ interface <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-Ke
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
-  [EnforceRange] unsigned short length;
+  [EnforceRange] unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
 };
             </code></pre></div></div>
           </div>
           <div id="aes-ctr-operations" class="section">
             <h4>18.10.6. Operations</h4>
-            <ul>
-              <li>Encrypt</li>
-              <li>Decrypt</li>
-              <li>Generate Key</li>
-              <li>Import Key</li>
-              <li>Export Key</li>
-            </ul>
+            <dl>
+              <dt>Encrypt</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#aes-ctr-params">AesCtrParams</a> are not
+                      present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesCtrParams-counter">counter</a> property of
+                      <var>normalizedAlgorithm</var> does not have length 16
+                      bytes, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesCtrParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> is zero or is greater
+                      than 128, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>ciphertext</var> be the result of performing the CTR Encryption
+                      operation described in Section 6.5 of
+                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
+                      cipher, the contents of the <a href="#dfn-AesCtrParams-counter">counter</a> property of
+                      <var>normalizedAlgorithm</var> as the initial
+                      value of the counter block,
+                      the <a href="#dfn-AesCtrParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> as the input parameter
+                      <var>m</var> to the standard counter block incrementing functon defined
+                      in Appendix B.1 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] and
+                      <var>plaintext</var> as the input plaintext.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>ciphertext</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Decrypt</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#aes-ctr-params">AesCtrParams</a> are not
+                      present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesCtrParams-counter">counter</a> property of
+                      <var>normalizedAlgorithm</var> does not have length 16
+                      bytes, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesCtrParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> is zero or is greater
+                      than 128, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>plaintext</var> be the result of performing the CTR Decryption
+                      operation described in Section 6.5 of
+                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
+                      cipher, the contents of the <a href="#dfn-AesCtrParams-counter">counter</a> property of
+                      <var>normalizedAlgorithm</var> as the initial
+                      value of the counter block,
+                      the <a href="#dfn-AesCtrParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> as the input parameter
+                      <var>m</var> to the standard counter block incrementing functon defined
+                      in Appendix B.1 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] and
+                      <var>ciphertext</var> as the input ciphertext.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>plaintext</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> is not equal to one of
+                      128, 192 or 256, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any entry which is not a case-sensitive string
+                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      <code>"wrapKey"</code> or <code>"unwrapKey"</code>, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate an AES key of length
+                      equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                      <dl class="switch">
+                        <dt>If the key generation step fails:</dt>
+                        <dd>Terminate this algorithm with an error</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>key</var> be a new
+                                <a href="#dfn-key">Key</a> object representing the
+                                generated AES key.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>algorithm</var> be a new
+                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                                <var>algorithm</var> to <code>"AES-CTR"</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                                <var>algorithm</var> to equal the
+                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                                <var>normalizedAlgorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                                <var>key</var> to <var>algorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-extractable">extractable</a> property
+                                of <var>key</var> to be <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of
+                                <var>key</var> to be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>key</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains an entry which is not a case-sensitive string
+                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      <code>"wrapKey"</code> or <code>"unwrapKey"</code>, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the length in bits of <var>data</var> is not 128, 192 or 256
+                              then terminate this algorithm with an error.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <li>
+                          <p>
+                            Let <var>jwk</var> be the result of running the
+                            <a href="#concept-parse-a-jwk">parse a jwk</a>
+                            algorithm over <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            case-sensitive string match to <code>"oct"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>data</var> be the octet string obtained by decoding the
+                            <code>"k"</code> field of <var>jwk</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES128CTR"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES192CTR"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES256CTR"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>Otherwise:</dt>
+                            <dd>Terminate this algorithm with an error.</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"enc"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            does not contain all of the specified <var>usages</var> values,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            has the value false and <var>extractable</var> is true,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      object representing an AES key with value <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CTR"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> property of
+                      <var>algorithm</var> to the length, in bits, of <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>
+                      to <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Export Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        Let <var>data</var> be the raw octets of the key represented by
+                        <var>key</var>.
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be a new internal object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>kty</code> property of <var>jwk</var> to the
+                              string <code>"oct"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>k</code> property of <var>jwk</var> to be a string
+                              containng the raw octets
+                              of the key represented by <var>key</var>, encoded according to
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 128:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES128CTR"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 192:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES192CTR"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 256:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES256CTR"</code>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to equal the
+                              <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to equal the 
+                              <a href="#dfn-Key-extractable">extractable</a> property of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding <var>jwk</var>
+                              into a string according to the grammer specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the UTF-8|UTF-16 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                            <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                            TODO: Decide whether this should be UTF-8 or UTF-16
+                            </div>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>keyData</var> be a new ArrayBuffer containing <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 
