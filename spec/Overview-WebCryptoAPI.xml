@@ -1861,7 +1861,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the deriveKey
+                  <a href="#algorithms">registered algorithm</a> that supports the wrapKey
                   operation, throw a <code>NotSupportedError</code> and
                   <a href="#terminate-the-algorithm">terminate the algorithm</a>.
                 </p>
@@ -1909,38 +1909,55 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>wrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
-                  contain the <code>"wrapKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  If the <a href="#dfn-Key-usages">usages</a> property of <code>wrappingKey</code>
+                  does not contain the <code>"wrapKey"</code> <a href="#dfn-KeyUsage">KeyUsage</a>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>key</var>.<a href="#dfn-Key-extractable"><code>extractable</code></a> is
-                  not true, terminate this algorithm with an error.
+                  If the <a href="#dfn-Key-extractable">extractable</a> property of <code>key</code>
+                  is false, terminate this algorithm with an error.
                 </p>         
               </li>
               <li>
                 <p>
-                  Let <var>bytes</var> be the result of encoding <var>key</var> according to
-                  <var>keyFormat</var>.
+                  Let <var>bytes</var> be the result of performing the Export Key operation specified
+                  by the algorithm identfied by the <a href="#dfn-Key-algorithm">algorithm</a>
+                  property of <code>key</code> using <code>key</code> as <var>key</var> and
+                  <code>format</code> as <var>format</var>.
                 </p>
               </li>
               <li>
                 <p>
-                 If the encoding operation failed, terminate this algorithm with an error.
+                 If the Export Key operation failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
-                <p>
-                 Let <var>result</var> be the result of performing the underlying cryptographic
-                 algorithm specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as
-                 input data.
-                </p>
+                <dl class="switch">
+                  <dt>If <var>normalizedAlgorithm</var> specifies a Wrap Key operation:</dt>
+                  <dd>
+                    <p>
+                      Let <var>result</var> be the result of performing the Wrap Key operation
+                      specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as
+                      <var>plaintext</var>.
+                    </p>
+                  </dd>
+                  <dt>Otherwise, if <var>normalizedAlgorithm</var> specifies an Encrypt operation:</dt>
+                  <dd>
+                    <p>
+                      Let <var>result</var> be the result of performing the Encrypt operation
+                      specified by <var>normalizedAlgorithm</var> with <var>bytes</var> as
+                      <var>plaintext</var>.
+                    </p>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Terminate this algorithm with an error.</dd>
+                </dl>
               </li>
               <li>
                 <p>
-                  If the encrypt algorithm failed, terminate this algorithm with an error.
+                  If the Wrap Key or Encrypt algorithm failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -1975,9 +1992,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
               <li>
-                <ul>
-                  <li>
-                    <p>If <code>unwrappedKeyAlgorithm</code> is defined:</p>
+                <dl class="switch">
+                  <dt>If <code>unwrappedKeyAlgorithm</code> is not null:</dt>
+                  <dd>
                     <ol>
                       <li>
                         <p>
@@ -1995,24 +2012,22 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                         </p>
                       </li>
                     </ol>
-                  </li>
-                  <li>
-                    <p>Otherwise, let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</p>
-                  </li>
-                </ul>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</dd>
+                </dl>
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a recognized
-                  <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> value, throw a
-                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
-                  the algorithm</a>
+                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, throw a <code>NotSupportedError</code> and <a
+                  href="#terminate-the-algorithm">terminate the algorithm</a>
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a recognized
-                  <a href="#dfn-KeyUsage"><code>KeyUsage</code></a> value, throw a
+                  If <code>keyUsages</code> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
                   <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
                   the algorithm</a>
                 </p>
@@ -2052,48 +2067,55 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>unwrappingKey</var>.<a href="#dfn-Key-KeyUsage"><code>usages</code></a> does not
-                  contain the <code>"unwrapKey"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  If the <a href="#dfn-Key-usages">usages</a> property of <code>unwrappingKey</code>
+                  does not contain the <code>"unwrapKey"</code> <a href="#dfn-KeyUsage">KeyUsage</a>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
-                 <p>
-                   Let <var>bytes</var> be the result of performing the underlying cryptographic
-                   algorithm specified by <var>normalizedUnwrapAlgorithm</var> witk key
-                   <var>unwrappingKey</var> and input data <var>wrappedKey</var>.
-                 </p>
+                <dl class="switch">
+                  <dt>If <var>normalizedUnwrapAlgorithm</var> specifies a Unwrap Key operation:</dt>
+                  <dd>
+                    Let <var>bytes</var> be the result of performing the Unwrap Key operation
+                    specified by <var>normalizedUnwrapAlgorithm</var> with <code>wrappedKey</code> as
+                    <var>ciphertext</var>.
+                  </dd>
+                  <dt>
+                    Otherwise, if <var>normalizedUnwrapAlgorithm</var> specifies a Decrypt
+                    operation:
+                  </dt>
+                  <dd>
+                    Let <var>bytes</var> be the result of performing the Decrypt operation
+                    specified by <var>normalizedUnwrapAlgorithm</var> with <code>wrappedKey</code> as
+                    <var>ciphertext</var>.
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Terminate this algorithm with an error.</dd>
+                </dl>
               </li>
               <li>
                 <p>
-                 If the key decrypt algorithm failed, terminate this algorithm with an error.
+                 If the Unwrap Key or Decrypt operation failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>bytes</var>, interpreted accoding to <var>format</var>, specifies
-                  parameters that are inconsistent with the parameters supplied to <a
-                  href="#dfn-SubtleCrytpo-method-unwrapKey">unwrapKey</a>, terminate this algorithm
-                  with an error.
+                  Let <var>result</var> be the result of performing the Import Key operation
+                  specified by <var>normalizedKeyAlgorithm</var> with <code>format</code> as
+                  <var>format</var>, <code>keyUsages</code> as <var>usages</var>,
+                  <code>extractable</code> as <var>extractable</var> and <var>bytes</var> as
+                  <var>keyData</var>.
+                  <div class="ednote">
+                    <p>
+                      TODO: Specify how to identify the correct algorithm for the case
+                      where <var>normalizedKeyAlgorithm</var> is null, or remove that case.
+                    </p>
+                  </div>
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that
-                  results from interpreting <var>bytes</var> accoding to <var>format</var> using
-                  the key import algorithm indicated in <var>normalizedKeyAlgorithm</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                   If <var>result</var> describes a <a href="#dfn-Key"><code>Key</code></a> object
-                   that is incompatible with the parameters associated with
-                   <var>unwrappingKey</var>, terminate this algorithm with an error.
-                </p>
-              </li>
-              <li>
-                <p>
-                   If the key import algorithm failed, terminate this algorithm with an error.
+                   If the Import Key algorithm failed, terminate this algorithm with an error.
                  </p>
               </li>
               <li>
@@ -2689,16 +2711,6 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td>None</td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td>None</td>
-                  <td>Key</td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -3119,10 +3131,6 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                 </ol>
               </dd>
               <dt>Export Key</dt>
-              <dd></dd>
-              <dt>Wrap Key</dt>
-              <dd></dd>
-              <dt>Unwrap Key</dt>
               <dd></dd>
             </dl>
           </div>
@@ -3675,16 +3683,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -3860,10 +3858,6 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <dt>Import Key</dt>
               <dd></dd>
               <dt>Export Key</dt>
-              <dd></dd>
-              <dt>Wrap Key</dt>
-              <dd></dd>
-              <dt>Unwrap Key</dt>
               <dd></dd>
             </dl>
           </div>
@@ -4217,7 +4211,6 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
               </tbody>
             </table>
           </div>
@@ -4474,16 +4467,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
@@ -5016,16 +4999,6 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
                 </tr>
               </tbody>
             </table>
@@ -5951,16 +5924,6 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
                </tbody>
              </table>
            </div>
@@ -6514,16 +6477,6 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-                <tr>
-                  <td>wrapKey</td>
-                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
-                  <td>ArrayBuffer</td>
-                </tr>
-                <tr>
-                  <td>unwrapKey</td>
-                  <td><a href="#dfn-AesCfbParams">AesCfbParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
               </tbody>
             </table>
           </div>
@@ -6974,14 +6927,14 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               </thead>
               <tbody>
                 <tr>
-                  <td>wrap</td>
+                  <td>wrapKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
                 <tr>
-                  <td>unwrap</td>
+                  <td>unwrapKey</td>
                   <td>None</td>
-                  <td><a href="#dfn-Key">Key</a></td>
+                  <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>generateKey</td>
@@ -7004,13 +6957,384 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
           </div>
           <div id="aes-kw-operations" class="section">
             <h4>Operations</h4>
-            <ul>
-              <li>Warp</li>
-              <li>Unwrap</li>
-              <li>Generate Key</li>
-              <li>Import Key</li>
-              <li>Export Key</li>
-           </ul>
+            <dl>
+              <dt>Wrap Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>plaintext</var> is not a multiple of 64 bits in length, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>ciphertext</var> be the result of performing the Key Wrap
+                      operation described in Section 2.2.1 of [<a href="#rfc3394">RFC3394</a>]
+                      with <var>plaintext</var> as the plaintext to be wrapped and using the default
+                      Initial Value defined in Section 2.2.3.1 of the same document.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>ciphertext</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Unwrap Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>plaintext</var> be the result of performing the Key Unwrap
+                      operation described in Section 2.2.2 of [<a href="#rfc3394">RFC3394</a>] with
+                      <var>ciphertext</var> as the input ciphertext and using the default Initial
+                      Value defined in Section 2.2.3.1 of the same document.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the Key Unwrap operation returns an error, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>plaintext</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> is not equal to one of
+                      128, 192 or 256, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any entry which is not a case-sensitive string
+                      match for one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate an AES key of length
+                      equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                      <dl class="switch">
+                        <dt>If the key generation step fails:</dt>
+                        <dd>Terminate this algorithm with an error</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>key</var> be a new
+                                <a href="#dfn-key">Key</a> object representing the
+                                generated AES key.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>algorithm</var> be a new
+                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                                <var>algorithm</var> to <code>"AES-KW"</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                                <var>algorithm</var> to equal the
+                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                                <var>normalizedAlgorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                                <var>key</var> to <var>algorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-extractable">extractable</a> property
+                                of <var>key</var> to be <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of
+                                <var>key</var> to be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>key</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains an entry which is not a case-sensitive string
+                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      <code>"wrapKey"</code> or <code>"unwrapKey"</code>, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the length in bits of <var>data</var> is not 128, 192 or 256
+                              then terminate this algorithm with an error.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <li>
+                          <p>
+                            Let <var>jwk</var> be the result of running the
+                            <a href="#concept-parse-a-jwk">parse a jwk</a>
+                            algorithm over <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            case-sensitive string match to <code>"oct"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>data</var> be the octet string obtained by decoding the
+                            <code>"k"</code> field of <var>jwk</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES128KW"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES192KW"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES256KW"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>Otherwise:</dt>
+                            <dd>Terminate this algorithm with an error.</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"enc"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            does not contain all of the specified <var>usages</var> values,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            has the value false and <var>extractable</var> is true,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      object representing an AES key with value <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-KW"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> property of
+                      <var>algorithm</var> to the length, in bits, of <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>
+                      to <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Export Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        Let <var>data</var> be the raw octets of the key represented by
+                        <var>key</var>.
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be a new internal object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>kty</code> property of <var>jwk</var> to the
+                              string <code>"oct"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>k</code> property of <var>jwk</var> to be a string
+                              containng the raw octets
+                              of the key represented by <var>key</var>, encoded according to
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 128:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES128KW"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 192:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES192KW"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 256:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES256KW"</code>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to equal the
+                              <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to equal the 
+                              <a href="#dfn-Key-extractable">extractable</a> property of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding <var>jwk</var>
+                              into a string according to the grammer specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Return a new ArrayBuffer containing <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 
