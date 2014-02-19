@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 28 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 29 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -5457,6 +5457,11 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               described in NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>].
             </p>
           </div>
+          <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+            <p>
+              TODO: Decide whether MAC lengths other than 128 should be supported.
+            </p>
+          </div>
           <div id="aes-cmac-registration" class="section">
             <h4>18.12.2. Registration</h4>
             <p>
@@ -5503,13 +5508,374 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
           </div>
           <div id="aes-cmac-operations" class="section">
             <h4>18.12.3. Operations</h4>
-            <ul>
-              <li>Sign</li>
-              <li>Verify</li>
-              <li>Generate Key</li>
-              <li>Import Key</li>
-              <li>Export Key</li>
-           </ul>
+            <dl>
+              <dt>Sign</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>mac</var> be the result of performing the MAC Generation
+                      operation described in Section 6.2 of
+                      NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
+                      cipher, 128 as the value of the MAC length parameter, <var>Tlen</var>, and
+                      <var>message</var> as the message, <var>M</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>mac</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Verify</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>ouput</var> be the result of performing the MAC Verification
+                      operation described in Section 6.3 of
+                      NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
+                      cipher, 128 as the value of the MAC length parameter, <var>Tlen</var>, 
+                      <var>message</var> as the message, <var>M</var> and <var>signature</var> as
+                      the receive MAC, <var>T'</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return true if <var>output</var> is VALID and false otherwise.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var> is not equal to one of
+                      128, 192 or 256, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any entry which is not a case-sensitive string
+                      match for <code>"sign"</code> or <code>"verify"</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate an AES key of length
+                      equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                      <dl class="switch">
+                        <dt>If the key generation step fails:</dt>
+                        <dd>Terminate this algorithm with an error</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>key</var> be a new
+                                <a href="#dfn-key">Key</a> object representing the
+                                generated AES key.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>algorithm</var> be a new
+                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                                <var>algorithm</var> to <code>"AES-CMAC"</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                                <var>algorithm</var> to equal the
+                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                                <var>normalizedAlgorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                                <var>key</var> to <var>algorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-extractable">extractable</a> property
+                                of <var>key</var> to be <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of
+                                <var>key</var> to be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>key</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains an entry which is not a case-sensitive string
+                      match for <code>"sign"</code> or <code>"verify"</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the length in bits of <var>data</var> is not 128, 192 or 256
+                              then terminate this algorithm with an error.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <li>
+                          <p>
+                            Let <var>jwk</var> be the result of running the
+                            <a href="#concept-parse-a-jwk">parse a jwk</a>
+                            algorithm over <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            case-sensitive string match to <code>"oct"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>data</var> be the octet string obtained by decoding the
+                            <code>"k"</code> field of <var>jwk</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES128CMAC"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES192CMAC"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"AES256CMAC"</code>, terminate
+                            this algorithm with an error.</dd>
+                            <dt>Otherwise:</dt>
+                            <dd>Terminate this algorithm with an error.</dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"enc"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            does not contain all of the specified <var>usages</var> values,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            has the value false and <var>extractable</var> is true,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      object representing an AES key with value <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CMAC"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> property of
+                      <var>algorithm</var> to the length, in bits, of <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>
+                      to <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Export Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        Let <var>data</var> be the raw octets of the key represented by
+                        <var>key</var>.
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be a new internal object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>kty</code> property of <var>jwk</var> to the
+                              string <code>"oct"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>k</code> property of <var>jwk</var> to be a string
+                              containng the raw octets
+                              of the key represented by <var>key</var>, encoded according to
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 128:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES128CMAC"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 192:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES192CMAC"</code>.</dd>
+                              <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
+                              <var>key</var> is 256:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"AES256CMAC"</code>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to equal the
+                              <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to equal the 
+                              <a href="#dfn-Key-extractable">extractable</a> property of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding <var>jwk</var>
+                              into a string according to the grammer specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Return a new ArrayBuffer containing <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 
