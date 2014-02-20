@@ -3270,6 +3270,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           <li>
                             <p>
                               If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
                               does not contain all of the specified <var>usages</var> values,
                               terminate this algorithm with an error.
                             </p>
@@ -3288,8 +3290,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                                 <ol>
                                   <li>
                                     <p>
-                                      If <var>jwk</var> does not describe a valid JSON Web Key as
-                                      specified in Section 6.3.2 of <a href="#jwa">JSON Web
+                                      If <var>jwk</var> does not meet the requirements of
+                                      Section 6.3.2 of <a href="#jwa">JSON Web
                                       Algorithms</a>, terminate this algorithm with an error.
                                     </p>
                                   </li>
@@ -3314,8 +3316,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                                 <ol>
                                   <li>
                                     <p>
-                                      If <var>jwk</var> does not describe a valid JSON Web Key as
-                                      specified in Section 6.3.1 of <a href="#jwa">JSON Web
+                                      If <var>jwk</var> does not meet the requirements of
+                                      Section 6.3.1 of <a href="#jwa">JSON Web
                                       Algorithms</a>, terminate this algorithm with an error.
                                     </p>
                                   </li>
@@ -5305,7 +5307,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -5344,6 +5346,8 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
@@ -5810,7 +5814,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -5849,6 +5853,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or                           
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
@@ -6248,7 +6254,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -6287,6 +6293,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
@@ -6794,7 +6802,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -6833,6 +6841,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
@@ -7269,7 +7279,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -7308,6 +7318,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
@@ -7711,7 +7723,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If <var>jwk</var> does not describe a valid JSON Web Key according to
+                            If <var>jwk</var> does not meet the requirements of
                             Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
                             algorithm with an error.
                           </p>
@@ -7750,6 +7762,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             terminate this algorithm with an error.
                           </p>
