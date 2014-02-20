@@ -1060,6 +1060,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
         <div id="subtlecrypto-interface-methods" class="section">
           <h3>Methods and Parameters</h3>
+          <div class="ednote">
+            <p>
+              All errors should be reported asynchronously. It is an open issue how to document that
+              this should apply to WebIDL type mapping errors. Also, WebIDL type mapping for
+              Algorithm input parameters needs to use the correct Algorithm subclass expected
+              by the WebCrypto algorithm, not the Algorithm super-class specified in the function
+              prototype.
+            </p>
+          </div>
           <div id="SubtleCrypto-method-encrypt" class="section">
             <h4>The encrypt method</h4>
             <p>
@@ -1073,8 +1082,50 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
+                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  passed to the <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method,
+                  respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
+                  <var>algorithm</var> according to the
                   <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
                 </p>
               </li>
@@ -1082,37 +1133,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
                   <a href="#algorithms">registered algorithm</a> that supports the encrypt
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>key</code> does not
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>key</var> does not
                   contain an entry that is a case-sensitive string match for <code>"encrypt"</code>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Create a new Promise object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the new object and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>resolver</var> be the returned Promise's associated resolver object.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>ciphertext</var> be the result of performing the encrypt
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as <var>key</var>
-                  and <code>data</code> as <var>plaintext</var>.
+                  operation specified by <var>normalizedAlgorithm</var> using <var>key</var>
+                  and with <var>data</var> as <var>plaintext</var>.
                 </p>
               </li>
               <li>
@@ -1136,8 +1171,50 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
+                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  passed to the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method,
+                  respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
+                  <var>algorithm</var> according to the
                   <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
                 </p>
               </li>
@@ -1145,37 +1222,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
                   <a href="#algorithms">registered algorithm</a> that supports the decrypt
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>key</code> does not
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>key</var> does not
                   contain an entry that is a case-sensitive string match for <code>"decrypt"</code>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Create a new Promise object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the new object and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>resolver</var> be the returned Promise's associated resolver object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>plaintext</var> be the result of performing the underlying decrypt
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as
-                  <var>key</var> and <code>data</code> as <var>ciphertext</var>.
+                  Let <var>plaintext</var> be the result of performing the decrypt
+                  operation specified by <var>normalizedAlgorithm</var> using <var>key</var>
+                  and with <var>data</var> as <var>ciphertext</var>.
                 </p>
               </li>
               <li>
@@ -1198,8 +1259,50 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
+                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  passed to the <a href="#dfn-SubtleCrypto-method-sign">sign</a> method,
+                  respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
+                  <var>algorithm</var> according to the
                   <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
                 </p>
               </li>
@@ -1207,37 +1310,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
                   <a href="#algorithms">registered algorithm</a> that supports the sign
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>key</code> does not
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>key</var> does not
                   contain an entry that is a case-sensitive string match for <code>"sign"</code>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Create a new Promise object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the new object and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>resolver</var> be the returned Promise's associated resolver object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>result</var> be the result of performing the signature algorithm
-                  specified by <var>normalizedAlgorithm</var> with <code>key</code> as
-                  <var>key</var> and <code>data</code> as <var>message</var>.
+                  Let <var>result</var> be the result of performing the sign operation
+                  specified by <var>normalizedAlgorithm</var> uaing <var>key</var> and with
+                  <var>data</var> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1260,8 +1347,49 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  Let <var>algorithm</var>, <var>key</var>, <var>signature</var> and <var>data</var>
+                  be the <code>algorithm</code>, <code>key</code>, <code>signature</code> and
+                  <code>data</code> parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-verify">verify</a> method, respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
+                  <var>algorithm</var> according to the
                   <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
                 </p>
               </li>
@@ -1269,38 +1397,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
                   <a href="#algorithms">registered algorithm</a> that supports the verify
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>key</code> does not
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>key</var> does not
                   contain an entry that is a case-sensitive string match for <code>"verify"</code>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Create a new Promise object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the new object and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>resolver</var> be the returned Promise's associated resolver object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>result</var> be the result of performing the signature verification
-                  algorithm specified by <var>normalizedAlgorithm</var> with <code>key</code> as
-                  <var>key</var>, <code>signature</code> as <var>signature</var> and
-                  <code>data</code> as <var>message</var>.
+                  Let <var>result</var> be the result of performing the verify operation
+                  specified by <var>normalizedAlgorithm</var> using <var>key</var> and
+                  <var>signature</var> and with <var>data</var> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1323,8 +1434,48 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  Let <var>algorithm</var> and <var>data</var>
+                  be the <code>algorithm</code> and <code>data</code> parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-digest">digest</a> method, respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurs, run these substeps and then terminate the algorithm:
+                </p>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>result</var> be <code>null</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
+                    </p>
+                  </li>
+                </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
+                  <var>algorithm</var> according to the
                   <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
                 </p>
               </li>
@@ -1332,29 +1483,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>normalizedAlgorithm</var> does not describe a
                   <a href="#algorithms">registered algorithm</a> that supports the digest
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Create a new Promise object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the new object and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>resolver</var> be the returned Promise's associated resolver object.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>result</var> be the result of performing the underlying cryptographic
-                  algorithm specified by <var>normalizedAlgorithm</var>.
+                  Let <var>result</var> be the result of performing the digest
+                  operation specified by <var>normalizedAlgorithm</var> using <var>data</var>
+                  as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1376,46 +1512,28 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>algorithm</var>, <var>extractable</var> and <var>usages</var>
+                  be the <code>algorithm</code>, <code>extractable</code> and <code>keyUsages</code>
+                  parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the generate
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
-                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
-                  the algorithm</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
-                  its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a
-                  <code>null</code> result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -1429,13 +1547,37 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the key generation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> with
-                  <code>extractable</code> as <var>extractable</var> and <code>keyUsages</code> as
-                  <var>usages</var>.
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <var>algorithm</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the generate
+                  key operation, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>usages</var> includes a value that is not a case-sensitive string match
+                  for a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of executing the generate key operation
+                  specified by <var>normalizedAlgorithm</var> using
+                  <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -1456,76 +1598,30 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>algorithm</var>, <var>baseKey</var>, <var>derivedKeyType</var>,
+                  <var>extractable</var> and <var>usages</var> be the <code>algorithm</code>,
+                  <code>baseKey</code>, <code>derivedKeyType</code>, <code>extractable</code> and
+                  <code>keyUsages</code>
+                  parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the derive
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>derivedKeyType</code> is null, let
-                  <var>normalizedDerivedKeyAlgorithm</var> be null. Otherwise,
-                  <ol>
-                    <li>
-                      <p>
-                        Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
-                        <code>derivedKeyType</code> according to the
-                        <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
-                        <a href="#algorithms">registered algorithm</a> throw a
-                        <code>NotSupportedError</code> and
-                        <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                      </p>
-                    </li>
-                  </ol>
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>baseKey</code> does not
-                  contain an entry that is a case-sensitive string match for <code>"deriveKey"</code>,
-                  terminate this algorithm with an error.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If <code>keyUsages</code> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
-                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate the
-                  algorithm</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
-                  its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a
-                  <code>null</code> result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -1539,13 +1635,71 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the key derivation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var> using
-                  <code>key</code> as <var>key</var>, <code>extractable</code> as
-                  <var>extractable</var> and <code>keyUsages</code> as <var>usages</var>.
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <var>algorithm</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the derive key
+                  operation, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If <var>derivedKeyType</var> is null:</dt>
+                  <dd>Let <var>normalizedDerivedKeyAlgorithm</var> be null.</dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
+                          <var>derivedKeyType</var> according to the
+                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
+                          <a href="#algorithms">registered algorithm</a>, terminate this algorithm
+                          with an error.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>baseKey</var> does not
+                  contain an entry that is a case-sensitive string match for <code>"deriveKey"</code>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>usages</var> includes a value that is not a case-sensitive string
+                  match for a 
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, terminate
+                  this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of executing the derive key operation
+                  specified by <var>normalizedAlgorithm</var> using
+                  <var>key</var>, <var>normalizedDerivedKeyAlgorithm</var>, <var>extractable</var>
+                  and <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -1566,45 +1720,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>algorithm</code> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>algorithm</var>, <var>baseKey</var> and <var>length</var>,
+                  be the <code>algorithm</code>,
+                  <code>baseKey</code> and <code>length</code>
+                  parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the derive
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>baseKey</code> does not
-                  contain an entry that is a case-sensitive string match for <code>"deriveBits"</code>,
-                  terminate this algorithm with an error.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
-                  its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
-                  result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -1618,18 +1756,37 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
               </li>
               <li>
                 <p>
-                  If <var>baseKey</var>.<a href="#dfn-Key-usages"><code>usages</code></a> does not
-                  contain the <code>"deriveBits"</code> <a href="#dfn-KeyUsage"><code>KeyUsage</code></a>,
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <var>algorithm</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the derive bits
+                  operation, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>baseKey</var> does not
+                  contain an entry that is a case-sensitive string match for <code>"deriveBits"</code>,
                   terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the key derivation algorithm
-                  defined by the algorithm indicated in <var>normalizedAlgorithm</var>.
+                  Let <var>result</var> be the result of executing the derive bits operation
+                  specified by <var>normalizedAlgorithm</var> using <var>baseKey</var> and
+                  <var>length</var>.
                 </p>
               </li>
               <li>
@@ -1649,67 +1806,31 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             </p>
             <ol>
               <li>
-                <dl class="switch">
-                  <dt>If <code>algorithm</code> is not null:</dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Let <var>normalizedAlgorithm</var> be the result of processing
-                          <code>algorithm</code> according to the
-                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>normalizedAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the importKey
-                          operation, throw a <code>NotSupportedError</code> and
-                          <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>
-                    Let <var>normalizedAlgorithm</var> be null.
-                  </dd>
-                </dl>
-              </li>
-              <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
-                  format value</a>, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>
+                  Let <var>format</var>, <var>keyData</var>, <var>algorithm</var>,
+                  <var>extractable</var> and <var>usages</var>,
+                  be the <code>format</code>, <code>keyData</code>, <code>algorithm</code>,
+                  <code>extractable</code> and <code>keyUsages</code>
+                  parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
-                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
-                  the algorithm</a>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
-                  its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a
-                  <code>null</code> result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -1723,15 +1844,67 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+
+              <li>
+                <dl class="switch">
+                  <dt>If <var>algorithm</var> is not null:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedAlgorithm</var> be the result of processing
+                          <var>algorithm</var> according to the
+                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>normalizedAlgorithm</var> does not describe a
+                          <a href="#algorithms">registered algorithm</a> that supports the import key
+                          operation, terminate this algorithm with an error.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    Let <var>normalizedAlgorithm</var> be null.
+                  </dd>
+                </dl>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the <a href="#dfn-Key"><code>Key</code></a> object that
-                  results from performing the Import Key operation defined by
-                  <var>normalizedAlgorithm</var> using <code>keyData</code> as <var>keyData</var>,
-                  <code>format</code> as <var>format</var>, <code>extractable</code> as
-                  <var>extractable</var> and <code>usages</code> as <var>usages</var>.
+                  If <var>format</var> is not a case-sensitive string match for
+                  a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, terminate this algorithm with an error.
                 </p>
+              </li>
+              <li>
+                <p>
+                  If <var>usages</var> includes a value that is not a case-sensitive string match
+                  for a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
+                  terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the <a href="#dfn-Key">Key</a> object that
+                  results from performing the import key operation specified by
+                  <var>normalizedAlgorithm</var> using <var>keyData</var>,
+                  <var>format</var>, <var>extractable</var> and <var>usages</var>.
+                </p>
+                <div class="ednote">
+                  <p>
+                    TODO: Specify how to identify the correct algorithm for the case
+                    where <var>normalizedAlgorithm</var> is null, or remove that case.
+                  </p>
+                </div>
               </li>
               <li>
                 <p>
@@ -1751,57 +1924,64 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
-                  format value</a>, throw a <code>NotSupportedError</code> and <a
-                  href="#terminate-the-algorithm">terminate the algorithm</a>
+                  Let <var>format</var> and <var>key</var> be the <code>format</code>
+                  and <code>key</code> parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and
-                  <var>resolver</var> its associated resolver.
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  Return <var>promise</var> and continue executing the remaining steps
-                  asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
-                  result.
-                </div>
                 <ol>
                   <li>
                     <p>
-                        Let <var>result</var> be <code>null</code>.
+                      Let <var>result</var> be <code>null</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                        Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
-                        <var>result</var> as the <code>value</code> argument.
+                      Execute <var>resolver</var>'s <code>reject(value)</code> algorithm, with
+                      <var>result</var> as the <code>value</code> argument.
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+  
+              <li>
+                <p>
+                  If <var>format</var> is not a case-sensitive string match for a
+                  <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, terminate this algorithm with an error.
+                </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-extractable">extractable</a> property of <code>key</code>
+                  If the <a href="#dfn-Key-extractable">extractable</a> property of <var>key</var>
                   is false, terminate this algorithm with an error.
                 </p>         
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the Export Key operation specified
-                  by the algorithm identified by the <a href="#dfn-Key-algorithm">algorithm</a>
-                  property of <code>key</code> using <code>key</code> as <var>key</var> and
-                  <code>format</code> as <var>format</var>.
+                  Let <var>result</var> be the result of performing the export key operation
+                  specified by the <a href="#dfn-Key-algorithm">algorithm</a>
+                  property of <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
               </li>
               <li>
@@ -1822,46 +2002,28 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <code>wrapAlgorithm</code> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>format</var>, <var>key</var>, <var>wrappingKey</var> and
+                  <var>wrapAlgorithm</var> be the <code>format</code>, <code>key</code>,
+                  <code>wrappingKey</code> and <code>wrapAlgorithm</code> parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-wrapKey">wrapKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the wrapKey
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
-                  format value</a>, throw a <code>NotSupportedError</code> and <a
-                  href="#terminate-the-algorithm">terminate the algorithm</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and
-                  <var>resolver</var> its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps
-                  asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a <code>null</code>
-                  result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -1875,48 +2037,73 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
+              </li>
+
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of processing
+                  <var>wrapAlgorithm</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>wrappingKey</code>
+                  If <var>normalizedAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the encrypt or wrap
+                  key operation, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>format</var> is not a case-sensitive string match for algorithm a
+                  <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>wrappingKey</var>
                   does not contain an entry that is a case-sensitive string match for
                   <code>"wrapKey"</code>, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-extractable">extractable</a> property of <code>key</code>
+                  If the <a href="#dfn-Key-extractable">extractable</a> property of <var>key</var>
                   is false, terminate this algorithm with an error.
                 </p>         
               </li>
               <li>
                 <p>
-                  Let <var>bytes</var> be the result of performing the Export Key operation specified
-                  by the algorithm identfied by the <a href="#dfn-Key-algorithm">algorithm</a>
-                  property of <code>key</code> using <code>key</code> as <var>key</var> and
-                  <code>format</code> as <var>format</var>.
+                  Let <var>bytes</var> be the result of performing the export key operation specified
+                  the <a href="#dfn-Key-algorithm">algorithm</a>
+                  property of <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
               </li>
               <li>
                 <p>
-                 If the Export Key operation failed, terminate this algorithm with an error.
+                 If the export key operation failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <dl class="switch">
-                  <dt>If <var>normalizedAlgorithm</var> specifies a Wrap Key operation:</dt>
+                  <dt>If <var>normalizedAlgorithm</var> supports the wrap key operation:</dt>
                   <dd>
                     <p>
-                      Let <var>result</var> be the result of performing the Wrap Key operation
-                      specified by <var>normalizedAlgorithm</var> with <code>wrappingKey</code>
+                      Let <var>result</var> be the result of performing the wrap key operation
+                      specified by <var>normalizedAlgorithm</var> with <var>wrappingKey</var>
                       as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
                     </p>
                   </dd>
-                  <dt>Otherwise, if <var>normalizedAlgorithm</var> specifies an Encrypt operation:</dt>
+                  <dt>Otherwise, if <var>normalizedAlgorithm</var> supports the encrypt operation:</dt>
                   <dd>
                     <p>
-                      Let <var>result</var> be the result of performing the Encrypt operation
-                      specified by <var>normalizedAlgorithm</var> with <code>wrappingKey</code>
+                      Let <var>result</var> be the result of performing the encrypt operation
+                      specified by <var>normalizedAlgorithm</var> with <var>wrappingKey</var>
                       as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
                     </p>
                   </dd>
@@ -1926,7 +2113,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the Wrap Key or Encrypt algorithm failed, terminate this algorithm with an error.
+                  If the wrap key or encrypt operation failed, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -1945,81 +2132,34 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
             <ol>
-              <li>
+            <li>
                 <p>
-                  Let <var>normalizedUnwrapAlgorithm</var> be the result of processing
-                  <code>unwrapAlgorithm</code> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>format</var>, <var>wrappedKey</var>, <var>unwrappingKey</var>,
+                  <var>unwrapAlgorithm</var>, <var>unwrappedKeyAlgorithm</var>,
+                  <var>extractable</var> and <var>usages</var>,
+                  be the <code>format</code>, <code>wrappedKey</code>, <code>unwrappingKey</code>,
+                  <code>unwrapAlgorithm</code>, <code>unwrappedKeyAlgorithm</code>,
+                  <code>extractable</code> and <code>keyUsages</code>
+                  parameters passed to the
+                  <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a> method,
+                  respectively.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedUnwrapAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the unwrapKey
-                  operation, throw a <code>NotSupportedError</code> and
-                  <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                </p>
-              </li>
-              <li>
-                <dl class="switch">
-                  <dt>If <code>unwrappedKeyAlgorithm</code> is not null:</dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Let <var>normalizedKeyAlgorithm</var> be the result of processing
-                          <code>unwrappedKeyAlgorithm</code> according to the
-                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>normalizedKeyAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the importKey
-                          operation, throw a <code>NotSupportedError</code> and
-                          <a href="#terminate-the-algorithm">terminate the algorithm</a>.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>Let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</dd>
-                </dl>
-              </li>
-              <li>
-                <p>
-                  If <code>format</code> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
-                  format value</a>, throw a <code>NotSupportedError</code> and <a
-                  href="#terminate-the-algorithm">terminate the algorithm</a>
+                  Let <var>promise</var> be a new Promise object and <var>resolver</var> its
+                  associated resolver object.
                 </p>
               </li>
               <li>
                 <p>
-                  If <code>keyUsages</code> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, throw a
-                  <code>NotSupportedError</code> and <a href="#terminate-the-algorithm">terminate
-                  the algorithm</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new <code>Promise</code> object and <var>resolver</var>
-                  its associated resolver.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and continue executing the remaining steps asynchronously.
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
               </li>
               <li>
                 <p>
                   If an error occurs, run these substeps and then terminate the algorithm:
                 </p>
-                <div class="ednote">
-                  Determine whether to reject the algorithm with a DOMError or a
-                  <code>null</code> result.
-                </div>
                 <ol>
                   <li>
                     <p>
@@ -2033,31 +2173,88 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </p>
                   </li>
                 </ol>
+                <div class="ednote">
+                  Determine whether to reject the algorithm with a DOMError or a
+                  <code>null</code> result.
+                </div>
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Key-usages">usages</a> property of <code>unwrappingKey</code>
+                  Let <var>normalizedUnwrapAlgorithm</var> be the result of processing
+                  <var>unwrapAlgorithm</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedUnwrapAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the unwrapKey
+                  operation, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If <var>unwrappedKeyAlgorithm</var> is not null:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedKeyAlgorithm</var> be the result of processing
+                          <var>unwrappedKeyAlgorithm</var> according to the
+                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>normalizedKeyAlgorithm</var> does not describe a
+                          <a href="#algorithms">registered algorithm</a> that supports the importKey
+                          operation, terminate this algorithm with an error.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Key-usages">usages</a> property of <var>unwrappingKey</var>
                   does not contain an entry that is a case-sensitive string match for
                   <code>"unwrapKey"</code>, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
+                <p>
+                  If <var>format</var> is not a case-sensitive string match for a
+                  <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, terminate this algorithm with an error.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>usages</var> includes a value that is not a case-sensitive string match
+                  for a  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, terminate
+                  this algorithm with an error.
+                </p>
+              </li>
+              <li>
                 <dl class="switch">
-                  <dt>If <var>normalizedUnwrapAlgorithm</var> specifies a Unwrap Key operation:</dt>
+                  <dt>If <var>normalizedUnwrapAlgorithm</var> supports an unwrap key operation:</dt>
                   <dd>
-                    Let <var>bytes</var> be the result of performing the Unwrap Key operation
+                    Let <var>bytes</var> be the result of performing the unwrap key operation
                     specified by <var>normalizedUnwrapAlgorithm</var> with
-                    <code>unwrappingKey</code> as <var>key</var> and <code>wrappedKey</code> as
+                    <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
                   <dt>
-                    Otherwise, if <var>normalizedUnwrapAlgorithm</var> specifies a Decrypt
+                    Otherwise, if <var>normalizedUnwrapAlgorithm</var> supports a decrypt
                     operation:
                   </dt>
                   <dd>
-                    Let <var>bytes</var> be the result of performing the Decrypt operation
+                    Let <var>bytes</var> be the result of performing the decrypt operation
                     specified by <var>normalizedUnwrapAlgorithm</var> with
-                    <code>unwrappingKey</code> as <var>key</var> and <code>wrappedKey</code> as
+                    <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
                   <dt>Otherwise:</dt>
@@ -2066,16 +2263,16 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                 If the Unwrap Key or Decrypt operation failed, terminate this algorithm with an error.
+                  If the unwrap key or decrypt operation failed, terminate this algorithm with an
+                  error.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of performing the Import Key operation
-                  specified by <var>normalizedKeyAlgorithm</var> with <code>format</code> as
-                  <var>format</var>, <code>keyUsages</code> as <var>usages</var>,
-                  <code>extractable</code> as <var>extractable</var> and <var>bytes</var> as
-                  <var>keyData</var>.
+                  Let <var>result</var> be the result of performing the import key operation
+                  specified by <var>normalizedKeyAlgorithm</var> using
+                  <var>format</var>, <var>usages</var> and <var>extractable</var> and with
+                  <var>bytes</var> as <var>keyData</var>.
                   <div class="ednote">
                     <p>
                       TODO: Specify how to identify the correct algorithm for the case
@@ -2086,7 +2283,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                   If the Import Key algorithm failed, terminate this algorithm with an error.
+                   If the import key algorithm failed, terminate this algorithm with an error.
                  </p>
               </li>
               <li>
