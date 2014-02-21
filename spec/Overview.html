@@ -7914,6 +7914,11 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
           <h3>18.16. HMAC</h3>
           <div id="hmac-description" class="section">
             <h4>18.16.1. Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>HMAC</code> algorithm calculates and verifies hash-based message
+              authentication codes according to [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>].
+            </p>
           </div>
           <div id="hmac-registration" class="section">
             <h4>18.16.2. Registration</h4>
@@ -7970,7 +7975,7 @@ dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn
           <div id="hmac-keyalgorithm" class="section">
             <h4>18.16.4. HmacKeyAlgorithm interface</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   KeyAlgorithm hash;
 };
@@ -7991,13 +7996,567 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
           </div>
           <div id="hmac-operations" class="section">
             <h4>18.16.6. Operations</h4>
-            <ul>
-              <li>Sign</li>
-              <li>Verify</li>
-              <li>Generate Key</li>
-              <li>Import Key</li>
-              <li>Export Key</li>
-           </ul>
+            <dl>
+              <dt>Sign</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>mac</var> be the result of performing the MAC Generation
+                      operation described in Section 4 of
+                      [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the key represented by <var>key</var>,
+                      the hash function identified by the
+                      <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var> and
+                      <var>message</var> as the input data <var>text</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>mac</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Verify</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>mac</var> be the result of performing the MAC Generation
+                      operation described in Section 4 of
+                      [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the key represented by <var>key</var>,
+                      the hash function identified by the
+                      <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var> and
+                      <var>message</var> as the input data <var>text</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return true if <var>mac</var> is equal to <var>signature</var> and false
+                      otherwise.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-HmacKeyGenParams-hash">hash</a> property is
+                      not present in <var>normalizedAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>
+                        If the <a href="#dfn-HmacKeyGenParams-length">length</a> property of
+                        <var>normalizedAlgorithm</var> is not present:
+                      </dt>
+                      <dd>
+                        Let <var>length</var> be the block size in bytes of the hash function
+                        identified by the <a href="#dfn-HmacKeyGenParams-hash">hash</a> property
+                        of <var>normalizedAlgorithm</var>.
+                      </dd>
+                      <dt>
+                        Otherwise, if the <a href="#dfn-HmacKeyGenParams-length">length</a>
+                        property of <var>normalizedAlgorithm</var> is non-zero:
+                      </dt>
+                      <dd>
+                        Let <var>length</var> be equal to the
+                        <a href="#dfn-HmacKeyGenParams-length">length</a>
+                        property of <var>normalizedAlgorithm</var>.
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any entry which is not a case-sensitive string
+                      match for <code>"sign"</code> or <code>"verify"</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate an key of length <var>length</var> bytes.
+                      <dl class="switch">
+                        <dt>If the key generation step fails:</dt>
+                        <dd>Terminate this algorithm with an error</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>
+                          <ol>
+                            <li>
+                              <p>
+                                Let <var>key</var> be a new
+                                <a href="#dfn-key">Key</a> object representing the
+                                generated key.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>algorithm</var> be a new
+                                <a href="#dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</a>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                                <var>algorithm</var> to <code>"HMAC"</code>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Let <var>hash</var> be a new
+                                <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
+                                property of the <a href="#dfn-HmacKeyGenParams-hash">hash</a>
+                                property of <var>normalizedAlgorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property
+                                of <var>algorithm</var> to <var>hash</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                                <var>key</var> to <var>algorithm</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-extractable">extractable</a> property
+                                of <var>key</var> to be <var>extractable</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of
+                                <var>key</var> to be <var>usages</var>.
+                              </p>
+                            </li>
+                            <li>
+                              <p>
+                                Return <var>key</var>.
+                              </p>
+                            </li>
+                          </ol>
+                        </dd>
+                      </dl>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains an entry which is not a case-sensitive string
+                      match for <code>"sign"</code> or <code>"verify"</code>, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>hash</var> be a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the length in bits of <var>data</var> is zero
+                              then terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-HmacImportParams-hash">hash</a> property of
+                                <var>normalizedAlgorithm</var> is present and has a
+                                <a href="#dfn-Algorithm-name">name</a> property:
+                              </dt>
+                              <dd>
+                                Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
+                                property of the <a href="#dfn-HmacImportParams-hash">hash</a>
+                                property of <var>normalizedAlgorithm</var>.
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>Terminate this algorithm with an error.</dd>
+                            </dl>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <li>
+                          <p>
+                            Let <var>jwk</var> be the result of running the
+                            <a href="#concept-parse-a-jwk">parse a jwk</a>
+                            algorithm over <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            case-sensitive string match to <code>"oct"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>jwk</var> does not meet the requirements of
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, terminate this
+                            algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>data</var> be the octet string obtained by decoding the
+                            <code>"k"</code> field of <var>jwk</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>
+                              If the <a href="#dfn-HmacImportParams-hash">hash</a> property of
+                              <var>normalizedAlgorithm</var> is present and has a
+                                <a href="#dfn-Algorithm-name">name</a> property:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                    <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
+                                    property of the <a href="#dfn-HmacImportParams-hash">hash</a>
+                                    property of <var>normalizedAlgorithm</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> is a case-sensitive string match for
+                                      <code>"SHA-1"</code>:
+                                    </dt>
+                                    <dd>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is present
+                                      and is not a case-sensitive string match to <code>"HS1"</code>,
+                                      terminate this algorithm with an error.
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> is a case-sensitive string match for
+                                      <code>"SHA-224"</code>:
+                                    </dt>
+                                    <dd>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is present
+                                      and is not a case-sensitive string match to <code>"HS224"</code>,
+                                      terminate this algorithm with an error.
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> is a case-sensitive string match for
+                                      <code>"SHA-256"</code>:
+                                    </dt>
+                                    <dd>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is present
+                                      and is not a case-sensitive string match to <code>"HS256"</code>,
+                                      terminate this algorithm with an error.
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> is a case-sensitive string match for
+                                      <code>"SHA-384"</code>:
+                                    </dt>
+                                    <dd>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is present
+                                      and is not a case-sensitive string match to <code>"HS384"</code>,
+                                      terminate this algorithm with an error.
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> is a case-sensitive string match for
+                                      <code>"SHA-512"</code>:
+                                    </dt>
+                                    <dd>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is present
+                                      and is not a case-sensitive string match to <code>"HS512"</code>,
+                                      terminate this algorithm with an error.
+                                    </dd>
+                                    <dt>Otherwise:</dt>
+                                    <dd>Terminate this algorithm with an error.</dd>
+                                  </dl>
+                                </li>
+                              </ol>
+                            </dd>
+                            <dt>Otherwise:</dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    If the <code>alg</code> field of <var>jwk</var> is not present,
+                                    terminate this algorithm with an error.
+                                  </p>
+                                </li>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is a
+                                      case-sensitive string match to <code>"HS1"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> to <code>"SHA-1"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is a
+                                      case-sensitive string match to <code>"HS224"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> to <code>"SHA-224"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is a
+                                      case-sensitive string match to <code>"HS256"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> to <code>"SHA-256"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is a
+                                      case-sensitive string match to <code>"HS384"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> to <code>"SHA-384"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field of <var>jwk</var> is a
+                                      case-sensitive string match to <code>"HS512"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                                      <var>hash</var> to <code>"SHA-512"</code>.
+                                    </dd>
+                                    <dt>Otherwise:</dt>
+                                    <dd>Terminate this algorthm with an error.</dd>
+                                  </dl>
+                                </li>
+                              </ol>
+                            </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            not a case-sensitive string match to <code>"sign"</code>, terminate
+                            this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            is invalid according to the requirements of
+                            <a href="#jwk">JSON Web Key</a> or
+                            does not contain all of the specified <var>usages</var> values,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            has the value false and <var>extractable</var> is true,
+                            terminate this algorithm with an error.
+                          </p>
+                        </li>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      object representing an HMAC key with value <var>data</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"HMAC"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property of
+                      <var>algorithm</var> to <var>hash</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>
+                      to <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Export Key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                      <dd>
+                        Let <var>data</var> be the raw octets of the key represented by
+                        <var>key</var>.
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be a new internal object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>kty</code> property of <var>jwk</var> to the
+                              string <code>"oct"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>k</code> property of <var>jwk</var> to be a string
+                              containng the raw octets
+                              of the key represented by <var>key</var>, encoded according to
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>algorithm</var> be the
+                              <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>hash</var> be the
+                              <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property of
+                              <var>algorithm</var>.
+                            </p>
+                          </li>
+                          
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                              <var>hash</var> is <code>"SHA-1"</code>:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"HS1"</code>.</dd>
+                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                              <var>hash</var> is <code>"SHA-224"</code>:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"HS224"</code>.</dd>
+                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                              <var>hash</var> is <code>"SHA-256"</code>:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"HS256"</code>.</dd>
+                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                              <var>hash</var> is <code>"SHA-384"</code>:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"HS384"</code>.</dd>
+                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                              <var>hash</var> is <code>"SHA-512"</code>:</dt>
+                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
+                              the string <code>"HS512"</code>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to equal the
+                              <a href="#dfn-Key-keyUsages">keyUsages</a> property of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to equal the 
+                              <a href="#dfn-Key-extractable">extractable</a> property of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding <var>jwk</var>
+                              into a string according to the grammer specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Return a new ArrayBuffer containing <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
         <div id="dh" class="section">
@@ -8733,6 +9292,15 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dt id="rfc3394">RFC3394</dt>
              <dd>
                 <cite><a href="http://www.ietf.org/rfc/rfc3394.txt">Advanced Encryption Standard (AES) Key Wrap Algorithm</a></cite>, J. Schaad, R. Housley, IETF.
+             </dd>
+             <dt id="fips-pub-198-1">FIPS PUB 198-1</dt>
+             <dd>
+              <cite>
+                <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">
+                  The Keyed-Hash Message Authentication Code (HMAC)
+                </a>
+              </cite>,
+              July 2008, NIST.
              </dd>
            </dl>
         </div>
