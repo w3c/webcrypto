@@ -6774,6 +6774,12 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
           <h3>AES-GCM</h3>
           <div id="aes-gcm-description" class="section">
             <h4>Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"AES-GCM"</code> algorithm identifier is used to perform
+              authenticated encryption and decryption using AES in Galois/Counter Mode mode,
+              as described in NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>].
+            </p>
           </div>
           <div id="aes-gcm-registration" class="section">
              <h4>Registration</h4>
@@ -6839,7 +6845,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If any of the members of <a href="#aes-gcm-params">AesGcmParams</a> are not
+                      If the <a href="#dfn-AesGcmParams-iv">iv</a> property of
+                      <a href="#aes-gcm-params">AesGcmParams</a> is not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
                     </p>
@@ -6859,15 +6866,15 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property of
-                      <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
-                      bytes, terminate this algorithm with an error.
+                      If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property
+                      of <var>normalizedAlgorithm</var> is present, is not null and has a length
+                      greater than 2^64 - 1 bytes, terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <dl class="switch">
                       <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> property of
-                      <var>normalizedAlgorithm</var> is null:</dt>
+                      <var>normalizedAlgorithm</var> is not present or is null:</dt>
                       <dd>Let <var>tagLength</var> be 128.</dd>
                       <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> property of
                       <var>normalizedAlgorithm</var> is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
@@ -6880,13 +6887,20 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
+                      Let <var>additionalData</var> be the contents of the
+                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property
+                      of <var>normalizedAlgorithm</var> if present and not null and the empty
+                      octet string otherwise.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Let <var>C</var> and <var>T</var> be the outputs that result from performing
                       the Authenticated Encryption Function described in Section 7.1 of
                       NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block
                       cipher, the contents of the <a href="#dfn-AesGcmParams-iv">iv</a> property of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter, the
-                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property of
-                      <var>normalizedAlgorithm</var> as the <var>A</var> input parameter,
+                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter,
+                      <var>additionalData</var> as the <var>A</var> input parameter,
                       <var>tagLength</var> as the <var>t</var> pre-requisite and
                       <var>plaintext</var> as the input plaintext.
                     </p>
@@ -6904,7 +6918,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If any of the members of <a href="#aes-gcm-params">AesGcmParams</a> are not
+                      If the <a href="#dfn-AesGcmParams-iv">iv</a> property of
+                      <a href="#aes-gcm-params">AesGcmParams</a> is not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
                     </p>
@@ -6912,7 +6927,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <dl class="switch">
                       <dt>If the <a href="#dfn-AesGcmParams-tagLangth">tagLength</a> property of
-                      <var>normalizedAlgorithm</var> is null:</dt>
+                      <var>normalizedAlgorithm</var> is not present or null:</dt>
                       <dd>Let <var>tagLength</var> be 128.</dd>
                       <dt>If the <a href="#dfn-AesGcmParams-tagLangth">tagLength</a> property of
                       <var>normalizedAlgorithm</var> is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
@@ -6938,8 +6953,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property of
-                      <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
+                      If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property
+                      of <var>normalizedAlgorithm</var> is present, is not null and has a length
+                      greater than 2^64 - 1
                       bytes, terminate this algorithm with an error.
                     </p>
                   </li>
@@ -6957,12 +6973,19 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
+                      Let <var>additionalData</var> be the contents of the
+                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property
+                      of <var>normalizedAlgorithm</var> if present and not null and the empty
+                      octet string otherwise.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Perform the Authenticated Decryption Function described in Section 7.2 of
                       NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block
                       cipher, the contents of the <a href="#dfn-AesGcmParams-iv">iv</a> property of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter, the
-                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> property of
-                      <var>normalizedAlgorithm</var> as the <var>A</var> input parameter,
+                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter,
+                      <var>additionalData</var> as the <var>A</var> input parameter,
                       <var>tagLength</var> as the <var>t</var> pre-requisite,
                       <var>actualCiphertext</var> as the input ciphertext, <var>C</var> and
                       <var>tag</var> as the authentation tag, <var>T</var>.
@@ -10503,6 +10526,12 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38B/SP_800-38B.pdf">
               NIST Special Publication 800-38B: Recommendation for Block Cipher Modes of Operation:
               The CMAC Mode for Authentication</a></cite>, May 2005, NIST.
+            </dd>
+            <dt id="SP800-38D">NIST SP 800-38D</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf">
+              NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: 
+              Galois/Counter Mode (GCM) and GMAC</a></cite>, November 2007, NIST.
             </dd>
             <dt id="SP800-56A">NIST SP 800-56A</dt>
             <dd>
