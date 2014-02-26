@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 39 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 38 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -7316,22 +7316,17 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
             <h4>18.14.1. Description</h4>
             <p class="norm">This section is non-normative.</p>
             <p>
-              The <code>"AES-CFB"</code> algorithm identifier is used to perform
+              The <code>"AES-CFB-8"</code> algorithm identifier is used to perform
               encryption and decryption using AES in Cipher Feedback mode, specifically CFB-8,
               as described in Section 6.3 of NIST SP 800-38A
               [<a href="#SP800-38A">SP800-38A</a>].
             </p>
-            <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-              <p>
-                TODO: Decide whether other variants, such as CFB-128, should be supported.
-              </p>
-            </div>
           </div>
           <div id="aes-cfb-registration" class="section">
             <h4>18.14.2. Registration</h4>
             <p>
               The <a href="#recognized-algorithm-name">recognized algorithm name</a> for
-              this algorithm is <code>"AES-CFB"</code>.
+              this algorithm is <code>"AES-CFB-8"</code>.
             </p>
             <table>
               <thead>
@@ -7504,7 +7499,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                             <li>
                               <p>
                                 Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-CFB"</code>.
+                                <var>algorithm</var> to <code>"AES-CFB-8"</code>.
                               </p>
                             </li>
                             <li>
@@ -7607,15 +7602,15 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"AES128CFB"</code>, terminate
+                            not a case-sensitive string match to <code>"AES128CFB8"</code>, terminate
                             this algorithm with an error.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"AES192CFB"</code>, terminate
+                            not a case-sensitive string match to <code>"AES192CFB8"</code>, terminate
                             this algorithm with an error.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"AES256CFB"</code>, terminate
+                            not a case-sensitive string match to <code>"AES256CFB8"</code>, terminate
                             this algorithm with an error.</dd>
                             <dt>Otherwise:</dt>
                             <dd>Terminate this algorithm with an error.</dd>
@@ -7664,7 +7659,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                      <var>algorithm</var> to <code>"AES-CFB"</code>.
+                      <var>algorithm</var> to <code>"AES-CFB-8"</code>.
                     </p>
                   </li>
                   <li>
@@ -7735,15 +7730,15 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                               <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
                               <var>key</var> is 128:</dt>
                               <dd>Set the <code>alg</code> property of <var>jwk</var> to
-                              the string <code>"AES128CFB"</code>.</dd>
+                              the string <code>"AES128CFB8"</code>.</dd>
                               <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
                               <var>key</var> is 192:</dt>
                               <dd>Set the <code>alg</code> property of <var>jwk</var> to
-                              the string <code>"AES192CFB"</code>.</dd>
+                              the string <code>"AES192CFB8"</code>.</dd>
                               <dt>If the <a href="#dfn-AesKeyParams-length">length</a> property of
                               <var>key</var> is 256:</dt>
                               <dd>Set the <code>alg</code> property of <var>jwk</var> to
-                              the string <code>"AES256CFB"</code>.</dd>
+                              the string <code>"AES256CFB8"</code>.</dd>
                             </dl>
                           </li>
                           <li>
@@ -10266,24 +10261,24 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>Specification Document(s): [[ This Document ]]</li>
           </ul>
           <ul>
-            <li>Algorithm Name: "A128CFB"</li>
-            <li>Algorithm Description: AES CFB using 128 bit key</li>
+            <li>Algorithm Name: "A128CFB8"</li>
+            <li>Algorithm Description: AES CFB-8 using 128 bit key</li>
             <li>Algorithm Usage Location(s): "JWK"</li>
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
           </ul>
           <ul>
-            <li>Algorithm Name: "A192CFB"</li>
-            <li>Algorithm Description: AES CFB using 192 bit key</li>
+            <li>Algorithm Name: "A192CFB8"</li>
+            <li>Algorithm Description: AES CFB-8 using 192 bit key</li>
             <li>Algorithm Usage Location(s): "JWK"</li>
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
           </ul>
           <ul>
-            <li>Algorithm Name: "A256CFB"</li>
-            <li>Algorithm Description: AES CFB using 256 bit key</li>
+            <li>Algorithm Name: "A256CFB8"</li>
+            <li>Algorithm Description: AES CFB-8 using 256 bit key</li>
             <li>Algorithm Usage Location(s): "JWK"</li>
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
@@ -10951,12 +10946,12 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 { kty: "oct",
-  alg: "A128CFB" }
+  alg: "A128CFB8" }
 </code></pre></div></div>
                 </td>
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
-{ name: "AES-CFB",
+{ name: "AES-CFB-8",
   length: 128 }
 </code></pre></div></div>
                 </td>
@@ -10965,12 +10960,12 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 { kty: "oct",
-  alg: "A192CFB" }
+  alg: "A192CFB8" }
 </code></pre></div></div>
                 </td>
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
-{ name: "AES-CFB",
+{ name: "AES-CFB-8",
   length: 192 }
 </code></pre></div></div>
                 </td>
@@ -10979,12 +10974,12 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 { kty: "oct",
-  alg: "A256CFB" }
+  alg: "A256CFB8" }
 </code></pre></div></div>
                 </td>
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
-{ name: "AES-CFB",
+{ name: "AES-CFB-8",
   length: 256 }
 </code></pre></div></div>
                 </td>
