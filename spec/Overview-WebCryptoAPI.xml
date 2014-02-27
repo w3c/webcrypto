@@ -10077,14 +10077,9 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               </thead>
               <tbody>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
-                <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
-                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                  <td>Octet string</td>
                 </tr>
               </tbody>
             </table>
@@ -10094,30 +10089,75 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The digest method to use to derive the keying material.</span>
-  AlgorithmIdentifier hash;
+  AlgorithmIdentifier <dfn id="dfn-ConcatParams-hash">hash</dfn>;
 
   <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
   <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
   <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
-  CryptoOperationData algorithmId;
-
+  CryptoOperationData <dfn id="dfn-ConcatParams-algorithmId">algorithmId</dfn>;
   <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
-  CryptoOperationData partyUInfo;
+  CryptoOperationData <dfn id="dfn-ConcatParams-partyUInfo">partyUInfo</dfn>;
   <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
-  CryptoOperationData partyVInfo;
+  CryptoOperationData <dfn id="dfn-ConcatParams-partyVInfo">partyVInfo</dfn>;
   <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
-  CryptoOperationData? publicInfo;
+  CryptoOperationData? <dfn id="dfn-ConcatParams-publicInfo">publicInfo</dfn>;
   <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
-  CryptoOperationData? privateInfo;
+  CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
 };
             </x:codeblock>
           </div>
           <div id="concat-operations" class="section">
             <h4>Operations</h4>
-            <ul>
-              <li>Derive Key</li>
-              <li>Derive Bits</li>
-            </ul>
+            <dl>
+              <dt>Derive Bits</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the
+                      <a href="#dfn-ConcatParams-hash">hash</a>,
+                      <a href="#dfn-ConcatParams-algorithmId">algorithmId</a>,
+                      <a href="#dfn-ConcatParams-partyUInfo">partyUInfo</a> or
+                      <a href="#dfn-ConcatParams-partyVInfo">partyVInfo</a> properties are not
+                      present in <var>normalizedAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>secret</var> be the result of performing the Concatenation Key
+                      Derivation Funtion defined in Section 5.8.1 of
+                      [<a href="#SP800-56A">SP800-56A</a>] with <var>length</var> as
+                      <var>keydatalen</var>, the hash function identified by the
+                      <a href="#dfn-ConcatParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var> as <var>H</var>, the
+                      <a href="#dfn-ConcatParams-algorithmId">algorithmId</a> property of
+                      <var>normalizedAlgorithm</var> as <var>AlgorithmID</var>, the
+                      <a href="#dfn-ConcatParams-partyUInfo">partyUInfo</a> property of
+                      <var>normalizedAlgorithm</var> as <var>PartyUInfo</var>, the
+                      <a href="#dfn-ConcatParams-partyVInfo">partyVInfo</a> property of
+                      <var>normalizedAlgorithm</var> as <var>PartyVInfo</var>, the
+                      <a href="#dfn-ConcatParams-pubicInfo">publicInfo</a> property of
+                      <var>normalizedAlgorithm</var>, if present and not null, as
+                      <var>publicInfo</var> and the
+                      <a href="#dfn-ConcatParams-privateInfo">privateInfo</a> property of
+                      <var>normalizedAlgorithm</var>, if present and not null, as
+                      <var>privateInfo</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the operation fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>secret</var>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
         <div id="hkdf-ctr" class="section">
