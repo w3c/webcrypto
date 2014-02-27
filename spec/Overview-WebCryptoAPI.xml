@@ -1992,7 +1992,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a>, terminate this algorithm
+                          <a href="#algorithms">registered algorithm</a> that supports the import
+                          derived key operation, terminate this algorithm
                           with an error.
                         </p>
                       </li>
@@ -2017,10 +2018,24 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the derive key operation
+                  Let <var>length</var> be the result of executing the derived key length
+                  algorithm specified by <var>normalizedDerivedKeyAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>secret</var> be the result of executing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using
-                  <var>key</var>, <var>normalizedDerivedKeyAlgorithm</var>, <var>extractable</var>
-                  and <var>usages</var>.
+                  <var>key</var> and <var>length</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>result</var> be the result of executing the import key operation
+                  specified by <var>normalizedDerivedKeyAlgorithm</var> using <code>"raw"</code> as
+                  <var>format</var>, <var>secret</var> as <var>keyData</var>,
+                  <var>normalizedDerivedKeyAlgorithm</var> as <var>normalizedAlgorithm</var>,
+                  <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -2105,7 +2120,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the derive bits operation
+                  Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
+                  containing the result of executing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using <var>baseKey</var> and
                   <var>length</var>.
                 </p>
@@ -5027,14 +5043,9 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
-                <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                  <td>Octet string</td>
                 </tr>
                 <tr>
                   <td>importKey</td>
@@ -5208,57 +5219,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
               </ol>
             </dd>
-            <dt>Derive Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If the <a href="#dfn-Key-type">type</a> property of <var>key</var>
-                    is not a case-sensitive string match for <code>"private"</code>, terminate this
-                    algorithm with an error.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If any of the members of <a
-                    href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a> are not present in
-                    <var>normalizedAlgorithm</var>, terminate this
-                    algorithm with an error.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
-                    with <var>key</var> as the EC private key <var>d</var> and the
-                    <a href="#dfn-EcdhKeyDeriveParams-public">public</a> property of
-                    <var>normalizedAlgorithm</var> as the EC public key <var>Q</var>.
-                    <dl class="switch">
-                      <dt>If performing the operation results in an error:</dt>
-                      <dd>Terminate this algorithm with an error.</dd>
-                      <dt>Otherwise:</dt>
-                      <dd>Let <var>result</var> be the output of the ECDH primitive.</dd>
-                    </dl>
-                  </p>
-                </li>
-                <div class="note">
-                  Note: <a href="#X9.63">X9.63</a> Section 5.4.2 and <a href="#SP800-56A">NIST SP
-                  800-56A</a> Section 5.7.1.2 specify a modified ECDH primitive that multiplies the
-                  shared secret value by the cofactor of the curve. The cofactor of the NIST
-                  recommended curves P-256, P-384, and P-521 is 1, so the standard and modified ECDH
-                  primitives are equivalent for those curves.
-                </div>
-              </ol>
-              <div class="ednote">
-                <p>
-                  TODO: Define how the finite field member <var>result</var> is converted to a bit
-                  string.
-                </p>
-                <p>
-                  TODO: Define how a key for algorithm <var>normalizedDerivedKeyAlgorithm</var> is
-                  derived from a bit string.
-                </p>
-              </div>
-            </dd>
             <dt>Derive Bits</dt>
             <dd>
               <ol>
@@ -5287,17 +5247,26 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       <dt>If performing the operation results in an error:</dt>
                       <dd>Terminate this algorithm with an error.</dd>
                       <dt>Otherwise:</dt>
-                      <dd>Let <var>result</var> be the output of the ECDH primitive.</dd>
+                      <dd>Let <var>secret</var> be the result of applying the field element to
+                      octet string comversion defined in Section ? of <a href="#X9.63">X9.63</a>
+                      to the output of the ECDH primitive.</dd>
+                    </dl>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <dl class="switch">
+                      <dt>
+                        If the length of <var>secret</var> in bits is less than
+                        <var>length</var>:
+                      </dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
                     </dl>
                   </p>
                 </li>
               </ol>
-              <div class="ednote">
-                <p>
-                  TODO: Define how the finite field member <var>result</var> is converted to a bit
-                  string.
-                </p>
-              </div>
             </dd>
           </div>
         </div>
@@ -5353,6 +5322,11 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -5393,6 +5367,16 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
 };
             </x:codeblock>
           </div>
+          <div id="aes-derivedkey-params" class="section">
+            <h4>AesDerivedKeyParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+  <span class="comment">// The length, in bits, of the key.</span>
+  [EnforceRange] unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
+};
+            </x:codeblock>
+          </div>
+
           <div id="aes-ctr-operations" class="section">
             <h4>Operations</h4>
             <dl>
@@ -5824,6 +5808,32 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -5886,6 +5896,11 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
                 </tr>
               </tbody>
             </table>
@@ -6331,6 +6346,32 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -6391,7 +6432,11 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -6766,6 +6811,32 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -6820,6 +6891,11 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
                 </tr>
                </tbody>
              </table>
@@ -7337,6 +7413,32 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -7392,6 +7494,11 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <td>exportKey</td>
                   <td>None</td>
                   <td>ArrayBuffer</td>
+                </tr>
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
                 </tr>
               </tbody>
             </table>
@@ -7814,6 +7921,32 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -7869,7 +8002,11 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
-
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a></td>
+                  <td>Integer</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -8253,6 +8390,32 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of
+                      <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
+                      <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
+                      error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
+                      <var>normalizedDerivedKeyAlgorithm</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -8307,6 +8470,11 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <td>None</td>
                   <td>ArrayBuffer</td>
                 </tr>
+                <tr>
+                  <td>derived key length</td>
+                  <td><a href="#dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</a></td>
+                  <td>Integer</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -8329,11 +8497,22 @@ interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-
             </x:codeblock>
           </div>
           <div id="hmac-keygen-params" class="section">
-            <h4>HmacKeyParams dictionary</h4>
+            <h4>HmacKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   AlgorithmIdentifier hash;
+  <span class="comment">// The length (in bytes) of the key to generate. If unspecified, the
+  // recommended length will be used, which is the size of the associated hash function's block
+  // size.</span>
+  unsigned long length;
+};
+            </x:codeblock>
+          </div>
+          <div id="hmac-derivedkey-params" class="section">
+            <h4>HmacDerivedKeyParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="#dfn-HmacImportParams">HmacImportParams</a> {
   <span class="comment">// The length (in bytes) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
@@ -8903,6 +9082,47 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                   </li>
                 </ol>
               </dd>
+              <dt>Derived key length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-HmacImportParams-hash">hash</a> property is
+                      not present in <var>normalizedDerivedKeyAlgorithm</var>, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>
+                        If the <a href="#dfn-HmacDerivedKeyParams-length">length</a> property of
+                        <var>normalizedDerivedKeyAlgorithm</var> is not present:
+                      </dt>
+                      <dd>
+                        Let <var>length</var> be the block size in bytes of the hash function
+                        identified by the <a href="#dfn-HmacImportParams-hash">hash</a> property
+                        of <var>normalizedDerivedKeyAlgorithm</var>.
+                      </dd>
+                      <dt>
+                        Otherwise, if the <a href="#dfn-HmacDerivedKeyParams-length">length</a>
+                        property of <var>normalizedDerivedKeyAlgorithm</var> is non-zero:
+                      </dt>
+                      <dd>
+                        Let <var>length</var> be equal to the
+                        <a href="#dfn-HmacDerivedKeyParams-length">length</a>
+                        property of <var>normalizedDerivedKeyAlgorithm</var>.
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>length</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
@@ -8937,14 +9157,9 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                   <td><a href="#dfn-KeyPair">KeyPair</a></td>
                 </tr>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
-                <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
-                  <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                  <td>Octet string</td>
                 </tr>
                 <tr>
                   <td>importKey</td>
@@ -9155,49 +9370,6 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                 </ol>
               </dd>
-              <dt>Derive Key</dt>
-              <dd>
-                <ol>
-                  <li>
-                    <p>
-                      If the <a href="#dfn-Key-type">type</a> property of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>, terminate this
-                      algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      If any of the members of <a
-                      href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a> are not present in
-                      <var>normalizedAlgorithm</var>, terminate this
-                      algorithm with an error.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Perform the Diffie Hellman Phase II algorithm as specified in
-                      Section 8 of [<a href="#PKCS3">PKCS #3</a>]
-                      with <var>key</var> as the DH private value <var>x</var> and the
-                      <a href="#dfn-DhKeyDeriveParams-public">public</a> property of
-                      <var>normalizedAlgorithm</var> as the other's public value <var>PV'</var>.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Let <var>result</var> be the output of the DH Phase II, <var>SK</var>
-                        </dd>
-                      </dl>
-                    </p>
-                  </li>
-                </ol>
-                <div class="ednote">
-                  <p>
-                    TODO: Define how a key for algorithm <var>normalizedDerivedKeyAlgorithm</var> is
-                    derived from a the secret value <var>SK</var>.
-                  </p>
-                </div>
-              </dd>
               <dt>Derive Bits</dt>
               <dd>
                 <ol>
@@ -9228,14 +9400,22 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                         <dd>Terminate this algorithm with an error.</dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Let <var>result</var> be the output of the DH Phase II, <var>SK</var>.
+                          Let <var>secret</var> be the output of the DH Phase II, <var>SK</var>.
                         </dd>
                       </dl>
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return a new ArrayBuffer containing <var>result</var>
+                      <dl class="switch">
+                        <dt>
+                          If the length of <var>secret</var> in bits is less than
+                          <var>length</var>:
+                        </dt>
+                        <dd>Terminate this algorithm with an error.</dd>
+                        <dt>Otherwise:</dt>
+                        <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                      </dl>
                     </p>
                   </li>
                 </ol>
