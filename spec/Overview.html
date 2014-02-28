@@ -10373,17 +10373,16 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
 <span class="comment">// Algorithm Object</span>
 var algorithmKeyGen = {
   name: "RSASSA-PKCS1-v1_5",
-  <span class="comment">// <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a></span>
+  <span class="comment">// <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a></span>
   modulusLength: 2048,
   publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  <span class="comment">// Equivalent to 65537</span>
-};
-
-var algorithmSign = {
-  name: "RSASSA-PKCS1-v1_5",
-  <span class="comment">// <a href="#dfn-RsaSsaParams">RsaSsaParams</a></span>
   hash: {
     name: "SHA-256",
   }
+};
+
+var algorithmSign = {
+  name: "RSASSA-PKCS1-v1_5"
 };
 
 window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
