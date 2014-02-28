@@ -984,6 +984,21 @@
             </li>
           </ol>
         </p>
+        <p>
+          When this specification says to calculate the <dfn id="concept-usage-intersection">usage
+          intersection</dfn> of two arrays, <var>a</var> and <var>b</var> the result shall be an
+          array containing each <a href="#dfn-RecognizedKeyUsage">recognised key usage value</a>
+          that appears in both <var>a</var> and <var>b</var>, in the order listed in the list of
+          <a href="#dfn-RecognizedKeyUsage">recognised key usage values</a>, where a value is said
+          to appear in an array if an element of the array exists that is a case-sensistive string
+          match for that value.
+        </p>
+        <p>
+          When this specification says to calculate the <dfn id="concept-normalized-usages">
+          normalized value of a usages list</dfn>, <var>usages</var> the result shall be the
+          <a href="#concept-usage-intersection">usage intersection</a> of <var>usages</var> and an
+          array containing all <a href="#dfn-RecognizedKeyUsage">recognised key usage values</a>.
+        </p>
       </div>
 
       <div id="RandomSource-interface" class="section">
@@ -3398,8 +3413,9 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>publicKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "encrypt", "wrapKey" ]</code>.
+                                <var>publicKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -3429,8 +3445,9 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                <var>privateKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -3980,8 +3997,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>publicKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "verify" ]</code>.
+                                <var>publicKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "verify" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -4011,8 +4029,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "sign" ]</code>.
+                                <var>privateKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "sign" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -4309,8 +4328,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Set the <a href="#dfn-Key-usages">usages</a> property of
-                              <var>publicKey</var> to be the intersection of <var>usages</var>
-                              and <code>[ "verify" ]</code>.
+                              <var>publicKey</var> to be the
+                              <a href="concept-usage-intersection">usage intersection</a> of
+                              <var>usages</var> and <code>[ "verify" ]</code>.
                             </p>
                           </li>
                           <li>
@@ -4340,8 +4360,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Set the <a href="#dfn-Key-usages">usages</a> property of
-                              <var>privateKey</var> to be the intersection of <var>usages</var>
-                              and <code>[ "sign" ]</code>.
+                              <var>privateKey</var> to be the
+                              <a href="concept-usage-intersection">usage intersection</a> of
+                              <var>usages</var> and <code>[ "sign" ]</code>.
                             </p>
                           </li>
                           <li>
@@ -4644,8 +4665,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>publicKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "encrypt", "wrapKey" ]</code>.
+                                <var>publicKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -4675,8 +4697,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "decrypt", "unwrapKey" ]</code>.
+                                <var>privateKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -5179,8 +5202,9 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             <li>
                               <p>
                                 Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the intersection of <var>usages</var>
-                                and <code>[ "deriveKey", "deriveBits" ]</code>.
+                                <var>privateKey</var> to be the
+                                <a href="concept-usage-intersection">usage intersection</a> of
+                                <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
                               </p>
                             </li>
                             <li>
@@ -5708,7 +5732,8 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -6246,7 +6271,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -6744,7 +6770,8 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -7346,7 +7373,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -7849,7 +7877,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -8323,7 +8352,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -8993,7 +9023,8 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                   <li>
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var>
-                      to <var>usages</var>.
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
                     </p>
                   </li>
                   <li>
@@ -9542,7 +9573,9 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-Key-usages">usages</a> property of
-                          <var>key</var> to <var>usages</var>.
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
                         </p>
                       </li>
                       <li>
@@ -9666,7 +9699,9 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-Key-usages">usages</a> property of
-                          <var>key</var> to <var>usages</var>.
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
                         </p>
                       </li>
                       <li>
@@ -9794,7 +9829,9 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-Key-usages">usages</a> property of
-                          <var>key</var> to <var>usages</var>.
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
                         </p>
                       </li>
                       <li>
