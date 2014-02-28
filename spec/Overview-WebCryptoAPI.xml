@@ -6394,11 +6394,6 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               described in NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>].
             </p>
           </div>
-          <div class="ednote">
-            <p>
-              TODO: Decide whether MAC lengths other than 128 should be supported.
-            </p>
-          </div>
           <div id="aes-cmac-registration" class="section">
             <h4>Registration</h4>
             <p>
@@ -6416,12 +6411,12 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <tbody>
                 <tr>
                   <td>sign</td>
-                  <td>None</td>
+                  <td><a href="#dfn-AesCmacParams">AesCmacParams</a></td>
                   <td>ArrayBuffer</td>
                 </tr>
                 <tr>
                   <td>verify</td>
-                  <td>None</td>
+                  <td><a href="#dfn-AesCmacParams">AesCmacParams</a></td>
                   <td>boolean</td>
                 </tr>
                 <tr>
@@ -6447,6 +6442,15 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               </tbody>
             </table>
           </div>
+          <div id="aes-keygen-params" class="section">
+            <h4>AesCmacParams dictionary</h4>
+            <x:codeblock language="idl">
+dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+  <span class="comment">// The length, in bits, of the MAC.</span>
+  [EnforceRange] unsigned short <dfn id="dfn-AesCmacParams-length">length</dfn>;
+};
+            </x:codeblock>
+          </div>
           <div id="aes-cmac-operations" class="section">
             <h4>Operations</h4>
             <dl>
@@ -6455,11 +6459,23 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>length</var> equal the <a href="#dfn-AesCmacParams-length">length</a>
+                      property of <var>normalizedAlgorithm</var>, if present, and 128 otherwise.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>length</var> is zero or greater than 128, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Let <var>mac</var> be the result of performing the MAC Generation
                       operation described in Section 6.2 of
                       NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
-                      cipher, 128 as the value of the MAC length parameter, <var>Tlen</var>, and
-                      <var>message</var> as the message, <var>M</var>.
+                      cipher, <var>length</var> as the value of the MAC length parameter,
+                      <var>Tlen</var>, and <var>message</var> as the message, <var>M</var>.
                     </p>
                   </li>
                   <li>
@@ -6474,12 +6490,24 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>length</var> equal the <a href="#dfn-AesCmacParams-length">length</a>
+                      property of <var>normalizedAlgorithm</var>, if present, and 128 otherwise.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>length</var> is zero or greater than 128, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Let <var>ouput</var> be the result of performing the MAC Verification
                       operation described in Section 6.3 of
                       NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
-                      cipher, 128 as the value of the MAC length parameter, <var>Tlen</var>, 
-                      <var>message</var> as the message, <var>M</var> and <var>signature</var> as
-                      the receive MAC, <var>T'</var>.
+                      cipher, <var>length</var> as the value of the MAC length parameter,
+                      <var>Tlen</var>, <var>message</var> as the message, <var>M</var> and
+                      <var>signature</var> as the received MAC, <var>T'</var>.
                     </p>
                   </li>
                   <li>
