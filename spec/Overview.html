@@ -4868,36 +4868,36 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 <ol>
                   <li>
                     <p>
-                      If <var>key</var> does not refer to an ECDSA private key, terminate the
-                      algorithm with an error.
+                      If the <a href="#dfn-Key-type">type</a> property of <var>key</var>
+                      is not a case-sensitive string match for <code>"private"</code>,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>hash</var> be initialized to an instance of the underlying hash
-                      algorithm indicated by <var>hash</var>
+                      If any of the properties of <a href="#dfn-EcdsaParams">EcdsaParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
+                      an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>bytes</var> be the sequence of bytes to be processed.
+                      Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
+                      property of
+                      <var>normalizedAlgorithm</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                      If <var>hashAlgorithm</var> does not describe a
+                      <a href="#algorithms">registered algorithm</a> that supports the digest
+                      operation, terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      If the context object's internal state is not <code>"complete"</code>, return
-                      an empty <code>ArrayBuffer</code>.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Let <var>M</var> be the result of finalizing the hash algorithm of
-                      <var>hash</var>.
+                      Let <var>M</var> be the result of performing the digest operation specified by
+                      <var>hashAlgorithm</var> using <var>message</var>.
                     </p>
                   </li>
                   <li>
@@ -4954,36 +4954,36 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 <ol>
                   <li>
                     <p>
-                      If <var>key</var> does not refer to an ECDSA public key, terminate the
-                      algorithm with an error.
+                      If the <a href="#dfn-Key-type">type</a> property of <var>key</var>
+                      is not a case-sensitive string match for <code>"public"</code>,
+                      terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>hash</var> be initialized to an instance of the underlying hash
-                      algorithm indicated by <var>hash</var>
+                      If any of the properties of <a href="#dfn-EcdsaParams">EcdsaParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
+                      an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Let <var>bytes</var> be the sequence of bytes to be processed.
+                      Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
+                      property of
+                      <var>normalizedAlgorithm</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Perform the hash algorithm of <var>hash</var>, using <var>bytes</var> as input.
+                      If <var>hashAlgorithm</var> does not describe a
+                      <a href="#algorithms">registered algorithm</a> that supports the digest
+                      operation, terminate this algorithm with an error.
                     </p>
                   </li>
                   <li>
                     <p>
-                      If the context object's internal state is not <code>"complete"</code>,
-                      terminate the algorithm.
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      Let <var>M</var> be the result of finalizing the hash algorithm of
-                      <var>hash</var>.
+                      Let <var>M</var> be the result of performing the digest operation specified by
+                      <var>hashAlgorithm</var> using <var>message</var>.
                     </p>
                   </li>
                   <li>
@@ -5000,7 +5000,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>, Section 7.4, with <var>M</var> as the received
-                      message, using <var>params</var> as the EC domain parameters, and with
+                      message, <var>signatire</var> as the received signature and using
+                      <var>params</var> as the EC domain parameters, and 
                       <var>Q</var> as the public key.
                     </p>
                   </li>
@@ -5033,10 +5034,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
               namedCurve of "P-256", but also a hash of "SHA-256"). However, "alg" is optional,
               and all that is required when importing is a "kty" of "EC". This also requires
               thinking through the export/wrap case.
-            </p>
-            <p>
-              TODO: Fix-up the processing model, which refers to the (much outdated) CryptoOperation
-              model.
             </p>
           </div>
         </div>
