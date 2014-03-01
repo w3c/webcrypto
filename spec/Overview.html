@@ -9423,7 +9423,7 @@ interface <dfn id="dfn-DhKeyAlgorithm">DhKeyAlgorithm</dfn> : <a href="#dfn-KeyA
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's public value.</span>
-  BigInteger <dfn id="dfn-DhKeyDeriveParams-public">public</dfn>;
+  <a href="#dfn-Key">Key</a> <dfn id="dfn-DhKeyDeriveParams-public">public</dfn>;
 };
             </code></pre></div></div>
           </div>
@@ -9610,9 +9610,51 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
+                      Let <var>publicKey</var> be the
+                      <a href="#dfn-DhKeyDeriveParams-public">public</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-KeyAlgorithm-name">name</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>publicKey</var> is
+                      not a case-sensitive string match for
+                      <code>"DH"</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                      is not a case-sensitive string match for
+                      <code>"public"</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>publicKey</var>
+                      is not equal to the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>publicKey</var>
+                      is not equal to the <a href="#dfn-DhKeyAlgorithm-generator">generator</a>
+                      property of the
+                      <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Perform the Diffie Hellman Phase II algorithm as specified in
                       Section 8 of [<a href="#PKCS3">PKCS #3</a>]
                       with <var>key</var> as the DH private value <var>x</var> and the
+                      Diffie Hellman public value represented by the
                       <a href="#dfn-DhKeyDeriveParams-public">public</a> property of
                       <var>normalizedAlgorithm</var> as the other's public value <var>PV'</var>.
                       <dl class="switch">
@@ -9649,8 +9691,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <dd>
                     <div class="ednote"><div class="ednoteHeader">Editorial note</div>
                       <p>
-                        It has been suggested that "raw" import for asymmetric keys such as DH
-                        should not be supported.
+                        Raw import of private values is presently not supported.
                       </p>
                     </div>
                     <ol>
@@ -9664,14 +9705,19 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          If <var>usages</var> contains a value which is not a case-sensitive string
-                          match for one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          If <var>usages</var> is not an empty array,
                           terminate this algorithm with an error.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>x</var> be the integer which results from interpreting the octets
+                          If <var>extractable</var> is false, terminate this algorithm with an
+                          error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>PV</var> be the integer which results from interpreting the octets
                           of <var>keyData</var> as an unsigned big integer with most significant
                           octet first.
                         </p>
@@ -9679,7 +9725,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
-                          a Diffie-Hellman private key with private value <var>x</var> and with
+                          a Diffie-Hellman public key with public value <var>PV</var> and with
                           prime, <var>p</var> and base, <var>g</var> equal to the
                           <a href="#dfn-DhImportKeyParams-prime">prime</a> and
                           <a href="#dfn-DhImportKeyParams-generator">generator</a> properties
@@ -9689,7 +9735,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-Key-type">type</a> propety of <var>key</var> to
-                          <code>"private"</code>.
+                          <code>"public"</code>.
                         </p>
                       </li>
                       <li>
@@ -9735,9 +9781,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-Key-usages">usages</a> property of
-                          <var>key</var> to the
-                          <a href="#concept-normalized-usages">normalized value</a> of
-                          <var>usages</var>.
+                          <var>key</var> to <var>usages</var>.
                         </p>
                       </li>
                       <li>
@@ -10022,7 +10066,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                             case-sensitive string match for <code>"public"</code>:
                           </dt>
                           <dd>
-                            Let <var>result</var> be the Public Value , <var>PV</var>, associated
+                            Let <var>result</var> be the Public Value, <var>PV</var>, associated
                             with <var>key</var> as
                             specified in Section 7 of [<a href="#PKCS3">PKCS #3</a>].
                           </dd>
