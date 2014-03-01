@@ -5291,6 +5291,16 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
+                    If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> property of
+                    the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>publicKey</var>
+                    is not equal to the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                    property of
+                    the <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>,
+                    terminate this algorithm with an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
                     with <var>key</var> as the EC private key <var>d</var> and the EC public key
                     represented by <var>publicKey</var> as the EC public key <var>Q</var>.
