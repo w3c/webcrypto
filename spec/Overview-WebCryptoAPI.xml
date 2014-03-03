@@ -1286,19 +1286,19 @@ typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
-                       sequence&lt;CryptoOperationData&gt; data);
+                       CryptoOperationData data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-Key">Key</a> key,
-                       sequence&lt;CryptoOperationData&gt; data);
+                       CryptoOperationData data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                     <a href="#dfn-Key">Key</a> key,
-                    sequence&lt;CryptoOperationData&gt; data);
+                    CryptoOperationData data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                       <a href="#dfn-Key">Key</a> key,
                       CryptoOperationData signature,
-                      sequence&lt;CryptoOperationData&gt; data);
+                      CryptoOperationData data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                      sequence&lt;CryptoOperationData&gt; data);
+                      CryptoOperationData data);
 
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           boolean extractable,
