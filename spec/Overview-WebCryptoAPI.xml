@@ -5034,6 +5034,7 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
             </x:codeblock>
           </div>
           <div id="EcKeyAlgorithm-interface" class="section">
+            <h4>EcKeyAlgorithm interface</h4>
             <x:codeblock language="idl">
 [NoInterfaceObject]
 interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
@@ -5380,18 +5381,791 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
               </dd>
 
               <dt>Import Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>Let <var>keyData</var> be the key data to be imported.</p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>spki</var> be the result of running the
+                              <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
+                              algorithm over <var>keyData</var>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>algorithm</code> object identifier field of the
+                              <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var> is
+                              not equal to the <code>id-ecPublicKey</code>
+                              object identifier defined in <a href="#RFC5480">RFC 5480</a>,
+                              terminate the algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>parameters</code> field of the <code>algorithm</code>
+                              AlgorithmIdentifier field of <var>spki</var> is absent,
+                              terminate the algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>params</var> be the <code>parameters</code> field of the
+                              <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>params</var> is not an instance of the
+                              <code>namedCurve</code> ASN.1 type defined in <a href="#RFC5480">RFC
+                              5480</a>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the Elliptic Curve public key identified by performing the
+                              conversion steps defined in Section 2.2 of <a href="#RFC5480">RFC
+                              5480</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                              to <code>"public"</code>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>algorithm</var> be a new <a
+                              href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                              <var>algorithm</var> to <code>"ECDSA"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd><p>Terminate the algorithm with an error</p></dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                              <var>key</var> to <var>algorithm</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>privateKeyInfo</var> be the result of running the
+                              <a href="#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurs while parsing, terminate this algorithm with an
+                              error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>algorithm</code> object identifier field of the
+                              <code>privateKeyAlgorithm</code> PrivateKeyAlgorithm field of
+                              <var>privateKeyInfo</var> is not equal to the
+                              <code>id-ecPublicKey</code> object identifier defined in <a
+                              href="#RFC5480">RFC 5480</a>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>parameters</code> field of the
+                              <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
+                              of <var>privateKeyInfo</var> is not present, terminate this algorithm
+                              with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>params</var> be the <code>parameters</code> field of the
+                              <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
+                              of <var>privateKeyInfo</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <var>params</var> is not an instance of the
+                              <code>namedCurve</code> ASN.1 type defined in <a href="#RFC5480">RFC
+                              5480</a>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>ecPrivateKey</var> be the result of performing the <a
+                              href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                              algorithm, with <var>data</var> as the <code>privateKey</code> field
+                              of <var>privateKeyInfo</var>, <var>structure</var> as the ASN.1
+                              <code>ECPrivateKey</code> structure specified in Section 3 of <a
+                              href="#RFC5915">RFC 5915</a>, and <var>exactData</var> set to true.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>parameters</code> field of <var>ecPrivateKey</var> is
+                              present, and is not an instance of the <code>namedCurve</code> ASN.1
+                              type defined in <a href="#RFC5480">RFC 5480</a>, or does not contain
+                              the same object identifier as the <code>parameters</code> field of the
+                              <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
+                              of <var>privateKeyInfo</var>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the Elliptic Curve private key identified by performing the
+                              conversion steps defined in Section 3 of <a href="#RFC5915">RFC
+                              5915</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                              to <code>"private"</code>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>algorithm</var> be a new <a
+                              href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                              <var>algorithm</var> to <code>"ECDSA"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd><p>Terminate the algorithm with an error</p></dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                              <var>key</var> to <var>algorithm</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a JWK</a> algorithm over
+                              <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing, terminate this algorithm with
+                              an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not a
+                              case-sensitive string match to <code>"EC"</code>, terminate this
+                              algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not a case-sensitive string match to <code>"sig"</code>, terminate
+                              this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of <a href="#JWK">JSON Web
+                              Key</a>, or it does not contain all of the specified <var>usages</var>
+                              values, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <code>"d"</code> field is present:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not meet the requirements of Section
+                                      6.2.2 of <a href="#JWA">JSON Web Algorithms</a>, terminate
+                                      this algorithm with an error.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the Elliptic Curve private key identified by
+                                      interpreting <var>jwk</var> according to Section 6.2.2 of <a
+                                      href="#JWA">JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
+                                      <var>Key</var> to <code>"private"</code>.
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not meet the requirements of Section
+                                      6.2.1 of <a href="#JWA">JSON Web Algorithms</a>, terminate
+                                      this algorithm with an error.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the Elliptic Curve public key identified by
+                                      interpreting <var>jwk</var> according to Section 6.2.1 of <a
+                                      href="#JWA">JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
+                                      <var>Key</var> to <code>"public"</code>.
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>algorithm</var> be a new instance of an <a
+                              href="#EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                              <var>algorithm</var> to <code>"ECDSA"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <code>"crv"</code> field of <var>jwk</var> is a
+                                case-sensitive string match to <code>"P-256"</code>
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"crv"</code> field of <var>jwk</var> is a
+                                case-sensitive string match to <code>"P-384"</code>
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"crv"</code> field of <var>jwk</var> is a
+                                case-sensitive string match to <code>"P-521"</code>
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd><p>Terminate the algorithm with an error</p></dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                              <var>key</var> to <var>algorithm</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd><p>Terminate the algorithm with an error.</p></dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+
               <dt>Export Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>key</var> be the <a href="#dfn-Key">Key</a> to be exported.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
+                              not <code>"public"</code>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#concept-encode-a-subjectPublicKeyInfo">encoding a
+                              subjectPublicKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>algorithm</var> field to an
+                                  <code>AlgorithmIdentifier</code> ASN.1 type with the following
+                                  properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> object identifier to the OID
+                                      <code>1.2.840.10045.2.1</code>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>parameters</var> field to an instance of the
+                                      <code>namedCurve</code> ASN.1 type as follows:
+                                    </p>
+                                    <dl class="switch">
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-256"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-384"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-521"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>Otherwise:</dt>
+                                      <dd>
+                                        <p>Terminate this algorithm with an error</p>
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>subjectPublicKey</var> field to the octet string that
+                                  represents the Elliptic Curve public key identified by
+                                  <var>key</var> according to the encoding rules specified in
+                                  Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
+                                  uncompressed form.
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                              is not <code>"private"</code>, terminate this algorithm with an
+                              error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#concept-encode-a-privateKeyInfo">encoding a
+                              privateKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>version</var> field to <code>0</code>.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKeyAlgorithm</var> field to an
+                                  <code>PrivateKeyAlgorithmIdentifier</code> ASN.1 type with the
+                                  following properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> object identifier to the OID
+                                      <code>1.2.840.10045.2.1</code>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>parameters</var> field to an instance of the
+                                      <code>namedCurve</code> ASN.1 type as follows:
+                                    </p>
+                                    <dl class="switch">
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-256"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-384"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>
+                                        If the <a
+                                        href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                        attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                        attribute of <var>key</var> is <code>"P-521"</code>:
+                                      </dt>
+                                      <dd>
+                                        <p>
+                                          Let the <var>namedCurve</var> be the object identifier
+                                          <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                          5480</a>
+                                        </p>
+                                      </dd>
+                                      <dt>Otherwise:</dt>
+                                      <dd>
+                                        <p>Terminate this algorithm with an error</p>
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKey</var> field to the result of DER-encoding
+                                  an instance of the <code>ECPrivateKey</code> structure defined in
+                                  Section 3 of <a href="#RFC5915">RFC 5915</a> for the Elliptic
+                                  Curve private key represented by <var>key</var> and that conforms
+                                  to the following:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      The <var>parameters</var> field is present, and is equivalent
+                                      to the <var>parameters</var> field of the
+                                      <var>privateKeyAlgorithm</var> field of this
+                                      <code>PrivateKeyInfo</code> ASN.1 structure.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      The <var>publicKey</var> field is present and represents the
+                                      Elliptic Curve public key associated with the Elliptic Curve
+                                      private key represented by <var>key</var>.
+                                    </p>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be a new internal object.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>kty</code> property of <var>jwk</var> to
+                              <code>"EC"</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                attribute of <var>key</var> is <code>P-256</code>:
+                              </dt>
+                              <dd>
+                                Set the <code>crv</code> property of <var>jwk</var> to
+                                <code>"P-256"</code>
+                              </dd>
+                              <dt>
+                                If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                attribute of <var>key</var> is <code>P-384</code>:
+                              </dt>
+                              <dd>
+                                Set the <code>crv</code> property of <var>jwk</var> to
+                                <code>"P-384"</code>
+                              </dd>
+                              <dt>
+                                If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                attribute of the <a href="#dfn-Key-algorithm">algorithm</a>
+                                attribute of <var>key</var> is <code>P-521</code>:
+                              </dt>
+                              <dd>
+                                Set the <code>crv</code> property of <var>jwk</var> to
+                                <code>"P-521"</code>
+                              </dd>
+                              <dt>Otherwise</dt>
+                              <dd><p>Terminate this algorithm with an error</p></dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>x</code> property of <var>jwk</var> according to the
+                              definition in Section 6.2.1.2 of <a href="#JWA">JSON Web
+                              Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>y</code> property of <var>jwk</var> according to the
+                              definition in Section 6.2.1.3 of <a href="#JWA">JSON Web
+                              Algorithms</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                                is <code>private</code>
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <code>d</code> property of <var>jwk</var> according to the
+                                  definition in Section 6.2.2.1 of <a href="#JWA">JSON Web
+                                  Algorithms</a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to the
+                              <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to the <a
+                              href="#dfn-Key-extractable">extractable</a> attribute of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding <var>jwk</var>
+                              into a string according to the grammer specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ol>
+                      <dt>Otherwise:</dt>
+                      <dd><p>Terminate this algorithm with an error</p></dd>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>data</var> be a new <code>ArrayBuffer</code> that contains
+                      <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
           <div class="ednote">
             <p>
-              TODO: Figure out what to do if "alg" is present on a JWK when importing, as "alg"
-              also (potentially) indicates an inner hash algorithm (e.g. "ES256" indicates a
-              namedCurve of "P-256", but also a hash of "SHA-256"). However, "alg" is optional,
-              and all that is required when importing is a "kty" of "EC". This also requires
-              thinking through the export/wrap case.
+              OPEN ISSUE: The import/export of JWK ignores the "alg" field, because it does not
+              provide a 1:1 mapping between ECDSA (which choses the hash at sign/verify time,
+              because it is safe to do so) and the JWS alg (which incorporates the hash algorithm).
             </p>
           </div>
         </div>
@@ -5475,7 +6249,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Generate an Eliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>]
+                    Generate an Elliptic Curve key pair, as defined in [<a href="#X9.63">X9.63</a>]
                     with domain parameters for the curve identified by
                     the <a href="#dfn-ExKeyGenParams-namedCurve">namedCurve</a> property of
                     <var>normalizedAlgorithm</var>.
