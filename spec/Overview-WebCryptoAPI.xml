@@ -3737,7 +3737,221 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                 </ol>
               </dd>
               <dt>Export Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>key</var> be the key to be exported.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code></dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
+                              not <code>"public"</code>, terminate the algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#dfn-encode-a-subjectPublicKeyInfo">encoding a
+                              subjectPublicKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>algorithm</var> field to an
+                                  <code>AlgorithmIdentifier</code> ASN.1 type with the following
+                                  properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the OID
+                                      <code>1.2.840.113549.1.1</code>
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>params</var> field to the ASN.1 type NULL.
+                                    </p>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>subjectPublicKey</var> field to the result of
+                                  DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
+                                  in <a href="#RFC3447">RFC 3447</a>, Appendix A.1.1, that
+                                  represents the RSA public key identified by <var>key</var>
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
+                              not <code>"private"</code>, terminate the algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#dfn-encode-a-privateKeyInfo"> encoding a privateKeyInfo</a>
+                              with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>version</var> field to 0.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKeyAlgorithm</var> field to a
+                                  <code>PrivateKeyAlgorithmIdentifier</code> ASN.1 type with the
+                                  following properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the OID
+                                      <code>1.2.840.113549.1.1</code>
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>params</var> field to the ASN.1 type NULL.
+                                    </p>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKey</var> field to the result of
+                                  DER-encoding an <code>RSAPrivateKey</code> ASN.1 type, as defined
+                                  in <a href="#RFC3447">RFC 3447</a>, Appendix A.1.2, that
+                                  represents the RSA private key identified by <var>key</var>
+                                </p>
+                                <div class="ednote">
+                                  <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
+                                  this field should be <em>BER</em> encoded in Section 5 (as a "for
+                                  example"). However, to avoid requiring WebCrypto implementations
+                                  support BER-encoding and BER-decoding, only <em>DER</em> encodings
+                                  are produced or accepted.
+                                </div>
+                              </li>
+                            </ul>                              
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ul>
+                          <li>
+                            <p>Let <var>jwk</var> be a new internal object.</p>
+                          </li>
+                          <li>
+                            <p>Set the <code>kty</code> property of <var>jwk</var> to the string
+                            <code>"RSA"</code>.</p>
+                          </li>
+                          <li>
+                            <p>Set the <code>alg</code> property of <var>jwk</var> to the string
+                            <code>"RSA1_5"</code>.</p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the properties <code>n</code> and <code>e</code> of <var>jwk</var>
+                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              Algorithms</a>, Section 6.3.1.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                                is <code>"private"</code>:
+                              </dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      Set the properties named <code>d</code>, <code>p</code>,
+                                      <code>q</code>, <code>dp</code>, <code>dq</code>, and
+                                      <code>qi</code> of <var>jwk</var> according to the
+                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      Algorithms</a>, Section 6.3.2.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      If the underlying RSA private key represented by
+                                      <var>key</var> is represented by more than two primes, set the
+                                      property named <code>oth</code> of <var>jwk</var> according to
+                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      Algorithms</a>, Section 6.3.2.7
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> property of <var>jwk</var> to the <a
+                              href="#dfn-Key-usages">usages</a> attribute of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> property of <var>jwk</var> to the <a
+                              href="#dfn-Key-extractable">extractable</a> attribute of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding
+                              <var>jwk</var> according to the grammar specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ul>
+                      </dd>
+                      <dt>Otherwise</dt>
+                      <dd>
+                        <p>Terminate this algorithm with an error.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>data</var> be a new <code>ArrayBuffer</code> containing
+                      <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
             </dl>
           </div>
         </div>
