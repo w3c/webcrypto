@@ -10358,6 +10358,16 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
                   <td>Octet string</td>
                 </tr>
+                <tr>
+                  <td>Import key</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>Get key length</td>
+                  <td>None</td>
+                  <td>Integer or null</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -10430,6 +10440,86 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Return <var>secret</var>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import key</dt>
+              <dd>
+                <dl class="switch">
+                  <dt>
+                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If <var>usages</var> contains a value that is not a case-sensitive string
+                          match for <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
+                          the key data provided in <var>keyData</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-type">type</a> property of <var>key</var> to
+                          <code>"secret"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>algorithm</var> be a new
+                          <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                          <var>algorithm</var> to <code>"CONCAT"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                          <var>key</var> to <var>algorithm</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                          <var>key</var> to <var>extractable</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-usages">usages</a> property of
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Return <var>key</var>.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Terminate this algorithm with an error.</dd>
+                </dl>
+              </dd>
+              <dt>Get length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Return null.
                     </p>
                   </li>
                 </ol>
