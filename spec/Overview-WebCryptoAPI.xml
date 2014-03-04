@@ -10452,9 +10452,8 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"HKDF-CTR"</code> algorithm identifier is used to
-              perform key derivation using the algorithm described in
-              RFC 5869 [<a href="#RFC5869">RFC5869</a>] and NIST SP 800-56C
-              [<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode,
+              perform key derivation using the extraction-then-expansion approach described in
+              NIST SP 800-56C[<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode,
               as described in Section 5.1 of NIST SP 800-108
               [<a href="#SP800-108">SP800-108</a>].
             </p>
@@ -10475,14 +10474,19 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
               </thead>
               <tbody>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
-                <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
                   <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
+                  <td>Import key</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>Get key length</td>
+                  <td>None</td>
+                  <td>Integer or null</td>
                 </tr>
               </tbody>
             </table>
@@ -10513,10 +10517,195 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
           </div>
           <div id="hkdf2-ctr-operations" class="section">
             <h4>Operations</h4>
-            <ul>
-              <li>Derive Key</li>
-              <li>Derive Bits</li>
-            </ul>
+            <dl>
+              <dt>Derive Bits</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>length</var> is null, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-HkdfCtrParams">HkdfCtrParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
+                      recognised algorithm</a> that supports the digest operation, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
+                      <var>n</var> is the size of the output of the hash fuction described by the
+                      <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>prf</var> be the MAC Generation function described in Section 4 of
+                      [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the hash function
+                      described by the <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>keyDerivationKey</var> be the result of performing <var>prf</var>
+                      using <var>extractKey</var> as the key and the secret represented by
+                      <var>key</var> as the message.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be the result of performing the KDF in counter
+                      mode operation described in Section 5.1 of NIST SP 800-108
+                      [<a href="#SP800-108">SP800-108</a>] using:
+                      <ul>
+                        <li>
+                          <p>
+                            <var>prf</var> as the Pseudo-Random Function, <var>PRF</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <var>keyDerivationKey</var> as the Key derivation key,
+                            <var>K<sub>I</sub></var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the contents of the <a href="#dfn-HkdfCtrParams-label">label</a> property
+                            of <var>normalizedAlgorithm</var> as <var>Label</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the contents of the <a href="#dfn-HkdfCtrParams-label">context</a>
+                            property of <var>normalizedAlgorithm</var> as <var>Context</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <var>length</var> as the value of <var>L</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            32 as the value of <var>r</var>, and
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the 32-bit little-endian binary encoding of <var>length</var>
+                            as the encoded length value [<var>L</var>]<sub>2</sub>.
+                          </p>
+                        </li>
+                      </ul>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key derivation operation terminates with an error, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import key</dt>
+              <dd>
+                <dl class="switch">
+                  <dt>
+                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If <var>usages</var> contains a value that is not a case-sensitive string
+                          match for <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
+                          the key data provided in <var>keyData</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-type">type</a> property of <var>key</var> to
+                          <code>"secret"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>algorithm</var> be a new
+                          <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                          <var>algorithm</var> to <code>"HKDF-CTR"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                          <var>key</var> to <var>algorithm</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                          <var>key</var> to <var>extractable</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-usages">usages</a> property of
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Return <var>key</var>.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Terminate this algorithm with an error.</dd>
+                </dl>
+              </dd>
+              <dt>Get length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Return null.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 

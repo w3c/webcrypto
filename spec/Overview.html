@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>3 March 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>4 March 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 3 March 2014 <b>Editor’s Draft</b> of the
+        This document is the 4 March 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -10444,9 +10444,8 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             <p class="norm">This section is non-normative.</p>
             <p>
               The <code>"HKDF-CTR"</code> algorithm identifier is used to
-              perform key derivation using the algorithm described in
-              RFC 5869 [<a href="#RFC5869">RFC5869</a>] and NIST SP 800-56C
-              [<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode,
+              perform key derivation using the extraction-then-expansion approach described in
+              NIST SP 800-56C[<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode,
               as described in Section 5.1 of NIST SP 800-108
               [<a href="#SP800-108">SP800-108</a>].
             </p>
@@ -10467,14 +10466,19 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
               </thead>
               <tbody>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
-                  <td><a href="#dfn-Key">Key</a></td>
-                </tr>
-                <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-HkdfCtrParams">HkdfCtrParams</a></td>
                   <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
+                  <td>Import key</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>Get key length</td>
+                  <td>None</td>
+                  <td>Integer or null</td>
                 </tr>
               </tbody>
             </table>
@@ -10505,10 +10509,195 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
           </div>
           <div id="hkdf2-ctr-operations" class="section">
             <h4>18.20.4. Operations</h4>
-            <ul>
-              <li>Derive Key</li>
-              <li>Derive Bits</li>
-            </ul>
+            <dl>
+              <dt>Derive Bits</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>length</var> is null, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-HkdfCtrParams">HkdfCtrParams</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
+                      recognised algorithm</a> that supports the digest operation, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
+                      <var>n</var> is the size of the output of the hash fuction described by the
+                      <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>prf</var> be the MAC Generation function described in Section 4 of
+                      [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the hash function
+                      described by the <a href="#dfn-HkdfCtrParams-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>keyDerivationKey</var> be the result of performing <var>prf</var>
+                      using <var>extractKey</var> as the key and the secret represented by
+                      <var>key</var> as the message.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be the result of performing the KDF in counter
+                      mode operation described in Section 5.1 of NIST SP 800-108
+                      [<a href="#SP800-108">SP800-108</a>] using:
+                      <ul>
+                        <li>
+                          <p>
+                            <var>prf</var> as the Pseudo-Random Function, <var>PRF</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <var>keyDerivationKey</var> as the Key derivation key,
+                            <var>K<sub>I</sub></var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the contents of the <a href="#dfn-HkdfCtrParams-label">label</a> property
+                            of <var>normalizedAlgorithm</var> as <var>Label</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the contents of the <a href="#dfn-HkdfCtrParams-label">context</a>
+                            property of <var>normalizedAlgorithm</var> as <var>Context</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <var>length</var> as the value of <var>L</var>,
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            32 as the value of <var>r</var>, and
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            the 32-bit little-endian binary encoding of <var>length</var>
+                            as the encoded length value [<var>L</var>]<sub>2</sub>.
+                          </p>
+                        </li>
+                      </ul>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key derivation operation terminates with an error, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import key</dt>
+              <dd>
+                <dl class="switch">
+                  <dt>
+                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If <var>usages</var> contains a value that is not a case-sensitive string
+                          match for <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          terminate this algorithm with an error.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
+                          the key data provided in <var>keyData</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-type">type</a> property of <var>key</var> to
+                          <code>"secret"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>algorithm</var> be a new
+                          <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                          <var>algorithm</var> to <code>"HKDF-CTR"</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                          <var>key</var> to <var>algorithm</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                          <var>key</var> to <var>extractable</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the <a href="#dfn-Key-usages">usages</a> property of
+                          <var>key</var> to the
+                          <a href="#concept-normalized-usages">normalized value</a> of
+                          <var>usages</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Return <var>key</var>.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Terminate this algorithm with an error.</dd>
+                </dl>
+              </dd>
+              <dt>Get length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Return null.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 
