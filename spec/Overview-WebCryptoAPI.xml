@@ -5033,16 +5033,6 @@ dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm
 };
             </x:codeblock>
           </div>
-          <div id="EcKeyAlgorithm-interface" class="section">
-            <h4>EcKeyAlgorithm interface</h4>
-            <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
-  <span class="comment">// The named curve that the key uses</span>
-  readonly attribute <a href="#dfn-NamedCurve">NamedCurve</a> namedCurve;
-};
-            </x:codeblock>
-          </div>
           <div id="EcKeyGenParams-dictionary" class="section">
             <h4>EcKeyGenParams dictionary</h4>
             <x:codeblock language="idl">
@@ -5067,11 +5057,19 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
               </dl>
             </p>
           </div>
+          <div id="EcKeyAlgorithm-interface" class="section">
+            <h4>EcKeyAlgorithm interface</h4>
+            <x:codeblock language="idl">
+[NoInterfaceObject]
+interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The named curve that the key uses</span>
+  readonly attribute <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
+};
+            </x:codeblock>
+          </div>
           <div id="EcKeyImportParams-dictionary" class="section">
             <h4>EcKeyImportParams dictionary</h4>
             <x:codeblock language="idl">
-typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
-
 dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
   <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="#dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
