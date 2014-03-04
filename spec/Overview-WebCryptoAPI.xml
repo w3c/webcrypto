@@ -11583,7 +11583,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               <dd>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is a case-sensistive string match for <code>"raw"</code>:
+                    If <var>format</var> is <code>"raw"</code>:
                   </dt>
                   <dd>
                     <div class="ednote">
@@ -11594,16 +11594,9 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     <ol>
                       <li>
                         <p>
-                          If any of the members of
-                          <a href="#dfn-DhImportKeyParams">DhImportKeyParams</a> are
-                          not present in <var>normalizedAlgorithm</var>,
-                          terminate this algorithm with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>usages</var> is not an empty array,
-                          terminate this algorithm with an error.
+                          If any of the members of <a
+                          href="#dfn-DhImportKeyParams">DhImportKeyParams</a> are not present in
+                          <var>normalizedAlgorithm</var>, terminate this algorithm with an error.
                         </p>
                       </li>
                       <li>
@@ -11614,31 +11607,31 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          Let <var>PV</var> be the integer which results from interpreting the octets
-                          of <var>keyData</var> as an unsigned big integer with most significant
-                          octet first.
+                          Let <var>PV</var> be the integer which results from interpreting the
+                          octets of <var>keyData</var> as an unsigned big integer with most
+                          significant octet first.
                         </p>
                       </li>
                       <li>
                         <p>
                           Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
                           a Diffie-Hellman public key with public value <var>PV</var> and with
-                          prime, <var>p</var> and base, <var>g</var> equal to the
-                          <a href="#dfn-DhImportKeyParams-prime">prime</a> and
-                          <a href="#dfn-DhImportKeyParams-generator">generator</a> properties
-                          of <var>normalizedAlgorithm</var> respectively.
+                          prime, <var>p</var> and base, <var>g</var> equal to the <a
+                          href="#dfn-DhImportKeyParams-prime">prime</a> and <a
+                          href="#dfn-DhImportKeyParams-generator">generator</a> properties of
+                          <var>normalizedAlgorithm</var> respectively.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Set the <a href="#dfn-Key-type">type</a> propety of <var>key</var> to
+                          Set the <a href="#dfn-Key-type">type</a> property of <var>key</var> to
                           <code>"public"</code>.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>algorithm</var> be a new
-                          <a href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>.
+                          Let <var>algorithm</var> be a new <a
+                          href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>.
                         </p>
                       </li>
                       <li>
@@ -11650,16 +11643,16 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of
-                          <var>algorithm</var> to equal the
-                          <a href="#dfn-DhKeyImportParams-prime">prime</a> property of
+                          <var>algorithm</var> to equal the <a
+                          href="#dfn-DhKeyImportParams-prime">prime</a> property of
                           <var>normalizedAlgorithm</var>.
                         </p>
                       </li>
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of
-                          <var>algorithm</var> to equal the
-                          <a href="#dfn-DhKeyImportParams-generator">generator</a> property of
+                          <var>algorithm</var> to equal the <a
+                          href="#dfn-DhKeyImportParams-generator">generator</a> property of
                           <var>normalizedAlgorithm</var>.
                         </p>
                       </li>
@@ -11677,8 +11670,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          Set the <a href="#dfn-Key-usages">usages</a> property of
-                          <var>key</var> to <var>usages</var>.
+                          Set the <a href="#dfn-Key-usages">usages</a> property of <var>key</var> to
+                          <var>usages</var>.
                         </p>
                       </li>
                       <li>
@@ -11689,27 +11682,20 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     </ol>
                   </dd>
                   <dt>
-                    If <var>format</var> is a case-sensistive string match for <code>"spki"</code>:
+                    If <var>format</var> is <code>"spki"</code>:
                   </dt>
                   <dd>
                     <ol>
                       <li>
                         <p>
-                          If <var>usages</var> is non-empty, terminate this algorithm with an error.
+                          Let <var>spki</var> be the result of running the <a
+                          href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a> algorithm
+                          over <var>keyData</var>.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>spki</var> be the result of running the
-                          <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a> algorithm
-                          over <var>keyData</var>.
-                          <ul>
-                            <li>
-                              <p>
-                                If an error occured while parsing, terminate this algorithm with an error.
-                              </p>
-                            </li>
-                          </ul>
+                          If an error occured while parsing, terminate this algorithm with an error.
                         </p>
                       </li>
                       <li>
@@ -11722,36 +11708,30 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          Let <var>parameters</var> be the result of performing the
-                          <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
-                          algorithm, with the <code>parameters</code> field of the
-                          <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var> as
-                          <var>data</var> and the <code>DHParameter</code> structure defined in
-                          Section 9 of [<a href="#PKCS3">PKCS #3</a>] as <var>structure</var> and
-                          with <var>extactData</var> set to true.
-                          <ul>
-                            <li>
-                              <p>
-                                If an error occured while parsing, terminate this algorithm with an error.
-                              </p>
-                            </li>
-                          </ul>
+                          If the <code>parameters</code> field of the <code>algorithm</code>
+                          AlgorithmIdentifier field of <var>spki</var> is absent, terminate
+                          the algorithm with an error.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>publicValue</var> be the integer obtained by interpreting the
-                          <code>subjectPublicKey</code> field of <var>spki</var> as an unsigned
-                          integer, most significant bit first.
+                          Let <var>params</var> be the <code>parameters</code> field of the
+                          <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>params</var> is not an instance of the <code>DHParameter</code>
+                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>,
+                          terminate the algorithm with an error.
                         </p>
                       </li>
                       <li>
                         <p>
                           Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
-                          a Diffie Hellman public key with prime, <var>p</var> and base,
-                          <var>g</var> as specified by the <code>prime</code> and <code>base</code>
-                          fields of <var>parameters</var> respectively and with public value,
-                          <var>y</var> equal to <var>publicValue</var>.
+                          the Diffie-Hellman public key obtained by parsing the
+                          <code>subjectPublicKey</code> field of <var>spki</var> as an ASN.1
+                          INTEGER.
                         </p>
                       </li>
                       <li>
@@ -11762,8 +11742,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          Let <var>algorithm</var> be a new
-                          <a href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>.
+                          Let <var>algorithm</var> be a new <a
+                          href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>.
                         </p>
                       </li>
                       <li>
@@ -11775,16 +11755,17 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of
-                          <var>algorithm</var> to equal the
-                          <code>prime</code> field of <var>parameters</var>.
+                          <var>algorithm</var> to a new <code>BigInteger</code> equal to the
+                          octet string encoding of the <code>prime</code> field of
+                          <var>params</var>.
                         </p>
                       </li>
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of
-                          <var>algorithm</var> to equal the
-                          <code>base</code> field of
-                          <var>parameters</var>.
+                          <var>algorithm</var> to a new <code>BigInteger</code> equal to the
+                          octet string encoding of the <code>base</code> field of
+                          <var>params</var>.
                         </p>
                       </li>
                       <li>
@@ -11815,7 +11796,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     </ol>
                   </dd>
                   <dt>
-                  If <var>format</var> is a case-sensistive string match for <code>"pkcs8"</code>:
+                  If <var>format</var> is <code>"pkcs8"</code>:
                   </dt>
                   <dd>
                     <ol>
@@ -11831,13 +11812,11 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                           Let <var>privateKeyInfo</var> be the result of running the
                           <a href="#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
                           algorithm over <var>keyData</var>.
-                          <ul>
-                            <li>
-                              <p>
-                                If an error occured while parsing, terminate this algorithm with an error.
-                              </p>
-                            </li>
-                          </ul>
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurred while parsing, terminate this algorithm with an error.
                         </p>
                       </li>
                       <li>
@@ -11851,42 +11830,35 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          Let <var>parameters</var> be the result of performing the
-                          <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
-                          algorithm, with the <code>parameters</code> field of the
-                          <code>algorithm</code> AlgorithmIdentifier field of
-                          <var>privateKeyInfo</var> as
-                          <var>data</var> and the <code>DHParameter</code> structure defined in
-                          Section 9 of [<a href="#PKCS3">PKCS #3</a>] as <var>structure</var> and
-                          with <var>extactData</var> set to true.
-                          <ul>
-                            <li>
-                              <p>
-                                If an error occured while parsing, terminate this algorithm with an error.
-                              </p>
-                            </li>
-                          </ul>
+                          If the <code>parameters</code> field of the
+                          <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field of
+                          <var>privateKeyInfo</var> is absent, terminate the algorithm with an
+                          error.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>privateValue</var> be the integer obtained by interpreting the
-                          <code>privateKey</code> field of <var>privateKeyInfo</var> as an unsigned
-                          integer, most significant octet first.
+                          Let <var>params</var> be the <code>parameters</code> field of the
+                          <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field of
+                          <var>privateKeyInfo</var>.
                         </p>
                       </li>
                       <li>
                         <p>
-                          Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
-                          a Diffie Hellman private key with prime, <var>p</var> and base,
-                          <var>g</var> as specified by the <code>prime</code> and <code>base</code>
-                          fields of <var>parameters</var> respectively and with private value,
-                          <var>x</var> equal to <var>privateValue</var>.
+                          If <var>params</var> is not an instance of the <code>DHParameter</code>
+                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>,
+                          terminate the algorithm with an error.
                         </p>
                       </li>
                       <li>
+                        Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
+                        the Diffie-Hellman private key obtained by parsing the
+                        <code>privateKey</code> field of <var>privateKeyInfo</var> as an ASN.1
+                        INTEGER.
+                      </li>
+                      <li>
                         <p>
-                          Set the <a href="#dfn-Key-type">type</a> propety of <var>key</var> to
+                          Set the <a href="#dfn-Key-type">type</a> property of <var>key</var> to
                           <code>"private"</code>.
                         </p>
                       </li>
@@ -11905,16 +11877,17 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of
-                          <var>algorithm</var> to equal the
-                          <code>prime</code> field of <var>parameters</var>.
+                          <var>algorithm</var> to a new <code>BigInteger</code> equal to the
+                          octet string encoding of the <code>prime</code> field of
+                          <var>params</var>.
                         </p>
                       </li>
                       <li>
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of
-                          <var>algorithm</var> to equal the
-                          <code>base</code> field of
-                          <var>parameters</var>.
+                          <var>algorithm</var> to a new <code>BigInteger</code> equal to the
+                          octet string encoding of the <code>base</code> field of
+                          <var>params</var>.
                         </p>
                       </li>
                       <li>
@@ -11950,158 +11923,199 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               </dd>
               <dt>Export Key</dt>
               <dd>
-                <dl class="switch">
-                  <dt>
-                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
+                <ol>
+                  <li>
+                    <dl class="switch">
+                      <dt>
+                        If <var>format</var> is <code>"raw"</code>:
+                      </dt>
+                      <dd>
                         <dl class="switch">
                           <dt>
-                            If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is a
-                            case-sensitive string match for <code>"public"</code>:
+                            If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is
+                            <code>"public"</code>:
                           </dt>
                           <dd>
                             Let <var>result</var> be the Public Value, <var>PV</var>, associated
-                            with <var>key</var> as
-                            specified in Section 7 of [<a href="#PKCS3">PKCS #3</a>].
+                            with <var>key</var> as specified in Section 7 of [<a href="#PKCS3">PKCS
+                            #3</a>].
                           </dd>
                           <dt>
-                            If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is a
-                            case-sensitive string match for <code>"private"</code>:
+                            If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is
+                            <code>"private"</code>:
                           </dt>
                           <dd>
                             Let <var>result</var> be the octet string that represents the private
-                            value <var>x</var> associated with <var>key</var> as a big integer,
-                            most significant octet first.
+                            value <var>x</var> associated with <var>key</var> as a big integer, most
+                            significant octet first.
                           </dd>
                         </dl>
-                      </li>
-                      <li>
-                        <p>
-                          Return a new ArrayBuffer containing <var>result</var>.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>
-                    If <var>format</var> is a case-sensitive string match for <code>"spki"</code>:
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is not a
-                          case-sensitive string match for <code>"public"</code> then terminate this
-                          algorithm with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let <var>parameters</var> be a new internal object.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let the <code>prime</code> property of <var>parameters</var> equal the
-                          <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of the
-                          <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let the <code>base</code> property of <var>parameters</var> equal the
-                          <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of the
-                          <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let <var>result</var> be the result of performing the
-                          <a href="#concept-encode-a-subjectPublicKeyInfo">encode a
-                          subjectPublicKeyInfo</a> algorithm with the Public Value , <var>PV</var>,
-                          associated
-                            with <var>key</var> as
-                            specified in Section 7 of [<a href="#PKCS3">PKCS #3</a>] as
-                            <var>publicKey</var>, <var>parameters</var> as
-                          <var>parameters</var>, the <code>DHParameter</code> structure defined in
-                          Section 9 of [<a href="#PKCS3">PKCS #3</a>] as <var>parametersType</var>
-                          and the <code>dhKeyAgreement</code> OID defined in Section 9
-                          of [<a href="#PKCS3">PKCS #3</a>] as <var>oid</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>
-                    If <var>format</var> is a case-sensitive string match for <code>"pkcs8"</code>:
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is not a
-                          case-sensitive string match for <code>"private"</code> then terminate this
-                          algorithm with an error.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let <var>parameters</var> be a new internal object.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let the <code>prime</code> property of <var>parameters</var> equal the
-                          <a href="#dfn-DhKeyAlgorithm-prime">prime</a> property of the
-                          <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let the <code>base</code> property of <var>parameters</var> equal the
-                          <a href="#dfn-DhKeyAlgorithm-generator">generator</a> property of the
-                          <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let <var>result</var> be the result of performing the
-                          <a href="#concept-encode-a-privateKeyInfo">encode a
-                          privateKeyInfo</a> algorithm with the octet string that represents the
-                          private value, <var>x</var> associated with <var>key</var> as a big
-                          integer, most significant octet first as <var>privateKey</var>,
-                          <var>parameters</var> as
-                          <var>parameters</var>, the <code>DHParameter</code> structure defined in
-                          Section 9 of [<a href="#PKCS3">PKCS #3</a>] as <var>parametersType</var>
-                          and the <code>dhKeyAgreement</code> OID defined in Section 9
-                          of [<a href="#PKCS3">PKCS #3</a>] as <var>oid</var>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>Terminate this algorithm with an error.</dd>                  
-                </dl>
+                      </dd>
+                      <dt>
+                        If <var>format</var> is <code>"spki"</code>:
+                      </dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is
+                              not <code>"public"</code>, terminate this algorithm with an error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#concept-encode-a-subjectPublicKeyInfo">encoding a
+                              subjectPublicKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>algorithmIdentifier</var> field to an
+                                  <code>AlgorithmIdentifier</code> ASN.1 structure with the
+                                  following properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the
+                                      <code>dhKeyAgreement</code> OID defined in Section 9 of <a
+                                      href="#PKCS3">PKCS #3</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>parameters</var> field to an instance of the
+                                      <code>DHParams</code> ASN.1 structure defined in Section 9 of
+                                      <a href="#PKCS3">PKCS #3</a> with the following properties:
+                                    </p>
+                                    <ul>
+                                      <li>
+                                        <p>
+                                          Set the <var>prime</var> field to an ASN.1 INTEGER that is
+                                          equivalent to the <a
+                                          href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
+                                          the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                          of <var>key</var>.
+                                        </p>
+                                      </li>
+                                      <li>
+                                        <p>
+                                          Set the <var>base</var> field to an ASN.1 INTEGER that is
+                                          equivalent to the <a
+                                          href="#dfn-DhKeyAlgorithm-generator">generator</a>
+                                          attribute of the <a
+                                          href="#dfn-Key-algorithm">algorithm</a> attribute of
+                                          <var>key</var>.
+                                        </p>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>subjectPublicKey</var> to an ASN.1 INTEGER that
+                                  corresponds to the Diffie-Hellman public value represented by
+                                  <var>key</var>.
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>
+                        If <var>format</var> is <code>"pkcs8"</code>:
+                      </dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> property of <var>key</var> is
+                              not <code>"private"</code>, terminate this algorithm with an
+                              error.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a
+                              href="#concept-encode-a-privateKeyInfo">encoding a
+                              privateKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>privateKeyAlgorithm</var> field to a
+                                  <code>PrivateKeyAlgorithmIdentifier</code> ASN.1 structure with
+                                  the following properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the
+                                      <code>dhKeyAgreement</code> OID defined in Section 9 of <a
+                                      href="#PKCS3">PKCS #3</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>parameters</var> field to an instance of the
+                                      <code>DHParams</code> ASN.1 structure defined in Section 9 of
+                                      <a href="#PKCS3">PKCS #3</a> with the following properties:
+                                    </p>
+                                    <ul>
+                                      <li>
+                                        <p>
+                                          Set the <var>prime</var> field to an ASN.1 INTEGER that is
+                                          equivalent to the <a
+                                          href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
+                                          the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                          of <var>key</var>.
+                                        </p>
+                                      </li>
+                                      <li>
+                                        <p>
+                                          Set the <var>base</var> field to an ASN.1 INTEGER that is
+                                          equivalent to the <a
+                                          href="#dfn-DhKeyAlgorithm-generator">generator</a>
+                                          attribute of the <a
+                                          href="#dfn-Key-algorithm">algorithm</a> attribute of
+                                          <var>key</var>.
+                                        </p>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKey</var> field to an ASN.1 INTEGER that
+                                  corresponds to the Diffie-Hellman private value represented by
+                                  <var>key</var>.
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Terminate this algorithm with an error.</dd>                  
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>data</var> be a new <code>ArrayBuffer</code> containing
+                      <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
               </dd>
             </dl>
-          </div>
-          <div class="ednote">
-            <p>
-              Since this algorithm is based on PKCS#3, import/export in X9.42 form, as
-              specified in X.509/RFC 3279 is not supported [PKCS#3 uses only prime/p and base/g
-              as parameters, wheras X9.42 adds a further value q].
-            </p>
           </div>
         </div>
         <div id="sha" class="section">
@@ -13871,10 +13885,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <td><a href="#RFC3279">RFC 3279</a></td>
             </tr>
             <tr>
-              <td>dhpublicnumber (1.2.840.10046.2.1)</td>
-              <td>DHPublicKey</td>
+              <td>dhKeyAgreement (1.2.840.113549.1.3.1)</td>
+              <td>INTEGER</td>
               <td><code>"DH"</code></td>
-              <td><a href="#RFC3279">RFC 3279</a></td>
+              <td><a href="#PKCS3">PKCS #3</a></td>
             </tr>
           </tbody>
         </table>
@@ -13970,10 +13984,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <td><a href="#RFC5958">RFC 5958</a></td>
             </tr>
             <tr>
-              <td>dhpublicnumber (1.2.840.10046.2.1)</td>
+              <td>dhKeyAgreement (1.2.840.113549.1.3.1)</td>
               <td>INTEGER</td>
               <td><code>"DH"</code></td>
-              <td><a href="#RFC5958">RFC 5958</a></td>
+              <td><a href="#PKCS3">PKCS #3</a></td>
             </tr>
           </tbody>
         </table>
