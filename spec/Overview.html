@@ -12629,6 +12629,13 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
           <h3>18.21. PBKDF2</h3>
           <div id="pbkdf2-description" class="section">
             <h4>18.21.1. Description</h4>
+            <p class="norm">This section is non-normative.</p>
+            <p>
+              The <code>"PBKDF2"</code> algorithm identifier is used to
+              perform key derivation using the PKCS#5 password-based key
+              derivation function version 2.0, as defined in
+              [<a href="#rfc2898">RFC2898</a>] using HMAC as the pseudo-random function.
+            </p>
           </div>
           <div id="pbkdf2-registration" class="section">
             <h4>18.21.2. Registration</h4>
@@ -12646,14 +12653,24 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
               </thead>
               <tbody>
                 <tr>
-                  <td>deriveKey</td>
-                  <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
+                  <td>generateKey</td>
+                  <td>None</td>
                   <td><a href="#dfn-Key">Key</a></td>
                 </tr>
                 <tr>
                   <td>deriveBits</td>
                   <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
                   <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
+                </tr>
+                <tr>
+                  <td>importKey</td>
+                  <td>None</td>
+                  <td><a href="#dfn-Key">Key</a></td>
+                </tr>
+                <tr>
+                  <td>Get key length</td>
+                  <td>None</td>
+                  <td>Length or null</td>
                 </tr>
               </tbody>
             </table>
@@ -12662,10 +12679,9 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             <h4>18.21.3. Pbkdf2Params dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  CryptoOperationData salt;
-  [EnforceRange] unsigned long iterations;
-  AlgorithmIdentifier prf;
-  CryptoOperationData? password;
+  CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
+  [EnforceRange] unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
+  AlgorithmIdentifier <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
             </code></pre></div></div>
             <div class="ednote"><div class="ednoteHeader">Editorial note</div>
@@ -12679,10 +12695,210 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
           </div>
           <div id="pbkdf2-operations" class="section">
             <h4>18.21.4. Operations</h4>
-            <ul>
-              <li>Derive Key</li>
-              <li>Derive Bits</li>
-            </ul>
+            <dl>
+              <dt>Derive bits</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-Pbkdf2Params">Pbkdf2Params</a> are
+                      not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>length</var> is null or is not a multiple of 8, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the <a href="#dfn-Pbkdf2Params-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
+                      recognised algorithm</a> that supports the digest operation, terminate
+                      this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>prf</var> be the MAC Generation function described in Section 4 of
+                      [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the hash function
+                      described by the <a href="#dfn-Pbkdf2Params-hash">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be the result of performing the PBKDF2 operation defined
+                      in Section 5.2 of [<a href="#rfc2898">RFC2898</a>] using <var>prf</var> as the
+                      pseudo-random function, <var>PRF</var>, the password represented by
+                      <var>key</var> as the password, <var>P</var>, the contents of the 
+                      <a href="#dfn-Pbkdf2Params-salt">salt</a> attribute of
+                      <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the
+                      <a href="dfn-Pbkdf2Params-interations">iterations</a> attribute of
+                      <var>normalizedAlgorithm</var> as the iteration count, <var>c</var>, and
+                      <var>length</var> divided by 8 as the intended key length, <var>dkLen</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key derivation operation encounters an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Generate key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any element that is not a case-sensitive string
+                      match for <code>"deriveKey"</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>extractable</var> is true, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate a new password by prompting the user.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing the
+                      provided password, encoded using UTF-8.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> to
+                      <code>"secret"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                      <var>algorithm</var> to <code>"PBKDF2"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> attribute of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var>
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Import key</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>format</var> is not a case-sensitive string match for
+                      <code>"raw"</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains any element that is not a case-sensitive string
+                      match for <code>"deriveKey"</code>, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object representing
+                      <var>keyData</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> to
+                      <code>"secret"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                      <var>algorithm</var> to <code>"PBKDF2"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>
+                      to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> attribute of
+                      <var>key</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var>
+                      to the <a href="#concept-normalized-usages">normalized value</a> of
+                      <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Get length</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Return null.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
       </div>
