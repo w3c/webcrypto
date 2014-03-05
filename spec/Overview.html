@@ -8907,7 +8907,6 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
             </dl>
           </div>
         </div>
-
         <div id="aes-gcm" class="section">
           <h3>18.13. AES-GCM</h3>
           <div id="aes-gcm-description" class="section">
@@ -10572,7 +10571,7 @@ interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   AlgorithmIdentifier hash;
-  <span class="comment">// The length (in bytes) of the key to generate. If unspecified, the
+  <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
   [EnforceRange] unsigned long length;
@@ -10583,7 +10582,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
             <h4>18.16.6. HmacDerivedKeyParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="#dfn-HmacImportParams">HmacImportParams</a> {
-  <span class="comment">// The length (in bytes) of the key to generate. If unspecified, the
+  <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
   [EnforceRange] unsigned long length;
@@ -10653,7 +10652,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                         <var>normalizedAlgorithm</var> is not present:
                       </dt>
                       <dd>
-                        Let <var>length</var> be the block size in bytes of the hash function
+                        Let <var>length</var> be the block size in bits of the hash function
                         identified by the <a href="#dfn-HmacKeyGenParams-hash">hash</a> property
                         of <var>normalizedAlgorithm</var>.
                       </dd>
@@ -10679,78 +10678,74 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                   </li>
                   <li>
                     <p>
-                      Generate an key of length <var>length</var> bytes.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"HMAC"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>hash</var> be a new
-                                <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
-                                <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
-                                property of the <a href="#dfn-HmacKeyGenParams-hash">hash</a>
-                                property of <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property
-                                of <var>algorithm</var> to <var>hash</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                      Generate a key of length <var>length</var> bits.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"HMAC"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>hash</var> be a new
+                      <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                      <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
+                      property of the <a href="#dfn-HmacKeyGenParams-hash">hash</a>
+                      property of <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-HmacKeyAlgorithm-hash">hash</a> property
+                      of <var>algorithm</var> to <var>hash</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -13819,10 +13814,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <td><a href="#RFC3279">RFC 3279</a></td>
             </tr>
             <tr>
-              <td>dhpublicnumber (1.2.840.10046.2.1)</td>
-              <td>DHPublicKey</td>
+              <td>dhKeyAgreement (1.2.840.113549.1.3.1)</td>
+              <td>INTEGER</td>
               <td><code>"DH"</code></td>
-              <td><a href="#RFC3279">RFC 3279</a></td>
+              <td><a href="#PKCS3">PKCS #3</a></td>
             </tr>
           </tbody>
         </table>
@@ -13918,10 +13913,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <td><a href="#RFC5958">RFC 5958</a></td>
             </tr>
             <tr>
-              <td>dhpublicnumber (1.2.840.10046.2.1)</td>
+              <td>dhKeyAgreement (1.2.840.113549.1.3.1)</td>
               <td>INTEGER</td>
               <td><code>"DH"</code></td>
-              <td><a href="#RFC5958">RFC 5958</a></td>
+              <td><a href="#PKCS3">PKCS #3</a></td>
             </tr>
           </tbody>
         </table>
