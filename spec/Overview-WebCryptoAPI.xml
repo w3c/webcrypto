@@ -1305,7 +1305,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                           <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> baseKey,
-                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a>? derivedKeyType,
+                         <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> derivedKeyType,
                          boolean extractable,
                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1991,30 +1991,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
               <li>
-                <dl class="switch">
-                  <dt>If <var>derivedKeyType</var> is null:</dt>
-                  <dd>Let <var>normalizedDerivedKeyAlgorithm</var> be null.</dd>
-                  <dt>Otherwise:</dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
-                          <var>derivedKeyType</var> according to the
-                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the import
-                          derived key operation, terminate this algorithm
-                          with an error.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                </dl>
+                <p>
+                  Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
+                  <var>derivedKeyType</var> according to the
+                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
+                  <a href="#algorithms">registered algorithm</a> that supports the get key length
+                  and import key operations, terminate this algorithm
+                  with an error.
+                </p>
               </li>
               <li>
                 <p>
