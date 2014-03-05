@@ -3270,16 +3270,19 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       Perform the encrytion operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                       as the recipient's RSA public key and the contents of <var>plaintext</var> as
                       <var>M</var>.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                           Let <var>ciphertext</var> be a new ArrayBuffer
                           containing the value <var>C</var> that results from performing the
                           operation.
-                        </dd>
-                      </dl>
                     </p>
                   </li>
                 </ol>
@@ -3299,17 +3302,19 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       Perform the decryption operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                       as the recipient's RSA private key and the contents of <var>ciphertext</var> as
                       <var>C</var>.
-                     
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Let <var>plaintext</var> be a new ArrayBuffer
-                          containing the value <var>M</var> that results from performing the
-                          operation.
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>plaintext</var> be a new ArrayBuffer
+                      containing the value <var>M</var> that results from performing the
+                      operation.
                     </p>
                   </li>
                 </ol>
@@ -3339,132 +3344,128 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                       <var>normalizedAlgorithm</var> and RSA public exponent equal to the
                       <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If generation of the key pair fails:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> object.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
-                                <var>algorithm</var> to <code>"RSAES-PKCS1-v1_5"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the
-                                <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
-                                property of <var>algorithm</var> to equal the
-                                <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
-                                property of <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the
-                                <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
-                                property of <var>algorithm</var> to equal the
-                                <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
-                                property of <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                representing the public key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-Type">type</a> property of <var>publicKey</var>
-                                to <code>"public"</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>publicKey</var> to be <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                <var>publicKey</var> to true.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>publicKey</var> to be the
-                                <a href="concept-usage-intersection">usage intersection</a> of
-                                <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                representing the private key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
-                                to <code>"private"</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>privateKey</var> to be <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                <var>privateKey</var> to <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the
-                                <a href="concept-usage-intersection">usage intersection</a> of
-                                <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
-                                object.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
-                                of <var>result</var> to be <var>publicKey</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
-                                of <var>result</var> to be <var>privateKey</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>result</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If generation of the key pair fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"RSAES-PKCS1-v1_5"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the
+                      <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
+                      property of <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the
+                      <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
+                      property of <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>publicKey</var>
+                      to <code>"public"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>publicKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>publicKey</var> to true.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>publicKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                      to <code>"private"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>privateKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>privateKey</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>privateKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                      of <var>result</var> to be <var>publicKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                      of <var>result</var> to be <var>privateKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
                     </p>
                   </li>
                 </ol>
@@ -4051,16 +4052,18 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property of the
                       <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var> as the
                       Hash option for the EMSA-PKCS1-v1_5 encoding method.
-                      
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Let <var>signature</var> be the value <var>S</var> that results from
-                          performing the operation.
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>signature</var> be the value <var>S</var> that results from
+                      performing the operation.
                     </p>
                   </li>
                 </ol>
@@ -4086,16 +4089,19 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property of the
                       <a href="#dfn-Key-algorithm">algorithm</a> property of
                       <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Let <var>result</var> be a boolean with value true if the
-                          result of the operations was "valid signature" and a boolean with value
-                          false otherwise.
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a boolean with value true if the
+                      result of the operations was "valid signature" and a boolean with value
+                      false otherwise.
                     </p>
                   </li>
                 </ol>
@@ -4376,13 +4382,18 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> property of
                     <var>normalizedAlgorithm</var> as the salt length option for the EMM-PSS-ENCODE
                     operation.
-                    <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>Let <var>signature</var> be a new <code>ArrayBuffer</code>
-                          containing the signature, S, that results from performing the operation.</dd>
-                    </dl>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If performing the operation results in an error, terminate this algorithm with
+                    an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>signature</var> be a new <code>ArrayBuffer</code> containing the
+                    signature, S, that results from performing the operation.
                   </p>
                 </li>
               </ol>
@@ -4418,14 +4429,19 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <a href="#dfn-RsaPssParams-saltLength">saltLength</a> property of
                     <var>normalizedAlgorithm</var> as the salt length option for the
                     EMSA-PSS-VERIFY operation.
-                    <dl class="switch">
-                      <dt>If performing the operation results in an error:</dt>
-                      <dd>Terminate this algorithm with an error.</dd>
-                      <dt>Otherwise:</dt>
-                      <dd>Let <var>result</var> be a boolean with value true if the
-                        result of the operation was "valid signature" and a boolean with value
-                        false otherwise.</dd>
-                    </dl>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If performing the operation results in an error, terminate this algorithm with
+                    an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>result</var> be a boolean with value true if the
+                    result of the operation was "valid signature" and a boolean with value
+                    false otherwise.
                   </p>
                 </li>
               </ol>
@@ -4455,141 +4471,138 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <var>normalizedAlgorithm</var> and RSA public exponent equal to the
                     <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a> property of
                     <var>normalizedAlgorithm</var>.
-                    <dl class="switch">
-                      <dt>If generation of the key pair fails:</dt>
-                      <dd>Terminate this algorithm with an error.</dd>
-                      <dt>Otherwise:</dt>
-                      <dd>
-                        <ol>
-                          <li>
-                            <p>
-                              Let <var>algorithm</var> be a new
-                              <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
-                              object.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
-                              <var>algorithm</var> to <code>"RSA-PSS"</code>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the
-                              <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
-                              property of <var>algorithm</var> to equal the
-                              <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
-                              property of <var>normalizedAlgorithm</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the
-                              <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
-                              property of <var>algorithm</var> to equal the
-                              <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
-                              property of <var>normalizedAlgorithm</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property
-                              of <var>algorithm</var> to equal the
-                              <a href="#dfn-RsaHashedKeyGenParams">hash</a> property of
-                              <var>normalizedAlgorithm</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
-                              representing the public key of the generated key pair.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
-                              to <code>"public"</code>
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                              <var>publicKey</var> to be <var>algorithm</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                              <var>publicKey</var> to true.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-usages">usages</a> property of
-                              <var>publicKey</var> to be the
-                              <a href="concept-usage-intersection">usage intersection</a> of
-                              <var>usages</var> and <code>[ "verify" ]</code>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
-                              representing the private key of the generated key pair.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
-                              to <code>"private"</code>
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                              <var>privateKey</var> to be <var>algorithm</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                              <var>privateKey</var> to <var>extractable</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#dfn-Key-usages">usages</a> property of
-                              <var>privateKey</var> to be the
-                              <a href="concept-usage-intersection">usage intersection</a> of
-                              <var>usages</var> and <code>[ "sign" ]</code>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
-                              object.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
-                              of <var>result</var> to be <var>publicKey</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
-                              of <var>result</var> to be <var>privateKey</var>.
-                            </p>
-                          </li>
-                          <li>
-                            <p>
-                              Return <var>result</var>.
-                            </p>
-                          </li>
-                        </ol>
-                      </dd>
-                    </dl>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If performing the operation results in an error, terminate this algorithm with
+                    an error.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>algorithm</var> be a new
+                    <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
+                    object.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                    <var>algorithm</var> to <code>"RSA-PSS"</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the
+                    <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
+                    property of <var>algorithm</var> to equal the
+                    <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
+                    property of <var>normalizedAlgorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the
+                    <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
+                    property of <var>algorithm</var> to equal the
+                    <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
+                    property of <var>normalizedAlgorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property
+                    of <var>algorithm</var> to equal the
+                    <a href="#dfn-RsaHashedKeyGenParams">hash</a> property of
+                    <var>normalizedAlgorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                    representing the public key of the generated key pair.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                    to <code>"public"</code>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                    <var>publicKey</var> to be <var>algorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                    <var>publicKey</var> to true.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-usages">usages</a> property of
+                    <var>publicKey</var> to be the
+                    <a href="concept-usage-intersection">usage intersection</a> of
+                    <var>usages</var> and <code>[ "verify" ]</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                    representing the private key of the generated key pair.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                    to <code>"private"</code>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                    <var>privateKey</var> to be <var>algorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                    <var>privateKey</var> to <var>extractable</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-Key-usages">usages</a> property of
+                    <var>privateKey</var> to be the
+                    <a href="concept-usage-intersection">usage intersection</a> of
+                    <var>usages</var> and <code>[ "sign" ]</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                    object.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                    of <var>result</var> to be <var>publicKey</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                    of <var>result</var> to be <var>privateKey</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Return <var>result</var>.
                   </p>
                 </li>
               </ol>
@@ -4709,16 +4722,19 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       <a href="#dfn-Key-algorithm">algorithm</a> property of <var>key</var> as the
                       Hash option and MGF1 (defined in Section B.2.1 of
                       [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
-                      <dl class="switch">
-                          <dt>If performing the operation results in an error:</dt>
-                          <dd>Terminate this algorithm with an error.</dd>
-                          <dt>Otherwise:</dt>
-                          <dd>
-                            Let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
-                            containing the value <var>C</var> that results from performing the
-                            operation.
-                          </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
+                      containing the value <var>C</var> that results from performing the
+                      operation.
                     </p>
                   </li>
                 </ol>
@@ -4753,16 +4769,19 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       Hash option and MGF1
                       (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
                       the MGF option.
-                      <dl class="switch">
-                          <dt>If performing the operation results in an error:</dt>
-                          <dd>Terminate this algorithm with an error.</dd>
-                          <dt>Otherwise:</dt>
-                          <dd>
-                            Let <var>plaintext</var> be a new <code>ArrayBuffer</code>
-                            containing the value <var>M</var> that results from performing the
-                            operation.
-                          </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>plaintext</var> be a new <code>ArrayBuffer</code>
+                      containing the value <var>M</var> that results from performing the
+                      operation.
                     </p>
                   </li>
                 </ol>
@@ -4792,141 +4811,138 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                       <var>normalizedAlgorithm</var> and RSA public exponent equal to the
                       <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If generation of the key pair fails:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
-                                object.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
-                                <var>algorithm</var> to <code>"RSA-OAEP"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the
-                                <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
-                                property of <var>algorithm</var> to equal the
-                                <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
-                                property of <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the
-                                <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
-                                property of <var>algorithm</var> to equal the
-                                <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
-                                property of <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property
-                                of <var>algorithm</var> to equal the
-                                <a href="#dfn-RsaHashedKeyGenParams">hash</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                representing the public key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
-                                to <code>"public"</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>publicKey</var> to be <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                <var>publicKey</var> to true.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>publicKey</var> to be the
-                                <a href="concept-usage-intersection">usage intersection</a> of
-                                <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                representing the private key of the generated key pair.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
-                                to <code>"private"</code>
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>privateKey</var> to be <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                <var>privateKey</var> to <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>privateKey</var> to be the
-                                <a href="concept-usage-intersection">usage intersection</a> of
-                                <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
-                                object.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
-                                of <var>result</var> to be <var>publicKey</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
-                                of <var>result</var> to be <var>privateKey</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>result</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm with
+                      an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"RSA-OAEP"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the
+                      <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-RsaKeyGenParams-modulusLength">modulusLength</a>
+                      property of <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the
+                      <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-RsaKeyGenParams-publicExponent">publicExponent</a>
+                      property of <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> property
+                      of <var>algorithm</var> to equal the
+                      <a href="#dfn-RsaHashedKeyGenParams">hash</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                      to <code>"public"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>publicKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>publicKey</var> to true.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>publicKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                      to <code>"private"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>privateKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>privateKey</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>privateKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                      of <var>result</var> to be <var>publicKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                      of <var>result</var> to be <var>privateKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
                     </p>
                   </li>
                 </ol>
@@ -6214,121 +6230,118 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       with domain parameters for the curve identified by
                       the <a href="#dfn-ExKeyGenParams-namedCurve">namedCurve</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                              <li>
-                                <p>
-                                  Let <var>algorithm</var> be a new
-                                  <a href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>
-                                  object.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Algorithm-name">name</a> property of
-                                  <var>algorithm</var> to <code>"ECDH"</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  property of <var>algorithm</var> to equal the
-                                  <a href="#dfn-EcKeyGenParams">namedCurve</a> property of
-                                  <var>normalizedAlgorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                  representing the public key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
-                                  to <code>"public"</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                  <var>publicKey</var> to be <var>algorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                  <var>publicKey</var> to true.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-usages">usages</a> property of
-                                  <var>publicKey</var> to be the empty list.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                  representing the private key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
-                                  to <code>"private"</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                  <var>privateKey</var> to be <var>algorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                  <var>privateKey</var> to <var>extractable</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-usages">usages</a> property of
-                                  <var>privateKey</var> to be the
-                                  <a href="concept-usage-intersection">usage intersection</a> of
-                                  <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
-                                  object.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
-                                  of <var>result</var> to be <var>publicKey</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
-                                  of <var>result</var> to be <var>privateKey</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Return <var>result</var>.
-                                </p>
-                              </li>
-                            </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Algorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"ECDH"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-EcKeyGenParams">namedCurve</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                      to <code>"public"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>publicKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>publicKey</var> to true.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>publicKey</var> to be the empty list.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                      to <code>"private"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>privateKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>privateKey</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>privateKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                      of <var>result</var> to be <var>publicKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                      of <var>result</var> to be <var>privateKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
                     </p>
                   </li>
                 </ol>
@@ -6387,14 +6400,19 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section 5.4.1
                       with <var>key</var> as the EC private key <var>d</var> and the EC public key
                       represented by <var>publicKey</var> as the EC public key <var>Q</var>.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>Let <var>secret</var> be the result of applying the field element to
-                        octet string comversion defined in Section ? of <a href="#X9.63">X9.63</a>
-                        to the output of the ECDH primitive.</dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>secret</var> be the result of applying the field element to
+                      octet string comversion defined in Section ? of <a href="#X9.63">X9.63</a>
+                      to the output of the ECDH primitive.
                     </p>
                   </li>
                   <li>
@@ -7527,65 +7545,61 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                       Generate an AES key of length
                       equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-CTR"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CTR"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -8066,65 +8080,61 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                       Generate an AES key of length
                       equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-CBC"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CBC"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -8566,65 +8576,61 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                       Generate an AES key of length
                       equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-CMAC"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CMAC"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -9167,65 +9173,61 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                       Generate an AES key of length
                       equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-GCM"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-GCM"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -9671,65 +9673,61 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                       Generate an AES key of length
                       equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-CFB-8"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-CFB-8"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -10144,68 +10142,57 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Generate an AES key of length
-                      equal to the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                      If the key generation step fails, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>key</var> be a new
+                      <a href="#dfn-key">Key</a> object representing the
+                      generated AES key.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
+                      <var>algorithm</var> to <code>"AES-KW"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
+                      <var>algorithm</var> to equal the
+                      <a href="#dfn-AesKeyGenParams-length">length</a> property of
                       <var>normalizedAlgorithm</var>.
-                      <dl class="switch">
-                        <dt>If the key generation step fails:</dt>
-                        <dd>Terminate this algorithm with an error</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                            <li>
-                              <p>
-                                Let <var>key</var> be a new
-                                <a href="#dfn-key">Key</a> object representing the
-                                generated AES key.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Let <var>algorithm</var> be a new
-                                <a href="#dfn-AesKeyAlgorithm">AesKeyAlgorithm</a>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-KeyAlgorith-name">name</a> property of
-                                <var>algorithm</var> to <code>"AES-KW"</code>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> property of
-                                <var>algorithm</var> to equal the
-                                <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                                <var>normalizedAlgorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                <var>key</var> to <var>algorithm</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-extractable">extractable</a> property
-                                of <var>key</var> to be <var>extractable</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the <a href="#dfn-Key-usages">usages</a> property of
-                                <var>key</var> to be <var>usages</var>.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Return <var>key</var>.
-                              </p>
-                            </li>
-                          </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>key</var> to <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property
+                      of <var>key</var> to be <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>key</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>key</var>.
                     </p>
                   </li>
                 </ol>
@@ -11300,127 +11287,124 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <a href="#dfn-DhKeyGenParams-prime">prime</a> and
                       <a href="#dfn-DhKeyGenParams-generator">generator</a> properties of
                       <var>normalizedAlgorithm</var>, respectively.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>Terminate this algorithm with an error.</dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <ol>
-                              <li>
-                                <p>
-                                  Let <var>algorithm</var> be a new
-                                  <a href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>
-                                  object.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Algorithm-name">name</a> property of
-                                  <var>algorithm</var> to <code>"DH"</code>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a>
-                                  property of <var>algorithm</var> to equal the
-                                  <a href="#dfn-DhKeyGenParams-prime">prime</a> property of
-                                  <var>normalizedAlgorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a>
-                                  property of <var>algorithm</var> to equal the
-                                  <a href="#dfn-DhKeyGenParams-generator">generator</a> property of
-                                  <var>normalizedAlgorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                  representing the public key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
-                                  to <code>"public"</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                  <var>publicKey</var> to be <var>algorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                  <var>publicKey</var> to true.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-usages">usages</a> property of
-                                  <var>publicKey</var> to be the empty list.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
-                                  representing the private key of the generated key pair.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
-                                  to <code>"private"</code>
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
-                                  <var>privateKey</var> to be <var>algorithm</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-extractable">extractable</a> property of
-                                  <var>privateKey</var> to <var>extractable</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#dfn-Key-usages">usages</a> property of
-                                  <var>privateKey</var> to be <var>usages</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
-                                  object.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
-                                  of <var>result</var> to be <var>publicKey</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
-                                  of <var>result</var> to be <var>privateKey</var>.
-                                </p>
-                              </li>
-                              <li>
-                                <p>
-                                  Return <var>result</var>.
-                                </p>
-                              </li>
-                            </ol>
-                        </dd>
-                      </dl>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, terminate this algorithm
+                      with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-DhKeyAlgorithm">DhKeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Algorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"DH"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-DhKeyGenParams-prime">prime</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-DhKeyGenParams-generator">generator</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                      to <code>"public"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>publicKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>publicKey</var> to true.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>publicKey</var> to be the empty list.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                      to <code>"private"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>privateKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>privateKey</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>privateKey</var> to be <var>usages</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                      of <var>result</var> to be <var>publicKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                      of <var>result</var> to be <var>privateKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
                     </p>
                   </li>
                 </ol>
