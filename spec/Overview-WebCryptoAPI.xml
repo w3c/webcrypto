@@ -5026,7 +5026,145 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </ol>
               </dd>
               <dt>Generate Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
+                      not present in <var>normalizedAlgorithm</var>,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>usages</var> contains a value which is not a case-sensitive string match
+                      for one of <code>"sign"</code> or <code>"verify"</code>,
+                      terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Generate an Eliptic Curve key pair, as defined in [<a href="#X9.62">X9.62</a>]
+                      with domain parameters for the curve identified by
+                      the <a href="#dfn-ExKeyGenParams-namedCurve">namedCurve</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the key generation operation results in an error, terminate this
+                      algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> property of
+                      <var>algorithm</var> to <code>"ECDSA"</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                      property of <var>algorithm</var> to equal the
+                      <a href="#dfn-EcKeyGenParams">namedCurve</a> property of
+                      <var>normalizedAlgorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>publicKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the public key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-type">type</a> property of <var>publicKey</var>
+                      to <code>"public"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>publicKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>publicKey</var> to true.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>publicKey</var> to be the empty list.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>privateKey</var> be a new <a href="#dfn-Key">Key</a> object
+                      representing the private key of the generated key pair.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-Type">type</a> property of <var>privateKey</var>
+                      to <code>"private"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> property of
+                      <var>privateKey</var> to be <var>algorithm</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-extractable">extractable</a> property of
+                      <var>privateKey</var> to <var>extractable</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-usages">usages</a> property of
+                      <var>privateKey</var> to be the
+                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <var>usages</var> and <code>[ "sign", "verify" ]</code>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>result</var> be a new <a href="#dfn-KeyPair">KeyPair</a>
+                      object.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> property
+                      of <var>result</var> to be <var>publicKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> property
+                      of <var>result</var> to be <var>privateKey</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>result</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+
               <dt>Import Key</dt>
               <dd></dd>
               <dt>Export Key</dt>
