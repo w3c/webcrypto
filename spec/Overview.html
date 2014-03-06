@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 34 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 31 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -1465,19 +1465,25 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <code>null</code> result.
                 </div>
               </li>
-
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>key</var> and <var>data</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the encrypt
-                  operation, terminate this algorithm with an error.
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the
+                  encrypt operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
@@ -1490,8 +1496,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>ciphertext</var> be the result of performing the encrypt
-                  operation specified by <var>normalizedAlgorithm</var> using <var>key</var>
-                  and with <var>data</var> as <var>plaintext</var>.
+                  operation specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>
+                  and <var>key</var> and with <var>data</var> as <var>plaintext</var>.
                 </p>
               </li>
               <li>
@@ -1554,17 +1560,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <code>null</code> result.
                 </div>
               </li>
-
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>key</var> and <var>data</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the decrypt
                   operation, terminate this algorithm with an error.
                 </p>
@@ -1580,6 +1592,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>plaintext</var> be the result of performing the decrypt
                   operation specified by <var>normalizedAlgorithm</var> using <var>key</var>
+                  and <var>algorithm</var>
                   and with <var>data</var> as <var>ciphertext</var>.
                 </p>
               </li>
@@ -1642,18 +1655,24 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <code>null</code> result.
                 </div>
               </li>
-
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>key</var> and <var>data</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the sign
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the  sign
                   operation, terminate this algorithm with an error.
                 </p>
               </li>
@@ -1667,8 +1686,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the sign operation
-                  specified by <var>normalizedAlgorithm</var> uaing <var>key</var> and with
-                  <var>data</var> as <var>message</var>.
+                  specified by <var>normalizedAlgorithm</var> uaing <var>key</var> and
+                  <var>algorithm</var> and with <var>data</var> as <var>message</var>.
                 </p>
               </li>
               <li>
@@ -1732,14 +1751,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>key</var>, <var>data</var> and <var>signature</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the verify
                   operation, terminate this algorithm with an error.
                 </p>
@@ -1754,7 +1780,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the verify operation
-                  specified by <var>normalizedAlgorithm</var> using <var>key</var> and
+                  specified by <var>normalizedAlgorithm</var> using <var>key</var>,
+                  <var>algorithm</var> and
                   <var>signature</var> and with <var>data</var> as <var>message</var>.
                 </p>
               </li>
@@ -1818,14 +1845,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>data</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the digest
                   operation, terminate this algorithm with an error.
                 </p>
@@ -1833,7 +1867,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the digest
-                  operation specified by <var>normalizedAlgorithm</var> using <var>data</var>
+                  operation specified by <var>normalizedAlgorithm</var> using
+                  <var>algorithm</var>, with <var>data</var>
                   as <var>message</var>.
                 </p>
               </li>
@@ -1898,14 +1933,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the generate
                   key operation, terminate this algorithm with an error.
                 </p>
@@ -1921,7 +1963,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>result</var> be the result of executing the generate key operation
                   specified by <var>normalizedAlgorithm</var> using
-                  <var>extractable</var> and <var>usages</var>.
+                  <var>algorithm</var>, <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -1986,28 +2028,36 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>baseKey</var>, <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the derive key
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the derive bits
                   operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>normalizedDerivedKeyAlgorithm</var> be the result of processing
-                  <var>derivedKeyType</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Let <var>normalizedDerivedKeyAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>derivedKeyType</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedDerivedKeyAlgorithm</var> does not describe a
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedDerivedKeyAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the get key length
                   and import key operations, terminate this algorithm
                   with an error.
@@ -2031,14 +2081,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>length</var> be the result of executing the get key length
-                  algorithm specified by <var>normalizedDerivedKeyAlgorithm</var>.
+                  algorithm specified by <var>normalizedDerivedKeyAlgorithm</var> using
+                  <var>derivedKeyType</var>.
                 </p>
               </li>
               <li>
                 <p>
                   Let <var>secret</var> be the result of executing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using
-                  <var>key</var> and <var>length</var>.
+                  <var>key</var>, <var>algorithm</var> and <var>length</var>.
                 </p>
               </li>
               <li>
@@ -2046,7 +2097,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>result</var> be the result of executing the import key operation
                   specified by <var>normalizedDerivedKeyAlgorithm</var> using <code>"raw"</code> as
                   <var>format</var>, <var>secret</var> as <var>keyData</var>,
-                  <var>normalizedDerivedKeyAlgorithm</var> as <var>normalizedAlgorithm</var>,
+                  <var>derivedKeyType</var> as <var>algorithm</var> and using
                   <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
@@ -2111,14 +2162,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>algorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>baseKey</var> and <var>length</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the derive bits
                   operation, terminate this algorithm with an error.
                 </p>
@@ -2134,8 +2192,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
                   containing the result of executing the derive bits operation
-                  specified by <var>normalizedAlgorithm</var> using <var>baseKey</var> and
-                  <var>length</var>.
+                  specified by <var>normalizedAlgorithm</var> using <var>baseKey</var>,
+                  <var>algorithm</var> and <var>length</var>.
                 </p>
               </li>
               <li>
@@ -2200,31 +2258,26 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
 
               <li>
-                <dl class="switch">
-                  <dt>If <var>algorithm</var> is not null:</dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Let <var>normalizedAlgorithm</var> be the result of processing
-                          <var>algorithm</var> according to the
-                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>normalizedAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the import key
-                          operation, terminate this algorithm with an error.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>
-                    Let <var>normalizedAlgorithm</var> be null.
-                  </dd>
-                </dl>
+                <p>
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>format</var>, <var>keyData</var>,
+                  <var>extractable</var> and <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the import key
+                  operation, terminate this algorithm with an error.
+                </p>
               </li>
               <li>
                 <p>
@@ -2246,14 +2299,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>result</var> be the <a href="#dfn-Key">Key</a> object that
                   results from performing the import key operation specified by
                   <var>normalizedAlgorithm</var> using <var>keyData</var>,
+                  <var>algorithm</var>, 
                   <var>format</var>, <var>extractable</var> and <var>usages</var>.
                 </p>
-                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                  <p>
-                    TODO: Specify how to identify the correct algorithm for the case
-                    where <var>normalizedAlgorithm</var> is null, or remove that case.
-                  </p>
-                </div>
               </li>
               <li>
                 <p>
@@ -2312,7 +2360,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <code>null</code> result.
                 </div>
               </li>
-  
+              <li>
+                <p>
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>format</var> and <var>key</var>.
+                </p>
+              </li>
               <li>
                 <p>
                   If <var>format</var> is not a case-sensitive string match for a
@@ -2351,7 +2404,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>format</var>, <var>key</var>, <var>wrappingKey</var> and
-                  <var>wrapAlgorithm</var> be the <code>format</code>, <code>key</code>,
+                  <var>algorithm</var> be the <code>format</code>, <code>key</code>,
                   <code>wrappingKey</code> and <code>wrapAlgorithm</code> parameters passed to the
                   <a href="#dfn-SubtleCrypto-method-wrapKey">wrapKey</a> method,
                   respectively.
@@ -2390,17 +2443,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <code>null</code> result.
                 </div>
               </li>
-
               <li>
                 <p>
-                  Let <var>normalizedAlgorithm</var> be the result of processing
-                  <var>wrapAlgorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>format</var>, <var>key</var> and <var>wrappingKey</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedAlgorithm</var> does not describe a
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the encrypt or wrap
                   key operation, terminate this algorithm with an error.
                 </p>
@@ -2443,7 +2502,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <dd>
                     <p>
                       Let <var>result</var> be the result of performing the wrap key operation
-                      specified by <var>normalizedAlgorithm</var> with <var>wrappingKey</var>
+                      specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
+                       <var>wrappingKey</var>
                       as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
                     </p>
                   </dd>
@@ -2451,7 +2511,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <dd>
                     <p>
                       Let <var>result</var> be the result of performing the encrypt operation
-                      specified by <var>normalizedAlgorithm</var> with <var>wrappingKey</var>
+                      specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
+                       <var>wrappingKey</var>
                       as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
                     </p>
                   </dd>
@@ -2483,7 +2544,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <li>
                 <p>
                   Let <var>format</var>, <var>wrappedKey</var>, <var>unwrappingKey</var>,
-                  <var>unwrapAlgorithm</var>, <var>unwrappedKeyAlgorithm</var>,
+                  <var>algorithm</var>, <var>unwrappedKeyAlgorithm</var>,
                   <var>extractable</var> and <var>usages</var>,
                   be the <code>format</code>, <code>wrappedKey</code>, <code>unwrappingKey</code>,
                   <code>unwrapAlgorithm</code>, <code>unwrappedKeyAlgorithm</code>,
@@ -2528,42 +2589,41 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedUnwrapAlgorithm</var> be the result of processing
-                  <var>unwrapAlgorithm</var> according to the
-                  <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
+                  Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
+                  <var>format</var>, <var>wrappedKey</var>, <var>unwrappingKey</var>,
+                  <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>normalizedUnwrapAlgorithm</var> does not describe a
-                  <a href="#algorithms">registered algorithm</a> that supports the unwrapKey
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the unwrap key or
+                  decrypt
                   operation, terminate this algorithm with an error.
                 </p>
               </li>
               <li>
-                <dl class="switch">
-                  <dt>If <var>unwrappedKeyAlgorithm</var> is not null:</dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          Let <var>normalizedKeyAlgorithm</var> be the result of processing
-                          <var>unwrappedKeyAlgorithm</var> according to the
-                          <a href="#algorithm-normalizing-rules">algorithm normalizing rules</a>.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          If <var>normalizedKeyAlgorithm</var> does not describe a
-                          <a href="#algorithms">registered algorithm</a> that supports the importKey
-                          operation, terminate this algorithm with an error.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>Let <var>normalizedKeyAlgorithm</var> be <code>null</code>.</dd>
-                </dl>
+                <p>
+                  Let <var>normalizedKeyAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>unwrappedKeyAlgorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  <var>normalizedKeyAlgorithm</var> does not identify a
+                  <a href="#algorithms">registered algorithm</a> that supports the importKey
+                  operation, terminate this algorithm with an error.
+                </p>
               </li>
               <li>
                 <p>
@@ -2591,17 +2651,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <dt>If <var>normalizedUnwrapAlgorithm</var> supports an unwrap key operation:</dt>
                   <dd>
                     Let <var>bytes</var> be the result of performing the unwrap key operation
-                    specified by <var>normalizedUnwrapAlgorithm</var> with
+                    specified by <var>normalizedAlgorithm</var> using
+                    <var>algorithm</var>,
                     <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
                   <dt>
-                    Otherwise, if <var>normalizedUnwrapAlgorithm</var> supports a decrypt
+                    Otherwise, if <var>normalizedAlgorithm</var> supports a decrypt
                     operation:
                   </dt>
                   <dd>
                     Let <var>bytes</var> be the result of performing the decrypt operation
-                    specified by <var>normalizedUnwrapAlgorithm</var> with
+                    specified by <var>normalizedAlgorithm</var> using
+                    <var>algorithm</var>,
                     <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
@@ -2619,14 +2681,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>result</var> be the result of performing the import key operation
                   specified by <var>normalizedKeyAlgorithm</var> using
-                  <var>format</var>, <var>usages</var> and <var>extractable</var> and with
+                  <var>unwrappedKeyAlgorithm</var> as <var>algorithm</var>, <var>format</var>,
+                  <var>usages</var>
+                  and <var>extractable</var> and with
                   <var>bytes</var> as <var>keyData</var>.
-                  <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-                    <p>
-                      TODO: Specify how to identify the correct algorithm for the case
-                      where <var>normalizedKeyAlgorithm</var> is null, or remove that case.
-                    </p>
-                  </div>
                 </p>
               </li>
               <li>
@@ -3322,6 +3380,13 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> are
@@ -4111,6 +4176,13 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a> are not present
                       in <var>normalizedAlgorithm</var>, terminate this algorithm with an error.
@@ -4270,11 +4342,6 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                 </ol>
                 <div class="ednote"><div class="ednoteHeader">Editorial note</div>
                   <p>
-                    TODO: Specify how the normalizedAlgorithm needs to be an instance of
-                    the relevant RsaHashed*Params dictionary, with particular attention to the fact
-                    that WebIDL violations should be handled asynchronously.
-                  </p>
-                  <p>
                     TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
                     functions (and back to OID).
                   </p>
@@ -4364,6 +4431,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
+                    Let <var>normalizedAlgorithm</var> be the result of
+                    <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                    to <a href="#dfn-RsaPssParams">RsaPssParams</a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not
                     present in <var>normalizedAlgorithm</var>, terminate this algorithm with an
                     error.
@@ -4411,6 +4485,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
+                    Let <var>normalizedAlgorithm</var> be the result of
+                    <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                    to <a href="#dfn-RsaPssParams">RsaPssParams</a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If any of the members of <a href="#dfn-RsaPssParams">RsaPssParams</a> are not
                     present in <var>normalizedAlgorithm</var>, terminate this algorithm with an
                     error.
@@ -4450,6 +4531,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             <dt>Generate Key</dt>
             <dd>
               <ol>
+                <li>
+                  <p>
+                    Let <var>normalizedAlgorithm</var> be the result of
+                    <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                    to <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a>.
+                  </p>
+                </li>
                 <li>
                   <p>
                     If any of the members of
@@ -4615,11 +4703,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
 
           <div class="ednote"><div class="ednoteHeader">Editorial note</div>
             <p>
-              TODO: Specify how the normalizedAlgorithm needs to be an instance of
-              the relevant RsaHashed*Params dictionary, with particular attention to the fact
-              that WebIDL violations should be handled asynchronously.
-            </p>
-            <p>
               TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
               functions (and back to OID).
             </p>
@@ -4705,6 +4788,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaOaepParams">RsaOaepParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are
                       not present in <var>normalizedAlgorithm</var>,
                       terminate this algorithm with an error.
@@ -4751,6 +4841,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaOaepParams">RsaOaepParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#dfn-RsaOaepParams">RsaOaepParams</a> are
                       not present in <var>normalizedAlgorithm</var>,
                       terminate this algorithm with an error.
@@ -4789,6 +4886,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of
@@ -4955,11 +5059,6 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
           </div>
           <div class="ednote"><div class="ednoteHeader">Editorial note</div>
             <p>
-              TODO: Specify how the normalizedAlgorithm needs to be an instance of
-              the relevant RsaHashed*Params dictionary, with particular attention to the fact
-              that WebIDL violations should be handled asynchronously.
-            </p>
-            <p>
               TODO: Specify the mapping between key.algorithm.hash and the appropriate Hash
               functions (and back to OID).
             </p>
@@ -5089,6 +5188,13 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcdsaParams">EcdsaParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the properties of <a href="#dfn-EcdsaParams">EcdsaParams</a> are
                       not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
                       an error.
@@ -5175,6 +5281,13 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcdsaParams">EcdsaParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the properties of <a href="#dfn-EcdsaParams">EcdsaParams</a> are
                       not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
                       an error.
@@ -5236,6 +5349,13 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
@@ -6212,6 +6332,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
                       not present in <var>normalizedAlgorithm</var>,
                       terminate this algorithm with an error.
@@ -6354,6 +6481,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       If the <a href="#dfn-Key-type">type</a> property of <var>key</var>
                       is not a case-sensitive string match for <code>"private"</code>, terminate this
                       algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a>.
                     </p>
                   </li>
                   <li>
@@ -7428,6 +7562,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCtrParams">AesCtrParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#aes-ctr-params">AesCtrParams</a> are not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -7474,6 +7615,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCtrParams">AesCtrParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#aes-ctr-params">AesCtrParams</a> are not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -7518,6 +7666,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -7853,6 +8008,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -7961,6 +8123,13 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCbcParams">AesCbcParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#aes-cbc-params">AesCbcParams</a> are not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -8001,6 +8170,13 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <dt>Decrypt</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCbcParams">AesCbcParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-cbc-params">AesCbcParams</a> are not
@@ -8053,6 +8229,13 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -8388,6 +8571,13 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -8520,6 +8710,13 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCmacParams">AesCmacParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       Let <var>length</var> equal the <a href="#dfn-AesCmacParams-length">length</a>
                       property of <var>normalizedAlgorithm</var>, if present, and 128 otherwise.
                     </p>
@@ -8550,6 +8747,13 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -8878,6 +9082,13 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -8982,6 +9193,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesGcmParams">AesGcmParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If the <a href="#dfn-AesGcmParams-iv">iv</a> property of
                       <a href="#aes-gcm-params">AesGcmParams</a> is not
                       present in <var>normalizedAlgorithm</var>, terminate
@@ -9053,6 +9271,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <dt>Decrypt</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesGcmParams">AesGcmParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If the <a href="#dfn-AesGcmParams-iv">iv</a> property of
@@ -9146,6 +9371,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -9476,6 +9708,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -9578,6 +9817,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCfbParams">AesCfbParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#aes-cfb-params">AesCfbParams</a> are not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -9613,6 +9859,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesCfbParams">AesCfbParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#aes-cfb-params">AesCfbParams</a> are not
                       present in <var>normalizedAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -9646,6 +9899,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -9981,6 +10241,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -10119,6 +10386,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesKeyGenParams">AesKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#aes-keygen-params">AesKeyGenParams</a> are
@@ -10440,6 +10714,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of
                       <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
                       <var>normalizedDerivedKeyAlgorithm</var>, terminate this algorithm with an
@@ -10614,6 +10895,13 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-HmacKeyGenParams">HmacKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If the <a href="#dfn-HmacKeyGenParams-hash">hash</a> property is
@@ -11129,6 +11417,13 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-HmacImportParams">HmacImportParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If the <a href="#dfn-HmacImportParams-hash">hash</a> property is
                       not present in <var>normalizedDerivedKeyAlgorithm</var>, terminate
                       this algorithm with an error.
@@ -11265,6 +11560,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               <dt>Generate Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-DhKeyGenParams">DhKeyGenParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the members of <a href="#dfn-DhKeyGenParams">DhKeyGenParams</a> are
@@ -11421,6 +11723,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a> are not present in
                       <var>normalizedAlgorithm</var>, terminate this
                       algorithm with an error.
@@ -11513,6 +11822,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </p>
                     </div>
                     <ol>
+                      <li>
+                        <p>
+                          Let <var>normalizedAlgorithm</var> be the result of
+                          <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                          to <a href="#dfn-DhImportKeyParams">DhImportKeyParams</a>.
+                        </p>
+                      </li>
                       <li>
                         <p>
                           If any of the members of <a href="#dfn-DhImportKeyParams">DhImportKeyParams</a> are not present in
@@ -12072,6 +12388,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-Algorithm">Algorithm</a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>
                         If the <a href="#dfn-KeyAlgorithm-name">name</a> property of
@@ -12206,6 +12529,13 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
               <dt>Derive Bits</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-ConcatParams">ConcatParams</a>.
+                    </p>
+                  </li>
                   <li>
                     <p>
                       If any of the
@@ -12413,6 +12743,13 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       If <var>length</var> is null, terminate this algorithm with an error.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-HkdfCtrParams">HkdfCtrParams</a>.
                     </p>
                   </li>
                   <li>
@@ -12674,6 +13011,13 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-Pbkdf2Params">Pbkdf2Params</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
                       If any of the members of <a href="#dfn-Pbkdf2Params">Pbkdf2Params</a> are
                       not present in <var>normalizedAlgorithm</var>, terminate this algorithm with
                       an error.
@@ -12879,70 +13223,94 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
       <div id="algorithm-normalizing-rules" class="section">
         <h2>19. Algorithm normalizing rules</h2>
         <p>
-          The <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> typedef
-          permits algorithms to be specified as either a <code>dictionary</code> or a DOMString. In
-          order to ensure consistency, conforming user agents must normalize all AlgorithmIdentifier
-          inputs into a single, canonical form. When normalization is indicated, it must act as
-          follows:
+          The <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> typedef
+          permits algorithms to be specified as either an <a href="#dfn-Algorithm">Algorithm</a>
+          dictionary or a <a href="#dfn-DOMString">DOMString</a>. The
+          <a href="#dfn-DOMString">DOMString</a>
+          option permits algorithms to be specified using shorthand 'aliases'. Algorithms may
+          define aliases and the values they correspond to. Using an alias is exactly equivalent to
+          using the value corresponding to the alias.
+        </p>
+        <p>
+          Additionally, many algorithms define a subclass of the
+          <a href="#dfn-Algorithm">Algorithm</a> type. As a result WebIDL type mapping to the
+          correct subclass must be performed at the appropriate time.
+        </p>
+        <p>
+          When this specification says that a value <var>algorithm</var> be
+          <dfn id="dfn-normalize-to-type">normalized to <var>type</var></dfn> the user agent must
+          perform the following steps:
         </p>
         <ol>
           <li>
-            Let <var>O</var> be the
-            <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> to be
-            normalized.
+            <p>
+              Let <var>mappedAlgorithm</var> be the result of mapping <var>algorithm</var> to
+              the <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> type as specified in
+              [<a href="#WebIDL">WEBIDL</a>].
+            </p>
           </li>
           <li>
-            Let <var>result</var> be the normalized output.
-          </li>
-          <li>If <var>O</var> is a DOMString, then:
-            <ol>
-              <li>
-                If <var>O</var> contains any non-ASCII characters, throw a <code>SyntaxError</code>
-                and return from this algorithm.
-              </li>
-              <li>
-                Convert every character in <var>O</var> to lower case.
-              </li>
-              <li>
-                If <var>O</var> contains a recognized <a href="#dfn-algorithm-alias">algorithm
-                alias</a> then let <var>result</var> be re-initialized to the aliased dictionary and
-                this algorithm restarted, using <var>result</var> as the input to be normalized.
-              </li>
-              <li>
-                Otherwise, terminate this algorithm with an error.
-              </li>
-            </ol>
-          </li>
-          <li>For each key <var>K</var> in <var>O</var> with an associated value <var>V</var>:
-            <ul>
-              <li>
-                If the associated value <var>V</var> is an AlgorithmIdentifier, set
-                the associated value for <var>K</var> in <var>result</var> to be the result
-                of executing the algorithm normalization rules.
-              </li>
-              <li>
-                If the associated value <var>V</var> is a dictionary, set the associated
-                value for <var>K</var> in <var>result</var> to be the result of executing
-                this algorithm recursively for every value in the dictionary.
-              </li>
-              <li>
-                Otherwise, let the associated value for key <var>K</var> in <var>result</var>
-                be the associated value for key <var>K</var> in <var>O</var>.
-              </li>
-            </ul>
+            <p>
+              <dl class="switch">
+                <dt>If <var>mappedAlgorithm</var> is a DOMString, then:</dt>
+                <dd>
+                  <ol>
+                    <li>
+                      <p>
+                        If <var>mappedAlgorithm</var> contains any non-ASCII characters,
+                        throw a <code>SyntaxError</code> and return from this algorithm.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Convert every character in <var>mappedAlgorithm</var> to lower case.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        If <var>mappedAlgorithm</var> is equal to a recognized
+                        <a href="#dfn-algorithm-alias">algorithm alias</a> then let
+                        <var>objectAlgorithm</var> be the value defined to be equivalent
+                        to this alias.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Otherwise, terminate this algorithm with an error.
+                      </p>
+                    </li>
+                  </ol>
+                </dd>
+                <dt>Otherwise:</dt>
+                <dd>Let <var>objectAlgorithm</var> equal <var>algorithm</var>.</dd>
+              </dl>
+            </p>
           </li>
           <li>
-            Return <var>result</var>.
+            <p>
+              Let <var>result</var> be the result of mapping <var>objectAlgorithm</var> to
+              <var>type</var> as specified in [<a href="#WebIDL">WEBIDL</a>].
+            </p>
+          </li>
+          <li>
+            <p>
+              If a member, <var>memberName</var>, of <var>type</var> has a type
+              that is a union of <a href="#dfn-DOMString">DOMString</a> and a type,
+              <var>memberType</var>, that is either <a href="#dfn-Algorithm">Algorithm</a> or a
+              subclass of <a href="#dfn-Algorithm">Algorithm</a> and if the <var>memberName</var>
+              member of <var>result</var> is present and has type
+              <a href="#dfn-DOMString">DOMString</a>, then
+              replace <var>memberName</var> in <var>result</var> with the result of
+              <a href="#dfn-normalize-to-type">normalizing</a> the <var>memberName</var> member of
+              <var>result</var> to <var>memberType</var>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Return <var>result</var>.
+            </p>
           </li>
         </ol>
-        <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-          <p>
-            WARNING: This section is broken for purpose. Further, normalization at this degree is
-            is no longer required, as the algorithm is never reflected back to the caller. Instead,
-            specify how specific algorithms can/should validate the parameters - and how to perform
-            DOMString substitutions.
-          </p>
-        </div>
       </div>
       <div id="examples-section" class="section">
         <h2>20. JavaScript Example Code</h2>
