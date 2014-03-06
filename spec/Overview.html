@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 17 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 16 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -2347,6 +2347,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
         <h2>15. WorkerCrypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 interface <dfn id="dfn-WorkerCrypto">WorkerCrypto</dfn> {
+  readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> <dfn id="dfn-WorkerCrypto-subtle">subtle</dfn>;
 };
 
 <a href="#dfn-WorkerCrypto">WorkerCrypto</a> implements <a href="#dfn-RandomSource">RandomSource</a>;
@@ -2362,14 +2363,6 @@ partial interface <a href="http://www.w3.org/TR/workers/#workerglobalscope">Work
             functionality for background scripts, as specified by Web Workers [
             <a href="">Web Workers</a>].
           </p>
-          <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-            <p>
-              A unique interface exposing only a subset of the <a href="#crypto-interface"><code>Crypto</code></a>
-              is provided as it has not yet been determined how <a href="#key-interface"><code>Key</code></a>s
-              should be shared amongst threads, nor how user interaction should be managed for
-              operations that may require user consent.
-            </p>
-          </div>
         </div>
       </div>
 
