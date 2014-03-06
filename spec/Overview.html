@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 16 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 17 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -3762,6 +3762,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
           </div>
           <div id="rsassa-pkcs1-operations" class="section">
             <h4>18.5.6. Operations</h4>
+            <dl>
               <dt>Sign</dt>
               <dd>
                 <ol>
@@ -4016,10 +4017,768 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   </p>
                 </div>
               </dd>
+
               <dt>Import Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>Let <var>keyData</var> be the key data to be imported.</p>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#concept-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-RsaHashedImportParams">RsaHashedImportParams</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If any of the members of <a href="#dfn-RsaHashedImportParams">RsaHashedImportParams</a> are not present in
+                      <var>normalizedAlgorithm</var> then <a href="#concept-return-an-error">return
+                      an error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>spki</var> be the result of running the
+                              <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>hash</var> be a string whose initial value is undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>alg</var> be the <code>algorithm</code> object identifier
+                              field of the <code>algorithm</code> AlgorithmIdentifier field of
+                              <var>spki</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>alg</var> is equivalent to the <code>rsaEncryption</code>
+                                OID defined in Section 2.3.1 of <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be undefined.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha1WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-1</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha256WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-256</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha384WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-384</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha512WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-512</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>hash</var> is defined, and is not equal to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
+                              <var>normalizedAlgorithm</var>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set <var>hash</var> to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
+                              <var>normalizedAlgorithm</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>publicKey</var> be the result of performing the <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                              algorithm, with <var>data</var> as the
+                              <code>subjectPublicKeyInfo</code> field of <var>spki</var>,
+                              <var>structure</var> as the <code>RSAPublicKey</code> structure
+                              specified in Section A.1.1 of <a href="#RFC3447">RFC 3447</a>, and
+                              <var>exactData</var> set to true.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the RSA public key identified by <var>publicKey</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              to <code>"public"</code>
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>privateKeyInfo</var> be the result of running the
+                              <a href="#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>hash</var> be a string whose initial value is undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>alg</var> be the <code>algorithm</code> object identifier
+                              field of the <code>privateKeyAlgorithm</code>
+                              PrivateKeyAlgorithmIdentifier field of <var>privateKeyInfo</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>alg</var> is equivalent to the <code>rsaEncryption</code>
+                                OID defined in Section 2.3.1 of <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be undefined.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha1WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-1</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha256WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-256</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha384WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-384</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>alg</var> is equivalent to the
+                                <code>sha512WithRSAEncryption</code> OID defined in Section A.2.4 of
+                                <a href="#RFC3279">RFC 3279</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-512</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>hash</var> is defined, and is not equal to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
+                              <var>normalizedAlgorithm</var>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set <var>hash</var> to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
+                              <var>normalizedAlgorithm</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>rsaPrivateKey</var> be the result of performing the <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                              algorithm, with <var>data</var> as the
+                              <code>privateKey</code> field of <var>privateKeyInfo</var>,
+                              <var>structure</var> as the <code>RSAPrivateKey</code> structure
+                              specified in Section A.1.2 of <a href="#RFC3447">RFC 3447</a>, and
+                              <var>exactData</var> set to true.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred while parsing,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object that
+                              represents the RSA private key identified by <var>rsaPrivateKey</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              to <code>"private"</code>
+                            </p>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not a
+                              case-sensitive string match to <code>"RSA"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not a case-sensitive string match to <code>"enc"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>hash</var> be a be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <code>"alg"</code> field of <var>jwk</var> is not
+                                present:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be undefined.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string
+                                <code>"RS1"</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-1</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string
+                                <code>"RS256"</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-256</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string
+                                <code>"RS384"</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-384</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string
+                                <code>"RS512"</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Let <var>hash</var> be the string <code>SHA-512</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <code>"d"</code> field of <var>jwk</var> is present:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not meet the requirements of
+                                      Section 6.3.2 of <a href="#jwa">JSON Web
+                                      Algorithms</a>,
+                                      then <a href="#concept-return-an-error">return an error</a> named
+                                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the RSA private key identified by interpreting
+                                      <var>jwk</var> according to Section 6.3.2 of <a href="#jwa">
+                                      JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      <var>key</var> to <code>"private"</code>
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If <var>jwk</var> does not meet the requirements of Section
+                                      6.3.1 of <a href="#jwa">JSON Web Algorithms</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
+                                      that represents the RSA public key identified by interpreting
+                                      <var>jwk</var> according to Section 6.3.1 of <a href="#jwa">
+                                      JSON Web Algorithms</a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      <var>key</var> to <code>"public"</code>
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        <a href="#concept-return-an-error">Return an error</a> named
+                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>algorithm</var> be a new
+                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                      <var>algorithm</var> to <code>"RSASSA-PKCS1-v1_5"</code>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaKeyAlgorithm-modulusLength">modulusLength</a>
+                      attribute of <var>algorithm</var> to the length, in bits, of the RSA public
+                      modulus.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaKeyAlgorithm-publicExponent">publicExponent</a>
+                      attribute of <var>algorithm</var> to the <a href="#dfn-BigInteger">BigInteger</a>
+                      representation of the RSA public exponent.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of
+                      <var>algorithm</var> to a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
+                      whose <a href="#dfn-KeyAlgorithm-name">name</a> attribute is <var>hash</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Set the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                      <var>key</var> to <var>algorithm</var>
+                    </p>
+                  </li>
+                  <li>
+                    <p>Return <var>key</var>.</p>
+                  </li>
+                </ol>
+              </dd>
+
               <dt>Export Key</dt>
-              <dd></dd>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      Let <var>key</var> be the key to be exported.
+                    </p>
+                  </li>
+                  <li>
+                    <dl class="switch">
+                      <dt>If <var>format</var> is <code>"spki"</code></dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
+                              not <code>"public"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a href="#dfn-encode-a-subjectPublicKeyInfo">encoding a
+                              subjectPublicKeyInfo</a> with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>algorithm</var> field to an
+                                  <code>AlgorithmIdentifier</code> ASN.1 type with the following
+                                  properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the OID
+                                      <code>1.2.840.113549.1.1</code>
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>params</var> field to the ASN.1 type NULL.
+                                    </p>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>subjectPublicKey</var> field to the result of
+                                  DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
+                                  in <a href="#RFC3447">RFC 3447</a>, Appendix A.1.1, that
+                                  represents the RSA public key identified by <var>key</var>
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                      <dd>
+                        <ol>
+                          <li>
+                            <p>
+                              If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
+                              not <code>"private"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the result of <a href="#dfn-encode-a-privateKeyInfo"> encoding a privateKeyInfo</a>
+                              with the following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the <var>version</var> field to 0.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKeyAlgorithm</var> field to a
+                                  <code>PrivateKeyAlgorithmIdentifier</code> ASN.1 type with the
+                                  following properties:
+                                </p>
+                                <ul>
+                                  <li>
+                                    <p>
+                                      Set the <var>algorithm</var> field to the OID
+                                      <code>1.2.840.113549.1.1</code>
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Set the <var>params</var> field to the ASN.1 type NULL.
+                                    </p>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the <var>privateKey</var> field to the result of
+                                  DER-encoding an <code>RSAPrivateKey</code> ASN.1 type, as defined
+                                  in <a href="#RFC3447">RFC 3447</a>, Appendix A.1.2, that
+                                  represents the RSA private key identified by <var>key</var>
+                                </p>
+                                <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                                  <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
+                                  this field should be <em>BER</em> encoded in Section 5 (as a "for
+                                  example"). However, to avoid requiring WebCrypto implementations
+                                  support BER-encoding and BER-decoding, only <em>DER</em> encodings
+                                  are produced or accepted.
+                                </div>
+                              </li>
+                            </ul>                              
+                          </li>
+                        </ol>
+                      </dd>
+                      <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                      <dd>
+                        <ul>
+                          <li>
+                            <p>Let <var>jwk</var> be a new internal object.</p>
+                          </li>
+                          <li>
+                            <p>Set the <code>kty</code> field of <var>jwk</var> to the string
+                            <code>"RSA"</code>.</p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>hash</var> be the <a href="#dfn-KeyAlgorithm-name">name</a>
+                              attribute of the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a>
+                              attribute of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>hash</var> is <code>SHA-1</code>:</dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>RS1</code>.
+                                </p>
+                              </dd>
+                              <dt>If <var>hash</var> is <code>SHA-256</code>:</dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>RS256</code>.
+                                </p>
+                              </dd>
+                              <dt>If <var>hash</var> is <code>SHA-384</code>:</dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>RS384</code>.
+                                </p>
+                              </dd>
+                              <dt>If <var>hash</var> is <code>SHA-512</code>:</dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>RS512</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>Set the <code>alg</code> field of <var>jwk</var> to the string
+                            <code>"RSA1_5"</code>.</p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the fields <code>n</code> and <code>e</code> of <var>jwk</var>
+                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              Algorithms</a>, Section 6.3.1.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
+                                is <code>"private"</code>:
+                              </dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      Set the fields named <code>d</code>, <code>p</code>,
+                                      <code>q</code>, <code>dp</code>, <code>dq</code>, and
+                                      <code>qi</code> of <var>jwk</var> according to the
+                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      Algorithms</a>, Section 6.3.2.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      If the underlying RSA private key represented by
+                                      <var>key</var> is represented by more than two primes, set the
+                                      field named <code>oth</code> of <var>jwk</var> according to
+                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      Algorithms</a>, Section 6.3.2.7
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>key_ops</code> field of <var>jwk</var> to the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the <code>ext</code> field of <var>jwk</var> to the <a href="#dfn-Key-extractable">extractable</a> attribute of
+                              <var>key</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>stringifiedJwk</var> be the result of encoding
+                              <var>jwk</var> according to the grammar specified in Section 15.12 of
+                              <a href="#ECMA-262">ECMA262</a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>result</var> be the UTF-8 encoding of
+                              <var>stringifiedJwk</var>.
+                            </p>
+                          </li>
+                        </ul>
+                      </dd>
+                      <dt>Otherwise</dt>
+                      <dd>
+                        <p>
+                          <a href="#concept-return-an-error">Return an error</a> named
+                          <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                        </p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>
+                      Let <var>data</var> be a new <code>ArrayBuffer</code> containing
+                      <var>result</var>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Return <var>data</var>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+            </dl>
           </div>
         </div>
 
