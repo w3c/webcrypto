@@ -319,6 +319,11 @@ of contents, section numbers, certain processing instructions).
           ECMAScript Bindings defined in the Web IDL specification [<a href="#WebIDL">WEBIDL</a>]
           as this specification uses that specification and terminology.
         </p>
+        <p>
+          Unless otherwise stated, string comparisons are done in a
+          <a href="#case-sensitive">case-sensitive</a> manner. String literals in this specification
+           written in monospace font like <code>"this"</code> do not include the enclosing quotes.
+        </p>
       </div>
 
       <div id='scope' class='section'>
@@ -552,6 +557,10 @@ of contents, section numbers, certain processing instructions).
           <dfn id="queue-a-task">queue a task</dfn>, and
           <dfn id="structured-clone">structured clone</dfn>,
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
+        </p>
+        <p>
+          Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
+          manner means comparing them exactly, code point for code point.
         </p>
         <p>
           When this specification says to <dfn id="terminate-the-algorithm">terminate the
@@ -1482,7 +1491,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"encrypt"</code>,
+                  contain an entry that is <code>"encrypt"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -1566,7 +1575,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"decrypt"</code>,
+                  contain an entry that is <code>"decrypt"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -1650,7 +1659,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"sign"</code>,
+                  contain an entry that is <code>"sign"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -1733,7 +1742,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>key</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"verify"</code>,
+                  contain an entry that is <code>"verify"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -1891,8 +1900,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>usages</var> includes a value that is not a case-sensitive string match
-                  for a <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
+                  If <var>usages</var> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -1992,15 +2001,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>baseKey</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"deriveKey"</code>,
+                  contain an entry that is <code>"deriveKey"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>usages</var> includes a value that is not a case-sensitive string
-                  match for a 
+                  If <var>usages</var> includes a value that is not a
                   <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, 
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2100,7 +2108,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>baseKey</var> does not
-                  contain an entry that is a case-sensitive string match for <code>"deriveBits"</code>,
+                  contain an entry that is <code>"deriveBits"</code>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -2185,7 +2193,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>format</var> is not a case-sensitive string match for
+                  If <var>format</var> is not
                   a <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2193,8 +2201,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>usages</var> includes a value that is not a case-sensitive string match
-                  for a
+                  If <var>usages</var> includes a value that is not a
                   <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2261,7 +2268,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>format</var> is not a case-sensitive string match for a
+                  If <var>format</var> is not a
                   <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2359,7 +2366,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>format</var> is not a case-sensitive string match for algorithm a
+                  If <var>format</var> is not algorithm a
                   <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2368,7 +2375,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>wrappingKey</var>
-                  does not contain an entry that is a case-sensitive string match for
+                  does not contain an entry that is
                   <code>"wrapKey"</code>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
@@ -2527,14 +2534,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Key-usages">usages</a> attribute of <var>unwrappingKey</var>
-                  does not contain an entry that is a case-sensitive string match for
+                  does not contain an entry that is
                   <code>"unwrapKey"</code>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                 </p>
               </li>
               <li>
                 <p>
-                  If <var>format</var> is not a case-sensitive string match for a
+                  If <var>format</var> is not a
                   <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -2542,8 +2549,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>usages</var> includes a value that is not a case-sensitive string match
-                  for a  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
+                  If <var>usages</var> includes a value that is not a
+                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
                   then <a href="#concept-return-an-error">return an error</a> named
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
@@ -3278,7 +3285,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"public"</code>,
+                      is not <code>"public"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -3313,7 +3320,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,
+                      is not <code>"private"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>
                     </p>
@@ -3362,8 +3369,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains an entry which is not
+                      <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -3644,8 +3651,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           </li>
                           <li>
                             <p>
-                              If the <code>"kty"</code> field of <var>jwk</var> is not a
-                              case-sensitive string match to <code>"RSA"</code>,
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"RSA"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -3653,7 +3660,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           <li>
                             <p>
                               If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                              not a case-sensitive string match to <code>"enc"</code>,
+                              not  <code>"enc"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -3671,7 +3678,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           <li>
                             <p>
                               If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                              not a case-sensitive string match to <code>"RSA1_5"</code>,
+                              not  <code>"RSA1_5"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -4103,7 +4110,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,
+                      is not <code>"private"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -4141,7 +4148,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"public"</code>,
+                      is not <code>"public"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -4195,8 +4202,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for <code>"sign"</code> or <code>"verify"</code>,
+                      If <var>usages</var> contains an entry which is not
+                       <code>"sign"</code> or <code>"verify"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -4430,7 +4437,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 <li>
                   <p>
                     If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                    is not a case-sensitive string match for <code>"private"</code>,
+                    is not <code>"private"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                   </p>
@@ -4488,7 +4495,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 <li>
                   <p>
                     If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                    is not a case-sensitive string match for <code>"public"</code>,
+                    is not <code>"public"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                   </p>
@@ -4562,8 +4569,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    If <var>usages</var> contains an entry which is not a case-sensitive string
-                    match for <code>"sign"</code> or <code>"verify"</code>,
+                    If <var>usages</var> contains an entry which is not
+                    <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
@@ -4800,7 +4807,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"public"</code>,
+                      is not <code>"public"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -4857,7 +4864,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,
+                      is not <code>"private"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -4930,8 +4937,8 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for <code>"encrypt"</code>, <code>"decrypt</code>,
+                      If <var>usages</var> contains an entry which is not
+                      <code>"encrypt"</code>, <code>"decrypt</code>,
                       <code>wrapKey</code> or <code>unwrapKey</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
@@ -5213,7 +5220,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,
+                      is not <code>"private"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -5309,7 +5316,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"public"</code>,
+                      is not <code>"public"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -5405,8 +5412,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains a value which is not a case-sensitive string match
-                      for one of <code>"sign"</code> or <code>"verify"</code>,
+                      If <var>usages</var> contains a value which is not
+                      one of <code>"sign"</code> or <code>"verify"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -5840,8 +5847,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           </li>
                           <li>
                             <p>
-                              If the <code>"kty"</code> field of <var>jwk</var> is not a
-                              case-sensitive string match to <code>"EC"</code>,
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"EC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -5849,7 +5856,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <p>
                               If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                              not a case-sensitive string match to <code>"sig"</code>,
+                              not  <code>"sig"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -5945,8 +5952,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <dl class="switch">
                               <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-256"</code>
+                                If the <code>"crv"</code> field of <var>jwk</var> is
+                                <code>"P-256"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -5955,8 +5962,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 </p>
                               </dd>
                               <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-384"</code>
+                                If the <code>"crv"</code> field of <var>jwk</var> is
+                                 <code>"P-384"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -5965,8 +5972,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 </p>
                               </dd>
                               <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-521"</code>
+                                If the <code>"crv"</code> field of <var>jwk</var> is
+                                 to <code>"P-521"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -6442,8 +6449,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains a value which is not a case-sensitive string match
-                      for one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                      If <var>usages</var> contains a value which is not
+                      one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -6577,7 +6584,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,
+                      is not <code>"private"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -6609,8 +6616,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     <p>
                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the
                       <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var> is
-                      not a case-sensitive string match for
-                      <code>"ECDH"</code>,
+                      not <code>"ECDH"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -6618,7 +6624,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>publicKey</var>
-                      is not a case-sensitive string match for
+                      is not
                       <code>"public"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
@@ -6991,8 +6997,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           </li>
                           <li>
                             <p>
-                              If the <code>"kty"</code> field of <var>jwk</var> is not a
-                              case-sensitive string match to <code>"EC"</code>,
+                              If the <code>"kty"</code> field of <var>jwk</var> is
+                              to <code>"EC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -7095,7 +7101,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             <dl class="switch">
                               <dt>
                                 If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-256"</code>
+                                 <code>"P-256"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -7104,8 +7110,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                 </p>
                               </dd>
                               <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-384"</code>
+                                If the <code>"crv"</code> field of <var>jwk</var> is
+                                <code>"P-384"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -7114,8 +7120,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                 </p>
                               </dd>
                               <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                case-sensitive string match to <code>"P-521"</code>
+                                If the <code>"crv"</code> field of <var>jwk</var> is
+                                <code>"P-521"</code>
                               </dt>
                               <dd>
                                 <p>
@@ -7155,8 +7161,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               If the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
-                              member of <var>normalizedAlgorithm</var> is not a case-sensitive
-                              string match for a <a href="#dfn-NamedCurve">named curve</a>,
+                              member of <var>normalizedAlgorithm</var> is not a
+                              <a href="#dfn-NamedCurve">named curve</a>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
@@ -7579,7 +7585,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var> is
-                              not a case-sensitive string match for <code>"public"</code>,
+                              not <code>"public"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                             </p>
@@ -7873,8 +7879,8 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains any entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7951,8 +7957,8 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains an entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7988,8 +7994,8 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>,
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                             <code>"oct"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -8012,17 +8018,17 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128CTR"</code>,
+                            not  <code>"A128CTR"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192CTR"</code>,
+                            not  <code>"A192CTR"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256CTR"</code>,
+                            not  <code>"A256CTR"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -8034,7 +8040,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>,
+                            not  <code>"enc"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -8466,8 +8472,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains any entry which is not
+                       one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -8544,8 +8550,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains an entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -8581,8 +8587,8 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>,
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            to <code>"oct"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -8605,17 +8611,17 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128CBC"</code>,
+                            not  <code>"A128CBC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192CBC"</code>,
+                            not  <code>"A192CBC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256CBC"</code>,
+                            not  <code>"A256CBC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -8628,7 +8634,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>,
+                            not  <code>"enc"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -9010,8 +9016,8 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for <code>"sign"</code> or <code>"verify"</code>,
+                      If <var>usages</var> contains any entry which is not
+                       <code>"sign"</code> or <code>"verify"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -9087,8 +9093,8 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for <code>"sign"</code> or <code>"verify"</code>,
+                      If <var>usages</var> contains an entry which is not
+                       <code>"sign"</code> or <code>"verify"</code>,
                       then <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -9123,8 +9129,8 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>,
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            to <code>"oct"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -9147,17 +9153,17 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128CMAC"</code>,
+                            not  <code>"A128CMAC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192CMAC"</code>,
+                            not  <code>"A192CMAC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256CMAC"</code>,
+                            not  <code>"A256CMAC"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -9170,7 +9176,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>,
+                            not  <code>"enc"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -9680,8 +9686,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains any entry which is not
+                       one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9758,8 +9764,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains an entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9795,8 +9801,8 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>,
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            <code>"oct"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -9819,17 +9825,17 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128GCM"</code>,
+                            not  <code>"A128GCM"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192GCM"</code>,
+                            not  <code>"A192GCM"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256GCM"</code>,
+                            not  <code>"A256GCM"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -9842,7 +9848,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>,
+                            not  <code>"enc"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -10243,8 +10249,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains any entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10321,8 +10327,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                      If <var>usages</var> contains an entry which is not
+                      one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                       <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10359,8 +10365,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>,
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            <code>"oct"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -10383,17 +10389,17 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128CFB8"</code>,
+                            not  <code>"A128CFB8"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192CFB8"</code>,
+                            not  <code>"A192CFB8"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256CFB8"</code>,
+                            not  <code>"A256CFB8"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -10405,7 +10411,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>,
+                            not  <code>"enc"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -10756,8 +10762,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>, 
+                      If <var>usages</var> contains any entry which is not
+                       one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -10826,8 +10832,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
+                      If <var>usages</var> contains an entry which is not
+                       one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10864,8 +10870,8 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>, 
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            <code>"oct"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -10888,17 +10894,17 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A128KW"</code>, 
+                            not  <code>"A128KW"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A192KW"</code>, 
+                            not  <code>"A192KW"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"A256KW"</code>, 
+                            not  <code>"A256KW"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -10911,7 +10917,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"enc"</code>, 
+                            not  <code>"enc"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -11308,8 +11314,8 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any entry which is not a case-sensitive string
-                      match for <code>"sign"</code> or <code>"verify"</code>, 
+                      If <var>usages</var> contains any entry which is not
+                      <code>"sign"</code> or <code>"verify"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -11395,8 +11401,8 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains an entry which is not a case-sensitive string
-                      match for <code>"sign"</code> or <code>"verify"</code>, 
+                      If <var>usages</var> contains an entry which is not
+                      <code>"sign"</code> or <code>"verify"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -11457,8 +11463,8 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
-                            case-sensitive string match to <code>"oct"</code>, 
+                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            <code>"oct"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -11498,59 +11504,59 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                                   <dl class="switch">
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is a case-sensitive string match for
+                                      <var>hash</var> is
                                       <code>"SHA-1"</code>:
                                     </dt>
                                     <dd>
                                       If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not a case-sensitive string match to <code>"HS1"</code>,
+                                      and is not <code>"HS1"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is a case-sensitive string match for
+                                      <var>hash</var> is
                                       <code>"SHA-224"</code>:
                                     </dt>
                                     <dd>
                                       If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not a case-sensitive string match to <code>"HS224"</code>,
+                                      and is not <code>"HS224"</code>,
                                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is a case-sensitive string match for
+                                      <var>hash</var> is
                                       <code>"SHA-256"</code>:
                                     </dt>
                                     <dd>
                                       If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not a case-sensitive string match to <code>"HS256"</code>,
+                                      and is not <code>"HS256"</code>,
                                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is a case-sensitive string match for
+                                      <var>hash</var> is
                                       <code>"SHA-384"</code>:
                                     </dt>
                                     <dd>
                                       If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not a case-sensitive string match to <code>"HS384"</code>,
+                                      and is not <code>"HS384"</code>,
                                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is a case-sensitive string match for
+                                      <var>hash</var> is
                                       <code>"SHA-512"</code>:
                                     </dt>
                                     <dd>
                                       If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not a case-sensitive string match to <code>"HS512"</code>,
+                                      and is not <code>"HS512"</code>,
                                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -11578,40 +11584,40 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                                 <li>
                                   <dl class="switch">
                                     <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is a
-                                      case-sensitive string match to <code>"HS1"</code>:
+                                      If the <code>"alg"</code> field of <var>jwk</var> is
+                                      <code>"HS1"</code>:
                                     </dt>
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> to <code>"SHA-1"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is a
-                                      case-sensitive string match to <code>"HS224"</code>:
+                                      If the <code>"alg"</code> field of <var>jwk</var> is
+                                      <code>"HS224"</code>:
                                     </dt>
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> to <code>"SHA-224"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is a
-                                      case-sensitive string match to <code>"HS256"</code>:
+                                      If the <code>"alg"</code> field of <var>jwk</var> is
+                                      to <code>"HS256"</code>:
                                     </dt>
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> to <code>"SHA-256"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is a
-                                      case-sensitive string match to <code>"HS384"</code>:
+                                      If the <code>"alg"</code> field of <var>jwk</var> is
+                                      <code>"HS384"</code>:
                                     </dt>
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> to <code>"SHA-384"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is a
-                                      case-sensitive string match to <code>"HS512"</code>:
+                                      If the <code>"alg"</code> field of <var>jwk</var> is
+                                      <code>"HS512"</code>:
                                     </dt>
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
@@ -11631,7 +11637,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                         <li>
                           <p>
                             If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not a case-sensitive string match to <code>"sign"</code>, 
+                            not  <code>"sign"</code>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -11990,8 +11996,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains a value which is not a case-sensitive string match
-                      for one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                      If <var>usages</var> contains a value which is not
+                      one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                       
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12134,7 +12140,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
-                      is not a case-sensitive string match for <code>"private"</code>,  then
+                      is not <code>"private"</code>,  then
                               <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
                     </p>
@@ -12166,8 +12172,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     <p>
                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the
                       <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var> is
-                      not a case-sensitive string match for
-                      <code>"DH"</code>, 
+                      not <code>"DH"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -12175,7 +12180,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <li>
                     <p>
                       If the <a href="#dfn-Key-type">type</a> attribute of <var>publicKey</var>
-                      is not a case-sensitive string match for
+                      is not
                       <code>"public"</code>, 
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12483,8 +12488,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     <ol>
                       <li>
                         <p>
-                          If <var>usages</var> contains a value which is not a case-sensitive string
-                          match for one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          If <var>usages</var> contains a value which is not
+                          one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                           
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13068,14 +13073,14 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
               <dd>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
+                    If <var>format</var> is <code>"raw"</code>:
                   </dt>
                   <dd>
                     <ol>
                       <li>
                         <p>
-                          If <var>usages</var> contains a value that is not a case-sensitive string
-                          match for <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          If <var>usages</var> contains a value that is not 
+                          <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                           
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13348,14 +13353,14 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
               <dd>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is a case-sensitive string match for <code>"raw"</code>:
+                    If <var>format</var> is <code>"raw"</code>:
                   </dt>
                   <dd>
                     <ol>
                       <li>
                         <p>
-                          If <var>usages</var> contains a value that is not a case-sensitive string
-                          match for <code>"deriveKey"</code> or <code>"deriveBits"</code>,
+                          If <var>usages</var> contains a value that is not 
+                           <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                           
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13578,8 +13583,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>usages</var> contains any element that is not a case-sensitive string
-                      match for <code>"deriveKey"</code>, 
+                      If <var>usages</var> contains any element that is not
+                       <code>"deriveKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
@@ -13651,7 +13656,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>format</var> is not a case-sensitive string match for
+                      If <var>format</var> is not
                       <code>"raw"</code>,
                       <a href="#concept-return-an-error">return an error</a> named
                       <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
@@ -13659,8 +13664,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      If <var>usages</var> contains any element that is not a case-sensitive string
-                      match for <code>"deriveKey"</code>, 
+                      If <var>usages</var> contains any element that is not
+                       <code>"deriveKey"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
