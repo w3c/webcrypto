@@ -2395,6 +2395,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   property of <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
               </li>
+              <div class="note">
+                <p class="norm">
+                  This note is non-normative.
+                </p>
+                <p>
+                  The key wrapping operations for some algorithms place constraints on the payload
+                  size. For example AES-KW requires the payload to be a multiple of 8 bytes in
+                  length and RSA-OAEP places a restriction on the length. For key formats that
+                  offer flexibility in serialization of a given key (for example JWK),
+                  implementations may choose to adapt the serialization to the constraints of
+                  the wrapping algorithm.
+                </p>
+              </div>
               <li>
                 <dl class="switch">
                   <dt>If <var>normalizedAlgorithm</var> supports the wrap key operation:</dt>
