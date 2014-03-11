@@ -2655,21 +2655,6 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
                 <td />
               </tr>
               <tr>
-                <td><a href="#sha">SHA-224</a></td>
-                <td />
-                <td />
-                <td />
-                <td />
-                <td>&#10004;</td>
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-                <td />
-              </tr>
-              <tr>
                 <td><a href="#sha">SHA-256</a></td>
                 <td />
                 <td />
@@ -14055,18 +14040,6 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                                     <dt>
                                       If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> is
-                                      <code>"SHA-224"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS224"</code>,
-                                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
                                       <code>"SHA-256"</code>:
                                     </dt>
                                     <dd>
@@ -14129,14 +14102,6 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                                     <dd>
                                       Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                                       <var>hash</var> to <code>"SHA-1"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS224"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-224"</code>.
                                     </dd>
                                     <dt>
                                       If the <code>"alg"</code> field of <var>jwk</var> is
@@ -14311,10 +14276,6 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                               <var>hash</var> is <code>"SHA-1"</code>:</dt>
                               <dd>Set the <code>alg</code> property of <var>jwk</var> to
                               the string <code>"HS1"</code>.</dd>
-                              <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                              <var>hash</var> is <code>"SHA-224"</code>:</dt>
-                              <dd>Set the <code>alg</code> property of <var>jwk</var> to
-                              the string <code>"HS224"</code>.</dd>
                               <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                               <var>hash</var> is <code>"SHA-256"</code>:</dt>
                               <dd>Set the <code>alg</code> property of <var>jwk</var> to
@@ -15379,8 +15340,6 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
             <dl>
               <dt id="alg-sha-1"><code>"SHA-1"</code></dt>
               <dd>The SHA-1 algorithm as specified in Section 6.1</dd>
-              <dt id="alg-sha-224"><code>"SHA-224"</code></dt>
-              <dd>The SHA-224 algorithm as specified in Section 6.3</dd>
               <dt id="alg-sha-256"><code>"SHA-256"</code></dt>
               <dd>The SHA-256 algorithm as specified in Section 6.2</dd>
               <dt id="alg-sha-384"><code>"SHA-384"</code></dt>
@@ -15428,16 +15387,6 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <dd>
                         Let <var>result</var> be the result of performing the SHA-1 hash function
                         defined in Section 6.1 of [<a href="#FIPS180-4">FIPS PUB 180-4</a>] using
-                        <var>message</var> as the input message, <var>M</var>.
-                      </dd>
-                      <dt>
-                        If the <a href="#dfn-Algorithm-name">name</a> member of
-                        <var>normalizedAlgorithm</var> is a cases-sensitve string match for
-                        <code>"SHA-224"</code>:
-                      </dt>
-                      <dd>
-                        Let <var>result</var> be the result of performing the SHA-224 hash function
-                        defined in Section 6.3 of [<a href="#FIPS180-4">FIPS PUB 180-4</a>] using
                         <var>message</var> as the input message, <var>M</var>.
                       </dd>
                       <dt>
@@ -16547,14 +16496,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
           </ul>
-          <ul>
-            <li>Algorithm Name: "HS224"</li>
-            <li>Algorithm Description: HMAC using SHA-224</li>
-            <li>Algorithm Usage Location(s): "JWK"</li>
-            <li>JOSE Implementation Requirements: Prohibited</li>
-            <li>Change Controller: W3C Web Cryptography Working Group</li>
-            <li>Specification Document(s): [[ This Document ]]</li>
-          </ul>
         </div>
         <div id="iana-section-jwk" class="section">
           <h3>JSON Web Key Parameters Registry</h3>
@@ -17257,21 +17198,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
 <x:codeblock language="es">
 { name: "HMAC",
   hash: { name: "SHA-1" }
-}
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "HS224" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "HMAC",
-  hash: { name: "SHA-224" }
 }
 </x:codeblock>
                 </td>
