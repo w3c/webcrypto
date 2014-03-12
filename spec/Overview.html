@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>10 March 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>12 March 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 10 March 2014 <b>Editor’s Draft</b> of the
+        This document is the 12 March 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -134,7 +134,7 @@
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for authors</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-interface">11. KeyAlgorithm interface</a><ul><li><a href="#key-algorithm-interface-description">11.1. Description</a></li><li><a href="#key-algorithm-interface-members">11.2. KeyAlgorithm interface members</a></li></ul></li><li><a href="#key-interface">12. Key interface</a><ul><li><a href="#key-interface-description">12.1. Description</a></li><li><a href="#key-interface-types">12.2. Key interface data types</a></li><li><a href="#key-interface-members">12.3. Key interface members</a></li><li><a href="#key-interface-clone">12.4. Structured clone algorithm</a></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-interface">18.4.4. RsaKeyAlgorithm interface</a></li><li><a href="#rsaes-pkcs1-operations">18.4.5. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">18.5.3. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-interface">18.5.4. RsaHashedKeyAlgorithm interface</a></li><li><a href="#RsaHashedImportParams-dictionary">18.5.5. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.6. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-interface">18.8.5. EcKeyAlgorithm interface</a></li><li><a href="#EcKeyImportParams-dictionary">18.8.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.7. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-interface">18.10.4. </a></li><li><a href="#aes-keygen-params">18.10.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">18.10.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.7. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-keygen-params">18.12.3. AesCmacParams dictionary</a></li><li><a href="#aes-cmac-operations">18.12.4. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#aes-kw">18.15. AES-KW</a><ul><li><a href="#aes-kw-description">18.15.1. Description</a></li><li><a href="#aes-kw-registration">18.15.2. Registration</a></li><li><a href="#aes-kw-operations">18.15.3. Operations</a></li></ul></li><li><a href="#hmac">18.16. HMAC</a><ul><li><a href="#hmac-description">18.16.1. Description</a></li><li><a href="#hmac-registration">18.16.2. Registration</a></li><li><a href="#hmac-importparams">18.16.3. HmacImportParams dictionary</a></li><li><a href="#hmac-keyalgorithm">18.16.4. HmacKeyAlgorithm interface</a></li><li><a href="#hmac-keygen-params">18.16.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-derivedkey-params">18.16.6. HmacDerivedKeyParams dictionary</a></li><li><a href="#hmac-operations">18.16.7. Operations</a></li></ul></li><li><a href="#dh">18.17. Diffie-Hellman</a><ul><li><a href="#dh-description">18.17.1. Description</a></li><li><a href="#dh-registration">18.17.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.17.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyAlgorithm">18.17.4. DhKeyAlgorithm interface</a></li><li><a href="#dh-DhKeyDeriveParams">18.17.5. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-DhImportKeyParams">18.17.6. DhImportKeyParams dictionary</a></li><li><a href="#dh-operations">18.17.7. Operations</a></li></ul></li><li><a href="#sha">18.18. SHA</a><ul><li><a href="#sha-description">18.18.1. Description</a></li><li><a href="#sha-registration">18.18.2. Registration</a></li><li><a href="#sha-operations">18.18.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.19. Concat KDF</a><ul><li><a href="#concatkdf-description">18.19.1. Description</a></li><li><a href="#concatkdf-registration">18.19.2. Registration</a></li><li><a href="#concat-params">18.19.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.19.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.20. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.20.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.20.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.20.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.20.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.21. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.21.1. Description</a></li><li><a href="#pbkdf2-registration">18.21.2. Registration</a></li><li><a href="#pbkdf2-params">18.21.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.21.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">21. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">21.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">21.2. JSON Web Key Parameters Registry</a></li></ul></li><li><a href="#acknowledgements-section">22. Acknowledgements</a></li><li><a href="#references">23. References</a><ul><li><a href="#normative-references">23.1. Normative References</a></li><li><a href="#informative-references">23.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#security">5. Security considerations</a><ul><li><a href="#security-implementers">5.1. Security considerations for implementers</a></li><li><a href="#security-developers">5.2. Security considerations for authors</a></li></ul></li><li><a href="#privacy">6. Privacy considerations</a></li><li><a href="#dependencies">7. Dependencies</a></li><li><a href="#terminology">8. Terminology</a></li><li><a href="#RandomSource-interface">9. RandomSource interface</a><ul><li><a href="#RandomSource-description">9.1. Description</a></li><li><a href="#RandomSource-interface-methods">9.2. Methods and Parameters</a><ul><li><a href="#RandomSource-method-getRandomValues">9.2.1. The getRandomValues method</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">10. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">10.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-interface">11. KeyAlgorithm interface</a><ul><li><a href="#key-algorithm-interface-description">11.1. Description</a></li><li><a href="#key-algorithm-interface-members">11.2. KeyAlgorithm interface members</a></li></ul></li><li><a href="#key-interface">12. Key interface</a><ul><li><a href="#key-interface-description">12.1. Description</a></li><li><a href="#key-interface-types">12.2. Key interface data types</a></li><li><a href="#key-interface-members">12.3. Key interface members</a></li><li><a href="#key-interface-clone">12.4. Structured clone algorithm</a></li></ul></li><li><a href="#crypto-interface">13. Crypto interface</a></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#WorkerCrypto-interface">15. WorkerCrypto interface</a><ul><li><a href="#WorkerCrypto-description">15.1. Description</a></li></ul></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. KeyPair</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-index">18.1. Registered algorithms</a></li><li><a href="#recommended-algorithms">18.2. Recommended algorithms</a></li><li><a href="#defining-an-algorithm">18.3. Defining an algorithm</a><ul><li><a href="#recognized-algorithm-name">18.3.1. Recognized algorithm name</a></li><li><a href="#supported-operations">18.3.2. Supported operations</a></li><li><a href="#algorithm-specific-params">18.3.3. Algorithm-specific parameters</a></li><li><a href="#algorithm-result">18.3.4. Algorithm results</a></li><li><a href="#algorithm-alias">18.3.5. Algorithm aliases</a></li></ul></li><li><a href="#rsaes-pkcs1">18.4. RSAES-PKCS1-v1_5</a><ul><li><a href="#rsaes-pkcs1-description">18.4.1. Description</a></li><li><a href="#rsaes-pkcs1-registration">18.4.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">18.4.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-interface">18.4.4. RsaKeyAlgorithm interface</a></li><li><a href="#rsaes-pkcs1-operations">18.4.5. Operations</a></li></ul></li><li><a href="#rsassa-pkcs1">18.5. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">18.5.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">18.5.2. Registration</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">18.5.3. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-interface">18.5.4. RsaHashedKeyAlgorithm interface</a></li><li><a href="#RsaHashedImportParams-dictionary">18.5.5. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">18.5.6. Operations</a></li></ul></li><li><a href="#rsa-pss">18.6. RSA-PSS</a><ul><li><a href="#rsa-pss-description">18.6.1. Description</a></li><li><a href="#rsa-pss-registration">18.6.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">18.6.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">18.6.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">18.7. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">18.7.1. Description</a></li><li><a href="#rsa-oaep-registration">18.7.2. Registration</a></li><li><a href="#rsa-oaep-params">18.7.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">18.7.4. Operations</a></li></ul></li><li><a href="#ecdsa">18.8. ECDSA</a><ul><li><a href="#ecdsa-description">18.8.1. Description</a></li><li><a href="#ecdsa-registration">18.8.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">18.8.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">18.8.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-interface">18.8.5. EcKeyAlgorithm interface</a></li><li><a href="#EcKeyImportParams-dictionary">18.8.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">18.8.7. Operations</a></li></ul></li><li><a href="#ecdh">18.9. ECDH</a><ul><li><a href="#ecdh-description">18.9.1. Description</a></li><li><a href="#ecdh-registration">18.9.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">18.9.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">18.9.4. Operations</a></li></ul></li><li><a href="#aes-ctr">18.10. AES-CTR</a><ul><li><a href="#aes-ctr-description">18.10.1. Description</a></li><li><a href="#aes-ctr-registration">18.10.2. Registration</a></li><li><a href="#aes-ctr-params">18.10.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-interface">18.10.4. </a></li><li><a href="#aes-keygen-params">18.10.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">18.10.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">18.10.7. Operations</a></li></ul></li><li><a href="#aes-cbc">18.11. AES-CBC</a><ul><li><a href="#aes-cbc-description">18.11.1. Description</a></li><li><a href="#aes-cbc-registration">18.11.2. Registration</a></li><li><a href="#aes-cbc-params">18.11.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">18.11.4. Operations</a></li></ul></li><li><a href="#aes-cmac">18.12. AES-CMAC</a><ul><li><a href="#aes-cmac-description">18.12.1. Description</a></li><li><a href="#aes-cmac-registration">18.12.2. Registration</a></li><li><a href="#aes-cmac-params">18.12.3. AesCmacParams dictionary</a></li><li><a href="#aes-cmac-operations">18.12.4. Operations</a></li></ul></li><li><a href="#aes-gcm">18.13. AES-GCM</a><ul><li><a href="#aes-gcm-description">18.13.1. Description</a></li><li><a href="#aes-gcm-registration">18.13.2. Registration</a></li><li><a href="#aes-gcm-params">18.13.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">18.13.4. Operations</a></li></ul></li><li><a href="#aes-cfb">18.14. AES-CFB</a><ul><li><a href="#aes-cfb-description">18.14.1. Description</a></li><li><a href="#aes-cfb-registration">18.14.2. Registration</a></li><li><a href="#aes-cfb-params">18.14.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">18.14.4. Operations</a></li></ul></li><li><a href="#aes-kw">18.15. AES-KW</a><ul><li><a href="#aes-kw-description">18.15.1. Description</a></li><li><a href="#aes-kw-registration">18.15.2. Registration</a></li><li><a href="#aes-kw-operations">18.15.3. Operations</a></li></ul></li><li><a href="#hmac">18.16. HMAC</a><ul><li><a href="#hmac-description">18.16.1. Description</a></li><li><a href="#hmac-registration">18.16.2. Registration</a></li><li><a href="#hmac-importparams">18.16.3. HmacImportParams dictionary</a></li><li><a href="#hmac-keyalgorithm">18.16.4. HmacKeyAlgorithm interface</a></li><li><a href="#hmac-keygen-params">18.16.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-derivedkey-params">18.16.6. HmacDerivedKeyParams dictionary</a></li><li><a href="#hmac-operations">18.16.7. Operations</a></li></ul></li><li><a href="#dh">18.17. Diffie-Hellman</a><ul><li><a href="#dh-description">18.17.1. Description</a></li><li><a href="#dh-registration">18.17.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">18.17.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyAlgorithm">18.17.4. DhKeyAlgorithm interface</a></li><li><a href="#dh-DhKeyDeriveParams">18.17.5. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-DhImportKeyParams">18.17.6. DhImportKeyParams dictionary</a></li><li><a href="#dh-operations">18.17.7. Operations</a></li></ul></li><li><a href="#sha">18.18. SHA</a><ul><li><a href="#sha-description">18.18.1. Description</a></li><li><a href="#sha-registration">18.18.2. Registration</a></li><li><a href="#sha-operations">18.18.3. Operations</a></li></ul></li><li><a href="#concatkdf">18.19. Concat KDF</a><ul><li><a href="#concatkdf-description">18.19.1. Description</a></li><li><a href="#concatkdf-registration">18.19.2. Registration</a></li><li><a href="#concat-params">18.19.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">18.19.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">18.20. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">18.20.1. Description</a></li><li><a href="#hkdf-ctr-registration">18.20.2. Registration</a></li><li><a href="#hkdf-ctr-params">18.20.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">18.20.4. Operations</a></li></ul></li><li><a href="#pbkdf2">18.21. PBKDF2</a><ul><li><a href="#pbkdf2-description">18.21.1. Description</a></li><li><a href="#pbkdf2-registration">18.21.2. Registration</a></li><li><a href="#pbkdf2-params">18.21.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">18.21.4. Operations</a></li></ul></li></ul></li><li><a href="#algorithm-normalizing-rules">19. Algorithm normalizing rules</a></li><li><a href="#examples-section">20. JavaScript Example Code</a><ul><li><a href="#examples-signing">20.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">20.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">21. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">21.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">21.2. JSON Web Key Parameters Registry</a></li></ul></li><li><a href="#acknowledgements-section">22. Acknowledgements</a></li><li><a href="#references">23. References</a><ul><li><a href="#normative-references">23.1. Normative References</a></li><li><a href="#informative-references">23.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
     </div>
 
     <div id="sections">
@@ -1806,7 +1806,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-importKey" class="section">
-            <h4>14.3.9. The <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method</h4>
+            <h4>14.3.9. The <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method</h4>
             <p>                  
               When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method
               <span class="RFC2119">MUST</span> perform the following steps:
@@ -1901,7 +1901,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           </div>
 
           <div id="SubtleCrypto-method-exportKey" class="section">
-            <h4>14.3.10. The <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method</h4>
+            <h4>14.3.10. The <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a> method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method
               <span class="RFC2119">MUST</span> perform the following steps:
@@ -2075,20 +2075,20 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   the <a href="#dfn-Key-algorithm">algorithm</a>
                   attribute of <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
+                <div class="note"><div class="noteHeader">Note</div>
+                  <p class="norm">
+                    This note is non-normative.
+                  </p>
+                  <p>
+                    The key wrapping operations for some algorithms place constraints on the payload
+                    size. For example AES-KW requires the payload to be a multiple of 8 bytes in
+                    length and RSA-OAEP places a restriction on the length. For key formats that
+                    offer flexibility in serialization of a given key (for example JWK),
+                    implementations may choose to adapt the serialization to the constraints of
+                    the wrapping algorithm.
+                  </p>
+                </div>
               </li>
-              <div class="note"><div class="noteHeader">Note</div>
-                <p class="norm">
-                  This note is non-normative.
-                </p>
-                <p>
-                  The key wrapping operations for some algorithms place constraints on the payload
-                  size. For example AES-KW requires the payload to be a multiple of 8 bytes in
-                  length and RSA-OAEP places a restriction on the length. For key formats that
-                  offer flexibility in serialization of a given key (for example JWK),
-                  implementations may choose to adapt the serialization to the constraints of
-                  the wrapping algorithm.
-                </p>
-              </div>
               <li>
                 <dl class="switch">
                   <dt>If <var>normalizedAlgorithm</var> supports the wrap key operation:</dt>
@@ -2283,54 +2283,54 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             by calling the reject handler of the returned promise with a
             <a href="#dfn-DOMException">DOMException</a>. The following DOMException types from
             [<a href="#DOM4">DOM4</a>] are used with messages as shown in the following table:
-            <table>
-              <tbody>
-                <tr>
-                  <th>Type</th>
-                  <th>Message (optional)</th>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-NotSupportedError"><code>NotSupportedError</code></dfn></td>
-                  <td>The algorithm is not supported</td>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-SyntaxError"><code>SyntaxError</code></dfn></td>
-                  <td>A required parameter was missing our out-of-range</td>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-InvalidStateError"><code>InvalidStateError</code></dfn></td>
-                  <td>The requested operation is not value for the current state of the provided key.</td>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-InvalidAccessError"><code>InvalidAccessError</code></dfn></td>
-                  <td>The requested operation is not valid for the provided key</td>
-                </tr>
-              </tbody>
-            </table>
           </p>
+          <table>
+            <tbody>
+              <tr>
+                <th>Type</th>
+                <th>Message (optional)</th>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-NotSupportedError"><code>NotSupportedError</code></dfn></td>
+                <td>The algorithm is not supported</td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-SyntaxError"><code>SyntaxError</code></dfn></td>
+                <td>A required parameter was missing our out-of-range</td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-InvalidStateError"><code>InvalidStateError</code></dfn></td>
+                <td>The requested operation is not value for the current state of the provided key.</td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-InvalidAccessError"><code>InvalidAccessError</code></dfn></td>
+                <td>The requested operation is not valid for the provided key</td>
+              </tr>
+            </tbody>
+          </table>
           <p>
             The following new DOMException types are defined by this specification:
-            <table>
-              <tbody>
-                <tr>
-                  <th>Type</th>
-                  <th>Message (optional)</th>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-UnknownError"><code>UnknownError</code></dfn></td>
-                  <td>The operation failed for an unknown transient reason (e.g. out of memory)</td>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-DataError"><code>DataError</code></dfn></td>
-                  <td>Data provided to an operation does not meet requirements</td>
-                </tr>
-                <tr>
-                  <td><dfn id="dfn-OperationError"><code>OperationError</code></dfn></td>
-                  <td>The operation failed for an operation-specific reason</td>
-                </tr>
-              </tbody>
-            </table>
           </p>
+          <table>
+            <tbody>
+              <tr>
+                <th>Type</th>
+                <th>Message (optional)</th>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-UnknownError"><code>UnknownError</code></dfn></td>
+                <td>The operation failed for an unknown transient reason (e.g. out of memory)</td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-DataError"><code>DataError</code></dfn></td>
+                <td>Data provided to an operation does not meet requirements</td>
+              </tr>
+              <tr>
+                <td><dfn id="dfn-OperationError"><code>OperationError</code></dfn></td>
+                <td>The operation failed for an operation-specific reason</td>
+              </tr>
+            </tbody>
+          </table>
           <p>
             When this specification says to
             <dfn id="concept-return-an-error">return an error</dfn> named <var>error</var>,
@@ -7571,15 +7571,15 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
               The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves,
               which are a convenient way to specify the domain parameters of well-known elliptic
               curves. The following values are recognized:
-              <dl>
-                <dt id="dfn-NamedCurve-p256"><code>P-256</code></dt>
-                <dd>NIST recommended curve P-256, also known as <code>secp256r1</code>.</dd>
-                <dt id="dfn-NamedCurve-p2384"><code>P-384</code></dt>
-                <dd>NIST recommended curve P-384, also known as <code>secp384r1</code>.</dd>
-                <dt id="dfn-NamedCurve-p521"><code>P-521</code></dt>
-                <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
-              </dl>
             </p>
+            <dl>
+              <dt id="dfn-NamedCurve-p256"><code>P-256</code></dt>
+              <dd>NIST recommended curve P-256, also known as <code>secp256r1</code>.</dd>
+              <dt id="dfn-NamedCurve-p2384"><code>P-384</code></dt>
+              <dd>NIST recommended curve P-384, also known as <code>secp384r1</code>.</dd>
+              <dt id="dfn-NamedCurve-p521"><code>P-521</code></dt>
+              <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
+            </dl>
           </div>
           <div id="EcKeyAlgorithm-interface" class="section">
             <h4>18.8.5. EcKeyAlgorithm interface</h4>
@@ -7596,7 +7596,7 @@ interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyA
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
-  <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="#dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
+  <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
 };
             </code></pre></div></div>
           </div>
@@ -9035,27 +9035,25 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     </p>
                   </li>
                   <li>
-                    <p>
-                      <dl class="switch">
-                        <dt>If <var>length</var> is null:</dt>
-                        <dd>Return <var>secret</var></dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          <dl class="switch">
-                            <dt>
-                              If the length of <var>secret</var> in bits is less than
-                              <var>length</var>:
-                            </dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                            </dd>
-                            <dt>Otherwise:</dt>
-                            <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
-                          </dl>
-                        </dd>
-                      </dl>
-                    </p>
+                    <dl class="switch">
+                      <dt>If <var>length</var> is null:</dt>
+                      <dd>Return <var>secret</var></dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        <dl class="switch">
+                          <dt>
+                            If the length of <var>secret</var> in bits is less than
+                            <var>length</var>:
+                          </dt>
+                          <dd>
+                            <a href="#concept-return-an-error">Return an error</a> named
+                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </dd>
+                          <dt>Otherwise:</dt>
+                          <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                        </dl>
+                      </dd>
+                    </dl>
                   </li>
                 </ol>
               </dd>
@@ -10339,84 +10337,86 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                             <code>"oct"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128CTR"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                               <code>"oct"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192CTR"</code>,
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256CTR"</code>,
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128CTR"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192CTR"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256CTR"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -10932,85 +10932,87 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            to <code>"oct"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128CBC"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              to <code>"oct"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192CBC"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256CBC"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or                           
-                            does not contain all of the specified <var>usages</var> values,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128CBC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192CBC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256CBC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or                           
+                              does not contain all of the specified <var>usages</var> values,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -11257,7 +11259,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               </tbody>
             </table>
           </div>
-          <div id="aes-keygen-params" class="section">
+          <div id="aes-cmac-params" class="section">
             <h4>18.12.3. AesCmacParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
@@ -11474,85 +11476,87 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            to <code>"oct"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128CMAC"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              to <code>"oct"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192CMAC"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256CMAC"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128CMAC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192CMAC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256CMAC"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -11991,18 +11995,18 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                       <var>tagLength</var> as the <var>t</var> pre-requisite,
                       <var>actualCiphertext</var> as the input ciphertext, <var>C</var> and
                       <var>tag</var> as the authentation tag, <var>T</var>.
-                      <dl class="switch">
-                        <dt>If the result of the algorithm is the indication of inauthenticity,
-                        "<var>FAIL</var>":</dt>
-                        <dd>
-                          <a href="#concept-return-an-error">Return an error</a> named
-                          <a href="#dfn-OperationError"><code>OperationError</code></a>
-                        </dd>
-                        <dt>Otherwise:</dt>
-                        <dd>Let <var>plaintext</var> be the output <var>P</var> of the Authenticated
-                        Decryption Function.</dd>
-                      </dl>
                     </p>
+                    <dl class="switch">
+                      <dt>If the result of the algorithm is the indication of inauthenticity,
+                      "<var>FAIL</var>":</dt>
+                      <dd>
+                        <a href="#concept-return-an-error">Return an error</a> named
+                        <a href="#dfn-OperationError"><code>OperationError</code></a>
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Let <var>plaintext</var> be the output <var>P</var> of the Authenticated
+                      Decryption Function.</dd>
+                    </dl>
                   </li>
                   <li>
                     <p>
@@ -12146,85 +12150,87 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128GCM"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"oct"</code>,
                               then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192GCM"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256GCM"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128GCM"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192GCM"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256GCM"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              then <a href="#concept-return-an-error">return an error</a> named
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -12710,84 +12716,86 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"oct"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128CFB8"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192CFB8"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256CFB8"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128CFB8"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192CFB8"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256CFB8"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -13215,84 +13223,86 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>, 
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"oct"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128KW"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192KW"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256KW"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-return-an-error">Return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"enc"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.                          </p>
-                        </li>
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If <var>data</var> has length 128 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A128KW"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 192 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A192KW"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>If <var>data</var> has length 256 bits:</dt>
+                              <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"A256KW"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"enc"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.                          </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -13567,7 +13577,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
           <div id="hmac-derivedkey-params" class="section">
             <h4>18.16.6. HmacDerivedKeyParams dictionary</h4>
             <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="#dfn-HmacImportParams">HmacImportParams</a> {
+dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a href="#dfn-HmacImportParams">HmacImportParams</a> {
   <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
@@ -13808,194 +13818,196 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacDerivedKeyParams</dfn> : <a href="
                       </dd>
                       <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
                       <dd>
-                        <li>
-                          <p>
-                            Let <var>jwk</var> be the result of running the
-                            <a href="#concept-parse-a-jwk">parse a jwk</a>
-                            algorithm over <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>
-                              If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var> is present and has a
-                                <a href="#dfn-Algorithm-name">name</a> member:
-                            </dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                    <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
-                                    member of the <a href="#dfn-HmacImportParams-hash">hash</a>
-                                    member of <var>normalizedAlgorithm</var>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <dl class="switch">
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
-                                      <code>"SHA-1"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS1"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
-                                      <code>"SHA-256"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS256"</code>,
+                        <ol>
+                          <li>
+                            <p>
+                              Let <var>jwk</var> be the result of running the
+                              <a href="#concept-parse-a-jwk">parse a jwk</a>
+                              algorithm over <var>keyData</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"kty"</code> field of <var>jwk</var> is not
+                              <code>"oct"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>jwk</var> does not meet the requirements of
+                              Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>data</var> be the octet string obtained by decoding the
+                              <code>"k"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
+                                <var>normalizedAlgorithm</var> is present and has a
+                                  <a href="#dfn-Algorithm-name">name</a> member:
+                              </dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                      <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
+                                      member of the <a href="#dfn-HmacImportParams-hash">hash</a>
+                                      member of <var>normalizedAlgorithm</var>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <dl class="switch">
+                                      <dt>
+                                        If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> is
+                                        <code>"SHA-1"</code>:
+                                      </dt>
+                                      <dd>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is present
+                                        and is not <code>"HS1"</code>,
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                      <dt>
+                                        If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> is
+                                        <code>"SHA-256"</code>:
+                                      </dt>
+                                      <dd>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is present
+                                        and is not <code>"HS256"</code>,
+                                        
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                      <dt>
+                                        If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> is
+                                        <code>"SHA-384"</code>:
+                                      </dt>
+                                      <dd>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is present
+                                        and is not <code>"HS384"</code>,
+                                        
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                      <dt>
+                                        If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> is
+                                        <code>"SHA-512"</code>:
+                                      </dt>
+                                      <dd>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is present
+                                        and is not <code>"HS512"</code>,
+                                        
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                      <dt>Otherwise:</dt>
+                                      <dd>
+                                        <a href="#concept-return-an-error">Return an error</a> named
+                                        <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                </ol>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If the <code>alg</code> field of <var>jwk</var> is not present,
                                       
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
-                                      <code>"SHA-384"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS384"</code>,
-                                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
-                                      <code>"SHA-512"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS512"</code>,
-                                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>Otherwise:</dt>
-                                    <dd>
-                                      <a href="#concept-return-an-error">Return an error</a> named
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                  </dl>
-                                </li>
-                              </ol>
-                            </dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If the <code>alg</code> field of <var>jwk</var> is not present,
-                                    
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <dl class="switch">
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS1"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-1"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      to <code>"HS256"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-256"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS384"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-384"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS512"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-512"</code>.
-                                    </dd>
-                                    <dt>Otherwise:</dt>
-                                    <dd>
-                                      <a href="#concept-return-an-error">Return an error</a> named
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                  </dl>
-                                </li>
-                              </ol>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"sign"</code>, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                            is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or
-                            does not contain all of the specified <var>usages</var> values,
-                            
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
-                            has the value false and <var>extractable</var> is true,
-                            
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <dl class="switch">
+                                      <dt>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is
+                                        <code>"HS1"</code>:
+                                      </dt>
+                                      <dd>
+                                        Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> to <code>"SHA-1"</code>.
+                                      </dd>
+                                      <dt>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is
+                                        to <code>"HS256"</code>:
+                                      </dt>
+                                      <dd>
+                                        Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> to <code>"SHA-256"</code>.
+                                      </dd>
+                                      <dt>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is
+                                        <code>"HS384"</code>:
+                                      </dt>
+                                      <dd>
+                                        Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> to <code>"SHA-384"</code>.
+                                      </dd>
+                                      <dt>
+                                        If the <code>"alg"</code> field of <var>jwk</var> is
+                                        <code>"HS512"</code>:
+                                      </dt>
+                                      <dd>
+                                        Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                                        <var>hash</var> to <code>"SHA-512"</code>.
+                                      </dd>
+                                      <dt>Otherwise:</dt>
+                                      <dd>
+                                        <a href="#concept-return-an-error">Return an error</a> named
+                                        <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      </dd>
+                                    </dl>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                              not  <code>"sign"</code>, 
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                              is invalid according to the requirements of
+                              <a href="#jwk">JSON Web Key</a> or
+                              does not contain all of the specified <var>usages</var> values,
+                              
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If the <code>"ext"</code> field of <var>jwk</var> is present and
+                              has the value false and <var>extractable</var> is true,
+                              
+                                then <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -14546,34 +14558,32 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       Diffie Hellman public value represented by the
                       <a href="#dfn-DhKeyDeriveParams-public">public</a> member of
                       <var>normalizedAlgorithm</var> as the other's public value <var>PV'</var>.
-                      <dl class="switch">
-                        <dt>If performing the operation results in an error:</dt>
-                        <dd>
-                          <a href="#concept-return-an-error">Return an error</a> named
-                          <a href="#dfn-OperationError"><code>OperationError</code></a>.
-                        </dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Let <var>secret</var> be the output of the DH Phase II, <var>SK</var>.
-                        </dd>
-                      </dl>
                     </p>
+                    <dl class="switch">
+                      <dt>If performing the operation results in an error:</dt>
+                      <dd>
+                        <a href="#concept-return-an-error">Return an error</a> named
+                        <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        Let <var>secret</var> be the output of the DH Phase II, <var>SK</var>.
+                      </dd>
+                    </dl>
                   </li>
                   <li>
-                    <p>
-                      <dl class="switch">
-                        <dt>
-                          If the length of <var>secret</var> in bits is less than
-                          <var>length</var>:
-                        </dt>
-                        <dd>
-                          <a href="#concept-return-an-error">Return an error</a> named
-                          <a href="#dfn-DataError"><code>DataError</code></a>.
-                        </dd>
-                        <dt>Otherwise:</dt>
-                        <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
-                      </dl>
-                    </p>
+                    <dl class="switch">
+                      <dt>
+                        If the length of <var>secret</var> in bits is less than
+                        <var>length</var>:
+                      </dt>
+                      <dd>
+                        <a href="#concept-return-an-error">Return an error</a> named
+                        <a href="#dfn-DataError"><code>DataError</code></a>.
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                    </dl>
                   </li>
                 </ol>
               </dd>
@@ -15591,48 +15601,48 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                       Let <var>result</var> be the result of performing the KDF in counter
                       mode operation described in Section 5.1 of NIST SP 800-108
                       [<a href="#SP800-108">SP800-108</a>] using:
-                      <ul>
-                        <li>
-                          <p>
-                            <var>prf</var> as the Pseudo-Random Function, <var>PRF</var>,
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <var>keyDerivationKey</var> as the Key derivation key,
-                            <var>K<sub>I</sub></var>,
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            the contents of the <a href="#dfn-HkdfCtrParams-label">label</a> member
-                            of <var>normalizedAlgorithm</var> as <var>Label</var>,
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            the contents of the <a href="#dfn-HkdfCtrParams-label">context</a>
-                            member of <var>normalizedAlgorithm</var> as <var>Context</var>,
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            <var>length</var> as the value of <var>L</var>,
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            32 as the value of <var>r</var>, and
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            the 32-bit little-endian binary encoding of <var>length</var>
-                            as the encoded length value [<var>L</var>]<sub>2</sub>.
-                          </p>
-                        </li>
-                      </ul>
                     </p>
+                    <ul>
+                      <li>
+                        <p>
+                          <var>prf</var> as the Pseudo-Random Function, <var>PRF</var>,
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <var>keyDerivationKey</var> as the Key derivation key,
+                          <var>K<sub>I</sub></var>,
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          the contents of the <a href="#dfn-HkdfCtrParams-label">label</a> member
+                          of <var>normalizedAlgorithm</var> as <var>Label</var>,
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          the contents of the <a href="#dfn-HkdfCtrParams-label">context</a>
+                          member of <var>normalizedAlgorithm</var> as <var>Context</var>,
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <var>length</var> as the value of <var>L</var>,
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          32 as the value of <var>r</var>, and
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          the 32-bit little-endian binary encoding of <var>length</var>
+                          as the encoded length value [<var>L</var>]<sub>2</sub>.
+                        </p>
+                      </li>
+                    </ul>
                   </li>
                   <li>
                     <p>
@@ -16064,43 +16074,41 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
             </p>
           </li>
           <li>
-            <p>
-              <dl class="switch">
-                <dt>If <var>mappedAlgorithm</var> is a DOMString, then:</dt>
-                <dd>
-                  <ol>
-                    <li>
-                      <p>
-                        If <var>mappedAlgorithm</var> contains any non-ASCII characters,
-                        <a href="#concept-return-an-error">return an error</a> named
-                        <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Convert every character in <var>mappedAlgorithm</var> to lower case.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        If <var>mappedAlgorithm</var> is equal to a recognized
-                        <a href="#dfn-algorithm-alias">algorithm alias</a> then let
-                        <var>objectAlgorithm</var> be the value defined to be equivalent
-                        to this alias.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Otherwise, <a href="#concept-return-an-error">return an error</a> named
-                        <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                      </p>
-                    </li>
-                  </ol>
-                </dd>
-                <dt>Otherwise:</dt>
-                <dd>Let <var>objectAlgorithm</var> equal <var>algorithm</var>.</dd>
-              </dl>
-            </p>
+            <dl class="switch">
+              <dt>If <var>mappedAlgorithm</var> is a DOMString, then:</dt>
+              <dd>
+                <ol>
+                  <li>
+                    <p>
+                      If <var>mappedAlgorithm</var> contains any non-ASCII characters,
+                      <a href="#concept-return-an-error">return an error</a> named
+                      <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Convert every character in <var>mappedAlgorithm</var> to lower case.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If <var>mappedAlgorithm</var> is equal to a recognized
+                      <a href="#dfn-algorithm-alias">algorithm alias</a> then let
+                      <var>objectAlgorithm</var> be the value defined to be equivalent
+                      to this alias.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      Otherwise, <a href="#concept-return-an-error">return an error</a> named
+                      <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    </p>
+                  </li>
+                </ol>
+              </dd>
+              <dt>Otherwise:</dt>
+              <dd>Let <var>objectAlgorithm</var> equal <var>algorithm</var>.</dd>
+            </dl>
           </li>
           <li>
             <p>
