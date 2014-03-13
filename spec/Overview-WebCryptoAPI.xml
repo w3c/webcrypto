@@ -800,8 +800,8 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
         </p>
         <x:codeblock language="idl">
 [NoInterfaceObject]
-interface <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
-  readonly attribute DOMString <a href="#dfn-key-algorithm-name">name</a>
+interface <dfn id="#dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
+  readonly attribute DOMString <a href="#dfn-KeyAlgorithm-name">name</a>
 };
         </x:codeblock>
         <div id="key-algorithm-interface-description" class="section">
@@ -818,7 +818,7 @@ interface <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
         <div id="key-algorithm-interface-members" class="section">
           <h3>KeyAlgorithm interface members</h3>
           <dl>
-            <dt id="dfn-key-algorithm-name">name</dt>
+            <dt id="dfn-KeyAlgorithm-name">name</dt>
             <dd>The name of the algorithm used to generate the <a href="#dfn-Key">Key</a></dd>
           </dl>
         </div>
@@ -1148,7 +1148,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the
                   encrypt operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1232,7 +1232,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the decrypt
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1316,7 +1316,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the  sign
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1399,7 +1399,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the verify
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1482,7 +1482,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the digest
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1558,7 +1558,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the generate
                   key operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1642,7 +1642,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the derive bits
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1658,7 +1658,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedDerivedKeyAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the get key length
                   and import key operations, then <a href="#concept-return-an-error">return an error</a> named
@@ -1765,7 +1765,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the derive bits
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1851,7 +1851,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the import key
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -1943,7 +1943,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the export key
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -2024,7 +2024,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the encrypt or wrap
                   key operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -2174,7 +2174,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the unwrap key or
                   decrypt
@@ -2191,7 +2191,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If the <a href="#dfn-Algorith-name">name</a> member of
+                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedKeyAlgorithm</var> does not identify a
                   <a href="#algorithms">registered algorithm</a> that supports the importKey
                   operation, then <a href="#concept-return-an-error">return an error</a> named
@@ -2904,9 +2904,9 @@ interface <dfn id="dfn-KeyPair">KeyPair</dfn> {
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
-  [EnforceRange] unsigned long modulusLength;
+  [EnforceRange] unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
-  <a href="#dfn-BigInteger">BigInteger</a> publicExponent;
+  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
 };
             </x:codeblock>
           </div>
@@ -3076,7 +3076,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>publicKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>publicKey</var>
                       to <code>"public"</code>
                     </p>
                   </li>
@@ -3096,7 +3096,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>publicKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
                     </p>
                   </li>
@@ -3108,7 +3108,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -3128,7 +3128,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
                     </p>
                   </li>
@@ -3140,13 +3140,13 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -3218,7 +3218,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"public"</code>
                             </p>
                           </li>
@@ -3278,7 +3278,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"private"</code>
                             </p>
                           </li>
@@ -3380,7 +3380,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"public"</code>
                                     </p>
                                   </li>
@@ -3573,7 +3573,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           <li>
                             <p>
                               Set the properties <code>n</code> and <code>e</code> of <var>jwk</var>
-                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              according to the corresponding definitions in <a href="#jwa">JSON Web
                               Algorithms</a>, Section 6.3.1.
                             </p>
                           </li>
@@ -3590,7 +3590,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                                       Set the properties named <code>d</code>, <code>p</code>,
                                       <code>q</code>, <code>dp</code>, <code>dq</code>, and
                                       <code>qi</code> of <var>jwk</var> according to the
-                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      corresponding definitions in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.
                                     </p>
                                   </li>
@@ -3599,7 +3599,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                                       If the underlying RSA private key represented by
                                       <var>key</var> is represented by more than two primes, set the
                                       member named <code>oth</code> of <var>jwk</var> according to
-                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      the corresponding definition in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.7
                                     </p>
                                   </li>
@@ -3938,7 +3938,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>publicKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "verify" ]</code>.
                     </p>
                   </li>
@@ -3950,7 +3950,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -3970,7 +3970,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "sign" ]</code>.
                     </p>
                   </li>
@@ -3982,13 +3982,13 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -4162,7 +4162,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"public"</code>
                             </p>
                           </li>
@@ -4301,7 +4301,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"private"</code>
                             </p>
                           </li>
@@ -4429,7 +4429,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"private"</code>
                                     </p>
                                   </li>
@@ -4456,7 +4456,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"public"</code>
                                     </p>
                                   </li>
@@ -4703,7 +4703,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                           <li>
                             <p>
                               Set the fields <code>n</code> and <code>e</code> of <var>jwk</var>
-                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              according to the corresponding definitions in <a href="#jwa">JSON Web
                               Algorithms</a>, Section 6.3.1.
                             </p>
                           </li>
@@ -4720,7 +4720,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                       Set the fields named <code>d</code>, <code>p</code>,
                                       <code>q</code>, <code>dp</code>, <code>dq</code>, and
                                       <code>qi</code> of <var>jwk</var> according to the
-                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      corresponding definitions in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.
                                     </p>
                                   </li>
@@ -4729,7 +4729,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                       If the underlying RSA private key represented by
                                       <var>key</var> is represented by more than two primes, set the
                                       field named <code>oth</code> of <var>jwk</var> according to
-                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      the corresponding definition in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.7
                                     </p>
                                   </li>
@@ -4850,7 +4850,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The desired length of the random salt</span>
-  [EnforceRange] unsigned long saltLength;
+  [EnforceRange] unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
 };
             </x:codeblock>
           </div>
@@ -5085,7 +5085,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>publicKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "verify" ]</code>.
                     </p>
                   </li>
@@ -5097,7 +5097,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -5117,7 +5117,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "sign" ]</code>.
                     </p>
                   </li>
@@ -5129,13 +5129,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -5366,7 +5366,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"public"</code>
                             </p>
                           </li>
@@ -5568,7 +5568,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"private"</code>
                             </p>
                           </li>
@@ -5696,7 +5696,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"private"</code>
                                     </p>
                                   </li>
@@ -5723,7 +5723,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"public"</code>
                                     </p>
                                   </li>
@@ -6173,7 +6173,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Set the fields <code>n</code> and <code>e</code> of <var>jwk</var>
-                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              according to the corresponding definitions in <a href="#jwa">JSON Web
                               Algorithms</a>, Section 6.3.1.
                             </p>
                           </li>
@@ -6190,7 +6190,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                       Set the fields named <code>d</code>, <code>p</code>,
                                       <code>q</code>, <code>dp</code>, <code>dq</code>, and
                                       <code>qi</code> of <var>jwk</var> according to the
-                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      corresponding definitions in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.
                                     </p>
                                   </li>
@@ -6199,7 +6199,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                       If the underlying RSA private key represented by
                                       <var>key</var> is represented by more than two primes, set the
                                       field named <code>oth</code> of <var>jwk</var> according to
-                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      the corresponding definition in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.7
                                     </p>
                                   </li>
@@ -6321,7 +6321,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The optional label/application data to associate with the message</span>
-  CryptoOperationData? label;
+  CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
 };
             </x:codeblock>
           </div>
@@ -6555,7 +6555,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>publicKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
                     </p>
                   </li>
@@ -6567,7 +6567,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -6587,7 +6587,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
                     </p>
                   </li>
@@ -6599,13 +6599,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -6835,7 +6835,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"public"</code>
                             </p>
                           </li>
@@ -7041,7 +7041,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-Key-Type">type</a> attribute of <var>key</var>
+                              Set the <a href="#dfn-Key-type">type</a> attribute of <var>key</var>
                               to <code>"private"</code>
                             </p>
                           </li>
@@ -7123,7 +7123,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"private"</code>
                                     </p>
                                   </li>
@@ -7150,7 +7150,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                   </li>
                                   <li>
                                     <p>
-                                      Set the <a href="#dfn-Key-Type">type</a> attribute of
+                                      Set the <a href="#dfn-Key-type">type</a> attribute of
                                       <var>key</var> to <code>"public"</code>
                                     </p>
                                   </li>
@@ -7539,7 +7539,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                           <li>
                             <p>
                               Set the fields <code>n</code> and <code>e</code> of <var>jwk</var>
-                              according to the corresponding definitions in <a href="#JWA">JSON Web
+                              according to the corresponding definitions in <a href="#jwa">JSON Web
                               Algorithms</a>, Section 6.3.1.
                             </p>
                           </li>
@@ -7556,7 +7556,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                       Set the fields named <code>d</code>, <code>p</code>,
                                       <code>q</code>, <code>dp</code>, <code>dq</code>, and
                                       <code>qi</code> of <var>jwk</var> according to the
-                                      corresponding definitions in <a href="#JWA">JSON Web
+                                      corresponding definitions in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.
                                     </p>
                                   </li>
@@ -7565,7 +7565,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                       If the underlying RSA private key represented by
                                       <var>key</var> is represented by more than two primes, set the
                                       field named <code>oth</code> of <var>jwk</var> according to
-                                      the corresponding definition in <a href="#JWA">JSON Web
+                                      the corresponding definition in <a href="#jwa">JSON Web
                                       Algorithms</a>, Section 6.3.2.7
                                     </p>
                                   </li>
@@ -7686,7 +7686,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
-  AlgorithmIdentifier hash;
+  AlgorithmIdentifier <dfn id="dfn-EcdsaParams-hash">hash</dfn>;
 };
             </x:codeblock>
           </div>
@@ -7697,7 +7697,7 @@ typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
 
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
-  <a href="#dfn-NamedCurve">NamedCurve</a> namedCurve;
+  <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyGenParams-namedCurve">namedCurve</dfn>;
 };
             </x:codeblock>
             <p>
@@ -7946,7 +7946,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     <p>
                       Generate an Eliptic Curve key pair, as defined in [<a href="#X9.62">X9.62</a>]
                       with domain parameters for the curve identified by
-                      the <a href="#dfn-ExKeyGenParams-namedCurve">namedCurve</a> member of
+                      the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
                       <var>normalizedAlgorithm</var>.
                     </p>
                   </li>
@@ -8016,7 +8016,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -8036,7 +8036,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "sign", "verify" ]</code>.
                     </p>
                   </li>
@@ -8048,13 +8048,13 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -8388,7 +8388,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <p>
                               If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                              is invalid according to the requirements of <a href="#JWK">JSON Web
+                              is invalid according to the requirements of <a href="#jwk">JSON Web
                               Key</a>, or it does not contain all of the specified <var>usages</var>
                               values,
                               then <a href="#concept-return-an-error">return an error</a> named
@@ -8411,7 +8411,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                   <li>
                                     <p>
                                       If <var>jwk</var> does not meet the requirements of Section
-                                      6.2.2 of <a href="#JWA">JSON Web Algorithms</a>,
+                                      6.2.2 of <a href="#jwa">JSON Web Algorithms</a>,
                                       then <a href="#concept-return-an-error">return an error</a> named
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </p>
@@ -8421,7 +8421,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                       Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
                                       that represents the Elliptic Curve private key identified by
                                       interpreting <var>jwk</var> according to Section 6.2.2 of <a
-                                      href="#JWA">JSON Web Algorithms</a>.
+                                      href="#jwa">JSON Web Algorithms</a>.
                                     </p>
                                   </li>
                                   <li>
@@ -8438,7 +8438,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                   <li>
                                     <p>
                                       If <var>jwk</var> does not meet the requirements of Section
-                                      6.2.1 of <a href="#JWA">JSON Web Algorithms</a>,
+                                      6.2.1 of <a href="#jwa">JSON Web Algorithms</a>,
                                       then <a href="#concept-return-an-error">return an error</a> named
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </p>
@@ -8448,7 +8448,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                       Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
                                       that represents the Elliptic Curve public key identified by
                                       interpreting <var>jwk</var> according to Section 6.2.1 of <a
-                                      href="#JWA">JSON Web Algorithms</a>.
+                                      href="#jwa">JSON Web Algorithms</a>.
                                     </p>
                                   </li>
                                   <li>
@@ -8464,7 +8464,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <p>
                               Let <var>algorithm</var> be a new instance of an <a
-                              href="#EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                              href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
                             </p>
                           </li>
                           <li>
@@ -8805,14 +8805,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <p>
                               Set the <code>x</code> property of <var>jwk</var> according to the
-                              definition in Section 6.2.1.2 of <a href="#JWA">JSON Web
+                              definition in Section 6.2.1.2 of <a href="#jwa">JSON Web
                               Algorithms</a>.
                             </p>
                           </li>
                           <li>
                             <p>
                               Set the <code>y</code> property of <var>jwk</var> according to the
-                              definition in Section 6.2.1.3 of <a href="#JWA">JSON Web
+                              definition in Section 6.2.1.3 of <a href="#jwa">JSON Web
                               Algorithms</a>.
                             </p>
                           </li>
@@ -8825,7 +8825,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               <dd>
                                 <p>
                                   Set the <code>d</code> property of <var>jwk</var> according to the
-                                  definition in Section 6.2.2.1 of <a href="#JWA">JSON Web
+                                  definition in Section 6.2.2.1 of <a href="#jwa">JSON Web
                                   Algorithms</a>.
                                 </p>
                               </dd>
@@ -8946,7 +8946,7 @@ typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
 
 dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's EC public key.</span>
-  <a href="#dfn-Key">Key</a> public;
+  <a href="#dfn-Key">Key</a> <dfn id="dfn-EcdhKeyDeriveParams-public">public</dfn>;
 };
             </x:codeblock>
           </div>
@@ -9053,7 +9053,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -9073,7 +9073,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     <p>
                       Set the <a href="#dfn-Key-usages">usages</a> attribute of
                       <var>privateKey</var> to be the
-                      <a href="concept-usage-intersection">usage intersection</a> of
+                      <a href="#concept-usage-intersection">usage intersection</a> of
                       <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
                     </p>
                   </li>
@@ -9085,13 +9085,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -9535,7 +9535,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
-                              is invalid according to the requirements of <a href="#JWK">JSON Web
+                              is invalid according to the requirements of <a href="#jwk">JSON Web
                               Key</a>, or it does not contain all of the specified <var>usages</var>
                               values, then <a href="#concept-return-an-error">return an error</a>
                               named <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9557,7 +9557,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                   <li>
                                     <p>
                                       If <var>jwk</var> does not meet the requirements of Section
-                                      6.2.2 of <a href="#JWA">JSON Web Algorithms</a>,
+                                      6.2.2 of <a href="#jwa">JSON Web Algorithms</a>,
                                       then <a href="#concept-return-an-error">return an error</a> named
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </p>
@@ -9567,7 +9567,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                       Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
                                       that represents the Elliptic Curve private key identified by
                                       interpreting <var>jwk</var> according to Section 6.2.2 of <a
-                                      href="#JWA">JSON Web Algorithms</a>.
+                                      href="#jwa">JSON Web Algorithms</a>.
                                     </p>
                                   </li>
                                   <li>
@@ -9584,7 +9584,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                   <li>
                                     <p>
                                       If <var>jwk</var> does not meet the requirements of Section
-                                      6.2.1 of <a href="#JWA">JSON Web Algorithms</a>,
+                                      6.2.1 of <a href="#jwa">JSON Web Algorithms</a>,
                                       then <a href="#concept-return-an-error">return an error</a> named
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </p>
@@ -9594,7 +9594,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                       Let <var>key</var> be a new <a href="#dfn-Key">Key</a> object
                                       that represents the Elliptic Curve public key identified by
                                       interpreting <var>jwk</var> according to Section 6.2.1 of <a
-                                      href="#JWA">JSON Web Algorithms</a>.
+                                      href="#jwa">JSON Web Algorithms</a>.
                                     </p>
                                   </li>
                                   <li>
@@ -9610,7 +9610,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               Let <var>algorithm</var> be a new instance of an <a
-                              href="#EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                              href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
                             </p>
                           </li>
                           <li>
@@ -9719,13 +9719,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                               <var>algorithm</var> to <code>"ECDH"</code>.
                             </p>
                           </li>
                           <li>
                             <p>
-                              Set the <a href="#dfn-KeyAlgorith-namedCurve">namedCurve</a> attribute
+                              Set the <a href="#dfn-KeyAlgorithm-namedCurve">namedCurve</a> attribute
                               of <var>algorithm</var> to equal the <a
                               href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
                               <var>normalizedAlgorithm</var>.
@@ -10045,14 +10045,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               Set the <code>x</code> property of <var>jwk</var> according to the
-                              definition in Section 6.2.1.2 of <a href="#JWA">JSON Web
+                              definition in Section 6.2.1.2 of <a href="#jwa">JSON Web
                               Algorithms</a>.
                             </p>
                           </li>
                           <li>
                             <p>
                               Set the <code>y</code> property of <var>jwk</var> according to the
-                              definition in Section 6.2.1.3 of <a href="#JWA">JSON Web
+                              definition in Section 6.2.1.3 of <a href="#jwa">JSON Web
                               Algorithms</a>.
                             </p>
                           </li>
@@ -10065,7 +10065,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               <dd>
                                 <p>
                                   Set the <code>d</code> property of <var>jwk</var> according to the
-                                  definition in Section 6.2.2.1 of <a href="#JWA">JSON Web
+                                  definition in Section 6.2.2.1 of <a href="#jwa">JSON Web
                                   Algorithms</a>.
                                 </p>
                               </dd>
@@ -10425,7 +10425,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -10437,7 +10437,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CTR"</code>.
                     </p>
                   </li>
@@ -10597,7 +10597,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -10609,13 +10609,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CTR"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -10845,7 +10845,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-  CryptoOperationData <dfn id="dfn-AesCbsParams-iv">iv</dfn>;
+  CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
 };
             </x:codeblock>
           </div>
@@ -11020,7 +11020,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -11032,7 +11032,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CBC"</code>.
                     </p>
                   </li>
@@ -11193,7 +11193,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -11205,13 +11205,13 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CBC"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -11565,7 +11565,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -11577,7 +11577,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CMAC"</code>.
                     </p>
                   </li>
@@ -11737,7 +11737,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -11749,13 +11749,13 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CMAC"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -12094,13 +12094,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <dl class="switch">
-                      <dt>If the <a href="#dfn-AesGcmParams-tagLangth">tagLength</a> member of
+                      <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
                       <var>normalizedAlgorithm</var> is not present or null:</dt>
                       <dd>Let <var>tagLength</var> be 128.</dd>
-                      <dt>If the <a href="#dfn-AesGcmParams-tagLangth">tagLength</a> member of
+                      <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
                       <var>normalizedAlgorithm</var> is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
                       <dd>Let <var>tagLength</var> be equal to the
-                      <a href="#dfn-AesGcmParams-tagLangth">tagLength</a> member of
+                      <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
                        <var>normalizedAlgorithm</var></dd>
                       <dt>Otherwise:</dt>
                       <dd>
@@ -12238,7 +12238,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -12250,7 +12250,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-GCM"</code>.
                     </p>
                   </li>
@@ -12411,7 +12411,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -12423,13 +12423,13 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-GCM"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -12803,7 +12803,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -12815,7 +12815,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CFB-8"</code>.
                     </p>
                   </li>
@@ -12976,7 +12976,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -12988,13 +12988,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-CFB-8"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -13310,7 +13310,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated AES key.
                     </p>
                   </li>
@@ -13322,7 +13322,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-KW"</code>.
                     </p>
                   </li>
@@ -13483,7 +13483,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <a href="#dfn-key">Key</a>
+                      Let <var>key</var> be a new <a href="#dfn-Key">Key</a>
                       object representing an AES key with value <var>data</var>.
                     </p>
                   </li>
@@ -13495,13 +13495,13 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"AES-KW"</code>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-AesKeyAlgorith-length">length</a> attribute of
+                      Set the <a href="#dfn-AesKeyAlgorithm-length">length</a> attribute of
                       <var>algorithm</var> to the length, in bits, of <var>data</var>.
                     </p>
                   </li>
@@ -13718,7 +13718,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
-  AlgorithmIdentifier hash;
+  AlgorithmIdentifier <dfn id="dfn-HmacImportParams-hash">hash</dfn>;
 };
             </x:codeblock>
           </div>
@@ -13727,7 +13727,7 @@ dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn
             <x:codeblock language="idl">
 interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
-  readonly attribute KeyAlgorithm hash;
+  readonly attribute KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
 };
             </x:codeblock>
           </div>
@@ -13736,11 +13736,11 @@ interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
-  AlgorithmIdentifier hash;
+  AlgorithmIdentifier <dfn id="dfn-HmacKeyGenParams-hash">hash</dfn>;
   <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
-  [EnforceRange] unsigned long length;
+  [EnforceRange] unsigned long <dfn id="dfn-HmacKeyGenParams-length">length</dfn>;
 };
             </x:codeblock>
           </div>
@@ -13751,7 +13751,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
   <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
   // recommended length will be used, which is the size of the associated hash function's block
   // size.</span>
-  [EnforceRange] unsigned long length;
+  [EnforceRange] unsigned long <dfn id="dfn-HmacDerivedKeyParams-length">length</dfn>;
 };
             </x:codeblock>
           </div>
@@ -13869,7 +13869,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                   <li>
                     <p>
                       Let <var>key</var> be a new
-                      <a href="#dfn-key">Key</a> object representing the
+                      <a href="#dfn-Key">Key</a> object representing the
                       generated key.
                     </p>
                   </li>
@@ -13881,7 +13881,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"HMAC"</code>.
                     </p>
                   </li>
@@ -14188,7 +14188,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                   </li>
                   <li>
                     <p>
-                      Let <var>key</var> be a new <code><a href="#dfn-key">Key</a></code>
+                      Let <var>key</var> be a new <code><a href="#dfn-Key">Key</a></code>
                       object representing an HMAC key with value <var>data</var>.
                     </p>
                   </li>
@@ -14200,7 +14200,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyAlgorith-name">name</a> attribute of
+                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
                       <var>algorithm</var> to <code>"HMAC"</code>.
                     </p>
                   </li>
@@ -14599,7 +14599,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-Key-Type">type</a> attribute of <var>privateKey</var>
+                      Set the <a href="#dfn-Key-type">type</a> attribute of <var>privateKey</var>
                       to <code>"private"</code>
                     </p>
                   </li>
@@ -14629,13 +14629,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#def-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
@@ -14833,7 +14833,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
                           <var>algorithm</var> to equal the <a
-                          href="#dfn-DhKeyImportParams-prime">prime</a> member of
+                          href="#dfn-DhImportKeyParams-prime">prime</a> member of
                           <var>normalizedAlgorithm</var>.
                         </p>
                       </li>
@@ -14841,7 +14841,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                         <p>
                           Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> attribute of
                           <var>algorithm</var> to equal the <a
-                          href="#dfn-DhKeyImportParams-generator">generator</a> member of
+                          href="#dfn-DhImportKeyParams-generator">generator</a> member of
                           <var>normalizedAlgorithm</var>.
                         </p>
                       </li>
@@ -15545,7 +15545,7 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
                       <var>normalizedAlgorithm</var> as <var>PartyUInfo</var>, the
                       <a href="#dfn-ConcatParams-partyVInfo">partyVInfo</a> member of
                       <var>normalizedAlgorithm</var> as <var>PartyVInfo</var>, the
-                      <a href="#dfn-ConcatParams-pubicInfo">publicInfo</a> member of
+                      <a href="#dfn-ConcatParams-publicInfo">publicInfo</a> member of
                       <var>normalizedAlgorithm</var>, if present and not null, as
                       <var>publicInfo</var> and the
                       <a href="#dfn-ConcatParams-privateInfo">privateInfo</a> member of
@@ -15706,11 +15706,11 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
             <x:codeblock language="idl">
 dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (eg: <a href="#sha-256">SHA-256</a>)</span>
-  AlgorithmIdentifier hash;
+  AlgorithmIdentifier <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
   <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
-  CryptoOperationData label;
+  CryptoOperationData <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
   <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
-  CryptoOperationData context;
+  CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
 };
             </x:codeblock>
             <div class="ednote">
@@ -16057,7 +16057,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                       <var>key</var> as the password, <var>P</var>, the contents of the 
                       <a href="#dfn-Pbkdf2Params-salt">salt</a> attribute of
                       <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the
-                      <a href="dfn-Pbkdf2Params-interations">iterations</a> attribute of
+                      <a href="#dfn-Pbkdf2Params-iterations">iterations</a> attribute of
                       <var>normalizedAlgorithm</var> as the iteration count, <var>c</var>, and
                       <var>length</var> divided by 8 as the intended key length, <var>dkLen</var>.
                     </p>
@@ -16251,7 +16251,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         </p>
         <p>
           When this specification says that a value <var>algorithm</var> be
-          <dfn id="dfn-normalize-to-type">normalized to <var>type</var></dfn> the user agent must
+          <dfn id="concept-normalize-to-type">normalized to <var>type</var></dfn> the user agent must
           perform the following steps:
         </p>
         <ol>
@@ -16531,7 +16531,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         </p>
         <p>
          The W3C would like to thank the <a
-         href="http://www.northropgrumman.com/cybersecurity/presskit_research_co.html">Northrop
+         href="http://certdata.northropgrumman.com/cybersecurity/presskit_research_co.html">Northrop
          Grumman Cybersecurity Research Consortium</a> for supporting W3C/MIT.
         </p>
         <p>
@@ -16584,13 +16584,13 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              </dd>
              <dt id="RFC5208">RFC5208</dt>
              <dd>
-              <cite><a href="http://www.ietf.org/rfc/rfc5208">Public-Key Cryptography Standards
+              <cite><a href="http://www.ietf.org/rfc/rfc5208.txt">Public-Key Cryptography Standards
               (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</a></cite>,
               B. Kaliski. IETF.
              </dd>
              <dt id="RFC5280">RFC5280</dt>
              <dd>
-              <cite><a href="http://www.ietf.org/rfc/rfc5280">Internet X.509 Public Key
+              <cite><a href="http://www.ietf.org/rfc/rfc5280.txt">Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
               D. Cooper, S. Santesson, S. Farrell, S. Boeyen, R. Housley, W. Polk. IETF.
              </dd>
@@ -16617,6 +16617,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dt id="jwk">JSON Web Key</dt>
              <dd>
                 <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-key">JSON Web Key (work in progress)</a></cite>, M. Jones, Microsoft.
+             </dd>
+              <dt id="jwa">JSON Web Algorithms</dt>
+             <dd>
+                <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms">JSON Web Algorithms (work in progress)</a></cite>, M. Jones, Microsoft.
              </dd>
              <dt id="rfc3394">RFC3394</dt>
              <dd>
@@ -16685,6 +16689,13 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc5869">HMAC-based Extract-and-Expand
               Key Derivation Function (HKDF)</a></cite>, H. Krawczyk, P. Eronen. IETF.
+            </dd>
+            <dt id="RFC4055">RFC 4055</dt>
+            <dd>
+              <cite><a href="https://tools.ietf.org/html/rfc4055">Additional Algorithms and
+                Identifiers for RSA Cryptography for use in the Internet X.509 Public Key 
+                Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>, 
+                J. Schaad, B. Kaliski, R. Housley. IETF.
             </dd>
             <dt id="SP800-38A">NIST SP 800-38A</dt>
             <dd>
