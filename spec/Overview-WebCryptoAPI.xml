@@ -1890,6 +1890,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="ednote">
+              <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=24963">Bug 24963</a> -
+              There is an open question as to whether/how to support importing
+              keys when format is <code>jwk</code>. As currently specified, it is a
+              JSON-encoded Javascript object, converted to a UTF-8 byte sequence, with the
+              raw bytes provided via <code>CryptoOperationData</code>. A separate
+              proposal exists to handle this via IDL, permitting importing JavaScript
+              objects directly when importing with <code>jwk</code>.
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-exportKey" class="section">
@@ -1971,6 +1980,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="ednote">
+              <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=24963">Bug 24963</a> -
+              There is an open question as to whether/how to support exporting
+              keys when format is <code>jwk</code>. As currently specified, the result
+              is a JSON-encoded Javascript object, converted to a UTF-8 byte
+              sequence, with the raw bytes provided via an ArrayBuffer. A separate
+              proposal exists to return an actual Javascript object when exporting
+              with <code>jwk</code>.
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
