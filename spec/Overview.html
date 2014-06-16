@@ -14506,9 +14506,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     <p>
                       If <var>usages</var> contains a value which is not
                       one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
-                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                      then <a href="#concept-return-an-error">return an error</a> named
+                      <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
@@ -14677,31 +14676,24 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   </li>
                   <li>
                     <p>
-                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var> is
-                      not <code>"DH"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var> is
+                      not <code>"DH"</code>, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      If the <a href="#dfn-Key-type">type</a> attribute of <var>publicKey</var>
-                      is not
-                      <code>"public"</code>, 
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                      If the <a href="#dfn-Key-type">type</a> attribute of <var>publicKey</var> is
+                      not <code>"public"</code>, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      If the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var>
-                      is not equal to the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>,
-                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                      If the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var> is
+                      not equal to the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
+                      the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>,
+                      then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
@@ -14709,20 +14701,15 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       If the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> attribute of the
                       <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>publicKey</var>
                       is not equal to the <a href="#dfn-DhKeyAlgorithm-generator">generator</a>
-                      attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>,
-                      
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                      attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                      <var>key</var>, then <a href="#concept-return-an-error">return an error</a>
+                      named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Perform the Diffie-Hellman Phase II algorithm as specified in
-                      Section 8 of [<a href="#PKCS3">PKCS #3</a>]
-                      with <var>key</var> as the DH private value <var>x</var> and the
-                      Diffie-Hellman public value represented by the
-                      <a href="#dfn-DhKeyDeriveParams-public">public</a> member of
+                      Perform the Diffie-Hellman Phase II algorithm as specified in Section 8 of [<a href="#PKCS3">PKCS #3</a>] with <var>key</var> as the DH private value
+                      <var>x</var> and the Diffie-Hellman public value represented by the <a href="#dfn-DhKeyDeriveParams-public">public</a> member of
                       <var>normalizedAlgorithm</var> as the other's public value <var>PV'</var>.
                     </p>
                     <dl class="switch">
@@ -14872,27 +14859,21 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          If an error occurred while parsing, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          If an error occurred while parsing, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
                         <p>
                           If the <code>algorithm</code> object identifier field of the
                           <code>algorithm</code> AlgorithmIdentifier field of <var>spki</var> is not
-                          equivalent to the <code>dhKeyAgreement</code> OID defined in Section 9
-                          of [<a href="#PKCS3">PKCS #3</a>], 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          equivalent to the <code>dhKeyAgreement</code> OID defined in Section 9 of
+                          [<a href="#PKCS3">PKCS #3</a>], then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
                         <p>
                           If the <code>parameters</code> field of the <code>algorithm</code>
-                          AlgorithmIdentifier field of <var>spki</var> is absent, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          AlgorithmIdentifier field of <var>spki</var> is absent, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
@@ -14904,10 +14885,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           If <var>params</var> is not an instance of the <code>DHParameter</code>
-                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>,
-                          
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
@@ -14985,11 +14963,8 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                     <ol>
                       <li>
                         <p>
-                          If <var>usages</var> contains a value which is not
-                          one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
-                          
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          If <var>usages</var> contains a value which is not one of
+                          <code>"deriveKey"</code> or <code>"deriveBits"</code>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
@@ -15001,29 +14976,23 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       </li>
                       <li>
                         <p>
-                          If an error occurred while parsing, 
-                      then <a href="#concept-return-an-error">return an error</a> named
-                      <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                          If an error occurred while parsing, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
                         <p>
                           If the <code>algorithm</code> object identifier field of the
                           <code>algorithm</code> AlgorithmIdentifier field of
-                          <var>privateKeyInfo</var> is not
-                          equivalent to the <code>dhKeyAgreement</code> OID defined in Section 9
-                          of [<a href="#PKCS3">PKCS #3</a>], 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          <var>privateKeyInfo</var> is not equivalent to the
+                          <code>dhKeyAgreement</code> OID defined in Section 9 of [<a href="#PKCS3">PKCS #3</a>], then <a href="#concept-return-an-error">return
+                          an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
                         <p>
                           If the <code>parameters</code> field of the
                           <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field of
-                          <var>privateKeyInfo</var> is absent, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          <var>privateKeyInfo</var> is absent, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
@@ -15036,10 +15005,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                       <li>
                         <p>
                           If <var>params</var> is not an instance of the <code>DHParameter</code>
-                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>,
-                          
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                          ASN.1 type defined in Section 9 of <a href="#PKCS3">PKCS #3</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                         </p>
                       </li>
                       <li>
