@@ -8324,6 +8324,13 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     <p>Let <var>keyData</var> be the key data to be imported.</p>
                   </li>
                   <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcKeyImportParams">EcKeyImportParams</a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                       <dd>
@@ -8368,11 +8375,63 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           </li>
                           <li>
                             <p>
-                              If <var>params</var> is not an instance of the
-                              <code>namedCurve</code> ASN.1 type defined in <a href="#RFC5480">RFC
-                              5480</a>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                              If <var>params</var> is not an instance of the <code>namedCurve</code>
+                              ASN.1 type defined in <a href="#RFC5480">RFC 5480</a>, then <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>namedCurve</var> be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is defined, and not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
                           </li>
                           <li>
@@ -8402,45 +8461,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp256r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp384r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp521r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd>
-                                <p>
-                                  <a href="#concept-return-an-error">Return an error</a> named
-                                  <a href="#dfn-DataError"><code>DataError</code></a>.
-                                </p>
-                              </dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
@@ -8534,6 +8558,59 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           </li>
                           <li>
                             <p>
+                              Let <var>namedCurve</var> be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is defined, and not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
                               Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                               object that represents the Elliptic Curve private key identified by
                               performing the conversion steps defined in Section 3 of <a
@@ -8559,41 +8636,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp256r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp384r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp521r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd><p><a href="#concept-return-an-error">Return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
@@ -8652,6 +8698,21 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               has the value false and <var>extractable</var> is true,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>namedCurve</var> be a string whose value is equal to the
+                              <code>"crv"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
                           </li>
                           <li>
@@ -8727,45 +8788,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is
-                                <code>"P-256"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is
-                                 <code>"P-384"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is
-                                 to <code>"P-521"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd>
-                                <p>
-                                  <a href="#concept-return-an-error">Return an error</a> named
-                                  <a href="#dfn-DataError"><code>DataError</code></a>.
-                                </p>
-                              </dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
@@ -9475,6 +9501,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     <p>Let <var>keyData</var> be the key data to be imported.</p>
                   </li>
                   <li>
+                    <p>
+                      Let <var>normalizedAlgorithm</var> be the result of
+                      <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                      to <a href="#dfn-EcKeyImportParams">EcKeyImportParams</a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                       <dd>
@@ -9528,6 +9561,59 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           </li>
                           <li>
                             <p>
+                              Let <var>namedCurve</var> be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is defined, and not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
                               Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                               object that represents the Elliptic Curve public key identified by
                               performing the conversion steps defined in Section 2.2 of <a
@@ -9553,45 +9639,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp256r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp384r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp521r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd>
-                                <p>
-                                  <a href="#concept-return-an-error">Return an error</a> named
-                                  <a href="#dfn-DataError"><code>DataError</code></a>.
-                                </p>
-                              </dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
@@ -9685,6 +9736,59 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           </li>
                           <li>
                             <p>
+                              Let <var>namedCurve</var> be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp256r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp384r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If <var>params</var> is equivalent to the <code>secp521r1</code>
+                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set <var>namedCurve</var> <code>"P-521"</code>.
+                                </p>
+                              </dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <p>
+                                  <a href="#concept-return-an-error">Return an error</a> named
+                                  <a href="#dfn-DataError"><code>DataError</code></a>.
+                                </p>
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is defined, and not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
                               Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                               object that represents the Elliptic Curve private key identified by
                               performing the conversion steps defined in Section 3 of <a
@@ -9710,45 +9814,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp256r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp384r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If <var>params</var> is equivalent to the <code>secp521r1</code>
-                                object identifier defined in <a href="#RFC5480">RFC 5480</a>:
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd>
-                                <p>
-                                  <a href="#concept-return-an-error">Return an error</a> named
-                                  <a href="#dfn-DataError"><code>DataError</code></a>.
-                                </p>
-                              </dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
@@ -9805,6 +9874,21 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               has the value false and <var>extractable</var> is true,
                               then <a href="#concept-return-an-error">return an error</a> named
                               <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>namedCurve</var> be a string whose value is equal to the
+                              <code>"crv"</code> field of <var>jwk</var>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>namedCurve</var> is not equal to the <a
+                              href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                              <var>normalizedAlgorithm</var>, <a
+                              href="#concept-return-an-error">return an error</a> named <a
+                              href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
                           </li>
                           <li>
@@ -9880,45 +9964,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             </p>
                           </li>
                           <li>
-                            <dl class="switch">
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is a
-                                 <code>"P-256"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-256"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is
-                                <code>"P-384"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-384"</code>.
-                                </p>
-                              </dd>
-                              <dt>
-                                If the <code>"crv"</code> field of <var>jwk</var> is
-                                <code>"P-521"</code>
-                              </dt>
-                              <dd>
-                                <p>
-                                  Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                  attribute of <var>algorithm</var> to <code>"P-521"</code>.
-                                </p>
-                              </dd>
-                              <dt>Otherwise:</dt>
-                              <dd>
-                                <p>
-                                  <a href="#concept-return-an-error">Return an error</a> named
-                                  <a href="#dfn-DataError"><code>DataError</code></a>.
-                                </p>
-                              </dd>
-                            </dl>
+                            <p>
+                              Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                            </p>
                           </li>
                           <li>
                             <p>
