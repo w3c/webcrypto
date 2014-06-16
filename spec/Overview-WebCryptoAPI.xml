@@ -859,32 +859,29 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
         </div>
       </div>
 
-      <div id="key-algorithm-interface" class="section">
-        <h2>KeyAlgorithm interface</h2>
+      <div id="key-algorithm-dictionary" class="section">
+        <h2>KeyAlgorithm dictionary</h2>
         <p>
-          The KeyAlgorithm interface represents information about the contents of a given
+          The KeyAlgorithm dictionary represents information about the contents of a given
           <a href="#dfn-CryptoKey">CryptoKey</a> object.
         </p>
         <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="#dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
-  readonly attribute DOMString <a href="#dfn-KeyAlgorithm-name">name</a>
+dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
+  DOMString <a href="#dfn-KeyAlgorithm-name">name</a>
 };
         </x:codeblock>
-        <div id="key-algorithm-interface-description" class="section">
+        <div id="key-algorithm-dictionary-description" class="section">
           <h3>Description</h3>
           <p class="norm">This section is non-normative</p>
           <p>
-            The <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> interface is a supplemental interface
-            used to reflect the static, public properties of a <a
-            href="#dfn-CryptoKey">CryptoKey</a> back to an application. These properties can be used
-            for determination of strength (e.g.: an attribute that indicates the size of the key or
-            the parameters of its creation) as well as for protocol negotiations (e.g.: a particular
-            instance of an inner hash).
+            The <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> dictionary is provided to aid in
+            documenting how fixed, public properties of a <a href="#dfn-CryptoKey">CryptoKey</a>
+            are reflected back to an application. The actual dictionary type is never exposed
+            to applications.
           </p>
         </div>
-        <div id="key-algorithm-interface-members" class="section">
-          <h3>KeyAlgorithm interface members</h3>
+        <div id="key-algorithm-dictionary-members" class="section">
+          <h3>KeyAlgorithm dictionary members</h3>
           <dl>
             <dt id="dfn-KeyAlgorithm-name">name</dt>
             <dd>
@@ -908,7 +905,7 @@ typedef DOMString <a href="#dfn-KeyUsage">KeyUsage</a>;
 interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
   readonly attribute <a href="#dfn-KeyType">KeyType</a> <a href="#dfn-CryptoKey-type">type</a>;
   readonly attribute boolean <a href="#dfn-CryptoKey-extractable">extractable</a>;
-  readonly attribute <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <a href="#dfn-CryptoKey-algorithm">algorithm</a>;
+  readonly attribute object <a href="#dfn-CryptoKey-algorithm">algorithm</a>;
   readonly attribute object <a href="#dfn-CryptoKey-usages">usages</a>;
 };
         </x:codeblock>
@@ -972,7 +969,10 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </dd>
             <dt id="dfn-CryptoKey-algorithm"><code>algorithm</code></dt>
             <dd>
-              The <a href="#dfn-KeyAlgorithm"><code>KeyAlgorithm</code></a> used to generate the key.
+              A JavaScript Object that contains information about the algorithm used to generate
+              the key. The Object will contain properties defined within the various
+              <a href="#dfn-KeyAlgorithm"><code>KeyAlgorithm</code></a> dictionary and derived
+              dictionaries.
             </dd>
             <dt id="dfn-CryptoKey-usages"><code>usages</code></dt>
             <dd>
@@ -2643,15 +2643,15 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
       </div>
       
       <div id="keypair" class="section">
-        <h2>KeyPair</h2>
+        <h2>CryptoKeyPair dictionary</h2>
         <x:codeblock language="idl">
-interface <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
-  readonly attribute <a href="#dfn-CryptoKey">CryptoKey</a> publicKey;
-  readonly attribute <a href="#dfn-CryptoKey">CryptoKey</a> privateKey;
+dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
+  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKey-publicKey">publicKey</dfn>;
+  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKey-privateKey">privateKey</dfn>;
 };
         </x:codeblock>
         <p>
-          The <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a> interface represents an
+          The <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a> dictionary represents an
           asymmetric key pair that is comprised of both public and private keys.
         </p>
       </div>
@@ -3173,14 +3173,14 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
 };
             </x:codeblock>
           </div>
-          <div id="RsaKeyAlgorithm-interface" class="section">
-            <h4>RsaKeyAlgorithm interface</h4>
+          <div id="RsaKeyAlgorithm-dictionary" class="section">
+            <h4>RsaKeyAlgorithm dictionary</h4>
             <x:codeblock language="idl">
-interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+dictionary <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
-  readonly attribute unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
+  unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
-  readonly attribute <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
+  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
 };
             </x:codeblock>
           </div>
@@ -3306,7 +3306,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Let <var>algorithm</var> be a new
-                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> object.
+                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> dictionary.
                     </p>
                   </li>
                   <li>
@@ -3348,7 +3348,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -3380,7 +3380,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -3400,24 +3400,25 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -3668,7 +3669,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Let <var>algorithm</var> be a new
-                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a>.
+                      <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> dictionary.
                     </p>
                   </li>
                   <li>
@@ -3694,7 +3695,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>key</var> to <var>algorithm</var>
+                      <var>key</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -3906,7 +3907,7 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ul>
@@ -3992,13 +3993,12 @@ dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a 
 };
             </x:codeblock>
           </div>
-          <div id="RsaHashedKeyAlgorithm-interface" class="section">
-            <h4>RsaHashedKeyAlgorithm interface</h4>
+          <div id="RsaHashedKeyAlgorithm-dictionary" class="section">
+            <h4>RsaHashedKeyAlgorithm dictionary</h4>
             <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
+dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
   <span class="comment">// The hash algorithm that is used with this key</span>
-  readonly attribute <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
+  <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
 };
             </x:codeblock>
           </div>
@@ -4147,7 +4147,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <p>
                       Let <var>algorithm</var> be a new
                       <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
@@ -4197,7 +4197,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -4229,7 +4229,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -4248,24 +4248,25 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -4750,7 +4751,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       Let <var>algorithm</var> be a new
-                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>.
+                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a> dictionary.
                     </p>
                   </li>
                   <li>
@@ -4783,7 +4784,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>key</var> to <var>algorithm</var>
+                      <var>key</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -5039,7 +5040,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ul>
@@ -5296,7 +5297,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <p>
                       Let <var>algorithm</var> be a new
                       <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
@@ -5346,7 +5347,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -5377,7 +5378,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -5397,24 +5398,25 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
-                      of <var>result</var> to be <var>publicKey</var>.
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
+                      of <var>result</var> to <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
-                      of <var>result</var> to be <var>privateKey</var>.
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
+                      of <var>result</var> to <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object,
+                      as defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -6019,7 +6021,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>algorithm</var> be a new
-                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a>.
+                      <a href="#dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</a> dictionary.
                     </p>
                   </li>
                   <li>
@@ -6511,7 +6513,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ul>
@@ -6818,7 +6820,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -6850,7 +6852,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -6870,24 +6872,25 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -7964,7 +7967,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ul>
@@ -8076,13 +8079,12 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
               <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
             </dl>
           </div>
-          <div id="EcKeyAlgorithm-interface" class="section">
-            <h4>EcKeyAlgorithm interface</h4>
+          <div id="EcKeyAlgorithm-dictionary" class="section">
+            <h4>EcKeyAlgorithm dictionary</h4>
             <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+dictionary <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The named curve that the key uses</span>
-  readonly attribute <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
+  <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
 };
             </x:codeblock>
           </div>
@@ -8355,7 +8357,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -8385,7 +8387,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -8405,24 +8407,25 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -9294,7 +9297,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -9457,7 +9460,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -9487,7 +9490,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -9507,24 +9510,25 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
@@ -10546,7 +10550,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -10677,12 +10681,11 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
 };
             </x:codeblock>
           </div>
-          <div id="AesKeyAlgorithm-interface" class="section">
+          <div id="AesKeyAlgorithm-dictionary" class="section">
             <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+dictionary <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
-  readonly attribute unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
+  unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
 };
             </x:codeblock>
           </div>
@@ -11182,7 +11185,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -11782,7 +11785,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -12326,7 +12329,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -13014,7 +13017,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -13586,7 +13589,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -14093,7 +14096,7 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -14215,15 +14218,14 @@ dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn
 };
             </x:codeblock>
           </div>
-          <div id="hmac-keyalgorithm" class="section">
-            <h4>HmacKeyAlgorithm interface</h4>
+          <div id="HmacKeyAlgorithm-dictionary" class="section">
+            <h4>HmacKeyAlgorithm dictionary</h4>
             <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+dictionary <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
-  readonly attribute KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
+  KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
   <span class="comment">// The length (in bits) of the key.</span>
-  readonly attribute unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
+  unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
 };
             </x:codeblock>
           </div>
@@ -14867,7 +14869,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                           <li>
                             <p>
                               Let <var>result</var> be the result of converting <var>jwk</var>
-                              to an ECMAScript Object.
+                              to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
                             </p>
                           </li>
                         </ol>
@@ -14996,14 +14998,13 @@ dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Alg
             </x:codeblock>
           </div>
           <div id="dh-DhKeyAlgorithm" class="section">
-            <h4>DhKeyAlgorithm interface</h4>
+            <h4>DhKeyAlgorithm dictionary</h4>
             <x:codeblock language="idl">
-[NoInterfaceObject]
-interface <dfn id="dfn-DhKeyAlgorithm">DhKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+dictionary <dfn id="dfn-DhKeyAlgorithm">DhKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The prime p.</span>
-  readonly attribute BigInteger <dfn id="dfn-DhKeyAlgorithm-prime">prime</dfn>;
+  BigInteger <dfn id="dfn-DhKeyAlgorithm-prime">prime</dfn>;
   <span class="comment">// The base g.</span>
-  readonly attribute BigInteger <dfn id="dfn-DhKeyAlgorithm-generator">generator</dfn>;
+  BigInteger <dfn id="dfn-DhKeyAlgorithm-generator">generator</dfn>;
 };
             </x:codeblock>
           </div>
@@ -15117,7 +15118,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>publicKey</var> to be <var>algorithm</var>.
+                      <var>publicKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -15147,7 +15148,7 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Set the <a href="#dfn-CryptoKey-algorithm">algorithm</a> attribute of
-                      <var>privateKey</var> to be <var>algorithm</var>.
+                      <var>privateKey</var> to <var>algorithm</var>.
                     </p>
                   </li>
                   <li>
@@ -15165,24 +15166,25 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                   <li>
                     <p>
                       Let <var>result</var> be a new <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a>
-                      object.
+                      dictionary.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-publicKey">publicKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-publicKey">publicKey</a> attribute
                       of <var>result</var> to be <var>publicKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Set the <a href="#dfn-KeyPair-privateKey">privateKey</a> attribute
+                      Set the <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute
                       of <var>result</var> to be <var>privateKey</var>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Return <var>result</var>.
+                      Return the result of converting <var>result</var> to an ECMAScript Object, as
+                      defined by [<a href="#WebIDL">WEBIDL</a>].
                     </p>
                   </li>
                 </ol>
