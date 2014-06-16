@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 20 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 19 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -15932,14 +15932,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
   AlgorithmIdentifier <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
             </code></pre></div></div>
-            <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-              <p>
-                In the above snippet, <code>password</code> is an optional field. The intent is
-                that conforming user agents <span class="RFC2119">MAY</span> support applications
-                that wish to use PBKDF2 by providing password entry via an un-spoofable (by the
-                web application) UI.
-              </p>
-            </div>
           </div>
           <div id="pbkdf2-operations" class="section">
             <h4>18.21.4. Operations</h4>
@@ -16015,16 +16007,13 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       If <var>usages</var> contains any element that is not
-                       <code>"deriveKey"</code>,
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                      <code>"deriveKey"</code>, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
                     <p>
-                      If <var>extractable</var> is true, 
-                              then <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                      If <var>extractable</var> is true, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
@@ -16035,7 +16024,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
-                      representing the provided password, encoded using UTF-8.
+                      representing the provided password as a series of bytes encoded using UTF-8.
                     </p>
                   </li>
                   <li>
@@ -16087,18 +16076,14 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 <ol>
                   <li>
                     <p>
-                      If <var>format</var> is not
-                      <code>"raw"</code>,
-                      <a href="#concept-return-an-error">return an error</a> named
-                      <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                      If <var>format</var> is not <code>"raw"</code>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
                     </p>
                   </li>
                   <li>
                     <p>
                       If <var>usages</var> contains any element that is not
-                       <code>"deriveKey"</code>,
-                       then <a href="#concept-return-an-error">return an error</a> named
-                       <a href="#dfn-DataError"><code>DataError</code></a>.
+                      <code>"deriveKey"</code>, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                     </p>
                   </li>
                   <li>
