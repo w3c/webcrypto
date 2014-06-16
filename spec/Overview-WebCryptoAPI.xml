@@ -710,10 +710,11 @@ of contents, section numbers, certain processing instructions).
         <div class="ednote">
           <p>
             The above definition makes heavy use of directly accessing the internal slot values,
-            defined in [ECMA262]. The motivation for this is to avoid issues that might arise with
-            authors defining custom getters/setters on such objects. However, it has the downside of
-            avoiding the error control statements defined in the <code>%TypedArray%.prototype</code>
-            getters and <code>ArrayBuffer.prototype</code> getters, which would be desirable.
+            defined in <a href="#ECMA-262">ECMA262</a>. The motivation for this is to avoid issues
+            that might arise with authors defining custom getters/setters on such objects. However,
+            it has the downside of avoiding the error control statements defined in the
+            <code>%TypedArray%.prototype</code> getters and <code>ArrayBuffer.prototype</code>
+            getters, which would be desirable.
           </p>
           <p>
             It is assumed that the Web IDL conversion rules will perform the necessary type checks,
@@ -16664,7 +16665,7 @@ var algorithmKeyGen = {
   modulusLength: 2048,
   publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  <span class="comment">// Equivalent to 65537</span>
   hash: {
-    name: "SHA-256",
+    name: "SHA-256"
   }
 };
 
@@ -16856,9 +16857,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
           </ul>
         </div>
         <div id="iana-section-jwk" class="section">
-          <h3>JSON Web Key Parameters Registry</h3>
+          <h3>JSON Web Key Parameters Registration</h3>
           <ul>
             <li>Parameter Name: "ext"</li>
+            <li>Parameter Description: Extractable</li>
             <li>Used with "kty" Value(s): *</li>
             <li>Parameter Information Class: Public</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
@@ -16901,7 +16903,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                A. Gregor, A. van Kesteren, Ms2ger. WHATWG.
                <div class="ednote">This will be updated to W3C DOM4 once Promises are incorporated.</div>
              </dd>
-             <dt id="ECMA-262">ECMAScript</dt>
+             <dt id="ECMA-262">ECMA262</dt>
              <dd>
                <cite><a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">
                ECMAScript 5th Edition</a></cite>, A. Wirfs-Brock, P. Lakshman et al.
