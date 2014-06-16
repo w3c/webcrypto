@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 19 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 18 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -8484,6 +8484,45 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             </p>
                           </li>
                           <li>
+                            <p>
+                              Let <var>algNamedCurve</var> be a string whose initial value is
+                              undefined.
+                            </p>
+                          </li>
+                          <li>
+                            <dl class="switch">
+                              <dt>If the <code>"alg"</code> field is present:</dt>
+                              <dd>
+                                Let <var>algNamedCurve</var> be undefined.
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string "ES256":
+                              </dt>
+                              <dd>
+                                Let <var>algNamedCurve</var> be the string <code>P-256</code>.
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string "ES384":
+                              </dt>
+                              <dd>
+                                Let <var>algNamedCurve</var> be the string <code>P-384</code>.
+                              </dd>
+                              <dt>
+                                If the <code>"alg"</code> field is equal to the string "ES521":
+                              </dt>
+                              <dd>
+                                Let <var>algNamedCurve</var> be the string <code>P-521</code>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
+                            <p>
+                              If <var>algNamedCurve</var> is defined, and is not equal to
+                              <var>namedCurve</var>, <a href="#concept-return-an-error">return an
+                              error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </p>
+                          </li>
+                          <li>
                             <dl class="switch">
                               <dt>If the <code>"d"</code> field is present:</dt>
                               <dd>
@@ -8907,13 +8946,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </ol>
               </dd>
             </dl>
-          </div>
-          <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-            <p>
-              OPEN ISSUE: The import/export of JWK ignores the "alg" field, because it does not
-              provide a 1:1 mapping between ECDSA (which choses the hash at sign/verify time,
-              because it is safe to do so) and the JWS alg (which incorporates the hash algorithm).
-            </p>
           </div>
         </div>
 
