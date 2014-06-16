@@ -1426,7 +1426,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the sign operation
-                  specified by <var>normalizedAlgorithm</var> uaing <var>key</var> and
+                  specified by <var>normalizedAlgorithm</var> using <var>key</var> and
                   <var>algorithm</var> and with <var>data</var> as <var>message</var>.
                 </p>
               </li>
@@ -1904,8 +1904,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>14.3.9. The <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method</h4>
             <p>                  
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey">importKey</dfn> method
-              <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey"><code>importKey</code></dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
@@ -2016,16 +2015,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <div id="SubtleCrypto-method-exportKey" class="section">
             <h4>14.3.10. The <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a> method</h4>
             <p>
-              When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey">exportKey</dfn> method
-              <span class="RFC2119">MUST</span> perform the following steps:
+              When invoked, the <dfn id="dfn-SubtleCrypto-method-exportKey"><code>exportKey</code></dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
               <li>
                 <p>
-                  Let <var>format</var> and <var>key</var> be the <code>format</code>
-                  and <code>key</code> parameters passed to the
-                  <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method,
-                  respectively.
+                  Let <var>format</var> and <var>key</var> be the <code>format</code> and
+                  <code>key</code> parameters passed to the <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a> method, respectively.
                 </p>
               </li>
               <li>
@@ -2052,6 +2048,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Perform type mapping as specified in [<a href="#WebIDL">WEBIDL</a>] for
                   <var>format</var> and <var>key</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-to-type">normalizing</a> <var>algorithm</var>
+                  to <a href="#dfn-Algorithm">Algorithm</a>.
                 </p>
               </li>
               <li>
@@ -2162,10 +2165,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>format</var> is not algorithm a
-                  <a href="#dfn-RecognizedKeyFormats">recognized key
-                  format value</a>, then <a href="#concept-return-an-error">return an error</a> named
-                  <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  If <var>format</var> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
+                  format value</a>, then <a href="#concept-return-an-error">return an error</a>
+                  named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
               </li>
               <li>
@@ -2216,8 +2218,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     <p>
                       Let <var>result</var> be the result of performing the wrap key operation
                       specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
-                       <var>wrappingKey</var>
-                      as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
+                      <var>wrappingKey</var> as <var>key</var> and <var>bytes</var> as
+                      <var>plaintext</var>.
                     </p>
                   </dd>
                   <dt>Otherwise, if <var>normalizedAlgorithm</var> supports the encrypt operation:</dt>
@@ -2225,8 +2227,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     <p>
                       Let <var>result</var> be the result of performing the encrypt operation
                       specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
-                       <var>wrappingKey</var>
-                      as <var>key</var> and <var>bytes</var> as <var>plaintext</var>.
+                      <var>wrappingKey</var> as <var>key</var> and <var>bytes</var> as
+                      <var>plaintext</var>.
                     </p>
                   </dd>
                   <dt>Otherwise:</dt>
@@ -2359,11 +2361,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <dl class="switch">
-                  <dt>If <var>normalizedUnwrapAlgorithm</var> supports an unwrap key operation:</dt>
+                  <dt>If <var>normalizedAlgorithm</var> supports an unwrap key operation:</dt>
                   <dd>
                     Let <var>bytes</var> be the result of performing the unwrap key operation
-                    specified by <var>normalizedAlgorithm</var> using
-                    <var>algorithm</var>,
+                    specified by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
                     <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
@@ -2372,9 +2373,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     operation:
                   </dt>
                   <dd>
-                    Let <var>bytes</var> be the result of performing the decrypt operation
-                    specified by <var>normalizedAlgorithm</var> using
-                    <var>algorithm</var>,
+                    Let <var>bytes</var> be the result of performing the decrypt operation specified
+                    by <var>normalizedAlgorithm</var> using <var>algorithm</var>,
                     <var>unwrappingKey</var> as <var>key</var> and <var>wrappedKey</var> as
                     <var>ciphertext</var>.
                   </dd>
@@ -2424,7 +2424,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </tr>
               <tr>
                 <td><dfn id="dfn-SyntaxError"><code>SyntaxError</code></dfn></td>
-                <td>A required parameter was missing our out-of-range</td>
+                <td>A required parameter was missing or out-of-range</td>
               </tr>
               <tr>
                 <td><dfn id="dfn-InvalidStateError"><code>InvalidStateError</code></dfn></td>
