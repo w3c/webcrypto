@@ -7112,16 +7112,44 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                           </li>
                           <li>
                             <p>
-                              If the <code>alg</code> field of <var>jwk</var> is present,
-                              and is not <code>RSA-OAEP</code>, 
-                              <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                              Let <var>hash</var> be a string whose initial value is undefined.
                             </p>
                           </li>
                           <li>
+                            <dl class="switch">
+                              <dt>If the <code>alg</code> field of <var>jwk</var> is not present:</dt>
+                              <dd>Let <var>hash</var> be undefined.</dd>
+                              <dt>
+                                If the <code>alg</code> field of <var>jwk</var> is equal to
+                                <code>RSA-OAEP</code>:
+                              </dt>
+                              <dd>Let <var>hash</var> be the string <code>SHA-1</code>.</dd>
+                              <dt>
+                                If the <code>alg</code> field of <var>jwk</var> is equal to
+                                <code>RSA-OAEP-256</code>:
+                              </dt>
+                              <dd>Let <var>hash</var> be the string <code>SHA-256</code>.</dd>
+                              <dt>
+                                If the <code>alg</code> field of <var>jwk</var> is equal to
+                                <code>RSA-OAEP-384</code>:
+                              </dt>
+                              <dd>Let <var>hash</var> be the string <code>SHA-384</code>.</dd>
+                              <dt>
+                                If the <code>alg</code> field of <var>jwk</var> is equal to
+                                <code>RSA-OAEP-512</code>:
+                              </dt>
+                              <dd>Let <var>hash</var> be the string <code>SHA-512</code>.</dd>
+                              <dt>Otherwise:</dt>
+                              <dd>
+                                <a href="#concept-return-an-error">return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </dd>
+                            </dl>
+                          </li>
+                          <li>
                             <p>
-                              Set <var>hash</var> to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var>.
+                              If <var>hash</var> is defined, and is not equal to the <a href="#dfn-AlgorithmIdentifier-name">name</a> member of the <a href="#dfn-RsaHashedImportParams-hash">hash</a> member of
+                              <var>normalizedAlgorithm</var>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                             </p>
                           </li>
                           <li>
@@ -7532,14 +7560,62 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                             <p>Let <var>jwk</var> be a new internal object.</p>
                           </li>
                           <li>
-                            <p>Set the <code>kty</code> field of <var>jwk</var> to the string
-                            <code>"RSA"</code>.</p>
+                            <p>
+                              Set the <code>kty</code> field of <var>jwk</var> to the string
+                              <code>"RSA"</code>.
+                            </p>
                           </li>
                           <li>
-                            <p>
-                              Set the <code>alg</code> field of <var>jwk</var> to the string
-                              <code>RSA-OAEP</code>.
-                            </p>
+                            <dl class="switch">
+                              <dt>
+                                If the <a href="#dfn-KeyAlgorithm-name">name</a>
+                                attribute of the <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
+                                the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                of <var>key</var> is <code>SHA-1</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>"RSA-OAEP"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <a href="#dfn-KeyAlgorithm-name">name</a>
+                                attribute of the <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
+                                the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                of <var>key</var> is <code>SHA-256</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>"RSA-OAEP-256"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <a href="#dfn-KeyAlgorithm-name">name</a>
+                                attribute of the <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
+                                the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                of <var>key</var> is <code>SHA-384</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>"RSA-OAEP-384"</code>.
+                                </p>
+                              </dd>
+                              <dt>
+                                If the <a href="#dfn-KeyAlgorithm-name">name</a>
+                                attribute of the <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
+                                the <a href="#dfn-Key-algorithm">algorithm</a> attribute
+                                of <var>key</var> is <code>SHA-512</code>:
+                              </dt>
+                              <dd>
+                                <p>
+                                  Set the <code>alg</code> field of <var>jwk</var> to the string
+                                  <code>"RSA-OAEP-512"</code>.
+                                </p>
+                              </dd>
+                            </dl>
                           </li>
                           <li>
                             <p>
@@ -16342,6 +16418,22 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             encryption is prohibited.
           </p>
           <ul>
+            <li>Algorithm Name: "RSA-OAEP-384"</li>
+            <li>Algorithm Description: RSA-OAEP using SHA-384 and MGF1 with SHA-384</li>
+            <li>Algorithm Usage Location(s): "alg"</li>
+            <li>JOSE Implementation Requirements: Optional+</li>
+            <li>Change Controller: W3C Web Cryptography Working Group</li>
+            <li>Specification Document(s): [[ This Document ]]</li>
+          </ul>
+          <ul>
+            <li>Algorithm Name: "RSA-OAEP-512"</li>
+            <li>Algorithm Description: RSA-OAEP using SHA-512 and MGF1 with SHA-512</li>
+            <li>Algorithm Usage Location(s): "alg"</li>
+            <li>JOSE Implementation Requirements: Optional+</li>
+            <li>Change Controller: W3C Web Cryptography Working Group</li>
+            <li>Specification Document(s): [[ This Document ]]</li>
+          </ul>
+          <ul>
             <li>Algorithm Name: "A128CBC"</li>
             <li>Algorithm Description: AES CBC using 128 bit key</li>
             <li>Algorithm Usage Location(s): "JWK"</li>
@@ -16804,6 +16896,68 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
 </code></pre></div></div>
                 </td>
               </tr>
+
+              <tr>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ kty: "RSA",
+  alg: "RSA-OAEP" }
+</code></pre></div></div>
+                </td>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ name: "RSA-OAEP",
+  hash: { name: "SHA-1" }
+}
+</code></pre></div></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ kty: "RSA",
+  alg: "RSA-OAEP-256" }
+</code></pre></div></div>
+                </td>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ name: "RSA-OAEP",
+  hash: { name: "SHA-256" }
+}
+</code></pre></div></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ kty: "RSA",
+  alg: "RSA-OAEP-384" }
+</code></pre></div></div>
+                </td>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ name: "RSA-OAEP",
+  hash: { name: "SHA-384" }
+}
+</code></pre></div></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ kty: "RSA",
+  alg: "RSA-OAEP-512" }
+</code></pre></div></div>
+                </td>
+                <td>
+<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+{ name: "RSA-OAEP",
+  hash: { name: "SHA-512" }
+}
+</code></pre></div></div>
+                </td>
+              </tr>
+
               <tr>
                 <td>
 <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
@@ -17212,7 +17366,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <ul>
               <li><p>RSASSA-PKCS1-v1_5 with SHA-1</p></li>
               <li><p>RSA-PSS with SHA-1</p></li>
-              <li><p>RSA-OAEP needs specifiers for the hash algorithms.</p></li>
               <li><p>ECDSA with SHA-1</p></li>
               <li>
                 <p>
