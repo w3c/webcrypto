@@ -3996,6 +3996,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     </p>
                   </li>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code></dt>
                       <dd>
@@ -4129,7 +4137,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       <dd>
                         <ul>
                           <li>
-                            <p>Let <var>jwk</var> be a new <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary.</p>
+                            <p>Let <var>jwk</var> be a new <a href="#dfn-JsonWebKey">JsonWebKey</a>
+                            dictionary.</p>
                           </li>
                           <li>
                             <p>Set the <code>kty</code> attribute of <var>jwk</var> to the string
@@ -5269,6 +5278,14 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>key</var> be the key to be exported.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
                     </p>
                   </li>
                   <li>
@@ -6748,6 +6765,14 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                     </p>
                   </li>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code></dt>
                       <dd>
@@ -8204,6 +8229,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     </p>
                   </li>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                       <dd>
@@ -9477,6 +9510,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     </p>
                   </li>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                       <dd>
@@ -10353,6 +10394,14 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                       <dd>
@@ -10956,6 +11005,14 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                       <dd>
@@ -11501,6 +11558,14 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
               <dt>Export Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
                   <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
@@ -12193,6 +12258,14 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                       <dd>
@@ -12768,6 +12841,14 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                       <dd>
@@ -13277,6 +13358,14 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
               <dt>Export Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
                   <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
@@ -14035,6 +14124,14 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
               <dt>Export Key</dt>
               <dd>
                 <ol>
+                  <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
                   <li>
                     <dl class="switch">
                       <dt>If <var>format</var> is <code>"raw"</code>:</dt>
@@ -14929,6 +15026,14 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
               <dd>
                 <ol>
                   <li>
+                    <p>
+                      If the underlying cryptographic key material represented by the [[<a
+                      href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
+                      cannot be accessed, then <a href="#concept-return-an-error">return an
+                      error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
+                  </li>
+                  <li>
                     <dl class="switch">
                       <dt>
                         If <var>format</var> is <code>"raw"</code>:
@@ -15246,6 +15351,13 @@ dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#d
                         <var>message</var> as the input message, <var>M</var>.
                       </dd>
                     </dl>
+                  </li>
+                  <li>
+                    <p>
+                      If performing the operation results in an error, then <a
+                      href="#concept-return-an-error">return an error</a> named <a
+                      href="#dfn-OperationError"><code>OperationError</code></a>.
+                    </p>
                   </li>
                   <li>
                     <p>
