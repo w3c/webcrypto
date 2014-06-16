@@ -1267,13 +1267,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               Specifies a serialization format for a key. The <dfn
               id="dfn-RecognizedKeyFormats">recognized key format values</dfn> are:
               <dl>
-                <dt><code>raw</code></dt>
+                <dt><code>"raw"</code></dt>
                 <dd>An unformatted sequence of bytes. Intended for secret keys.</dd>
-                <dt><code>pkcs8</code></dt>
+                <dt><code>"pkcs8"</code></dt>
                 <dd>The DER encoding of the PrivateKeyInfo structure from <a href="#RFC5208">RFC 5208</a>.</dd>
-                <dt><code>spki</code></dt>
+                <dt><code>"spki"</code></dt>
                 <dd>The DER encoding of the SubjectPublicKeyInfo structure from <a href="#RFC5280">RFC 5280</a>.</dd>
-                <dt><code>jwk</code></dt>
+                <dt><code>"jwk"</code></dt>
                 <dd>The key is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary encoded as a JavaScript object</dd>
               </dl>
             </dd>
@@ -1319,7 +1319,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>encrypt</code>.
+                  <code>"encrypt"</code>.
                 </p>
               </li>
               <li>
@@ -1402,7 +1402,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>decrypt</code>.
+                  <code>"decrypt"</code>.
                 </p>
               </li>
               <li>
@@ -1485,7 +1485,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>sign</code>.
+                  <code>"sign"</code>.
                 </p>
               </li>
               <li>
@@ -1566,7 +1566,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>verify</code>.
+                  <code>"verify"</code>.
                 </p>
               </li>
               <li>
@@ -1654,7 +1654,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>digest</code>.
+                  <code>"digest"</code>.
                 </p>
               </li>
               <li>
@@ -1722,7 +1722,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>generateKey</code>.
+                  <code>"generateKey"</code>.
                 </p>
               </li>
               <li>
@@ -1787,10 +1787,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>algorithm</var>, <var>baseKey</var>, <var>derivedKeyType</var>,
                   <var>extractable</var> and <var>usages</var> be the <code>algorithm</code>,
                   <code>baseKey</code>, <code>derivedKeyType</code>, <code>extractable</code> and
-                  <code>keyUsages</code>
-                  parameters passed to the
-                  <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a> method,
-                  respectively.
+                  <code>keyUsages</code> parameters passed to the <a
+                  href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a> method, respectively.
                 </p>
               </li>
               <li>
@@ -1798,7 +1796,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>deriveKey</code>.
+                  <code>"deriveBits"</code>.
                 </p>
               </li>
               <li>
@@ -1812,7 +1810,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedDerivedKeyAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>derivedKeyType</var> and <code>op</code> set to
-                  <code>importKey</code>.
+                  <code>"importKey"</code>.
                 </p>
               </li>
               <li>
@@ -1929,7 +1927,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>deriveBits</code>.
+                  <code>"deriveBits"</code>.
                 </p>
               </li>
               <li>
@@ -1993,13 +1991,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>format</var>, <var>algorithm</var>,
-                  <var>extractable</var> and <var>usages</var>,
-                  be the <code>format</code>, <code>algorithm</code>,
-                  <code>extractable</code> and <code>keyUsages</code>
-                  parameters passed to the
-                  <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method,
-                  respectively.
+                  Let <var>format</var>, <var>algorithm</var>, <var>extractable</var> and
+                  <var>usages</var>, be the <code>format</code>, <code>algorithm</code>,
+                  <code>extractable</code> and <code>keyUsages</code> parameters passed to the <a
+                  href="#dfn-SubtleCrypto-method-importKey">importKey</a> method, respectively.
                 </p>
               </li>
               <li>
@@ -2007,7 +2002,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>importKey</code>.
+                  <code>"importKey"</code>.
                 </p>
               </li>
               <li>
@@ -2019,8 +2014,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the string <code>raw</code>,
-                    <code>pkcs8</code>, or <code>spki</code>:
+                    If <var>format</var> is equal to the string <code>"raw"</code>,
+                    <code>"pkcs8"</code>, or <code>"spki"</code>:
                   </dt>
                   <dd>
                     Let <var>keyData</var> be the result of
@@ -2029,7 +2024,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>jwk</code>:
+                    If <var>format</var> is equal to the string <code>"jwk"</code>:
                   </dt>
                   <dd>
                     Let <var>keyData</var> be the result of converting the <code>keyData</code>
@@ -2191,7 +2186,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>wrapKey</code>.
+                  <code>"wrapKey"</code>.
                 </p>
               </li>
               <li>
@@ -2199,7 +2194,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If an error occurred, let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>encrypt</code>.
+                  <code>"encrypt"</code>.
                 </p>
               </li>
               <li>
@@ -2279,14 +2274,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the strings <code>raw</code>,
-                    <code>pkcs8</code>, or <code>spki</code>:
+                    If <var>format</var> is equal to the strings <code>"raw"</code>,
+                    <code>"pkcs8"</code>, or <code>"spki"</code>:
                   </dt>
                   <dd>
                     Set <var>bytes</var> be set to <var>key</var>.
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>jwk</code>:
+                    If <var>format</var> is equal to the string <code>"jwk"</code>:
                   </dt>
                   <dd>
                     <ol>
@@ -2399,7 +2394,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>unwrapKey</code>.
+                  <code>"unwrapKey"</code>.
                 </p>
               </li>
               <li>
@@ -2407,7 +2402,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If an error occurred, let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>decrypt</code>.
+                  <code>"decrypt"</code>.
                 </p>
               </li>
               <li>
@@ -2418,10 +2413,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedKeyAlgorithm</var> be the result of
-                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
-                  <code>alg</code> set to <var>unwrappedKeyAlgorithm</var> and <code>op</code> set to
-                  <code>importKey</code>.
+                  Let <var>normalizedKeyAlgorithm</var> be the result of <a
+                  href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  <code>alg</code> set to <var>unwrappedKeyAlgorithm</var> and <code>op</code> set
+                  to <code>"importKey"</code>.
                 </p>
               </li>
               <li>
@@ -2503,14 +2498,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the strings <code>raw</code>,
-                    <code>pkcs8</code>, or <code>spki</code>:
+                    If <var>format</var> is equal to the strings <code>"raw"</code>,
+                    <code>"pkcs8"</code>, or <code>"spki"</code>:
                   </dt>
                   <dd>
                     Set <var>bytes</var> be set to <var>key</var>.
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>jwk</code>:
+                    If <var>format</var> is equal to the string <code>"jwk"</code>:
                   </dt>
                   <dd>
                     Let <var>bytes</var> be the result of executing the
@@ -3916,7 +3911,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-1</code>.
+                                Let <var>hash</var> be the string <code>"SHA-1"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -3926,7 +3921,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-256</code>.
+                                Let <var>hash</var> be the string <code>"SHA-256"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -3936,7 +3931,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-384</code>.
+                                Let <var>hash</var> be the string <code>"SHA-384"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -3946,7 +3941,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-512</code>.
+                                Let <var>hash</var> be the string <code>"SHA-512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -4056,7 +4051,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-1</code>.
+                                Let <var>hash</var> be the string <code>"SHA-1"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4066,7 +4061,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-256</code>.
+                                Let <var>hash</var> be the string <code>"SHA-256"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4076,7 +4071,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-384</code>.
+                                Let <var>hash</var> be the string <code>"SHA-384"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4086,7 +4081,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-512</code>.
+                                Let <var>hash</var> be the string <code>"SHA-512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -4207,7 +4202,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-1</code>.
+                                Let <var>hash</var> be the string <code>"SHA-1"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4216,7 +4211,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-256</code>.
+                                Let <var>hash</var> be the string <code>"SHA-256"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4225,7 +4220,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-384</code>.
+                                Let <var>hash</var> be the string <code>"SHA-384"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -4234,7 +4229,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-512</code>.
+                                Let <var>hash</var> be the string <code>"SHA-512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -4527,32 +4522,32 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>hash</var> is <code>SHA-1</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-1"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>RS1</code>.
+                                <code>"RS1"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-256</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-256"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>RS256</code>.
+                                <code>"RS256"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-384</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-384"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>RS384</code>.
+                                <code>"RS384"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-512</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-512"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>RS512</code>.
+                                <code>"RS512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -4566,7 +4561,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         </li>
                         <li>
                           <p>Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                          <code>RSA1_5</code>.</p>
+                          <code>"RSA1_5"</code>.</p>
                         </li>
                         <li>
                           <p>
@@ -5045,7 +5040,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-1</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-1"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5055,7 +5050,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-256</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-256"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5065,7 +5060,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-384</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-384"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5075,7 +5070,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-512</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-512"</code>.
                                       </p>
                                     </dd>
                                     <dt>Otherwise:</dt>
@@ -5248,7 +5243,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-1</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-1"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5258,7 +5253,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-256</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-256"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5268,7 +5263,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-384</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-384"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -5278,7 +5273,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-512</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-512"</code>.
                                       </p>
                                     </dd>
                                     <dt>Otherwise:</dt>
@@ -5431,7 +5426,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-1</code>.
+                                Let <var>hash</var> be the string <code>"SHA-1"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -5440,7 +5435,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-256</code>.
+                                Let <var>hash</var> be the string <code>"SHA-256"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -5449,7 +5444,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-384</code>.
+                                Let <var>hash</var> be the string <code>"SHA-384"</code>.
                               </p>
                             </dd>
                             <dt>
@@ -5458,7 +5453,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                             </dt>
                             <dd>
                               <p>
-                                Let <var>hash</var> be the string <code>SHA-512</code>.
+                                Let <var>hash</var> be the string <code>"SHA-512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -5655,7 +5650,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-1</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5670,7 +5665,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-256</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5685,7 +5680,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-384</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5700,7 +5695,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-512</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5826,7 +5821,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-1</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5841,7 +5836,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-256</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5856,7 +5851,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-384</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5871,7 +5866,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-512</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -5968,32 +5963,32 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>hash</var> is <code>SHA-1</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-1"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>PS1</code>.
+                                <code>"PS1"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-256</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-256"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>PS256</code>.
+                                <code>"PS256"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-384</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-384"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>PS384</code>.
+                                <code>"PS384"</code>.
                               </p>
                             </dd>
-                            <dt>If <var>hash</var> is <code>SHA-512</code>:</dt>
+                            <dt>If <var>hash</var> is <code>"SHA-512"</code>:</dt>
                             <dd>
                               <p>
                                 Set the <code>alg</code> attribute of <var>jwk</var> to the string
-                                <code>PS512</code>.
+                                <code>"PS512"</code>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -6481,7 +6476,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-1</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-1"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6491,7 +6486,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-256</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-256"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6501,7 +6496,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-384</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-384"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6511,7 +6506,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-512</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-512"</code>.
                                       </p>
                                     </dd>
                                     <dt>Otherwise:</dt>
@@ -6685,7 +6680,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-1</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-1"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6696,7 +6691,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-256</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-256"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6707,7 +6702,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-384</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-384"</code>.
                                       </p>
                                     </dd>
                                     <dt>
@@ -6718,7 +6713,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>hash</var> to the string <code>SHA-512</code>.
+                                        Set <var>hash</var> to the string <code>"SHA-512"</code>.
                                       </p>
                                     </dd>
                                     <dt>Otherwise:</dt>
@@ -6859,24 +6854,24 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                             <dd>Let <var>hash</var> be undefined.</dd>
                             <dt>
                               If the <code>alg</code> field of <var>jwk</var> is equal to
-                              <code>RSA-OAEP</code>:
+                              <code>"RSA-OAEP"</code>:
                             </dt>
-                            <dd>Let <var>hash</var> be the string <code>SHA-1</code>.</dd>
+                            <dd>Let <var>hash</var> be the string <code>"SHA-1"</code>.</dd>
                             <dt>
                               If the <code>alg</code> field of <var>jwk</var> is equal to
-                              <code>RSA-OAEP-256</code>:
+                              <code>"RSA-OAEP-256"</code>:
                             </dt>
-                            <dd>Let <var>hash</var> be the string <code>SHA-256</code>.</dd>
+                            <dd>Let <var>hash</var> be the string <code>"SHA-256"</code>.</dd>
                             <dt>
                               If the <code>alg</code> field of <var>jwk</var> is equal to
-                              <code>RSA-OAEP-384</code>:
+                              <code>"RSA-OAEP-384"</code>:
                             </dt>
-                            <dd>Let <var>hash</var> be the string <code>SHA-384</code>.</dd>
+                            <dd>Let <var>hash</var> be the string <code>"SHA-384"</code>.</dd>
                             <dt>
                               If the <code>alg</code> field of <var>jwk</var> is equal to
-                              <code>RSA-OAEP-512</code>:
+                              <code>"RSA-OAEP-512"</code>:
                             </dt>
-                            <dd>Let <var>hash</var> be the string <code>SHA-512</code>.</dd>
+                            <dd>Let <var>hash</var> be the string <code>"SHA-512"</code>.</dd>
                             <dt>Otherwise:</dt>
                             <dd>
                               <a href="#concept-return-an-error">return an error</a> named
@@ -7078,7 +7073,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-1</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7093,7 +7088,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-256</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7108,7 +7103,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-384</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7123,7 +7118,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-512</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7238,7 +7233,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-1</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7253,7 +7248,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-256</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7268,7 +7263,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-384</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7283,7 +7278,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                           href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                           the [[<a
                                           href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                          internal slot of <var>key</var> is <code>SHA-512</code>:
+                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
                                           <p>
@@ -7369,7 +7364,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                               If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the <a
                               href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>SHA-1</code>:
+                              of <var>key</var> is <code>"SHA-1"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7381,7 +7376,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                               If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the <a
                               href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>SHA-256</code>:
+                              of <var>key</var> is <code>"SHA-256"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7393,7 +7388,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                               If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the <a
                               href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>SHA-384</code>:
+                              of <var>key</var> is <code>"SHA-384"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7405,7 +7400,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                               If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the <a
                               href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>SHA-512</code>:
+                              of <var>key</var> is <code>"SHA-512"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7573,11 +7568,11 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             curves. The following values are recognized:
           </p>
           <dl>
-            <dt id="dfn-NamedCurve-p256"><code>P-256</code></dt>
+            <dt id="dfn-NamedCurve-p256"><code>"P-256"</code></dt>
             <dd>NIST recommended curve P-256, also known as <code>secp256r1</code>.</dd>
-            <dt id="dfn-NamedCurve-p2384"><code>P-384</code></dt>
+            <dt id="dfn-NamedCurve-p2384"><code>"P-384"</code></dt>
             <dd>NIST recommended curve P-384, also known as <code>secp384r1</code>.</dd>
-            <dt id="dfn-NamedCurve-p521"><code>P-521</code></dt>
+            <dt id="dfn-NamedCurve-p521"><code>"P-521"</code></dt>
             <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
           </dl>
         </div>
@@ -8293,19 +8288,19 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               If the <code>"alg"</code> field is equal to the string "ES256":
                             </dt>
                             <dd>
-                              Let <var>algNamedCurve</var> be the string <code>P-256</code>.
+                              Let <var>algNamedCurve</var> be the string <code>"P-256"</code>.
                             </dd>
                             <dt>
                               If the <code>"alg"</code> field is equal to the string "ES384":
                             </dt>
                             <dd>
-                              Let <var>algNamedCurve</var> be the string <code>P-384</code>.
+                              Let <var>algNamedCurve</var> be the string <code>"P-384"</code>.
                             </dd>
                             <dt>
                               If the <code>"alg"</code> field is equal to the string "ES521":
                             </dt>
                             <dd>
-                              Let <var>algNamedCurve</var> be the string <code>P-521</code>.
+                              Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
                             </dd>
                           </dl>
                         </li>
@@ -8689,7 +8684,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-256</code>:
+                              of <var>key</var> is <code>"P-256"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -8699,7 +8694,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-384</code>:
+                              of <var>key</var> is <code>"P-384"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -8709,7 +8704,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-521</code>:
+                              of <var>key</var> is <code>"P-521"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -8735,7 +8730,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <dl class="switch">
                             <dt>
                               If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
-                              of <var>key</var> is <code>private</code>
+                              of <var>key</var> is <code>"private"</code>
                             </dt>
                             <dd>
                               <p>
@@ -9928,7 +9923,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-256</code>:
+                              of <var>key</var> is <code>"P-256"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -9938,7 +9933,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-384</code>:
+                              of <var>key</var> is <code>"P-384"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -9948,7 +9943,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a
                               href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>P-521</code>:
+                              of <var>key</var> is <code>"P-521"</code>:
                             </dt>
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
@@ -9974,7 +9969,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <dl class="switch">
                             <dt>
                               If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
-                              of <var>key</var> is <code>private</code>
+                              of <var>key</var> is <code>"private"</code>
                             </dt>
                             <dd>
                               <p>
