@@ -385,117 +385,203 @@ of contents, section numbers, certain processing instructions).
         </div>
       </div>
 
+
+      <div class='section' id='concepts'>
+        <h2>Concepts</h2>
+        <p class='norm'>This section is non-normative.</p>
+        <div class='section' id='concepts-underlying-implementation'>
+          <h3>Underlying Cryptographic Implementation</h3>
+          <p>
+            This specification assumes, but does not require, that conforming user agents do not
+            and will not be directly implementing cryptographic operations within the user agent
+            itself. Historically, many user agents have deferred cryptographic operations, such as
+            those used within TLS, to existing APIs that are available as part of the underlying
+            operating system or to third-party modules that are managed independently of the user
+            agent.
+          </p>
+          <p>
+            The <a href="#dfn-CryptoKey">CryptoKey</a> object represents the bridge between the
+            JavaScript execution environment and these underlying libraries, through the use of the
+            internal slot named [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]]. The handle
+            represents an opaque type that is implementation specific, which may not be represented
+            within a JavaScript type, nor is it ever exposed to script authors. In this way, the
+            <a href="#dfn-CryptoKey">CryptoKey</a> object is the conceptual equivalent to the
+            JavaScript executing environment as the
+            [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] is to the underlying cryptographic
+            implementation.
+          </p>
+          <p>
+            These APIs are traditionally built around a notion of cryptographic providers, an
+            abstraction for a specific implementation of a set of algorithms. The operating system
+            or library may come with a default provider, and users are frequently allowed to add
+            additional providers, reconfigure the set of enabled algorithms, or otherwise customize
+            how cryptographic services are provided.
+          </p>
+          <p>
+            While it is assumed that most user agents will be interacting with a cryptographic
+            provider that is implemented purely in software, it is not required by this
+            specification. As a result, the capabilities of some implementations may be limited by
+            the capabilities of the underlying hardware, and, depending on how the user has
+            configured the underlying cryptographic library, this may be entirely opaque to the
+            User Agent.
+          </p>
+        </div>
+        <div class='section' id='concepts-key-storage'>
+          <h3>Key Storage</h3>
+          <p>
+            This specification does not explicitly provide any new storage mechanisms for
+            <a href="#dfn-CryptoKey">CryptoKey</a> objects. Instead, by allowing the
+            <a href="#dfn-CryptoKey">CryptoKey</a> to be used with the structured clone algorithm,
+            any existing or future web storage mechanisms that support storing structured clonable
+            objects can be used to store <a href="#dfn-CryptoKey">CryptoKey</a> objects.
+          </p>
+          <p>
+            In practice, it is expected that most authors will make use of the
+            <a href="#IndexedDB">Indexed Database API</a>, which allows associative storage of
+            key/value pairs, where the key is some string identifier meaningful to the application,
+            and the value is a <a href="#dfn-CryptoKey">CryptoKey</a> object. This allows the
+            storage and retrieval of key material, without ever exposing that key material to the
+            application or the JavaScript environment. Additionally, this allows authors
+            the full flexibility to store any additional metadata with the
+            <a href="#dfn-CryptoKey">CryptoKey</a> itself.
+          </p>
+        </div>
+      </div>
+
       <div id="security" class="section">
         <h2>Security considerations</h2>
         <p class='norm'>This section is non-normative.</p>
         <div id="security-implementers" class="section">
           <h2>Security considerations for implementers</h2>
           <p>
-            User agents should take care before exposing keys that were not explicitly generated
-            via the API in this specification or exposing keys that were generated in the
-            context of other origins. Two applications with access to the same key handle may be
-            able to spoof messages to each other, as both valid and hostile messages will appear
-            to be valid for the given key. Because of this, user agents are recommended to obtain
-            express permission from the user before re-using keys, unless there is a prearranged
-            trust relationship.
+            By not providing an explicit storage mechanism, this specification assumes that
+            <a href="#dfn-CryptoKey">CryptoKey</a> objects are scoped to the current execution
+            environment and any storage mechanisms available to that environment (e.g.
+            <a href="#IndexedDB">Indexed Database API</a>). Application authors rely upon this for
+            the security of their applications; two origins with the same
+            <a href="#dfn-CryptoKey">CryptoKey</a> object have full access to the underlying key,
+            and as such, messages from these applications cannot be distinguished, and messages sent
+            to these applications can be fully recovered. Implementors should ensure that no
+            <a href="#dfn-CryptoKey">CryptoKey</a> objects are shared between two origins unless
+            the author has explicitly chosen to share (e.g., such as through the use of postMessage)
           </p>
           <p>
-            User agents should be aware of the security considerations of each algorithm
-            implemented and exposed to applications. For a number of algorithms, their
-            cryptographic strength is relative to the amount of work necessary to compute the
-            result, whether this be through the generation of significantly large prime numbers or
-            through the repeatedly iterating through the same algorithm to reduce its
-            susceptibility to brute force. Implementations should therefore take measures to
-            ensure against misuse. Such measures may include requiring express user permission to
-            compute some expensive operations, rate limiting the number of times the application
-            may call certain APIs/algorithms, and defining implementation-specific upper limits
-            for inputs such as key sizes or iteration counts, as appropriate for the device on
-            which the implementation executes.
+            A number of algorithms specified within this specification perform computationally
+            intensive work, such as the generation of significantly large prime numbers, or through
+            repeated iterations of a particular operation. As such, hostile applications may attempt
+            to misuse this API and attempt to cause significant amount of work to be performed by
+            an implementation, denying access or services to other applications that are executing.
+            Implementations should take steps to mitigate these risks, such as limiting the amount
+            of operations an implementation performs concurrently, requiring user consent for
+            operations that may be known to be disruptive for the executing environment, or defining
+            device-specific limits on attributes such as key sizes or iteration counts.
           </p>
-          <p>
-            In some cases, the same underlying cryptographic key material may be re-usable for
-            multiple algorithms. One such example is an RSA key, which may be used for both
-            signing and encryption, or with RSA-PKCS1v1.5 and RSA-PSS. In some cases, the re-use
-            of this key material may undermine the security properties of the key and allow
-            applications to recover the raw material.
-          </p>
-          <div class="ednote">
-            <ul>
-              <li>
-                <a href="https://www.w3.org/2012/webcrypto/track/issues/33">ISSUE-33</a>
-                One proposed technical solution for user agents is to implement "key tainting", in
-                which it records how a particular key has been used (eg: algorithms, parameters),
-                and prevents it from being re-used in a manner that is unsafe or contrary to the
-                security - such as preventing a PKCS1-v1.5 key from being used with RSA-PSS, or
-                preventing an RSA-OAEP w/ MGF1-SHA1 from being used with RSA-OAEP w/ MGF1-SHA256.
-                Questions exist about whether this should be encouraged or permitted, and the
-                interoperability concerns it might cause.
-              </li>
-            </ul>
-          </div>
         </div>
         <div id="security-developers" class="section">
           <h2>Security considerations for authors</h2>
           <p>
-            While this API provides important functionality for the development of secure
-            applications, it does not attempt to provide a mitigation for existing threats to
-            the web security model, such as script injection or hostile intermediaries. As such,
-            application developers must take care to ensure applications are secured against
-            common and traditional attacks, such as script injection, by making use of appropriate
-            existing functionality such as Content Security Policy and the use of TLS.
+            This specification includes descriptions for a variety of cryptographic operations, some
+            of which have known weaknesses when used inappropriately. Application developers must
+            take care and review appropriate and current cryptographic literature, to understand and
+            mitigate such issues. In general, application developers are <strong>strongly</strong>
+            discouraged from inventing new cryptographic protocols; as with all applications, users
+            of this specification will be best served through the use of existing protocols, of
+            which this specification provides the necessary building blocks to implement.
           </p>
           <p>
-            This API includes a variety of cryptographic operations, some of which may have known
-            security issues when used inappropriately. Application developers should take care to
-            review the appropriate cryptographic literature before making use of certain algorithms,
-            and should avoid attempting to develop new cryptographic protocols whenever possible.
+            In order to use the APIs defined in this specification to provide any meaningful
+            cryptographic assurances, authors must be familiar with existing threats to web
+            applications, as well as the underlying security model employed. Conceptually, issues
+            such as script injection are the equivalent to remote code execution in other operating
+            environments, and allowing hostile script to be injected may allow for the exfiltration
+            of keys or data. Script injection may come from other applications, for which the
+            judicious use of Content Security Policy may mitigate, or it may come from hostile
+            network intermediaries, for which the use of Transport Layer Security may mitigate.
           </p>
           <p>
-            While the API in this specification provides a means to protect keys from future access
-            by web applications, it makes no statements as to how the actual keying material will be
-            stored by an implementation. As such, although a key may be inaccessible to web content,
-            it should not be presumed that it is inaccessible to end-users. For example, a
-            conforming user agent may choose to implement key storage by storing key material in
-            plain text on device storage. Although the user agent prevents access to the raw keying
-            material to web applications, any user with access to device storage may be able to
-            recover the key.
+            This specification does not define any specific mechanisms for the storage of
+            cryptographic keys. By default, unless specific effort is taken by the author to persist
+            keys, such as through the use of the <a href="#IndexedDB">Indexed Database API</a>, keys
+            created with this API will only be valid for the duration of the current page (e.g.
+            until a navigation event). Authors that wish to use the same key across different pages
+            or multiple browsing sessions must employ existing web storage technologies. Authors
+            should be aware of the security assumptions of these technologies, such as the
+            same-origin security model; that is, any application that shares the same scheme, host,
+            and port have access to the same storage partition, even if other information, such as
+            the path, may differ. Authors may explicitly choose to relax this security through the
+            use of inter-origin sharing, such as <code>postMessage</code>.
+          </p>
+          <p>
+            Authors should be aware that this specification places no normative requirements on
+            implementations as to how the underlying cryptographic key material is stored. The only
+            requirement is that key material is not exposed to script, except through the use of the
+            <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a> and <a
+            href="#dfn-SubtleCrypto-method-wrapKey">wrapKey</a> operations. In particular, it does
+            not guarantee that the underlying cryptographic key material will not be persisted to
+            disk, possibly unencrypted, nor that it will be inaccessible to users or other
+            applications running with the same privileges as the User Agent. Any application or user
+            that has access to the device storage may be able to recover the key material, even
+            through scripts may be prohibited.
+          </p>
+          <p>
+            This specification places no normative requirements on how implementations handle key
+            material once all references to it go away. That is, conforming user agents are not
+            required to zeroize key material, and it may still be accessible on device storage or
+            device memory, even after all references to the <a href="#dfn-CryptoKey">CryptoKey</a>
+            have gone away.
+          </p>
+          <p>
+            Applications may share a <a href="#dfn-CryptoKey">CryptoKey</a> object across security
+            boundaries, such as origins, through the use of the structured clone algorithm and APIs
+            such as <code>postMessage</code>. While access to the underlying cryptographic key
+            material may be restricted, based upon the <a href="#dfn-CryptoKey-extractable">extractable</a>
+            attribute, once a key is shared with a destination origin, the source origin can not
+            later restrict or revoke access to the key. As such, authors must be careful to ensure
+            they trust the destination origin to take the same mitigations against hostile script
+            that the source origin employs. Further, in the event of script injection on the source
+            origin, attackers may post the key to an origin under attacker control. Any time that
+            the user agent visits the attacker's origin, the user agent may be directed to perform
+            cryptographic operations using that key, such as the decryption of existing messages
+            or the creation of new, fraudulent messages.
+          </p>
+          <p>
+            Authors should be aware that users may, at any time, choose to clear the storage
+            associated with an origin, potentially destroying keys. Applications that are meant to
+            provide long-term storage, such as on the server, should consider techniques such as
+            key escrow to prevent such data from being inaccessible. Authors should not presume
+            that keys will be available indefinitely.
+          </p>
+        </div>
+        <div class='section' id='security-users'>
+          <h3>Security considerations for users</h3>
+          <p>
+            Users of applications that employ the APIs defined in this specification should be aware
+            that these applications will have full access to all messages exchanged, regardless of
+            the cryptography employed. That is, for messages that are encrypted, applications that
+            use these APIs will have full access to the decrypted message as well.
           </p>
         </div>
       </div>
 
       <div id="privacy" class="section">
         <h2>Privacy considerations</h2>
-        <p class='norm'>This section is non-normative.</p>
+        <p class="norm">This section is non-normative.</p>
         <dl>
           <dt>Fingerprinting</dt>
           <dd>
-            Malicious applications may be able to fingerprint users or user agents by detecting or
-            enumerating the list of algorithms that are supported. This is especially true if an
-            implementation exposes details about users' smart cards or secure element storage, as
-            the combination of algorithms supported by such devices may be used to fingerprint
-            devices more accurately than just the particular user agent.
-          </dd>
-          <dt>Tracking</dt>
-          <dd>
-            If user agents permit keys to be re-used between origins, without performing any
-            secondary operations such as key derivation that includes the origin, then it may be
-            possible for two origins to collude and track a unique user by recording their ability
-            to access a common key.
+            By exposing additional APIs that reflect capabilities of the underlying platform, this
+            specification may allow malicious applications to determine or distinguish different
+            user agents or devices.
           </dd>
           <dt>Super-cookies</dt>
           <dd>
-            With the exception of ephemeral keys, its often desirable for applications to strongly
-            associate users with keys. These associations may be used to enhance the security of
-            authenticating to the application, such as using a key stored in a secure element as a
-            second factor, or may be used by users to assert some identity, such as an e-mail
-            signing identity. As such, these keys often live longer than their counterparts such as
-            usernames and passwords, and it may be undesirable or prohibitive for users to revoke
-            these keys.
-            Because of this, keys may exist longer than the lifetime of the browsing context
-            [<a href="#HTML">HTML</a>] and beyond the lifetime of items such as cookies, thus
-            presenting a risk that a user may be tracked even after clearing such data. This is
-            especially true for keys that were pre-provisioned for particular origins and for which
-            no user interaction was provided.
+            This specification does not provide any means for malicious applications to create
+            identifiers that outlive existing web storage technologies. However, care must be taken
+            when introducing future revisions to this API or additional cryptographic capabilities,
+            such as those that are hardware backed (e.g.: smart cards or Trusted Platform Modules).
+            Considering that such storage is designed to prevent any two users from having the same
+            underlying key data, such APIs may represent a real risk of being used as a permanent
+            identifier against the user's wishes.
           </dd>
         </dl>
       </div>
@@ -3032,11 +3118,22 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             As the API is meant to be extensible in order to keep up with future developments within
             cryptography and to provide flexibility, there are no strictly required algorithms. Thus
             users of this API should check to see what algorithms are currently recommended and
-            supported by implementations.
+            supported by implementations. As highlighted in the <a href="#security">Security
+            Considerations</a>, even strong cryptographic algorithms may be combined in insecure
+            ways. Users should therefore proceed with extreme caution when inventing new
+            cryptographic protocols.
           </p>
           <p>
-            However, in order to promote interoperability for developers, there are a number of
-            recommended algorithms. The recommended algorithms are: 
+            Implementers should carefully review their support for different algorithms based on the
+            evolving state of the cryptographic literature. It is expected that the set of
+            widely-accepted algorithms will change over time as new advances are made.
+          </p>
+          <p>
+            With the above caveats in mind, in order to promote interoperability for developers,
+            this specification includes a list of suggested algorithms. These are considered to be
+            the most widely used algorithms in practice at the time of writing, and therefore
+            provide a good starting point for initial implementations of this specification. The
+            suggested algorithms are:
           </p>
           <ul>
             <li>
@@ -16604,6 +16701,11 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <dd>
               <cite><a href="http://www.w3.org/TR/FileAPI/">File API</a></cite>,
               A. Ranganathan, J. Sicking. W3C.
+            </dd>
+            <dt id="IndexedDB">Indexed Database API</dt>
+            <dd>
+              <cite><a href="http://www.w3.org/TR/IndexedDB/">Indexed Database API</a></cite>,
+              N. Mehta, J. Sicking, E. Graff, A. Popescu, J. Orlow, J. Bell. W3C.
             </dd>
             <dt id="PKCS11">PKCS11</dt>
             <dd>
