@@ -745,6 +745,14 @@
           </p>
         </div>
         <p>
+          When this specification states to supply the <dfn id="concept-contents-of-arraybuffer">
+          contents of an ArrayBuffer</dfn> named <var>data</var> to an underlying cryptographic
+          implementation, the User Agent shall supply a contiguous sequence of bytes that is equal
+          to the contents of the Data Block value of the [[ArrayBufferData]] internal slot of
+          <var>data</var>, and whose length in bytes is equal to the [[ArrayBufferByteLength]]
+          internal slot of <var>data</var>.
+        </p>
+        <p>
           When this specification says to calculate the <dfn id="concept-usage-intersection">usage
           intersection</dfn> of two arrays, <var>a</var> and <var>b</var> the result shall be an
           array containing each <a href="#dfn-RecognizedKeyUsage">recognised key usage value</a>
@@ -3087,8 +3095,9 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Perform the encrytion operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the recipient's RSA public key and the contents of <var>plaintext</var> as
-                      <var>M</var>.
+                      as the recipient's RSA public key and the
+                      <a href="#concept-contents-of-arraybuffer">contents of <var>plaintext</var></a>
+                      as <var>M</var>.
                     </p>
                   </li>
                   <li>
@@ -3121,8 +3130,8 @@ interface <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-Ke
                   <li>
                     <p>
                       Perform the decryption operation defined in Section 7.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the recipient's RSA private key and the contents of <var>ciphertext</var> as
-                      <var>C</var>.
+                      as the recipient's RSA private key and the <a href="#concept-contents-of-arraybuffer">contents of <var>ciphertext</var></a>
+                      as <var>C</var>.
                     </p>
                   </li>
                   <li>
@@ -3903,12 +3912,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                   </li>
                   <li>
                     <p>
-                      Perform the signature generation operation defined in Section 8.2 of
-                      [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
-                      <var>key</var> as the signer's private key and the contents of
-                      <var>message</var> as <var>M</var> and using the hash function specified in
-                      the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
+                      Perform the signature generation operation defined in Section 8.2 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
+                      as the signer's private key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
+                      <var>M</var> and using the hash function specified in the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
                       Hash option for the EMSA-PKCS1-v1_5 encoding method.
                     </p>
                   </li>
@@ -3943,12 +3949,11 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <p>
                       Perform the signature verification operation defined in Section 8.2 of
                       [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
-                      <var>key</var> as the signer's RSA public key and the contents of
-                      <var>message</var> as <var>M</var> and <var>signature</var> as <var>S</var>
-                      and using the hash function specified in the
-                      <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of
-                      <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                      <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
+                      <var>M</var> and the <a href="#concept-contents-of-arraybuffer">contents of
+                      <var>signature</var></a> as <var>S</var> and using the hash function specified
+                      in the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
+                      Hash option for the EMSA-PKCS1-v1_5 encoding method.
                     </p>
                   </li>
                   <li>
@@ -5004,16 +5009,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Perform the signature generation operation defined in Section 8.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the signer's private key, <var>K</var>, and the contents of
-                      <var>message</var> as the message to be signed, <var>M</var>, and using the
-                      hash function specified by the
-                      <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var>
-                      as the Hash option, MGF1 (defined in Section B.2.1 of
-                      [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and
-                      the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
-                      <var>normalizedAlgorithm</var> as the salt length option for the EMM-PSS-ENCODE
-                      operation.
+                      as the signer's private key, <var>K</var>, and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
+                      the message to be signed, <var>M</var>, and using the hash function specified
+                      by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
+                      Hash option, MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
+                      <var>normalizedAlgorithm</var> as the salt length option for the
+                      EMM-PSS-ENCODE operation.
                     </p>
                   </li>
                   <li>
@@ -5060,15 +5061,13 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Perform the signature verification operation defined in Section 8.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the signer's RSA public key and the contents of <var>message</var> as
-                      <var>M</var> and the contents of <var>signature</var> as <var>S</var> and using
-                      the hash function specified by the
-                      <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
-                      Hash option, MGF1 (defined in Section B.2.1 of
-                      [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and the
-                      <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
+                      Perform the signature verification operation defined in Section 8.1 of
+                      [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by
+                      <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
+                      <var>M</var> and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>signature</var></a> as <var>S</var> and using the hash function specified
+                      by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
+                      Hash option, MGF1 (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
                       <var>normalizedAlgorithm</var> as the salt length option for the
                       EMSA-PSS-VERIFY operation.
                     </p>
@@ -6421,14 +6420,12 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Perform the encrytion operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the recipient's RSA public key, the contents of <var>plaintext</var> as the
-                      message to be encrypted, <var>M</var> and the
-                      <a href="#dfn-RsaOaepParams-label">label</a> member of
+                      as the recipient's RSA public key, the <a href="#concept-contents-of-arraybuffer">contents of <var>plaintext</var></a>
+                      as the message to be encrypted, <var>M</var> and the <a href="#concept-contents-of-arraybuffer">contents of</a> <a href="#dfn-RsaOaepParams-label">label</a> member of
                       <var>normalizedAlgorithm</var> as the label, <var>L</var>, and with the hash
-                      function specified by the
-                      <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
-                      Hash option and MGF1 (defined in Section B.2.1 of
+                      function specified by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a>
+                      attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                      <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
                       [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
                     </p>
                   </li>
@@ -6477,16 +6474,13 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <li>
                     <p>
                       Perform the decryption operation defined in Section 7.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
-                      as the recipient's RSA private key, the contents of <var>ciphertext</var> as
-                      the cipertext to be decrypted, C, and the
-                      <a href="#dfn-RsaOaepParams-label">label</a> member of
+                      as the recipient's RSA private key, the <a href="#concept-contents-of-arraybuffer">contents of <var>ciphertext</var></a>
+                      as the ciphertext to be decrypted, C, and the <a href="#concept-contents-of-arraybuffer">contents of</a> the <a href="#dfn-RsaOaepParams-label">label</a> member of
                       <var>normalizedAlgorithm</var> as the label, <var>L</var>, and with the hash
-                      function specified by the
-                      <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a> attribute of the
-                      <a href="#dfn-Key-algorithm">algorithm</a> attribute of <var>key</var> as the
-                      Hash option and MGF1
-                      (defined in Section B.2.1 of [<cite><a href="#RFC3447">RFC3447</a></cite>]) as
-                      the MGF option.
+                      function specified by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a>
+                      attribute of the <a href="#dfn-Key-algorithm">algorithm</a> attribute of
+                      <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
+                      [<cite><a href="#RFC3447">RFC3447</a></cite>]) as the MGF option.
                     </p>
                   </li>
                   <li>
@@ -10267,16 +10261,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <li>
                     <p>
                       Let <var>ciphertext</var> be the result of performing the CTR Encryption
-                      operation described in Section 6.5 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCtrParams-counter">counter</a> member of
-                      <var>normalizedAlgorithm</var> as the initial
-                      value of the counter block,
-                      the <a href="#dfn-AesCtrParams-length">length</a> member of
-                      <var>normalizedAlgorithm</var> as the input parameter
-                      <var>m</var> to the standard counter block incrementing functon defined
-                      in Appendix B.1 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] and
-                      <var>plaintext</var> as the input plaintext.
+                      operation described in Section 6.5 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
+                      <var>normalizedAlgorithm</var> as the initial value of the counter block, the
+                      <a href="#dfn-AesCtrParams-length">length</a> member of
+                      <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
+                      standard counter block incrementing functon defined in Appendix B.1 of NIST SP
+                      800-38A [<a href="#SP800-38A">SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>plaintext</var></a> as the input plaintext.
                     </p>
                   </li>
                   <li>
@@ -10325,16 +10316,13 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <li>
                     <p>
                       Let <var>plaintext</var> be the result of performing the CTR Decryption
-                      operation described in Section 6.5 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCtrParams-counter">counter</a> member of
-                      <var>normalizedAlgorithm</var> as the initial
-                      value of the counter block,
-                      the <a href="#dfn-AesCtrParams-length">length</a> member of
-                      <var>normalizedAlgorithm</var> as the input parameter
-                      <var>m</var> to the standard counter block incrementing functon defined
-                      in Appendix B.1 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] and
-                      <var>ciphertext</var> as the input ciphertext.
+                      operation described in Section 6.5 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
+                      <var>normalizedAlgorithm</var> as the initial value of the counter block, the
+                      <a href="#dfn-AesCtrParams-length">length</a> member of
+                      <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
+                      standard counter block incrementing functon defined in Appendix B.1 of NIST SP
+                      800-38A [<a href="#SP800-38A">SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>ciphertext</var></a> as the input ciphertext.
                     </p>
                   </li>
                   <li>
@@ -10862,11 +10850,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>ciphertext</var> be the result of performing the CBC Encryption
-                      operation described in Section 6.2 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCbcParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter and
-                      <var>padded-plaintext</var> as the input plaintext.
+                      operation described in Section 6.2 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>padded-plaintext</var></a> as the input plaintext.
                     </p>
                   </li>
                   <li>
@@ -10906,11 +10892,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>padded-plaintext</var> be the result of performing the CBC Decryption
-                      operation described in Section 6.2 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCbcParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter and
-                      <var>ciphertext</var> as the input ciphertext.
+                      operation described in Section 6.2 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>ciphertext</var></a> as the input ciphertext.
                     </p>
                   </li>
                   <li>
@@ -12019,22 +12003,20 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>additionalData</var> be the contents of the
-                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member
-                      of <var>normalizedAlgorithm</var> if present and not null and the empty
-                      octet string otherwise.
+                      Let <var>additionalData</var> be <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member of
+                      <var>normalizedAlgorithm</var> if present and not null and the empty octet
+                      string otherwise.
                     </p>
                   </li>
                   <li>
                     <p>
                       Let <var>C</var> and <var>T</var> be the outputs that result from performing
-                      the Authenticated Encryption Function described in Section 7.1 of
-                      NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesGcmParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter,
-                      <var>additionalData</var> as the <var>A</var> input parameter,
-                      <var>tagLength</var> as the <var>t</var> pre-requisite and
-                      <var>plaintext</var> as the input plaintext.
+                      the Authenticated Encryption Function described in Section 7.1 of NIST SP
+                      800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>additionalData</var></a> as the <var>A</var> input parameter,
+                      <var>tagLength</var> as the <var>t</var> pre-requisite and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>plaintext</var></a> as the input plaintext.
                     </p>
                   </li>
                   <li>
@@ -12121,22 +12103,21 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   </li>
                   <li>
                     <p>
-                      Let <var>additionalData</var> be the contents of the
-                      <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member
-                      of <var>normalizedAlgorithm</var> if present and not null and the empty
-                      octet string otherwise.
+                      Let <var>additionalData</var> be <a href="#concept-contents-of-arraybuffer">the contents</a> of the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member of
+                      <var>normalizedAlgorithm</var> if present and not null and the empty octet
+                      string otherwise.
                     </p>
                   </li>
                   <li>
                     <p>
-                      Perform the Authenticated Decryption Function described in Section 7.2 of
-                      NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesGcmParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter,
-                      <var>additionalData</var> as the <var>A</var> input parameter,
-                      <var>tagLength</var> as the <var>t</var> pre-requisite,
-                      <var>actualCiphertext</var> as the input ciphertext, <var>C</var> and
-                      <var>tag</var> as the authentation tag, <var>T</var>.
+                      Perform the Authenticated Decryption Function described in Section 7.2 of NIST
+                      SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block cipher,
+                      <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>additionalData</var></a> as the <var>A</var> input parameter,
+                      <var>tagLength</var> as the <var>t</var> pre-requisite, <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>actualCiphertext</var></a> as the input ciphertext, <var>C</var> and <a href="#concept-contents-of-arraybuffer">the contents of <var>tag</var></a> as
+                      the authentation tag, <var>T</var>.
                     </p>
                     <dl class="switch">
                       <dt>If the result of the algorithm is the indication of inauthenticity,
@@ -12662,12 +12643,10 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>ciphertext</var> be the result of performing the CFB Encryption
-                      operation described in Section 6.3 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCfbParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter, the
-                      value 8 as the input parameter <var>s</var> and
-                      <var>plaintext</var> as the input plaintext.
+                      operation described in Section 6.3 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter, the value 8 as the input parameter
+                      <var>s</var>, and <a href="#concept-contents-of-arraybuffer">the contents
+                      of<var>plaintext</var></a> as the input plaintext.
                     </p>
                   </li>
                   <li>
@@ -12707,12 +12686,10 @@ dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorit
                   <li>
                     <p>
                       Let <var>plaintext</var> be the result of performing the CFB Decryption
-                      operation described in Section 6.3 of
-                      NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block
-                      cipher, the contents of the <a href="#dfn-AesCfbParams-iv">iv</a> member of
-                      <var>normalizedAlgorithm</var> as the <var>IV</var> input parameter, the
-                      the value 8 as the input parameter <var>s</var> and
-                      <var>ciphertext</var> as the input ciphertext.
+                      operation described in Section 6.3 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                      the <var>IV</var> input parameter, the the value 8 as the input parameter
+                      <var>s</var>, and <a href="#concept-contents-of-arraybuffer">the contents of
+                      <var>ciphertext</var></a> as the input ciphertext.
                     </p>
                   </li>
                   <li>
@@ -15805,14 +15782,14 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                       </li>
                       <li>
                         <p>
-                          the contents of the <a href="#dfn-HkdfCtrParams-label">label</a> member
-                          of <var>normalizedAlgorithm</var> as <var>Label</var>,
+                          <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-HkdfCtrParams-label">label</a> member of
+                          <var>normalizedAlgorithm</var> as <var>Label</var>,
                         </p>
                       </li>
                       <li>
                         <p>
-                          the contents of the <a href="#dfn-HkdfCtrParams-label">context</a>
-                          member of <var>normalizedAlgorithm</var> as <var>Context</var>,
+                          <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-HkdfCtrParams-label">context</a> member of
+                          <var>normalizedAlgorithm</var> as <var>Context</var>,
                         </p>
                       </li>
                       <li>
@@ -16054,10 +16031,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                       Let <var>result</var> be the result of performing the PBKDF2 operation defined
                       in Section 5.2 of [<a href="#rfc2898">RFC2898</a>] using <var>prf</var> as the
                       pseudo-random function, <var>PRF</var>, the password represented by
-                      <var>key</var> as the password, <var>P</var>, the contents of the 
-                      <a href="#dfn-Pbkdf2Params-salt">salt</a> attribute of
-                      <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the
-                      <a href="#dfn-Pbkdf2Params-iterations">iterations</a> attribute of
+                      <var>key</var> as the password, <var>P</var>, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-Pbkdf2Params-salt">salt</a> attribute of
+                      <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the <a href="#dfn-Pbkdf2Params-iterations">iterations</a> attribute of
                       <var>normalizedAlgorithm</var> as the iteration count, <var>c</var>, and
                       <var>length</var> divided by 8 as the intended key length, <var>dkLen</var>.
                     </p>
