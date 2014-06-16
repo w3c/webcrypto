@@ -923,7 +923,7 @@ interface <dfn id="dfn-Key">Key</dfn> {
   readonly attribute <a href="#dfn-KeyType">KeyType</a> <a href="#dfn-Key-type">type</a>;
   readonly attribute boolean <a href="#dfn-Key-extractable">extractable</a>;
   readonly attribute <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <a href="#dfn-Key-algorithm">algorithm</a>;
-  readonly attribute <a href="#dfn-KeyUsage">KeyUsage</a>[] <a href="#dfn-Key-usages">usages</a>;
+  readonly attribute object <a href="#dfn-Key-usages">usages</a>;
 };
         </code></pre></div></div>
         <div id="key-interface-description" class="section">
@@ -1078,12 +1078,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           boolean extractable,
-                          <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
+                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveKey">deriveKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          <a href="#dfn-Key">Key</a> baseKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> derivedKeyType,
                          boolean extractable,
-                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
+                         sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-Key">Key</a> baseKey,
                           unsigned long length);
@@ -1093,7 +1093,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          CryptoOperationData keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          boolean extractable,
-                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
+                         sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format, <a href="#dfn-Key">Key</a> key);
 
   <span class="comment">// Note: wrapKey and unwrapKey remain "Features at Risk"</span>
@@ -1107,7 +1107,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrappedKeyAlgorithm,
                          boolean extractable,
-                         <a href="#dfn-KeyUsage">KeyUsage</a>[] keyUsages );
+                         sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
 };
         </code></pre></div></div>
         <div class="ednote"><div class="ednoteHeader">Editorial note</div>
