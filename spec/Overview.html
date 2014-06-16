@@ -44,7 +44,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 19 further editorial notes in the document.</p></div>
+      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 20 further editorial notes in the document.</p></div>
     </div>
 
     <div class="section">
@@ -677,6 +677,74 @@
           </li>
         </ol>
         <p>
+          When this specification says to <dfn id="concept-clone-CryptoOperationData">clone the
+          data</dfn> of a <a href="#dfn-CryptoOperationData">CryptoOperationData</a> object
+          <var>data</var>, the user agent must run the following steps:
+        </p>
+        <dl class="switch">
+          <dt>
+            If <var>data</var> is an <code>ArrayBuffer</code>:
+          </dt>
+          <dd>
+            Return the result of invoking the <code>ArrayBuffer.prototype.slice</code> method on
+            <var>data</var>, with the <var>start</var> value set to the integer 0, and the
+            <var>end</var> value set to the value of the [[ArrayBufferByteLength]] internal slot
+            of <var>data</var>.
+          </dd>
+          <dt>
+            If <var>data</var> is an <code>ArrayBufferView</code>:
+          </dt>
+          <dd>
+            <ol>
+              <li>
+                <p>
+                  Let <var>buffer</var> be the value of the [[ViewedArrayBuffer]] internal slot
+                  of <var>data</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>start</var> be the value of the [[ByteOffset]] internal slot of
+                  <var>data</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>end</var> be the value of the [[ByteLength]] internal slot of
+                  <var>data</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>relativeEnd</var> be <var>start</var>+<var>end</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return the result of invoking the <code>ArrayBuffer.prototype.slice</code> method
+                  on <var>buffer</var>, with the <var>start</var> value set to <var>start</var> and
+                  the <var>end</var> value set to <var>relativeEnd</var>.
+                </p>
+              </li>
+            </ol>
+          </dd>
+        </dl>
+        <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+          <p>
+            The above definition makes heavy use of directly accessing the internal slot values,
+            defined in [ECMA262]. The motivation for this is to avoid issues that might arise with
+            authors defining custom getters/setters on such objects. However, it has the downside of
+            avoiding the error control statements defined in the <code>%TypedArray%.prototype</code>
+            getters and <code>ArrayBuffer.prototype</code> getters, which would be desirable.
+          </p>
+          <p>
+            It is assumed that the WebIDL conversion rules will perform the necessary type checks,
+            and that as a result of these checks, it is guaranteed that the internal slots will
+            always have valid values for the above algorithm. However, that assumption may not be
+            safe to make.
+          </p>
+        </div>
+        <p>
           When this specification says to calculate the <dfn id="concept-usage-intersection">usage
           intersection</dfn> of two arrays, <var>a</var> and <var>b</var> the result shall be an
           array containing each <a href="#dfn-RecognizedKeyUsage">recognised key usage value</a>
@@ -1115,10 +1183,17 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
-                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  Let <var>algorithm</var> and <var>key</var> be the
+                  <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method,
                   respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method.
                 </p>
               </li>
               <li>
@@ -1199,10 +1274,17 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
-                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  Let <var>algorithm</var> and <var>key</var> be the
+                  <code>algorithm</code> and <code>key</code>parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method,
                   respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method.
                 </p>
               </li>
               <li>
@@ -1283,10 +1365,17 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>algorithm</var>, <var>key</var> and <var>data</var> be the
-                  <code>algorithm</code>, <code>key</code> and <code>data</code> parameters
+                  Let <var>algorithm</var> and <var>key</var> be the
+                  <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-sign">sign</a> method,
                   respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-sign">sign</a> method.
                 </p>
               </li>
               <li>
@@ -1366,10 +1455,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>algorithm</var>, <var>key</var>, <var>signature</var> and <var>data</var>
-                  be the <code>algorithm</code>, <code>key</code>, <code>signature</code> and
-                  <code>data</code> parameters passed to the
+                  Let <var>algorithm</var> and <var>key</var>
+                  be the <code>algorithm</code> and <code>key</code> parameters passed to the
                   <a href="#dfn-SubtleCrypto-method-verify">verify</a> method, respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>signature</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>signature</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
                 </p>
               </li>
               <li>
@@ -1450,9 +1552,15 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>algorithm</var> and <var>data</var>
-                  be the <code>algorithm</code> and <code>data</code> parameters passed to the
-                  <a href="#dfn-SubtleCrypto-method-digest">digest</a> method, respectively.
+                  Let <var>algorithm</var> be the <code>algorithm</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-digest">digest</a> method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-digest">digest</a> method.
                 </p>
               </li>
               <li>
@@ -1814,13 +1922,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
-                  Let <var>format</var>, <var>keyData</var>, <var>algorithm</var>,
+                  Let <var>format</var>, <var>algorithm</var>,
                   <var>extractable</var> and <var>usages</var>,
-                  be the <code>format</code>, <code>keyData</code>, <code>algorithm</code>,
+                  be the <code>format</code>, <code>algorithm</code>,
                   <code>extractable</code> and <code>keyUsages</code>
                   parameters passed to the
                   <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method,
                   respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>keyData</var> be the result of
+                  <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
+                  <code>keyData</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
                 </p>
               </li>
               <li>
@@ -2152,15 +2268,23 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
             <li>
                 <p>
-                  Let <var>format</var>, <var>wrappedKey</var>, <var>unwrappingKey</var>,
+                  Let <var>format</var>, <var>unwrappingKey</var>,
                   <var>algorithm</var>, <var>unwrappedKeyAlgorithm</var>,
                   <var>extractable</var> and <var>usages</var>,
-                  be the <code>format</code>, <code>wrappedKey</code>, <code>unwrappingKey</code>,
+                  be the <code>format</code>, <code>unwrappingKey</code>,
                   <code>unwrapAlgorithm</code>, <code>unwrappedKeyAlgorithm</code>,
                   <code>extractable</code> and <code>keyUsages</code>
                   parameters passed to the
                   <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a> method,
                   respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>wrappedKey</var> be the result of
+                  <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
+                  <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a> method.
                 </p>
               </li>
               <li>
