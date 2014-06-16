@@ -519,8 +519,9 @@ of contents, section numbers, certain processing instructions).
             <p>
               A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support at
               least the subset of the functionality defined in HTML that this specification relies
-              upon; in particular, it MUST support <a href="#event-loops">event loops</a> and
-              <a href="#event-handler-idl-attributes">event handler IDL attributes</a>.
+              upon; in particular, it MUST support the
+              <a href="#arraybufferview">ArrayBufferView</a> typedef and the
+              <a href="#structured-clone">structured clone</a> algorithm.
               [<a href="#HTML">HTML</a>]
             </p>
           </dd>
@@ -532,13 +533,6 @@ of contents, section numbers, certain processing instructions).
               the Web IDL specification. [<a href="#WebIDL">WebIDL</a>]
             </p>
           </dd>
-          <dt>Typed Arrays</dt>
-          <dd>
-            <p>
-              A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support the
-              Typed Arrays specification [<a href="#TypedArrays">TypedArrays</a>].
-            </p>
-          </dd>
         </dl>
       </div>
    
@@ -546,15 +540,7 @@ of contents, section numbers, certain processing instructions).
         <h2>Terminology</h2>
         <p>
           The terms and algorithms
-          <dfn id="document">document</dfn>,
-          <dfn id="event-handler-idl-attributes">event handler IDL attributes</dfn>,
-          <dfn id="event-handler-event-type">event handler event type</dfn>,
-          <dfn id="origin">origin</dfn>,
-          <dfn id="same-origin">same origin</dfn>,
-          <dfn id="event-loops">event loops</dfn>,
-          <dfn id="dfn-task">task</dfn>,
-          <dfn id="task-source">task source</dfn>,
-          <dfn id="queue-a-task">queue a task</dfn>, and
+          <dfn id="arraybufferview">ArrayBufferView</dfn>, and
           <dfn id="structured-clone">structured clone</dfn>,
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
@@ -16902,11 +16888,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <cite><a href="http://www.ietf.org/rfc/rfc5280.txt">Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
               D. Cooper, S. Santesson, S. Farrell, S. Boeyen, R. Housley, W. Polk. IETF.
-             </dd>
-             <dt id="TypedArrays">Typed Arrays</dt>
-             <dd>
-               <cite><a href="https://cvs.khronos.org/svn/repos/registry/trunk/public/webgl/doc/spec/TypedArray-spec.html">
-               Typed Arrays (work in progress)</a></cite>, V. Vukicevic, K. Russell. Khronos Group.
              </dd>
              <dt id="WebIDL">WebIDL Specification</dt>
              <dd>
