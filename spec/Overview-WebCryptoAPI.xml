@@ -324,6 +324,30 @@ of contents, section numbers, certain processing instructions).
           <a href="#case-sensitive">case-sensitive</a> manner. String literals in this specification
            written in monospace font like <code>"this"</code> do not include the enclosing quotes.
         </p>
+        <div id='extensibility' class='section'>
+          <h3>Extensibility</h3>
+          <p>
+            Vendor-specific proprietary extensions to this specification are strongly discouraged.
+            Authors must not use such extensions, as doing so reduces interoperability and fragments 
+            the user base, allowing only users of specific user agents to access the content in 
+            question.
+          </p>
+          <p>
+            If vendor-specific extensions are needed, the members should be prefixed by 
+            vendor-specific strings to prevent clashes with future versions of this specification. 
+            Extensions must be defined so that the use of extensions neither contradicts nor causes 
+            the non-conformance of functionality defined in the specification.
+          </p>
+          <p>
+            When vendor-neutral extensions to this specification are needed, either this 
+            specification can be updated accordingly, or an extension specification can be written 
+            that overrides the requirements in this specification. When someone applying this 
+            specification to their activities decides that they will recognize the requirements of 
+            such an extension specification, it becomes an
+            <dfn id='dfn-applicable-specification'>applicable specification</dfn> for the purposes 
+            of conformance requirements in this specification.
+          </p>
+        </div>
       </div>
 
       <div id='scope' class='section'>
@@ -6086,8 +6110,16 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           <p>
             The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
             and decryption ordering to the RSAES-OAEP algorithm specified in
-            [<cite><a href="#RFC3447">RFC3447</a></cite>], using the mask
+            [<cite><a href="#RFC3447">RFC3447</a></cite>], using the SHA hash functions defined
+            in this specification and using the mask
             generation function MGF1.
+          </p>
+          <p>
+            <a href="#dfn-applicable-specification">Other specifications</a>
+            may specify the use of additional hash algorithms with RSAES-OAEP. Such specifications
+            must define
+            <dfn id="dfn-rsa-extended-import-steps">key import steps</dfn> and
+            <dfn id="dfn-rsa-extended-export-steps">key export steps</dfn>.
           </p>
         </div>
         <div id="rsa-oaep-registration" class="section">
@@ -6396,6 +6428,34 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
               <ol>
                 <li>
                   <p>Let <var>keyData</var> be the key data to be imported.</p>
+                </li>
+                <li>
+                  <p>
+                    Perform any <a href="#dfn-rsa-oaep-extended-key-import-steps">key import steps</a>
+                    defined by <a href="#dfn-applicable-specifications">other applicable
+                    specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
+                    <dl class="switch">
+                      <dt>
+                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
+                        object
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>result</var> is an error with a name that is not
+                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                      </dt>
+                      <dd>
+                        <p>
+                          <a href="#concept-return-an-error">Return an error</a> with the same name
+                          as <var>result</var>.
+                        </p>
+                      </dd>
+                    </dl>
+                  </p>
                 </li>
                 <li>
                   <dl class="switch">
@@ -6874,8 +6934,10 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                             <dd>Let <var>hash</var> be the string <code>"SHA-512"</code>.</dd>
                             <dt>Otherwise:</dt>
                             <dd>
-                              <a href="#concept-return-an-error">return an error</a> named
-                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                              <p>
+                                <a href="#concept-return-an-error">Return an error</a> named
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                              </p>
                             </dd>
                           </dl>
                         </li>
@@ -7019,6 +7081,45 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                     error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
+                <li>
+                  <p>
+                    Perform any <a href="#dfn-rsa-oaep-extended-key-export-steps">key export steps</a>
+                    defined by <a href="#dfn-applicable-specifications">other applicable
+                    specifications</a>, passing <var>key</var> and obtaining <var>result</var>.
+                    <dl class="switch">
+                      <dt>
+                        If <var>format</var> is <code>"spki"</code> or <code>"pkcs8"</code> and
+                        <var>result</var> is an <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
+                        object
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>format</var> is <code>"jwk"</code> and
+                        <var>result</var> is not an error
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>result</var> is an error with a name that is not
+                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                      </dt>
+                      <dd>
+                        <p>
+                          <a href="#concept-return-an-error">Return an error</a> with the same name
+                          as <var>result</var>.
+                        </p>
+                      </dd>
+                    </dl>
+                  </p>
+                </li>
+
                 <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"spki"</code></dt>
