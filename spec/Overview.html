@@ -3501,7 +3501,8 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           <p>
             The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
             signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
-            [<cite><a href="#RFC3447">RFC3447</a></cite>].
+            [<cite><a href="#RFC3447">RFC3447</a></cite>] and using the SHA hash functions defined
+            in this specification.
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
@@ -7469,7 +7470,21 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
           <p>
             The <code>"ECDSA"</code> algorithm identifier is used to perform signing
             and verification using the ECDSA algorithm specified in
-            [<cite><a href="#X9.62">X9.62</a></cite>].
+            [<cite><a href="#X9.62">X9.62</a></cite>] and using the SHA hash functions and elliptic
+            curves defined in this specification.
+          </p>
+          <p>
+            <a href="#dfn-applicable-specification">Other specifications</a>
+            may specify the use of additional elliptic curves and hash algorithms with ECDSA. To
+            specify additional hash algorithms to be used with ECDSA, a specification must define
+            a <a href="#algorithms">registered algorithm</a> that supports the digest operation.
+            To specify an additional elliptic curve a specification must define 
+            <dfn id="dfn-ecdsa-extended-namedcurve-values">the curve name</dfn>,
+            <dfn id="dfn-ecdsa-extended-signature-steps">ECDSA signature steps</dfn>,
+            <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA verification steps</dfn>,
+            <dfn id="dfn-ecdsa-extended-generation-steps">ECDSA generation steps</dfn>,
+            <dfn id="dfn-ecdsa-extended-import-steps">ECDSA key import steps</dfn> and
+            <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA key export steps</dfn>.
           </p>
         </div>
         <div id="ecdsa-registration" class="section">
@@ -7538,7 +7553,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           <p>
             The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves,
             which are a convenient way to specify the domain parameters of well-known elliptic
-            curves. The following values are recognized:
+            curves. The following values defined by this specification:
           </p>
           <dl>
             <dt id="dfn-NamedCurve-p256"><code>"P-256"</code></dt>
@@ -7548,6 +7563,10 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             <dt id="dfn-NamedCurve-p521"><code>"P-521"</code></dt>
             <dd>NIST recommended curve P-521, also known as <code>secp521r1</code>.</dd>
           </dl>
+          <p>
+            <a href="#dfn-applicable-specification">Other specifications</a> may define
+            <a href="#dfn-ecdsa-extended-namedCurve-values">additional values</a>.
+          </p>
         </div>
         <div id="EcKeyAlgorithm-dictionary" class="section">
           <h4>25.5. EcKeyAlgorithm dictionary</h4>
@@ -7614,34 +7633,60 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
-                    Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
-                    EC domain parameters, and with <var>d</var> as the private key.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>r</var> and <var>s</var> be the pair of integers resulting from
-                    performing the ECDSA signing process.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>result</var> be a new <code>ArrayBuffer</code>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Convert <var>r</var> to a bitstring and append the sequence of bytes to
-                   <var>result</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Convert <var>s</var> to a bitstring and append the sequence of bytes to
-                    <var>result</var>.
-                  </p>
+                  <dl class="switch">
+                    <dt>
+                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of the
+                      [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                      <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or <code>"P-521"</code>:
+                    </dt>
+                    <dd>
+                      <ol>
+                        <li>
+                          <p>
+                            Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
+                            Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
+                            EC domain parameters, and with <var>d</var> as the private key.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                          Let <var>r</var> and <var>s</var> be the pair of integers resulting from
+                          performing the ECDSA signing process.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>result</var> be a new <code>ArrayBuffer</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Convert <var>r</var> to a bitstring and append the sequence of bytes to
+                           <var>result</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Convert <var>s</var> to a bitstring and append the sequence of bytes to
+                            <var>result</var>.
+                          </p>
+                        </li>
+                      </ol>
+                    </dd>
+                    <dt>
+                      Otherwise, the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute
+                      of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                      <var>key</var> is a value specified in an
+                      <a href="#dfn-applicable-specification">applicable specification</a>:
+                    </dt>
+                    <dd>
+                      <p>
+                        Perform the <a href="#dfn-ecdsa-extended-signature-steps">ECDSA verification steps</a>
+                        specified in that specification, passing in <var>M</var>, <var>params</var>
+                        and <var>d</var> and resulting in <var>result</var>.
+                      </p>
+                    </dd>
+                  </dl>
                 </li>
                 <li>
                   <p>
@@ -7694,12 +7739,35 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>, Section 7.4, with <var>M</var> as the received
-                    message, <var>signature</var> as the received signature and using
-                    <var>params</var> as the EC domain parameters, and 
-                    <var>Q</var> as the public key.
-                  </p>
+                  <dl class="switch">
+                    <dt>
+                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of the
+                      [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                      <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or <code>"P-521"</code>:
+                    </dt>
+                    <dd>
+                      <p>
+                        Perform the ECDSA verifying process, as specified in <a href="#X9.62">X9.62</a>, Section 7.4, with <var>M</var> as the received
+                        message, <var>signature</var> as the received signature and using
+                        <var>params</var> as the EC domain parameters, and 
+                        <var>Q</var> as the public key.
+                      </p>
+                    </dd>
+                    <dt>
+                      Otherwise, the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute
+                      of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                      <var>key</var> is a value specified in an
+                      <a href="#dfn-applicable-specification">applicable specification</a>:
+                    </dt>
+                    <dd>
+                      <p>
+                        Perform the <a href="#dfn-ecdsa-extended-verification-steps">ECDSA verification steps</a>
+                        specified in that specification passing in <var>M</var>, <var>signature</var>,
+                        <var>params</var> and <var>Q</var> and resulting in an indication of whether
+                        or not the purported signature is valid.
+                      </p>
+                    </dd>
+                  </dl>
                 </li>
                 <li>
                   <p>
@@ -7727,12 +7795,40 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Generate an Elliptic Curve key pair, as defined in [<a href="#X9.62">X9.62</a>]
-                    with domain parameters for the curve identified by
-                    the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
-                    <var>normalizedAlgorithm</var>.
-                  </p>
+                  <dl class="switch">
+                    <dt>
+                      If the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
+                      <var>normalizedAlgorithm</var> is <code>"P-256"</code>, <code>"P-384"</code>
+                      or <code>"P-521"</code>:
+                    </dt>
+                    <dd>
+                      <p>
+                        Generate an Elliptic Curve key pair, as defined in [<a href="#X9.62">X9.62</a>]
+                        with domain parameters for the curve identified by
+                        the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
+                        <var>normalizedAlgorithm</var>.
+                      </p>
+                    </dd>
+                    <dt>
+                      If the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
+                      <var>normalizedAlgorithm</var> is a value specified in an
+                      <a href="#dfn-applicable-specification">applicable specification</a>:
+                    </dt>
+                    <dd>
+                      <p>
+                        Perform the <a href="#dfn-ecdsa-extended-generation-steps">ECDSA key
+                        generation steps</a> specified in that specification, passing in
+                        <var>normalizedAlgorithm</var> and resulting in an elliptic curve key pair.
+                      </p>
+                    </dd>
+                    <dt>Otherwise:</dt>
+                    <dd>
+                      <p>
+                        <a href="#concept-return-an-error">Return an error</a> named
+                        <a href="#dfn-OperationError"><code>NotSupportedError</code></a>
+                      </p>
+                    </dd>
+                  </dl>
                 </li>
                 <li>
                   <p>
@@ -7855,6 +7951,34 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
               <ol>
                 <li>
                   <p>Let <var>keyData</var> be the key data to be imported.</p>
+                </li>
+                <li>
+                  <p>
+                    Perform any <a href="#dfn-ecdsa-extended-import-steps">key import steps</a>
+                    defined by <a href="#dfn-applicable-specifications">other applicable
+                    specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
+                    <dl class="switch">
+                      <dt>
+                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
+                        object
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>result</var> is an error with a name that is not
+                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                      </dt>
+                      <dd>
+                        <p>
+                          <a href="#concept-return-an-error">Return an error</a> with the same name
+                          as <var>result</var>.
+                        </p>
+                      </dd>
+                    </dl>
+                  </p>
                 </li>
                 <li>
                   <dl class="switch">
@@ -8369,6 +8493,44 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     If the underlying cryptographic key material represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
                     cannot be accessed, then <a href="#concept-return-an-error">return an
                     error</a> named <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
+                    defined by <a href="#dfn-applicable-specifications">other applicable
+                    specifications</a>, passing <var>key</var> and obtaining <var>result</var>.
+                    <dl class="switch">
+                      <dt>
+                        If <var>format</var> is <code>"spki"</code> or <code>"pkcs8"</code> and
+                        <var>result</var> is an <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
+                        object
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>format</var> is <code>"jwk"</code> and
+                        <var>result</var> is not an error
+                      </dt>
+                      <dd>
+                        <p>
+                          Return <var>result</var>.
+                        </p>
+                      </dd>
+                      <dt>
+                        If <var>result</var> is an error with a name that is not
+                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                      </dt>
+                      <dd>
+                        <p>
+                          <a href="#concept-return-an-error">Return an error</a> with the same name
+                          as <var>result</var>.
+                        </p>
+                      </dd>
+                    </dl>
                   </p>
                 </li>
                 <li>
