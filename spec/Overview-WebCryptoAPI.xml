@@ -3560,10 +3560,10 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
-            may specify the use of additional hash algorithms with RSASSA-PKCS1-v1_5. Such specifications
-            must define
+            may specify the use of additional hash algorithms with RSASSA-PKCS1-v1_5. Such
+            specifications myst define the digest operations for the additional hash algorithms and
             <dfn id="dfn-rsa-ssa-extended-import-steps">key import steps</dfn> and
-            <dfn id="dfn-rsa-ssa-extended-export-steps">key export steps</dfn>.
+            <dfn id="dfn-rsa-ssa-extended-export-steps">key export steps</dfn> for RSASSA-PKCS1-v1_5.
           </p>
         </div>
         <div id="rsassa-pkcs1-registration" class="section">
@@ -4754,9 +4754,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional hash algorithms with RSASSA-PSS. Such specifications
-            must define
+            must define the digest operation for the additional hash algorithms and
             <dfn id="dfn-rsa-pss-extended-import-steps">key import steps</dfn> and
-            <dfn id="dfn-rsa-pss-extended-export-steps">key export steps</dfn>.
+            <dfn id="dfn-rsa-pss-extended-export-steps">key export steps</dfn> for RSASSA-PSS.
           </p>
         </div>
         <div id="rsa-pss-registration" class="section">
@@ -6265,9 +6265,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional hash algorithms with RSAES-OAEP. Such specifications
-            must define
+            must define the digest operation for the additional hash algorithm and
             <dfn id="dfn-rsa-oaep-extended-import-steps">key import steps</dfn> and
-            <dfn id="dfn-rsa-oaep-extended-export-steps">key export steps</dfn>.
+            <dfn id="dfn-rsa-oaep-extended-export-steps">key export steps</dfn> for RSAES-OAEP.
           </p>
         </div>
         <div id="rsa-oaep-registration" class="section">
@@ -7958,7 +7958,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     </dt>
                     <dd>
                       <p>
-                        Perform the <a href="#dfn-ecdsa-extended-signature-steps">ECDSA verification steps</a>
+                        Perform the <a href="#dfn-ecdsa-extended-signature-steps">ECDSA signature steps</a>
                         specified in that specification, passing in <var>M</var>, <var>params</var>
                         and <var>d</var> and resulting in <var>result</var>.
                       </p>
@@ -13915,9 +13915,9 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional hash algorithms with HMAC. Such specifications
-            must define
+            must define the digest operation for the additional hash algorithms and
             <dfn id="dfn-hmac-extended-import-steps">key import steps</dfn> and
-            <dfn id="dfn-hmac-extended-export-steps">key export steps</dfn>.
+            <dfn id="dfn-hmac-extended-export-steps">key export steps</dfn> for HMAC.
           </p>
 
         </div>
@@ -15783,8 +15783,8 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional hash algorithms with Concat KDF. Such specifications
-            must define
-            <dfn id="dfn-concat-extended-import-steps">key import steps</dfn>.
+            must define digest operations for the additional hash algorithms and 
+            <dfn id="dfn-concat-extended-import-steps">key import steps</dfn> for Concat KDF.
           </p>
         </div>
         <div id="concatkdf-registration" class="section">
@@ -15892,7 +15892,7 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                 </li>
                 <li>
                   <p>
-                    Perform any <a href="#dfn-rsa-pss-extended-import-steps">key import steps</a>
+                    Perform any <a href="#dfn-concat-extended-import-steps">key import steps</a>
                     defined by <a href="#dfn-applicable-specifications">other applicable
                     specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
                     <dl class="switch">
@@ -16022,8 +16022,8 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional hash algorithms with RSASSA-PSS. Such specifications
-            must define
-            <dfn id="dfn-hkdf-ctr-extended-import-steps">key import steps</dfn>.
+            must define digest operations for the additional hash algorithms and 
+            <dfn id="dfn-hkdf-ctr-extended-import-steps">key import steps</dfn> for HKDF-fCTR.
           </p>
         </div>
         <div id="hkdf-ctr-registration" class="section">
