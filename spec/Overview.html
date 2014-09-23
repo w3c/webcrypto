@@ -662,6 +662,10 @@
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
         <p>
+          An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
+          integers, each in the range 0 to 255 inclusive.
+        </p>
+        <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
           manner means comparing them exactly, code point for code point.
         </p>
@@ -8687,7 +8691,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             </li>
                             <li>
                               <p>
-                                Set the <var>subjectPublicKey</var> field to the octet string that
+                                Set the <var>subjectPublicKey</var> field to the
+                                <a href="#dfn-octet-string">octet string</a> that
                                 represents the Elliptic Curve public key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var> according to the encoding rules specified in
                                 Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
@@ -8977,7 +8982,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
               <tr>
                 <td>deriveBits</td>
                 <td><a href="#dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</a></td>
-                <td>Octet string</td>
+                <td><a href="#dfn-octet-string">Octet string</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -9228,7 +9233,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         <li>
                           <p>
                             Let <var>secret</var> be the result of applying the field element to
-                            octet string conversion defined in Section ? of <a href="#X9.63">X9.63</a>
+                            <a href="#dfn-octet-string">octet string</a> conversion defined in Section ? of <a href="#X9.63">X9.63</a>
                             to the output of the ECDH primitive.
                           </p>
                         </li>
@@ -10011,7 +10016,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             </li>
                             <li>
                               <p>
-                                Set the <var>subjectPublicKey</var> field to the octet string that
+                                Set the <var>subjectPublicKey</var> field to the <a href="#dfn-octet-string">octet string</a> that
                                 represents the Elliptic Curve public key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var> according to the encoding rules specified in
                                 Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
@@ -10241,7 +10246,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be an octet string representing the Elliptic Curve
+                            Let <var>data</var> be an <a href="#dfn-octet-string">octet string</a> representing the Elliptic Curve
                             point <var>Q</var> represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                             <var>key</var> according to <a href="#X9.62">X9.62</a> Annex A.
                           </p>
@@ -10568,7 +10573,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -10607,7 +10612,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -11104,7 +11109,7 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -11143,7 +11148,7 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -11615,7 +11620,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -11654,7 +11659,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -12243,7 +12248,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -12282,7 +12287,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -12741,7 +12746,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -12781,7 +12786,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -13216,7 +13221,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -13256,7 +13261,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -13807,7 +13812,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string contained in <var>keyData</var>.
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> contained in <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -13859,7 +13864,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the octet string obtained by decoding the
+                            Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> obtained by decoding the
                             <code>"k"</code> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -14355,7 +14360,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
               <tr>
                 <td>deriveBits</td>
                 <td><a href="#dfn-DhKeyDeriveParams">DhKeyDeriveParams</a></td>
-                <td>Octet string</td>
+                <td><a href="#dfn-octet-string">Octet string</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -14799,7 +14804,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
                         <var>algorithm</var> to a new <code>BigInteger</code> equal to the
-                        octet string encoding of the <code>prime</code> field of
+                        <a href="#dfn-octet-string">octet string</a> encoding of the <code>prime</code> field of
                         <var>params</var>.
                       </p>
                     </li>
@@ -14807,7 +14812,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> attribute of
                         <var>algorithm</var> to a new <code>BigInteger</code> equal to the
-                        octet string encoding of the <code>base</code> field of
+                        <a href="#dfn-octet-string">octet string</a> encoding of the <code>base</code> field of
                         <var>params</var>.
                       </p>
                     </li>
@@ -14917,7 +14922,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the <a href="#dfn-DhKeyAlgorithm-prime">prime</a> attribute of
                         <var>algorithm</var> to a new <code>BigInteger</code> equal to the
-                        octet string encoding of the <code>prime</code> field of
+                        <a href="#dfn-octet-string">octet string</a> encoding of the <code>prime</code> field of
                         <var>params</var>.
                       </p>
                     </li>
@@ -14925,7 +14930,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the <a href="#dfn-DhKeyAlgorithm-generator">generator</a> attribute of
                         <var>algorithm</var> to a new <code>BigInteger</code> equal to the
-                        octet string encoding of the <code>base</code> field of
+                        <a href="#dfn-octet-string">octet string</a> encoding of the <code>base</code> field of
                         <var>params</var>.
                       </p>
                     </li>
@@ -14994,7 +14999,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                               of <var>key</var> is <code>"private"</code>:
                             </dt>
                             <dd>
-                              Let <var>data</var> be the octet string that represents the private
+                              Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> that represents the private
                               value <var>x</var> associated with <var>key</var> as a big integer,
                               most significant octet first.
                             </dd>
@@ -15318,7 +15323,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
               <tr>
                 <td>deriveBits</td>
                 <td><a href="#dfn-ConcatParams">ConcatParams</a></td>
-                <td>Octet string</td>
+                <td><a href="#dfn-octet-string">Octet string</a></td>
               </tr>
               <tr>
                 <td>Import key</td>
