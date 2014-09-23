@@ -3227,15 +3227,51 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           The table below contains an overview of the algorithms described within this
           specification, as well as the set of <a href="#subtlecrypto-interface-methods">subtlecrypto
           methods</a> the algorithm may be used with. In order for
-          an algorithm to be used with a method the algorithm must support the corresponding
-          operation or operations as defined
-          in the procedures for the method. Note that this mapping of methods to underlying
-          operations is not one-to-one.
+          an algorithm to be used with a method the corresponding
+          operation or operations, as defined
+          in the procedures for the method, must be defined in the algorithm specification.
+          Note that this mapping of methods to underlying
+          operations is not one-to-one:
+          <ul>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-encrypt">encrypt</a> method requires the encrypt operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-decrypt">decrypt</a> method requires the decrypt operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-deriveKey">deriveKey</a> method requires the
+              deriveBits operation for the key derivation algorithm and the get length and importKey operations
+              for the derived key algorithm.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
+              the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
+              for the wrapped key algorithm.</p>
+            </li>
+            <li>
+              <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
+              the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
+              for the unwrapped key algorithm.</p>
+            </li>
+          </ul>
         </p>
         <p class="note">
           Application developers and script authors should not interpret this table as a
           recommendation for the use of particular algorithms. Instead, it simply documents what
-          operations are supported. Authors should refer to the <a href="#security-developers">Security considerations for authors</a> section of this
+          methods are supported. Authors should refer to the <a href="#security-developers">Security considerations for authors</a> section of this
           document to better understand the risks and concerns that may arise when using certain
           algorithms.
         </p>
