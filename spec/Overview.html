@@ -2137,6 +2137,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
+                  slot of <var>result</var> to <var>extractable</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal
+                  slot of <var>result</var> to the <a href="#concept-normalized-usages">normalized
+                    value</a> of <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Execute <var>resolver</var>'s <code>resolve(value)</code> algorithm, with
                   <var>result</var> as the <code>value</code> argument.
                 </p>
@@ -2591,6 +2604,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <var>usages</var>
                   and <var>extractable</var> and with
                   <var>bytes</var> as <var>keyData</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
+                  slot of <var>result</var> to <var>extractable</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal
+                  slot of <var>result</var> to the <a href="#concept-normalized-usages">normalized
+                    value</a> of <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -9903,18 +9929,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
-                        <li>
-                          <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal
-                            slot of <var>key</var> to <var>usages</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                            internal slot of <var>key</var> to <var>extractable</var>.
-                          </p>
-                        </li>
                       </ol>
                     </dd>
                     <dt>Otherwise:</dt>
@@ -10757,19 +10771,6 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Return <var>key</var>.
                   </p>
                 </li>
@@ -11295,19 +11296,6 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                 </li>
                 <li>
                   <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Return <var>key</var>.
                   </p>
                 </li>
@@ -11802,19 +11790,6 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
                     slot of <var>key</var> to <var>algorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
                   </p>
                 </li>
                 <li>
@@ -12430,19 +12405,6 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
                     slot of <var>key</var> to <var>algorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
                   </p>
                 </li>
                 <li>
@@ -13407,19 +13369,6 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                 </li>
                 <li>
                   <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Return <var>key</var>.
                   </p>
                 </li>
@@ -14169,19 +14118,6 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                 </li>
                 <li>
                   <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Return <var>key</var>.
                   </p>
                 </li>
@@ -14768,18 +14704,6 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                     </li>
                     <li>
                       <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                        internal slot of <var>key</var> to <var>extractable</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot
-                        of <var>key</var> to <var>usages</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
                         Return <var>key</var>.
                       </p>
                     </li>
@@ -14872,19 +14796,6 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
                         slot of <var>key</var> to <var>algorithm</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                        internal slot of <var>key</var> to <var>extractable</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot
-                        of <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                        value</a> of <var>usages</var>.
                       </p>
                     </li>
                     <li>
@@ -14990,19 +14901,6 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                       <p>
                         Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
                         slot of <var>key</var> to <var>algorithm</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                        internal slot of <var>key</var> to <var>extractable</var>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot
-                        of <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                        value</a> of <var>usages</var>.
                       </p>
                     </li>
                     <li>
@@ -15536,19 +15434,6 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                         </li>
                         <li>
                           <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                            internal slot of <var>key</var> to <var>extractable</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot
-                            of <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                            value</a> of <var>usages</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
                             Return <var>key</var>.
                           </p>
                         </li>
@@ -15841,19 +15726,6 @@ CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
                         </li>
                         <li>
                           <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]]
-                            internal slot of <var>key</var> to <var>extractable</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot
-                            of <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                            value</a> of <var>usages</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
                             Return <var>key</var>.
                           </p>
                         </li>
@@ -16116,19 +15988,6 @@ CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
                     slot of <var>key</var> to <var>algorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
                   </p>
                 </li>
                 <li>
