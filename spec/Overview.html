@@ -3271,7 +3271,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
         <p class="note">
           Application developers and script authors should not interpret this table as a
           recommendation for the use of particular algorithms. Instead, it simply documents what
-          methods are supported. Authors should refer to the <a href="#security-developers">Security considerations for authors</a> section of this
+          methods areA supported. Authors should refer to the <a href="#security-developers">Security considerations for authors</a> section of this
           document to better understand the risks and concerns that may arise when using certain
           algorithms.
         </p>
@@ -10978,7 +10978,8 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                 <li>
                   <p>
                     Let <var>paddedPlaintext</var> be the result of adding padding octets to
-                    <var>ciphertext</var> according to the procedure defined in Section 10.3
+                    the <a href="#concept-contents-of-arraybuffer">contents of <var>ciphertext</var></a>
+                    according to the procedure defined in Section 10.3
                     of RFC 2315 [<a href="#RFC2315">RFC2315</a>], step 2, with a value of
                     <var>k</var> of 16.
                   </p>
@@ -10987,8 +10988,8 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CBC Encryption
                     operation described in Section 6.2 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
-                    the <var>IV</var> input parameter and <a href="#concept-contents-of-arraybuffer">the contents of
-                    <var>paddedPlaintext</var></a> as the input plaintext.
+                    the <var>IV</var> input parameter and <var>paddedPlaintext</var>
+                    as the input plaintext.
                   </p>
                 </li>
                 <li>
