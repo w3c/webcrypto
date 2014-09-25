@@ -3770,12 +3770,34 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             </tbody>
           </table>
         </div>
+        <div id="RsaKeyGenParams-dictionary" class="section">
+          <h4>RsaKeyGenParams dictionary</h4>
+          <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
+  <span class="comment">// The length, in bits, of the RSA modulus</span>
+  [EnforceRange] unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
+  <span class="comment">// The RSA public exponent</span>
+  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
+};
+          </x:codeblock>
+        </div>
         <div id="RsaHashedKeyGenParams-dictionary" class="section">
           <h4>RsaHashedKeyGenParams dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> {
-<span class="comment">// The hash algorithm to use</span> 
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
+  <span class="comment">// The hash algorithm to use</span> 
+  <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
+};
+          </x:codeblock>
+        </div>
+        <div id="RsaKeyAlgorithm-dictionary" class="section">
+          <h4>RsaKeyAlgorithm dictionary</h4>
+          <x:codeblock language="idl">
+dictionary <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
+  <span class="comment">// The length, in bits, of the RSA modulus</span>
+  unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
+  <span class="comment">// The RSA public exponent</span>
+  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3783,8 +3805,8 @@ dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a 
           <h4>RsaHashedKeyAlgorithm dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
-<span class="comment">// The hash algorithm that is used with this key</span>
-<a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
+  <span class="comment">// The hash algorithm that is used with this key</span>
+  <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3792,8 +3814,8 @@ dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a 
           <h4>RsaHashedImportParams dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
-<span class="comment">// The hash algorithm to use</span>
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
+  <span class="comment">// The hash algorithm to use</span>
+  <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
 };
           </x:codeblock>
           <div class="ednote">
