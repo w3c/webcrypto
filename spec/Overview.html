@@ -4017,6 +4017,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                       <ol>
                         <li>
                           <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"verify"</code>,
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>spki</var> be the result of running the
                             <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
                             algorithm over <var>keyData</var>.
@@ -4148,6 +4156,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
                     <dd>
                       <ol>
+                        <li>
+                          <p>
+                            If <var>usages</var> contains an entry which is not
+                             <code>"sign"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
                         <li>
                           <p>
                             Let <var>privateKeyInfo</var> be the result of running the
@@ -4285,6 +4301,18 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                           <p>
                             Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
                             dictionary represented by <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"sign"</code>, or, if the <code>"d"</code> field of <var>jwk</var>
+                            is not present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"verify"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -5145,6 +5173,14 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                       <ol>
                         <li>
                           <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"verify"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>spki</var> be the result of running the
                             <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
                             algorithm over <var>keyData</var>.
@@ -5335,6 +5371,14 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
                     <dd>
                       <ol>
+                        <li>
+                          <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"sign"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
                         <li>
                           <p>
                             Let <var>privateKeyInfo</var> be the result of running the
@@ -5529,6 +5573,18 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                           <p>
                             Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
                             dictionary represented by <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"sign"</code>, or, if the <code>"d"</code> field of <var>jwk</var>
+                            is not present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"verify"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -6575,6 +6631,15 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                       <ol>
                         <li>
                           <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"encrypt"</code> or
+                            <code>"wrapKey"</code>,
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>spki</var> be the result of running the
                             <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
                             algorithm over <var>keyData</var>.
@@ -6764,6 +6829,14 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                     <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
                     <dd>
                       <ol>
+                        <li>
+                          <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"decrypt"</code> or <code>"unwrapKey"</code>,
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
                         <li>
                           <p>
                             Let <var>privateKeyInfo</var> be the result of running the
@@ -6959,6 +7032,24 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                           <p>
                             Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
                             dictionary represented by <var>keyData</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"decrypt"</code> or <code>"unwrapKey"</code>,
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field of <var>jwk</var> is not present and
+                            <var>usages</var> contains an entry which is not
+                            <code>"encrypt"</code> or <code>"wrapKey"</code>,
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -8143,6 +8234,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                       <ol>
                         <li>
                           <p>
+                            If <var>usages</var> contains a value which is not
+                            <code>"verify"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>spki</var> be the result of running the
                             <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
                             algorithm over <var>keyData</var>
@@ -8276,6 +8375,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
                     <dd>
                       <ol>
+                        <li>
+                          <p>
+                            If <var>usages</var> contains a value which is not
+                            <code>"sign"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
                         <li>
                           <p>
                             Let <var>privateKeyInfo</var> be the result of running the
@@ -8454,6 +8561,18 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             If an error occurred while parsing,
                             then <a href="#concept-return-an-error">return an error</a> named
                             <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field is present and <var>usages</var> contains
+                            a value which is not
+                            <code>"sign"</code>, or,
+                            if the <code>"d"</code> field is not present and <var>usages</var> contains
+                            a value which is not
+                            <code>"verify"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -9419,6 +9538,13 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       <ol>
                         <li>
                           <p>
+                            If <var>usages</var> is not empty
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>spki</var> be the result of running the
                             <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
                             algorithm over <var>keyData</var>
@@ -9555,6 +9681,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
                     <dd>
                       <ol>
+                        <li>
+                          <p>
+                            If <var>usages</var> contains an entry which is not
+                            <code>"deriveKey"</code> or <code>"deriveBits"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
                         <li>
                           <p>
                             Let <var>privateKeyInfo</var> be the result of running the
@@ -9740,6 +9874,23 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
+                            If the <code>"d"</code> field is present and if <var>usages</var>
+                            contains an entry which is not
+                            <code>"deriveKey"</code> or <code>"deriveBits"</code>
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the <code>"d"</code> field is present and if <var>usages</var> is not
+                            empty
+                            then <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             If the <code>"kty"</code> field of <var>jwk</var> is
                             to <code>"EC"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
@@ -9883,7 +10034,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <p>
                             If <var>usages</var> is not the empty list,
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                            <a href="#dfn-DataError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -10637,7 +10788,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                     <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11162,7 +11313,7 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                     <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11660,7 +11811,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                     If <var>usages</var> contains an entry which is not
                      <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12276,7 +12427,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                     <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12761,7 +12912,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
                     <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13236,7 +13387,7 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                      one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                     
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13782,7 +13933,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                     If <var>usages</var> contains an entry which is not
                     <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14657,6 +14808,13 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                   <ol>
                     <li>
                       <p>
+                        If <var>usages</var> is not empty
+                        then <a href="#concept-return-an-error">return an error</a> named
+                        <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
                         If <var>extractable</var> is false,
                         then <a href="#concept-return-an-error">return an error</a> named
                         <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -14726,6 +14884,13 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                 </dt>
                 <dd>
                   <ol>
+                    <li>
+                      <p>
+                        If <var>usages</var> is not empty
+                        then <a href="#concept-return-an-error">return an error</a> named
+                        <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                      </p>
+                    </li>
                     <li>
                       <p>
                         Let <var>spki</var> be the result of running the <a href="#concept-parse-a-spki">parse a subjectPublicKeyInfo</a> algorithm
@@ -15411,7 +15576,7 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                             <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                             
                                 then <a href="#concept-return-an-error">return an error</a> named
-                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -15703,7 +15868,7 @@ CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
                              <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                             
                                 then <a href="#concept-return-an-error">return an error</a> named
-                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -15969,7 +16134,7 @@ CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
                   <p>
                     If <var>usages</var> contains any element that is not
                     <code>"deriveKey"</code>, then <a href="#concept-return-an-error">return an
-                    error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
