@@ -1227,7 +1227,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         object keyData,
+                         (CryptoOperationData or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          boolean extractable,
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
@@ -2100,29 +2100,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
               <li>
-                <dl class="switch">
-                  <dt>
-                    If <var>format</var> is equal to the string <code>"raw"</code>,
-                    <code>"pkcs8"</code>, or <code>"spki"</code>:
-                  </dt>
-                  <dd>
-                    Let <var>keyData</var> be the result of
-                    <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
-                    <code>keyData</code> parameter passed to the
-                    <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
-                  </dd>
-                  <dt>
-                    If <var>format</var> is equal to the string <code>"jwk"</code>:
-                  </dt>
-                  <dd>
-                    Let <var>keyData</var> be the result of converting the <code>keyData</code>
-                    parameter passed to the <a
-                    href="#dfn-SubtleCrypto-method-importKey">importKey</a> method to a <a
-                    href="#dfn-JsonWebKey">JsonWebKey</a> dictionary.
-                  </dd>
-                </dl>
-              </li>
-              <li>
                 <p>
                   Let <var>promise</var> be a new Promise object and <var>resolver</var> its
                   associated resolver object.
@@ -2132,6 +2109,55 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Return <var>promise</var> and asynchronously perform the remaining steps.
                 </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If <var>format</var> is equal to the string <code>"raw"</code>,
+                    <code>"pkcs8"</code>, or <code>"spki"</code>:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the <code>keyData</code> parameter passed to the
+                          <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method is a
+                          JsonWebKey dictionary, <a href="#concept-return-an-error">return an error</a> named
+                          <a href="#dfn-TypeError"><code>TypeError</code></a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>keyData</var> be the result of
+                          <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
+                          <code>keyData</code> parameter passed to the
+                          <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>
+                    If <var>format</var> is equal to the string <code>"jwk"</code>:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the <code>keyData</code> parameter passed to the
+                          <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method is not a
+                          JsonWebKey dictionary, <a href="#concept-return-an-error">return an error</a> named
+                          <a href="#dfn-TypeError"><code>TypeError</code></a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>keyData</var> be the <code>keyData</code> parameter passed to the
+                          <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                </dl>
               </li>
               <li>
                 <p>
