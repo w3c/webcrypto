@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>23 September 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>25 September 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 23 September 2014 <b>Editor’s Draft</b> of the
+        This document is the 25 September 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -3823,7 +3823,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     If <var>usages</var> contains an entry which is not
                      <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -6382,10 +6382,10 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                 <li>
                   <p>
                     If <var>usages</var> contains an entry which is not
-                    <code>"encrypt"</code>, <code>"decrypt</code>,
-                    <code>wrapKey</code> or <code>unwrapKey</code>,
+                    <code>"encrypt"</code>, <code>"decrypt"</code>,
+                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -7947,7 +7947,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     If <var>usages</var> contains a value which is not
                     one of <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -9091,6 +9091,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
             <dt>Generate Key</dt>
             <dd>
               <ol>
+                <li>
+                  <p>
+                    If <var>usages</var> contains an entry which is not
+                    <code>"deriveKey"</code> or <code>"deriveBits"</code>
+                    then <a href="#concept-return-an-error">return an error</a> named
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
                 <li>
                   <p>
                     If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
@@ -10537,6 +10545,15 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
               <ol>
                 <li>
                   <p>
+                    If <var>usages</var> contains any entry which is not
+                    one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
+                    then <a href="#concept-return-an-error">return an error</a> named
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
@@ -10544,15 +10561,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
                 </li>
-                <li>
-                  <p>
-                    If <var>usages</var> contains any entry which is not
-                    one of <code>"encrypt"</code>, <code>"decrypt"</code>,
-                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
-                    then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
-                  </p>
-                </li>
+
                 <li>
                   <p>
                     Generate an AES key of length
@@ -11061,6 +11070,15 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
               <ol>
                 <li>
                   <p>
+                    If <var>usages</var> contains any entry which is not
+                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
+                    then <a href="#concept-return-an-error">return an error</a> named
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
@@ -11068,15 +11086,7 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
                 </li>
-                <li>
-                  <p>
-                    If <var>usages</var> contains any entry which is not
-                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
-                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
-                    then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
-                  </p>
-                </li>
+
                 <li>
                   <p>
                     Generate an AES key of length
@@ -11561,17 +11571,17 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
               <ol>
                 <li>
                   <p>
-                    If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
-                    <var>normalizedAlgorithm</var> is not equal to one of
-                    128, 192 or 256,
+                    If <var>usages</var> contains any entry which is not
+                     <code>"sign"</code> or <code>"verify"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    If <var>usages</var> contains any entry which is not
-                     <code>"sign"</code> or <code>"verify"</code>,
+                    If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
+                    <var>normalizedAlgorithm</var> is not equal to one of
+                    128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
@@ -12174,6 +12184,15 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
               <ol>
                 <li>
                   <p>
+                    If <var>usages</var> contains any entry which is not
+                    one of <code>"encrypt"</code>, <code>"decrypt"</code>,
+                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
+                    then <a href="#concept-return-an-error">return an error</a> named
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
@@ -12181,15 +12200,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                     <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
                 </li>
-                <li>
-                  <p>
-                    If <var>usages</var> contains any entry which is not
-                     one of <code>"encrypt"</code>, <code>"decrypt"</code>,
-                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                  </p>
-                </li>
+
                 <li>
                   <p>
                     Generate an AES key of length
@@ -12664,16 +12675,16 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
               <ol>
                 <li>
                   <p>
-                    If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
-                    <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    If <var>usages</var> contains any entry which is not one of
+                    <code>"encrypt"</code>, <code>"decrypt"</code>, <code>"wrapKey"</code> or
+                    <code>"unwrapKey"</code>, then <a href="#concept-return-an-error">return an
+                    error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    If <var>usages</var> contains any entry which is not one of
-                    <code>"encrypt"</code>, <code>"decrypt"</code>, <code>"wrapKey"</code> or
-                    <code>"unwrapKey"</code>, then <a href="#concept-return-an-error">return an
-                    error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
+                    <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13147,14 +13158,14 @@ CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
               <ol>
                 <li>
                   <p>
-                    If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
-                    <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    If <var>usages</var> contains any entry which is not one of
+                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    If <var>usages</var> contains any entry which is not one of
-                    <code>"wrapKey"</code> or <code>"unwrapKey"</code>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
+                    <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13650,6 +13661,13 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
             <dd>
               <ol>
                 <li>
+                  <p>
+                    If <var>usages</var> contains any entry which is not <code>"sign"</code> or
+                    <code>"verify"</code>, then <a href="#concept-return-an-error">return an
+                    error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
                   <dl class="switch">
                     <dt>
                       If the <a href="#dfn-HmacKeyGenParams-length">length</a> member of
@@ -13676,13 +13694,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                     </dd>
                   </dl>
                 </li>
-                <li>
-                  <p>
-                    If <var>usages</var> contains any entry which is not <code>"sign"</code> or
-                    <code>"verify"</code>, then <a href="#concept-return-an-error">return an
-                    error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                  </p>
-                </li>
+
                 <li>
                   <p>
                     Generate a key of length <var>length</var> bits.
@@ -14416,7 +14428,7 @@ BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                     If <var>usages</var> contains a value which is not
                     one of <code>"deriveKey"</code> or <code>"deriveBits"</code>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -15882,7 +15894,7 @@ CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
                   <p>
                     If <var>usages</var> contains any element that is not
                     <code>"deriveKey"</code>, then <a href="#concept-return-an-error">return an
-                    error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                    error</a> named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
                 </li>
                 <li>
