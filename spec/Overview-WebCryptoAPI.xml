@@ -14250,7 +14250,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
               </tr>
               <tr>
                 <td>get key length</td>
-                <td><a href="#dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</a></td>
+                <td><a href="#dfn-HmacImportParams">HmacImportParams</a></td>
                 <td>Integer</td>
               </tr>
             </tbody>
@@ -14288,17 +14288,6 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
 // recommended length will be used, which is the size of the associated hash function's block
 // size.</span>
 [EnforceRange] unsigned long <dfn id="dfn-HmacKeyGenParams-length">length</dfn>;
-};
-          </x:codeblock>
-        </div>
-        <div id="hmac-derivedkey-params" class="section">
-          <h4>HmacDerivedKeyParams dictionary</h4>
-          <x:codeblock language="idl">
-dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a href="#dfn-HmacImportParams">HmacImportParams</a> {
-<span class="comment">// The length (in bits) of the key to generate. If unspecified, the
-// recommended length will be used, which is the size of the associated hash function's block
-// size.</span>
-[EnforceRange] unsigned long <dfn id="dfn-HmacDerivedKeyParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -14997,21 +14986,35 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                 <li>
                   <dl class="switch">
                     <dt>
-                      If the <a href="#dfn-HmacDerivedKeyParams-length">length</a> member of
+                      If the <a href="#dfn-HmacIMportParams-length">length</a> member of
                       <var>normalizedDerivedKeyAlgorithm</var> is not present:
                     </dt>
                     <dd>
-                      Let <var>length</var> be the block size in bytes of the hash function
-                      identified by the <a href="#dfn-HmacImportParams-hash">hash</a> member
-                      of <var>normalizedDerivedKeyAlgorithm</var>.
+                      <ol>
+                        <li>
+                          <p>
+                            If the <a href="#dfn-HmacImportParams-hash">hash</a> member
+                            of <var>normalizedDerivedKeyAlgorithm</var> is not present,
+                            <a href="#concept-return-an-error">return an error</a> named
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>length</var> be the block size in bytes of the hash function
+                            identified by the <a href="#dfn-HmacImportParams-hash">hash</a> member
+                            of <var>normalizedDerivedKeyAlgorithm</var>.
+                          </p>
+                        </li>
+                      </ol>
                     </dd>
                     <dt>
-                      Otherwise, if the <a href="#dfn-HmacDerivedKeyParams-length">length</a>
+                      Otherwise, if the <a href="#dfn-HmacImportParams-length">length</a>
                       member of <var>normalizedDerivedKeyAlgorithm</var> is non-zero:
                     </dt>
                     <dd>
                       Let <var>length</var> be equal to the
-                      <a href="#dfn-HmacDerivedKeyParams-length">length</a>
+                      <a href="#dfn-HmacImportParams-length">length</a>
                       member of <var>normalizedDerivedKeyAlgorithm</var>.
                     </dd>
                     <dt>Otherwise:</dt>
