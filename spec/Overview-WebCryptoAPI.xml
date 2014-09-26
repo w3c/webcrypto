@@ -663,6 +663,13 @@ of contents, section numbers, certain processing instructions).
           manner means comparing them exactly, code point for code point.
         </p>
         <p>
+          Comparing two strings in a <dfn id="case-insensitive">ASCII case-insensitive</dfn> manner
+          means comparing them exactly, code point for code point, except that the codepoints in
+          the range U+0041 .. U+005A (i.e. LATIN CAPITAL LETTER A to LATIN CAPITAL LETTER Z) and
+          the corresponding codepoints in the range U+0061 .. U+007A
+          (i.e. LATIN SMALL LETTER A to LATIN SMALL LETTER Z) are also considered to match.
+        </p>
+        <p>
           When this specification says to <dfn id="terminate-the-algorithm">terminate the
           algorithm</dfn>, the user agent must terminate the algorithm after finishing the step it
           is on. The algorithm referred to is the set of specification-defined processing steps,
@@ -3115,20 +3122,20 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   <li>
                     <dl class="switch">
                       <dt>
-                        If the <var>alg</var> key of <var>registeredAliases</var> is
-                        <code>undefined</code>:
+                        If <var>registeredAliases</var> contains a key that is a
+                        <a href="#case-insensitive">case-insensitive</a> string match for <var>alg</var>:
                       </dt>
+                      <dd>
+                        Return the internal IDL object stored at that key in
+                        <var>registeredAliases</var>.
+                      </dd>
+                      <dt>Otherwise:</dt>
                       <dd>
                         Return the result of running the <a
                         href="#dfn-normalize-an-algorithm">normalize an algorithm</a> algorithm, with
                         the <code>alg</code> set to a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
                         dictionary whose <a href="#dfn-KeyAlgorithm-name">name</a> attribute is
                         <var>alg</var>, and with the <code>op</code> set to <var>op</var>.
-                      </dd>
-                      <dt>Otherwise:</dt>
-                      <dd>
-                        Return the internal IDL object stored in the <var>alg</var> key of
-                        <var>registeredAliases</var>.
                       </dd>
                     </dl>
                   </li>
@@ -3165,16 +3172,28 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   <li>
                     <dl class="switch">
                       <dt>
-                        If the <var>algName</var> key of <var>registeredAlgorithms</var> is
-                        <code>undefined</code>:
+                        If <var>registeredAlgorithms</var> contains a key that is a
+                        <a href="#case-insensitive">case-insensitive</a> string match for
+                        <var>algName</var>:
                       </dt>
                       <dd>
-                        Return a new <code>NotSupportedError</code> and terminate this algorithm.
+                        <ol>
+                          <li>
+                            <p>
+                              Set <var>algName</var> to the value of the matching key.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>desiredType</var> be the IDL dictionary type stored at
+                              <var>algName</var> in <var>registeredAlgorithms</var>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
-                        Let <var>desiredType</var> be the IDL dictionary type stored in the
-                        <var>algName</var> key of <var>registeredAlgorithms</var>.
+                        Return a new <code>NotSupportedError</code> and terminate this algorithm.
                       </dd>
                     </dl>
                   </li>
@@ -3182,6 +3201,10 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                     Let <var>normalizedAlgorithm</var> be the result of converting the ECMAScript
                     object represented by <var>alg</var> to the IDL dictionary type
                     <var>desiredType</var>, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                  </li>
+                  <li>
+                    Set the <a href="#dfn-Algorithm-name">name</a> attribute of
+                    <var>normalizedAlgorithm</var> to <var>algName</var>.
                   </li>
                   <li>
                     If an error occurred, return the error and terminate this algorithm.

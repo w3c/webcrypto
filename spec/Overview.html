@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>25 September 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>26 September 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 25 September 2014 <b>Editor’s Draft</b> of the
+        This document is the 26 September 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -668,6 +668,13 @@
         <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
           manner means comparing them exactly, code point for code point.
+        </p>
+        <p>
+          Comparing two strings in a <dfn id="case-insensitive">ASCII case-insensitive</dfn> manner
+          means comparing them exactly, code point for code point, except that the codepoints in
+          the range U+0041 .. U+005A (i.e. LATIN CAPITAL LETTER A to LATIN CAPITAL LETTER Z) and
+          the corresponding codepoints in the range U+0061 .. U+007A
+          (i.e. LATIN SMALL LETTER A to LATIN SMALL LETTER Z) are also considered to match.
         </p>
         <p>
           When this specification says to <dfn id="terminate-the-algorithm">terminate the
@@ -3060,19 +3067,19 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   <li>
                     <dl class="switch">
                       <dt>
-                        If the <var>alg</var> key of <var>registeredAliases</var> is
-                        <code>undefined</code>:
+                        If <var>registeredAliases</var> contains a key that is a
+                        <a href="#case-insensitive">case-insensitive</a> string match for <var>alg</var>:
                       </dt>
+                      <dd>
+                        Return the internal IDL object stored at that key in
+                        <var>registeredAliases</var>.
+                      </dd>
+                      <dt>Otherwise:</dt>
                       <dd>
                         Return the result of running the <a href="#dfn-normalize-an-algorithm">normalize an algorithm</a> algorithm, with
                         the <code>alg</code> set to a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
                         dictionary whose <a href="#dfn-KeyAlgorithm-name">name</a> attribute is
                         <var>alg</var>, and with the <code>op</code> set to <var>op</var>.
-                      </dd>
-                      <dt>Otherwise:</dt>
-                      <dd>
-                        Return the internal IDL object stored in the <var>alg</var> key of
-                        <var>registeredAliases</var>.
                       </dd>
                     </dl>
                   </li>
@@ -3107,16 +3114,28 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   <li>
                     <dl class="switch">
                       <dt>
-                        If the <var>algName</var> key of <var>registeredAlgorithms</var> is
-                        <code>undefined</code>:
+                        If <var>registeredAlgorithms</var> contains a key that is a
+                        <a href="#case-insensitive">case-insensitive</a> string match for
+                        <var>algName</var>:
                       </dt>
                       <dd>
-                        Return a new <code>NotSupportedError</code> and terminate this algorithm.
+                        <ol>
+                          <li>
+                            <p>
+                              Set <var>algName</var> to the value of the matching key.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let <var>desiredType</var> be the IDL dictionary type stored at
+                              <var>algName</var> in <var>registeredAlgorithms</var>.
+                            </p>
+                          </li>
+                        </ol>
                       </dd>
                       <dt>Otherwise:</dt>
                       <dd>
-                        Let <var>desiredType</var> be the IDL dictionary type stored in the
-                        <var>algName</var> key of <var>registeredAlgorithms</var>.
+                        Return a new <code>NotSupportedError</code> and terminate this algorithm.
                       </dd>
                     </dl>
                   </li>
@@ -3124,6 +3143,10 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                     Let <var>normalizedAlgorithm</var> be the result of converting the ECMAScript
                     object represented by <var>alg</var> to the IDL dictionary type
                     <var>desiredType</var>, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                  </li>
+                  <li>
+                    Set the <a href="#dfn-Algorithm-name">name</a> attribute of
+                    <var>normalizedAlgorithm</var> to <var>algName</var>.
                   </li>
                   <li>
                     If an error occurred, return the error and terminate this algorithm.
