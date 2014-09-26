@@ -958,7 +958,7 @@ typedef (object or DOMString) <dfn id="dfn-AlgorithmIdentifier">AlgorithmIdentif
 typedef <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> <dfn id="dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</dfn>;
 
 dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
-  DOMString <a href="#dfn-Algorithm-name">name</a>;
+  required DOMString <a href="#dfn-Algorithm-name">name</a>;
 };
         </x:codeblock>
         <div id="algorithm-dictionary-members" class="section">
@@ -982,7 +982,7 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
         </p>
         <x:codeblock language="idl">
 dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
-  DOMString <a href="#dfn-KeyAlgorithm-name">name</a>
+  required DOMString <a href="#dfn-KeyAlgorithm-name">name</a>
 };
         </x:codeblock>
         <div id="key-algorithm-dictionary-description" class="section">
@@ -3159,11 +3159,6 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                     If an error occurred, return the error and terminate this algorithm.
                   </li>
                   <li>
-                    If the <a href="#dfn-Algorithm-name">name</a> attribute of <var>initialAlg</var>
-                    is not present, return a new <code>SyntaxError</code> and terminate this
-                    algorithm.
-                  </li>
-                  <li>
                     Let <var>algName</var> be the value of the <a href="#dfn-Algorithm-name">name</a>
                     attribute of <var>initialAlg</var>.
                   </li>
@@ -3207,15 +3202,6 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                           <var>dictionary</var>, in order:
                         </p>
                         <ol>
-                          <li>
-                            If <var>member</var> is not nullable, and is not present, return a new
-                            <code>SyntaxError</code> and terminate this algorithm.
-                          </li>
-                          <li>
-                            If <var>member</var> is nullable, and is not present, return to
-                            iterating the next dictionary member <var>member</var>, stopping further
-                            processing of this <var>member</var>.
-                          </li>
                           <li>
                             Let <var>key</var> be the identifier of <var>member</var>.
                           </li>
@@ -3801,9 +3787,9 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
-  [EnforceRange] unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
+  [EnforceRange] required unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
-  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
+  required <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3812,7 +3798,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> {
   <span class="comment">// The hash algorithm to use</span> 
-  <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3821,9 +3807,9 @@ dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a 
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
-  unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
+  required unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
-  <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
+  required <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3832,7 +3818,7 @@ dictionary <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-K
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
   <span class="comment">// The hash algorithm that is used with this key</span>
-  <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
+  required <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
@@ -3841,7 +3827,7 @@ dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a 
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
   <span class="comment">// The hash algorithm to use</span>
-  <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
 };
           </x:codeblock>
           <div class="ednote">
@@ -5044,7 +5030,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The desired length of the random salt</span>
-[EnforceRange] unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
+[EnforceRange] required unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
 };
           </x:codeblock>
         </div>
@@ -6584,7 +6570,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The optional label/application data to associate with the message</span>
-CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
+CryptoOperationData <dfn id="dfn-RsaOaepParams-label">label</dfn>;
 };
           </x:codeblock>
         </div>
@@ -6604,14 +6590,23 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                 </li>
                 <li>
                   <p>
+                    Let <var>label</var> be the <a
+                    href="#concept-contents-of-arraybuffer">contents of</a> the <a
+                    href="#dfn-RsaOaepParams-label">label</a> member of
+                    <var>normalizedAlgorithm</var> or the empty octet string if the
+                    <a
+                    href="#dfn-RsaOaepParams-label">label</a> member of
+                    <var>normalizedAlgorithm</var> is not present.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Perform the encryption operation defined in Section 7.1 of [<cite><a
                     href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                     as the recipient's RSA public key, the <a
                     href="#concept-contents-of-arraybuffer">contents of <var>plaintext</var></a>
-                    as the message to be encrypted, <var>M</var> and the <a
-                    href="#concept-contents-of-arraybuffer">contents of</a> <a
-                    href="#dfn-RsaOaepParams-label">label</a> member of
-                    <var>normalizedAlgorithm</var> as the label, <var>L</var>, and with the hash
+                    as the message to be encrypted, <var>M</var> and <var>label</var>
+                    as the label, <var>L</var>, and with the hash
                     function specified by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a>
                     attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
                     <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
@@ -6647,14 +6642,23 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                 </li>
                 <li>
                   <p>
+                    Let <var>label</var> be the <a
+                    href="#concept-contents-of-arraybuffer">contents of</a> the <a
+                    href="#dfn-RsaOaepParams-label">label</a> member of
+                    <var>normalizedAlgorithm</var> or the empty octet string if the
+                    <a
+                    href="#dfn-RsaOaepParams-label">label</a> member of
+                    <var>normalizedAlgorithm</var> is not present.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Perform the decryption operation defined in Section 7.1 of [<cite><a
                     href="#RFC3447">RFC3447</a></cite>] with the key represented by <var>key</var>
                     as the recipient's RSA private key, the <a
                     href="#concept-contents-of-arraybuffer">contents of <var>ciphertext</var></a>
-                    as the ciphertext to be decrypted, C, and the <a
-                    href="#concept-contents-of-arraybuffer">contents of</a> the <a
-                    href="#dfn-RsaOaepParams-label">label</a> member of
-                    <var>normalizedAlgorithm</var> as the label, <var>L</var>, and with the hash
+                    as the ciphertext to be decrypted, C, and <var>label</var>
+                    as the label, <var>L</var>, and with the hash
                     function specified by the <a href="#dfn-RsaHashedKeyAlgorithm-hash">hash</a>
                     attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
                     <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
@@ -8111,7 +8115,7 @@ CryptoOperationData? <dfn id="dfn-RsaOaepParams-label">label</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The hash algorithm to use</span>
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaParams-hash">hash</dfn>;
+required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaParams-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
@@ -8122,7 +8126,7 @@ typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
 
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// A named curve</span>
-<a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyGenParams-namedCurve">namedCurve</dfn>;
+required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyGenParams-namedCurve">namedCurve</dfn>;
 };
           </x:codeblock>
           <p>
@@ -8148,7 +8152,7 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
 <span class="comment">// The named curve that the key uses</span>
-<a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
+required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
 };
           </x:codeblock>
         </div>
@@ -8157,7 +8161,7 @@ dictionary <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-Key
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// A named curve</span>
-<a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
+required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
 };
           </x:codeblock>
         </div>
@@ -9585,7 +9589,7 @@ typedef Uint8Array <dfn id="dfn-ECPoint">ECPoint</dfn>;
 
 dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The peer's EC public key.</span>
-<a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams-public">public</dfn>;
+required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams-public">public</dfn>;
 };
           </x:codeblock>
         </div>
@@ -9599,14 +9603,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <p>
                     If <var>usages</var> contains an entry which is not
                     <code>"deriveKey"</code> or <code>"deriveBits"</code>
-                    then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If any of the members of <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> are
-                    not present in <var>normalizedAlgorithm</var>,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
@@ -10433,15 +10429,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       <ol>
                         <li>
                           <p>
-                            If any of the members of <a
-                            href="#dfn-EcKeyImportParams">EcKeyImportParams</a> are not present in
-                            <var>normalizedAlgorithm</var>,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
                             If the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
                             member of <var>normalizedAlgorithm</var> is not a
                             <a href="#dfn-NamedCurve">named curve</a>,
@@ -11008,10 +10995,10 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
 // incrementing function specified in NIST SP 800-38A Appendix B.1:
 // the counter bits are interpreted as a big-endian integer and
 // incremented by one.</span>
-CryptoOperationData <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
+required CryptoOperationData <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
 <span class="comment">// The length, in bits, of the rightmost part of the counter block
 // that is incremented.</span>
-[EnforceRange] octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
+[EnforceRange] required octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11019,7 +11006,7 @@ CryptoOperationData <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
 <span class="comment">// The length, in bits, of the key.</span>
-unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
+required unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11028,7 +11015,7 @@ unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The length, in bits, of the key.</span>
-[EnforceRange] unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
+[EnforceRange] required unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11037,7 +11024,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The length, in bits, of the key.</span>
-[EnforceRange] unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
+[EnforceRange] required unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11588,7 +11575,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
+required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
 };
           </x:codeblock>
         </div>
@@ -12125,7 +12112,7 @@ CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The length, in bits, of the MAC.</span>
-[EnforceRange] unsigned short <dfn id="dfn-AesCmacParams-length">length</dfn>;
+[EnforceRange] required unsigned short <dfn id="dfn-AesCmacParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -12554,15 +12541,6 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
               <ol>
                 <li>
                   <p>
-                    If any of the members of
-                    <a href="#dfn-AesDerivedKeyParams">AesDerivedKeyParams</a> are not present in
-                    <var>normalizedDerivedKeyAlgorithm</var>,
-                    then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
@@ -12644,11 +12622,11 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector to use. May be up to 2^64-1 bytes long.</span>
-CryptoOperationData <dfn id="dfn-AesGcmParams-iv">iv</dfn>;
+required CryptoOperationData <dfn id="dfn-AesGcmParams-iv">iv</dfn>;
 <span class="comment">// The additional authentication data to include.</span>
-CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
+CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
 <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
-[EnforceRange] octet? <dfn id="dfn-AesGcmParams-tagLength">tagLength</dfn>;
+[EnforceRange] octet <dfn id="dfn-AesGcmParams-tagLength">tagLength</dfn>;
 };
           </x:codeblock>
         </div>
@@ -12678,7 +12656,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                 <li>
                   <p>
                     If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member
-                    of <var>normalizedAlgorithm</var> is present, is not null and has a length
+                    of <var>normalizedAlgorithm</var> is present and has a length
                     greater than 2^64 - 1 bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12687,7 +12665,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                 <li>
                   <dl class="switch">
                     <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
-                    <var>normalizedAlgorithm</var> is not present or is null:</dt>
+                    <var>normalizedAlgorithm</var> is not present:</dt>
                     <dd>Let <var>tagLength</var> be 128.</dd>
                     <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
                     <var>normalizedAlgorithm</var> is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
@@ -12706,7 +12684,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                     Let <var>additionalData</var> be <a
                     href="#concept-contents-of-arraybuffer">the contents of</a> the <a
                     href="#dfn-AesGcmParams-additionalData">additionalData</a> member of
-                    <var>normalizedAlgorithm</var> if present and not null and the empty octet
+                    <var>normalizedAlgorithm</var> if present or the empty octet
                     string otherwise.
                   </p>
                 </li>
@@ -12739,7 +12717,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                 <li>
                   <dl class="switch">
                     <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
-                    <var>normalizedAlgorithm</var> is not present or null:</dt>
+                    <var>normalizedAlgorithm</var> is not present:</dt>
                     <dd>Let <var>tagLength</var> be 128.</dd>
                     <dt>If the <a href="#dfn-AesGcmParams-tagLength">tagLength</a> member of
                     <var>normalizedAlgorithm</var> is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
@@ -12772,7 +12750,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                 <li>
                   <p>
                     If the <a href="#dfn-AesGcmParams-additionalData">additionalData</a> member
-                    of <var>normalizedAlgorithm</var> is present, is not null and has a length
+                    of <var>normalizedAlgorithm</var> is present and has a length
                     greater than 2^64 - 1
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
@@ -12796,7 +12774,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
                     Let <var>additionalData</var> be <a
                     href="#concept-contents-of-arraybuffer">the contents</a> of the <a
                     href="#dfn-AesGcmParams-additionalData">additionalData</a> member of
-                    <var>normalizedAlgorithm</var> if present and not null and the empty octet
+                    <var>normalizedAlgorithm</var> if present or the empty octet
                     string otherwise.
                   </p>
                 </li>
@@ -13277,7 +13255,7 @@ CryptoOperationData? <dfn id="dfn-AesGcmParams-additionalData">additionalData</d
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
+required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
 };
           </x:codeblock>
         </div>
@@ -14294,9 +14272,9 @@ dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
 <span class="comment">// The inner hash function to use.</span>
-KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
+required KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
 <span class="comment">// The length (in bits) of the key.</span>
-unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
+required unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -14305,7 +14283,7 @@ unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The inner hash function to use.</span>
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacKeyGenParams-hash">hash</dfn>;
+required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacKeyGenParams-hash">hash</dfn>;
 <span class="comment">// The length (in bits) of the key to generate. If unspecified, the
 // recommended length will be used, which is the size of the associated hash function's block
 // size.</span>
@@ -14545,8 +14523,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                           <dl class="switch">
                             <dt>
                               If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var> is present and has a
-                              <a href="#dfn-Algorithm-name">name</a> member:
+                              <var>normalizedAlgorithm</var> is present:
                             </dt>
                             <dd>
                               Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
@@ -14598,8 +14575,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                           <dl class="switch">
                             <dt>
                               If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var> is present and has a
-                              <a href="#dfn-Algorithm-name">name</a> member:
+                              <var>normalizedAlgorithm</var> is present:
                             </dt>
                             <dd>
                               <ol>
@@ -14868,7 +14844,7 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
                     specifications</a>, passing <var>key</var> and obtaining <var>result</var>.
                     <dl class="switch">
                       <dt>
-                        If <var>format</var> is not <code>"jwkf"</code> and
+                        If <var>format</var> is not <code>"jwk"</code> and
                         <var>result</var> is an <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
                         object
                       </dt>
@@ -15108,9 +15084,9 @@ dictionary <dfn id="dfn-HmacDerivedKeyParams">HmacDerivedKeyParams</dfn> : <a hr
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-DhKeyGenParams">DhKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The prime p.</span>
-BigInteger <dfn id="dfn-DhKeyGenParams-prime">prime</dfn>;
+required BigInteger <dfn id="dfn-DhKeyGenParams-prime">prime</dfn>;
 <span class="comment">// The base g.</span>
-BigInteger <dfn id="dfn-DhKeyGenParams-generator">generator</dfn>;
+required BigInteger <dfn id="dfn-DhKeyGenParams-generator">generator</dfn>;
 };
           </x:codeblock>
         </div>
@@ -15119,9 +15095,9 @@ BigInteger <dfn id="dfn-DhKeyGenParams-generator">generator</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-DhKeyAlgorithm">DhKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
 <span class="comment">// The prime p.</span>
-BigInteger <dfn id="dfn-DhKeyAlgorithm-prime">prime</dfn>;
+required BigInteger <dfn id="dfn-DhKeyAlgorithm-prime">prime</dfn>;
 <span class="comment">// The base g.</span>
-BigInteger <dfn id="dfn-DhKeyAlgorithm-generator">generator</dfn>;
+required BigInteger <dfn id="dfn-DhKeyAlgorithm-generator">generator</dfn>;
 };
           </x:codeblock>
         </div>
@@ -15130,7 +15106,7 @@ BigInteger <dfn id="dfn-DhKeyAlgorithm-generator">generator</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The peer's public value.</span>
-<a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-DhKeyDeriveParams-public">public</dfn>;
+required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-DhKeyDeriveParams-public">public</dfn>;
 };
           </x:codeblock>
         </div>
@@ -15139,9 +15115,9 @@ dictionary <dfn id="dfn-DhKeyDeriveParams">DhKeyDeriveParams</dfn> : <a href="#d
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-DhImportKeyParams">DhImportKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The prime p.</span>
-BigInteger <dfn id="dfn-DhImportKeyParams-prime">prime</dfn>;
+required BigInteger <dfn id="dfn-DhImportKeyParams-prime">prime</dfn>;
 <span class="comment">// The base g.</span>
-BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
+required BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
 };
           </x:codeblock>
         </div>
@@ -16110,15 +16086,15 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
 <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
 <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
 <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
-CryptoOperationData <dfn id="dfn-ConcatParams-algorithmId">algorithmId</dfn>;
+required CryptoOperationData <dfn id="dfn-ConcatParams-algorithmId">algorithmId</dfn>;
 <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
-CryptoOperationData <dfn id="dfn-ConcatParams-partyUInfo">partyUInfo</dfn>;
+required CryptoOperationData <dfn id="dfn-ConcatParams-partyUInfo">partyUInfo</dfn>;
 <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
-CryptoOperationData <dfn id="dfn-ConcatParams-partyVInfo">partyVInfo</dfn>;
+required CryptoOperationData <dfn id="dfn-ConcatParams-partyVInfo">partyVInfo</dfn>;
 <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
-CryptoOperationData? <dfn id="dfn-ConcatParams-publicInfo">publicInfo</dfn>;
+CryptoOperationData <dfn id="dfn-ConcatParams-publicInfo">publicInfo</dfn>;
 <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
-CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
+CryptoOperationData <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
 };
           </x:codeblock>
         </div>
@@ -16143,11 +16119,11 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                     <a href="#dfn-ConcatParams-partyVInfo">partyVInfo</a> member of
                     <var>normalizedAlgorithm</var> as <var>PartyVInfo</var>, the
                     <a href="#dfn-ConcatParams-publicInfo">publicInfo</a> member of
-                    <var>normalizedAlgorithm</var>, if present and not null, as
-                    <var>publicInfo</var> and the
+                    <var>normalizedAlgorithm</var>, if present, as
+                    <var>SuppPubInfo</var> and the
                     <a href="#dfn-ConcatParams-privateInfo">privateInfo</a> member of
-                    <var>normalizedAlgorithm</var>, if present and not null, as
-                    <var>privateInfo</var>.
+                    <var>normalizedAlgorithm</var>, if present, as
+                    <var>SuppPrivInfo</var>.
                   </p>
                 </li>
                 <li>
@@ -16331,11 +16307,11 @@ CryptoOperationData? <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#sha-256">SHA-256</a>)</span>
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
+required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
 <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
-CryptoOperationData <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
+required CryptoOperationData <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
 <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
-CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
+required CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
 };
           </x:codeblock>
           <div class="ednote">
@@ -16630,9 +16606,9 @@ CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
           <h4>Pbkdf2Params dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
-[EnforceRange] unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
-<a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
+required CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
+[EnforceRange] required unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
+required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
