@@ -1815,6 +1815,29 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
               <li>
+                <dl class="switch">
+                  <dt>If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a> object:</dt>
+                  <dd>
+                    <p>
+                      If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
+                      <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                      <var>usages</var> is empty, then <a href="#concept-return-an-error">return an error</a>
+                      named <a href="#dfn-SyntaxError">SyntaxError</a>.
+                    </p>                  
+                  </dd>
+                  <dt>If <var>result</var> is a <a href="#dfn-CryptoKeyPair">CryptoKey</a> object:</dt>
+                  <dd>
+                    <p>
+                      If the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of the
+                      <a href="#dfn-CryptoKeyPair-privateKey">privateKey</a> attribute of
+                      <var>result</var> is the empty sequence, then
+                      <a href="#concept-return-an-error">return an error</a>
+                      named <a href="#dfn-SyntaxError">SyntaxError</a>.
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
                 <p>
                   Resolve <var>promise</var> with
                   <var>result</var>.
@@ -1946,6 +1969,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <var>format</var>, <var>secret</var> as <var>keyData</var>,
                   <var>derivedKeyType</var> as <var>algorithm</var> and using
                   <var>extractable</var> and <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
+                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>usages</var> is empty, then <a href="#concept-return-an-error">return an error</a>
+                  named <a href="#dfn-SyntaxError">SyntaxError</a>.
                 </p>
               </li>
               <li>
@@ -2158,6 +2189,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <var>normalizedAlgorithm</var> using <var>keyData</var>,
                   <var>algorithm</var>, 
                   <var>format</var>, <var>extractable</var> and <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
+                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>usages</var> is empty, then <a href="#concept-return-an-error">return an error</a>
+                  named <a href="#dfn-SyntaxError">SyntaxError</a>.
                 </p>
               </li>
               <li>
@@ -2626,6 +2665,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <var>usages</var>
                   and <var>extractable</var> and with
                   <var>bytes</var> as <var>keyData</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
+                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>usages</var> is empty, then <a href="#concept-return-an-error">return an error</a>
+                  named <a href="#dfn-SyntaxError">SyntaxError</a>.
                 </p>
               </li>
               <li>
