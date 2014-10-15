@@ -16682,9 +16682,8 @@ CryptoOperationData <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
-            may specify the use of additional hash algorithms with RSASSA-PSS. Such specifications
-            must define digest operations for the additional hash algorithms and 
-            <dfn id="dfn-hkdf-ctr-extended-import-steps">key import steps</dfn> for HKDF-fCTR.
+            may specify the use of additional hash algorithms with HKDF.
+            Such specifications must define the digest operation for the additional hash algorithms.
           </p>
         </div>
         <div id="hkdf-ctr-registration" class="section">
@@ -16858,34 +16857,6 @@ required CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
               <ol>
                 <li>
                   <p>Let <var>keyData</var> be the key data to be imported.</p>
-                </li>
-                <li>
-                  <p>
-                    Perform any <a href="#dfn-hkdf-ctr-extended-import-steps">key import steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
-                    specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-return-an-error">Return an error</a> with the same name
-                          as <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
-                  </p>
                 </li>
                 <li>
                   <dl class="switch">
