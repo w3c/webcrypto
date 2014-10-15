@@ -14909,34 +14909,6 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                 </li>
                 <li>
                   <p>
-                    Perform any <a href="#dfn-hmac-extended-import-steps">key import steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
-                    specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-return-an-error">Return an error</a> with the same name
-                          as <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>hash</var> be a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
                   </p>
                 </li>
@@ -14957,9 +14929,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                               <var>normalizedAlgorithm</var> is present:
                             </dt>
                             <dd>
-                              Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                              <var>hash</var> to equal the <a href="#dfn-Algorithm-name">name</a>
-                              member of the <a href="#dfn-HmacImportParams-hash">hash</a>
+                              Set <var>hash</var> to equal the <a href="#dfn-HmacImportParams-hash">hash</a>
                               member of <var>normalizedAlgorithm</var>.
                             </dd>
                             <dt>Otherwise:</dt>
@@ -15012,9 +14982,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                               <ol>
                                 <li>
                                   <p>
-                                    Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                    <var>hash</var> to equal the <a
-                                    href="#dfn-Algorithm-name">name</a> member of the <a
+                                    Set the <var>hash</var> to equal the <a
                                     href="#dfn-HmacImportParams-hash">hash</a> member of
                                     <var>normalizedAlgorithm</var>.
                                   </p>
@@ -15022,8 +14990,8 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                 <li>
                                   <dl class="switch">
                                     <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
+                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                                      of <var>hash</var> is
                                       <code>"SHA-1"</code>:
                                     </dt>
                                     <dd>
@@ -15033,8 +15001,8 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
+                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                                      of <var>hash</var> is
                                       <code>"SHA-256"</code>:
                                     </dt>
                                     <dd>
@@ -15044,8 +15012,8 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
+                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                                      of <var>hash</var> is
                                       <code>"SHA-384"</code>:
                                     </dt>
                                     <dd>
@@ -15055,8 +15023,8 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
                                     </dd>
                                     <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> is
+                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                                      of <var>hash</var> is
                                       <code>"SHA-512"</code>:
                                     </dt>
                                     <dd>
@@ -15064,6 +15032,20 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                       and is not <code>"HS512"</code>,
                                       then <a href="#concept-return-an-error">return an error</a> named
                                       <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    </dd>
+                                    <dt>
+                                      Otherwise, if the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                                      of <var>hash</var> is defined in
+                                      <a href="#dfn-applicable-specifications">another applicable
+                                      specification</a>:
+                                    </dt>
+                                    <dd>
+                                      Perform any <a href="#dfn-hmac-extended-import-steps">key
+                                      import steps</a> defined by
+                                      <a href="#dfn-applicable-specifications">other applicable
+                                      specifications</a>, passing <var>format</var>, <var>jwk</var>
+                                      and <var>hash</var>
+                                      and obtaining <var>hash</var>.
                                     </dd>
                                     <dt>Otherwise:</dt>
                                     <dd>
@@ -15120,8 +15102,12 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                     </dd>
                                     <dt>Otherwise:</dt>
                                     <dd>
-                                      <a href="#concept-return-an-error">Return an error</a> named
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                                      Perform any <a href="#dfn-hmac-extended-import-steps">key
+                                      import steps</a> defined by
+                                      <a href="#dfn-applicable-specifications">other applicable
+                                      specifications</a>, passing <var>format</var>, <var>jwk</var>
+                                      and undefined
+                                      and obtaining <var>hash</var>.
                                     </dd>
                                   </dl>
                                 </li>
@@ -15269,44 +15255,6 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Perform any <a href="#dfn-hmac-extended-export-steps">key export steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
-                    specifications</a>, passing <var>key</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>format</var> is not <code>"jwk"</code> and
-                        <var>result</var> is an <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>format</var> is <code>"jwk"</code> and
-                        <var>result</var> is not an error
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-return-an-error">Return an error</a> with the same name
-                          as <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
-                  </p>
-                </li>
-                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                     <dd>
@@ -15383,6 +15331,31 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                             <var>hash</var> is <code>"SHA-512"</code>:</dt>
                             <dd>Set the <code>alg</code> attribute of <var>jwk</var> to
                             the string <code>"HS512"</code>.</dd>
+                            <dt>
+                              Otherwise, the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is defined in
+                              <a href="#dfn-applicable-specifications">another applicable
+                              specification</a>:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-hmac-extended-export-steps">key
+                                    export steps</a> defined by
+                                    <a href="#dfn-applicable-specifications">other applicable
+                                    specifications</a>, passing <var>format</var> and <var>key</var>
+                                    and obtaining <var>alg</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Set the <code>alg</code> attribute of <var>jwk</var> to
+                                    <var>alg</var>.
+                                  </p>
+                                </li>
+                              </ol>
+                            </dd>
                           </dl>
                         </li>
                         <li>
