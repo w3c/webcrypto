@@ -8857,34 +8857,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                   <p>Let <var>keyData</var> be the key data to be imported.</p>
                 </li>
                 <li>
-                  <p>
-                    Perform any <a href="#dfn-ecdsa-extended-import-steps">key import steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
-                    specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-return-an-error">Return an error</a> with the same name
-                          as <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
-                  </p>
-                </li>
-                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                     <dd>
@@ -8982,10 +8954,26 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             </dd>
                             <dt>Otherwise:</dt>
                             <dd>
-                              <p>
-                                <a href="#concept-return-an-error">Return an error</a> named
-                                <a href="#dfn-DataError"><code>DataError</code></a>.
-                              </p>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdsa-extended-import-steps">key
+                                    import steps</a> defined by
+                                    <a href="#dfn-applicable-specifications">other applicable
+                                    specifications</a>, passing <var>format</var>, <var>spki</var>
+                                    and obtaining <var>namedCurve</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occured or there are no
+                                    <a href="#dfn-applicable-specifications">applicable
+                                    specifications</a>,
+                                    <a href="#concept-return-an-error">return an error</a> named
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                              </ol>
                             </dd>
                           </dl>
                         </li>
@@ -9166,10 +9154,26 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             </dd>
                             <dt>Otherwise:</dt>
                             <dd>
-                              <p>
-                                <a href="#concept-return-an-error">Return an error</a> named
-                                <a href="#dfn-DataError"><code>DataError</code></a>.
-                              </p>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdsa-extended-import-steps">key
+                                    import steps</a> defined by
+                                    <a href="#dfn-applicable-specifications">other applicable
+                                    specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
+                                    and obtaining <var>namedCurve</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occured or there are no
+                                    <a href="#dfn-applicable-specifications">applicable
+                                    specifications</a>,
+                                    <a href="#concept-return-an-error">return an error</a> named
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                              </ol>
                             </dd>
                           </dl>
                         </li>
@@ -9307,7 +9311,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If the <code>"alg"</code> field is present:</dt>
+                            <dt>If the <code>"alg"</code> field is not present:</dt>
                             <dd>
                               Let <var>algNamedCurve</var> be undefined.
                             </dd>
@@ -9328,6 +9332,31 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             </dt>
                             <dd>
                               Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
+                            </dd>
+                            <dt>
+                              Otherwise:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdsa-extended-import-steps">key
+                                    import steps</a> defined by
+                                    <a href="#dfn-applicable-specifications">other applicable
+                                    specifications</a>, passing <var>format</var>, <var>jwk</var>
+                                    and obtaining <var>algNamedCurve</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occured or there are no
+                                    <a href="#dfn-applicable-specifications">applicable
+                                    specifications</a>,
+                                    <a href="#concept-return-an-error">return an error</a> named
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                              </ol>
                             </dd>
                           </dl>
                         </li>
@@ -9459,44 +9488,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                   </p>
                 </li>
                 <li>
-                  <p>
-                    Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
-                    specifications</a>, passing <var>key</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>format</var> is <code>"spki"</code> or <code>"pkcs8"</code> and
-                        <var>result</var> is an <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>format</var> is <code>"jwk"</code> and
-                        <var>result</var> is not an error
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-return-an-error">Return an error</a> with the same name
-                          as <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
-                  </p>
-                </li>
-                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"spki"</code>:</dt>
                     <dd>
@@ -9532,7 +9523,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     Set the <var>parameters</var> field to an instance of the
-                                    <code>namedCurve</code> ASN.1 type as follows:
+                                    <code>ECParameters</code> ASN.1 type defined in
+                                    <a href="#RFC5480">RFC 5480</a> as follows:
                                   </p>
                                   <dl class="switch">
                                     <dt>
@@ -9544,7 +9536,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier
                                         <code>secp256r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
@@ -9558,7 +9551,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier
                                         <code>secp384r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
@@ -9572,10 +9566,35 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier
                                         <code>secp521r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
+                                    </dd>
+                                    <dt>
+                                      Otherwise:
+                                    </dt>
+                                    <dd>
+                                      <ol>
+                                        <li>
+                                          <p>
+                                            Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
+                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            specifications</a>, passing <var>format</var> and the
+                                            <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
+                                            the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var>
+                                            and obtaining <var>namedCurveOid</var>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier <var>namedCurveOid</var>.
+                                          </p>
+                                        </li>
+                                      </ol>
                                     </dd>
                                   </dl>
                                 </li>
@@ -9641,7 +9660,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     Set the <var>parameters</var> field to an instance of the
-                                    <code>namedCurve</code> ASN.1 type as follows:
+                                    <code>ECParameters</code> ASN.1 type defined in
+                                    <a href="#RFC5480">RFC 5480</a> as follows:
                                   </p>
                                   <dl class="switch">
                                     <dt>
@@ -9653,7 +9673,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier 
                                         <code>secp256r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
@@ -9667,7 +9688,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier
                                         <code>secp384r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
@@ -9681,10 +9703,35 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let the <var>namedCurve</var> be the object identifier
+                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                        with value equal to the object identifier
                                         <code>secp521r1</code> defined in <a href="#RFC5480">RFC
                                         5480</a>
                                       </p>
+                                    </dd>
+                                    <dt>
+                                      Otherwise:
+                                    </dt>
+                                    <dd>
+                                      <ol>
+                                        <li>
+                                          <p>
+                                            Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
+                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            specifications</a>, passing <var>format</var> and the
+                                            <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
+                                            the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var>
+                                            and obtaining <var>namedCurveOid</var>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier <var>namedCurveOid</var>.
+                                          </p>
+                                        </li>
+                                      </ol>
                                     </dd>
                                   </dl>
                                 </li>
@@ -9775,6 +9822,30 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             <dd>
                               Set the <code>crv</code> attribute of <var>jwk</var> to
                               <code>"P-521"</code>
+                            </dd>
+                            <dt>
+                              Otherwise:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
+                                    defined by <a href="#dfn-applicable-specifications">other applicable
+                                    specifications</a>, passing <var>format</var> and the
+                                    <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
+                                    the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                    internal slot of <var>key</var>
+                                    and obtaining <var>namedCurve</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Set the <code>crv</code> attribute of <var>jwk</var> to
+                                    <var>namedCurve</var>.
+                                  </p>
+                                </li>
+                              </ol>
                             </dd>
                           </dl>
                         </li>
