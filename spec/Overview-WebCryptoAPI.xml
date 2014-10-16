@@ -2734,7 +2734,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                   <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
                   <var>usages</var> is empty, then <a href="#concept-return-an-error">return an error</a>
-                  named <a href="#dfn-SyntaxError">SyntaxError</a>.
+                  named <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
               </li>
               <li>
@@ -10272,7 +10272,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         </dt>
                         <dd>
                           <a href="#concept-return-an-error">Return an error</a> named
-                          <a href="#dfn-DataError"><code>DataError</code></a>.
+                          <a href="#dfn-OperationError"><code>OperationError</code></a>.
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
@@ -11483,7 +11483,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <var>normalizedAlgorithm</var> does not have length 16
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11492,7 +11492,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <var>normalizedAlgorithm</var> is zero or is greater
                     than 128,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11527,7 +11527,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <var>normalizedAlgorithm</var> does not have length 16
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11536,7 +11536,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <var>normalizedAlgorithm</var> is zero or is greater
                     than 128,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -11580,7 +11580,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
 
@@ -12033,7 +12033,7 @@ required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <var>normalizedAlgorithm</var> does not have length 16
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12072,7 +12072,7 @@ required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <var>normalizedAlgorithm</var> does not have length 16
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12097,7 +12097,7 @@ required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     If <var>p</var> is zero or greater than 16, or if any of the last <var>p</var>
                     octets of <var>paddedPlaintext</var> have a value which is not <var>p</var>,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12131,7 +12131,7 @@ required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
 
@@ -12475,7 +12475,7 @@ required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12574,7 +12574,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <p>
                     If <var>length</var> is zero or greater than 128,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12606,7 +12606,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <p>
                     If <var>length</var> is zero or greater than 128,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12643,7 +12643,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -12737,7 +12737,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                           <p>
                             If the length in bits of <var>data</var> is not 128, 192 or 256
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                            <a href="#dfn-OperationError"><code>OperationError</code></a>.
                           </p>
                         </li>
                       </ol>
@@ -12986,7 +12986,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13083,7 +13083,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     If <var>plaintext</var> has a length greater than 2^39 - 256
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13092,7 +13092,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13101,7 +13101,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     of <var>normalizedAlgorithm</var> is present and has a length
                     greater than 2^64 - 1 bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13117,7 +13117,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     <dt>Otherwise:</dt>
                     <dd>
                       <a href="#concept-return-an-error">Return an error</a> named
-                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                      <a href="#dfn-OperationError"><code>OperationError</code></a>.
                     </dd>
                   </dl>
                 </li>
@@ -13169,7 +13169,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     <dt>Otherwise:</dt>
                     <dd>
                       <a href="#concept-return-an-error">Return an error</a> named
-                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                      <a href="#dfn-OperationError"><code>OperationError</code></a>.
                     </dd>
                   </dl>
                 </li>
@@ -13177,7 +13177,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                   <p>
                     If <var>plaintext</var> has a length less than <var>tagLength</var> bits,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13186,7 +13186,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13196,7 +13196,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     greater than 2^64 - 1
                     bytes,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13272,7 +13272,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     <var>normalizedAlgorithm</var> is not equal to one of
                     128, 192 or 256,
                     then <a href="#concept-return-an-error">return an error</a> named
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
 
@@ -13617,7 +13617,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13712,7 +13712,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesCfbParams-iv">iv</a> member of
                     <var>normalizedAlgorithm</var> does not have length 16 bytes, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-DataError"><code>DataError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13742,7 +13742,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesCfbParams-iv">iv</a> member of
                     <var>normalizedAlgorithm</var> does not have length 16 bytes, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-DataError"><code>DataError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13780,7 +13780,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesKeyGenParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-DataError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14137,7 +14137,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> property of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14221,7 +14221,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                   <p>
                     If <var>plaintext</var> is not a multiple of 64 bits in length,
                             then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                            <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14280,7 +14280,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesKeyGenParams-length">length</a> property of
                     <var>normalizedAlgorithm</var> is not equal to one of 128, 192 or 256, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14616,7 +14616,7 @@ required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -15771,7 +15771,7 @@ required BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                     </dt>
                     <dd>
                       <a href="#concept-return-an-error">Return an error</a> named
-                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                      <a href="#dfn-OperationError"><code>OperationError</code></a>.
                     </dd>
                     <dt>Otherwise:</dt>
                     <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
@@ -17011,7 +17011,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                   <p>
                     If <var>length</var> is null or is not a multiple of 8, then <a
                     href="#concept-return-an-error">return an error</a> named <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                    href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
