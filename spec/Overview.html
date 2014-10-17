@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>16 October 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>17 October 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 16 October 2014 <b>Editor’s Draft</b> of the
+        This document is the 17 October 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -8671,6 +8671,18 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 Set <var>namedCurve</var> <code>"P-521"</code>.
                               </p>
                             </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>If <var>namedCurve</var> is not undefined:</dt>
+                            <dd>
+                              <p>
+                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
+                                object that represents the Elliptic Curve public key identified by
+                                performing the conversion steps defined in Section 2.2 of <a href="#RFC5480">RFC 5480</a>.
+                              </p>
+                            </dd>
                             <dt>Otherwise:</dt>
                             <dd>
                               <ol>
@@ -8680,7 +8692,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     import steps</a> defined by
                                     <a href="#dfn-applicable-specifications">other applicable
                                     specifications</a>, passing <var>format</var>, <var>spki</var>
-                                    and obtaining <var>namedCurve</var>.
+                                    and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -8700,13 +8712,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                           <p>
                             If <var>namedCurve</var> is defined, and not equal to the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
                             <var>normalizedAlgorithm</var>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the Elliptic Curve public key identified by
-                            performing the conversion steps defined in Section 2.2 of <a href="#RFC5480">RFC 5480</a>.
                           </p>
                         </li>
                         <li>
@@ -8861,6 +8866,18 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 Set <var>namedCurve</var> <code>"P-521"</code>.
                               </p>
                             </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>If <var>namedCurve</var> is not undefined:</dt>
+                            <dd>
+                              <p>
+                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
+                                object that represents the Elliptic Curve private key identified by
+                                performing the conversion steps defined in Section 3 of <a href="#RFC5915">RFC 5915</a>.
+                              </p>
+                            </dd>
                             <dt>Otherwise:</dt>
                             <dd>
                               <ol>
@@ -8870,7 +8887,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     import steps</a> defined by
                                     <a href="#dfn-applicable-specifications">other applicable
                                     specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
-                                    and obtaining <var>namedCurve</var>.
+                                    and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -8890,13 +8907,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                           <p>
                             If <var>namedCurve</var> is defined, and not equal to the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
                             <var>normalizedAlgorithm</var>, <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the Elliptic Curve private key identified by
-                            performing the conversion steps defined in Section 3 of <a href="#RFC5915">RFC 5915</a>.
                           </p>
                         </li>
                         <li>
@@ -9005,34 +9015,110 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                           </p>
                         </li>
                         <li>
-                          <p>
-                            Let <var>algNamedCurve</var> be a string whose initial value is
-                            undefined.
-                          </p>
-                        </li>
-                        <li>
                           <dl class="switch">
-                            <dt>If the <code>"alg"</code> field is not present:</dt>
-                            <dd>
-                              Let <var>algNamedCurve</var> be undefined.
-                            </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string "ES256":
+                              If <var>namedCurve</var> is equal to <code>"P-256"</code>,
+                              <code>"P-384"</code> or <code>"P-521"</code>:
                             </dt>
                             <dd>
-                              Let <var>algNamedCurve</var> be the string <code>"P-256"</code>.
-                            </dd>
-                            <dt>
-                              If the <code>"alg"</code> field is equal to the string "ES384":
-                            </dt>
-                            <dd>
-                              Let <var>algNamedCurve</var> be the string <code>"P-384"</code>.
-                            </dd>
-                            <dt>
-                              If the <code>"alg"</code> field is equal to the string "ES521":
-                            </dt>
-                            <dd>
-                              Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
+                              <ol>
+                                <li>
+                                  <p>
+                                    Let <var>algNamedCurve</var> be a string whose initial value is
+                                    undefined.
+                                  </p>
+                                </li>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>If the <code>"alg"</code> field is not present:</dt>
+                                    <dd>
+                                      Let <var>algNamedCurve</var> be undefined.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field is equal to the string "ES256":
+                                    </dt>
+                                    <dd>
+                                      Let <var>algNamedCurve</var> be the string <code>"P-256"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field is equal to the string "ES384":
+                                    </dt>
+                                    <dd>
+                                      Let <var>algNamedCurve</var> be the string <code>"P-384"</code>.
+                                    </dd>
+                                    <dt>
+                                      If the <code>"alg"</code> field is equal to the string "ES521":
+                                    </dt>
+                                    <dd>
+                                      Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
+                                    </dd>
+                                    <dt>otherwise:</dt>
+                                    <dd>
+                                      <a href="#concept-return-an-error">Return an error</a> named
+                                      <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    </dd>
+                                  </dl>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>algNamedCurve</var> is defined, and is not equal to
+                                    <var>namedCurve</var>, <a href="#concept-return-an-error">return an
+                                    error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>If the <code>"d"</code> field is present:</dt>
+                                    <dd>
+                                      <ol>
+                                        <li>
+                                          <p>
+                                            If <var>jwk</var> does not meet the requirements of Section
+                                            6.2.2 of <a href="#jwa">JSON Web Algorithms</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                            Elliptic Curve private key identified by interpreting
+                                            <var>jwk</var> according to Section 6.2.2 of <a href="#jwa">JSON Web Algorithms</a>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]]
+                                            internal slot of <var>Key</var> to <code>"private"</code>.
+                                          </p>
+                                        </li>
+                                      </ol>
+                                    </dd>
+                                    <dt>Otherwise:</dt>
+                                    <dd>
+                                      <ol>
+                                        <li>
+                                          <p>
+                                            If <var>jwk</var> does not meet the requirements of Section
+                                            6.2.1 of <a href="#jwa">JSON Web Algorithms</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                            Elliptic Curve public key identified by interpreting
+                                            <var>jwk</var> according to Section 6.2.1 of <a href="#jwa">JSON Web Algorithms</a>.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]]
+                                            internal slot of <var>Key</var> to <code>"public"</code>.
+                                          </p>
+                                        </li>
+                                      </ol>
+                                    </dd>
+                                  </dl>
+                                </li>
+                              </ol>
                             </dd>
                             <dt>
                               Otherwise:
@@ -9045,7 +9131,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     import steps</a> defined by
                                     <a href="#dfn-applicable-specifications">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
-                                    and obtaining <var>algNamedCurve</var>.
+                                    and obtaining <var>key</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -9055,65 +9141,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     specifications</a>,
                                     <a href="#concept-return-an-error">return an error</a> named
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
-                                  </p>
-                                </li>
-                              </ol>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>algNamedCurve</var> is defined, and is not equal to
-                            <var>namedCurve</var>, <a href="#concept-return-an-error">return an
-                            error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If the <code>"d"</code> field is present:</dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If <var>jwk</var> does not meet the requirements of Section
-                                    6.2.2 of <a href="#jwa">JSON Web Algorithms</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object that represents the
-                                    Elliptic Curve private key identified by interpreting
-                                    <var>jwk</var> according to Section 6.2.2 of <a href="#jwa">JSON Web Algorithms</a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]]
-                                    internal slot of <var>Key</var> to <code>"private"</code>.
-                                  </p>
-                                </li>
-                              </ol>
-                            </dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If <var>jwk</var> does not meet the requirements of Section
-                                    6.2.1 of <a href="#jwa">JSON Web Algorithms</a>, then <a href="#concept-return-an-error">return an error</a> named <a href="#dfn-DataError"><code>DataError</code></a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object that represents the
-                                    Elliptic Curve public key identified by interpreting
-                                    <var>jwk</var> according to Section 6.2.1 of <a href="#jwa">JSON Web Algorithms</a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]]
-                                    internal slot of <var>Key</var> to <code>"public"</code>.
                                   </p>
                                 </li>
                               </ol>
@@ -9219,40 +9246,60 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     <dt>
                                       If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                                       attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-256"</code>:
+                                      internal slot of <var>key</var> is <code>"P-256"</code>,
+                                      <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier
-                                        <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
+                                        Let <var>keyData</var> be the
+                                        <a href="#dfn-octet-string">octet string</a> that
+                                        represents the Elliptic Curve public key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                                        <var>key</var> according to the encoding rules specified in
+                                        Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
+                                        uncompressed form. and <var>keyData</var>.
                                       </p>
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-384"</code>:
-                                    </dt>
-                                    <dd>
                                       <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier
-                                        <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
-                                      </p>
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-521"</code>:
-                                    </dt>
-                                    <dd>
-                                      <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier
-                                        <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
+                                        <dl class="switch">
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-256"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier
+                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-384"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier
+                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-521"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier
+                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                        </dl>
                                       </p>
                                     </dd>
                                     <dt>
@@ -9268,7 +9315,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
                                             internal slot of <var>key</var>
-                                            and obtaining <var>namedCurveOid</var>.
+                                            and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
                                         </li>
                                         <li>
@@ -9285,12 +9332,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             </li>
                             <li>
                               <p>
-                                Set the <var>subjectPublicKey</var> field to the
-                                <a href="#dfn-octet-string">octet string</a> that
-                                represents the Elliptic Curve public key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                                <var>key</var> according to the encoding rules specified in
-                                Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
-                                uncompressed form.
+                                Set the <var>subjectPublicKey</var> field to <var>keyData</var>.
                               </p>
                             </li>
                           </ul>
@@ -9347,40 +9389,77 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     <dt>
                                       If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                                       attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-256"</code>:
+                                      internal slot of <var>key</var> is <code>"P-256"</code>,
+                                      <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier 
-                                        <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
+                                        Let <var>keyData</var> be the result of DER-encoding
+                                        an instance of the <code>ECPrivateKey</code> structure defined in
+                                        Section 3 of <a href="#RFC5915">RFC 5915</a> for the Elliptic
+                                        Curve private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                                        <var>key</var> and that conforms to the following:
                                       </p>
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-384"</code>:
-                                    </dt>
-                                    <dd>
+                                      <ul>
+                                        <li>
+                                          <p>
+                                            The <var>parameters</var> field is present, and is equivalent
+                                            to the <var>parameters</var> field of the
+                                            <var>privateKeyAlgorithm</var> field of this
+                                            <code>PrivateKeyInfo</code> ASN.1 structure.
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p>
+                                            The <var>publicKey</var> field is present and represents the
+                                            Elliptic Curve public key associated with the Elliptic Curve
+                                            private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot
+                                            of <var>key</var>.
+                                          </p>
+                                        </li>
+                                      </ul>
                                       <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier
-                                        <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
-                                      </p>
-                                    </dd>
-                                    <dt>
-                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                      internal slot of <var>key</var> is <code>"P-521"</code>:
-                                    </dt>
-                                    <dd>
-                                      <p>
-                                        Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                        with value equal to the object identifier
-                                        <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                        5480</a>
+                                        <dl class="switch">
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-256"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier 
+                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-384"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier
+                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                          <dt>
+                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                            internal slot of <var>key</var> is <code>"P-521"</code>:
+                                          </dt>
+                                          <dd>
+                                            <p>
+                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                              with value equal to the object identifier
+                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                              5480</a>
+                                            </p>
+                                          </dd>
+                                        </dl>
                                       </p>
                                     </dd>
                                     <dt>
@@ -9396,7 +9475,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
                                             internal slot of <var>key</var>
-                                            and obtaining <var>namedCurveOid</var>.
+                                            and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
                                         </li>
                                         <li>
@@ -9413,30 +9492,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             </li>
                             <li>
                               <p>
-                                Set the <var>privateKey</var> field to the result of DER-encoding
-                                an instance of the <code>ECPrivateKey</code> structure defined in
-                                Section 3 of <a href="#RFC5915">RFC 5915</a> for the Elliptic
-                                Curve private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                                <var>key</var> and that conforms to the following:
+                                Set the <var>privateKey</var> field to <var>keyData</var>.
                               </p>
-                              <ul>
-                                <li>
-                                  <p>
-                                    The <var>parameters</var> field is present, and is equivalent
-                                    to the <var>parameters</var> field of the
-                                    <var>privateKeyAlgorithm</var> field of this
-                                    <code>PrivateKeyInfo</code> ASN.1 structure.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    The <var>publicKey</var> field is present and represents the
-                                    Elliptic Curve public key associated with the Elliptic Curve
-                                    private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot
-                                    of <var>key</var>.
-                                  </p>
-                                </li>
-                              </ul>
                             </li>
                           </ul>
                         </li>
@@ -9468,29 +9525,72 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                             <dt>
                               If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                               attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>"P-256"</code>:
+                              of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or
+                              <code>"P-521"</code>:
                             </dt>
                             <dd>
-                              Set the <code>crv</code> attribute of <var>jwk</var> to
-                              <code>"P-256"</code>
-                            </dd>
-                            <dt>
-                              If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                              attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>"P-384"</code>:
-                            </dt>
-                            <dd>
-                              Set the <code>crv</code> attribute of <var>jwk</var> to
-                              <code>"P-384"</code>
-                            </dd>
-                            <dt>
-                              If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                              attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
-                              of <var>key</var> is <code>"P-521"</code>:
-                            </dt>
-                            <dd>
-                              Set the <code>crv</code> attribute of <var>jwk</var> to
-                              <code>"P-521"</code>
+                              <ol>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>
+                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
+                                      of <var>key</var> is <code>"P-256"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      <code>"P-256"</code>
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
+                                      of <var>key</var> is <code>"P-384"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      <code>"P-384"</code>
+                                    </dd>
+                                    <dt>
+                                      If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                      attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
+                                      of <var>key</var> is <code>"P-521"</code>:
+                                    </dt>
+                                    <dd>
+                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      <code>"P-521"</code>
+                                    </dd>
+                                  </dl>
+                                </li>
+                                <li>
+                                  <p>
+                                    Set the <code>x</code> attribute of <var>jwk</var> according to the
+                                    definition in Section 6.2.1.2 of <a href="#jwa">JSON Web
+                                    Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Set the <code>y</code> attribute of <var>jwk</var> according to the
+                                    definition in Section 6.2.1.3 of <a href="#jwa">JSON Web
+                                    Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <dl class="switch">
+                                    <dt>
+                                      If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
+                                      of <var>key</var> is <code>"private"</code>
+                                    </dt>
+                                    <dd>
+                                      <p>
+                                        Set the <code>d</code> attribute of <var>jwk</var> according to
+                                        the definition in Section 6.2.2.1 of <a href="#jwa">JSON Web
+                                        Algorithms</a>.
+                                      </p>
+                                    </dd>
+                                  </dl>
+                                </li>
+                              </ol>
                             </dd>
                             <dt>
                               Otherwise:
@@ -9505,7 +9605,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                     <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
                                     internal slot of <var>key</var>
-                                    and obtaining <var>namedCurve</var>.
+                                    and obtaining <var>namedCurve</var> and a new value of <var>jwk</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -9515,35 +9615,6 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                   </p>
                                 </li>
                               </ol>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            Set the <code>x</code> attribute of <var>jwk</var> according to the
-                            definition in Section 6.2.1.2 of <a href="#jwa">JSON Web
-                            Algorithms</a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the <code>y</code> attribute of <var>jwk</var> according to the
-                            definition in Section 6.2.1.3 of <a href="#jwa">JSON Web
-                            Algorithms</a>.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>
-                              If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
-                              of <var>key</var> is <code>"private"</code>
-                            </dt>
-                            <dd>
-                              <p>
-                                Set the <code>d</code> attribute of <var>jwk</var> according to
-                                the definition in Section 6.2.2.1 of <a href="#jwa">JSON Web
-                                Algorithms</a>.
-                              </p>
                             </dd>
                           </dl>
                         </li>
