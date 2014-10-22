@@ -10249,35 +10249,6 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         </li>
                         <li>
                           <p>
-                            Let <var>ecPrivateKey</var> be the result of performing the
-                            <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
-                            algorithm, with <var>data</var> as the <code>privateKey</code> field
-                            of <var>privateKeyInfo</var>, <var>structure</var> as the ASN.1
-                            <code>ECPrivateKey</code> structure specified in Section 3 of
-                            <a href="#RFC5915">RFC 5915</a>, and <var>exactData</var> set to true.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurred while parsing,
-                            then <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the <code>parameters</code> field of <var>ecPrivateKey</var> is
-                            present, and is not an instance of the <code>namedCurve</code> ASN.1
-                            type defined in <a href="#RFC5480">RFC 5480</a>, or does not contain
-                            the same object identifier as the <code>parameters</code> field of the
-                            <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
-                            of <var>privateKeyInfo</var>,
-                            <a href="#concept-return-an-error">return an error</a> named
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
                             Let <var>namedCurve</var> be a string whose initial value is
                             undefined.
                           </p>
@@ -10317,11 +10288,44 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                           <dl class="switch">
                             <dt>If <var>namedCurve</var> is not undefined:</dt>
                             <dd>
-                              <p>
-                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                object that represents the Elliptic Curve private key identified by
-                                performing the conversion steps defined in Section 3 of <a href="#RFC5915">RFC 5915</a>.
-                              </p>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Let <var>ecPrivateKey</var> be the result of performing the
+                                    <a href="#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                                    algorithm, with <var>data</var> as the <code>privateKey</code> field
+                                    of <var>privateKeyInfo</var>, <var>structure</var> as the ASN.1
+                                    <code>ECPrivateKey</code> structure specified in Section 3 of
+                                    <a href="#RFC5915">RFC 5915</a>, and <var>exactData</var> set to true.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occurred while parsing,
+                                    then <a href="#concept-return-an-error">return an error</a> named
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If the <code>parameters</code> field of <var>ecPrivateKey</var> is
+                                    present, and is not an instance of the <code>namedCurve</code> ASN.1
+                                    type defined in <a href="#RFC5480">RFC 5480</a>, or does not contain
+                                    the same object identifier as the <code>parameters</code> field of the
+                                    <code>privateKeyAlgorithm</code> PrivateKeyAlgorithmIdentifier field
+                                    of <var>privateKeyInfo</var>,
+                                    <a href="#concept-return-an-error">return an error</a> named
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
+                                    object that represents the Elliptic Curve private key identified by
+                                    performing the conversion steps defined in Section 3 of <a href="#RFC5915">RFC 5915</a> using <var>ecPrivateKey</var>.
+                                  </p>
+                                </li>
+                              </ol>
                             </dd>
                             <dt>Otherwise:</dt>
                             <dd>
