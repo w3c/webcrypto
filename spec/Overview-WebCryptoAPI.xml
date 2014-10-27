@@ -670,6 +670,9 @@ of contents, section numbers, certain processing instructions).
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
         <p>
+          The term <dfn id="BufferSource">BufferSource</dfn> is defined in [<cite><a href="#WebIDL">WEBIDL</a></cite>].
+        </p>
+        <p>
           An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
           integers, each in the range 0 to 255 inclusive.
         </p>
@@ -795,8 +798,8 @@ of contents, section numbers, certain processing instructions).
           </li>
         </ol>
         <p>
-          When this specification says to <dfn id="concept-clone-CryptoOperationData">clone the
-          data</dfn> of a <a href="#dfn-CryptoOperationData">CryptoOperationData</a> object
+          When this specification says to <dfn id="concept-clone-BufferSource">clone the
+          data</dfn> of a <a href="http://heycam.github.io/webidl/#common-BufferSource">BufferSource</a> object
           <var>data</var>, the user agent must run the following steps:
         </p>
         <dl class="switch">
@@ -1224,25 +1227,23 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
         <x:codeblock language="idl">
 typedef DOMString <a href="#dfn-KeyFormat"><code>KeyFormat</code></a>;
 
-typedef (ArrayBuffer or ArrayBufferView) CryptoOperationData;
-
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-CryptoKey">CryptoKey</a> key,
-                       CryptoOperationData data);
+                       BufferSource data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-CryptoKey">CryptoKey</a> key,
-                       CryptoOperationData data);
+                       BufferSource data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-sign">sign</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                     <a href="#dfn-CryptoKey">CryptoKey</a> key,
-                    CryptoOperationData data);
+                    BufferSource data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-verify">verify</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                       <a href="#dfn-CryptoKey">CryptoKey</a> key,
-                      CryptoOperationData signature,
-                      CryptoOperationData data);
+                      BufferSource signature,
+                      BufferSource data);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-digest">digest</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
-                      CryptoOperationData data);
+                      BufferSource data);
 
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-generateKey">generateKey</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           boolean extractable,
@@ -1258,7 +1259,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   
   <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         (CryptoOperationData or JsonWebKey) keyData,
+                         (BufferSource or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          boolean extractable,
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
@@ -1269,7 +1270,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                        <a href="#dfn-CryptoKey">CryptoKey</a> wrappingKey,
                        <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
-                         CryptoOperationData wrappedKey,
+                         BufferSource wrappedKey,
                          <a href="#dfn-CryptoKey">CryptoKey</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrappedKeyAlgorithm,
@@ -1368,7 +1369,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method.
                 </p>
@@ -1459,7 +1460,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method.
                 </p>
@@ -1551,7 +1552,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-sign">sign</a> method.
                 </p>
@@ -1641,7 +1642,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>signature</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>signature</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>signature</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
                 </p>
@@ -1662,7 +1663,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
                 </p>
@@ -1738,7 +1739,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-CryptoOperationData">
+                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
                   cloning the data</a> of the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-digest">digest</a> method.
                 </p>
@@ -2178,7 +2179,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           Let <var>keyData</var> be the result of
-                          <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
+                          <a href="#concept-clone-BufferSource">cloning the data</a> of the
                           <code>keyData</code> parameter passed to the
                           <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
                         </p>
@@ -2582,7 +2583,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>wrappedKey</var> be the result of
-                  <a href="#concept-clone-CryptoOperationData">cloning the data</a> of the
+                  <a href="#concept-clone-BufferSource">cloning the data</a> of the
                   <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a> method.
                 </p>
@@ -3171,13 +3172,13 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                             <dl class="switch">
                               <dt>
                                 If <var>member</var> is of the type
-                                <a href="#dfn-CryptoOperationData">CryptoOperationData</a> and is
+                                <a href="http://heycam.github.io/webidl/#common-BufferSource">BufferSource</a> and is
                                 present:
                               </dt>
                               <dd>
                                 Set the dictionary member on <var>normalizedAlgorithm</var> with key
                                 name <var>key</var> to a <a
-                                href="#concept-clone-CryptoOperationData">clone of
+                                href="#concept-clone-BufferSource">clone of
                                 <var>idlValue</var></a>, replacing the current value.
                               </dd>
                               <dt>
@@ -6681,7 +6682,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The optional label/application data to associate with the message</span>
-CryptoOperationData <dfn id="dfn-RsaOaepParams-label">label</dfn>;
+BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11547,7 +11548,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
 // incrementing function specified in NIST SP 800-38A Appendix B.1:
 // the counter bits are interpreted as a big-endian integer and
 // incremented by one.</span>
-required CryptoOperationData <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
+required BufferSource <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
 <span class="comment">// The length, in bits, of the rightmost part of the counter block
 // that is incremented.</span>
 [EnforceRange] required octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
@@ -12126,7 +12127,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-required CryptoOperationData <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
+required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
 };
           </x:codeblock>
         </div>
@@ -13171,9 +13172,9 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector to use. May be up to 2^64-1 bytes long.</span>
-required CryptoOperationData <dfn id="dfn-AesGcmParams-iv">iv</dfn>;
+required BufferSource <dfn id="dfn-AesGcmParams-iv">iv</dfn>;
 <span class="comment">// The additional authentication data to include.</span>
-CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
+BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
 <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
 [EnforceRange] octet <dfn id="dfn-AesGcmParams-tagLength">tagLength</dfn>;
 };
@@ -13803,7 +13804,7 @@ CryptoOperationData <dfn id="dfn-AesGcmParams-additionalData">additionalData</df
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesCfbParams">AesCfbParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
 <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
-required CryptoOperationData <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
+required BufferSource <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
 };
           </x:codeblock>
         </div>
@@ -16601,15 +16602,15 @@ dictionary <dfn id="dfn-ConcatParams">ConcatParams</dfn> : <a href="#dfn-Algorit
 <span class="comment">// A bit string corresponding to the AlgorithmId field of the OtherInfo parameter.</span>
 <span class="comment">// The AlgorithmId indicates how the derived keying material will be parsed and for which</span>
 <span class="comment">// algorithm(s) the derived secret keying material will be used.</span>
-required CryptoOperationData <dfn id="dfn-ConcatParams-algorithmId">algorithmId</dfn>;
+required BufferSource <dfn id="dfn-ConcatParams-algorithmId">algorithmId</dfn>;
 <span class="comment">// A bit string that corresponds to the PartyUInfo field of the OtherInfo parameter.</span>
-required CryptoOperationData <dfn id="dfn-ConcatParams-partyUInfo">partyUInfo</dfn>;
+required BufferSource <dfn id="dfn-ConcatParams-partyUInfo">partyUInfo</dfn>;
 <span class="comment">// A bit string that corresponds to the PartyVInfo field of the OtherInfo parameter.</span>
-required CryptoOperationData <dfn id="dfn-ConcatParams-partyVInfo">partyVInfo</dfn>;
+required BufferSource <dfn id="dfn-ConcatParams-partyVInfo">partyVInfo</dfn>;
 <span class="comment">// An optional bit string that corresponds to the SuppPubInfo field of the OtherInfo parameter.</span>
-CryptoOperationData <dfn id="dfn-ConcatParams-publicInfo">publicInfo</dfn>;
+BufferSource <dfn id="dfn-ConcatParams-publicInfo">publicInfo</dfn>;
 <span class="comment">// An optional bit string that corresponds to the SuppPrivInfo field of the OtherInfo parameter.</span>
-CryptoOperationData <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
+BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
 };
           </x:codeblock>
         </div>
@@ -16822,9 +16823,9 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
 <span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#sha-256">SHA-256</a>)</span>
 required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
 <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
-required CryptoOperationData <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
+required BufferSource <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
 <span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
-required CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
+required BufferSource <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
 };
           </x:codeblock>
           <div class="ednote">
@@ -17090,7 +17091,7 @@ required CryptoOperationData <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
           <h4>Pbkdf2Params dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-required CryptoOperationData <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
+required BufferSource <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
 [EnforceRange] required unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
 required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
