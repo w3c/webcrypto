@@ -889,6 +889,29 @@ of contents, section numbers, certain processing instructions).
           <a href="#concept-usage-intersection">usage intersection</a> of <var>usages</var> and a
           sequence containing all <a href="#dfn-RecognizedKeyUsage">recognized key usage values</a>.
         </p>
+        <p>
+          When this specification refers to the <dfn id="concept-cached-object">cached ECMAScript
+          object</dfn> associated with an internal slot [[<var>slot</var>]] of <var>object</var>,
+          the user agent must run the following steps:
+        </p>
+        <ol>
+          <li>
+            <dl class="switch">
+              <dt>
+                If the [[<var>slot</var>_cached]] internal slot of <var>object</var> is undefined:
+              </dt>
+              <dd>
+                Set the [[<var>slot</var>_cached]] internal slot of <var>object</var> to the result
+                of performing type conversion to an ECMAScript object as defined in
+                [<a href="#WebIDL">WEBIDL</a>] to the contents of the [[<var>slot</var>]]
+                internal slot of <var>object</var>.
+              </dd>
+            </dl>
+          </li>
+          <li>
+            Return the contents of the [[<var>slot</var>_cached]] internal slot of <var>object</var>.
+          </li>
+        </ol>
       </div>
       
       <div id="crypto-interface" class="section">
@@ -1129,12 +1152,14 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             slots are identified by names enclosed in double square brackets [[ ]].
           </p>
           <p>
-            All <code>CryptoKey</code> objects have internal slots named [[<dfn
-            id="dfn-CryptoKey-slot-type">type</dfn>]], [[<dfn
-            id="dfn-CryptoKey-slot-extractable">extractable</dfn>]], [[<dfn
-            id="dfn-CryptoKey-slot-algorithm">algorithm</dfn>]], [[<dfn
-            id="dfn-CryptoKey-slot-usages">usages</dfn>]], and [[<dfn
-            id="dfn-CryptoKey-slot-handle">handle</dfn>]].
+            All <code>CryptoKey</code> objects have internal slots named
+            [[<dfn id="dfn-CryptoKey-slot-type">type</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-extractable">extractable</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-algorithm">algorithm</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-algorithm">algorithm_cached</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-usages">usages</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-usages">usages_cached</dfn>]], and
+            [[<dfn id="dfn-CryptoKey-slot-handle">handle</dfn>]].
           </p>
           <p class="note">
             The [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] slot is an opaque type that
@@ -1150,8 +1175,8 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
           <dl>
             <dt id="dfn-CryptoKey-type"><code>type</code></dt>
             <dd>
-              Reflects the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot, which
-              contains the type of the underlying key.
+              Reflects the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot,
+              which contains the type of the underlying key.
             </dd>
             <dt id="dfn-CryptoKey-extractable"><code>extractable</code></dt>
             <dd>
@@ -1161,17 +1186,14 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </dd>
             <dt id="dfn-CryptoKey-algorithm"><code>algorithm</code></dt>
             <dd>
-              Reflects the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot,
-              converting the interface contained within [[<a
-              href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] to an ECMAScript object, as
-              defined by [<a href="#WebIDL">WEBIDL</a>].
+              Returns the <a href="#concept-cached-object">cached ECMAScript object</a>
+              associated with the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot.
             </dd>
             <dt id="dfn-CryptoKey-usages"><code>usages</code></dt>
             <dd>
-              Reflects the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot,
-              converting the list of <a href="#dfn-KeyUsages"><code>KeyUsages</code></a> to an
-              ECMAScript <code>Array</code> object, which indicates which cryptographic operations
-              are permissible to be used with this key.
+              Returns the <a href="#concept-cached-object">cached ECMAScript object</a>
+              associated with the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot,
+              which indicates which cryptographic operations are permissible to be used with this key.
             </dd>
           </dl>
         </div>
