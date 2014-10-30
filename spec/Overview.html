@@ -8652,6 +8652,13 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                         </li>
                         <li>
                           <p>
+                            If the public key value is not a valid point on the Elliptic Curve
+                            identified by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                            <var>normalizedAlgorithm</var> <a href="#concept-throw">throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
@@ -8847,6 +8854,13 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                           <p>
                             If <var>namedCurve</var> is defined, and not equal to the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
                             <var>normalizedAlgorithm</var>, <a href="#concept-throw">throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If the private key value is not a valid point on the Elliptic Curve
+                            identified by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                            <var>normalizedAlgorithm</var> <a href="#concept-throw">throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -9085,6 +9099,13 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                               </ol>
                             </dd>
                           </dl>
+                        </li>
+                        <li>
+                          <p>
+                            If the key value is not a valid point on the Elliptic Curve
+                            identified by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                            <var>normalizedAlgorithm</var> <a href="#concept-throw">throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
                         </li>
                         <li>
                           <p>
