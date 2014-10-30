@@ -8417,7 +8417,8 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                 <li>
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>publicKey</var> to be the empty list.
+                    <var>publicKey</var> to be the <a href="#concept-usage-intersection">usage
+                    intersection</a> of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
                 </li>
                 <li>
@@ -8448,7 +8449,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
                     <var>privateKey</var> to be the <a href="#concept-usage-intersection">usage
-                    intersection</a> of <var>usages</var> and <code>[ "sign", "verify" ]</code>.
+                    intersection</a> of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
                 </li>
                 <li>
