@@ -1854,14 +1854,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  If <var>usages</var> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
-                  then <a href="#concept-throw">throw</a> an
-                  <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>result</var> be the result of executing the generate key operation
                   specified by <var>normalizedAlgorithm</var> using
                   <var>algorithm</var>, <var>extractable</var> and <var>usages</var>.
@@ -1989,14 +1981,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
                   <var>baseKey</var> does not contain an entry that is <code>"deriveKey"</code>,
                   then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If <var>usages</var> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>, 
-                  then <a href="#concept-throw">throw</a> an
-                  <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
               </li>
               <li>
@@ -2221,14 +2205,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If <var>format</var> is not
                   a <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-throw">throw</a> a
-                  <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If <var>usages</var> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
-                  then <a href="#concept-throw">throw</a> a
                   <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
               </li>
@@ -2646,14 +2622,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If <var>format</var> is not a <a href="#dfn-RecognizedKeyFormats">recognized key
                   format value</a>, then <a href="#concept-throw">throw</a> a <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If <var>usages</var> includes a value that is not a
-                  <a href="#dfn-RecognizedKeyUsage">recognized key usage value</a>,
-                  then <a href="#concept-throw">throw</a> a
-                  <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                 </p>
               </li>
               <li>
