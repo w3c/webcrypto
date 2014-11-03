@@ -1156,10 +1156,16 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             [[<dfn id="dfn-CryptoKey-slot-type">type</dfn>]],
             [[<dfn id="dfn-CryptoKey-slot-extractable">extractable</dfn>]],
             [[<dfn id="dfn-CryptoKey-slot-algorithm">algorithm</dfn>]],
-            [[<dfn id="dfn-CryptoKey-slot-algorithm">algorithm_cached</dfn>]],
+            [[<dfn id="dfn-CryptoKey-slot-algorithm_cached">algorithm_cached</dfn>]],
             [[<dfn id="dfn-CryptoKey-slot-usages">usages</dfn>]],
-            [[<dfn id="dfn-CryptoKey-slot-usages">usages_cached</dfn>]], and
+            [[<dfn id="dfn-CryptoKey-slot-usages_cached">usages_cached</dfn>]], and
             [[<dfn id="dfn-CryptoKey-slot-handle">handle</dfn>]].
+          </p>
+          <p>
+            The contents of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
+            slot shall be, or be derived from, a <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>.
+            The contents of the [[<a href="#dfn-CryptoKey-slot-algorithm">usages</a>]] internal
+            slot shall be of type Sequence&lt;KeyUsage&gt;.
           </p>
           <p class="note">
             The [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] slot is an opaque type that
