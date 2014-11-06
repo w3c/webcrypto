@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>3 November 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>6 November 2014</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
     (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
@@ -56,7 +56,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 3 November 2014 <b>Editor’s Draft</b> of the
+        This document is the 6 November 2014 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -134,7 +134,7 @@
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a><ul><li><a href="#extensibility">3.1. Extensibility</a></li></ul></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#concepts">5. Concepts</a><ul><li><a href="#concepts-underlying-implementation">5.1. Underlying Cryptographic Implementation</a></li><li><a href="#concepts-key-storage">5.2. Key Storage</a></li></ul></li><li><a href="#security">6. Security considerations</a><ul><li><a href="#security-implementers">6.1. Security considerations for implementers</a></li><li><a href="#security-developers">6.2. Security considerations for authors</a></li><li><a href="#security-users">6.3. Security considerations for users</a></li></ul></li><li><a href="#privacy">7. Privacy considerations</a></li><li><a href="#dependencies">8. Dependencies</a></li><li><a href="#terminology">9. Terminology</a></li><li><a href="#crypto-interface">10. Crypto interface</a><ul><li><a href="#Crypto-description">10.1. Description</a></li><li><a href="#Crypto-interface-methods">10.2. Methods and Parameters</a><ul><li><a href="#Crypto-method-getRandomValues">10.2.1. The getRandomValues method</a></li></ul></li><li><a href="#Crypto-interface-attributes">10.3. Attributes</a><ul><li><a href="#Crypto-attribute-subtle">10.3.1. The subtle attribute</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">11. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">11.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-dictionary">12. KeyAlgorithm dictionary</a><ul><li><a href="#key-algorithm-dictionary-description">12.1. Description</a></li><li><a href="#key-algorithm-dictionary-members">12.2. KeyAlgorithm dictionary members</a></li></ul></li><li><a href="#cryptokey-interface">13. CryptoKey interface</a><ul><li><a href="#cryptokey-interface-description">13.1. Description</a></li><li><a href="#cryptokey-interface-types">13.2. Key interface data types</a></li><li><a href="#cryptokey-interface-internal-slots">13.3. CryptoKey internal slots</a></li><li><a href="#cryptokey-interface-members">13.4. CryptoKey interface members</a></li><li><a href="#cryptokey-interface-clone">13.5. Structured clone algorithm</a></li></ul></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#JsonWebKey-dictionary">15. JsonWebKey dictionary</a></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. CryptoKeyPair dictionary</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithm-overview">18.1. Overview</a></li><li><a href="#algorithm-concepts">18.2. Concepts</a><ul><li><a href="#algorithm-concepts-naming">18.2.1. Naming</a></li><li><a href="#algorithm-concepts-operations">18.2.2. Supported Operations</a></li><li><a href="#algorithm-concepts-normalization">18.2.3. Normalization</a></li></ul></li><li><a href="#algorithm-conventions">18.3. Specification Conventions</a></li><li><a href="#algorithm-normalizing">18.4. Algorithm Normalization</a><ul><li><a href="#algorithm-normalizing-description">18.4.1. Description</a></li><li><a href="#algorithm-normalizing-internal">18.4.2. Internal State Objects</a></li><li><a href="#algorithm-normalizing-define-an-algorithm">18.4.3. Defining an Algorithm</a></li><li><a href="#algorithm-normalizing-normalize-an-algorithm">18.4.4. Normalizing an algorithm</a></li></ul></li><li><a href="#algorithm-recommendations">18.5. Recommendations</a><ul><li><a href="#algorithm-recommendations-authors">18.5.1. For Authors</a></li><li><a href="#algorithm-recommendations-implementers">18.5.2. For Implementers</a></li></ul></li></ul></li><li><a href="#algorithm-overview">19. Algorithm Overview</a></li><li><a href="#rsassa-pkcs1">20. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">20.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">20.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">20.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">20.4. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-dictionary">20.5. RsaKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-dictionary">20.6. RsaHashedKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedImportParams-dictionary">20.7. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">20.8. Operations</a></li></ul></li><li><a href="#rsa-pss">21. RSA-PSS</a><ul><li><a href="#rsa-pss-description">21.1. Description</a></li><li><a href="#rsa-pss-registration">21.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">21.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">21.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">22. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">22.1. Description</a></li><li><a href="#rsa-oaep-registration">22.2. Registration</a></li><li><a href="#rsa-oaep-params">22.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">22.4. Operations</a></li></ul></li><li><a href="#ecdsa">23. ECDSA</a><ul><li><a href="#ecdsa-description">23.1. Description</a></li><li><a href="#ecdsa-registration">23.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">23.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">23.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-dictionary">23.5. EcKeyAlgorithm dictionary</a></li><li><a href="#EcKeyImportParams-dictionary">23.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">23.7. Operations</a></li></ul></li><li><a href="#ecdh">24. ECDH</a><ul><li><a href="#ecdh-description">24.1. Description</a></li><li><a href="#ecdh-registration">24.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">24.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">24.4. Operations</a></li></ul></li><li><a href="#aes-ctr">25. AES-CTR</a><ul><li><a href="#aes-ctr-description">25.1. Description</a></li><li><a href="#aes-ctr-registration">25.2. Registration</a></li><li><a href="#aes-ctr-params">25.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-dictionary">25.4. </a></li><li><a href="#aes-keygen-params">25.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">25.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">25.7. Operations</a></li></ul></li><li><a href="#aes-cbc">26. AES-CBC</a><ul><li><a href="#aes-cbc-description">26.1. Description</a></li><li><a href="#aes-cbc-registration">26.2. Registration</a></li><li><a href="#aes-cbc-params">26.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">26.4. Operations</a></li></ul></li><li><a href="#aes-cmac">27. AES-CMAC</a><ul><li><a href="#aes-cmac-description">27.1. Description</a></li><li><a href="#aes-cmac-registration">27.2. Registration</a></li><li><a href="#aes-cmac-params">27.3. AesCmacParams dictionary</a></li><li><a href="#aes-cmac-operations">27.4. Operations</a></li></ul></li><li><a href="#aes-gcm">28. AES-GCM</a><ul><li><a href="#aes-gcm-description">28.1. Description</a></li><li><a href="#aes-gcm-registration">28.2. Registration</a></li><li><a href="#aes-gcm-params">28.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">28.4. Operations</a></li></ul></li><li><a href="#aes-cfb">29. AES-CFB</a><ul><li><a href="#aes-cfb-description">29.1. Description</a></li><li><a href="#aes-cfb-registration">29.2. Registration</a></li><li><a href="#aes-cfb-params">29.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">29.4. Operations</a></li></ul></li><li><a href="#aes-kw">30. AES-KW</a><ul><li><a href="#aes-kw-description">30.1. Description</a></li><li><a href="#aes-kw-registration">30.2. Registration</a></li><li><a href="#aes-kw-operations">30.3. Operations</a></li></ul></li><li><a href="#hmac">31. HMAC</a><ul><li><a href="#hmac-description">31.1. Description</a></li><li><a href="#hmac-registration">31.2. Registration</a></li><li><a href="#hmac-importparams">31.3. HmacImportParams dictionary</a></li><li><a href="#HmacKeyAlgorithm-dictionary">31.4. HmacKeyAlgorithm dictionary</a></li><li><a href="#hmac-keygen-params">31.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-operations">31.6. Operations</a></li></ul></li><li><a href="#dh">32. Diffie-Hellman</a><ul><li><a href="#dh-description">32.1. Description</a></li><li><a href="#dh-registration">32.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">32.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyAlgorithm">32.4. DhKeyAlgorithm dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">32.5. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-DhImportKeyParams">32.6. DhImportKeyParams dictionary</a></li><li><a href="#dh-operations">32.7. Operations</a></li></ul></li><li><a href="#sha">33. SHA</a><ul><li><a href="#sha-description">33.1. Description</a></li><li><a href="#sha-registration">33.2. Registration</a></li><li><a href="#sha-operations">33.3. Operations</a></li></ul></li><li><a href="#concatkdf">34. Concat KDF</a><ul><li><a href="#concatkdf-description">34.1. Description</a></li><li><a href="#concatkdf-registration">34.2. Registration</a></li><li><a href="#concat-params">34.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">34.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">35. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">35.1. Description</a></li><li><a href="#hkdf-ctr-registration">35.2. Registration</a></li><li><a href="#hkdf-ctr-params">35.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">35.4. Operations</a></li></ul></li><li><a href="#pbkdf2">36. PBKDF2</a><ul><li><a href="#pbkdf2-description">36.1. Description</a></li><li><a href="#pbkdf2-registration">36.2. Registration</a></li><li><a href="#pbkdf2-params">36.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">36.4. Operations</a></li></ul></li><li><a href="#examples-section">37. JavaScript Example Code</a><ul><li><a href="#examples-signing">37.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">37.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">38. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">38.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">38.2. JSON Web Key Parameters Registration</a></li></ul></li><li><a href="#acknowledgements-section">39. Acknowledgements</a></li><li><a href="#references">40. References</a><ul><li><a href="#normative-references">40.1. Normative References</a></li><li><a href="#informative-references">40.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. Javascript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a><ul><li><a href="#extensibility">3.1. Extensibility</a></li></ul></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#concepts">5. Concepts</a><ul><li><a href="#concepts-underlying-implementation">5.1. Underlying Cryptographic Implementation</a></li><li><a href="#concepts-key-storage">5.2. Key Storage</a></li></ul></li><li><a href="#security">6. Security considerations</a><ul><li><a href="#security-implementers">6.1. Security considerations for implementers</a></li><li><a href="#security-developers">6.2. Security considerations for authors</a></li><li><a href="#security-users">6.3. Security considerations for users</a></li></ul></li><li><a href="#privacy">7. Privacy considerations</a></li><li><a href="#dependencies">8. Dependencies</a></li><li><a href="#terminology">9. Terminology</a></li><li><a href="#crypto-interface">10. Crypto interface</a><ul><li><a href="#Crypto-description">10.1. Description</a></li><li><a href="#Crypto-interface-methods">10.2. Methods and Parameters</a><ul><li><a href="#Crypto-method-getRandomValues">10.2.1. The getRandomValues method</a></li></ul></li><li><a href="#Crypto-interface-attributes">10.3. Attributes</a><ul><li><a href="#Crypto-attribute-subtle">10.3.1. The subtle attribute</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">11. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">11.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-dictionary">12. KeyAlgorithm dictionary</a><ul><li><a href="#key-algorithm-dictionary-description">12.1. Description</a></li><li><a href="#key-algorithm-dictionary-members">12.2. KeyAlgorithm dictionary members</a></li></ul></li><li><a href="#cryptokey-interface">13. CryptoKey interface</a><ul><li><a href="#cryptokey-interface-description">13.1. Description</a></li><li><a href="#cryptokey-interface-types">13.2. Key interface data types</a></li><li><a href="#cryptokey-interface-internal-slots">13.3. CryptoKey internal slots</a></li><li><a href="#cryptokey-interface-members">13.4. CryptoKey interface members</a></li><li><a href="#cryptokey-interface-clone">13.5. Structured clone algorithm</a></li></ul></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#JsonWebKey-dictionary">15. JsonWebKey dictionary</a></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. CryptoKeyPair dictionary</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#idp1019408">18.1. Overview</a></li><li><a href="#algorithm-concepts">18.2. Concepts</a><ul><li><a href="#algorithm-concepts-naming">18.2.1. Naming</a></li><li><a href="#algorithm-concepts-operations">18.2.2. Supported Operations</a></li><li><a href="#algorithm-concepts-normalization">18.2.3. Normalization</a></li></ul></li><li><a href="#algorithm-conventions">18.3. Specification Conventions</a></li><li><a href="#algorithm-normalizing">18.4. Algorithm Normalization</a><ul><li><a href="#algorithm-normalizing-description">18.4.1. Description</a></li><li><a href="#algorithm-normalizing-internal">18.4.2. Internal State Objects</a></li><li><a href="#algorithm-normalizing-define-an-algorithm">18.4.3. Defining an Algorithm</a></li><li><a href="#algorithm-normalizing-normalize-an-algorithm">18.4.4. Normalizing an algorithm</a></li></ul></li><li><a href="#algorithm-recommendations">18.5. Recommendations</a><ul><li><a href="#algorithm-recommendations-authors">18.5.1. For Authors</a></li><li><a href="#algorithm-recommendations-implementers">18.5.2. For Implementers</a></li></ul></li></ul></li><li><a href="#algorithm-overview">19. Algorithm Overview</a></li><li><a href="#rsassa-pkcs1">20. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">20.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">20.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">20.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">20.4. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-dictionary">20.5. RsaKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-dictionary">20.6. RsaHashedKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedImportParams-dictionary">20.7. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">20.8. Operations</a></li></ul></li><li><a href="#rsa-pss">21. RSA-PSS</a><ul><li><a href="#rsa-pss-description">21.1. Description</a></li><li><a href="#rsa-pss-registration">21.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">21.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">21.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">22. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">22.1. Description</a></li><li><a href="#rsa-oaep-registration">22.2. Registration</a></li><li><a href="#rsa-oaep-params">22.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">22.4. Operations</a></li></ul></li><li><a href="#ecdsa">23. ECDSA</a><ul><li><a href="#ecdsa-description">23.1. Description</a></li><li><a href="#ecdsa-registration">23.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">23.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">23.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-dictionary">23.5. EcKeyAlgorithm dictionary</a></li><li><a href="#EcKeyImportParams-dictionary">23.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">23.7. Operations</a></li></ul></li><li><a href="#ecdh">24. ECDH</a><ul><li><a href="#ecdh-description">24.1. Description</a></li><li><a href="#ecdh-registration">24.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">24.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">24.4. Operations</a></li></ul></li><li><a href="#aes-ctr">25. AES-CTR</a><ul><li><a href="#aes-ctr-description">25.1. Description</a></li><li><a href="#aes-ctr-registration">25.2. Registration</a></li><li><a href="#aes-ctr-params">25.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-dictionary">25.4. </a></li><li><a href="#aes-keygen-params">25.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">25.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">25.7. Operations</a></li></ul></li><li><a href="#aes-cbc">26. AES-CBC</a><ul><li><a href="#aes-cbc-description">26.1. Description</a></li><li><a href="#aes-cbc-registration">26.2. Registration</a></li><li><a href="#aes-cbc-params">26.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">26.4. Operations</a></li></ul></li><li><a href="#aes-cmac">27. AES-CMAC</a><ul><li><a href="#aes-cmac-description">27.1. Description</a></li><li><a href="#aes-cmac-registration">27.2. Registration</a></li><li><a href="#aes-cmac-params">27.3. AesCmacParams dictionary</a></li><li><a href="#aes-cmac-operations">27.4. Operations</a></li></ul></li><li><a href="#aes-gcm">28. AES-GCM</a><ul><li><a href="#aes-gcm-description">28.1. Description</a></li><li><a href="#aes-gcm-registration">28.2. Registration</a></li><li><a href="#aes-gcm-params">28.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">28.4. Operations</a></li></ul></li><li><a href="#aes-cfb">29. AES-CFB</a><ul><li><a href="#aes-cfb-description">29.1. Description</a></li><li><a href="#aes-cfb-registration">29.2. Registration</a></li><li><a href="#aes-cfb-params">29.3. AesCfbParams dictionary</a></li><li><a href="#aes-cfb-operations">29.4. Operations</a></li></ul></li><li><a href="#aes-kw">30. AES-KW</a><ul><li><a href="#aes-kw-description">30.1. Description</a></li><li><a href="#aes-kw-registration">30.2. Registration</a></li><li><a href="#aes-kw-operations">30.3. Operations</a></li></ul></li><li><a href="#hmac">31. HMAC</a><ul><li><a href="#hmac-description">31.1. Description</a></li><li><a href="#hmac-registration">31.2. Registration</a></li><li><a href="#hmac-importparams">31.3. HmacImportParams dictionary</a></li><li><a href="#HmacKeyAlgorithm-dictionary">31.4. HmacKeyAlgorithm dictionary</a></li><li><a href="#hmac-keygen-params">31.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-operations">31.6. Operations</a></li></ul></li><li><a href="#dh">32. Diffie-Hellman</a><ul><li><a href="#dh-description">32.1. Description</a></li><li><a href="#dh-registration">32.2. Registration</a></li><li><a href="#dh-DhKeyGenParams">32.3. DhKeyGenParams dictionary</a></li><li><a href="#dh-DhKeyAlgorithm">32.4. DhKeyAlgorithm dictionary</a></li><li><a href="#dh-DhKeyDeriveParams">32.5. DhKeyDeriveParams dictionary</a></li><li><a href="#dh-DhImportKeyParams">32.6. DhImportKeyParams dictionary</a></li><li><a href="#dh-operations">32.7. Operations</a></li></ul></li><li><a href="#sha">33. SHA</a><ul><li><a href="#sha-description">33.1. Description</a></li><li><a href="#sha-registration">33.2. Registration</a></li><li><a href="#sha-operations">33.3. Operations</a></li></ul></li><li><a href="#concatkdf">34. Concat KDF</a><ul><li><a href="#concatkdf-description">34.1. Description</a></li><li><a href="#concatkdf-registration">34.2. Registration</a></li><li><a href="#concat-params">34.3. ConcatParams dictionary</a></li><li><a href="#concat-operations">34.4. Operations</a></li></ul></li><li><a href="#hkdf-ctr">35. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">35.1. Description</a></li><li><a href="#hkdf-ctr-registration">35.2. Registration</a></li><li><a href="#hkdf-ctr-params">35.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">35.4. Operations</a></li></ul></li><li><a href="#pbkdf2">36. PBKDF2</a><ul><li><a href="#pbkdf2-description">36.1. Description</a></li><li><a href="#pbkdf2-registration">36.2. Registration</a></li><li><a href="#pbkdf2-params">36.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">36.4. Operations</a></li></ul></li><li><a href="#examples-section">37. JavaScript Example Code</a><ul><li><a href="#examples-signing">37.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">37.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">38. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">38.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">38.2. JSON Web Key Parameters Registration</a></li></ul></li><li><a href="#acknowledgements-section">39. Acknowledgements</a></li><li><a href="#references">40. References</a><ul><li><a href="#normative-references">40.1. Normative References</a></li><li><a href="#informative-references">40.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
     </div>
 
     <div id="sections">
@@ -356,16 +356,14 @@
             of conformance requirements in this specification. Applicable specifications defined
             by the W3C WebCrypto Working Group are listed in the table below.
           </p>
-          <p>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Specification</td>
-                  <td>Reference</td>
-                </tr>
-              </tbody>
-            </table>
-          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Specification</td>
+                <td>Reference</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="note"><div class="noteHeader">Note</div>
             Readers are advised to consult the errata to this specification for updates to the table
             above.
@@ -2825,7 +2823,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
 
       <div id="algorithms" class="section">
         <h2>18. Algorithms</h2>
-        <div id="algorithm-overview" class="section">
+        <div class="section">
           <h3>18.1. Overview</h3>
           <p class="norm">This section is non-normative.</p>
           <p>
@@ -3217,42 +3215,42 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           in the procedures for the method, must be defined in the algorithm specification.
           Note that this mapping of methods to underlying
           operations is not one-to-one:
-          <ul>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-encrypt">encrypt</a> method requires the encrypt operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-decrypt">decrypt</a> method requires the decrypt operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-deriveKey">deriveKey</a> method requires the
-              deriveBits operation for the key derivation algorithm and the get length and importKey operations
-              for the derived key algorithm.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
-              the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
-              for the wrapped key algorithm.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
-              the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
-              for the unwrapped key algorithm.</p>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-encrypt">encrypt</a> method requires the encrypt operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-decrypt">decrypt</a> method requires the decrypt operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-deriveKey">deriveKey</a> method requires the
+            deriveBits operation for the key derivation algorithm and the get length and importKey operations
+            for the derived key algorithm.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
+            the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
+            for the wrapped key algorithm.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
+            the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
+            for the unwrapped key algorithm.</p>
+          </li>
+        </ul>
         <p class="note">
           Application developers and script authors should not interpret this table as a
           recommendation for the use of particular algorithms. Instead, it simply documents what
@@ -7990,7 +7988,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
             <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA verification steps</dfn>,
             <dfn id="dfn-ecdsa-extended-generation-steps">ECDSA generation steps</dfn>,
             <dfn id="dfn-ecdsa-extended-import-steps">ECDSA key import steps</dfn> and
-            <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA key export steps</dfn>.
+            <dfn id="dfn-ecdsa-extended-export-steps">ECDSA key export steps</dfn>.
           </p>
         </div>
         <div id="ecdsa-registration" class="section">
@@ -9163,49 +9161,47 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                         Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
                                         uncompressed form. and <var>keyData</var>.
                                       </p>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -9323,49 +9319,47 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                           </p>
                                         </li>
                                       </ul>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier 
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier 
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -10668,49 +10662,47 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                         Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
                                         uncompressed form.
                                       </p>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -10822,49 +10814,47 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                           </p>
                                         </li>
                                       </ul>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -16131,27 +16121,27 @@ BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                     Perform any <a href="#dfn-concat-extended-import-steps">key import steps</a>
                     defined by <a href="#dfn-applicable-specifications">other applicable
                     specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-throw">throw</a> <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
                   </p>
+                  <dl class="switch">
+                    <dt>
+                      If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
+                      object
+                    </dt>
+                    <dd>
+                      <p>
+                        Return <var>result</var>.
+                      </p>
+                    </dd>
+                    <dt>
+                      If <var>result</var> is an error with a name that is not
+                      <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                    </dt>
+                    <dd>
+                      <p>
+                        <a href="#concept-throw">throw</a> <var>result</var>.
+                      </p>
+                    </dd>
+                  </dl>
                 </li>
                 <li>
                   <dl class="switch">

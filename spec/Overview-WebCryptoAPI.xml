@@ -31,7 +31,7 @@ of contents, section numbers, certain processing instructions).
     <options xmlns='http://mcc.id.au/ns/local'>
       <versions>
         <cvs href='http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
-        <this href='http://www.w3.org/TR/WebCryptoAPI/' />
+        <this href='http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
         <previous href='https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html' />
         <latest href='http://www.w3.org/TR/WebCryptoAPI/' />
       </versions>
@@ -45,7 +45,7 @@ of contents, section numbers, certain processing instructions).
           <affiliation>Netflix</affiliation>
         </person>
       </editors>
-      <maturity>CR</maturity>
+      <maturity>ED</maturity>
       <participate qual="STND"></participate>  
     </options>
   </head>
@@ -348,16 +348,14 @@ of contents, section numbers, certain processing instructions).
             of conformance requirements in this specification. Applicable specifications defined
             by the W3C WebCrypto Working Group are listed in the table below.
           </p>
-          <p>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Specification</td>
-                  <td>Reference</td>
-                </tr>
-              </tbody>
-            </table>
-          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td>Specification</td>
+                <td>Reference</td>
+              </tr>
+            </tbody>
+          </table>
           <div class="note">
             Readers are advised to consult the errata to this specification for updates to the table
             above.
@@ -2866,7 +2864,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
 
       <div id="algorithms" class="section">
         <h2>Algorithms</h2>
-        <div id="algorithm-overview" class="section">
+        <div class="section">
           <h3>Overview</h3>
           <p class="norm">This section is non-normative.</p>
           <p>
@@ -3269,42 +3267,42 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           in the procedures for the method, must be defined in the algorithm specification.
           Note that this mapping of methods to underlying
           operations is not one-to-one:
-          <ul>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-encrypt">encrypt</a> method requires the encrypt operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-decrypt">decrypt</a> method requires the decrypt operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-deriveKey">deriveKey</a> method requires the
-              deriveBits operation for the key derivation algorithm and the get length and importKey operations
-              for the derived key algorithm.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
-              the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
-              for the wrapped key algorithm.</p>
-            </li>
-            <li>
-              <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
-              the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
-              for the unwrapped key algorithm.</p>
-            </li>
-          </ul>
         </p>
+        <ul>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-encrypt">encrypt</a> method requires the encrypt operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-decrypt">decrypt</a> method requires the decrypt operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-deriveKey">deriveKey</a> method requires the
+            deriveBits operation for the key derivation algorithm and the get length and importKey operations
+            for the derived key algorithm.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
+            the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
+            for the wrapped key algorithm.</p>
+          </li>
+          <li>
+            <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
+            the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
+            for the unwrapped key algorithm.</p>
+          </li>
+        </ul>
         <p class="note">
           Application developers and script authors should not interpret this table as a
           recommendation for the use of particular algorithms. Instead, it simply documents what
@@ -8243,7 +8241,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
             <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA verification steps</dfn>,
             <dfn id="dfn-ecdsa-extended-generation-steps">ECDSA generation steps</dfn>,
             <dfn id="dfn-ecdsa-extended-import-steps">ECDSA key import steps</dfn> and
-            <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA key export steps</dfn>.
+            <dfn id="dfn-ecdsa-extended-export-steps">ECDSA key export steps</dfn>.
           </p>
         </div>
         <div id="ecdsa-registration" class="section">
@@ -9465,55 +9463,53 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                         Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
                                         uncompressed form. and <var>keyData</var>.
                                       </p>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -9637,55 +9633,53 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                           </p>
                                         </li>
                                       </ul>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier 
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier 
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <code>namedCurve</code> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -11048,55 +11042,53 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                         Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
                                         uncompressed form.
                                       </p>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -11214,55 +11206,53 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                           </p>
                                         </li>
                                       </ul>
-                                      <p>
-                                        <dl class="switch">
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-256"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp256r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-384"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp384r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                          <dt>
-                                            If the <a
-                                            href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
-                                            attribute of the [[<a
-                                            href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
-                                            internal slot of <var>key</var> is <code>"P-521"</code>:
-                                          </dt>
-                                          <dd>
-                                            <p>
-                                              Set <var>parameters</var> to the <var>namedCurve</var> choice
-                                              with value equal to the object identifier
-                                              <code>secp521r1</code> defined in <a href="#RFC5480">RFC
-                                              5480</a>
-                                            </p>
-                                          </dd>
-                                        </dl>
-                                      </p>
+                                      <dl class="switch">
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-256"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp256r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-384"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp384r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                        <dt>
+                                          If the <a
+                                          href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                                          attribute of the [[<a
+                                          href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                          internal slot of <var>key</var> is <code>"P-521"</code>:
+                                        </dt>
+                                        <dd>
+                                          <p>
+                                            Set <var>parameters</var> to the <var>namedCurve</var> choice
+                                            with value equal to the object identifier
+                                            <code>secp521r1</code> defined in <a href="#RFC5480">RFC
+                                            5480</a>
+                                          </p>
+                                        </dd>
+                                      </dl>
                                     </dd>
                                     <dt>
                                       Otherwise:
@@ -16694,27 +16684,27 @@ BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                     Perform any <a href="#dfn-concat-extended-import-steps">key import steps</a>
                     defined by <a href="#dfn-applicable-specifications">other applicable
                     specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
-                    <dl class="switch">
-                      <dt>
-                        If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
-                        object
-                      </dt>
-                      <dd>
-                        <p>
-                          Return <var>result</var>.
-                        </p>
-                      </dd>
-                      <dt>
-                        If <var>result</var> is an error with a name that is not
-                        <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                      </dt>
-                      <dd>
-                        <p>
-                          <a href="#concept-throw">throw</a> <var>result</var>.
-                        </p>
-                      </dd>
-                    </dl>
                   </p>
+                  <dl class="switch">
+                    <dt>
+                      If <var>result</var> is a <a href="#dfn-CryptoKey">CryptoKey</a>
+                      object
+                    </dt>
+                    <dd>
+                      <p>
+                        Return <var>result</var>.
+                      </p>
+                    </dd>
+                    <dt>
+                      If <var>result</var> is an error with a name that is not
+                      <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                    </dt>
+                    <dd>
+                      <p>
+                        <a href="#concept-throw">throw</a> <var>result</var>.
+                      </p>
+                    </dd>
+                  </dl>
                 </li>
                 <li>
                   <dl class="switch">
