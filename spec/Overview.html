@@ -324,7 +324,7 @@
         <p>
           User agents that use ECMAScript to implement the APIs defined in this specification
           <span class="RFC2119">MUST</span> implement them in a manner consistent with the
-          ECMAScript Bindings defined in the Web IDL specification [<a href="#WebIDL">WEBIDL</a>]
+          ECMAScript Bindings defined in the Web IDL specification [<a href="#WebIDL">WebIDL</a>]
           as this specification uses that specification and terminology.
         </p>
         <p>
@@ -660,7 +660,7 @@
             <p>
               A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST be a
               conforming implementation of the IDL fragments in this specification, as described in
-              the Web IDL specification. [<a href="#WebIDL">WEBIDL</a>]
+              the Web IDL specification. [<a href="#WebIDL">WebIDL</a>]
             </p>
           </dd>
         </dl>
@@ -677,7 +677,7 @@
         </p>
         <p>
           The terms <dfn id="dfn-DOMString">DOMString</dfn> and
-          <dfn id="BufferSource">BufferSource</dfn> are defined in [<cite><a href="#WebIDL">WEBIDL</a></cite>].
+          <dfn id="BufferSource">BufferSource</dfn> are defined in [<cite><a href="#WebIDL">WebIDL</a></cite>].
         </p>
         <p>
           An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
@@ -804,7 +804,7 @@
         </ol>
         <p>
           When this specification says to <dfn id="concept-clone-BufferSource">clone the
-          data</dfn> of a <a href="http://heycam.github.io/webidl/#common-BufferSource">BufferSource</a> object
+          data</dfn> of a <a href="http://heycam.github.io/WebIDL/#common-BufferSource">BufferSource</a> object
           <var>data</var>, the user agent must run the following steps:
         </p>
         <dl class="switch">
@@ -908,7 +908,7 @@
               <dd>
                 Set the [[<var>slot</var>_cached]] internal slot of <var>object</var> to the result
                 of performing type conversion to an ECMAScript object as defined in
-                [<a href="#WebIDL">WEBIDL</a>] to the contents of the [[<var>slot</var>]]
+                [<a href="#WebIDL">WebIDL</a>] to the contents of the [[<var>slot</var>]]
                 internal slot of <var>object</var>.
               </dd>
             </dl>
@@ -1023,7 +1023,7 @@ interface <dfn id="dfn-Crypto">Crypto</dfn> {
       <div id="algorithm-dictionary" class="section">
         <h2>11. Algorithm dictionary</h2>
         <p>
-          The Algorithm object is a dictionary object [<cite><a href="#WebIDL">WEBIDL</a></cite>]
+          The Algorithm object is a dictionary object [<cite><a href="#WebIDL">WebIDL</a></cite>]
           which is used to specify an algorithm and any additional parameters required to fully
           specify the desired operation.
         </p>
@@ -2431,7 +2431,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           Convert <var>key</var> to an ECMAScript Object, as specified in [
-                          <a href="#WebIDL">WEBIDL</a>].
+                          <a href="#WebIDL">WebIDL</a>].
                         </p>
                       </li>
                       <li>
@@ -2735,8 +2735,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <p>
             When this specification says to
             <dfn id="concept-throw">throw</dfn> an error, the user agent must
-            <a href="http://heycam.github.io/webidl/#dfn-throw">throw</a> an error as described in
-            [<a href="#WebIDL">WEBIDL</a>]. When this occurs in a sub-algorithm,
+            <a href="http://heycam.github.io/WebIDL/#dfn-throw">throw</a> an error as described in
+            [<a href="#WebIDL">WebIDL</a>]. When this occurs in a sub-algorithm,
             this results in termination of execution of the sub-algorithm and all ancestor algorithms
             until one is reached that explicitly describes procedures for catching exceptions.
           </p>
@@ -3017,7 +3017,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   </li>
                   <li>
                     Let <var>initialAlg</var> be the result of converting the ECMAScript object
-                    represented by <var>alg</var> to the IDL dictionary type <a href="#dfn-Algorithm">Algorithm</a>, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                    represented by <var>alg</var> to the IDL dictionary type <a href="#dfn-Algorithm">Algorithm</a>, as defined by [<a href="#WebIDL">WebIDL</a>].
                   </li>
                   <li>
                     If an error occurred, return the error and terminate this algorithm.
@@ -3057,7 +3057,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                   <li>
                     Let <var>normalizedAlgorithm</var> be the result of converting the ECMAScript
                     object represented by <var>alg</var> to the IDL dictionary type
-                    <var>desiredType</var>, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                    <var>desiredType</var>, as defined by [<a href="#WebIDL">WebIDL</a>].
                   </li>
                   <li>
                     Set the <a href="#dfn-Algorithm-name">name</a> attribute of
@@ -3093,7 +3093,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                             <dl class="switch">
                               <dt>
                                 If <var>member</var> is of the type
-                                <a href="http://heycam.github.io/webidl/#common-BufferSource">BufferSource</a> and is
+                                <a href="http://heycam.github.io/WebIDL/#common-BufferSource">BufferSource</a> and is
                                 present:
                               </dt>
                               <dd>
@@ -3939,7 +3939,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WEBIDL</a>].
+                    defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -4827,7 +4827,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ul>
@@ -5153,7 +5153,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object,
-                    as defined by [<a href="#WebIDL">WEBIDL</a>].
+                    as defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -6391,7 +6391,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ul>
@@ -6737,7 +6737,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WEBIDL</a>].
+                    defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -7948,7 +7948,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ul>
@@ -8451,7 +8451,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WEBIDL</a>].
+                    defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -9537,7 +9537,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -9789,7 +9789,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WEBIDL</a>].
+                    defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -11027,7 +11027,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -11101,7 +11101,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
           <p>
             The <code>"AES-CTR"</code> algorithm identifier is used to perform
             encryption and decryption using AES in Counter mode,
-            as described in NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>].
+            as described in [<a href="#SP800-38A">NIST SP800-38A</a>].
           </p>
         </div>
         <div id="aes-ctr-registration" class="section">
@@ -11225,12 +11225,12 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <li>
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CTR Encryption
-                    operation described in Section 6.5 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
+                    operation described in Section 6.5 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
                     <var>normalizedAlgorithm</var> as the initial value of the counter block, the
                     <a href="#dfn-AesCtrParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
-                    standard counter block incrementing function defined in Appendix B.1 of NIST SP
-                    800-38A [<a href="#SP800-38A">SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
+                    standard counter block incrementing function defined in Appendix B.1 of
+                    [<a href="#SP800-38A">NIST SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>plaintext</var></a> as the input plaintext.
                   </p>
                 </li>
@@ -11265,12 +11265,12 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 <li>
                   <p>
                     Let <var>plaintext</var> be the result of performing the CTR Decryption
-                    operation described in Section 6.5 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
+                    operation described in Section 6.5 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCtrParams-counter">counter</a> member of
                     <var>normalizedAlgorithm</var> as the initial value of the counter block, the
                     <a href="#dfn-AesCtrParams-length">length</a> member of
                     <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
-                    standard counter block incrementing function defined in Appendix B.1 of NIST SP
-                    800-38A [<a href="#SP800-38A">SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
+                    standard counter block incrementing function defined in Appendix B.1 of
+                    [<a href="#SP800-38A">NIST SP800-38A</a>] and <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>ciphertext</var></a> as the input ciphertext.
                   </p>
                 </li>
@@ -11608,7 +11608,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -11660,14 +11660,14 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
           <p>
             The <code>"AES-CBC"</code> algorithm identifier is used to perform
             encryption and decryption using AES in Cipher Block Chaining mode,
-            as described in NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>].
+            as described in [<a href="#SP800-38A">NIST SP800-38A</a>].
           </p>
           <p>
             When operating in CBC mode, messages that are not exact multiples
             of the AES block size (16 bytes) can be padded under a variety of
             padding schemes. In the Web Crypto API, the only padding mode that
             is supported is that of PKCS#7, as described by
-            Section 10.3, step 2, of RFC 2315 [<a href="#RFC2315">RFC2315</a>].
+            Section 10.3, step 2, of [<a href="#RFC2315">RFC2315</a>].
           </p>
         </div>
         <div id="aes-cbc-registration" class="section">
@@ -11747,14 +11747,14 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     Let <var>paddedPlaintext</var> be the result of adding padding octets to
                     the <a href="#concept-contents-of-arraybuffer">contents of <var>ciphertext</var></a>
                     according to the procedure defined in Section 10.3
-                    of RFC 2315 [<a href="#RFC2315">RFC2315</a>], step 2, with a value of
+                    of [<a href="#RFC2315">RFC2315</a>], step 2, with a value of
                     <var>k</var> of 16.
                   </p>
                 </li>
                 <li>
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CBC Encryption
-                    operation described in Section 6.2 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                    operation described in Section 6.2 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter and <var>paddedPlaintext</var>
                     as the input plaintext.
                   </p>
@@ -11781,7 +11781,7 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                 <li>
                   <p>
                     Let <var>paddedPlaintext</var> be the result of performing the CBC Decryption
-                    operation described in Section 6.2 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                    operation described in Section 6.2 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCbcParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter and <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>ciphertext</var></a> as the input ciphertext.
                   </p>
@@ -12139,7 +12139,7 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -12191,7 +12191,7 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
           <p>
             The <code>"AES-CMAC"</code> algorithm identifier is used to perform
             message authentication using AES with a cipher-based MAC, as
-            described in NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>].
+            described in [<a href="#SP800-38B">NIST SP800-38B</a>].
           </p>
         </div>
         <div id="aes-cmac-registration" class="section">
@@ -12274,7 +12274,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Let <var>mac</var> be the result of performing the MAC Generation
                     operation described in Section 6.2 of
-                    NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
+                    [<a href="#SP800-38B">NIST SP800-38B</a>] using AES as the block
                     cipher, <var>length</var> as the value of the MAC length parameter,
                     <var>Tlen</var>, and <var>message</var> as the message, <var>M</var>.
                   </p>
@@ -12306,7 +12306,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Let <var>output</var> be the result of performing the MAC Verification
                     operation described in Section 6.3 of
-                    NIST SP 800-38B [<a href="#SP800-38B">SP800-38B</a>] using AES as the block
+                    [<a href="#SP800-38B">NIST SP 800-38B</a>] using AES as the block
                     cipher, <var>length</var> as the value of the MAC length parameter,
                     <var>Tlen</var>, <var>message</var> as the message, <var>M</var> and
                     <var>signature</var> as the received MAC, <var>T'</var>.
@@ -12644,7 +12644,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -12695,7 +12695,7 @@ dictionary <dfn id="dfn-AesCmacParams">AesCmacParams</dfn> : <a href="#dfn-Algor
           <p>
             The <code>"AES-GCM"</code> algorithm identifier is used to perform
             authenticated encryption and decryption using AES in Galois/Counter Mode mode,
-            as described in NIST SP 800-38D [<a href="#SP800-38D">SP800-38D</a>].
+            as described in [<a href="#SP800-38D">NIST SP 800-38D</a>].
           </p>
         </div>
         <div id="aes-gcm-registration" class="section">
@@ -12818,8 +12818,8 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                 <li>
                   <p>
                     Let <var>C</var> and <var>T</var> be the outputs that result from performing
-                    the Authenticated Encryption Function described in Section 7.1 of NIST SP
-                    800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                    the Authenticated Encryption Function described in Section 7.1 of
+                    [<a href="#SP800-38D">NIST SP800-38D</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>additionalData</var></a> as the <var>A</var> input parameter,
                     <var>tagLength</var> as the <var>t</var> pre-requisite and <a href="#concept-contents-of-arraybuffer">the contents of
@@ -12901,8 +12901,8 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                 </li>
                 <li>
                   <p>
-                    Perform the Authenticated Decryption Function described in Section 7.2 of NIST
-                    SP 800-38D [<a href="#SP800-38D">SP800-38D</a>] using AES as the block cipher,
+                    Perform the Authenticated Decryption Function described in Section 7.2 of
+                    [<a href="#SP800-38D">NIST SP800-38D</a>] using AES as the block cipher,
                     <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesGcmParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>additionalData</var></a> as the <var>A</var> input parameter,
@@ -13257,7 +13257,7 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -13307,8 +13307,8 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
           <p>
             The <code>"AES-CFB-8"</code> algorithm identifier is used to perform
             encryption and decryption using AES in Cipher Feedback mode, specifically CFB-8,
-            as described in Section 6.3 of NIST SP 800-38A
-            [<a href="#SP800-38A">SP800-38A</a>].
+            as described in Section 6.3 of
+            [<a href="#SP800-38A">NIST SP800-38A</a>].
           </p>
         </div>
         <div id="aes-cfb-registration" class="section">
@@ -13383,7 +13383,7 @@ required BufferSource <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                 <li>
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CFB Encryption
-                    operation described in Section 6.3 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                    operation described in Section 6.3 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter, the value 8 as the input parameter
                     <var>s</var>, and <a href="#concept-contents-of-arraybuffer">the contents
                     of<var>plaintext</var></a> as the input plaintext.
@@ -13408,7 +13408,7 @@ required BufferSource <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                 <li>
                   <p>
                     Let <var>plaintext</var> be the result of performing the CFB Decryption
-                    operation described in Section 6.3 of NIST SP 800-38A [<a href="#SP800-38A">SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
+                    operation described in Section 6.3 of [<a href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a href="#dfn-AesCfbParams-iv">iv</a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter, the the value 8 as the input parameter
                     <var>s</var>, and <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>ciphertext</var></a> as the input ciphertext.
@@ -13755,7 +13755,7 @@ required BufferSource <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -14222,7 +14222,7 @@ required BufferSource <dfn id="dfn-AesCfbParams-iv">iv</dfn>;
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -14994,7 +14994,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                         <li>
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
-                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WEBIDL</a>].
+                            to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
                           </p>
                         </li>
                       </ol>
@@ -15300,7 +15300,7 @@ required BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
                 <li>
                   <p>
                     Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WEBIDL</a>].
+                    defined by [<a href="#WebIDL">WebIDL</a>].
                   </p>
                 </li>
               </ol>
@@ -16008,8 +16008,8 @@ required BigInteger <dfn id="dfn-DhImportKeyParams-generator">generator</dfn>;
           <h4>34.1. Description</h4>
           <p>
             The <code>"CONCAT"</code> algorithm identifier is used to perform key derivation
-            using the key derivation algorithm defined in Section 5.8.1 of NIST SP 800-56A
-            [<a href="#SP800-56A">SP800-56A</a>] using the SHA hash functions defined
+            using the key derivation algorithm defined in Section 5.8.1 of
+            [<a href="#SP800-56A">NIST SP800-56A</a>] using the SHA hash functions defined
             in this specification.
           </p>
           <p>
@@ -16232,10 +16232,10 @@ BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
           <p>
             The <code>"HKDF-CTR"</code> algorithm identifier is used to
             perform key derivation using the extraction-then-expansion approach described in
-            NIST SP 800-56C[<a href="#SP800-56C">SP800-56C</a>], using HMAC in counter mode, and
+            [<a href="#SP800-56C">NIST SP800-56C</a>], using HMAC in counter mode, and
             using the SHA hash functions defined in this specification
-            as described in Section 5.1 of NIST SP 800-108
-            [<a href="#SP800-108">SP800-108</a>].
+            as described in Section 5.1 of
+            [<a href="#SP800-108">NIST SP800-108</a>].
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
@@ -16284,7 +16284,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
 required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
 <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
 required BufferSource <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
-<span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of NIST SP 800-108 [<a href="#SP800-108">SP800-108</a>]</span>
+<span class="comment">// A bit string that corresponds to the context of the key derivation, as described in Section 5 of [<a href="#SP800-108">NIST SP800-108</a>]</span>
 required BufferSource <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
 };
           </code></pre></div></div>
@@ -16346,8 +16346,8 @@ required BufferSource <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
                 <li>
                   <p>
                     Let <var>result</var> be the result of performing the KDF in counter
-                    mode operation described in Section 5.1 of NIST SP 800-108
-                    [<a href="#SP800-108">SP800-108</a>] using:
+                    mode operation described in Section 5.1 of
+                    [<a href="#SP800-108">NIST SP800-108</a>] using:
                   </p>
                   <ul>
                     <li>
@@ -17005,53 +17005,131 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                <cite><a href="http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf">
                FIPS PUB 180-4: Secure Hash Standard</a></cite>, NIST.
              </dd>
+             <dt id="fips-pub-198-1">FIPS 198-1</dt>
+             <dd>
+              <cite>
+                <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">
+                  The Keyed-Hash Message Authentication Code (HMAC)
+                </a>
+              </cite>,
+              July 2008, NIST.
+             </dd>
              <dt id="HTML">HTML</dt>
              <dd>
                <cite><a href="http://dev.w3.org/html5/spec/Overview.html">HTML5: A vocabulary and
                associated APIs for HTML and XHTML (work in progress)</a></cite>, I. Hickson. W3C.
              </dd>
+             <dt id="X690">ITU-T Recommendation X.690 (11/08)</dt>
+             <dd>
+               <cite>
+                 <a href="http://www.itu.int/rec/T-REC-X.690-200811-I/en">Information technology - 
+                 ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical 
+                 Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>
+               </cite>, ITU-T.
+             </dd>
+             <dt id="jwk">JSON Web Key</dt>
+             <dd>
+                <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-key">JSON Web Key
+                (work in progress)</a></cite>, M. Jones, Microsoft.
+             </dd>
+             <dt id="jwa">JSON Web Algorithms</dt>
+             <dd>
+                <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms">JSON
+                Web Algorithms (work in progress)</a></cite>, M. Jones, Microsoft.
+             </dd>
+             <dt id="SP800-38A">NIST SP 800-38A</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf">
+              NIST Special Publication 800-38A: Recommendation for Block Cipher
+              Modes of Operation, Methods and Techniques</a></cite>, December 2001, NIST.
+            </dd>
+            <dt id="SP800-38B">NIST SP 800-38B</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38B/SP_800-38B.pdf">
+              NIST Special Publication 800-38B: Recommendation for Block Cipher Modes of Operation:
+              The CMAC Mode for Authentication</a></cite>, May 2005, NIST.
+            </dd>
+            <dt id="SP800-38D">NIST SP 800-38D</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf">
+              NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: 
+              Galois/Counter Mode (GCM) and GMAC</a></cite>, November 2007, NIST.
+            </dd>
+            <dt id="SP800-56A">NIST SP 800-56A</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56A/SP800-56A_Revision1_Mar08-2007.pdf">
+              NIST Special Publication 800-56A: Recommendation for Pair-Wise Key Establishment
+              Schemes Using Discrete Logarithm Cryptography (Revised)</a></cite>, March 2007, NIST.
+            </dd>
+            <dt id="SP800-56C">NIST SP 800-56C</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56C/SP-800-56C.pdf">
+              NIST Special Publication 800-56C: Recommendation for Key Derivation through
+              Extraction-then-Expansion</a></cite>, November 2011, NIST.
+            </dd>
+            <dt id="SP800-108">NIST SP 800-108</dt>
+            <dd>
+              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-108/sp800-108.pdf">
+              NIST Special Publication 800-108: Recommendation for Key Derivation Using
+              Pseudorandom Functions (Revised)</a></cite>, October 2009, NIST.
+            </dd>
              <dt id="PKCS3">PKCS3</dt>
              <dd>
                <cite><a href="http://www.emc.com/domains/rsa/index.htm?id=2126">PKCS #3: Diffie-Hellman
                Key-Agreement Standard</a></cite>, RSA Laboratories.
              </dd>
-             <dt id="RFC2119">RFC2119</dt>
+             <dt id="RFC2119">RFC 2119</dt>
              <dd>
                <cite><a href="http://www.ietf.org/rfc/rfc2119">Key words for use in RFCs to
                Indicate Requirement Levels</a></cite>, S. Bradner. IETF.
              </dd>
-             <dt id="RFC3447">RFC3447</dt>
+             <dt id="RFC2315">RFC 2315</dt>
              <dd>
-               <cite><a href="http://www.ietf.org/rfc/rfc3447">Public-Key Cryptography Standards
-               (PKCS) #1: RSA Cryptography Specifications Version 2.1</a></cite>, J. Jonsson,
-               B. Kaliski. IETF.
+               <cite><a href="http://tools.ietf.org/html/rfc2315">PKCS #7: Cryptographic
+               Message Syntax, Version 1.5</a></cite>, B. Kaliski. RSA Laboratories.
              </dd>
-             <dt id="RFC3279">RFC3279</dt>
+             <dt id="RFC2898">RFC 2898</dt>
+             <dd>
+               <cite><a href="http://tools.ietf.org/html/RFC2898">PKCS #5: Password-Based
+               Cryptography Specification, Version 2.0</a></cite>, B. Kaliski. RSA Laboratories
+             </dd>
+             <dt id="RFC3279">RFC 3279</dt>
              <dd>
                <cite><a href="http://www.ietf.org/rfc/rfc3279">Algorithms and Identifiers for the
               Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List 
               (CRL) Profile</a></cite>,
               W. Polk, R. Housley, L. Bassham. IETF.
              </dd>
-             <dt id="RFC5208">RFC5208</dt>
+             <dt id="rfc3394">RFC3394</dt>
+             <dd>
+                <cite><a href="http://www.ietf.org/rfc/rfc3394.txt">Advanced Encryption Standard
+                (AES) Key Wrap Algorithm</a></cite>, J. Schaad, R. Housley, IETF.
+             </dd>
+             <dt id="RFC3447">RFC 3447</dt>
+             <dd>
+               <cite><a href="http://www.ietf.org/rfc/rfc3447">Public-Key Cryptography Standards
+               (PKCS) #1: RSA Cryptography Specifications Version 2.1</a></cite>, J. Jonsson,
+               B. Kaliski. IETF.
+             </dd>
+             <dt id="RFC5208">RFC 5208</dt>
              <dd>
               <cite><a href="http://www.ietf.org/rfc/rfc5208.txt">Public-Key Cryptography Standards
               (PKCS) #8: Private-Key Information Syntax Specification Version 1.2</a></cite>,
               B. Kaliski. IETF.
              </dd>
-             <dt id="RFC5280">RFC5280</dt>
+             <dt id="RFC5280">RFC 5280</dt>
              <dd>
               <cite><a href="http://www.ietf.org/rfc/rfc5280.txt">Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
               D. Cooper, S. Santesson, S. Farrell, S. Boeyen, R. Housley, W. Polk. IETF.
              </dd>
-             <dt id="RFC5480">RFC5480</dt>
+             <dt id="RFC5480">RFC 5480</dt>
              <dd>
               <cite><a href="http://www.ietf.org/rfc/rfc5480.txt">Elliptic Curve Cryptography Subject
               Public Key Information</a></cite>,
               S. Turner, D. Brown, K. Yiu, R. Housley, T. Polk. IETF.
-             </dd>
-             <dt id="RFC5915">RFC5915</dt>
+             </dd> 
+             <dt id="RFC5915">RFC 5915</dt>
              <dd>
               <cite><a href="http://www.ietf.org/rfc/rfc5915.txt">Elliptic Curve Private Key Structure
               </a></cite>,
@@ -17059,7 +17137,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              </dd>
              <dt id="WebIDL">Web IDL (Second Edition)</dt>
              <dd>
-               <cite><a href="http://heycam.github.io/webidl/">Web IDL (Second Edition)</a></cite>,
+               <cite><a href="http://heycam.github.io/WebIDL/">Web IDL (Second Edition)</a></cite>,
                C. McCormack.
              </dd>
              <dt id="X9.62">X9.62</dt>
@@ -17072,39 +17150,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                <cite>ANS X9.63–2001: Public Key Cryptography for the Financial Services Industry,
                Key Agreement and Key Transport Using Elliptic Curve Cryptography</cite>, ANSI.
              </dd>
-             <dt id="jwk">JSON Web Key</dt>
-             <dd>
-                <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-key">JSON Web Key
-                (work in progress)</a></cite>, M. Jones, Microsoft.
-             </dd>
-              <dt id="jwa">JSON Web Algorithms</dt>
-             <dd>
-                <cite><a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms">JSON
-                Web Algorithms (work in progress)</a></cite>, M. Jones, Microsoft.
-             </dd>
-             <dt id="rfc3394">RFC3394</dt>
-             <dd>
-                <cite><a href="http://www.ietf.org/rfc/rfc3394.txt">Advanced Encryption Standard
-                (AES) Key Wrap Algorithm</a></cite>, J. Schaad, R. Housley, IETF.
-             </dd>
-             <dt id="fips-pub-198-1">FIPS PUB 198-1</dt>
-             <dd>
-              <cite>
-                <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">
-                  The Keyed-Hash Message Authentication Code (HMAC)
-                </a>
-              </cite>,
-              July 2008, NIST.
-             </dd>
-             <dt id="X690">ITU-T Recommendation X.690 (11/08)</dt>
-             <dd>
-               <cite>
-                 <a href="http://www.itu.int/rec/T-REC-X.690-200811-I/en">Information technology - 
-                 ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical 
-                 Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>
-               </cite>, ITU-T.
-             </dd>
-           </dl>
+            </dl>
         </div>
         <div id="informative-references" class="section">
           <h3>40.2. Informative References</h3>
@@ -17144,26 +17190,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <cite><a href="http://www.emc.com/domains/rsa/index.htm?id=2133">PKCS #11: Cryptographic
               Token Interface Standard</a></cite>, RSA Laboratories.
             </dd>
-            <dt id="RFC2315">RFC 2315</dt>
-            <dd>
-              <cite><a href="http://tools.ietf.org/html/rfc2315">PKCS #7: Cryptographic
-              Message Syntax, Version 1.5</a></cite>, B. Kaliski. RSA Laboratories.
-            </dd>
-            <dt id="RFC2898">RFC 2898</dt>
-            <dd>
-              <cite><a href="http://tools.ietf.org/html/RFC2898">PKCS #5: Password-Based
-              Cryptography Specification, Version 2.0</a></cite>, B. Kaliski. RSA Laboratories
-            </dd>
-            <dt id="RFC5705">RFC 5705</dt>
-            <dd>
-              <cite><a href="http://tools.ietf.org/html/rfc5705">Keying Material Exporters for
-              Transport Layer Security (TLS)</a></cite>, E. Rescorla. IETF.
-            </dd>
-            <dt id="RFC5869">RFC 5869</dt>
-            <dd>
-              <cite><a href="https://tools.ietf.org/html/rfc5869">HMAC-based Extract-and-Expand
-              Key Derivation Function (HKDF)</a></cite>, H. Krawczyk, P. Eronen. IETF.
-            </dd>
             <dt id="RFC4055">RFC 4055</dt>
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc4055">Additional Algorithms and
@@ -17177,46 +17203,15 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               RSASSA-PSS Algorithm Parameters</a></cite>, 
               S. Turner, D. Brown, K. Yiu, R. Housley, T. Polk. IETF.
             </dd>
+            <dt id="RFC5869">RFC 5869</dt>
+            <dd>
+              <cite><a href="https://tools.ietf.org/html/rfc5869">HMAC-based Extract-and-Expand
+              Key Derivation Function (HKDF)</a></cite>, H. Krawczyk, P. Eronen. IETF.
+            </dd>
             <dt id="RFC5958">RFC 5958</dt>
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc5958">Asymmetric Key Packages</a></cite>, 
               S. Turner. IETF.
-            </dd>
-            <dt id="SP800-38A">NIST SP 800-38A</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf">
-              NIST Special Publication 800-38A: Recommendation for Block Cipher
-              Modes of Operation, Methods and Techniques</a></cite>, December 2001, NIST.
-            </dd>
-            <dt id="SP800-38B">NIST SP 800-38B</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38B/SP_800-38B.pdf">
-              NIST Special Publication 800-38B: Recommendation for Block Cipher Modes of Operation:
-              The CMAC Mode for Authentication</a></cite>, May 2005, NIST.
-            </dd>
-            <dt id="SP800-38D">NIST SP 800-38D</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf">
-              NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: 
-              Galois/Counter Mode (GCM) and GMAC</a></cite>, November 2007, NIST.
-            </dd>
-            <dt id="SP800-56A">NIST SP 800-56A</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56A/SP800-56A_Revision1_Mar08-2007.pdf">
-              NIST Special Publication 800-56A: Recommendation for Pair-Wise Key Establishment
-              Schemes Using Discrete Logarithm Cryptography (Revised)</a></cite>, March 2007, NIST.
-            </dd>
-            <dt id="SP800-56C">NIST SP 800-56C</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-56C/SP-800-56C.pdf">
-              NIST Special Publication 800-56C: Recommendation for Key Derivation through
-              Extraction-then-Expansion</a></cite>, November 2011, NIST.
-            </dd>
-            <dt id="SP800-108">NIST SP 800-108</dt>
-            <dd>
-              <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-108/sp800-108.pdf">
-              NIST Special Publication 800-108: Recommendation for Key Derivation Using
-              Pseudorandom Functions (Revised)</a></cite>, October 2009, NIST.
             </dd>
             <dt id="StreamsAPI">StreamsAPI</dt>
             <dd>
