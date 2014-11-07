@@ -30,8 +30,8 @@ of contents, section numbers, certain processing instructions).
 
     <options xmlns='http://mcc.id.au/ns/local'>
       <versions>
-        <cvs href='http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
-        <this href='http://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
+        <cvs href='https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
+        <this href='https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html' />
         <previous href='https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html' />
         <latest href='http://www.w3.org/TR/WebCryptoAPI/' />
       </versions>
@@ -45,7 +45,7 @@ of contents, section numbers, certain processing instructions).
           <affiliation>Netflix</affiliation>
         </person>
       </editors>
-      <maturity>CR</maturity>
+      <maturity>ED</maturity>
       <participate qual="STND"></participate>  
     </options>
   </head>
@@ -74,7 +74,7 @@ of contents, section numbers, certain processing instructions).
       <?sotd-top public-webcrypto-comments@w3.org http://lists.w3.org/Archives/Public/public-webcrypto-comments/ ?>
 
       <p>
-        This document is produced by the <a href="http://www.w3.org/2012/webcrypto">Web Cryptography
+        This document is produced by the <a href="http://www.w3.org/2012/webcrypto/">Web Cryptography
         <acronym title="Working Group">WG</acronym></a> of the <acronym title="World Wide Web Consortium">W3C</acronym>.
       </p>
 
@@ -102,7 +102,7 @@ of contents, section numbers, certain processing instructions).
         (<a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2011-May/031741.html">archive</a>)
         , <a href="mailto:public-websecurity@w3.org">public-websecurity@w3.org</a>
         (<a href="http://lists.w3.org/Archives/Public/public-web-security/2011Jun/0000.html">archive</a>), and 
-        <a href="mailto:public-identity@w3.org">public-identity@w3.org</a> (<a href="http://www.w3.org/Search/Mail/Public/search?type-index=public-identity&amp;index-type=t&amp;keywords=DOMCrypt&amp;search=Search">archive</a>).
+        <a href="mailto:public-identity@w3.org">public-identity@w3.org</a> (<a href="https://www.w3.org/Search/Mail/Public/search?type-index=public-identity&amp;index-type=t&amp;keywords=DOMCrypt&amp;search=Search">archive</a>).
         Ongoing discussion will be on the <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a>
         mailing list.
       </p>
@@ -485,7 +485,7 @@ of contents, section numbers, certain processing instructions).
         </div>
       </div>
 
-      <div id="security" class="section">
+      <div id="security-consideration" class="section">
         <h2>Security considerations</h2>
         <p class='norm'>This section is non-normative.</p>
         <div id="security-implementers" class="section">
@@ -643,8 +643,8 @@ of contents, section numbers, certain processing instructions).
               A <a href="#dfn-conforming-implementation">conforming user agent</a> MUST support at
               least the subset of the functionality defined in HTML that this specification relies
               upon; in particular, it MUST support the
-              <a href="#arraybufferview">ArrayBufferView</a> typedef and the
-              <a href="#structured-clone">structured clone</a> algorithm.
+              <a href="#dfn-ArrayBufferView">ArrayBufferView</a> typedef and the
+              <a href="#dfn-structured-clone">structured clone</a> algorithm.
               [<a href="#HTML">HTML</a>]
             </p>
           </dd>
@@ -663,12 +663,14 @@ of contents, section numbers, certain processing instructions).
         <h2>Terminology</h2>
         <p>
           The terms and algorithms
-          <dfn id="arraybufferview">ArrayBufferView</dfn>, and
+          <dfn id="dfn-ArrayBuffer">ArrayBuffer</dfn>,
+          <dfn id="dfn-ArrayBufferView">ArrayBufferView</dfn>, and
           <dfn id="structured-clone">structured clone</dfn>,
           are defined by the HTML specification [<a href="#HTML">HTML</a>].
         </p>
         <p>
-          The term <dfn id="BufferSource">BufferSource</dfn> is defined in [<cite><a href="#WebIDL">WEBIDL</a></cite>].
+          The terms <dfn id="dfn-DOMString">DOMString</dfn> and
+          <dfn id="BufferSource">BufferSource</dfn> are defined in [<cite><a href="#WebIDL">WEBIDL</a></cite>].
         </p>
         <p>
           An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
@@ -1146,7 +1148,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             Every <code>CryptoKey</code> object has a set of internal slots that store information
             about the key. These slots are not exposed as part of this specification; they
             represent internal state that an implementation uses to implement this specification.
-            The notational convention used in [<a href="#ES262">ES262</a>] is re-used here; internal
+            The notational convention used in [<a href="#ECMA-262">ECMA-262</a>] is re-used here; internal
             slots are identified by names enclosed in double square brackets [[ ]].
           </p>
           <p>
@@ -1205,13 +1207,13 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
         <div id="cryptokey-interface-clone" class="section">
           <h3>Structured clone algorithm</h3>
           <p>
-            When a user agent is required to obtain a <a href="#structured-clone">structured clone</a>
+            When a user agent is required to obtain a <a href="#dfn-structured-clone">structured clone</a>
             of a <a href="#dfn-CryptoKey">CryptoKey</a> object, it must run the following steps.
           </p>
           <ol>
             <li>
               Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the
-              <a href="#structured-clone">internal structured cloning algorithm</a>, where
+              <a href="#dfn-structured-clone">internal structured cloning algorithm</a>, where
               <var>input</var> represents a <a href="#dfn-CryptoKey">CryptoKey</a> object to be
               cloned.
             </li>
@@ -2729,8 +2731,10 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
           <h3>Exceptions</h3>
           <p>
             The methods of the <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface return errors
-            by rejecting the returned promise with a
-            <a href="#dfn-DOMException">DOMException</a>. The following DOMException types from
+            by rejecting the returned promise with a predefined exception defined in ECMAScript
+            [<a href="#ECMA-262">ECMA-262</a>] or
+            <a href="#dfn-DOMException">DOMException</a>. The following predefined exceptions are
+            used: <dfn id="dfn-TypeError">TypeError</dfn>. The following DOMException types from
             [<a href="#DOM4">DOM4</a>] are used:
           </p>
           <table>
@@ -2852,8 +2856,8 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         <h2>CryptoKeyPair dictionary</h2>
         <x:codeblock language="idl">
 dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
-  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKey-publicKey">publicKey</dfn>;
-  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKey-privateKey">privateKey</dfn>;
+  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKeyPair-publicKey">publicKey</dfn>;
+  <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKeyPair-privateKey">privateKey</dfn>;
 };
         </x:codeblock>
         <p>
@@ -2925,7 +2929,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               Every cryptographic algorithm defined for use with the Web Cryptography API <span
               class="RFC2119">MUST</span> define, for every <a href="#supported-operation">
               supported operation</a>, the IDL type to use for <a
-              href="#concept-algorithm-normalization">algorithm normalization</a>, as well as the
+              href="#algorithm-normalization">algorithm normalization</a>, as well as the
               IDL type or types of the return values of the sub-algorithms.
             </p>
           </div>
@@ -2938,10 +2942,12 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             specification conventions. A section, titled <em>"Registration"</em>, will include the
             <a href="#recognized-algorithm-name">recognized algorithm name</a>. Additionally, it
             includes a table, which will list each of the <a href="#supported-operation">supported
-            operations</a> as rows, identified by the <em>Operation</em> column. The contents of the
-            <em>Parameters</em> column for a given row will contain the IDL type to use for <a
-            href="#concept-algorithm-normalization">algorithm normalization</a> for that operation,
-            and the contents of the <em>Result</em> column for that row indicate the IDL type that
+            operations</a> as rows, identified by the <dfn id="supported-operations">Operation</dfn>
+            column. The contents of the <dfn id="algorithm-specific-params">Parameters</dfn> column
+            for a given row will contain the IDL type to use for <a
+            href="#algorithm-normalization">algorithm normalization</a> for that operation,
+            and the contents of the <dfn id="algorithm-result">Result</dfn> column for that row
+            indicate the IDL type that
             results from performing the supported operation.
           </p>
           <p>
@@ -2957,9 +2963,9 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           </p>
         </div>
       
-        <div id="algorithm-normalizing" class="section">
+        <div id="algorithm-normalization" class="section">
           <h3>Algorithm Normalization</h3>
-          <div id="algorithm-normalizing-description" class="section">
+          <div id="algorithm-normalization-description" class="section">
             <h4>Description</h4>
             <p class="norm">This section is non-normative</p>
             <p>
@@ -2981,7 +2987,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             </p>
           </div>
 
-          <div id="algorithm-normalizing-internal" class="section">
+          <div id="algorithm-normalization-internal" class="section">
             <h4>Internal State Objects</h4>
             <p>
               This specification makes use of an internal object,
@@ -3008,7 +3014,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             </ol>
           </div>
 
-          <div id="algorithm-normalizing-define-an-algorithm" class="section">
+          <div id="algorithm-normalization-define-an-algorithm" class="section">
             <h4>Defining an Algorithm</h4>
             <p>
               The <dfn id="concept-define-an-algorithm">define an algorithm</dfn> algorithm is used
@@ -3029,7 +3035,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             </ol>
           </div>
 
-          <div id="algorithm-normalizing-normalize-an-algorithm" class="section">
+          <div id="algorithm-normalization-normalize-an-algorithm" class="section">
             <h4>Normalizing an algorithm</h4>
             <p>
               The <dfn id="dfn-normalize-an-algorithm">normalize an algorithm</dfn> algorithm defines
@@ -4112,7 +4118,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   <p>
                                     Perform any <a href="#dfn-rsa-ssa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>spki</var>
                                     and obtaining <var>hash</var>.
                                   </p>
@@ -4120,7 +4126,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a > a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -4286,7 +4292,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   <p>
                                     Perform any <a href="#dfn-rsa-ssa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
                                     and obtaining <var>hash</var>.
                                   </p>
@@ -4294,7 +4300,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -4472,7 +4478,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   <p>
                                     Perform any <a href="#dfn-rsa-ssa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
                                     and obtaining <var>hash</var>.
                                   </p>
@@ -4480,7 +4486,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -4722,8 +4728,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the result of <a
-                            href="#dfn-encode-a-privateKeyInfo"> encoding a privateKeyInfo</a>
+                            Let <var>data</var> be the result of encoding a privateKeyInfo structure
                             with the following properties:
                           </p>
                           <ul>
@@ -4834,7 +4839,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                   <p>
                                     Perform any <a href="#dfn-rsa-ssa-extended-export-steps">key
                                     export steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>key</var>
                                     and obtaining <var>alg</var>.
                                   </p>
@@ -4842,7 +4847,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
@@ -5390,7 +5395,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           <p>
                                             Perform any <a href="#dfn-rsa-pss-extended-import-steps">key
                                             import steps</a> defined by
-                                            <a href="#dfn-applicable-specifications">other applicable
+                                            <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var>, <var>spki</var>
                                             and obtaining <var>hash</var>.
                                           </p>
@@ -5398,7 +5403,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                         <li>
                                           <p>
                                             If an error occured or there are no
-                                            <a href="#dfn-applicable-specifications">applicable
+                                            <a href="#dfn-applicable-specification">applicable
                                             specifications</a>,
                                             <a href="#concept-throw">throw</a> a
                                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -5627,7 +5632,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                           <p>
                                             Perform any <a href="#dfn-rsa-pss-extended-import-steps">key
                                             import steps</a> defined by
-                                            <a href="#dfn-applicable-specifications">other applicable
+                                            <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
                                             and obtaining <var>hash</var>.
                                           </p>
@@ -5635,7 +5640,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                         <li>
                                           <p>
                                             If an error occured or there are no
-                                            <a href="#dfn-applicable-specifications">applicable
+                                            <a href="#dfn-applicable-specification">applicable
                                             specifications</a>,
                                             <a href="#concept-throw">throw</a> a
                                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -5838,7 +5843,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                   <p>
                                     Perform any <a href="#dfn-rsa-pss-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
                                     and obtaining <var>hash</var>.
                                   </p>
@@ -5846,7 +5851,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -6133,7 +6138,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                             <li>
                                               <p>
                                                 Perform any <a href="#dfn-rsa-pss-extended-export-steps">key export steps</a>
-                                                defined by <a href="#dfn-applicable-specifications">other applicable
+                                                defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                                 the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -6230,8 +6235,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the result of <a
-                            href="#dfn-encode-a-privateKeyInfo"> encoding a privateKeyInfo</a>
+                            Let <var>data</var> be the result of encoding a privateKeyInfo structure
                             with the following properties:
                           </p>
                           <ul>
@@ -6338,7 +6342,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                             <li>
                                               <p>
                                                 Perform any <a href="#dfn-rsa-pss-extended-export-steps">key export steps</a>
-                                                defined by <a href="#dfn-applicable-specifications">other applicable
+                                                defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                                 the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -6484,7 +6488,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 <li>
                                   <p>
                                     Perform any <a href="#dfn-rsa-pss-extended-export-steps">key export steps</a>
-                                    defined by <a href="#dfn-applicable-specifications">other applicable
+                                    defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -7050,9 +7054,9 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                       <ol>
                                         <li>
                                           <p>
-                                            Perform any <a href="#dfn-rsa-oeap-extended-import-steps">key
+                                            Perform any <a href="#dfn-rsa-oaep-extended-import-steps">key
                                             import steps</a> defined by
-                                            <a href="#dfn-applicable-specifications">other applicable
+                                            <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var>, <var>spki</var>
                                             and obtaining <var>hash</var>.
                                           </p>
@@ -7060,7 +7064,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                         <li>
                                           <p>
                                             If an error occured or there are no
-                                            <a href="#dfn-applicable-specifications">applicable
+                                            <a href="#dfn-applicable-specification">applicable
                                             specifications</a>,
                                             <a href="#concept-throw">throw</a> a
                                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7290,9 +7294,9 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                       <ol>
                                         <li>
                                           <p>
-                                            Perform any <a href="#dfn-rsa-oeap-extended-import-steps">key
+                                            Perform any <a href="#dfn-rsa-oaep-extended-import-steps">key
                                             import steps</a> defined by
-                                            <a href="#dfn-applicable-specifications">other applicable
+                                            <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var>, <var>spki</var>
                                             and obtaining <var>hash</var>.
                                           </p>
@@ -7300,7 +7304,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                         <li>
                                           <p>
                                             If an error occured or there are no
-                                            <a href="#dfn-applicable-specifications">applicable
+                                            <a href="#dfn-applicable-specification">applicable
                                             specifications</a>,
                                             <a href="#concept-throw">throw</a> a
                                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7486,7 +7490,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                   <p>
                                     Perform any <a href="#dfn-rsa-oaep-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
                                     and obtaining <var>hash</var>.
                                   </p>
@@ -7494,7 +7498,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7779,7 +7783,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                             <li>
                                               <p>
                                                 Perform any <a href="#dfn-rsa-pss-extended-export-steps">key export steps</a>
-                                                defined by <a href="#dfn-applicable-specifications">other applicable
+                                                defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                                 the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -7865,8 +7869,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the result of <a
-                            href="#dfn-encode-a-privateKeyInfo"> encoding a privateKeyInfo</a>
+                            Let <var>data</var> be the result of encoding a privateKeyInfo structure
                             with the following properties:
                           </p>
                           <ul>
@@ -7973,7 +7976,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                             <li>
                                               <p>
                                                 Perform any <a href="#dfn-rsa-oaep-extended-export-steps">key export steps</a>
-                                                defined by <a href="#dfn-applicable-specifications">other applicable
+                                                defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                                 the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -8124,7 +8127,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                                 <li>
                                   <p>
                                     Perform any <a href="#dfn-rsa-oaep-extended-export-steps">key export steps</a>
-                                    defined by <a href="#dfn-applicable-specifications">other applicable
+                                    defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     <a href="#dfn-RsaHashedKeyAlgorithm">hash</a> attribute of
                                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -8831,7 +8834,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                   <p>
                                     Perform any <a href="#dfn-ecdsa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>spki</var>
                                     and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
@@ -8839,7 +8842,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9050,7 +9053,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                   <p>
                                     Perform any <a href="#dfn-ecdsa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
                                     and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
@@ -9058,7 +9061,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9318,7 +9321,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                   <p>
                                     Perform any <a href="#dfn-ecdsa-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
                                     and obtaining <var>key</var>.
                                   </p>
@@ -9326,7 +9329,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9519,7 +9522,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                         <li>
                                           <p>
                                             Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
-                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -9689,7 +9692,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                         <li>
                                           <p>
                                             Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
-                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -9823,7 +9826,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                                 <li>
                                   <p>
                                     Perform any <a href="#dfn-ecdsa-extended-export-steps">key export steps</a>
-                                    defined by <a href="#dfn-applicable-specifications">other applicable
+                                    defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -9898,7 +9901,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
             <dfn id="dfn-ecdh-extended-generation-steps">ECDH generation steps</dfn>,
             <dfn id="dfn-ecdh-extended-derivation-steps">ECDH derivation steps</dfn>,
             <dfn id="dfn-ecdh-extended-import-steps">ECDH key import steps</dfn> and
-            <dfn id="dfn-ecdh-extended-verification-steps">ECDH key export steps</dfn>.
+            <dfn id="dfn-ecdh-extended-export-steps">ECDH key export steps</dfn>.
           </p>
         </div>
         <div id="ecdh-registration" class="section">
@@ -10356,7 +10359,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                   <p>
                                     Perform any <a href="#dfn-ecdh-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>spki</var>
                                     and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
@@ -10364,7 +10367,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10575,7 +10578,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                   <p>
                                     Perform any <a href="#dfn-ecdh-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>privateKeyInfo</var>
                                     and obtaining <var>namedCurve</var> and <var>key</var>.
                                   </p>
@@ -10583,7 +10586,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10796,7 +10799,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                   <p>
                                     Perform any <a href="#dfn-ecdh-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>jwk</var>
                                     and obtaining <var>key</var>.
                                   </p>
@@ -10804,7 +10807,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10907,7 +10910,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                   <p>
                                     Perform any <a href="#dfn-ecdh-extended-import-steps">key
                                     import steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var>, <var>keyData</var>
                                     and obtaining <var>key</var>.
                                   </p>
@@ -10915,7 +10918,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                 <li>
                                   <p>
                                     If an error occured or there are no
-                                    <a href="#dfn-applicable-specifications">applicable
+                                    <a href="#dfn-applicable-specification">applicable
                                     specifications</a>,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10939,7 +10942,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         </li>
                         <li>
                           <p>
-                            Set the <a href="#dfn-KeyAlgorithm-namedCurve">namedCurve</a>
+                            Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                             attribute of <var>algorithm</var> to equal the <a
                             href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
                             <var>normalizedAlgorithm</var>.
@@ -11098,7 +11101,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                         <li>
                                           <p>
                                             Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
-                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -11262,7 +11265,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                         <li>
                                           <p>
                                             Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
-                                            defined by <a href="#dfn-applicable-specifications">other applicable
+                                            defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                             the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -11390,7 +11393,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                                 <li>
                                   <p>
                                     Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
-                                    defined by <a href="#dfn-applicable-specifications">other applicable
+                                    defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -11463,7 +11466,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                             <dd>
                               <p>
                                 Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
-                                defined by <a href="#dfn-applicable-specifications">other applicable
+                                defined by <a href="#dfn-applicable-specification">other applicable
                                 specifications</a>, passing <var>format</var> and the
                                 <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                                 the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
@@ -15156,13 +15159,13 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                     <dt>
                                       Otherwise, if the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
                                       of <var>hash</var> is defined in
-                                      <a href="#dfn-applicable-specifications">another applicable
+                                      <a href="#dfn-applicable-specification">another applicable
                                       specification</a>:
                                     </dt>
                                     <dd>
                                       Perform any <a href="#dfn-hmac-extended-import-steps">key
                                       import steps</a> defined by
-                                      <a href="#dfn-applicable-specifications">other applicable
+                                      <a href="#dfn-applicable-specification">other applicable
                                       specifications</a>, passing <var>format</var>, <var>jwk</var>
                                       and <var>hash</var>
                                       and obtaining <var>hash</var>.
@@ -15224,7 +15227,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                     <dd>
                                       Perform any <a href="#dfn-hmac-extended-import-steps">key
                                       import steps</a> defined by
-                                      <a href="#dfn-applicable-specifications">other applicable
+                                      <a href="#dfn-applicable-specification">other applicable
                                       specifications</a>, passing <var>format</var>, <var>jwk</var>
                                       and undefined
                                       and obtaining <var>hash</var>.
@@ -15453,7 +15456,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                             <dt>
                               Otherwise, the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
                               of <var>hash</var> is defined in
-                              <a href="#dfn-applicable-specifications">another applicable
+                              <a href="#dfn-applicable-specification">another applicable
                               specification</a>:
                             </dt>
                             <dd>
@@ -15462,7 +15465,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                                   <p>
                                     Perform any <a href="#dfn-hmac-extended-export-steps">key
                                     export steps</a> defined by
-                                    <a href="#dfn-applicable-specifications">other applicable
+                                    <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and <var>key</var>
                                     and obtaining <var>alg</var>.
                                   </p>
@@ -15520,7 +15523,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                 <li>
                   <dl class="switch">
                     <dt>
-                      If the <a href="#dfn-HmacIMportParams-length">length</a> member of
+                      If the <a href="#dfn-HmacImportParams-length">length</a> member of
                       <var>normalizedDerivedKeyAlgorithm</var> is not present:
                     </dt>
                     <dd>
@@ -16682,7 +16685,7 @@ BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
                 <li>
                   <p>
                     Perform any <a href="#dfn-concat-extended-import-steps">key import steps</a>
-                    defined by <a href="#dfn-applicable-specifications">other applicable
+                    defined by <a href="#dfn-applicable-specification">other applicable
                     specifications</a>, passing <var>keyData</var> and obtaining <var>result</var>.
                   </p>
                   <dl class="switch">
@@ -16837,7 +16840,7 @@ BufferSource <dfn id="dfn-ConcatParams-privateInfo">privateInfo</dfn>;
           <h4>HkdfCtrParams dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-<span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#sha-256">SHA-256</a>)</span>
+<span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#alg-sha-256">SHA-256</a>)</span>
 required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfCtrParams-hash">hash</dfn>;
 <span class="comment">// A bit string that corresponds to the label that identifies the purpose for the derived keying material.</span>
 required BufferSource <dfn id="dfn-HkdfCtrParams-label">label</dfn>;
@@ -17056,7 +17059,7 @@ required BufferSource <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
             The <code>"PBKDF2"</code> algorithm identifier is used to
             perform key derivation using the PKCS#5 password-based key
             derivation function version 2.0, as defined in
-            [<a href="#rfc2898">RFC2898</a>] using HMAC as the pseudo-random function,
+            [<a href="#RFC2898">RFC2898</a>] using HMAC as the pseudo-random function,
             using the SHA hash functions defined
             in this specification.
           </p>
@@ -17147,7 +17150,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                 <li>
                   <p>
                     Let <var>result</var> be the result of performing the PBKDF2 operation defined
-                    in Section 5.2 of [<a href="#rfc2898">RFC2898</a>] using <var>prf</var> as the
+                    in Section 5.2 of [<a href="#RFC2898">RFC2898</a>] using <var>prf</var> as the
                     pseudo-random function, <var>PRF</var>, the password represented by [[<a
                     href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
                     as the password, <var>P</var>, <a href="#concept-contents-of-arraybuffer">the
@@ -17550,7 +17553,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         <p>
           The <a href="#dfn-Crypto-method-getRandomValues"><code>getRandomValues</code></a>
           method in the <code>Crypto</code> interface was originally proposed by Adam Barth to the
-          <a href="http://wiki.whatwg.org/wiki/Crypto">WHATWG</a>.
+          <a href="https://wiki.whatwg.org/wiki/Crypto">WHATWG</a>.
         </p>
       </div>
       <div id='references' class='section'>
@@ -17560,7 +17563,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
            <dl>
              <dt id="DOM4">DOM4</dt>
              <dd>
-               <cite><a href="http://dom.spec.whatwg.org/">DOM (Living Standard)</a></cite>,
+               <cite><a href="https://dom.spec.whatwg.org/">DOM (Living Standard)</a></cite>,
                A. Gregor, A. van Kesteren, Ms2ger. WHATWG.
                <div class="ednote">This will be updated to W3C DOM4 once Promises are incorporated.</div>
              </dd>
@@ -17581,7 +17584,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              </dd>
              <dt id="PKCS3">PKCS3</dt>
              <dd>
-               <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2126">PKCS #3: Diffie-Hellman
+               <cite><a href="http://www.emc.com/domains/rsa/index.htm?id=2126">PKCS #3: Diffie-Hellman
                Key-Agreement Standard</a></cite>, RSA Laboratories.
              </dd>
              <dt id="RFC2119">RFC2119</dt>
@@ -17595,6 +17598,13 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                (PKCS) #1: RSA Cryptography Specifications Version 2.1</a></cite>, J. Jonsson,
                B. Kaliski. IETF.
              </dd>
+             <dt id="RFC3279">RFC3279</dt>
+             <dd>
+               <cite><a href="http://www.ietf.org/rfc/rfc3279">Algorithms and Identifiers for the
+              Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List 
+              (CRL) Profile</a></cite>,
+              W. Polk, R. Housley, L. Bassham. IETF.
+             </dd>
              <dt id="RFC5208">RFC5208</dt>
              <dd>
               <cite><a href="http://www.ietf.org/rfc/rfc5208.txt">Public-Key Cryptography Standards
@@ -17606,6 +17616,18 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <cite><a href="http://www.ietf.org/rfc/rfc5280.txt">Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
               D. Cooper, S. Santesson, S. Farrell, S. Boeyen, R. Housley, W. Polk. IETF.
+             </dd>
+             <dt id="RFC5480">RFC5480</dt>
+             <dd>
+              <cite><a href="http://www.ietf.org/rfc/rfc5480.txt">Elliptic Curve Cryptography Subject
+              Public Key Information</a></cite>,
+              S. Turner, D. Brown, K. Yiu, R. Housley, T. Polk. IETF.
+             </dd>
+             <dt id="RFC5915">RFC5915</dt>
+             <dd>
+              <cite><a href="http://www.ietf.org/rfc/rfc5915.txt">Elliptic Curve Private Key Structure
+              </a></cite>,
+              S. Turner, D. Brown. IETF.
              </dd>
              <dt id="WebIDL">Web IDL (Second Edition)</dt>
              <dd>
@@ -17646,6 +17668,14 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               </cite>,
               July 2008, NIST.
              </dd>
+             <dt id="X690">ITU-T Recommendation X.690 (11/08)</dt>
+             <dd>
+               <cite>
+                 <a href="http://www.itu.int/rec/T-REC-X.690-200811-I/en">Information technology - 
+                 ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical 
+                 Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>
+               </cite>, ITU-T.
+             </dd>
            </dl>
         </div>
         <div id="informative-references" class="section">
@@ -17683,7 +17713,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             </dd>
             <dt id="PKCS11">PKCS11</dt>
             <dd>
-              <cite><a href="http://www.rsa.com/rsalabs/node.asp?id=2133">PKCS #11: Cryptographic
+              <cite><a href="http://www.emc.com/domains/rsa/index.htm?id=2133">PKCS #11: Cryptographic
               Token Interface Standard</a></cite>, RSA Laboratories.
             </dd>
             <dt id="RFC2315">RFC 2315</dt>
@@ -17693,7 +17723,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             </dd>
             <dt id="RFC2898">RFC 2898</dt>
             <dd>
-              <cite><a href="http://tools.ietf.org/html/rfc2898">PKCS #5: Password-Based
+              <cite><a href="http://tools.ietf.org/html/RFC2898">PKCS #5: Password-Based
               Cryptography Specification, Version 2.0</a></cite>, B. Kaliski. RSA Laboratories
             </dd>
             <dt id="RFC5705">RFC 5705</dt>
@@ -17712,6 +17742,17 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
                 Identifiers for RSA Cryptography for use in the Internet X.509 Public Key 
                 Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>, 
                 J. Schaad, B. Kaliski, R. Housley. IETF.
+            </dd>
+            <dt id="RFC5756">RFC 5756</dt>
+            <dd>
+              <cite><a href="https://tools.ietf.org/html/rfc5756">Updates for RSAES-OAEP and 
+              RSASSA-PSS Algorithm Parameters</a></cite>, 
+              S. Turner, D. Brown, K. Yiu, R. Housley, T. Polk. IETF.
+            </dd>
+            <dt id="RFC5958">RFC 5958</dt>
+            <dd>
+              <cite><a href="https://tools.ietf.org/html/rfc5958">Asymmetric Key Packages</a></cite>, 
+              S. Turner. IETF.
             </dd>
             <dt id="SP800-38A">NIST SP 800-38A</dt>
             <dd>
