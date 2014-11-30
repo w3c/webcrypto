@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!--
   Overview.html
@@ -1286,7 +1286,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                           <a href="#dfn-CryptoKey">CryptoKey</a> baseKey,
                           unsigned long length);
   
-  <span class="comment">// TBD: <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a></span>
+
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          (BufferSource or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1307,18 +1307,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
 };
         </code></pre></div></div>
-        <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-          <ul>
-            <li>
-              <a href="https://www.w3.org/2012/webcrypto/track/issues/35">ISSUE-35</a>:
-              The specification for wrapKey/unwrapKey does not specify how authors that do not trust
-              the execution environment may indicate required attributes for keys that are
-              unwrapped. An example is unwrapping a key with a non-extractable key, marking
-              the newly unwrapped key as non extractable, and then further indicating that all
-              keys unwrapped with the newly unwrapped key are also non-extractable.
-            </li>
-          </ul>
-        </div>
+       
         <div id="subtlecrypto-interface-description" class="section">
           <h3>14.1. Description</h3>
           <p class="norm">This section is non-normative.</p>
