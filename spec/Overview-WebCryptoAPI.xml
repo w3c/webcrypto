@@ -1872,7 +1872,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <dd>
                     <p>
                       If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
-                      <var>result</var> is <code>"public"</code> or <code>"private"</code> and
+                      <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
                       <var>usages</var> is empty, then <a href="#concept-throw">throw</a> a <a href="#dfn-SyntaxError">SyntaxError</a>.
                     </p>                  
                   </dd>
@@ -10590,7 +10590,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field is present and if <var>usages</var> is not
+                            If the <code>"d"</code> field is not present and if <var>usages</var> is not
                             empty
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
@@ -12290,7 +12290,7 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                         <li>
                           <p>
                             If the <code>"kty"</code> field of <var>jwk</var> is not
-                            to <code>"oct"</code>,
+                            <code>"oct"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
