@@ -11544,6 +11544,14 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
+                    If <var>plaintext</var> has a length greater than 2^(length member of <var>normalizedAlgorithm</var>
+                    bytes,
+                    then <a href="#concept-throw">throw</a> an
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Let <var>ciphertext</var> be the result of performing the CTR Encryption
                     operation described in Section 6.5 of [<a
                     href="#SP800-38A">NIST SP800-38A</a>] using AES as the block cipher, <a
