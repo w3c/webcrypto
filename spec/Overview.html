@@ -515,7 +515,10 @@
             This specification includes descriptions for a variety of cryptographic operations, some
             of which have known weaknesses when used inappropriately. Application developers must
             take care and review appropriate and current cryptographic literature, to understand and
-            mitigate such issues. In general, application developers are <strong>strongly</strong>
+            mitigate such issues. Note that the security
+properties of particular algorithms in this specification are liable to
+change. Detailed questions can be asked to the IRTF CFRG (CryptoForum Research Group), who are maintaining a <a href="#irtf-cfrg-webcrypto">document</a> that outlines security
+guidelines for algorithms and key sizes given in this API. In general, application developers are <strong>strongly</strong>
             discouraged from inventing new cryptographic protocols; as with all applications, users
             of this specification will be best served through the use of existing protocols, of
             which this specification provides the necessary building blocks to implement.
@@ -15016,6 +15019,11 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc5958">Asymmetric Key Packages</a></cite>, 
               S. Turner. IETF.
+            </dd>
+          </dl>
+	    <dt id="irtf-cfrg-webcrypto">Security Guidelines for Cryptographic Algorithms in the W3C Web Cryptography API</dt>
+            <dd>
+              <cite><a href="https://www.ietf.org/id/draft-irtf-cfrg-webcrypto-algorithms">Security Guidelines for Cryptographic Algorithms in the W3C Web Cryptography API</a></cite>, H. Halpin, G. Steel. IRTF.
             </dd>
           </dl>
         </div>
