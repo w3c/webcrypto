@@ -718,7 +718,8 @@ of contents, section numbers, certain processing instructions).
             <p>
               Parse <var>data</var> according to the Distinguished Encoding Rules of
               <a href="#X690">X.690 (11/08)</a>, using <var>structure</var> as the ASN.1 structure
-              to be decoded.
+              to be decoded.  If <var>data</var> does not conform to the DER encoding rules,
+              then <a href="#concept-throw">throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.
             </p>
           </li>
           <li>
@@ -750,6 +751,68 @@ of contents, section numbers, certain processing instructions).
           <var>structure</var> as the ASN.1 structure of PrivateKeyInfo, as specified in
           <a href="#RFC5208">RFC 5208</a>, and <var>exactData</var> set to <code>true</code>.
         </p>
+
+        <div class="note">
+          Many specifications call for the use of the <em>DER</em> encoding rules when
+          encoding data structures.  There are a few that specifications that allow for the
+          use of <em>BER</em> rules instead.  There are also some implemenations that incorrectly
+          use <em>BER</em> rules rather than <em>DER</em> rules.  This specification restricts
+          decoding and encoding to <em>DER</em> rules as this should lead to smaller implemenations.
+          A side effect of this is that there will occassionally be items that fail ASN.1 parsing
+          beause they were encoded usig <em>BER</em> rules.
+        </div>
+        
+        <p>
+          When this specification says to <dfn id="concept-encode-an-asn1-structure">encode an ASN.1
+          structure</dfn>, the user agent must perform the following steps:
+        </p>
+        <ol>
+          <li>
+            <p>
+              Let <var>data</var> be a data object to be encoded.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <var>structure</var> be the ASN.1 structure to be encoded.
+            </p>
+          </li>
+          <li>
+            <p>
+              Encode <var>data</var> according to the Distinguished Encoding Rules of
+              <a href="#X690">X.690 (11/08)</a>, using <var>structure</var> as the ASN.1 structure
+              to be encoded.
+            </p>
+          </li>
+          <li>
+            <p>
+              Return the bytes of the encoded ASN.1 data.
+            </p>
+          </li>
+        </ol>
+        <p>
+          When this specification says to <dfn id="concept-encode-a-spki">encode a
+          subjectPublicKeyInfo</dfn>, the user agent must
+          <a href="#concept-encode-an-asn1-structure">encode an ASN.1 structure</a>, with
+          <var>data</var> set to the object to be encoded, <var>structure</var> as the
+          ASN.1 structure of subjectPublicKeyInfo, as specified in <a href="#RFC5280">RFC 5280</a>.
+        </p>
+        <p>
+          When this specification says to <dfn id="concept-encoe-a-privateKeyInfo">encode a
+          PrivateKeyInfo</dfn>, the user agent must <a href="#concept-encode-an-asn1-structure">encode
+          an ASN.1 structure</a> with <var>data</var> set to the object to be encoded,
+          <var>structure</var> as the ASN.1 structure of PrivateKeyInfo, as specified in
+          <a href="#RFC5208">RFC 5208</a>.
+        </p>
+
+        <div class="note">
+          <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
+          the data in the privateKey field of privateKeyInfo structure the should be
+          <em>BER</em> encoded in Section 5 (as a "for example").
+          As <em>DER</em> encoding is a proper subset of <em>BER</em>
+          encoding using <em>DER</em> rather than <em>BER</em> does not create any problems.
+        </div>
+        
         <p>
           When this specification says to <dfn id="concept-parse-a-jwk">parse a JWK</dfn>, the user
           agent must run the following steps:
@@ -4613,12 +4676,15 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </li>
                             <li>
                               <p>
-                                Set the <var>subjectPublicKey</var> field to the result of
-                                DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
-                                in <a href="#RFC3447">RFC 3447</a>, Appendix A.1.1, that
-                                represents the RSA public key represented by the [[<a
+                                Set the <var>subjectPublicKey</var> field to the result running the
+                                <a href="#concept-encode-an-asn1-structure">encode an ASN.1 structure</a>,
+                                with <var>data</var> as the
+                                RSA public key represented by the [[<a
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
+                                and <var>structure</var> as <code>RSAPublicKey</code> ASN.1 type, as defined in <a
+                                href="#RFC3447">RFC 3447</a>, Appendix A.1.1.
+
                               </p>
                             </li>
                           </ul>
@@ -4626,7 +4692,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         <li>
                           <p>
                             Let <var>result</var> be a new <code>ArrayBuffer</code> containing
-                            <var>data</var>.
+                            the result of running the <a href="#concept-encode-a-subjectPublicKeyInfo">
+                            encode a subjectPublicKeyInfo</a> algorithm over <var>data</var>.
                           </p>
                         </li>
                       </ol>
@@ -4675,27 +4742,23 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                             </li>
                             <li>
                               <p>
-                                Set the <var>privateKey</var> field to the result of DER-encoding
-                                an <code>RSAPrivateKey</code> ASN.1 type, as defined in <a
-                                href="#RFC3447">RFC 3447</a>, Appendix A.1.2, that represents the
+                                Set the <var>privateKey</var> field to the result running the
+                                <a href="#concept-encode-an-asn1-structure">encode an ASN.1 structure</a>,
+                                with <var>data</var> as the
                                 RSA private key represented by the [[<a
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
+                                and <var>structure</var> as <code>RSAPrivateKey</code> ASN.1 type, as defined in <a
+                                href="#RFC3447">RFC 3447</a>, Appendix A.1.2.
                               </p>
-                              <div class="ednote">
-                                <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
-                                this field should be <em>BER</em> encoded in Section 5 (as a "for
-                                example"). However, to avoid requiring WebCrypto implementations
-                                support BER-encoding and BER-decoding, only <em>DER</em> encodings
-                                are produced or accepted.
-                              </div>
                             </li>
                           </ul>                              
                         </li>
                         <li>
                           <p>
                             Let <var>result</var> be a new <code>ArrayBuffer</code> containing
-                            <var>data</var>.
+                            the result of running the <a href="#concept-encode-a-privateKeyInfo">
+                            encode a privateKeyInfo</a> algorithm over <var>data</var>.
                           </p>
                         </li>
                       </ol>
