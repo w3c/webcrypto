@@ -1,0 +1,11 @@
+language: c
+sudo: false
+addons:
+  apt:
+    packages:
+      xsltproc
+branches:
+  only:
+    - master
+script:
+  - cd spec && make Overview.html
