@@ -9807,7 +9807,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
           <h4>Description</h4>
           <p>
             This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key
-            agreement, as specified by <a href="#X9.63">X9.63</a>.
+            agreement, as specified by <a href="#RFC6090">RFC6090</a>.
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
@@ -9891,7 +9891,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                     <dd>
                       <p>
                         Generate an Elliptic Curve key pair, as defined in [<a
-                        href="#X9.63">X9.63</a>] with domain parameters for the curve identified by
+                        href="#RFC6090">RFC6090</a>] with domain parameters for the curve identified by
                         the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
                         <var>normalizedAlgorithm</var>.
                       </p>
@@ -10083,8 +10083,8 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                       <ol>
                         <li>
                           <p>
-                            Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section
-                            5.4.1 with <var>key</var> as the EC private key <var>d</var> and the EC public
+                            Perform the ECDH primitive specified in <a href="#RFC6090">RFC6090</a> Section
+                            3 with <var>key</var> as the EC private key <var>d</var> and the EC public
                             key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]]
                             internal slot of <var>publicKey</var> as the EC public key <var>Q</var>.
                           </p>
@@ -10092,7 +10092,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         <li>
                           <p>
                             Let <var>secret</var> be the result of applying the field element to
-                            <a href="#dfn-octet-string">octet string</a> conversion defined in Section ? of <a href="#X9.63">X9.63</a>
+                            <a href="#dfn-octet-string">octet string</a> conversion defined in Section 6.2 of <a href="#RFC6090">RFC6090</a>
                             to the output of the ECDH primitive.
                           </p>
                         </li>
@@ -15429,6 +15429,11 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               </a></cite>,
               S. Turner, D. Brown. IETF.
              </dd>
+             <dt id="RFC6090">RFC6090</dt>
+             <dd>
+               <cite><a href="http://www.ietf.org/rfc/rfc6090.txt">Fundamental Elliptic Curve Cryptography
+               Algorithms</a></cite>, D. McGrew, K. Igoe, M.Salter. IETF.
+             </dd>
              <dt id="WebIDL">Web IDL (Second Edition)</dt>
              <dd>
                <cite><a href="http://heycam.github.io/webidl/">Web IDL (Second Edition)</a></cite>,
@@ -15438,11 +15443,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dd>
                <cite>ANS X9.62–2005: Public Key Cryptography for the Financial Services Industry,
                The Elliptic Curve Digital Signature Algorithm (ECDSA)</cite>, ANSI.
-             </dd>
-             <dt id="X9.63">X9.63</dt>
-             <dd>
-               <cite>ANS X9.63–2001: Public Key Cryptography for the Financial Services Industry,
-               Key Agreement and Key Transport Using Elliptic Curve Cryptography</cite>, ANSI.
              </dd>
             </dl>
         </div>
