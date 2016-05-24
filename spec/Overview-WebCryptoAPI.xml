@@ -673,6 +673,13 @@ of contents, section numbers, certain processing instructions).
           integers, each in the range 0 to 255 inclusive.
         </p>
         <p>
+          An <dfn id="dfn-octet-string-containing">octet string containing a bit string</dfn> <var>b</var> is the
+          <a href="#dfn-octet-string">octet string</a> obtained by first extending <var>b</var> with zero
+          bits such that the length of the resulting bit string is minimal and an integer multiple of 8
+          and then considering each consecutive sequence of 8 bits in that string as a binary integer, most significant
+          bit first.
+        </p>
+        <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
           manner means comparing them exactly, code point for code point.
         </p>
@@ -10134,7 +10141,9 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                           <a href="#dfn-OperationError"><code>OperationError</code></a>.
                         </dd>
                         <dt>Otherwise:</dt>
-                        <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                        <dd>
+                          Return an <a href="#dfn-octet-string-containing">octet string containing</a> the first <var>length</var> bits of <var>secret</var>.
+                        </dd>
                       </dl>
                     </dd>
                   </dl>
@@ -14254,21 +14263,25 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                   </p>
                 </li>
                 <li>
+                  <p>
+                    Let <var>bits</var> be the raw bits of the key represented by [[<a
+                    href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                    <var>key</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>data</var> be an <a href="#dfn-octet-string-containing">octet string containing</a> <var>bits</var>.
+                  </p>
+                </li>
+                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by [[<a
-                            href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
-                            <var>data</var>.
+                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing <var>data</var>.
                           </p>
                         </li>
                       </ol>
@@ -14291,9 +14304,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                         <li>
                           <p>
                             Set the <code>k</code> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by [[<a
-                            href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>, encoded according to Section 6.4 of <a
+                            containing <var>data</var>, encoded according to Section 6.4 of <a
                             href="#jwa">JSON Web Algorithms</a>.
                           </p>
                         </li>
