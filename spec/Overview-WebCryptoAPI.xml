@@ -4279,10 +4279,12 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -5650,10 +5652,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -7314,10 +7318,12 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -9030,17 +9036,12 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurred while parsing,
-                            then <a href="#concept-throw">throw</a> a
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -10555,17 +10556,12 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurred while parsing,
-                            then <a href="#concept-throw">throw</a> a
-                            <a href="#dfn-DataError"><code>DataError</code></a>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -11720,10 +11716,12 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -12270,10 +12268,12 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -12427,10 +12427,12 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be a new <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -12900,10 +12902,12 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -13380,10 +13384,12 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
@@ -13945,10 +13951,12 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                     <dd>
                       <ol>
                         <li>
-                          <p>
-                            Let <var>jwk</var> be the <a href="#dfn-JsonWebKey">JsonWebKey</a>
-                            dictionary represented by <var>keyData</var>.
-                          </p>
+                          <dl class="switch">
+                            <dt>If <var>keyData</var> is a <a href="#dfn-JsonWebKey">JsonWebKey</a> dictionary:</dt>
+                            <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
+                            <dt>Otherwise:</dt>
+                            <dd><p><a href="#concept-throw">Throw</a> a <a href="#dfn-DataError"><code>DataError</code></a>.</p></dd>
+                          </dl>
                         </li>
                         <li>
                           <p>
