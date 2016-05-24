@@ -28,8 +28,9 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>30 November 2015</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/tip/spec/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editors:</dt><dd><a href="http://www.google.com/">Ryan Sleevi</a>, Google, Inc. &lt;sleevi@google.com&gt;</dd><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p>Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document">file a bug</a> 
-    (see <a href="https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&amp;component=Web%20Cryptography%20API%20Document&amp;resolution=---">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>24 May 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+         Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://github.com/w3c/webcrypto/issues/new">file a bug</a>
+    (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <div class="section">
       <h2>Abstract</h2>
@@ -56,7 +57,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 30 November 2015 <b>Editor’s Draft</b> of the
+        This document is the 24 May 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -151,12 +152,10 @@
         </p>
         <p>
           Cryptographic transformations are exposed via the
-          <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface, which defines a common set
-          of methods and events for dealing with initialization, processing data, and completing
-          the operation to yield the final output. In addition to operations such as signature
+          <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface, which defines a set of methods 
+          for performing common cryptographic operations. In addition to operations such as signature
           generation and verification, hashing and verification, and encryption and decryption,
-          the API provides interfaces for key generation, key derivation, key import and export,
-          and key discovery.
+          the API provides interfaces for key generation, key derivation and key import and export.
         </p>
       </div>
 
@@ -253,7 +252,7 @@
           <h3>2.6. Secure Messaging</h3>
           <p>
             In addition to a number of web applications already offering chat based services, the
-            rise of WebSockets and RTCWEB allows a great degree of flexibility in inter-user-agent
+            rise of WebSockets and WebRTC allows a great degree of flexibility in inter-user-agent
             messaging. While TLS/DTLS may be used to protect messages to web applications, users
             may wish to directly secure messages using schemes such as off-the-record (OTR) messaging.
           </p>
@@ -354,7 +353,7 @@
             such an extension specification, it becomes an
             <dfn id="dfn-applicable-specification">applicable specification</dfn> for the purposes 
             of conformance requirements in this specification. Applicable specifications defined
-            by the W3C WebCrypto Working Group are listed in the table below.
+            by the W3C Web Cryptography Working Group are listed in the table below.
           </p>
           <table>
             <tbody>
@@ -2698,16 +2697,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <td>A required parameter was missing or out-of-range</td>
               </tr>
               <tr>
-                <td><dfn id="dfn-InvalidStateError"><code>InvalidStateError</code></dfn></td>
-                <td>The requested operation is not valid for the current state of the provided key.</td>
-              </tr>
-              <tr>
                 <td><dfn id="dfn-InvalidAccessError"><code>InvalidAccessError</code></dfn></td>
                 <td>The requested operation is not valid for the provided key</td>
-              </tr>
-              <tr>
-                <td><dfn id="dfn-UnknownError"><code>UnknownError</code></dfn></td>
-                <td>The operation failed for an unknown transient reason (e.g. out of memory)</td>
               </tr>
               <tr>
                 <td><dfn id="dfn-DataError"><code>DataError</code></dfn></td>
@@ -2836,7 +2827,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               Every cryptographic algorithm defined for use with the Web Cryptography API
               <span class="RFC2119">MUST</span> have a unique name, referred to as its
               <dfn id="recognized-algorithm-name">recognized algorithm name</dfn>, such that no
-              other specification defines the same case-sensitive string for use with the
+              other specification defines the same case-insensitive string for use with the
               Web Cryptography API.
             </p>
           </div>
@@ -2990,7 +2981,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               <dd>
                 <p>
                   Return the result of running the <a href="#dfn-normalize-an-algorithm">normalize an algorithm</a> algorithm, with
-                  the <code>alg</code> set to a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
+                  the <code>alg</code> set to a new <a href="#dfn-Algorithm">Algorithm</a>
                   dictionary whose <a href="#dfn-KeyAlgorithm-name">name</a> attribute is
                   <var>alg</var>, and with the <code>op</code> set to <var>op</var>.
                 </p>
@@ -3201,7 +3192,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
         <p class="norm">The following section is non-normative.</p>
         <p>
           The table below contains an overview of the algorithms described within this
-          specification, as well as the set of <a href="#subtlecrypto-interface-methods">subtlecrypto
+          specification, as well as the set of <a href="#subtlecrypto-interface-methods">SubtleCrypto
           methods</a> the algorithm may be used with. In order for
           an algorithm to be used with a method the corresponding
           operation or operations, as defined
@@ -3220,7 +3211,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             <p>The <a href="#SubtleCrypto-method-sign">sign</a> method requires the sign operation.</p>
           </li>
           <li>
-            <p>The <a href="#SubtleCrypto-method-verify">decrypt</a> method requires the verify operation.</p>
+            <p>The <a href="#SubtleCrypto-method-verify">verify</a> method requires the verify operation.</p>
           </li>
           <li>
             <p>The <a href="#SubtleCrypto-method-generateKey">generateKey</a> method requires the generateKey operation.</p>
@@ -3234,12 +3225,12 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             <p>The <a href="#SubtleCrypto-method-digest">digest</a> method requires the digest operation.</p>
           </li>
           <li>
-            <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires the either
+            <p>The <a href="#SubtleCrypto-method-wrapKey">wrapKey</a> method requires either
             the encrypt or wrapKey operation for the wrapping algorithm and the exportKey operation
             for the wrapped key algorithm.</p>
           </li>
           <li>
-            <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires the either
+            <p>The <a href="#SubtleCrypto-method-unwrapKey">unwrapKey</a> method requires either
             the decrypt or unwrapKey operation for the unwrapping algorithm and the importKey operation
             for the unwrapped key algorithm.</p>
           </li>
@@ -14131,7 +14122,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                 <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
-                <td>Import key</td>
+                <td>importKey</td>
                 <td>None</td>
                 <td><a href="#dfn-CryptoKey">CryptoKey</a></td>
               </tr>
@@ -14395,7 +14386,7 @@ required BufferSource <dfn id="dfn-HkdfCtrParams-context">context</dfn>;
               <tr>
                 <td>Get key length</td>
                 <td>None</td>
-                <td>Length or null</td>
+                <td>Integer or null</td>
               </tr>
             </tbody>
           </table>
@@ -14765,12 +14756,15 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>Used with "kty" Value(s): *</li>
             <li>Parameter Information Class: Public</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
-            <li>Specification Document(s): [[ This Document]]</li>
+            <li>Specification Document(s): [[ This Document ]]</li>
           </ul>
         </div>
       </div>
       <div id="acknowledgements-section" class="section">
         <h2>35. Acknowledgments</h2>
+        <p>
+          Thanks are due especially to Ryan Sleevi, the original author and editor of this document.
+        </p>
         <p>
           The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
           Brian Smith, Brian Warner, Channy Yun, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
