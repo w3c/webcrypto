@@ -4180,7 +4180,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -5503,7 +5503,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7093,7 +7093,7 @@ BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -8730,7 +8730,7 @@ required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10184,7 +10184,7 @@ required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present,
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -11304,7 +11304,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -11836,7 +11836,7 @@ required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12449,7 +12449,7 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12918,7 +12918,7 @@ BufferSource <dfn id="dfn-AesGcmParams-additionalData">additionalData</dfn>;
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>, 
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13590,7 +13590,7 @@ required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"sign"</code>, 
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
