@@ -792,81 +792,12 @@ of contents, section numbers, certain processing instructions).
           </li>
         </ol>
         <p>
-          When this specification says to <dfn id="concept-clone-BufferSource">clone the
-          data</dfn> of a <a href="http://heycam.github.io/webidl/#common-BufferSource">BufferSource</a> object
-          <var>data</var>, the user agent must run the following steps:
-        </p>
-        <dl class="switch">
-          <dt>
-            If <var>data</var> is an <code>ArrayBuffer</code>:
-          </dt>
-          <dd>
-            Return the result of invoking the <code>ArrayBuffer.prototype.slice</code> method on
-            <var>data</var>, with the <var>start</var> value set to the integer 0, and the
-            <var>end</var> value set to the value of the [[ArrayBufferByteLength]] internal slot
-            of <var>data</var>.
-          </dd>
-          <dt>
-            If <var>data</var> is an <code>ArrayBufferView</code>:
-          </dt>
-          <dd>
-            <ol>
-              <li>
-                <p>
-                  Let <var>buffer</var> be the value of the [[ViewedArrayBuffer]] internal slot
-                  of <var>data</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>start</var> be the value of the [[ByteOffset]] internal slot of
-                  <var>data</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>end</var> be the value of the [[ByteLength]] internal slot of
-                  <var>data</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>relativeEnd</var> be <var>start</var>+<var>end</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return the result of invoking the <code>ArrayBuffer.prototype.slice</code> method
-                  on <var>buffer</var>, with the <var>start</var> value set to <var>start</var> and
-                  the <var>end</var> value set to <var>relativeEnd</var>.
-                </p>
-              </li>
-            </ol>
-          </dd>
-        </dl>
-        <div class="ednote">
-          <p>
-            The above definition makes heavy use of directly accessing the internal slot values,
-            defined in <a href="#ECMA-262">ECMA262</a>. The motivation for this is to avoid issues
-            that might arise with authors defining custom getters/setters on such objects. However,
-            it has the downside of avoiding the error control statements defined in the
-            <code>%TypedArray%.prototype</code> getters and <code>ArrayBuffer.prototype</code>
-            getters, which would be desirable.
-          </p>
-          <p>
-            It is assumed that the Web IDL conversion rules will perform the necessary type checks,
-            and that as a result of these checks, it is guaranteed that the internal slots will
-            always have valid values for the above algorithm. However, that assumption may not be
-            safe to make.
-          </p>
-        </div>
-        <p>
           When this specification states to supply the <dfn id="concept-contents-of-arraybuffer">
           contents of an ArrayBuffer</dfn> named <var>data</var> to an underlying cryptographic
           implementation, the User Agent shall supply a contiguous sequence of bytes that is equal
-          to the contents of the Data Block value of the [[ArrayBufferData]] internal slot of
-          <var>data</var>, and whose length in bytes is equal to the [[ArrayBufferByteLength]]
-          internal slot of <var>data</var>.
+          to the result of
+          <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">geting a copy of the bytes</a>
+          held <var>data</var>.
         </p>
         <p>
           When this specification says to calculate the <dfn id="concept-usage-intersection">usage
@@ -1378,8 +1309,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes</a> held by the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method.
                 </p>
               </li>
@@ -1469,8 +1401,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method.
                 </p>
               </li>
@@ -1561,8 +1494,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-sign">sign</a> method.
                 </p>
               </li>
@@ -1651,8 +1585,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>signature</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>signature</code> parameter passed to the
+                  Let <var>signature</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>signature</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
                 </p>
               </li>
@@ -1672,8 +1607,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
                 </p>
               </li>
@@ -1748,8 +1684,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of <a href="#concept-clone-BufferSource">
-                  cloning the data</a> of the <code>data</code> parameter passed to the
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-digest">digest</a> method.
                 </p>
               </li>
@@ -2172,7 +2109,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           Let <var>keyData</var> be the result of
-                          <a href="#concept-clone-BufferSource">cloning the data</a> of the
+                          <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                          getting a copy of the bytes held by</a> the
                           <code>keyData</code> parameter passed to the
                           <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method.
                         </p>
@@ -2546,7 +2484,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>wrappedKey</var> be the result of
-                  <a href="#concept-clone-BufferSource">cloning the data</a> of the
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the
                   <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a> method.
                 </p>
@@ -3122,9 +3061,10 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
                               </dt>
                               <dd>
                                 Set the dictionary member on <var>normalizedAlgorithm</var> with key
-                                name <var>key</var> to a <a
-                                href="#concept-clone-BufferSource">clone of
-                                <var>idlValue</var></a>, replacing the current value.
+                                name <var>key</var> to the result of
+                                <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                                getting a copy of the bytes held by</a>
+                                <var>idlValue</var>, replacing the current value.
                               </dd>
                               <dt>
                                 If <var>member</var> is of the type
