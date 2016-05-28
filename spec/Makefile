@@ -5,7 +5,7 @@ SOURCE_BRANCH := $(CI_BRANCH)
 else
 SOURCE_BRANCH := $(shell git branch | grep '*' | cut -c 3-)
 endif
-ifneq (,$(findstring detached from,$(GIT_ORIG)))
+ifneq (,$(findstring detached from,$(SOURCE_BRANCH)))
 SOURCE_BRANCH := $(shell git show -s --format='format:%H')
 endif
 
