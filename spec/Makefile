@@ -1,4 +1,41 @@
 GHPAGES_TMP := /tmp/ghpages$(shell echo $$$$)
+
+CI ?= false
+CI_BRANCH = $(TRAVIS_BRANCH)$(CIRCLE_BRANCH)
+CI_USER = $(word 1,$(subst /, ,$(TRAVIS_REPO_SLUG)))$(CIRCLE_PROJECT_USERNAME)
+CI_REPO = $(word 2,$(subst /, ,$(TRAVIS_REPO_SLUG)))$(CIRCLE_PROJECT_REPONAME)
+ifeq (true,$(CI))
+CI_REPO_FULL = $(CI_USER)/$(CI_REPO)
+endif
+ifdef CI_PULL_REQUESTS
+CI_IS_PR = true
+else
+# Circle makes this easy
+ifdef TRAVIS_PULL_REQUEST
+ifeq (false,$(TRAVIS_PULL_REQUEST))
+# If $TRAVIS_PULL_REQUEST is the word 'false', it's a branch build.
+CI_IS_PR = false
+else
+CI_IS_PR = true
+endif
+else
+CI_IS_PR = false
+endif
+endif
+# Github guesses
+GIT_REMOTE ?= origin
+ifndef CI_REPO_FULL
+GITHUB_REPO_FULL := $(shell git ls-remote --get-url $(GIT_REMOTE) 2>/dev/null |\
+			sed -e 's/^.*github\.com.//;s/\.git$$//')
+GITHUB_USER := $(word 1,$(subst /, ,$(GITHUB_REPO_FULL)))
+GITHUB_REPO := $(word 2,$(subst /, ,$(GITHUB_REPO_FULL)))
+else
+GITHUB_REPO_FULL := $(CI_REPO_FULL)
+GITHUB_USER := $(CI_USER)
+GITHUB_REPO:= $(CI_REPO)
+endif
+
+
 .INTERMEDIATE: $(GHPAGES_TMP)
 ifneq (,$(CI_BRANCH))
 SOURCE_BRANCH := $(CI_BRANCH)
