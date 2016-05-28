@@ -53,6 +53,8 @@ else
 	git pull
 endif
 ifneq (,$(TARGET_DIR))
+	@echo $(SOURCE_BRANCH)
+	@echo $(TARGET_DIR)
 	mkdir -p $(CURDIR)/$(TARGET_DIR)
 endif
 	mv -f $(GHPAGES_TMP)/* $(CURDIR)/$(TARGET_DIR)
