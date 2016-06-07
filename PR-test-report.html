@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Summary of WebCrypto Tests</title>
+  <style type="text/css">
+    body {color: black; background: white;}
+    .pass { background-color: #00aa00; }
+    .fail { background-color: #aa0000; }
+    th { background-color: grey; }
+  </style>
+</head>
+<body>
+  <div class="testreport">
+  <h1>WebCrypto Browser Profile Algorithm Interoperability Report</h1>
+    <p>The WebCrypto API defines a large number of algorithms. The purpose of this summary is to determine what algorithms are uniformly implemented across all major browsers. <!--This report was generated from the WebCrypto API test suite.--> The 3 tested implementions are Microsoft Edge, Google Chrome, and Firefox Mozilla. 
+    </p>
+   <table>
+   <tbody>
+
+<tr>
+<th>Algorithm</th>
+<th>In Main Spec</th>
+<th>Brower Profile</th>  
+<th>Microsoft Edge</th>
+<th>Google Chrome</th>
+<th>Mozilla Firefox</th>
+</tr>
+<tr class="testcase">
+<td><tr class="testcase">
+<td>RSASSA-PKCS1-v1_5 </td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+<tr class="testcase">
+<td>RSA-PSS</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+</tr>
+<tr class="testcase">
+  <td>RSA-OAEP </td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+   <td>ECDSA</td>
+<td class="pass">PASSED</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED<br />No importKey pkcs8-priv <br />No exportKey jwk-priv pkcs8-priv<br/></td>
+   </tr>
+      <td>ECDH</td>
+<td class="pass">PASSED</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED<br />No importKey pkcs8-priv raw-pub<br /> No exportKey jwk-priv pkcs8-priv raw-pub</td>
+  </tr>
+  <td>AES-CTR</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+  <td class="pass">PASSED</td>
+</tr>
+  <td>AES-CBC</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+  <td class="pass">PASSED<br />No 192 bit keys</td>
+  <td class="pass">PASSED</td>
+</tr>
+  <td>AES-CMAC</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+  </tr>
+  <td>AES-GCM</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+  <td class="pass">PASSED<br />No 192 bit keys</td>
+  <td class="pass">PASSED</td>
+</tr>
+  <td>AES-CFB</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+</tr>
+<td>AES-KW</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED<br />No 192 bit keys</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>HMAC</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>DH</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">PASSED <br />No deriveKey No importKey pkcs8-priv raw-pub <br />No exportKey jwk-priv pkcs8-priv raw-pub </td>
+</tr>
+
+<td>SHA-1</td>
+<td class="pass">PASSED</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>SHA-256</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>SHA-384</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>SHA-512</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+<td class="pass">PASSED</td>
+</tr>
+
+<td>CONCAT</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+</tr>
+
+<td>HKDF</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">PASSED</td>
+<td class="fail">FAIL</td>
+</tr>
+
+<td>PBKDF2</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="fail">FAIL</td>
+<td class="pass">YES<br />No generateKey No importKey SHA-256 SHA-384 SHA-512<br /> No exportKey SHA-256 SHA-384 SHA-512</td>
+</tr>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+ </body>
+</html>
