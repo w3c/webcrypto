@@ -674,6 +674,15 @@
           integers, each in the range 0 to 255 inclusive.
         </p>
         <p>
+          When this specification says to <dfn id="dfn-convert-integer-to-octet-string">convert a non-negative
+          integer <var>i</var> to an octet string of length <var>n</var></dfn>, where <var>n</var> * 8
+          is greater than the logarithm to base 2 of <var>i</var>, the user agent must
+          first calculate the binary representation of <var>i</var>, most significant bit first,
+          prefix this with sufficient zero bits to form a bit string of length <var>n</var> * 8, and
+          then return the <a href="dfn-octet-string">octet string</a> formed by considering each consecutive
+          sequence of 8 bits in that bit string as a binary integer, most significant bit first.
+        </p>
+        <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
           manner means comparing them exactly, code point for code point.
         </p>
@@ -8020,14 +8029,21 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Convert <var>r</var> to a bitstring and append the sequence of bytes to
-                           <var>result</var>.
+                            Let <var>n</var> be the smallest integer such that <var>n</var> * 8 is greater than
+                            the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                            by <var>params</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Convert <var>s</var> to a bitstring and append the sequence of bytes to
-                            <var>result</var>.
+                            <a href="#dfn-convert-integer-to-octet-string">Convert <var>r</var> to an octet string of
+                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="#dfn-convert-integer-to-octet-string">Convert <var>s</var> to an octet string of
+                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
                           </p>
                         </li>
                       </ol>
