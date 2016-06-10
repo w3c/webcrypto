@@ -3511,7 +3511,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               <td />
               <td />
               <td />
-              <td>&#10004;</td>
+              <td />
               <td>&#10004;</td>
               <td>&#10004;</td>
               <td>&#10004;</td>
@@ -14888,11 +14888,6 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
             </thead>
             <tbody>
               <tr>
-                <td>generateKey</td>
-                <td>None</td>
-                <td><a href="#dfn-CryptoKey">CryptoKey</a></td>
-              </tr>
-              <tr>
                 <td>deriveBits</td>
                 <td><a href="#dfn-Pbkdf2Params">Pbkdf2Params</a></td>
                 <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
@@ -14974,78 +14969,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 <li>
                   <p>
                     Return <var>result</var>
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Generate key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If <var>usages</var> contains a value that is not
-                    <code>"deriveKey"</code> or <code>"deriveBits"</code>, then
-                    <a href="#concept-throw">throw</a> a <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If <var>extractable</var> is true, then <a
-                    href="#concept-throw">throw</a> a <a
-                    href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Generate a new password by prompting the user.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
-                    representing the provided password as a series of bytes encoded using UTF-8.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
-                    <var>key</var> to <code>"secret"</code>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>algorithm</var> be a new <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a>
-                    object.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                    <var>algorithm</var> to <code>"PBKDF2"</code>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal
-                    slot of <var>key</var> to <var>algorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal
-                    slot of <var>key</var> to <var>extractable</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the [[<a href="#dfn-CryptoKey-slot-usages">usages</a>]] internal slot of
-                    <var>key</var> to the <a href="#concept-normalized-usages">normalized
-                    value</a> of <var>usages</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return <var>key</var>.
                   </p>
                 </li>
               </ol>
