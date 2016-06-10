@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>8 June 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>9 June 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
          Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://github.com/w3c/webcrypto/issues/new">file a bug</a>
     (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
@@ -57,7 +57,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 8 June 2016 <b>Editor’s Draft</b> of the
+        This document is the 9 June 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -135,7 +135,7 @@
 
     <div id="toc">
       <h2>Table of Contents</h2>
-      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. JavaScript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a><ul><li><a href="#extensibility">3.1. Extensibility</a></li></ul></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-operations">4.3. Operations</a></li><li><a href="#scope-out-of-scope">4.4. Out of scope</a></li></ul></li><li><a href="#concepts">5. Concepts</a><ul><li><a href="#concepts-underlying-implementation">5.1. Underlying Cryptographic Implementation</a></li><li><a href="#concepts-key-storage">5.2. Key Storage</a></li></ul></li><li><a href="#security-considerations">6. Security considerations</a><ul><li><a href="#security-implementers">6.1. Security considerations for implementers</a></li><li><a href="#security-developers">6.2. Security considerations for authors</a></li><li><a href="#security-users">6.3. Security considerations for users</a></li></ul></li><li><a href="#privacy">7. Privacy considerations</a></li><li><a href="#dependencies">8. Dependencies</a></li><li><a href="#terminology">9. Terminology</a></li><li><a href="#crypto-interface">10. Crypto interface</a><ul><li><a href="#Crypto-description">10.1. Description</a></li><li><a href="#Crypto-interface-methods">10.2. Methods and Parameters</a><ul><li><a href="#Crypto-method-getRandomValues">10.2.1. The getRandomValues method</a></li></ul></li><li><a href="#Crypto-interface-attributes">10.3. Attributes</a><ul><li><a href="#Crypto-attribute-subtle">10.3.1. The subtle attribute</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">11. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">11.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-dictionary">12. KeyAlgorithm dictionary</a><ul><li><a href="#key-algorithm-dictionary-description">12.1. Description</a></li><li><a href="#key-algorithm-dictionary-members">12.2. KeyAlgorithm dictionary members</a></li></ul></li><li><a href="#cryptokey-interface">13. CryptoKey interface</a><ul><li><a href="#cryptokey-interface-description">13.1. Description</a></li><li><a href="#cryptokey-interface-types">13.2. Key interface data types</a></li><li><a href="#cryptokey-interface-internal-slots">13.3. CryptoKey internal slots</a></li><li><a href="#cryptokey-interface-members">13.4. CryptoKey interface members</a></li><li><a href="#cryptokey-interface-clone">13.5. Structured clone algorithm</a></li></ul></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#JsonWebKey-dictionary">15. JsonWebKey dictionary</a></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. CryptoKeyPair dictionary</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-section-overview">18.1. Overview</a></li><li><a href="#algorithm-concepts">18.2. Concepts</a><ul><li><a href="#algorithm-concepts-naming">18.2.1. Naming</a></li><li><a href="#algorithm-concepts-operations">18.2.2. Supported Operations</a></li><li><a href="#algorithm-concepts-normalization">18.2.3. Normalization</a></li></ul></li><li><a href="#algorithm-conventions">18.3. Specification Conventions</a></li><li><a href="#algorithm-normalization">18.4. Algorithm Normalization</a><ul><li><a href="#algorithm-normalization-description">18.4.1. Description</a></li><li><a href="#algorithm-normalization-internal">18.4.2. Internal State Objects</a></li><li><a href="#algorithm-normalization-define-an-algorithm">18.4.3. Defining an Algorithm</a></li><li><a href="#algorithm-normalization-normalize-an-algorithm">18.4.4. Normalizing an algorithm</a></li></ul></li><li><a href="#algorithm-recommendations">18.5. Recommendations</a><ul><li><a href="#algorithm-recommendations-authors">18.5.1. For Authors</a></li><li><a href="#algorithm-recommendations-implementers">18.5.2. For Implementers</a></li></ul></li></ul></li><li><a href="#algorithm-overview">19. Algorithm Overview</a></li><li><a href="#rsassa-pkcs1">20. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">20.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">20.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">20.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">20.4. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-dictionary">20.5. RsaKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-dictionary">20.6. RsaHashedKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedImportParams-dictionary">20.7. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">20.8. Operations</a></li></ul></li><li><a href="#rsa-pss">21. RSA-PSS</a><ul><li><a href="#rsa-pss-description">21.1. Description</a></li><li><a href="#rsa-pss-registration">21.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">21.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">21.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">22. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">22.1. Description</a></li><li><a href="#rsa-oaep-registration">22.2. Registration</a></li><li><a href="#rsa-oaep-params">22.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">22.4. Operations</a></li></ul></li><li><a href="#ecdsa">23. ECDSA</a><ul><li><a href="#ecdsa-description">23.1. Description</a></li><li><a href="#ecdsa-registration">23.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">23.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">23.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-dictionary">23.5. EcKeyAlgorithm dictionary</a></li><li><a href="#EcKeyImportParams-dictionary">23.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">23.7. Operations</a></li></ul></li><li><a href="#ecdh">24. ECDH</a><ul><li><a href="#ecdh-description">24.1. Description</a></li><li><a href="#ecdh-registration">24.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">24.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">24.4. Operations</a></li></ul></li><li><a href="#aes-ctr">25. AES-CTR</a><ul><li><a href="#aes-ctr-description">25.1. Description</a></li><li><a href="#aes-ctr-registration">25.2. Registration</a></li><li><a href="#aes-ctr-params">25.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-dictionary">25.4. </a></li><li><a href="#aes-keygen-params">25.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">25.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">25.7. Operations</a></li></ul></li><li><a href="#aes-cbc">26. AES-CBC</a><ul><li><a href="#aes-cbc-description">26.1. Description</a></li><li><a href="#aes-cbc-registration">26.2. Registration</a></li><li><a href="#aes-cbc-params">26.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">26.4. Operations</a></li></ul></li><li><a href="#aes-gcm">27. AES-GCM</a><ul><li><a href="#aes-gcm-description">27.1. Description</a></li><li><a href="#aes-gcm-registration">27.2. Registration</a></li><li><a href="#aes-gcm-params">27.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">27.4. Operations</a></li></ul></li><li><a href="#aes-kw">28. AES-KW</a><ul><li><a href="#aes-kw-description">28.1. Description</a></li><li><a href="#aes-kw-registration">28.2. Registration</a></li><li><a href="#aes-kw-operations">28.3. Operations</a></li></ul></li><li><a href="#hmac">29. HMAC</a><ul><li><a href="#hmac-description">29.1. Description</a></li><li><a href="#hmac-registration">29.2. Registration</a></li><li><a href="#hmac-importparams">29.3. HmacImportParams dictionary</a></li><li><a href="#HmacKeyAlgorithm-dictionary">29.4. HmacKeyAlgorithm dictionary</a></li><li><a href="#hmac-keygen-params">29.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-operations">29.6. Operations</a></li></ul></li><li><a href="#sha">30. SHA</a><ul><li><a href="#sha-description">30.1. Description</a></li><li><a href="#sha-registration">30.2. Registration</a></li><li><a href="#sha-operations">30.3. Operations</a></li></ul></li><li><a href="#hkdf-ctr">31. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">31.1. Description</a></li><li><a href="#hkdf-ctr-registration">31.2. Registration</a></li><li><a href="#hkdf-ctr-params">31.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">31.4. Operations</a></li></ul></li><li><a href="#pbkdf2">32. PBKDF2</a><ul><li><a href="#pbkdf2-description">32.1. Description</a></li><li><a href="#pbkdf2-registration">32.2. Registration</a></li><li><a href="#pbkdf2-params">32.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">32.4. Operations</a></li></ul></li><li><a href="#examples-section">33. JavaScript Example Code</a><ul><li><a href="#examples-signing">33.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">33.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">34. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">34.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">34.2. JSON Web Key Parameters Registration</a></li></ul></li><li><a href="#acknowledgements-section">35. Acknowledgments</a></li><li><a href="#references">36. References</a><ul><li><a href="#normative-references">36.1. Normative References</a></li><li><a href="#informative-references">36.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
+      <div class="toc"><ul><li><a href="#introduction">1. Introduction</a></li><li><a href="#use-cases">2. Use Cases</a><ul><li><a href="#multifactor-authentication">2.1. Multi-factor Authentication</a></li><li><a href="#protected-document">2.2. Protected Document Exchange</a></li><li><a href="#cloud-storage">2.3. Cloud Storage</a></li><li><a href="#document-signing">2.4. Document Signing</a></li><li><a href="#data-integrity-protection">2.5. Data Integrity Protection</a></li><li><a href="#secure-messaging">2.6. Secure Messaging</a></li><li><a href="#jose">2.7. JavaScript Object Signing and Encryption (JOSE)</a></li></ul></li><li><a href="#conformance">3. Conformance</a><ul><li><a href="#extensibility">3.1. Extensibility</a></li></ul></li><li><a href="#scope">4. Scope</a><ul><li><a href="#scope-abstraction">4.1. Level of abstraction</a></li><li><a href="#scope-algorithms">4.2. Cryptographic algorithms</a></li><li><a href="#scope-out-of-scope">4.3. Out of scope</a></li></ul></li><li><a href="#concepts">5. Concepts</a><ul><li><a href="#concepts-underlying-implementation">5.1. Underlying Cryptographic Implementation</a></li><li><a href="#concepts-key-storage">5.2. Key Storage</a></li></ul></li><li><a href="#security-considerations">6. Security considerations</a><ul><li><a href="#security-implementers">6.1. Security considerations for implementers</a></li><li><a href="#security-developers">6.2. Security considerations for authors</a></li><li><a href="#security-users">6.3. Security considerations for users</a></li></ul></li><li><a href="#privacy">7. Privacy considerations</a></li><li><a href="#dependencies">8. Dependencies</a></li><li><a href="#terminology">9. Terminology</a></li><li><a href="#crypto-interface">10. Crypto interface</a><ul><li><a href="#Crypto-description">10.1. Description</a></li><li><a href="#Crypto-interface-methods">10.2. Methods and Parameters</a><ul><li><a href="#Crypto-method-getRandomValues">10.2.1. The getRandomValues method</a></li></ul></li><li><a href="#Crypto-interface-attributes">10.3. Attributes</a><ul><li><a href="#Crypto-attribute-subtle">10.3.1. The subtle attribute</a></li></ul></li></ul></li><li><a href="#algorithm-dictionary">11. Algorithm dictionary</a><ul><li><a href="#algorithm-dictionary-members">11.1. Algorithm Dictionary Members</a></li></ul></li><li><a href="#key-algorithm-dictionary">12. KeyAlgorithm dictionary</a><ul><li><a href="#key-algorithm-dictionary-description">12.1. Description</a></li><li><a href="#key-algorithm-dictionary-members">12.2. KeyAlgorithm dictionary members</a></li></ul></li><li><a href="#cryptokey-interface">13. CryptoKey interface</a><ul><li><a href="#cryptokey-interface-description">13.1. Description</a></li><li><a href="#cryptokey-interface-types">13.2. Key interface data types</a></li><li><a href="#cryptokey-interface-internal-slots">13.3. CryptoKey internal slots</a></li><li><a href="#cryptokey-interface-members">13.4. CryptoKey interface members</a></li><li><a href="#cryptokey-interface-clone">13.5. Structured clone algorithm</a></li></ul></li><li><a href="#subtlecrypto-interface">14. SubtleCrypto interface</a><ul><li><a href="#subtlecrypto-interface-description">14.1. Description</a></li><li><a href="#subtlecrypto-interface-datatypes">14.2. Data Types</a></li><li><a href="#subtlecrypto-interface-methods">14.3. Methods and Parameters</a><ul><li><a href="#SubtleCrypto-method-encrypt">14.3.1. The encrypt method</a></li><li><a href="#SubtleCrypto-method-decrypt">14.3.2. The decrypt method</a></li><li><a href="#SubtleCrypto-method-sign">14.3.3. The sign method</a></li><li><a href="#SubtleCrypto-method-verify">14.3.4. The verify method</a></li><li><a href="#SubtleCrypto-method-digest">14.3.5. The digest method</a></li><li><a href="#SubtleCrypto-method-generateKey">14.3.6. The generateKey method</a></li><li><a href="#SubtleCrypto-method-deriveKey">14.3.7. The deriveKey method</a></li><li><a href="#SubtleCrypto-method-deriveBits">14.3.8. The deriveBits method</a></li><li><a href="#SubtleCrypto-method-importKey">14.3.9. The importKey method</a></li><li><a href="#SubtleCrypto-method-exportKey">14.3.10. The exportKey method</a></li><li><a href="#SubtleCrypto-method-wrapKey">14.3.11. The wrapKey method</a></li><li><a href="#SubtleCrypto-method-unwrapKey">14.3.12. The unwrapKey method</a></li></ul></li><li><a href="#SubtleCrypto-Exceptions">14.4. Exceptions</a></li></ul></li><li><a href="#JsonWebKey-dictionary">15. JsonWebKey dictionary</a></li><li><a href="#big-integer">16. BigInteger</a></li><li><a href="#keypair">17. CryptoKeyPair dictionary</a></li><li><a href="#algorithms">18. Algorithms</a><ul><li><a href="#algorithms-section-overview">18.1. Overview</a></li><li><a href="#algorithm-concepts">18.2. Concepts</a><ul><li><a href="#algorithm-concepts-naming">18.2.1. Naming</a></li><li><a href="#algorithm-concepts-operations">18.2.2. Supported Operations</a></li><li><a href="#algorithm-concepts-normalization">18.2.3. Normalization</a></li></ul></li><li><a href="#algorithm-conventions">18.3. Specification Conventions</a></li><li><a href="#algorithm-normalization">18.4. Algorithm Normalization</a><ul><li><a href="#algorithm-normalization-description">18.4.1. Description</a></li><li><a href="#algorithm-normalization-internal">18.4.2. Internal State Objects</a></li><li><a href="#algorithm-normalization-define-an-algorithm">18.4.3. Defining an Algorithm</a></li><li><a href="#algorithm-normalization-normalize-an-algorithm">18.4.4. Normalizing an algorithm</a></li></ul></li><li><a href="#algorithm-recommendations">18.5. Recommendations</a><ul><li><a href="#algorithm-recommendations-authors">18.5.1. For Authors</a></li><li><a href="#algorithm-recommendations-implementers">18.5.2. For Implementers</a></li></ul></li></ul></li><li><a href="#algorithm-overview">19. Algorithm Overview</a></li><li><a href="#rsassa-pkcs1">20. RSASSA-PKCS1-v1_5</a><ul><li><a href="#rsassa-pkcs1-description">20.1. Description</a></li><li><a href="#rsassa-pkcs1-registration">20.2. Registration</a></li><li><a href="#RsaKeyGenParams-dictionary">20.3. RsaKeyGenParams dictionary</a></li><li><a href="#RsaHashedKeyGenParams-dictionary">20.4. RsaHashedKeyGenParams dictionary</a></li><li><a href="#RsaKeyAlgorithm-dictionary">20.5. RsaKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedKeyAlgorithm-dictionary">20.6. RsaHashedKeyAlgorithm dictionary</a></li><li><a href="#RsaHashedImportParams-dictionary">20.7. RsaHashedImportParams dictionary</a></li><li><a href="#rsassa-pkcs1-operations">20.8. Operations</a></li></ul></li><li><a href="#rsa-pss">21. RSA-PSS</a><ul><li><a href="#rsa-pss-description">21.1. Description</a></li><li><a href="#rsa-pss-registration">21.2. Registration</a></li><li><a href="#RsaPssParams-dictionary">21.3. RsaPssParams dictionary</a></li><li><a href="#rsa-pss-operations">21.4. Operations</a></li></ul></li><li><a href="#rsa-oaep">22. RSA-OAEP</a><ul><li><a href="#rsa-oaep-description">22.1. Description</a></li><li><a href="#rsa-oaep-registration">22.2. Registration</a></li><li><a href="#rsa-oaep-params">22.3. RsaOaepParams dictionary</a></li><li><a href="#rsa-oaep-operations">22.4. Operations</a></li></ul></li><li><a href="#ecdsa">23. ECDSA</a><ul><li><a href="#ecdsa-description">23.1. Description</a></li><li><a href="#ecdsa-registration">23.2. Registration</a></li><li><a href="#EcdsaParams-dictionary">23.3. EcdsaParams dictionary</a></li><li><a href="#EcKeyGenParams-dictionary">23.4. EcKeyGenParams dictionary</a></li><li><a href="#EcKeyAlgorithm-dictionary">23.5. EcKeyAlgorithm dictionary</a></li><li><a href="#EcKeyImportParams-dictionary">23.6. EcKeyImportParams dictionary</a></li><li><a href="#ecdsa-operations">23.7. Operations</a></li></ul></li><li><a href="#ecdh">24. ECDH</a><ul><li><a href="#ecdh-description">24.1. Description</a></li><li><a href="#ecdh-registration">24.2. Registration</a></li><li><a href="#dh-EcdhKeyDeriveParams">24.3. EcdhKeyDeriveParams dictionary</a></li><li><a href="#ecdh-operations">24.4. Operations</a></li></ul></li><li><a href="#aes-ctr">25. AES-CTR</a><ul><li><a href="#aes-ctr-description">25.1. Description</a></li><li><a href="#aes-ctr-registration">25.2. Registration</a></li><li><a href="#aes-ctr-params">25.3. AesCtrParams dictionary</a></li><li><a href="#AesKeyAlgorithm-dictionary">25.4. </a></li><li><a href="#aes-keygen-params">25.5. AesKeyGenParams dictionary</a></li><li><a href="#aes-derivedkey-params">25.6. AesDerivedKeyParams dictionary</a></li><li><a href="#aes-ctr-operations">25.7. Operations</a></li></ul></li><li><a href="#aes-cbc">26. AES-CBC</a><ul><li><a href="#aes-cbc-description">26.1. Description</a></li><li><a href="#aes-cbc-registration">26.2. Registration</a></li><li><a href="#aes-cbc-params">26.3. AesCbcParams dictionary</a></li><li><a href="#aes-cbc-operations">26.4. Operations</a></li></ul></li><li><a href="#aes-gcm">27. AES-GCM</a><ul><li><a href="#aes-gcm-description">27.1. Description</a></li><li><a href="#aes-gcm-registration">27.2. Registration</a></li><li><a href="#aes-gcm-params">27.3. AesGcmParams dictionary</a></li><li><a href="#aes-gcm-operations">27.4. Operations</a></li></ul></li><li><a href="#aes-kw">28. AES-KW</a><ul><li><a href="#aes-kw-description">28.1. Description</a></li><li><a href="#aes-kw-registration">28.2. Registration</a></li><li><a href="#aes-kw-operations">28.3. Operations</a></li></ul></li><li><a href="#hmac">29. HMAC</a><ul><li><a href="#hmac-description">29.1. Description</a></li><li><a href="#hmac-registration">29.2. Registration</a></li><li><a href="#hmac-importparams">29.3. HmacImportParams dictionary</a></li><li><a href="#HmacKeyAlgorithm-dictionary">29.4. HmacKeyAlgorithm dictionary</a></li><li><a href="#hmac-keygen-params">29.5. HmacKeyGenParams dictionary</a></li><li><a href="#hmac-operations">29.6. Operations</a></li></ul></li><li><a href="#sha">30. SHA</a><ul><li><a href="#sha-description">30.1. Description</a></li><li><a href="#sha-registration">30.2. Registration</a></li><li><a href="#sha-operations">30.3. Operations</a></li></ul></li><li><a href="#hkdf-ctr">31. HKDF-CTR</a><ul><li><a href="#hkdf-ctr-description">31.1. Description</a></li><li><a href="#hkdf-ctr-registration">31.2. Registration</a></li><li><a href="#hkdf-ctr-params">31.3. HkdfCtrParams dictionary</a></li><li><a href="#hkdf2-ctr-operations">31.4. Operations</a></li></ul></li><li><a href="#pbkdf2">32. PBKDF2</a><ul><li><a href="#pbkdf2-description">32.1. Description</a></li><li><a href="#pbkdf2-registration">32.2. Registration</a></li><li><a href="#pbkdf2-params">32.3. Pbkdf2Params dictionary</a></li><li><a href="#pbkdf2-operations">32.4. Operations</a></li></ul></li><li><a href="#examples-section">33. JavaScript Example Code</a><ul><li><a href="#examples-signing">33.1. Generate a signing key pair, sign some data</a></li><li><a href="#examples-symmetric-encryption">33.2. Symmetric Encryption</a></li></ul></li><li><a href="#iana-section">34. IANA Considerations</a><ul><li><a href="#iana-section-jws-jwa">34.1. JSON Web Signature and Encryption Algorithms Registration</a></li><li><a href="#iana-section-jwk">34.2. JSON Web Key Parameters Registration</a></li></ul></li><li><a href="#acknowledgements-section">35. Acknowledgments</a></li><li><a href="#references">36. References</a><ul><li><a href="#normative-references">36.1. Normative References</a></li><li><a href="#informative-references">36.2. Informative References</a></li></ul></li></ul><ul><li><a href="#jwk-mapping">A. Mapping between JSON Web Key / JSON Web Algorithm</a><ul><li><a href="#jwk-mapping-alg">A.1. Algorithm mappings</a></li><li><a href="#jwk-mapping-usage">A.2. Usage mapping</a></li></ul></li><li><a href="#spki-mapping">B. Mapping between Algorithm and SubjectPublicKeyInfo</a></li><li><a href="#pkcs8-mapping">C. Mapping between Algorithm and PKCS#8 PrivateKeyInfo</a></li></ul></div>
     </div>
 
     <div id="sections">
@@ -405,17 +405,8 @@
             behaviors of individual algorithms, if implemented.
           </p>
         </div>
-        <div class="section" id="scope-operations">
-          <h3>4.3. Operations</h3>
-          <p>
-            Although the API does not expose the notion of cryptographic providers or modules, each
-            key is internally bound to a cryptographic provider or module, so web applications can
-            rest assured that the right cryptographic provider or module will be used to perform
-            cryptographic operations involving that key.
-          </p>
-        </div>
         <div class="section" id="scope-out-of-scope">
-          <h3>4.4. Out of scope</h3>
+          <h3>4.3. Out of scope</h3>
           <p>
             This API, while allowing applications to generate, retrieve, and manipulate keying
             material, does not specifically address the provisioning of keys in particular types of
@@ -681,6 +672,22 @@
         <p>
           An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
           integers, each in the range 0 to 255 inclusive.
+        </p>
+        <p>
+          An <dfn id="dfn-octet-string-containing">octet string containing a bit string</dfn> <var>b</var> is the
+          <a href="#dfn-octet-string">octet string</a> obtained by first appending zero or more
+          bits of value zero to <var>b</var> such that the length of the resulting bit string is minimal and an integer multiple of 8
+          and then considering each consecutive sequence of 8 bits in that string as a binary integer, most significant
+          bit first.
+        </p>
+        <p>
+          When this specification says to <dfn id="dfn-convert-integer-to-octet-string">convert a non-negative
+          integer <var>i</var> to an octet string of length <var>n</var></dfn>, where <var>n</var> * 8
+          is greater than the logarithm to base 2 of <var>i</var>, the user agent must
+          first calculate the binary representation of <var>i</var>, most significant bit first,
+          prefix this with sufficient zero bits to form a bit string of length <var>n</var> * 8, and
+          then return the <a href="dfn-octet-string">octet string</a> formed by considering each consecutive
+          sequence of 8 bits in that bit string as a binary integer, most significant bit first.
         </p>
         <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
@@ -4190,7 +4197,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> {
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -5513,7 +5520,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7103,7 +7110,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -7313,7 +7320,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 <li>
                   <p>
                     If the underlying cryptographic key material represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of <var>key</var>
-                    cannot be accessed, then <a href="#concept-throw">throw</a> a <a href="#dfn-OperationError"><code>OperationError</code></a>.
+                    cannot be accessed, then <a href="#concept-throw">throw</a> an <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -8029,14 +8036,21 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Convert <var>r</var> to a bitstring and append the sequence of bytes to
-                           <var>result</var>.
+                            Let <var>n</var> be the smallest integer such that <var>n</var> * 8 is greater than
+                            the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                            by <var>params</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Convert <var>s</var> to a bitstring and append the sequence of bytes to
-                            <var>result</var>.
+                            <a href="#dfn-convert-integer-to-octet-string">Convert <var>r</var> to an octet string of
+                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            <a href="#dfn-convert-integer-to-octet-string">Convert <var>s</var> to an octet string of
+                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
                           </p>
                         </li>
                       </ol>
@@ -8740,7 +8754,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"sig"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -8809,7 +8823,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                       Let <var>algNamedCurve</var> be the string <code>"P-384"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field is equal to the string "ES521":
+                                      If the <code>"alg"</code> field is equal to the string "ES512":
                                     </dt>
                                     <dd>
                                       Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
@@ -8930,6 +8944,113 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                             attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                            internal slot of <var>key</var> to <var>algorithm</var>.
+                          </p>
+                        </li>
+                      </ol>
+                    </dd>
+                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dd>
+                      <ol>
+                        <li>
+                          <p>
+                            If the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
+                            member of <var>normalizedAlgorithm</var> is not a
+                            <a href="#dfn-NamedCurve">named curve</a>,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>usages</var> is not the empty list,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-DataError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>extractable</var> is false,
+                            then <a href="#concept-throw">throw</a> an
+                            <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>
+                              If <var>namedCurve</var> is <code>"P-256"</code>,
+                              <code>"P-384"</code> or <code>"P-521"</code>:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Let <var>Q</var> be the elliptic curve point on the curve identified
+                                    by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
+                                    member of <var>normalizedAlgorithm</var> identified by interpreting
+                                    <var>keyData</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
+                                    object that represents <var>Q</var>
+                                  </p>
+                                </li>
+                              </ol>
+                            </dd>
+                            <dt>Otherwise:</dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdh-extended-import-steps">key
+                                    import steps</a> defined by
+                                    <a href="#dfn-applicable-specification">other applicable
+                                    specifications</a>, passing <var>format</var>, <var>keyData</var>
+                                    and obtaining <var>key</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occured or there are no
+                                    <a href="#dfn-applicable-specification">applicable
+                                    specifications</a>,
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                              </ol>
+                            </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>algorithm</var> be a new <a href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                            <var>algorithm</var> to <code>"ECDH"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                            attribute of <var>algorithm</var> to equal the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                            <var>normalizedAlgorithm</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
+                            of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
                         <li>
@@ -9400,6 +9521,54 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                       </ol>
                     </dd>
+                    <dt>
+                      If <var>format</var> is <code>"raw"</code>:
+                    </dt>
+                    <dd>
+                      <ol>
+                        <li>
+                          <p>
+                            If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
+                            of <var>key</var> is not <code>"public"</code>, then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>
+                              If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
+                              of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
+                              or <code>"P-521"</code>:
+                            </dt>
+                            <dd>
+                              <p>
+                                Let <var>data</var> be an <a href="#dfn-octet-string">octet string</a> representing the Elliptic Curve
+                                point <var>Q</var> represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                                <var>key</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                              </p>
+                            </dd>
+                            <dt>Otherwise:</dt>
+                            <dd>
+                              <p>
+                                Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
+                                defined by <a href="#dfn-applicable-specification">other applicable
+                                specifications</a>, passing <var>format</var> and the
+                                <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
+                                the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                internal slot of <var>key</var>
+                                and obtaining <var>namedCurve</var> and <var>data</var>.
+                              </p>
+                            </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            <var>data</var>.
+                          </p>
+                        </li>
+                      </ol>
+                    </dd>
                     <dt>Otherwise:</dt>
                     <dd>
                       <p>
@@ -9676,6 +9845,14 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
+                    If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                    the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                    <var>publicKey</var> is not equal to the <a href="#dfn-KeyAlgorithm-name">name</a> property of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                    <var>key</var>, then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
                     <var>publicKey</var> is not equal to the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> property of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
@@ -9754,7 +9931,9 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <a href="#dfn-OperationError"><code>OperationError</code></a>.
                         </dd>
                         <dt>Otherwise:</dt>
-                        <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                        <dd>
+                          Return an <a href="#dfn-octet-string-containing">octet string containing</a> the first <var>length</var> bits of <var>secret</var>.
+                        </dd>
                       </dl>
                     </dd>
                   </dl>
@@ -10194,7 +10373,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present,
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -11314,7 +11493,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -11846,7 +12025,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12459,7 +12638,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12928,7 +13107,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>, 
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13192,7 +13371,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
           <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
-  <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacImportParams-hash">hash</dfn>;
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacImportParams-hash">hash</dfn>;
   <span class="comment">// The length (in bits) of the key.</span>
   [EnforceRange] unsigned long <dfn id="dfn-HmacImportParams-length">length</dfn>;
 };
@@ -13407,21 +13586,10 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                           </p>
                         </li>
                         <li>
-                          <dl class="switch">
-                            <dt>
-                              If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var> is present:
-                            </dt>
-                            <dd>
-                              Set <var>hash</var> to equal the <a href="#dfn-HmacImportParams-hash">hash</a>
+                          <p>
+                            Set <var>hash</var> to equal the <a href="#dfn-HmacImportParams-hash">hash</a>
                               member of <var>normalizedAlgorithm</var>.
-                            </dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <a href="#concept-throw">throw</a> a
-                              <a href="#dfn-TypeError"><code>TypeError</code></a>.
-                            </dd>
-                          </dl>
+                          </p>
                         </li>
                       </ol>
                     </dd>
@@ -13457,150 +13625,76 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                           </p>
                         </li>
                         <li>
+                          <p>
+                            Set the <var>hash</var> to equal the <a href="#dfn-HmacImportParams-hash">hash</a> member of
+                            <var>normalizedAlgorithm</var>.
+                          </p>
+                        </li>
+                        <li>
                           <dl class="switch">
                             <dt>
-                              If the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                              <var>normalizedAlgorithm</var> is present:
+                              If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is
+                              <code>"SHA-1"</code>:
                             </dt>
                             <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    Set the <var>hash</var> to equal the <a href="#dfn-HmacImportParams-hash">hash</a> member of
-                                    <var>normalizedAlgorithm</var>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <dl class="switch">
-                                    <dt>
-                                      If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
-                                      of <var>hash</var> is
-                                      <code>"SHA-1"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS1"</code>,
-                                      then <a href="#concept-throw">throw</a> a
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
-                                      of <var>hash</var> is
-                                      <code>"SHA-256"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS256"</code>,
-                                      then <a href="#concept-throw">throw</a> a
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
-                                      of <var>hash</var> is
-                                      <code>"SHA-384"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS384"</code>,
-                                      then <a href="#concept-throw">throw</a> a
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
-                                      of <var>hash</var> is
-                                      <code>"SHA-512"</code>:
-                                    </dt>
-                                    <dd>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is present
-                                      and is not <code>"HS512"</code>,
-                                      then <a href="#concept-throw">throw</a> a
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                    <dt>
-                                      Otherwise, if the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
-                                      of <var>hash</var> is defined in
-                                      <a href="#dfn-applicable-specification">another applicable
-                                      specification</a>:
-                                    </dt>
-                                    <dd>
-                                      Perform any <a href="#dfn-hmac-extended-import-steps">key
-                                      import steps</a> defined by
-                                      <a href="#dfn-applicable-specification">other applicable
-                                      specifications</a>, passing <var>format</var>, <var>jwk</var>
-                                      and <var>hash</var>
-                                      and obtaining <var>hash</var>.
-                                    </dd>
-                                    <dt>Otherwise:</dt>
-                                    <dd>
-                                      <a href="#concept-throw">throw</a> a
-                                      <a href="#dfn-DataError"><code>DataError</code></a>.
-                                    </dd>
-                                  </dl>
-                                </li>
-                              </ol>
+                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              and is not <code>"HS1"</code>,
+                              then <a href="#concept-throw">throw</a> a
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
                             </dd>
-                            <dt>Otherwise:</dt>
+                            <dt>
+                              If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is
+                              <code>"SHA-256"</code>:
+                            </dt>
                             <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If the <code>alg</code> field of <var>jwk</var> is not present,
-                                    then <a href="#concept-throw">throw</a> a
-                                    <a href="#dfn-DataError"><code>DataError</code></a>.
-                                  </p>
-                                </li>
-                                <li>
-                                  <dl class="switch">
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS1"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-1"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS256"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-256"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS384"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-384"</code>.
-                                    </dd>
-                                    <dt>
-                                      If the <code>"alg"</code> field of <var>jwk</var> is
-                                      <code>"HS512"</code>:
-                                    </dt>
-                                    <dd>
-                                      Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
-                                      <var>hash</var> to <code>"SHA-512"</code>.
-                                    </dd>
-                                    <dt>Otherwise:</dt>
-                                    <dd>
-                                      Perform any <a href="#dfn-hmac-extended-import-steps">key
-                                      import steps</a> defined by
-                                      <a href="#dfn-applicable-specification">other applicable
-                                      specifications</a>, passing <var>format</var>, <var>jwk</var>
-                                      and undefined
-                                      and obtaining <var>hash</var>.
-                                    </dd>
-                                  </dl>
-                                </li>
-                              </ol>
+                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              and is not <code>"HS256"</code>,
+                              then <a href="#concept-throw">throw</a> a
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </dd>
+                            <dt>
+                              If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is
+                              <code>"SHA-384"</code>:
+                            </dt>
+                            <dd>
+                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              and is not <code>"HS384"</code>,
+                              then <a href="#concept-throw">throw</a> a
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </dd>
+                            <dt>
+                              If If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is
+                              <code>"SHA-512"</code>:
+                            </dt>
+                            <dd>
+                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              and is not <code>"HS512"</code>,
+                              then <a href="#concept-throw">throw</a> a
+                              <a href="#dfn-DataError"><code>DataError</code></a>.
+                            </dd>
+                            <dt>
+                              Otherwise, if the <a href="#dfn-KeyAlgorithm-name">name</a> attribute
+                              of <var>hash</var> is defined in
+                              <a href="#dfn-applicable-specification">another applicable
+                              specification</a>:
+                            </dt>
+                            <dd>
+                              Perform any <a href="#dfn-hmac-extended-import-steps">key
+                              import steps</a> defined by
+                              <a href="#dfn-applicable-specification">other applicable
+                              specifications</a>, passing <var>format</var>, <var>jwk</var>
+                              and <var>hash</var>
+                              and obtaining <var>hash</var>.
                             </dd>
                           </dl>
                         </li>
                         <li>
                           <p>
-                            If the <code>"use"</code> field of <var>jwk</var> is present, and is
+                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
                             not  <code>"sign"</code>, 
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -13736,20 +13830,24 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                   </p>
                 </li>
                 <li>
+                  <p>
+                    Let <var>bits</var> be the raw bits of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                    <var>key</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>data</var> be an <a href="#dfn-octet-string-containing">octet string containing</a> <var>bits</var>.
+                  </p>
+                </li>
+                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
-                            <var>data</var>.
+                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing <var>data</var>.
                           </p>
                         </li>
                       </ol>
@@ -13772,8 +13870,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                         <li>
                           <p>
                             Set the <code>k</code> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>, encoded according to Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            containing <var>data</var>, encoded according to Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
                           </p>
                         </li>
                         <li>
@@ -13881,23 +13978,11 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                       <var>normalizedDerivedKeyAlgorithm</var> is not present:
                     </dt>
                     <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If the <a href="#dfn-HmacImportParams-hash">hash</a> member
-                            of <var>normalizedDerivedKeyAlgorithm</var> is not present,
-                            <a href="#concept-throw">throw</a> a
-                            <a href="#dfn-TypeError"><code>TypeError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>length</var> be the block size in bytes of the hash function
-                            identified by the <a href="#dfn-HmacImportParams-hash">hash</a> member
-                            of <var>normalizedDerivedKeyAlgorithm</var>.
-                          </p>
-                        </li>
-                      </ol>
+                      <p>
+                        Let <var>length</var> be the block size in bytes of the hash function
+                        identified by the <a href="#dfn-HmacImportParams-hash">hash</a> member
+                        of <var>normalizedDerivedKeyAlgorithm</var>.
+                      </p>
                     </dd>
                     <dt>
                       Otherwise, if the <a href="#dfn-HmacImportParams-length">length</a>
@@ -14106,7 +14191,7 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
               <ol>
                 <li>
                   <p>
-                    If <var>length</var> is null, then <a href="#concept-throw">throw</a> a <a href="#dfn-TypeError"><code>TypeError</code></a>.
+                    If <var>length</var> is null, then <a href="#concept-throw">throw</a> an <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
