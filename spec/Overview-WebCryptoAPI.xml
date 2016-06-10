@@ -10173,6 +10173,16 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
+                    If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                    the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                    <var>publicKey</var> is not equal to the <a
+                    href="#dfn-KeyAlgorithm-name">name</a> property of the [[<a
+                    href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
+                    <var>key</var>, then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
                     the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
                     <var>publicKey</var> is not equal to the <a
