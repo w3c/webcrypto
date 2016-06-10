@@ -674,6 +674,13 @@
           integers, each in the range 0 to 255 inclusive.
         </p>
         <p>
+          An <dfn id="dfn-octet-string-containing">octet string containing a bit string</dfn> <var>b</var> is the
+          <a href="#dfn-octet-string">octet string</a> obtained by first appending zero or more
+          bits of value zero to <var>b</var> such that the length of the resulting bit string is minimal and an integer multiple of 8
+          and then considering each consecutive sequence of 8 bits in that string as a binary integer, most significant
+          bit first.
+        </p>
+        <p>
           When this specification says to <dfn id="dfn-convert-integer-to-octet-string">convert a non-negative
           integer <var>i</var> to an octet string of length <var>n</var></dfn>, where <var>n</var> * 8
           is greater than the logarithm to base 2 of <var>i</var>, the user agent must
@@ -9916,7 +9923,9 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           <a href="#dfn-OperationError"><code>OperationError</code></a>.
                         </dd>
                         <dt>Otherwise:</dt>
-                        <dd>Return the first <var>length</var> bits of <var>secret</var>.</dd>
+                        <dd>
+                          Return an <a href="#dfn-octet-string-containing">octet string containing</a> the first <var>length</var> bits of <var>secret</var>.
+                        </dd>
                       </dl>
                     </dd>
                   </dl>
@@ -13813,20 +13822,24 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                   </p>
                 </li>
                 <li>
+                  <p>
+                    Let <var>bits</var> be the raw bits of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                    <var>key</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Let <var>data</var> be an <a href="#dfn-octet-string-containing">octet string containing</a> <var>bits</var>.
+                  </p>
+                </li>
+                <li>
                   <dl class="switch">
                     <dt>If <var>format</var> is <code>"raw"</code>:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
-                            <var>data</var>.
+                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing <var>data</var>.
                           </p>
                         </li>
                       </ol>
@@ -13849,8 +13862,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                         <li>
                           <p>
                             Set the <code>k</code> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                            <var>key</var>, encoded according to Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
+                            containing <var>data</var>, encoded according to Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>.
                           </p>
                         </li>
                         <li>
