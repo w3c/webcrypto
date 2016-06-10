@@ -9234,6 +9234,115 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                       </ol>
                     </dd>
+                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dd>
+                      <ol>
+                        <li>
+                          <p>
+                            If the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
+                            member of <var>normalizedAlgorithm</var> is not a
+                            <a href="#dfn-NamedCurve">named curve</a>,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-DataError"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>usages</var> is not the empty list,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-DataError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            If <var>extractable</var> is false,
+                            then <a href="#concept-throw">throw</a> an
+                            <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>
+                              If <var>namedCurve</var> is <code>"P-256"</code>,
+                              <code>"P-384"</code> or <code>"P-521"</code>:
+                            </dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Let <var>Q</var> be the elliptic curve point on the curve identified
+                                    by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
+                                    member of <var>normalizedAlgorithm</var> identified by interpreting
+                                    <var>keyData</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
+                                    object that represents <var>Q</var>
+                                  </p>
+                                </li>
+                              </ol>
+                            </dd>
+                            <dt>Otherwise:</dt>
+                            <dd>
+                              <ol>
+                                <li>
+                                  <p>
+                                    Perform any <a href="#dfn-ecdh-extended-import-steps">key
+                                    import steps</a> defined by
+                                    <a href="#dfn-applicable-specification">other applicable
+                                    specifications</a>, passing <var>format</var>, <var>keyData</var>
+                                    and obtaining <var>key</var>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If an error occured or there are no
+                                    <a href="#dfn-applicable-specification">applicable
+                                    specifications</a>,
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                              </ol>
+                            </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>algorithm</var> be a new <a
+                            href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
+                            <var>algorithm</var> to <code>"ECDH"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                            attribute of <var>algorithm</var> to equal the <a
+                            href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a> member of
+                            <var>normalizedAlgorithm</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
+                            of <var>key</var> to <code>"public"</code>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                            internal slot of <var>key</var> to <var>algorithm</var>.
+                          </p>
+                        </li>
+                      </ol>
+                    </dd>
                     <dt>Otherwise:</dt>
                     <dd>
                       <p>
@@ -9720,6 +9829,58 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Let <var>result</var> be the result of converting <var>jwk</var>
                             to an ECMAScript Object, as defined by [<a href="#WebIDL">WebIDL</a>].
+                          </p>
+                        </li>
+                      </ol>
+                    </dd>
+                    <dt>
+                      If <var>format</var> is <code>"raw"</code>:
+                    </dt>
+                    <dd>
+                      <ol>
+                        <li>
+                          <p>
+                            If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
+                            of <var>key</var> is not <code>"public"</code>, then <a
+                            href="#concept-throw">throw</a> an <a
+                            href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <dl class="switch">
+                            <dt>
+                              If the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
+                              attribute of the [[<a
+                              href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot
+                              of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
+                              or <code>"P-521"</code>:
+                            </dt>
+                            <dd>
+                              <p>
+                                Let <var>data</var> be an <a href="#dfn-octet-string">octet string</a> representing the Elliptic Curve
+                                point <var>Q</var> represented by [[<a
+                                href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
+                                <var>key</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                              </p>
+                            </dd>
+                            <dt>Otherwise:</dt>
+                            <dd>
+                              <p>
+                                Perform any <a href="#dfn-ecdh-extended-export-steps">key export steps</a>
+                                defined by <a href="#dfn-applicable-specification">other applicable
+                                specifications</a>, passing <var>format</var> and the
+                                <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a> attribute of
+                                the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                                internal slot of <var>key</var>
+                                and obtaining <var>namedCurve</var> and <var>data</var>.
+                              </p>
+                            </dd>
+                          </dl>
+                        </li>
+                        <li>
+                          <p>
+                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            <var>data</var>.
                           </p>
                         </li>
                       </ol>
