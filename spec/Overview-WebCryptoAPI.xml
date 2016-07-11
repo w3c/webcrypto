@@ -4036,7 +4036,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or it can be determined that <var>publicKey</var>
+                            is not a valid public key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -4210,7 +4211,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or if <var>rsaPrivateKey</var> is not
+                            a valid RSA private key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -4401,11 +4403,25 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                    Let <var>privateKey</var> represents the
                                     RSA private key identified by interpreting <var>jwk</var>
                                     according to Section 6.3.2 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>privateKey</var> is not a valid RSA private key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents
+                                    <var>privateKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -4429,11 +4445,24 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                    Let <var>publicKey</var> represent the
                                     RSA public key identified by interpreting <var>jwk</var>
                                     according to Section 6.3.1 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>publicKey</var> can be determined to not be a valid RSA public key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -5347,7 +5376,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or it can be determined that <var>publicKey</var>
+                            is not a valid public key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -5583,7 +5613,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or if <var>rsaPrivateKey</var> is not
+                            a valid RSA private key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -5768,11 +5799,24 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
-                                    RSA private key identified by interpreting <var>jwk</var>
-                                    according to Section 6.3.2 of <a href="#jwa"> JSON Web
+                                    Let <var>privateKey</var> represent the
+                                    RSA public key identified by interpreting <var>jwk</var>
+                                    according to Section 6.3.1 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>privateKey</var> can be determined to not be a valid RSA public key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> representing <var>privateKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -5796,11 +5840,24 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                    Let <var>publicKey</var> represent the
                                     RSA public key identified by interpreting <var>jwk</var>
                                     according to Section 6.3.1 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>publicKey</var> can be determined to not be a valid RSA public key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -7009,7 +7066,8 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or it can be determined that <var>publicKey</var>
+                            is not a valid public key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -7249,7 +7307,8 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            If an error occurred while parsing,
+                            If an error occurred while parsing, or if <var>rsaPrivateKey</var> is not
+                            a valid RSA private key according to <a href="#RFC3447">RFC 3447</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -7416,11 +7475,24 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
-                                    RSA private key identified by interpreting <var>jwk</var>
-                                    according to Section 6.3.2 of <a href="#jwa"> JSON Web
+                                    Let <var>privateKey</var> represent the
+                                    RSA public key identified by interpreting <var>jwk</var>
+                                    according to Section 6.3.1 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>privateKey</var> can be determined to not be a valid RSA public key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> representing <var>privateKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -7444,11 +7516,24 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a
-                                    href="#dfn-CryptoKey">CryptoKey</a> object that represents the
+                                    Let <var>publicKey</var> represent the
                                     RSA public key identified by interpreting <var>jwk</var>
                                     according to Section 6.3.1 of <a href="#jwa"> JSON Web
                                     Algorithms</a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    If <var>publicKey</var> can be determined to not be a valid RSA public key
+                                    according to <a href="#RFC3447">RFC 3447</a>,
+                                    then <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                  </p>
+                                </li>
+                                <li>
+                                  <p>
+                                    Let <var>key</var> be a new <a
+                                    href="#dfn-CryptoKey">CryptoKey</a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
