@@ -15141,6 +15141,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
           <h3>Generate a signing key pair, sign some data</h3>
         
         <x:codeblock language="es">
+var encoder = new TextEncoder('utf-8');
+
 <span class="comment">// Algorithm Object</span>
 var algorithmKeyGen = {
   name: "RSASSA-PKCS1-v1_5",
@@ -15158,11 +15160,10 @@ var algorithmSign = {
 
 window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
   function(key) {
-    var dataPart1 = convertPlainTextToArrayBufferView("hello,");
-    var dataPart2 = convertPlainTextToArrayBufferView(" world!");
-    <span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
+    var dataPart1 = encoder.encode("hello,");
+    var dataPart2 = encoder.encode(" world!");
 
-    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPar2]);
+    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPart2]);
   },
   console.error.bind(console, "Unable to generate a key")
 ).then(
@@ -15174,8 +15175,8 @@ window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
         <div id="examples-symmetric-encryption" class="section">
           <h3>Symmetric Encryption</h3>
         <x:codeblock language="es">
-var clearDataArrayBufferView = convertPlainTextToArrayBufferView("Plain Text Data");
-<span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
+var encoder = new TextEncoder('utf-8');
+var clearDataArrayBufferView = encoder.encode("Plain Text Data");
 
 var aesAlgorithmKeyGen = {
   name: "AES-CBC",
