@@ -8320,15 +8320,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>M</var> be the result of performing the digest operation specified by
                     <var>hashAlgorithm</var> using <var>message</var>.
                   </p>
@@ -8431,15 +8422,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
                     member of
                     <var>normalizedAlgorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14769,15 +14751,6 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    If the <a href="#dfn-HkdfCtrParams-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
                     <var>n</var> is the size of the output of the hash function described by the
                     <a href="#dfn-HkdfCtrParams-hash">hash</a> member of
@@ -15019,15 +14992,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                     If <var>length</var> is null or is not a multiple of 8, then <a
                     href="#concept-throw">throw</a> an <a
                     href="#dfn-OperationError"><code>OperationError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the <a href="#dfn-Pbkdf2Params-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
                   </p>
                 </li>
                 <li>
