@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>9 June 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C" /></a></div><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>12 July 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
          Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://github.com/w3c/webcrypto/issues/new">file a bug</a>
     (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).</p></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; view <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
@@ -57,7 +57,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 9 June 2016 <b>Editor’s Draft</b> of the
+        This document is the 12 July 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -1313,6 +1313,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>algorithm</var> and <var>key</var> be the
                   <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method,
@@ -1400,6 +1407,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               as follows:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>algorithm</var> and <var>key</var> be the
@@ -1491,6 +1505,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>algorithm</var> and <var>key</var> be the
                   <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-sign">sign</a> method,
@@ -1577,6 +1598,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <a href="#dfn-CryptoKey"><code>CryptoKey</code></a>. It must act as follows:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>algorithm</var> and <var>key</var>
@@ -1676,6 +1704,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>algorithm</var> be the <code>algorithm</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-digest">digest</a> method.
                 </p>
@@ -1746,6 +1781,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               following steps:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>algorithm</var>, <var>extractable</var> and <var>usages</var>
@@ -1832,6 +1874,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>algorithm</var>, <var>baseKey</var>, <var>derivedKeyType</var>,
@@ -1967,6 +2016,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>algorithm</var>, <var>baseKey</var> and <var>length</var>,
                   be the <code>algorithm</code>,
                   <code>baseKey</code> and <code>length</code>
@@ -2047,6 +2103,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey"><code>importKey</code></dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>format</var>, <var>algorithm</var>, <var>extractable</var> and
@@ -2193,6 +2256,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <ol>
               <li>
                 <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>format</var> and <var>key</var> be the <code>format</code> and
                   <code>key</code> parameters passed to the <a href="#dfn-SubtleCrypto-method-exportKey">exportKey</a> method, respectively.
                 </p>
@@ -2251,6 +2321,13 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               When invoked, the <dfn id="dfn-SubtleCrypto-method-wrapKey">wrapKey</dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>format</var>, <var>key</var>, <var>wrappingKey</var> and
@@ -2442,7 +2519,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <span class="RFC2119">MUST</span> perform the following steps: 
             </p>
             <ol>
-            <li>
+              <li>
+                <p>
+                  If the <a href="http://www.w3.org/TR/html5/webappapis.html#incumbent-settings-object">incumbent settings object</a>
+                  is not a <a href="https://www.w3.org/TR/secure-contexts/#secure-context">secure context</a> [<a href="#SECURE-CONTEXTS">Secure Contexts</a>],
+                  return a Promise rejected with an <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                </p>
+              </li>
+              <li>
                 <p>
                   Let <var>format</var>, <var>unwrappingKey</var>,
                   <var>algorithm</var>, <var>unwrappedKeyAlgorithm</var>,
@@ -14985,6 +15069,11 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <cite><a href="http://www.ietf.org/rfc/rfc5915.txt">Elliptic Curve Private Key Structure
               </a></cite>,
               S. Turner, D. Brown. IETF.
+             </dd>
+             <dt id="SECURE-CONTEXTS">Secure Contexts</dt>
+             <dd>
+                <cite><a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a></cite>,
+                M. West, W3C.
              </dd>
              <dt id="WebIDL">Web IDL (Second Edition)</dt>
              <dd>
