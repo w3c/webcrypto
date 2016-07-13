@@ -14390,6 +14390,13 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
+                            If <var>extractable</var> is not <code>false</code>,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
                             representing the key data provided in <var>keyData</var>.
                           </p>
@@ -14398,6 +14405,12 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                           <p>
                             Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                             <var>key</var> to <code>"secret"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot of
+                            <var>key</var> to <code>false</code>.
                           </p>
                         </li>
                         <li>
@@ -14581,6 +14594,13 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
+                    If <var>extractable</var> is not <code>false</code>,
+                    then <a href="#concept-throw">throw</a> a
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
                     representing <var>keyData</var>.
                   </p>
@@ -14589,6 +14609,12 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                     <var>key</var> to <code>"secret"</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot of
+                    <var>key</var> to <code>false</code>.
                   </p>
                 </li>
                 <li>
