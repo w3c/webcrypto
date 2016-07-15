@@ -8200,22 +8200,22 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             <tbody>
               <tr>
                 <td>sign</td>
-                <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
+                <td>None</td>
                 <td>ArrayBuffer</td>
               </tr>
               <tr>
                 <td>verify</td>
-                <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
+                <td>None</td>
                 <td>boolean</td>
               </tr>
               <tr>
                 <td>generateKey</td>
-                <td><a href="#dfn-EcKeyGenParams">EcKeyGenParams</a></td>
+                <td><a href="#dfn-EcdsaKeyGenParams">EcdsaKeyGenParams</a></td>
                 <td><a href="#dfn-CryptoKeyPair">CryptoKeyPair</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
-                <td><a href="#dfn-EcKeyImportParams">EcKeyImportParams</a></td>
+                <td><a href="#dfn-EcdsaKeyImportParams">EcdsaKeyImportParams</a></td>
                 <td><a href="#dfn-CryptoKey">CryptoKey</a></td>
               </tr>
               <tr>
@@ -8227,15 +8227,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             </tbody>
           </table>
         </div>
-        <div id="EcdsaParams-dictionary" class="section">
-          <h4>EcdsaParams dictionary</h4>
-          <x:codeblock language="idl">
-dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
-  <span class="comment">// The hash algorithm to use</span>
-  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaParams-hash">hash</dfn>;
-};
-          </x:codeblock>
-        </div>
+
         <div id="EcKeyGenParams-dictionary" class="section">
           <h4>EcKeyGenParams dictionary</h4>
           <x:codeblock language="idl">
@@ -8264,6 +8256,16 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
             <a href="#dfn-ecdsa-extended-namedcurve-values">additional values</a>.
           </p>
         </div>
+        
+        <div id="EcdsaKeyGenParams-dictionary" class="section">
+          <h4>EcdsaKeyGenParams dictionary</h4>
+          <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcdsaKeyGenParams">EcdsaKeyGenParams</dfn> : <a href="#dfn-EcKeyGenParams">EcKeyGenParams</a> {
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaKeyGenParams-hash">hash</dfn>;
+};
+          </x:codeblock>
+        </div>
+
         <div id="EcKeyAlgorithm-dictionary" class="section">
           <h4>EcKeyAlgorithm dictionary</h4>
           <x:codeblock language="idl">
@@ -8273,12 +8275,32 @@ dictionary <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-Key
 };
           </x:codeblock>
         </div>
+        
+        <div id="EcdsaKeyAlgorithm-dictionary" class="section">
+          <h4>EcdsaKeyAlgorithm dictionary</h4>
+          <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">EcKeyAlgorithm</a> {
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaKeyAlgorithm-hash">hash</dfn>;
+};
+          </x:codeblock>
+        </div>
+        
+        
         <div id="EcKeyImportParams-dictionary" class="section">
           <h4>EcKeyImportParams dictionary</h4>
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
   required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
+};
+          </x:codeblock>
+        </div>
+        
+        <div id="EcdsaKeyImportParams-dictionary" class="section">
+          <h4>EcdsaKeyImportParams dictionary</h4>
+          <x:codeblock language="idl">
+dictionary <dfn id="dfn-EcdsaKeyImportParams">EcdsaKeyImportParams</dfn> : <a href="#dfn-EcKeyImportParams">EcKeyImportParams</a> {
+  required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaKeyImportParams-hash">hash</dfn>;
 };
           </x:codeblock>
         </div>
@@ -8300,8 +8322,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
-                    member of <var>normalizedAlgorithm</var>.
+                    Let <var>hashAlgorithm</var> be the <a href="#dfn-EcKeyAlgorithm-hash">hash</a>
+                    attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                    internal slot of <var>key</var>.
                   </p>
                 </li>
                 <li>
@@ -8414,9 +8437,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
-                    member of
-                    <var>normalizedAlgorithm</var>.
+                    Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a>
+                    attribute of the [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]]
+                    internal slot of <var>key</var>.
                   </p>
                 </li>
                 <li>
@@ -8547,7 +8570,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 <li>
                   <p>
                     Let <var>algorithm</var> be a new
-                    <a href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>
+                    <a href="#dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</a>
                     object.
                   </p>
                 </li>
@@ -8562,6 +8585,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                     attribute of <var>algorithm</var> to equal the
                     <a href="#dfn-EcKeyGenParams">namedCurve</a> member of
+                    <var>normalizedAlgorithm</var>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a> attribute
+                    of <var>algorithm</var> to equal the
+                    <a href="#dfn-EcdsaKeyGenParams-hash">hash</a> member of
                     <var>normalizedAlgorithm</var>.
                   </p>
                 </li>
@@ -8822,7 +8853,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         <li>
                           <p>
                             Let <var>algorithm</var> be a new <a
-                            href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>.
+                            href="#dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</a>.
                           </p>
                         </li>
                         <li>
@@ -8835,6 +8866,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                             attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a> attribute
+                            of <var>algorithm</var> to equal the
+                            <a href="#dfn-EcdsaKeyImportParams-hash">hash</a> member of
+                            <var>normalizedAlgorithm</var>.
                           </p>
                         </li>
                         <li>
@@ -9041,7 +9080,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         <li>
                           <p>
                             Let <var>algorithm</var> be a new <a
-                            href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a>.
+                            href="#dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</a>.
                           </p>
                         </li>
                         <li>
@@ -9054,6 +9093,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                             attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a> attribute
+                            of <var>algorithm</var> to equal the
+                            <a href="#dfn-EcdsaKeyImportParams-hash">hash</a> member of
+                            <var>normalizedAlgorithm</var>.
                           </p>
                         </li>
                         <li>
@@ -9289,7 +9336,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         <li>
                           <p>
                             Let <var>algorithm</var> be a new instance of an <a
-                            href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                            href="#dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</a> object.
                           </p>
                         </li>
                         <li>
@@ -9302,6 +9349,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Set the <a href="#dfn-EcKeyAlgorithm-namedCurve">namedCurve</a>
                             attribute of <var>algorithm</var> to <var>namedCurve</var>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a> attribute
+                            of <var>algorithm</var> to equal the
+                            <a href="#dfn-EcdsaKeyImportParams-hash">hash</a> member of
+                            <var>normalizedAlgorithm</var>.
                           </p>
                         </li>
                         <li>
@@ -9390,7 +9445,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         <li>
                           <p>
                             Let <var>algorithm</var> be a new <a
-                            href="#dfn-EcKeyAlgorithm">EcKeyAlgorithm</a> object.
+                            href="#dfn-EcdsaKeyAlgorithm">EcdsaKeyAlgorithm</a> object.
                           </p>
                         </li>
                         <li>
@@ -9411,6 +9466,14 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                           <p>
                             Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot
                             of <var>key</var> to <code>"public"</code>
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <a href="#dfn-EcdsaKeyAlgorithm-hash">hash</a> attribute
+                            of <var>algorithm</var> to equal the
+                            <a href="#dfn-EcdsaKeyImportParams-hash">hash</a> member of
+                            <var>normalizedAlgorithm</var>.
                           </p>
                         </li>
                         <li>
