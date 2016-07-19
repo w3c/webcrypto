@@ -44,10 +44,10 @@
       <xsl:apply-templates select='node()'/>
       <xsl:choose>
         <xsl:when test='$options/x:maturity="FPWD" or $options/x:maturity="LCWD" or $options/x:maturity="FPWDLC"'>
-          <link rel='stylesheet' href='//www.w3.org/StyleSheets/TR/W3C-WD' type='text/css'/>
+          <link rel='stylesheet' href='//www.w3.org/StyleSheets/TR/2016/W3C-WD' type='text/css'/>
         </xsl:when>
         <xsl:otherwise>
-          <link rel='stylesheet' href='//www.w3.org/StyleSheets/TR/W3C-{$options/x:maturity}' type='text/css'/>
+          <link rel='stylesheet' href='//www.w3.org/StyleSheets/TR/2016/W3C-{$options/x:maturity}' type='text/css'/>
         </xsl:otherwise>
       </xsl:choose>
     </head>
@@ -88,7 +88,7 @@
 
   <xsl:template match='processing-instruction("top")'>
     <div class='head'>
-      <div><a href="http://www.w3.org/"><img src="//www.w3.org/Icons/w3c_home" width="72" height="48" alt="W3C"></img></a></div>
+      <p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C"></img></a></p>
       <h1><xsl:value-of select='/*/h:head/h:title'/></h1>
       <h2>
         <xsl:text>W3C </xsl:text>
@@ -172,10 +172,18 @@
           </dd>
         </xsl:for-each>
         <dt>Participate:</dt>
-         <dd><xsl:if test='$options/x:participate[@qual="STND"]'>
-          <p><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
-         Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>), or <a href="https://github.com/w3c/webcrypto/issues/new">file a bug</a>
-    (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).</p></xsl:if></dd>
+        <xsl:if test='$options/x:participate[@qual="STND"]'>
+          <dd>
+          <a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+          </dd>
+          <dd>
+          Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
+          </dd>
+          <dd>
+          <a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
+          (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).
+          </dd>
+        </xsl:if>
       </dl>
       <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a><xsl:text disable-output-escaping='yes'> &amp;copy; </xsl:text><xsl:value-of select='concat(substring($options/x:versions/x:this/@href, string-length($options/x:versions/x:this/@href) - 8, 4), " ")'/><a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup><xsl:text disable-output-escaping='yes'>&amp;reg;</xsl:text></sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
     </div>
@@ -313,16 +321,17 @@
     <xsl:variable name='sectionsID' select='substring-before(., " ")'/>
     <xsl:variable name='appendicesID' select='substring-after(., " ")'/>
 
-    <div class='toc'>
-      <xsl:for-each select='//*[@id=$sectionsID]'>
-        <xsl:call-template name='toc1'/>
-      </xsl:for-each>
-      <xsl:for-each select='//*[@id=$appendicesID]'>
-        <xsl:call-template name='toc1'>
-          <xsl:with-param name='alpha' select='true()'/>
-        </xsl:call-template>
-      </xsl:for-each>
-    </div>
+    <xsl:for-each select='//*[@id=$sectionsID]'>
+      <xsl:call-template name='toc1'/>
+    </xsl:for-each>
+    <xsl:for-each select='//*[@id=$appendicesID]'>
+      <xsl:call-template name='toc1'>
+        <xsl:with-param name='alpha' select='true()'/>
+      </xsl:call-template>
+    </xsl:for-each>
+
+    <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+
   </xsl:template>
 
   <xsl:template match='processing-instruction("sref")'>
@@ -378,7 +387,7 @@
 
     <xsl:variable name='subsections' select='h:div[@class="section"]'/>
     <xsl:if test='$subsections'>
-      <ul>
+      <ul class="toc">
         <xsl:for-each select='h:div[@class="section"]'>
           <xsl:variable name='number'>
             <xsl:value-of select='$prefix'/>
@@ -394,10 +403,12 @@
               <xsl:otherwise><xsl:value-of select='generate-id(.)'/></xsl:otherwise>
             </xsl:choose>
           </xsl:variable>
-          <li>
-            <a href='#{$frag}'>
-              <xsl:value-of select='$number'/>
-              <xsl:text>. </xsl:text>
+          <li class="tocline">
+            <a class="tocxref" href='#{$frag}'>
+              <span class="secno">
+                <xsl:value-of select='$number'/>
+                <xsl:text>. </xsl:text>
+              </span>
               <xsl:for-each select='h:h2|h:h3|h:h4|h:h5|h:h6'>
                 <xsl:call-template name='toc-entry-name'/>
               </xsl:for-each>
