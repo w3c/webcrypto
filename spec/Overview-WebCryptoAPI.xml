@@ -14732,7 +14732,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
 dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#alg-sha-256">SHA-256</a>)</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfParams-hash">hash</dfn>;
-  <span class="salt">// A bit string that corresponds to the salt used in the extract step.</span>
+  <span class="comment">// A bit string that corresponds to the salt used in the extract step.</span>
   required BufferSource <dfn id="dfn-HkdfParams-salt">salt</dfn>;
   <span class="comment">// A bit string that corresponds to the context and application specific context for the derived keying material.</span>
   required BufferSource <dfn id="dfn-HkdfParams-info">info</dfn>;
@@ -14787,14 +14787,14 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
                     </li>
                     <li>
                       <p>
-                        if present <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a
+                        <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a
                         href="#dfn-HkdfParams-salt">salt</a> member of
                         <var>normalizedAlgorithm</var> as <var>salt</var>,
                       </p>
                     </li>
                     <li>
                       <p>
-                        if present <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a
+                        <a href="#concept-contents-of-arraybuffer">the contents of</a> the <a
                         href="#dfn-HkdfParams-info">info</a> member of
                         <var>normalizedAlgorithm</var> as <var>info</var>,
                       </p>
