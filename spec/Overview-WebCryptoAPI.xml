@@ -10779,7 +10779,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         <li>
                           <p>
                             If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present
-                            then <a href="#concept-throw">throw</a> a
+                            and is not equal to <code>"enc"</code> then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
                         </li>
@@ -16042,27 +16042,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   hash: "SHA-512" }
 </x:codeblock>
                 </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="jwk-mapping-usage" class="section">
-          <h3>Usage mapping</h3>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">JWK <code>use</code> value</th>
-                <th scope="col"><a href="#dfn-KeyUsage">KeyUsage</a>s</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>enc</code></td>
-                <td><code>["encrypt", "decrypt", "wrapKey", "unwrapKey"]</code></td>
-              </tr>
-              <tr>
-                <td><code>sig</code></td>
-                <td><code>["sign","verify"]</code></td>
               </tr>
             </tbody>
           </table>
