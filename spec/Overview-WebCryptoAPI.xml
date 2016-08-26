@@ -775,8 +775,8 @@ of contents, section numbers, certain processing instructions).
           <li>
             <p>
               Let <var>result</var> be the object literal that results from executing the
-              <code>JSON.parse</code> internal function, with <code>text</code>
-              argument set to a JavaScript String containing <var>json</var>.
+              <code>JSON.parse</code> internal function in the context of a new global object,
+              with <code>text</code> argument set to a JavaScript String containing <var>json</var>.
             </p>
           </li>
           <li>
@@ -2395,7 +2395,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           Convert <var>key</var> to an ECMAScript Object, as specified in [
-                          <a href="#WebIDL">WebIDL</a>].
+                          <a href="#WebIDL">WebIDL</a>], performing the conversion in the
+                          context of a new global object.
                         </p>
                       </li>
                       <li>
@@ -2403,7 +2404,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                           Let <var>json</var> be the result of representing <var>key</var> as a
                           UTF-16 string conforming to the JSON grammar; for example, by executing
                           the <code>JSON.stringify</code> algorithm specified in
-                          <a href="#ECMA-262">ECMA262</a>.
+                          <a href="#ECMA-262">ECMA262</a> in the context of a new global object.
                         </p>
                       </li>
                       <li>
@@ -8306,15 +8307,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>M</var> be the result of performing the digest operation specified by
                     <var>hashAlgorithm</var> using <var>message</var>.
                   </p>
@@ -8417,15 +8409,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     Let <var>hashAlgorithm</var> be the <a href="#dfn-EcdsaParams-hash">hash</a>
                     member of
                     <var>normalizedAlgorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -10796,7 +10779,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         <li>
                           <p>
                             If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present
-                            then <a href="#concept-throw">throw</a> a
+                            and is not equal to <code>"enc"</code> then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
                         </li>
@@ -14752,11 +14735,10 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
                 </li>
                 <li>
                   <p>
-                    If the <a href="#dfn-HkdfParams-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
+                    Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
+                    <var>n</var> is the size of the output of the hash function described by the
+                    <a href="#dfn-HkdfCtrParams-hash">hash</a> member of
+                    <var>normalizedAlgorithm</var>.
                   </p>
                 </li>
                 <li>
@@ -14988,15 +14970,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                     If <var>length</var> is null or is not a multiple of 8, then <a
                     href="#concept-throw">throw</a> an <a
                     href="#dfn-OperationError"><code>OperationError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the <a href="#dfn-Pbkdf2Params-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
                   </p>
                 </li>
                 <li>
@@ -16048,27 +16021,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   hash: "SHA-512" }
 </x:codeblock>
                 </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="jwk-mapping-usage" class="section">
-          <h3>Usage mapping</h3>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">JWK <code>use</code> value</th>
-                <th scope="col"><a href="#dfn-KeyUsage">KeyUsage</a>s</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><code>enc</code></td>
-                <td><code>["encrypt", "decrypt", "wrapKey", "unwrapKey"]</code></td>
-              </tr>
-              <tr>
-                <td><code>sig</code></td>
-                <td><code>["sign","verify"]</code></td>
               </tr>
             </tbody>
           </table>
