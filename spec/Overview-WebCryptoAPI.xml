@@ -775,8 +775,8 @@ of contents, section numbers, certain processing instructions).
           <li>
             <p>
               Let <var>result</var> be the object literal that results from executing the
-              <code>JSON.parse</code> internal function, with <code>text</code>
-              argument set to a JavaScript String containing <var>json</var>.
+              <code>JSON.parse</code> internal function in the context of a new global object,
+              with <code>text</code> argument set to a JavaScript String containing <var>json</var>.
             </p>
           </li>
           <li>
@@ -2395,7 +2395,8 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       <li>
                         <p>
                           Convert <var>key</var> to an ECMAScript Object, as specified in [
-                          <a href="#WebIDL">WebIDL</a>].
+                          <a href="#WebIDL">WebIDL</a>], performing the conversion in the
+                          context of a new global object.
                         </p>
                       </li>
                       <li>
@@ -2403,7 +2404,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                           Let <var>json</var> be the result of representing <var>key</var> as a
                           UTF-16 string conforming to the JSON grammar; for example, by executing
                           the <code>JSON.stringify</code> algorithm specified in
-                          <a href="#ECMA-262">ECMA262</a>.
+                          <a href="#ECMA-262">ECMA262</a> in the context of a new global object.
                         </p>
                       </li>
                       <li>
