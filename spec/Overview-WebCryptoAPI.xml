@@ -120,10 +120,10 @@ of contents, section numbers, certain processing instructions).
       <?sotd-bottom http://www.w3.org/2004/01/pp-impl/54174/status?>
     </div>
 
-    <div id='toc'>
-      <h2>Table of Contents</h2>
+    <nav id='toc'>
+      <h2 class='introductory'>Table of Contents</h2>
       <?toc sections appendices?>
-    </div>
+    </nav>
 
     <div id='sections'>
       <div id='introduction' class='section'>
@@ -3705,15 +3705,8 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                 </li>
                 <li>
                   <p>
-                    If performing the operation results in an error,
-                    then <a href="#concept-throw">throw</a> an
-                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>result</var> be a boolean with value true if the
-                    result of the operations was "valid signature" and a boolean with value
+                    result of the operation was "valid signature" and the value
                     false otherwise.
                   </p>
                 </li>
@@ -4981,15 +4974,8 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    If performing the operation results in an error,
-                    then <a href="#concept-throw">throw</a> an
-                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>result</var> be a boolean with value true if the
-                    result of the operation was "valid signature" and a boolean with value
+                    Let <var>result</var> be a boolean with the value true if the
+                    result of the operation was "valid signature" and the value
                     false otherwise.
                   </p>
                 </li>
@@ -8321,15 +8307,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>M</var> be the result of performing the digest operation specified by
                     <var>hashAlgorithm</var> using <var>message</var>.
                   </p>
@@ -8436,15 +8413,6 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    If <var>hashAlgorithm</var> does not describe a
-                    <a href="#algorithms">registered algorithm</a> that supports the digest
-                    operation,
-                    then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>M</var> be the result of performing the digest operation specified by
                     <var>hashAlgorithm</var> using <var>message</var>.
                   </p>
@@ -8494,9 +8462,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a boolean indicating whether or not the purported
-                    signature is valid, with <code>true</code> indicating the signature is valid
-                    and <code>false</code> indicating it is invalid.
+                    Let <var>result</var> be a boolean with the value <code>true</code> if the signature is valid
+                    and the value <code>false</code> otherwise.
                   </p>
                 </li>
                 <li>
@@ -12184,7 +12151,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                     If the <a href="#dfn-AesDerivedKeyParams-length">length</a> member of
                     <var>normalizedDerivedKeyAlgorithm</var> is not 128, 192 or 256,
                     then <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                    <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -14770,15 +14737,6 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    If the <a href="#dfn-HkdfCtrParams-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
                     <var>n</var> is the size of the output of the hash function described by the
                     <a href="#dfn-HkdfCtrParams-hash">hash</a> member of
@@ -14889,6 +14847,13 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
+                            If <var>extractable</var> is not <code>false</code>,
+                            then <a href="#concept-throw">throw</a> a
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
                             representing the key data provided in <var>keyData</var>.
                           </p>
@@ -14897,6 +14862,12 @@ dictionary <dfn id="dfn-HkdfCtrParams">HkdfCtrParams</dfn> : <a href="#dfn-Algor
                           <p>
                             Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                             <var>key</var> to <code>"secret"</code>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot of
+                            <var>key</var> to <code>false</code>.
                           </p>
                         </li>
                         <li>
@@ -15024,15 +14995,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    If the <a href="#dfn-Pbkdf2Params-hash">hash</a> member of
-                    <var>normalizedAlgorithm</var> does not describe a <a href="#algorithms">
-                    recognized algorithm</a> that supports the digest operation, then
-                    <a href="#concept-throw">throw</a> a
-                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>
-                  </p>
-                </li>
-                <li>
-                  <p>
                     Let <var>prf</var> be the MAC Generation function described in Section 4 of
                     [<a href="#fips-pub-198-1">FIPS PUB 198-1</a>] using the hash function
                     described by the <a href="#dfn-Pbkdf2Params-hash">hash</a> member of
@@ -15086,6 +15048,13 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
+                    If <var>extractable</var> is not <code>false</code>,
+                    then <a href="#concept-throw">throw</a> a
+                    <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
                     representing <var>keyData</var>.
                   </p>
@@ -15094,6 +15063,12 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                   <p>
                     Set the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                     <var>key</var> to <code>"secret"</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Set the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot of
+                    <var>key</var> to <code>false</code>.
                   </p>
                 </li>
                 <li>
@@ -15142,6 +15117,8 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
           <h3>Generate a signing key pair, sign some data</h3>
         
         <x:codeblock language="es">
+var encoder = new TextEncoder('utf-8');
+
 <span class="comment">// Algorithm Object</span>
 var algorithmKeyGen = {
   name: "RSASSA-PKCS1-v1_5",
@@ -15159,11 +15136,10 @@ var algorithmSign = {
 
 window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
   function(key) {
-    var dataPart1 = convertPlainTextToArrayBufferView("hello,");
-    var dataPart2 = convertPlainTextToArrayBufferView(" world!");
-    <span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
+    var dataPart1 = encoder.encode("hello,");
+    var dataPart2 = encoder.encode(" world!");
 
-    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPar2]);
+    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPart2]);
   },
   console.error.bind(console, "Unable to generate a key")
 ).then(
@@ -15175,8 +15151,8 @@ window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
         <div id="examples-symmetric-encryption" class="section">
           <h3>Symmetric Encryption</h3>
         <x:codeblock language="es">
-var clearDataArrayBufferView = convertPlainTextToArrayBufferView("Plain Text Data");
-<span class="comment">// TODO: create example utility function that converts text -> ArrayBufferView</span>
+var encoder = new TextEncoder('utf-8');
+var clearDataArrayBufferView = encoder.encode("Plain Text Data");
 
 var aesAlgorithmKeyGen = {
   name: "AES-CBC",
