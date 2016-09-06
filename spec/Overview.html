@@ -1597,6 +1597,14 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
+                  Let <var>data</var> be the result of
+                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -1609,14 +1617,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   <var>normalizedAlgorithm</var>.
                 </p>
               </li>
-              <li>
-                <p>
-                  Let <var>data</var> be the result of
-                  <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
-                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a href="#dfn-SubtleCrypto-method-verify">verify</a> method.
-                </p>
-              </li>
+
               <li>
                 <p>
                   Let <var>promise</var> be a new Promise.
@@ -2058,30 +2059,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
               <li>
-                <p>
-                  Let <var>normalizedAlgorithm</var> be the result of
-                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
-                  <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  <code>"importKey"</code>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If an error occurred, return a Promise rejected with
-                  <var>normalizedAlgorithm</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>promise</var> be a new Promise.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return <var>promise</var> and asynchronously perform the remaining steps.
-                </p>
-              </li>
-              <li>
                 <dl class="switch">
                   <dt>
                     If <var>format</var> is equal to the string <code>"raw"</code>,
@@ -2130,6 +2107,30 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                     </ol>
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
+                  <code>"importKey"</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>promise</var> be a new Promise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return <var>promise</var> and asynchronously perform the remaining steps.
+                </p>
               </li>
               <li>
                 <p>
