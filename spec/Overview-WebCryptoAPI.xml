@@ -2374,7 +2374,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   If the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot
                   of <var>key</var> is false, then <a href="#concept-throw">throw</a> an <a
                   href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                </p>         
+                </p>
+                <div class="note">
+                  <p>
+                    Because the wrapKey method effectively exports the key, only keys marked as extractable
+                    may be wrapped. In particular, this means that this API cannot create a wrapped JWK key
+                    that is marked as non-extractable using the <code>ext</code> JWK member.
+                  </p>
+                  <p>
+                    However, the unwrapKey method <em>does</em> support the <code>ext</code> JWK member,
+                    so that wrapped non-extractable keys created elsewhere, for example by a server, can be
+                    unwrapped using this API.
+                  </p>
+                </div>
               </li>
               <li>
                 <p>
