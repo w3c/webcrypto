@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>26 August 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>9 September 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -60,7 +60,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 26 August 2016 <b>Editor’s Draft</b> of the
+        This document is the 9 September 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -171,57 +171,58 @@
             A web application may wish to extend or replace existing username/password based
             authentication schemes with authentication methods based on proving that the user has
             access to some secret keying material. Rather than using transport-layer authentication,
-            such as TLS client certificates, the web application may wish to provide a rich user
-            experience by providing authentication within the application itself.
+            such as TLS client certificates, the web application may prefer the richer user
+            experience provided by authenticating within the application itself.
           </p>
           <p>
-            Using the Web Cryptography API, such an application could locate suitable client keys,
-            which may have been previously generated via the user agent or pre-provisioned
-            out-of-band by the web application. It could then perform cryptographic operations such
-            as decrypting an authentication challenge followed by signing an authentication response.
+            Using the Web Cryptography API, the application could locate suitable client keys, which
+            may have been previously generated via the user agent or pre-provisioned out-of-band by
+            the web application. It could then perform cryptographic operations such as decrypting an
+            authentication challenge followed by signing an authentication response.
           </p>
           <p>
-            Further, the authentication data could be further enhanced by binding the authentication
-            to the TLS session that the client is authenticating over, by deriving a key based on
-            properties of the underlying transport.
+            This exchange could be further strengthened by binding the authentication to the TLS
+            session over which the client is authenticating, by deriving a key based on properties of
+            the underlying transport.
           </p>
           <p>
-            If a user did not already have a key associated with their account, the web application
+            If a user does not already have a key associated with their account, the web application
             could direct the user agent to either generate a new key or to re-use an existing key of
-            the user's choosing. 
+            the user's choice. 
           </p>
         </div>
 
         <div id="protected-document" class="section">
           <h3>2.2. Protected Document Exchange</h3>
           <p>
-            When exchanging documents that may contain sensitive or personal information, a
-            web application may wish to ensure that only certain users can view the documents, even
-            after they have been securely received, such as over TLS. One way that a web application
-            can do so is by encrypting the documents with a secret key, and then wrapping that key
-            with the public keys associated with authorized users.
+            A web application may wish to limit the viewership of documents that contain sensitive or
+            personal information, even when these documents have been securely received, such as over
+            TLS.
           </p>
           <p>
-            When a user agent navigates to such a web application, the application may send the
-            encrypted form of the document. The user agent is then instructed to unwrap the encryption
-            key, using the user's private key, and from there, decrypt and display the document.
+            Using the Web Cryptography API, the application could do so by encrypting the documents
+            with a secret key, and then wrapping that key with the public keys associated with the
+            authorized viewers. When a user agent navigates to such a web application, the
+            application would send the encrypted form of the document. The user agent is then
+            instructed to unwrap the encryption key, using the user's private key, and from there,
+            decrypt and display the document.
           </p>
         </div>
 
         <div id="cloud-storage" class="section">
           <h3>2.3. Cloud Storage</h3>
           <p>
-            When storing data with remote service providers, users may wish to protect the
-            confidentiality of their documents and data prior to uploading them. The Web
-            Cryptography API allows an application to have a user select a private or secret key,
-            to either derive encryption keys from the selected key or to directly encrypt documents
-            using this key, and then to upload the transformed/encrypted data to the service provider
-            using existing APIs.
+            A web application may wish to permit users to protect the confidentiality of data and
+            documents stored with remote service providers prior to uploading.
+          </p>
+          <p>
+            Using the Web Cryptography API, the application may have a user select a private or
+            secret key, optionally derive an encryption key from the selected key, encrypt the
+            document, and then upload the encrypted data to the service provider using existing APIs.
           </p>
           <p>
             This use case is similar to the <a href="#protected-document">Protected Document
-            Exchange</a> use case because Cloud Storage can be considered as a user exchanging
-            protected data with himself in the future.
+            Exchange</a> use case, with viewership of the document limited to the user themself.
           </p>
         </div>
 
@@ -229,53 +230,56 @@
           <h3>2.4. Document Signing</h3>
           <p>
             A web application may wish to accept electronic signatures on documents, in lieu of
-            requiring physical signatures. An authorized signature may use a key that was
-            pre-provisioned out-of-band by the web application, or it may be using a key that the
-            client generated specifically for the web application.
+            requiring physical signatures.
           </p>
           <p>
-            The web application must be able to locate any appropriate keys for signatures, then
-            direct the user to perform a signing operation over some data, as proof that they accept
-            the document.
+            Using the Web Cryptography API, the application may direct the user to select a key,
+            which may have been pre-provisioned out-of-band, or generated specifically for the web
+            application. Using this key, the application may perform a signing operation over some
+            data, as proof that the user accepts the document.
           </p>
         </div>
 
         <div id="data-integrity-protection" class="section">
           <h3>2.5. Data Integrity Protection</h3>
           <p>
-            When caching data locally, an application may wish to ensure that this data cannot be
-            modified in an offline attack. In such a case, the server may sign the data that it
-            intends the client to cache, with a private key held by the server. The web application
-            that subsequently uses this cached data may contain a public key that enables it to
-            validate that the cache contents have not been modified by anyone else.
+            A web application may wish to cache data locally, while ensuring that this data cannot be
+            modified in an offline attack.
+          </p>
+          <p>
+            Using the Web Cryptography API, the application may use a public key contained within the
+            application to verify the contents of the data cache. Previously, when data was added to
+            the cache, it would have been signed by the server with the corresponding private key. By
+            validating the signature when restoring data from the cache, the client ensures that the
+            cached data has not been tampered with.
           </p>
         </div>
 
         <div id="secure-messaging" class="section">
           <h3>2.6. Secure Messaging</h3>
           <p>
-            In addition to a number of web applications already offering chat based services, the
-            rise of WebSockets and WebRTC allows a great degree of flexibility in inter-user-agent
-            messaging. While TLS/DTLS may be used to protect messages to web applications, users
-            may wish to directly secure messages using schemes such as off-the-record (OTR) messaging.
+            A web application may wish to employ message layer security using schemes such as
+            off-the-record (OTR) messaging, even when these messages have been securely received,
+            such as over TLS.
           </p>
           <p>
-            The Web Cryptography API enables OTR, by allowing key agreement to be performed so that
-            the two parties can negotiate shared encryption keys and message authentication code (MAC)
-            keys, to allow encryption and decryption of messages, and to prevent tampering of
-            messages through the MACs.
+            The Web Cryptography API enables OTR and similar message signing schemes, by allowing key
+            agreement to be performed. The two parties can negotiate shared encryption keys and
+            message authentication code (MAC) keys, to allow encryption and decryption of messages,
+            and to prevent tampering.
           </p>
         </div>
 
         <div id="jose" class="section">
           <h3>2.7. JavaScript Object Signing and Encryption (JOSE)</h3>
           <p>
-            A web application wishes to make use of the structures and format of
-            messages defined by the IETF JavaScript Object Signing and Encryption
-            (JOSE) Working Group. The web application wishes to manipulate public
-            keys encoded in the JSON key format (JWK), messages that have been
-            integrity protected using digital signatures or MACs (JWS), or that
-            have been encrypted (JWE).
+            A web application may wish to interact with the structures and message formats defined by
+            the IETF JavaScript Object Signing and Encryption (JOSE) Working Group.
+          </p>
+          <p>
+            Using the Web Cryptography API, the application may read and import keys encoded in the
+            JSON key format (JWK), validate messages that have been integrity protected using digital
+            signatures or MACs (JWS), or decrypt messages that have been encrypted (JWE).
           </p>
         </div>
 
@@ -14780,10 +14784,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
           Thanks are due especially to Ryan Sleevi, the original author and editor of this document.
         </p>
         <p>
-          The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
-          Brian Smith, Brian Warner, Channy Yun, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
-          Mark Watson, Michael Hutchinson, Michael B. Jones, Nick Van den Bleeken, Richard Barnes,
-          Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical feedback and
+          The editor would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
+          Brian Smith, Brian Warner, Channy Yun, Charles Engelke, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
+          Michael Hutchinson, Michael B. Jones, Nick Van den Bleeken, Richard Barnes, Ryan Hurst,
+          Tim Taubert, Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical feedback and
           assistance.
         </p>
         <p>
