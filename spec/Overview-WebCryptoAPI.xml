@@ -1804,7 +1804,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the generate key operation
+                  Let <var>result</var> be the result of performing the generate key operation
                   specified by <var>normalizedAlgorithm</var> using
                   <var>algorithm</var>, <var>extractable</var> and <var>usages</var>.
                 </p>
@@ -1940,21 +1940,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>length</var> be the result of executing the get key length
+                  Let <var>length</var> be the result of performing the get key length
                   algorithm specified by <var>normalizedDerivedKeyAlgorithm</var> using
                   <var>derivedKeyType</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>secret</var> be the result of executing the derive bits operation
+                  Let <var>secret</var> be the result of performing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using
                   <var>key</var>, <var>algorithm</var> and <var>length</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the result of executing the import key operation
+                  Let <var>result</var> be the result of performing the import key operation
                   specified by <var>normalizedDerivedKeyAlgorithm</var> using <code>"raw"</code> as
                   <var>format</var>, <var>secret</var> as <var>keyData</var>,
                   <var>derivedKeyType</var> as <var>algorithm</var> and using
@@ -2048,7 +2048,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
-                  containing the result of executing the derive bits operation
+                  containing the result of performing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using <var>baseKey</var>,
                   <var>algorithm</var> and <var>length</var>.
                 </p>
@@ -8196,7 +8196,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
           <p>
             The <code>"ECDSA"</code> algorithm identifier is used to perform signing
             and verification using the ECDSA algorithm specified in
-            [<cite><a href="#X9.62">X9.62</a></cite>] and using the SHA hash functions and elliptic
+            [<cite><a href="#RFC6090">RFC6090</a></cite>] and using the SHA hash functions and elliptic
             curves defined in this specification.
           </p>
           <p>
@@ -8362,8 +8362,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                       <ol>
                         <li>
                           <p>
-                            Perform the ECDSA signing process, as specified in <a href="#X9.62">X9.62</a>,
-                            Section 7.3, with <var>M</var> as the message, using <var>params</var> as the
+                            Perform the ECDSA signing process, as specified in <a href="#RFC6090">RFC6090</a>,
+                            Section 5.4, with <var>M</var> as the message, using <var>params</var> as the
                             EC domain parameters, and with <var>d</var> as the private key.
                           </p>
                         </li>
@@ -8467,7 +8467,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     <dd>
                       <p>
                         Perform the ECDSA verifying process, as specified in <a
-                        href="#X9.62">X9.62</a>, Section 7.4, with <var>M</var> as the received
+                        href="#RFC6090">RFC6090</a>, Section 5.3, with <var>M</var> as the received
                         message, <var>signature</var> as the received signature and using
                         <var>params</var> as the EC domain parameters, and 
                         <var>Q</var> as the public key.
@@ -8522,7 +8522,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                     </dt>
                     <dd>
                       <p>
-                        Generate an Elliptic Curve key pair, as defined in [<a href="#X9.62">X9.62</a>]
+                        Generate an Elliptic Curve key pair, as defined in [<a href="#RFC6090">RFC6090</a>]
                         with domain parameters for the curve identified by
                         the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
                         <var>normalizedAlgorithm</var>.
@@ -8777,8 +8777,16 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               <p>
                                 Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                 object that represents the Elliptic Curve public key identified by
-                                performing the conversion steps defined in Section 2.2 of <a
-                                href="#RFC5480">RFC 5480</a>.
+                                performing the conversion steps defined in Section 2.3.4 of <a
+                                href="#SEC1">SEC 1</a>.
+                                If a decode error occurs or an identity point is found,
+                                <a href="#concept-throw">throw</a> a
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                The uncompressed point format MUST be supported.
+                                If the implementation does not support the compressed point format and
+                                a compressed point is provided, 
+                                <a href="#concept-throw">throw</a> a
+                                <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -9338,16 +9346,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is not the empty list,
+                            If <var>usages</var> contains a value which is not
+                            <code>"verify"</code>
                             then <a href="#concept-throw">throw</a> a
-                            <a href="#dfn-DataError"><code>SyntaxError</code></a>.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If <var>extractable</var> is false,
-                            then <a href="#concept-throw">throw</a> an
-                            <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
+                            <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
                         </li>
                         <li>
@@ -9360,16 +9362,18 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               <ol>
                                 <li>
                                   <p>
-                                    Let <var>Q</var> be the elliptic curve point on the curve identified
-                                    by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
-                                    member of <var>normalizedAlgorithm</var> identified by interpreting
-                                    <var>keyData</var> according to <a href="#X9.62">X9.62</a> Annex A.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
                                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents <var>Q</var>
+                                    object that represents the Elliptic Curve public key identified by
+                                    performing the conversion steps defined in Section 2.3.4 of <a
+                                    href="#SEC1">SEC 1</a>.
+                                    If a decode error occurs or an identity point is found,
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    The uncompressed point format MUST be supported.
+                                    If the implementation does not support the compressed point format and
+                                    a compressed point is provided, 
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                                   </p>
                                 </li>
                               </ol>
@@ -9950,7 +9954,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 Let <var>data</var> be an <a href="#dfn-octet-string">octet string</a> representing the Elliptic Curve
                                 point <var>Q</var> represented by [[<a
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                                <var>key</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                                <var>key</var> according to <a href="#SEC1">SEC 1</a> 2.3.3 using the uncompressed format.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -10001,7 +10005,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
           <h4>Description</h4>
           <p>
             This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key
-            agreement, as specified by <a href="#X9.63">X9.63</a>.
+            agreement, as specified by <a href="#RFC6090">RFC6090</a>.
           </p>
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
@@ -10085,7 +10089,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                     <dd>
                       <p>
                         Generate an Elliptic Curve key pair, as defined in [<a
-                        href="#X9.63">X9.63</a>] with domain parameters for the curve identified by
+                        href="#RFC6090">RFC6090</a>] with domain parameters for the curve identified by
                         the <a href="#dfn-EcKeyGenParams-namedCurve">namedCurve</a> member of
                         <var>normalizedAlgorithm</var>.
                       </p>
@@ -10287,16 +10291,17 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                       <ol>
                         <li>
                           <p>
-                            Perform the ECDH primitive specified in <a href="#X9.63">X9.63</a> Section
-                            5.4.1 with <var>key</var> as the EC private key <var>d</var> and the EC public
+                            Perform the ECDH primitive specified in <a href="#RFC6090">RFC6090</a> Section
+                            4 with <var>key</var> as the EC private key <var>d</var> and the EC public
                             key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]]
-                            internal slot of <var>publicKey</var> as the EC public key <var>Q</var>.
+                            internal slot of <var>publicKey</var> as the EC public key.
                           </p>
                         </li>
                         <li>
                           <p>
                             Let <var>secret</var> be the result of applying the field element to
-                            <a href="#dfn-octet-string">octet string</a> conversion defined in Section ? of <a href="#X9.63">X9.63</a>
+                            <a href="#dfn-octet-string">octet string</a> conversion defined in Section
+                            6.2 of <a href="#RFC6090">RFC6090</a>
                             to the output of the ECDH primitive.
                           </p>
                         </li>
@@ -10470,8 +10475,16 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               <p>
                                 Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                 object that represents the Elliptic Curve public key identified by
-                                performing the conversion steps defined in Section 2.2 of <a
-                                href="#RFC5480">RFC 5480</a>.
+                                performing the conversion steps defined in Section 2.3.4 of <a
+                                href="#SEC1">SEC 1</a>.
+                                If a decode error occurs or an identity point is found,
+                                <a href="#concept-throw">throw</a> a
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
+                                The uncompressed point format MUST be supported.
+                                If the implementation does not support the compressed point format and
+                                a compressed point is provided, 
+                                <a href="#concept-throw">throw</a> a
+                                <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -10990,13 +11003,6 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                           </p>
                         </li>
                         <li>
-                          <p>
-                            If <var>extractable</var> is false,
-                            then <a href="#concept-throw">throw</a> an
-                            <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                          </p>
-                        </li>
-                        <li>
                           <dl class="switch">
                             <dt>
                               If <var>namedCurve</var> is <code>"P-256"</code>,
@@ -11006,16 +11012,18 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               <ol>
                                 <li>
                                   <p>
-                                    Let <var>Q</var> be the elliptic curve point on the curve identified
-                                    by the <a href="#dfn-EcKeyImportParams-namedCurve">namedCurve</a>
-                                    member of <var>normalizedAlgorithm</var> identified by interpreting
-                                    <var>keyData</var> according to <a href="#X9.62">X9.62</a> Annex A.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
                                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents <var>Q</var>
+                                    object that represents the Elliptic Curve public key identified by
+                                    performing the conversion steps defined in Section 2.3.4 of <a
+                                    href="#SEC1">SEC 1</a>.
+                                    If a decode error occurs or an identity point is found,
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
+                                    The uncompressed point format MUST be supported.
+                                    If the implementation does not support the compressed point format and
+                                    a compressed point is provided, 
+                                    <a href="#concept-throw">throw</a> a
+                                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
                                   </p>
                                 </li>
                               </ol>
@@ -11159,7 +11167,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                         represents the Elliptic Curve public key represented by the [[<a
                                         href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                         <var>key</var> according to the encoding rules specified in
-                                        Section 2.2 of <a href="#RFC5480">RFC 5480</a> and using the
+                                        Section 2.3.3 of <a href="#SEC1">SEC 1</a> and using the
                                         uncompressed form.
                                       </p>
                                       <dl class="switch">
@@ -11573,10 +11581,12 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             </dt>
                             <dd>
                               <p>
-                                Let <var>data</var> be an <a href="#dfn-octet-string">octet string</a> representing the Elliptic Curve
-                                point <var>Q</var> represented by [[<a
+                                Let <var>data</var> be the <a href="#dfn-octet-string">octet string</a> that
+                                represents the Elliptic Curve public key represented by the [[<a
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
-                                <var>key</var> according to <a href="#X9.62">X9.62</a> Annex A.
+                                <var>key</var> according to the encoding rules specified in
+                                Section 2.3.3 of <a href="#SEC1">SEC 1</a> and using the
+                                uncompressed form.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -15294,10 +15304,10 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
           Thanks are due especially to Ryan Sleevi, the original author and editor of this document.
         </p>
         <p>
-          The editors would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
-          Brian Smith, Brian Warner, Channy Yun, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
-          Mark Watson, Michael Hutchinson, Michael B. Jones, Nick Van den Bleeken, Richard Barnes,
-          Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical feedback and
+          The editor would like to thank Adam Barth, Alex Russell, Ali Asad, Arun Ranganathan,
+          Brian Smith, Brian Warner, Channy Yun, Charles Engelke, Eric Roman, Glenn Adams, Jim Schaad, Kai Engert,
+          Michael Hutchinson, Michael B. Jones, Nick Van den Bleeken, Richard Barnes, Ryan Hurst,
+          Tim Taubert, Vijay Bharadwaj, Virginie Galindo, and Wan-Teh Chang for their technical feedback and
           assistance.
         </p>
         <p>
@@ -15461,6 +15471,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               </a></cite>,
               S. Turner, D. Brown. IETF.
              </dd>
+             <dt id="RFC6090">RFC6090</dt>
+             <dd>
+               <cite><a href="http://www.ietf.org/rfc/rfc6090.txt">Fundamental Elliptic Curve Cryptography
+               Algorithms</a></cite>, D. McGrew, K. Igoe, M.Salter. IETF.
+             </dd>
+             <dt id="SEC1">SEC 1</dt>
+             <dd>
+               <cite><a href="http://www.secg.org/sec1-v2.pdf">SEC 1: Elliptic Curve Cryptography</a></cite>,
+               Certicom Research
+             </dd>
              <dt id="WebIDL">Web IDL (Second Edition)</dt>
              <dd>
                <cite><a href="http://heycam.github.io/webidl/">Web IDL (Second Edition)</a></cite>,
@@ -15470,11 +15490,6 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dd>
                <cite>ANS X9.62–2005: Public Key Cryptography for the Financial Services Industry,
                The Elliptic Curve Digital Signature Algorithm (ECDSA)</cite>, ANSI.
-             </dd>
-             <dt id="X9.63">X9.63</dt>
-             <dd>
-               <cite>ANS X9.63–2001: Public Key Cryptography for the Financial Services Industry,
-               Key Agreement and Key Transport Using Elliptic Curve Cryptography</cite>, ANSI.
              </dd>
             </dl>
         </div>
