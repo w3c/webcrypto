@@ -1294,7 +1294,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
         <div id="subtlecrypto-interface-methods" class="section">
           <h3>Methods and Parameters</h3>
           <p>
-            Objects created by the methods defined in this section shall be associated with the
+            Unless otherwise stated, objects created by the methods defined in this section shall be associated with the
             <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
             of <code>this</code> [<a href="#HTML">HTML</a>].
           </p>
@@ -2053,6 +2053,9 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a>
+                  associated with the
+                  <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                  of <code>this</code> [<a href="#HTML">HTML</a>], and
                   containing the result of executing the derive bits operation
                   specified by <var>normalizedAlgorithm</var> using <var>baseKey</var>,
                   <var>algorithm</var> and <var>length</var>.
@@ -3573,7 +3576,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -3688,6 +3691,14 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                     performing the operation.
                   </p>
                 </li>
+                <li>
+                  <p>
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and containing the
+                    bytes of <var>signature</var>.
+                  </p>
+                </li>
               </ol>
             </dd>
 
@@ -3722,6 +3733,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                     result of the operation was "valid signature" and the value
                     false otherwise.
                   </p>
+                </li>
+                <li>
+                  <p>Return <var>result</var>.</p>
                 </li>
               </ol>
             </dd>
@@ -3795,7 +3809,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                 <li>
                   <p>
                     Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the public key of the generated key pair.
+                    object, associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -3825,8 +3841,10 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the private key of the generated key pair.
+                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the private key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -3874,8 +3892,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                 </li>
                 <li>
                   <p>
-                    Return the result of converting <var>result</var> to an ECMAScript Object, as
-                    defined by [<a href="#WebIDL">WebIDL</a>].
+                    Return <var>result</var>.
                   </p>
                 </li>
               </ol>
@@ -4051,8 +4068,10 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA public key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
                         </li>
@@ -4226,8 +4245,10 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA private key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
                         </li>
@@ -4606,7 +4627,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -4675,7 +4698,9 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -4875,7 +4900,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
               <tr>
                 <td>sign</td>
                 <td><a href="#dfn-RsaPssParams">RsaPssParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -4949,8 +4974,16 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Let <var>signature</var> be a new <code>ArrayBuffer</code> containing the
+                    Let <var>signature</var> be the
                     signature, S, that results from performing the operation.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and containing the
+                    bytes of <var>signature</var>.
                   </p>
                 </li>
               </ol>
@@ -5064,8 +5097,10 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the public key of the generated key pair.
+                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -5095,8 +5130,10 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the private key of the generated key pair.
+                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the private key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -5384,8 +5421,10 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA public key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
                         </li>
@@ -5621,8 +5660,10 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA private key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
                         </li>
@@ -6136,7 +6177,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -6347,7 +6390,9 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -6541,12 +6586,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
               <tr>
                 <td>encrypt</td>
                 <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a href="#dfn-RsaOaepParams">RsaOaepParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -6624,9 +6669,16 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    Let <var>ciphertext</var> be a new <code>ArrayBuffer</code>
-                    containing the value <var>C</var> that results from performing the
+                    Let <var>ciphertext</var> be the value <var>C</var> that results from performing the
                     operation.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>ciphertext</var>.
                   </p>
                 </li>
               </ol>
@@ -6676,9 +6728,16 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    Let <var>plaintext</var> be a new <code>ArrayBuffer</code>
-                    containing the value <var>M</var> that results from performing the
+                    Let <var>plaintext</var> the value <var>M</var> that results from performing the
                     operation.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>plaintext</var>.
                   </p>
                 </li>
               </ol>
@@ -6753,8 +6812,10 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the public key of the generated key pair.
+                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -6785,8 +6846,10 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the private key of the generated key pair.
+                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the private key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -7074,8 +7137,10 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA public key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
                         </li>
@@ -7315,8 +7380,10 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                            object that represents the RSA private key identified by
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
+                            that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
                         </li>
@@ -7800,7 +7867,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -8000,7 +8069,9 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -8215,7 +8286,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
               <tr>
                 <td>sign</td>
                 <td><a href="#dfn-EcdsaParams">EcdsaParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -8359,7 +8430,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code>.
+                            Let <var>result</var> be a new empty <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>].
                           </p>
                         </li>
                         <li>
@@ -8400,7 +8473,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Return <var>result</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and containing the
+                    bytes of <var>result</var>.
                   </p>
                 </li>
               </ol>
@@ -8563,8 +8639,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the public key of the generated key pair.
+                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -8594,8 +8672,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the private key of the generated key pair.
+                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the private key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -8759,8 +8839,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                             <dt>If <var>namedCurve</var> is not undefined:</dt>
                             <dd>
                               <p>
-                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                object that represents the Elliptic Curve public key identified by
+                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                that represents the Elliptic Curve public key identified by
                                 performing the conversion steps defined in Section 2.2 of <a
                                 href="#RFC5480">RFC 5480</a>.
                               </p>
@@ -8976,8 +9058,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents the Elliptic Curve private key identified by
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                    of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                    that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of <a
                                     href="#RFC5915">RFC 5915</a> using <var>ecPrivateKey</var>.
                                   </p>
@@ -9352,8 +9436,10 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents <var>Q</var>
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                    of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                    that represents <var>Q</var>
                                   </p>
                                 </li>
                               </ol>
@@ -9593,7 +9679,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -9763,7 +9851,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -9953,7 +10043,9 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -10126,8 +10218,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the public key of the generated key pair.
+                    Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -10156,8 +10250,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing the private key of the generated key pair.
+                    Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing the private key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -10452,8 +10548,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                             <dt>If <var>namedCurve</var> is not undefined:</dt>
                             <dd>
                               <p>
-                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                object that represents the Elliptic Curve public key identified by
+                                Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                that represents the Elliptic Curve public key identified by
                                 performing the conversion steps defined in Section 2.2 of <a
                                 href="#RFC5480">RFC 5480</a>.
                               </p>
@@ -10669,8 +10767,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents the Elliptic Curve private key identified by
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                    of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                    that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of <a
                                     href="#RFC5915">RFC 5915</a> using <var>ecPrivateKey</var>.
                                   </p>
@@ -10998,8 +11098,10 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                                    object that represents <var>Q</var>
+                                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                                    of <code>this</code> [<a href="#HTML">HTML</a>], and
+                                    that represents <var>Q</var>
                                   </p>
                                 </li>
                               </ol>
@@ -11579,7 +11681,9 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -11627,12 +11731,12 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
               <tr>
                 <td>encrypt</td>
                 <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a href="#dfn-AesCtrParams">AesCtrParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -11745,7 +11849,10 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Return <var>ciphertext</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>ciphertext</var>.
                   </p>
                 </li>
               </ol>
@@ -11789,7 +11896,10 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                 </li>
                 <li>
                   <p>
-                    Return <var>plaintext</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>plaintext</var>.
                   </p>
                 </li>
               </ol>
@@ -12072,7 +12182,9 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -12215,12 +12327,12 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
               <tr>
                 <td>encrypt</td>
                 <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a href="#dfn-AesCbcParams">AesCbcParams</a></td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12291,7 +12403,10 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Return <var>ciphertext</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>ciphertext</var>.
                   </p>
                 </li>
               </ol>
@@ -12341,7 +12456,10 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Return <var>plaintext</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>plaintext</var>.
                   </p>
                 </li>
               </ol>
@@ -12618,7 +12736,9 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -12755,12 +12875,12 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                <tr>
                  <td>encrypt</td>
                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                 <td>ArrayBuffer</td>
+                 <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
                </tr>
                <tr>
                  <td>decrypt</td>
                  <td><a href="#dfn-AesGcmParams">AesGcmParams</a></td>
-                 <td>ArrayBuffer</td>
+                 <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
                </tr>
                <tr>
                  <td>generateKey</td>
@@ -12873,8 +12993,16 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Return a new ArrayBuffer containing <var>C</var> | <var>T</var>
+                    Let <var>ciphertext</var> be equal to <var>C</var> | <var>T</var>,
                     where '|' denotes concatenation.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>ciphertext</var>.
                   </p>
                 </li>
               </ol>
@@ -12975,7 +13103,10 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Return a new ArrayBuffer containing <var>plaintext</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    containing <var>plaintext</var>.
                   </p>
                 </li>
               </ol>
@@ -13252,7 +13383,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -13388,12 +13521,12 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <tr>
                 <td>wrapKey</td>
                 <td>None</td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>unwrapKey</td>
                 <td>None</td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -13674,8 +13807,10 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
-                    object representing an AES key with value <var>data</var>.
+                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    representing an AES key with value <var>data</var>.
                   </p>
                 </li>
                 <li>
@@ -13733,7 +13868,9 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         </li>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing
                             <var>data</var>.
                           </p>
                         </li>
@@ -13876,7 +14013,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -13960,7 +14097,10 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                 </li>
                 <li>
                   <p>
-                    Return <var>mac</var>.
+                    Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> object, associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and containing the
+                    bytes of <var>mac</var>.
                   </p>
                 </li>
               </ol>
@@ -14396,7 +14536,9 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                       <ol>
                         <li>
                           <p>
-                            Let <var>result</var> be a new <code>ArrayBuffer</code> containing <var>data</var>.
+                            Let <var>result</var> be a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and containing <var>data</var>.
                           </p>
                         </li>
                       </ol>
@@ -14599,7 +14741,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
               <tr>
                 <td>digest</td>
                 <td>None</td>
-                <td>ArrayBuffer</td>
+                <td><a href="#dfn-ArrayBuffer">ArrayBuffer</a></td>
               </tr>
             </tbody>
           </table>
@@ -14846,7 +14988,9 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
+                            Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                            <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                            of <code>this</code> [<a href="#HTML">HTML</a>], and
                             representing the key data provided in <var>keyData</var>.
                           </p>
                         </li>
@@ -15047,7 +15191,9 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> object
+                    Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
+                    <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing <var>keyData</var>.
                   </p>
                 </li>
