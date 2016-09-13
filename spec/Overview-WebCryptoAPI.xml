@@ -1871,7 +1871,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
               <li>
                 <p>
-                  Let <var>normalizedDerivedKeyAlgorithm</var> be the result of
+                  Let <var>normalizedDerivedKeyAlgorithmImport</var> be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>derivedKeyType</var> and <code>op</code> set to
                   <code>"importKey"</code>.
@@ -1880,7 +1880,21 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If an error occurred, return a Promise rejected with
-                  <var>normalizedDerivedKeyAlgorithm</var>.
+                  <var>normalizedDerivedKeyAlgorithmImport</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>normalizedDerivedKeyAlgorithmLength</var> be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  <code>alg</code> set to <var>derivedKeyType</var> and <code>op</code> set to
+                  <code>"get key length"</code>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  <var>normalizedDerivedKeyAlgorithmLength</var>.
                 </p>
               </li>
               <li>
@@ -1905,15 +1919,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   If the <a href="#dfn-Algorithm-name">name</a> member of
-                  <var>normalizedDerivedKeyAlgorithm</var> does not identify a
-                  <a href="#algorithms">registered algorithm</a> that supports the get key length
-                  operation, then <a href="#concept-throw">throw</a> a
-                  <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the <a href="#dfn-Algorithm-name">name</a> member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   <a href="#dfn-KeyAlgorithm-name">name</a> attribute of the
                   [[<a href="#dfn-CryptoKey-slot-algorithm">algorithm</a>]] internal slot of
@@ -1932,7 +1937,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>length</var> be the result of performing the get key length
-                  algorithm specified by <var>normalizedDerivedKeyAlgorithm</var> using
+                  algorithm specified by <var>normalizedDerivedKeyAlgorithmLength</var> using
                   <var>derivedKeyType</var>.
                 </p>
               </li>
@@ -1946,7 +1951,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the import key operation
-                  specified by <var>normalizedDerivedKeyAlgorithm</var> using <code>"raw"</code> as
+                  specified by <var>normalizedDerivedKeyAlgorithmImport</var> using <code>"raw"</code> as
                   <var>format</var>, <var>secret</var> as <var>keyData</var>,
                   <var>derivedKeyType</var> as <var>algorithm</var> and using
                   <var>extractable</var> and <var>usages</var>.
