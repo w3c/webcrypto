@@ -876,7 +876,7 @@ WorkerGlobalScope implements GlobalCrypto;
         
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-Crypto">Crypto</dfn> {
-  readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
+  [SecureContext] readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
   ArrayBufferView <a href="#dfn-Crypto-method-getRandomValues">getRandomValues</a>(ArrayBufferView array);
 };
         </code></pre></div></div>
@@ -1036,7 +1036,7 @@ enum <a href="#dfn-KeyType">KeyType</a> { "public", "private", "secret" };
 
 enum <a href="#dfn-KeyUsage">KeyUsage</a> { "encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey" };
 
-[Exposed=(Window,Worker)]
+[SecureContext,Exposed=(Window,Worker)]
 interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
   readonly attribute <a href="#dfn-KeyType">KeyType</a> <a href="#dfn-CryptoKey-type">type</a>;
   readonly attribute boolean <a href="#dfn-CryptoKey-extractable">extractable</a>;
@@ -1200,7 +1200,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 enum <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> { "raw", "spki", "pkcs8", "jwk" };
 
-[Exposed=(Window,Worker)]
+[SecureContext,Exposed=(Window,Worker)]
 interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                        <a href="#dfn-CryptoKey">CryptoKey</a> key,
