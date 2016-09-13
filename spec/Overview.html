@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>NaN October '010</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>12 September 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -60,7 +60,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the NaN October '010 <b>Editor’s Draft</b> of the
+        This document is the 12 September 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -2344,7 +2344,19 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot
                   of <var>key</var> is false, then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                </p>         
+                </p>
+                <div class="note"><div class="noteHeader">Note</div>
+                  <p>
+                    Because the wrapKey method effectively exports the key, only keys marked as extractable
+                    may be wrapped. In particular, this means that this API cannot create a wrapped JWK key
+                    that is marked as non-extractable using the <code>ext</code> JWK member.
+                  </p>
+                  <p>
+                    However, the unwrapKey method <em>does</em> support the <code>ext</code> JWK member,
+                    so that wrapped non-extractable keys created elsewhere, for example by a server, can be
+                    unwrapped using this API.
+                  </p>
+                </div>
               </li>
               <li>
                 <p>
