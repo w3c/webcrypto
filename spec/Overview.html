@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>13 September 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>6 October 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -60,7 +60,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 13 September 2016 <b>Editor’s Draft</b> of the
+        This document is the 6 October 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -883,6 +883,7 @@ interface <dfn id="dfn-Crypto">Crypto</dfn> {
 
         <div id="Crypto-description" class="section">
           <h3>10.1. Description</h3>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <a href="#dfn-Crypto">Crypto</a> interface represents an interface to
             general purpose cryptographic functionality including a
@@ -2180,6 +2181,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
             </ol>
             <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
+            <div class="note"><div class="noteHeader">Note</div>
               <p class="norm">
                 This note is non-normative.
               </p>
@@ -2249,6 +2256,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
@@ -2443,6 +2456,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-unwrapKey" class="section">
@@ -2626,6 +2645,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
         </div>
         <div id="SubtleCrypto-Exceptions" class="section">
@@ -3490,6 +3515,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
         <h3>20. RSASSA-PKCS1-v1_5</h3>
         <div id="rsassa-pkcs1-description" class="section">
           <h4>20.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
             signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
@@ -4763,6 +4789,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
         <h3>21. RSA-PSS</h3>
         <div id="rsa-pss-description" class="section">
           <h4>21.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
             and verification using the RSASSA-PSS algorithm specified in
@@ -6358,6 +6385,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
         <h3>22. RSA-OAEP</h3>
         <div id="rsa-oaep-description" class="section">
           <h4>22.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
             and decryption ordering to the RSAES-OAEP algorithm specified in
@@ -7953,6 +7981,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
         <h3>23. ECDSA</h3>
         <div id="ecdsa-description" class="section">
           <h4>23.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"ECDSA"</code> algorithm identifier is used to perform signing
             and verification using the ECDSA algorithm specified in
@@ -9683,6 +9712,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
         <h3>24. ECDH</h3>
         <div id="ecdh-description" class="section">
           <h4>24.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key
             agreement, as specified by <a href="#RFC6090">RFC6090</a>.
@@ -14116,6 +14146,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
         <h3>30. SHA</h3>
         <div id="sha-description" class="section">
           <h4>30.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             This describes the SHA-1 and SHA-2 families, as specified by
             [<a href="#FIPS180-4">FIPS PUB 180-4</a>].
