@@ -62,7 +62,7 @@ of contents, section numbers, certain processing instructions).
         communications.
       </p>
   
-      <?revision-note?>
+      <!--<?revision-note?>-->
     </div>
 
     <div class='section'>
@@ -1175,7 +1175,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </li>
           </ol>
           <div class="note">
-            <strong>Implementation Note:</strong> When performing the structured clone algorithm in
+            When performing the structured clone algorithm in
             order to serialize a <code>CryptoKey</code> object, implementations must not allow the
             object to be deserialized as a different type. This is normatively required by the
             definition of structured clone, but it merits specific attention, as such
@@ -2771,7 +2771,7 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </p>
 
         <div class="note">
-          <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
+          Since the integer is unsigned, the highest order bit
           is NOT a sign bit. Implementors should take care when mapping to big integer
           implementations that expected signed integers.
         </div>
@@ -3253,19 +3253,6 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           document to better understand the risks and concerns that may arise when using certain
           algorithms.
         </p>
-        <div class="ednote">
-          <p>
-            Note: All algorithms listed should be considered as "features at risk",
-            barring implementors adopting them. Their inclusion in the Editor's Draft
-            reflects requests for their inclusion by members of the community, and are
-            included as an exercise to ensure the robustness of the API defined in this
-            specification.
-          </p>
-          <p>
-            As such, the list of algorithms, and the recommendations, may be significantly
-            altered in future revisions.
-          </p>
-        </div>
         <table>
           <thead>
             <tr>
@@ -4664,7 +4651,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote">
+                              <div class="note">
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -6345,7 +6332,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote">
+                              <div class="note">
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -8007,7 +7994,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                 href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote">
+                              <div class="note">
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -15338,9 +15325,8 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
            <dl>
              <dt id="DOM4">DOM4</dt>
              <dd>
-               <cite><a href="https://dom.spec.whatwg.org/">DOM (Living Standard)</a></cite>,
-               A. Gregor, A. van Kesteren, Ms2ger. WHATWG.
-               <div class="ednote">This will be updated to W3C DOM4 once Promises are incorporated.</div>
+               <cite><a href="https://www.w3.org/TR/dom/">W3C DOM4</a></cite>,
+               A. Gregor, A. van Kesteren, Ms2ger, Alex Russell, Robin Berjon.
              </dd>
              <dt id="ECMA-262">ECMA262</dt>
              <dd>
@@ -16144,18 +16130,18 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             </tr>
           </tbody>
         </table>
-        <div class="ednote">
+        <div class="note">
           <p>
-            The handling of "id-RSASSA-PSS" and "id-RSAES-OAEP" are tricky.
+            For "id-RSASSA-PSS" and "id-RSAES-OAEP",
             <a href="#RFC5756">RFC 5756</a> recommends implementations should not include parameters
-            when PSS is used with a subjectPublicKeyInfo, and MUST NOT include parameters when OAEP
-            is used. However, when OAEP is used as part of a key transport (as an AlgorithmIdentifier),
+            when PSS is used with a <code>subjectPublicKeyInfo</code>, and MUST NOT include parameters when OAEP
+            is used. However, when OAEP is used as part of a key transport (as an <code>AlgorithmIdentifier</code>),
             implementations MUST include the parameters.
           </p>
           <p>
-            The natural conflict is in deciding when a key is being exported as part of a
-            subjectPublicKeyInfo (which is what "spki" implies) and when it's being used as an
-            algorithmIdentifier for transport.
+            The <code>"spki"</code> key format in this specification implies
+            <code>subjectPublicKeyInfo</code> and thus may not be appropriate when what is needed is an
+            <code>AlgorithmIdentifier</code> for transport.
           </p>
         </div>
       </div>
