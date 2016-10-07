@@ -53,16 +53,16 @@
                             previousPublishDate:  "2013-01-08",
                             // edEnd:  "",
                             previousMaturity: "WD",
-                            edDraftURI:   "http://dvcs.w3.org/hg/webcrypto-keydiscovery/raw-file/tip/Overview.html",
+                            edDraftURI:   "https://w3c.github.io/webcrypto/KeyDiscovery.html",
                             wg:           "Web Cryptography WG",
                             wgURI:        "http://www.w3.org/2012/webcrypto/",
                             wgPublicList: "public-webcrypto",
                             wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/54174/status",
-                            localBiblio : { "WEBCRYPTO" : "Ryan Sleevi, Mark Watson <a href=\"http://www.w3.org/TR/WebCryptoAPI/\"><cite>Web Cryptography API.</cite></a> W3C Working Draft (Work in progress.) URL: <a href=\"http://www.w3.org/TR/WebCryptoAPI/\">http://www.w3.org/TR/WebCryptoAPI/</a> "},
+                            localBiblio : { "WEBCRYPTO" : "Ryan Sleevi, Mark Watson <a href=\"http://www.w3.org/TR/WebCryptoAPI/\"><cite>Web Cryptography API.</cite></a> URL: <a href=\"http://www.w3.org/TR/WebCryptoAPI/\">http://www.w3.org/TR/WebCryptoAPI/</a> "},
                             otherLinks: [ { key: "Participate", data: [
                                 { value: "Submit a comment", href: "mailto:public-webcrypto-comments@w3.org" },
-                                { value: "File a bug", href: "https://www.w3.org/Bugs/Public/enter_bug.cgi?product=Web%20Cryptography&component=Web%20Cryptography%20API%20Document" },
-                                { value: "See existing bugs", href: "https://www.w3.org/Bugs/Public/buglist.cgi?product=Web%20Cryptography&component=Web%20Cryptography%20API%20Document&resolution=---" } ] } ]
+                                { value: "We are on GitHub", href: "https://github.com/w3c/webcrypto" },
+                                { value: "See existing bugs", href: "https://github.com/w3c/webcrypto/issues" } ] } ]
                         };
     </script>
   </head>
@@ -88,8 +88,8 @@
       <p>
         The Web Cryptography API [[!WEBCRYPTO]] describes a JavaScript API for performing basic cryptographic
         operations in web applications. Cryptographic keys in are represented in this API using
-        <a href='http://www.w3.org/TR/WebCryptoAPI/#key-interface'><code>Key</code></a> objects. The API provides methods to generate, derive, import and unwrap cryptographic 
-        keying material, so creating <a href='http://www.w3.org/TR/WebCryptoAPI/#key-interface'><code>Key</code></a> objects.
+        <a href='http://www.w3.org/TR/WebCryptoAPI/#cryptokey-interface'><code>CryptoKey</code></a> objects. The API provides methods to generate, derive, import and unwrap cryptographic
+        keying material, so creating <a href='http://www.w3.org/TR/WebCryptoAPI/#key-interface'><code>CryptoKey</code></a> objects.
       </p>
       <p>This document concerns the discovery of cryptographic keys which are made available to the UA by other means.
         Specifically, this document provides an API for the discovery of cryptographic keys which have been pre-provisioned
@@ -208,6 +208,7 @@
         <dt>HTML5</dt>
         <dd>The terms and algorithms
           <dfn><code>Window</code></dfn>,
+          <dfn><code>Worker</code></dfn>,
           <dfn><code>Function</code></dfn>,
           <dfn>origin</dfn>, <dfn>same origin</dfn>, <dfn>structured clone</dfn>,
           and <dfn>structured clone algorithm</dfn> are defined by the HTML 5 
@@ -215,7 +216,7 @@
         </dd>
         <dt>Web Cryptography API</dt>
         <dd><p>A <a>conforming user agent</a> MUST support the Web Cryptography API [[!WEBCRYPTO]].</p>
-          <p>The term <dfn><code>Key</code></dfn> is defined in [[!WEBCRYPTO]].</p>
+          <p>The term <dfn><code>CryptoKey</code></dfn> is defined in [[!WEBCRYPTO]].</p>
         </dd>
         <dt>WebIDL</dt>
         <dd>Many of the interface definitions and all of the IDL in this spec depends on [[!WEBIDL]].</dd>
@@ -230,10 +231,10 @@
       <section class="informative"><h3>Overview</h3>
       <p>This note defines a new <a data-lt="cryptokeys"><code>cryptokeys</code></a> attribute on the <a><code>Window</code></a> and <a><code>WorkerGlobalScope</code></a>
         objects. This attribute is an object supporting a method, <a data-lt="getKeyByName"><code>getKeyByName</code></a> which may be used to get the key with a given name. Keys are
-        returned as <a>NamedKey</a> objects which are subclasses of the <a><code>Key</code></a> class.</p></section>
+        returned as <a>NamedCryptoKey</a> objects which are subclasses of the <a><code>CryptoKey</code></a> class.</p></section>
       
-      <section><h3>NamedKey interface</h3>
-        <dl title="interface NamedKey : Key" class="idl">
+      <section><h3>NamedCryptoKey interface</h3>
+        <dl title="interface NamedCryptoKey : CryptoKey" class="idl">
           <dt>readonly attribute DOMString name</dt>
           <dd><p>A local identifier for the key.</p></dd>
           <dt>readonly attribute DOMString? id</dt>
@@ -243,10 +244,10 @@
           </dd>
         </dl>
         <section><h4>Structured clone algorithm</h4>
-        <p>When a user agent is required to obtain a <a>structured clone</a> of a <a>NamedKey</a> object, it must run the following steps.</p>
+        <p>When a user agent is required to obtain a <a>structured clone</a> of a <a>NamedCryptoKey</a> object, it must run the following steps.</p>
         <ol>
-          <li>Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the <a data-lt="structured clone algorithm">internal structured clone algorithm</a>, where <var>input</var> is a <a>NamedKey</a> object to be cloned.</li>
-          <li>Let <var>output</var> be a newly constructed <a>NamedKey</a> object, where the structured clone algorithm is followed for the base <code>Key</code> object.</li>
+          <li>Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the <a data-lt="structured clone algorithm">internal structured clone algorithm</a>, where <var>input</var> is a <a>NamedCryptoKey</a> object to be cloned.</li>
+          <li>Let <var>output</var> be a newly constructed <a>NamedCryptoKey</a> object, where the structured clone algorithm is followed for the base <code>CryptoKey</code> object.</li>
           <li>Let the following attributes of <var>output</var> be equal to the value obtained by invoking the internal structured clone algorithm recursively, using  the corresponding attribute on <var>input</var> as the new "<var>input</var>" argument and <var>memory</var> as the new "<var>memory</var>" argument:
             <ul>
               <li><code>name</code></li>
@@ -255,12 +256,12 @@
         </ol>
         </section>
 
-        <section><h4>Immutability of NamedKey objects</h4>
-          <p>The <code>name</code> and <code>id</code> attributes of a <a><code>NamedKey</code></a> object SHALL NOT change. The underlying cryptographic key SHALL NOT change, except that it MAY be removed altogether. In this case any attempt to use the <a><code>NamedKey</code></a> object shall return an error.</p>
+        <section><h4>Immutability of NamedCryptoKey objects</h4>
+          <p>The <code>name</code> and <code>id</code> attributes of a <a><code>NamedCryptoKey</code></a> object SHALL NOT change. The underlying cryptographic key SHALL NOT change, except that it MAY be removed altogether. In this case any attempt to use the <a><code>NamedCryptoKey</code></a> object shall return an error.</p>
         </section>
       </section>
       <section><h3>CryptoKeys interface</h3>
-        <dl title="[NoInterfaceObject] interface CryptoKeys" class="idl">
+        <dl title="[NoInterfaceObject,Exposed=Window,Worker] interface CryptoKeys" class="idl">
           <dt>Promise <dfn>getKeyByName</dfn>( DOMString name )</dt>
           <dd>
             <p>When invoked, this method must perform the following steps:
@@ -271,7 +272,7 @@
                     <dt>If a key is found</dt>
                     <dd>
                       <ol>
-                        <li>Let the <var>result</var> be an object of type <code>NamedKey</code> representing the key.</li>
+                        <li>Let the <var>result</var> be an object of type <code>NamedCryptoKey</code> representing the key.</li>
                         <li>Resolve <var>promise</var> with <var>result</var>.</li>
                       </ol>
                     </dd>
