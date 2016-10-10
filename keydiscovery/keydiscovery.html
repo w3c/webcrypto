@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta lang="" property="dc:language" content="en">
+  <style>
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    /* --- EXAMPLES --- */
+    
+    div.example-title {
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.example-title span {
+      text-transform: uppercase;
+    }
+    
+    aside.example,
+    div.example,
+    div.illegal-example {
+      padding: 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    div.illegal-example {
+      color: red
+    }
+    
+    div.illegal-example p {
+      color: black
+    }
+    
+    aside.example,
+    div.example {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+      border-color: #e0cb52;
+      background: #fcfaee;
+    }
+    
+    aside.example div.example {
+      border-left-width: .1em;
+      border-color: #999;
+      background: #fff;
+    }
+    
+    aside.example div.example div.example-title {
+      color: #999;
+    }
+  </style>
+  <style>
+    /* --- WEB IDL --- */
+    
+    pre.idl {
+      border-top: 1px solid #90b8de;
+      border-bottom: 1px solid #90b8de;
+      padding: 1em;
+      line-height: 120%;
+    }
+    
+    @media print {
+      pre.idl {
+        white-space: pre-wrap;
+      }
+    }
+    
+    pre.idl::before {
+      content: "WebIDL";
+      display: block;
+      width: 150px;
+      background: #90b8de;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 3px;
+      font-weight: bold;
+      margin: -1em 0 1em -1em;
+    }
+    
+    .idlType {
+      color: #ff4500;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    /*.idlModule*/
+    /*.idlModuleID*/
+    /*.idlInterface*/
+    
+    .idlInterfaceID,
+    .idlDictionaryID,
+    .idlCallbackID,
+    .idlEnumID {
+      font-weight: bold;
+      color: #005a9c;
+    }
+    
+    a.idlEnumItem {
+      color: #000;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    .idlSuperclass {
+      font-style: italic;
+      color: #005a9c;
+    }
+    /*.idlAttribute*/
+    
+    .idlAttrType,
+    .idlFieldType,
+    .idlMemberType {
+      color: #005a9c;
+    }
+    
+    .idlAttrName,
+    .idlFieldName,
+    .idlMemberName {
+      color: #ff4500;
+    }
+    
+    .idlAttrName a,
+    .idlFieldName a,
+    .idlMemberName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlMethod*/
+    
+    .idlMethType,
+    .idlCallbackType {
+      color: #005a9c;
+    }
+    
+    .idlMethName {
+      color: #ff4500;
+    }
+    
+    .idlMethName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlCtor*/
+    
+    .idlCtorName {
+      color: #ff4500;
+    }
+    
+    .idlCtorName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlParam*/
+    
+    .idlParamType {
+      color: #005a9c;
+    }
+    
+    .idlParamName,
+    .idlDefaultValue {
+      font-style: italic;
+    }
+    
+    .extAttr {
+      color: #666;
+    }
+    /*.idlSectionComment*/
+    
+    .idlSectionComment {
+      color: gray;
+    }
+    /*.idlIterable*/
+    
+    .idlIterableKeyType,
+    .idlIterableValueType {
+      color: #005a9c;
+    }
+    /*.idlMaplike*/
+    
+    .idlMaplikeKeyType,
+    .idlMaplikeValueType {
+      color: #005a9c;
+    }
+    /*.idlConst*/
+    
+    .idlConstType {
+      color: #005a9c;
+    }
+    
+    .idlConstName {
+      color: #ff4500;
+    }
+    
+    .idlConstName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlException*/
+    
+    .idlExceptionID {
+      font-weight: bold;
+      color: #c00;
+    }
+    
+    .idlTypedefID,
+    .idlTypedefType {
+      color: #005a9c;
+    }
+    
+    .idlRaises,
+    .idlRaises a.idlType,
+    .idlRaises a.idlType code,
+    .excName a,
+    .excName a code {
+      color: #c00;
+      font-weight: normal;
+    }
+    
+    .excName a {
+      font-family: monospace;
+    }
+    
+    .idlRaises a.idlType,
+    .excName a.idlType {
+      border-bottom: 1px dotted #c00;
+    }
+    
+    .excGetSetTrue,
+    .excGetSetFalse,
+    .prmNullTrue,
+    .prmNullFalse,
+    .prmOptTrue,
+    .prmOptFalse {
+      width: 45px;
+      text-align: center;
+    }
+    
+    .excGetSetTrue,
+    .prmNullTrue,
+    .prmOptTrue {
+      color: #0c0;
+    }
+    
+    .excGetSetFalse,
+    .prmNullFalse,
+    .prmOptFalse {
+      color: #c00;
+    }
+    
+    .idlImplements a {
+      font-weight: bold;
+    }
+    
+    dl.attributes,
+    dl.methods,
+    dl.constants,
+    dl.constructors,
+    dl.fields,
+    dl.dictionary-members {
+      margin-left: 2em;
+    }
+    
+    .attributes dt,
+    .methods dt,
+    .constants dt,
+    .constructors dt,
+    .fields dt,
+    .dictionary-members dt {
+      font-weight: normal;
+    }
+    
+    .attributes dt code,
+    .methods dt code,
+    .constants dt code,
+    .constructors dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      font-weight: bold;
+      color: #000;
+      font-family: monospace;
+    }
+    
+    .attributes dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      background: #ffffd2;
+    }
+    
+    .attributes dt .idlAttrType code,
+    .fields dt .idlFieldType code,
+    .dictionary-members dt .idlMemberType code {
+      color: #005a9c;
+      background: transparent;
+      font-family: inherit;
+      font-weight: normal;
+      font-style: italic;
+    }
+    
+    .methods dt code {
+      background: #d9e6f8;
+    }
+    
+    .constants dt code {
+      background: #ddffd2;
+    }
+    
+    .constructors dt code {
+      background: #cfc;
+    }
+    
+    .attributes dd,
+    .methods dd,
+    .constants dd,
+    .constructors dd,
+    .fields dd,
+    .dictionary-members dd {
+      margin-bottom: 1em;
+    }
+    
+    table.parameters,
+    table.exceptions {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin: 0.5em 0;
+      width: 100%;
+    }
+    
+    table.parameters {
+      border-bottom: 1px solid #90b8de;
+    }
+    
+    table.exceptions {
+      border-bottom: 1px solid #deb890;
+    }
+    
+    .parameters th,
+    .exceptions th {
+      color: inherit;
+      padding: 3px 5px;
+      text-align: left;
+      font-weight: normal;
+    }
+    
+    .parameters th {
+      color: #fff;
+      background: #005a9c;
+    }
+    
+    .exceptions th {
+      background: #deb890;
+    }
+    
+    .parameters td,
+    .exceptions td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+      vertical-align: top;
+    }
+    
+    .parameters tr:first-child td,
+    .exceptions tr:first-child td {
+      border-top: none;
+    }
+    
+    .parameters td.prmName,
+    .exceptions td.excName,
+    .exceptions td.excCodeName {
+      width: 100px;
+    }
+    
+    .parameters td.prmType {
+      width: 120px;
+    }
+    
+    table.exceptions table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 100%;
+    }
+  </style>
+  <style id="respec-mainstyle">
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    
+    th code {
+      color: inherit;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd>p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd>p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+  </style>
+  <title>WebCrypto Key Discovery</title>
+
+  <style>
+    table {
+      border-collapse: collapse;
+      border-spacing: 0px;
+      margin-top: +1em;
+      margin-bottom: +1em;
+      border-color: black;
+      font-family: "Courier New", Inconsolata, "Bitstream Charter";
+      font-size: 90%;
+    }
+    
+    th {
+      background-color: DimGray;
+      color: white;
+      font-weight: normal;
+    }
+    
+    .sub-th {
+      background-color: Linen;
+      font-style: italic;
+    }
+    
+    .centered {
+      text-align: center;
+    }
+    
+    .first-column {
+      background-color: Beige;
+      font-weight: bold;
+    }
+    
+    .excluded-first-column {
+      background-color: DarkGray;
+      text-decoration: line-through;
+    }
+  </style>
+
+  <!-- 
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+
+
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <meta name="generator" content="ReSpec 5.0.4">
+  <script id="initialUserConfig" type="application/json">
+    {
+      "specStatus": "ED",
+      "noRecTrack": true,
+      "shortName": "webcrypto-key-discovery",
+      "editors": [
+      {
+        "name": "Mark Watson",
+        "mailto": "watsonm@netflix.com",
+        "company": "Netflix",
+        "companyURL": "http://www.netflix.com/"
+      }],
+      "previousPublishDate": "2013-01-08",
+      "previousMaturity": "WD",
+      "edDraftURI": "https://w3c.github.io/webcrypto/KeyDiscovery.html",
+      "wg": "Web Cryptography WG",
+      "wgURI": "http://www.w3.org/2012/webcrypto/",
+      "wgPublicList": "public-webcrypto",
+      "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/54174/status",
+      "localBiblio":
+      {
+        "WEBCRYPTO": "Ryan Sleevi, Mark Watson <a href=\"http://www.w3.org/TR/WebCryptoAPI/\"><cite>Web Cryptography API.</cite></a> URL: <a href=\"http://www.w3.org/TR/WebCryptoAPI/\">http://www.w3.org/TR/WebCryptoAPI/</a> "
+      },
+      "otherLinks": [
+      {
+        "key": "Participate",
+        "data": [
+        {
+          "value": "Submit a comment",
+          "href": "mailto:public-webcrypto-comments@w3.org"
+        },
+        {
+          "value": "We are on GitHub",
+          "href": "https://github.com/w3c/webcrypto"
+        },
+        {
+          "value": "See existing bugs",
+          "href": "https://github.com/w3c/webcrypto/issues"
+        }]
+      }]
+    }
+  </script>
+</head>
+<body class="h-entry" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">WebCrypto Key Discovery</h1>
+    <h2 id="w3c-editor-s-draft-07-october-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-10-07">07 October 2016</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="https://w3c.github.io/webcrypto/KeyDiscovery.html">https://w3c.github.io/webcrypto/KeyDiscovery.html</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="https://www.w3.org/TR/webcrypto-key-discovery/">https://www.w3.org/TR/webcrypto-key-discovery/</a></dd>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/webcrypto/KeyDiscovery.html">https://w3c.github.io/webcrypto/KeyDiscovery.html</a></dd>
+      <dt>Editor:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Mark Watson</span>, <a property="foaf:workplaceHomepage" class="p-org org h-org h-card" href="http://www.netflix.com/">Netflix</a>, <span class="ed_mailto"><a class="u-email email" property="foaf:mbox" href="mailto:watsonm@netflix.com">watsonm@netflix.com</a></span></span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+      <dt>Participate:</dt>
+      <dd>
+        <a href="mailto:public-webcrypto-comments@w3.org">
+                      Submit a comment
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/webcrypto">
+                      We are on GitHub
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/webcrypto/issues">
+                      See existing bugs
+                    </a>
+      </dd>
+    </dl>
+    <p class="copyright">
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016
+
+      <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+      <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <a rel="license" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>This note describes a JavaScript API for discovering named, origin-specific pre-provisioned cryptographic keys for use with the Web Cryptography API. Pre-provisioned keys are keys which have been made available to the UA by means other than the generation, derivation, importation and unwrapping functions of the Web Cryptography API. Origin-specific keys are keys that are available only to a specified origin. Named keys are identified by a name assumed to be known to the origin in question and provisioned with the key itself. This note concerns only keys which have all three of these properties.
+    </p>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em>
+    </p>
+
+    <p>This document defines an API that provides access to named origin-specific pre-provisioned keys. The privacy issues associated with such keys require special attention and the privacy related material in this document has not yet received thorough review by the community.</p>
+
+    <p>
+      This document was published by the <a href="http://www.w3.org/2012/webcrypto/">Web Cryptography WG</a> as an Editor's Draft. If you wish to make comments regarding this document, please send them to
+      <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a> (<a href="mailto:public-webcrypto-request@w3.org?subject=subscribe">subscribe</a>,
+      <a href="https://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>). All comments are welcome.
+    </p>
+    <p>
+      Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    </p>
+    <p>
+      This document was produced by a group operating under the
+      <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/54174/status" rel="disclosure">public list of any patent
+                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    </p>
+
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ol class="toc" role="directory">
+      <li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a></li>
+      <li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li>
+      <li class="tocline"><a href="#scope" class="tocxref"><span class="secno">3. </span>Scope</a></li>
+      <li class="tocline"><a href="#privacy-considerations" class="tocxref"><span class="secno">4. </span>Privacy considerations</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#named-origin-specific-pre-provisioned-keys" class="tocxref"><span class="secno">4.1 </span>Named origin-specific pre-provisioned keys</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#comparison-to-cookies-and-persistent-storage" class="tocxref"><span class="secno">4.1.1 </span>Comparison to cookies and persistent storage</a></li>
+              <li class="tocline"><a href="#user-tracking" class="tocxref"><span class="secno">4.1.2 </span>User tracking</a></li>
+              <li class="tocline"><a href="#cookie-resurrection" class="tocxref"><span class="secno">4.1.3 </span>Cookie resurrection</a></li>
+              <li class="tocline"><a href="#sensitivity-of-data" class="tocxref"><span class="secno">4.1.4 </span>Sensitivity of data</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#dependencies" class="tocxref"><span class="secno">5. </span>Dependencies</a></li>
+      <li class="tocline"><a href="#api-definition" class="tocxref"><span class="secno">6. </span>API definition</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#overview" class="tocxref"><span class="secno">6.1 </span>Overview</a></li>
+          <li class="tocline"><a href="#namedcryptokey-interface" class="tocxref"><span class="secno">6.2 </span>NamedCryptoKey interface</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">6.2.1 </span>Attributes</a></li>
+              <li class="tocline"><a href="#structured-clone-algorithm" class="tocxref"><span class="secno">6.2.2 </span>Structured clone algorithm</a></li>
+              <li class="tocline"><a href="#immutability-of-namedcryptokey-objects" class="tocxref"><span class="secno">6.2.3 </span>Immutability of NamedCryptoKey objects</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#cryptokeys-interface" class="tocxref"><span class="secno">6.3 </span>CryptoKeys interface</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#methods" class="tocxref"><span class="secno">6.3.1 </span>Methods</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#extension-of-window-interface" class="tocxref"><span class="secno">6.4 </span>Extension of Window interface</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#attributes-1" class="tocxref"><span class="secno">6.4.1 </span>Attributes</a></li>
+            </ol>
+          </li>
+          <li class="tocline"><a href="#extension-of-workerglobalscope-interface" class="tocxref"><span class="secno">6.5 </span>Extension of WorkerGlobalScope interface</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#attributes-2" class="tocxref"><span class="secno">6.5.1 </span>Attributes</a></li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#example" class="tocxref"><span class="secno">7. </span>Example</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#using-a-pre-provisioned-aes-kw-key-to-unwrap-a-session-key" class="tocxref"><span class="secno">7.1 </span>Using a pre-provisioned AES-KW key to unwrap a session key</a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a>
+        <ol class="toc">
+          <li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li>
+          <li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li>
+        </ol>
+      </li>
+    </ol>
+  </nav>
+
+
+
+  <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction</span>
+    </h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>
+      The Web Cryptography API [<cite><a class="bibref" href="#bib-WEBCRYPTO">WEBCRYPTO</a></cite>] describes a JavaScript API for performing basic cryptographic operations in web applications. Cryptographic keys in are represented in this API using
+      <a href="http://www.w3.org/TR/WebCryptoAPI/#cryptokey-interface"><code>CryptoKey</code></a> objects. The API provides methods to generate, derive, import and unwrap cryptographic keying material, so creating <a href="http://www.w3.org/TR/WebCryptoAPI/#key-interface"><code>CryptoKey</code></a> objects.
+    </p>
+    <p>This document concerns the discovery of cryptographic keys which are made available to the UA by other means. Specifically, this document provides an API for the discovery of cryptographic keys which have been pre-provisioned into a UA or device for use by a specific origin. Such keys are identified by names which are assumed to be known to the origin in question and thus they are referred to as <dfn data-dfn-type="dfn" id="dfn-named-origin-specific-pre-provisioned-keys">named origin-specific pre-provisioned keys</dfn>.</p>
+    <p>This enables web applications to establish secure proof that the UA has access to a particular pre-provisioned key. Depending on the nature of the key and its associated storage - for example within a Hardware Security Module or available only within a Trusted Execution Environment - further properties of the device on which the UA is running may be inferred.</p>
+    <p>The use of pre-provisioned keys requires the informed consent of the user, because such keys may be used for tracking and may reveal information about the users device. The privacy implications of origin-specific pre-provisioned keys are discussed further in <a href="#privacy-considerations">Security and Privacy Considerations</a>.
+    </p>
+  </section>
+
+  <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Conformance</span>
+    </h2>
+    <p>
+      As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
+    </p>
+    <p id="respecRFC2119">The key words <em class="rfc2119" title="MAY">MAY</em>, <em class="rfc2119" title="MUST">MUST</em>, <em class="rfc2119" title="REQUIRED">REQUIRED</em>, <em class="rfc2119" title="SHALL">SHALL</em>, <em class="rfc2119" title="SHALL NOT">SHALL NOT</em>, and <em class="rfc2119" title="SHOULD">SHOULD</em> are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+    </p>
+
+
+    <p>
+      The following conformance classes are defined by this note:
+    </p>
+    <dl>
+      <dt><dfn data-dfn-type="dfn" id="dfn-conforming-user-agent">conforming user agent</dfn></dt>
+      <dd>
+        <p>
+          A user agent is considered to be a conforming user agent if it satisfies all of the <em class="rfc2119" title="MUST">MUST</em>-, <em class="rfc2119" title="REQUIRED">REQUIRED</em>- and <em class="rfc2119" title="SHALL">SHALL</em>-level criteria in this note that apply to implementation. This note uses both the terms "conforming user agent" and "user agent" to refer to this product class.
+        </p>
+        <p>
+          User agents <em class="rfc2119" title="MAY">MAY</em> implement algorithms in this note in any way desired, so long as the end result is indistinguishable from the result that would be obtained from the note's algorithms.
+        </p>
+      </dd>
+    </dl>
+    <p>
+      User agents that use ECMAScript to implement the APIs defined in this note
+      <em class="rfc2119" title="MUST">MUST</em> implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>] as this note uses that specification and terminology.
+    </p>
+
+  </section>
+
+  <section id="scope" class="informative" typeof="bibo:Chapter" resource="#scope" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-scope" resource="#h-scope"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Scope</span>
+    </h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>The considerations in the Scope section of [<cite><a class="bibref" href="#bib-WEBCRYPTO">WEBCRYPTO</a></cite>] apply to this note as well. In particular, although this note directly addresses the discovery of <a href="#dfn-named-origin-specific-pre-provisioned-keys" class="internalDFN" data-link-type="dfn">named origin-specific pre-provisioned keys</a>, it does not address the processes used to provision those keys or the type and properties of the hardware or software components in which they are stored.</p>
+  </section>
+
+  <section class="informative" id="privacy-considerations" typeof="bibo:Chapter" resource="#privacy-considerations" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-privacy-considerations" resource="#h-privacy-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Privacy considerations</span>
+    </h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>The Privacy considerations of [<cite><a class="bibref" href="#bib-WEBCRYPTO">WEBCRYPTO</a></cite>] apply to this note.</p>
+
+    <section id="named-origin-specific-pre-provisioned-keys" typeof="bibo:Chapter" resource="#named-origin-specific-pre-provisioned-keys" property="bibo:hasPart">
+      <h3 id="h-named-origin-specific-pre-provisioned-keys" resource="#h-named-origin-specific-pre-provisioned-keys"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1 </span>Named origin-specific pre-provisioned keys</span>
+      </h3>
+
+      <section id="comparison-to-cookies-and-persistent-storage" typeof="bibo:Chapter" resource="#comparison-to-cookies-and-persistent-storage" property="bibo:hasPart">
+        <h4 id="h-comparison-to-cookies-and-persistent-storage" resource="#h-comparison-to-cookies-and-persistent-storage"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1.1 </span>Comparison to cookies and persistent storage</span>
+        </h4>
+        <p>The privacy considerations associated with origin-specific pre-provisioned keys are similar to those that apply to cookies [<cite><a class="bibref" href="#bib-COOKIES">COOKIES</a></cite>] and persistent storage, such as [<cite><a class="bibref" href="#bib-INDEXEDDB">INDEXEDDB</a></cite>]. The principle difference is that pre-provisioned keys are pre-existing, whereas cookies and persistent store are not. Thus sites can be relied upon to work (in an 'out-of-the-box' fashion) when cookies have been deleted and persistent store cleared. By contrast, sites that rely on pre-provisioned keys may not operate or may operate in a different fashion if the expected pre-provisioned keys are not available. Such sites may require users to choose whether to trade a certain amount of privacy for whatever service the site offers, or not access the service at all.</p>
+      </section>
+
+      <section id="user-tracking" typeof="bibo:Chapter" resource="#user-tracking" property="bibo:hasPart">
+        <h4 id="h-user-tracking" resource="#h-user-tracking"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1.2 </span>User tracking</span>
+        </h4>
+
+        <p>A third-party host (or any object capable of getting content distributed to multiple sites) could use a named origin-specific pre-provisioned key to track a user across multiple sessions, building a profile of the user's activities. In conjunction with a site that is aware of the user's real identity (for example an e-commerce site that requires authenticated credentials), this could allow oppressive groups to target individuals with greater accuracy than in a world with purely anonymous Web usage.</p>
+
+        <p>There are a number of techniques that can be used to mitigate this risk of tracking without user consent:
+        </p>
+        <dl>
+          <dt>Site-specific white-listing of access to named origin-specific pre-provisioned keys</dt>
+          <dd>
+            <p>User agents should require the user to explicitly authorize access to named origin-specific pre-provisioned keys before a site can use the keys.</p>
+            <p>User agents should enable users to revoke this authorization either temporarily or permanently.</p>
+          </dd>
+          <dt>Blocking access to named origin-specific pre-provisioned keys</dt>
+          <dd>
+            <p>User agents may restrict access to named origin-specific pre-provisioned keys to scripts originating at the domain of the top-level document of the browsing context, for instance returning empty key search results for pages from other domains running in iframes.</p>
+          </dd>
+
+          <dt>Treating named origin-specific pre-provisioned keys as cookies</dt>
+          <dd>
+            <p>User agents should present the named origin-specific pre-provisioned keys feature to the user in a way that associates it strongly with HTTP session cookies. [<cite><a class="bibref" href="#bib-COOKIES">COOKIES</a></cite>]</p>
+
+            <p>This might encourage users to view such keys with healthy suspicion.</p>
+          </dd>
+          <dt>Origin-tracking of named origin-specific pre-provisioned keys</dt>
+          <dd>
+            <p>User agents may record the origins of sites that contained content from third-party origins that used pre-provisioned keys.</p>
+
+            <p>If this information is then used to present a view of pre-provisioned keys to the user, it would allow the user to make informed decisions about authorizing sites to make use of keys. Combined with a blacklist ("delete this key" or "prevent this domain from ever accessing this key again"), the user can restrict the use of pre-provisioned keys to sites that he trusts.</p>
+          </dd>
+          <dt>Shared blacklists</dt>
+          <dd>
+            <p>User agents may allow users to share their pre-provisioned key domain blacklists.</p>
+
+            <p>This would allow communities to act together to protect their privacy.</p>
+          </dd>
+        </dl>
+        <p></p>
+        <p>While these suggestions prevent trivial use of this feature for user tracking, they do not block it altogether. Where a browser supports a mode of operation intended to preserve user anonymity, access to pre-provisioned keys should be disabled in this mode. Even so, within a single domain, a site can continue to track the user during a session, and can then pass all this information to the third party along with any identifying information (names, credit card numbers, addresses) obtained by the site. If a third party cooperates with multiple sites to obtain such information, a profile can still be created.</p>
+
+        <p>However, user tracking is to some extent possible even with no cooperation from the user agent whatsoever, for instance by using session identifiers in URLs, a technique already commonly used for innocuous purposes but easily repurposed for user tracking (even retroactively). This information can then be shared with other sites, using visitors' IP addresses and other user-specific data (e.g. user-agent headers and configuration settings) to combine separate sessions into coherent user profiles.</p>
+      </section>
+
+      <section id="cookie-resurrection" typeof="bibo:Chapter" resource="#cookie-resurrection" property="bibo:hasPart">
+        <h4 id="h-cookie-resurrection" resource="#h-cookie-resurrection"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1.3 </span>Cookie resurrection</span>
+        </h4>
+
+        <p>If the user interface for the origin-specific pre-provisioned keys feature described in this note presents data separately from data in HTTP session cookies or persistent storage, then users are likely to modify site authorization or delete data in one and not the others. This would allow sites to use the various features as redundant backup for each other, defeating a user's attempts to protect his privacy.</p>
+      </section>
+
+      <section id="sensitivity-of-data" typeof="bibo:Chapter" resource="#sensitivity-of-data" property="bibo:hasPart">
+        <h4 id="h-sensitivity-of-data" resource="#h-sensitivity-of-data"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1.4 </span>Sensitivity of data</span>
+        </h4>
+
+        <p>User agents should treat pre-provisioned keys and material generated using such keys as potentially sensitive; it is quite possible for the user privacy to be compromised by the release of this information.</p>
+
+        <p>To this end, user agents should ensure that when deleting data, it is promptly deleted from the underlying storage.</p>
+      </section>
+    </section>
+  </section>
+
+  <section class="section" id="dependencies" typeof="bibo:Chapter" resource="#dependencies" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-dependencies" resource="#h-dependencies"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Dependencies</span>
+    </h2>
+    <p>
+      This note relies on several other underlying specifications.
+    </p>
+    <dl>
+      <dt>HTML5</dt>
+      <dd>The terms and algorithms
+        <dfn data-dfn-type="dfn" id="dfn-window"><code>Window</code></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-worker"><code>Worker</code></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-function"><code>Function</code></dfn>,
+        <dfn data-dfn-type="dfn" id="dfn-origin">origin</dfn>, <dfn data-dfn-type="dfn" id="dfn-same-origin">same origin</dfn>, <dfn data-dfn-type="dfn" id="dfn-structured-clone">structured clone</dfn>, and <dfn data-dfn-type="dfn" id="dfn-structured-clone-algorithm">structured clone algorithm</dfn> are defined by the HTML 5 specification [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+      </dd>
+      <dt>Web Cryptography API</dt>
+      <dd>
+        <p>A <a href="#dfn-conforming-user-agent" class="internalDFN" data-link-type="dfn">conforming user agent</a> <em class="rfc2119" title="MUST">MUST</em> support the Web Cryptography API [<cite><a class="bibref" href="#bib-WEBCRYPTO">WEBCRYPTO</a></cite>].</p>
+        <p>The term <dfn data-dfn-type="dfn" id="dfn-cryptokey"><code>CryptoKey</code></dfn> is defined in [<cite><a class="bibref" href="#bib-WEBCRYPTO">WEBCRYPTO</a></cite>].</p>
+      </dd>
+      <dt>WebIDL</dt>
+      <dd>Many of the interface definitions and all of the IDL in this spec depends on [<cite><a class="bibref" href="#bib-WEBIDL">WEBIDL</a></cite>].</dd>
+      <dt>WebWorkers</dt>
+      <dd>The term <dfn data-dfn-type="dfn" id="dfn-workerglobalscope"><a class="externalDFN"><code>WorkerGlobalScope</code></a></dfn> is defined by the WebWorkers specification [<cite><a class="bibref" href="#bib-WEBWORKERS">WEBWORKERS</a></cite>].</dd>
+    </dl>
+  </section>
+
+  <section id="api-definition" typeof="bibo:Chapter" resource="#api-definition" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-api-definition" resource="#h-api-definition"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>API definition</span>
+    </h2>
+
+    <section class="informative" id="overview" typeof="bibo:Chapter" resource="#overview" property="bibo:hasPart">
+      <h3 id="h-overview" resource="#h-overview"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span>Overview</span>
+      </h3>
+      <p><em>This section is non-normative.</em></p>
+      <p>This note defines a new <a data-lt="cryptokeys" href="#dfn-cryptokeys" class="internalDFN" data-link-type="dfn"><code>cryptokeys</code></a> attribute on the <a href="#idl-def-Window" class="idlType"><code>Window</code></a> and <a href="#idl-def-WorkerGlobalScope" class="idlType"><code>WorkerGlobalScope</code></a> objects. This attribute is an object supporting a method, <a data-lt="getKeyByName" href="#dfn-getkeybyname" class="internalDFN" data-link-type="dfn"><code>getKeyByName</code></a> which may be used to get the key with a given name. Keys are returned as <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> objects which are subclasses of the <a href="#dfn-cryptokey" class="internalDFN" data-link-type="dfn"><code><code>CryptoKey</code></code></a> class.</p>
+    </section>
+
+    <section id="namedcryptokey-interface" typeof="bibo:Chapter" resource="#namedcryptokey-interface" property="bibo:hasPart">
+      <h3 id="h-namedcryptokey-interface" resource="#h-namedcryptokey-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span>NamedCryptoKey interface</span>
+      </h3>
+      <pre class="idl"><span class="idlInterface" id="idl-def-NamedCryptoKey">interface <span class="idlInterfaceID">NamedCryptoKey</span> : <span class="idlSuperclass"><a href="#dfn-cryptokey" class="internalDFN" data-link-type="dfn"><code>CryptoKey</code></a></span> {
+<span class="idlAttribute">    readonly        attribute <span class="idlAttrType">DOMString</span>  <span class="idlAttrName"><a href="#widl-NamedCryptoKey-name">name</a></span>;</span>
+<span class="idlAttribute">    readonly        attribute <span class="idlAttrType">DOMString?</span> <span class="idlAttrName"><a href="#widl-NamedCryptoKey-id">id</a></span>;</span>
+};</span></pre>
+
+      <section id="attributes" typeof="bibo:Chapter" resource="#attributes" property="bibo:hasPart">
+        <h4 id="h-attributes" resource="#h-attributes"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.1 </span>Attributes</span>
+        </h4>
+        <dl class="attributes"><dt id="widl-NamedCryptoKey-id"><code>id</code> of type <span class="idlAttrType">DOMString</span>, readonly       , nullable</dt>
+          <dd>
+            <p>A global identifier associated with the key.</p>
+            <p>Origin-specific pre-provisioned keys are frequently provisioned with associated identifiers. Where an identifier exists that uniquely identifies the key amongst all keys pre-provisoned with the same <a href="#dfn-origin" class="internalDFN" data-link-type="dfn">origin</a> and <code>name</code> and if this identifier can be canonically expressed as a sequence of no more than 256 bytes, then this identifier <em class="rfc2119" title="SHOULD">SHOULD</em> be exposed, base64 encoded, as the <code>id</code>. If no identifier matching these conditions exists, <code>id</code> <em class="rfc2119" title="MUST">MUST</em> be <code>null</code>.</p>
+          </dd><dt id="widl-NamedCryptoKey-name"><code>name</code> of type <span class="idlAttrType">DOMString</span>, readonly       </dt>
+          <dd>
+            <p>A local identifier for the key.</p>
+          </dd>
+        </dl>
+      </section>
+
+      <section id="structured-clone-algorithm" typeof="bibo:Chapter" resource="#structured-clone-algorithm" property="bibo:hasPart">
+        <h4 id="h-structured-clone-algorithm" resource="#h-structured-clone-algorithm"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.2 </span>Structured clone algorithm</span>
+        </h4>
+        <p>When a user agent is required to obtain a <a href="#dfn-structured-clone" class="internalDFN" data-link-type="dfn">structured clone</a> of a <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> object, it must run the following steps.</p>
+        <ol>
+          <li>Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the <a data-lt="structured clone algorithm" href="#dfn-structured-clone-algorithm" class="internalDFN" data-link-type="dfn">internal structured clone algorithm</a>, where <var>input</var> is a <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> object to be cloned.</li>
+          <li>Let <var>output</var> be a newly constructed <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> object, where the structured clone algorithm is followed for the base <code>CryptoKey</code> object.</li>
+          <li>Let the following attributes of <var>output</var> be equal to the value obtained by invoking the internal structured clone algorithm recursively, using the corresponding attribute on <var>input</var> as the new "<var>input</var>" argument and <var>memory</var> as the new "<var>memory</var>" argument:
+            <ul>
+              <li><code>name</code></li>
+              <li><code>id</code></li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section id="immutability-of-namedcryptokey-objects" typeof="bibo:Chapter" resource="#immutability-of-namedcryptokey-objects" property="bibo:hasPart">
+        <h4 id="h-immutability-of-namedcryptokey-objects" resource="#h-immutability-of-namedcryptokey-objects"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2.3 </span>Immutability of NamedCryptoKey objects</span>
+        </h4>
+        <p>The <code>name</code> and <code>id</code> attributes of a <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> object <em class="rfc2119" title="SHALL NOT">SHALL NOT</em> change. The underlying cryptographic key <em class="rfc2119" title="SHALL NOT">SHALL NOT</em> change, except that it <em class="rfc2119" title="MAY">MAY</em> be removed altogether. In this case any attempt to use the <a href="#idl-def-NamedCryptoKey" class="idlType"><code>NamedCryptoKey</code></a> object shall return an error.</p>
+      </section>
+    </section>
+
+    <section id="cryptokeys-interface" typeof="bibo:Chapter" resource="#cryptokeys-interface" property="bibo:hasPart">
+      <h3 id="h-cryptokeys-interface" resource="#h-cryptokeys-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.3 </span>CryptoKeys interface</span>
+      </h3>
+      <pre class="idl"><span class="idlInterface" id="idl-def-CryptoKeys">[<span class="extAttr">NoInterfaceObject,Exposed=Window,Worker</span>]
+interface <span class="idlInterfaceID">CryptoKeys</span> {
+<span class="idlMethod">    <span class="idlMethType">Promise</span> <span class="idlMethName"><a href="#widl-CryptoKeys-getKeyByName-Promise-DOMString-name">getKeyByName</a></span> (<span class="idlParam"><span class="idlParamType">DOMString</span> <span class="idlParamName">name</span></span>);</span>
+};</span></pre>
+
+      <section id="methods" typeof="bibo:Chapter" resource="#methods" property="bibo:hasPart">
+        <h4 id="h-methods" resource="#h-methods"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.3.1 </span>Methods</span>
+        </h4>
+        <dl class="methods"><dt id="widl-CryptoKeys-getKeyByName-Promise-DOMString-name"><code>getKeyByName</code></dt>
+          <dd>
+            <p>When invoked, this method must perform the following steps:
+            </p>
+            <ol>
+              <li>Let <var>promise</var> be a new <code>Promise</code>
+              </li>
+              <li>Make an asynchronous request to search for a key matching the name specifier provided in <code>name</code>. A name specifier matches the name of a key if they are identical when expressed as a string of unicode characters.
+                <dl class="switch">
+                  <dt>If a key is found</dt>
+                  <dd>
+                    <ol>
+                      <li>Let the <var>result</var> be an object of type <code>NamedCryptoKey</code> representing the key.</li>
+                      <li>Resolve <var>promise</var> with <var>result</var>.</li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise</dt>
+                  <dd>Resolve <var>promise</var> with <code>null</code>.
+                  </dd>
+                </dl>
+              </li>
+              <li>Return <var>promise</var>.</li>
+            </ol>
+            <p></p>
+            <table class="parameters">
+              <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Nullable</th>
+                <th>Optional</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td class="prmName">name</td>
+                <td class="prmType"><code>DOMString</code></td>
+                <td class="prmNullFalse"><span role="img" aria-label="False">✘</span></td>
+                <td class="prmOptFalse"><span role="img" aria-label="False">✘</span></td>
+                <td class="prmDesc"></td>
+              </tr>
+            </table>
+            <div><em>Return type: </em><code>Promise</code></div>
+          </dd>
+        </dl>
+      </section>
+    </section>
+
+    <section id="extension-of-window-interface" typeof="bibo:Chapter" resource="#extension-of-window-interface" property="bibo:hasPart">
+      <h3 id="h-extension-of-window-interface" resource="#h-extension-of-window-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.4 </span>Extension of Window interface</span>
+      </h3>
+      <pre class="idl"><span class="idlInterface" id="idl-def-Window">partial interface <span class="idlInterfaceID">Window</span> {
+<span class="idlAttribute">    readonly        attribute <span class="idlAttrType"><a href="#idl-def-CryptoKeys" class="idlType"><code>CryptoKeys</code></a></span> <span class="idlAttrName"><a href="#widl-Window-cryptokeys">cryptokeys</a></span>;</span>
+};</span></pre>
+
+      <section id="attributes-1" typeof="bibo:Chapter" resource="#attributes-1" property="bibo:hasPart">
+        <h4 id="h-attributes-1" resource="#h-attributes-1"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.4.1 </span>Attributes</span>
+        </h4>
+        <dl class="attributes"><dt id="widl-Window-cryptokeys"><code>cryptokeys</code> of type <span class="idlAttrType"><a href="#idl-def-CryptoKeys" class="idlType"><code>CryptoKeys</code></a></span>, readonly       </dt>
+          <dd></dd>
+        </dl>
+      </section>
+    </section>
+
+    <section id="extension-of-workerglobalscope-interface" typeof="bibo:Chapter" resource="#extension-of-workerglobalscope-interface" property="bibo:hasPart">
+      <h3 id="h-extension-of-workerglobalscope-interface" resource="#h-extension-of-workerglobalscope-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.5 </span>Extension of WorkerGlobalScope interface</span>
+      </h3>
+      <pre class="idl"><span class="idlInterface" id="idl-def-WorkerGlobalScope">partial interface <span class="idlInterfaceID">WorkerGlobalScope</span> {
+<span class="idlAttribute">    readonly        attribute <span class="idlAttrType"><a href="#idl-def-CryptoKeys" class="idlType"><code>CryptoKeys</code></a></span> <span class="idlAttrName"><a href="#widl-WorkerGlobalScope-cryptokeys">cryptokeys</a></span>;</span>
+};</span></pre>
+
+      <section id="attributes-2" typeof="bibo:Chapter" resource="#attributes-2" property="bibo:hasPart">
+        <h4 id="h-attributes-2" resource="#h-attributes-2"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.5.1 </span>Attributes</span>
+        </h4>
+        <dl class="attributes"><dt id="widl-WorkerGlobalScope-cryptokeys"><code>cryptokeys</code> of type <span class="idlAttrType"><a href="#idl-def-CryptoKeys" class="idlType"><code>CryptoKeys</code></a></span>, readonly       </dt>
+          <dd></dd>
+        </dl>
+      </section>
+    </section>
+  </section>
+
+  <section id="example" typeof="bibo:Chapter" resource="#example" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-example" resource="#h-example"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Example</span>
+    </h2>
+
+    <section id="using-a-pre-provisioned-aes-kw-key-to-unwrap-a-session-key" typeof="bibo:Chapter" resource="#using-a-pre-provisioned-aes-kw-key-to-unwrap-a-session-key" property="bibo:hasPart">
+      <h3 id="h-using-a-pre-provisioned-aes-kw-key-to-unwrap-a-session-key" resource="#h-using-a-pre-provisioned-aes-kw-key-to-unwrap-a-session-key"><span property="xhv:role" resource="xhv:heading"><span class="secno">7.1 </span>Using a pre-provisioned AES-KW key to unwrap a session key</span>
+      </h3>
+      <div class="example">
+        <div class="example-title marker"><span>Example 1</span></div><pre class="hljs javascript"><span class="hljs-built_in">window</span>.cryptokeys.getKeyByName( <span class="hljs-string">"Kunwrap"</span> ).then( <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> key </span>) </span>{
+
+  <span class="hljs-keyword">if</span> ( key === <span class="hljs-literal">null</span> ) {
+    <span class="hljs-built_in">console</span>.error( <span class="hljs-string">"Unwrapping key, 'Kunwrap', not found."</span>);
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Call a function to get a wrapped session key from the server, based on key.id</span>
+    getSessionKeyForId( key.id ).then( <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> wrappedJwkKeyData </span>) </span>{
+      
+      <span class="hljs-built_in">window</span>.crypto.subtle.unwrapKey( <span class="hljs-string">'jwk'</span>,
+                wrappedJwkKeyData,            <span class="hljs-comment">// the wrapped JWK session key</span>
+                key,                          <span class="hljs-comment">// the pre-provisoned unwrapping key</span>
+                { <span class="hljs-attr">name</span>: <span class="hljs-string">'AES-KW'</span> },           <span class="hljs-comment">// the key wrapping algorithm</span>
+                { <span class="hljs-attr">name</span>: <span class="hljs-string">'AES-GCM'</span> },          <span class="hljs-comment">// the algorithm the unwrapped key will be used with</span>
+                <span class="hljs-literal">false</span>,                        <span class="hljs-comment">// the result must not be extractable</span>
+                [ <span class="hljs-string">'encrypt'</span>, <span class="hljs-string">'decrypt'</span> ]      <span class="hljs-comment">// we'll use the result for encrypt and decrypt</span>
+                ).then( <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> sessionKey </span>) </span>{
+                
+          <span class="hljs-comment">// use session key here for secure communication bound to the pre-provisioned key</span>
+                
+       }, <span class="hljs-built_in">console</span>.error.bind( <span class="hljs-built_in">console</span>, <span class="hljs-string">"Unwrapping returned an error"</span> ) );
+    }, <span class="hljs-built_in">console</span>.error.bind( <span class="hljs-built_in">console</span>, <span class="hljs-string">"Could not get session key from server"</span> ) );
+  }
+});</pre></div>
+    </section>
+  </section>
+  <!--
+    <section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>
+        Many thanks to ...
+      </p>
+    </section>
+    -->
+
+
+  <section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>References</span>
+    </h2>
+
+    <section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart">
+      <h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Normative references</span>
+      </h3>
+      <dl class="bibliography" resource=""><dt id="bib-HTML5">[HTML5]</dt>
+        <dd>Ian Hickson; Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Theresa O'Connor; Silvia Pfeiffer. W3C. <a href="https://www.w3.org/TR/html5/" property="dc:requires"><cite>HTML5</cite></a>. 28 October 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html5/" property="dc:requires">https://www.w3.org/TR/html5/</a>
+        </dd><dt id="bib-RFC2119">[RFC2119]</dt>
+        <dd>S. Bradner. IETF. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
+        </dd><dt id="bib-WEBCRYPTO">[WEBCRYPTO]</dt>
+        <dd>Ryan Sleevi, Mark Watson <a href="http://www.w3.org/TR/WebCryptoAPI/" property="dc:requires"><cite>Web Cryptography API.</cite></a> URL: <a href="http://www.w3.org/TR/WebCryptoAPI/" property="dc:requires">http://www.w3.org/TR/WebCryptoAPI/</a>
+        </dd><dt id="bib-WEBIDL">[WEBIDL]</dt>
+        <dd>Cameron McCormack; Boris Zbarsky. W3C. <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires"><cite>WebIDL Level 1</cite></a>. 15 September 2016. W3C Proposed Recommendation. URL: <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires">https://www.w3.org/TR/WebIDL-1/</a>
+        </dd><dt id="bib-WEBWORKERS">[WEBWORKERS]</dt>
+        <dd>Ian Hickson. W3C. <a href="https://www.w3.org/TR/workers/" property="dc:requires"><cite>Web Workers</cite></a>. 24 September 2015. W3C Working Draft. URL: <a href="https://www.w3.org/TR/workers/" property="dc:requires">https://www.w3.org/TR/workers/</a>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart">
+      <h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2 </span>Informative references</span>
+      </h3>
+      <dl class="bibliography" resource=""><dt id="bib-COOKIES">[COOKIES]</dt>
+        <dd>A. Barth. IETF. <a href="https://tools.ietf.org/html/rfc6265" property="dc:references"><cite>HTTP State Management Mechanism</cite></a>. April 2011. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc6265" property="dc:references">https://tools.ietf.org/html/rfc6265</a>
+        </dd><dt id="bib-INDEXEDDB">[INDEXEDDB]</dt>
+        <dd>Nikunj Mehta; Jonas Sicking; Eliot Graff; Andrei Popescu; Jeremy Orlow; Joshua Bell. W3C. <a href="https://www.w3.org/TR/IndexedDB/" property="dc:references"><cite>Indexed Database API</cite></a>. 8 January 2015. W3C Recommendation. URL: <a href="https://www.w3.org/TR/IndexedDB/" property="dc:references">https://www.w3.org/TR/IndexedDB/</a>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
