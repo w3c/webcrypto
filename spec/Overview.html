@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>7 October 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>10 October 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -60,7 +60,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 7 October 2016 <b>Editor’s Draft</b> of the
+        This document is the 10 October 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -1185,7 +1185,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </li>
           </ol>
           <div class="note"><div class="noteHeader">Note</div>
-            <strong>Implementation Note:</strong> When performing the structured clone algorithm in
+            When performing the structured clone algorithm in
             order to serialize a <code>CryptoKey</code> object, implementations must not allow the
             object to be deserialized as a different type. This is normatively required by the
             definition of structured clone, but it merits specific attention, as such
@@ -2181,9 +2181,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
             </ol>
             <div class="note"><div class="noteHeader">Note</div>
-              <p class="norm">
-                This note is non-normative.
-              </p>
               <p>
                 For structured key formats, <code>"spki"</code>, <code>"pks8"</code>
                 and <code>"jwk"</code>, fields that are not explicitly referred to in the key
@@ -2395,9 +2392,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   </dd>
                 </dl>
                 <div class="note"><div class="noteHeader">Note</div>
-                  <p class="norm">
-                    This note is non-normative.
-                  </p>
                   <p>
                     The key wrapping operations for some algorithms place constraints on the payload
                     size. For example AES-KW requires the payload to be a multiple of 8 bytes in
@@ -2740,7 +2734,7 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </p>
 
         <div class="note"><div class="noteHeader">Note</div>
-          <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
+          Since the integer is unsigned, the highest order bit
           is NOT a sign bit. Implementors should take care when mapping to big integer
           implementations that expected signed integers.
         </div>
