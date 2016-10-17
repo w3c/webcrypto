@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebCrypto Key Discovery</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <style>
+      table {
+        border-collapse: collapse;
+        border-spacing: 0px;
+        margin-top: +1em;
+        margin-bottom: +1em;
+        border-color: black;
+        font-family: "Courier New", Inconsolata, "Bitstream Charter";
+        font-size: 90%;
+      }
+      th {
+        background-color:DimGray;
+        color:white;
+        font-weight: normal;
+      }
+      .sub-th {
+        background-color: Linen;
+        font-style: italic;
+      }
+      .centered {
+        text-align: center;
+      }
+      .first-column {
+        background-color: Beige;
+        font-weight: bold;
+      }
+      .excluded-first-column {
+        background-color: DarkGray;
+        text-decoration: line-through;
+      }
+    </style>
+    
+    <!-- 
+      === NOTA BENE ===
+      For the three scripts below, if your spec resides on dev.w3 you can check them
+      out in the same tree and use relative links so that they'll work offline,
+     -->
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove' async></script>
+    <script type="text/javascript" class='remove'>
+      var respecConfig = {  specStatus: "ED",
+                            noRecTrack: true,
+                            shortName: "webcrypto-key-discovery",
+                            editors: [{ name: "Mark Watson", 
+                                        mailto: "watsonm@netflix.com", 
+                                        company: "Netflix", 
+                                        companyURL: "http://www.netflix.com/"} ],
+                            // publishDate: "2016-03-23",
+                            previousPublishDate:  "2013-01-08",
+                            // edEnd:  "",
+                            previousMaturity: "WD",
+                            edDraftURI:   "https://w3c.github.io/webcrypto/KeyDiscovery.html",
+                            wg:           "Web Cryptography WG",
+                            wgURI:        "http://www.w3.org/2012/webcrypto/",
+                            wgPublicList: "public-webcrypto",
+                            wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/54174/status",
+                            localBiblio : { "WEBCRYPTO" : "Ryan Sleevi, Mark Watson <a href=\"http://www.w3.org/TR/WebCryptoAPI/\"><cite>Web Cryptography API.</cite></a> URL: <a href=\"http://www.w3.org/TR/WebCryptoAPI/\">http://www.w3.org/TR/WebCryptoAPI/</a> "},
+                            otherLinks: [ { key: "Participate", data: [
+                                { value: "Submit a comment", href: "mailto:public-webcrypto-comments@w3.org" },
+                                { value: "We are on GitHub", href: "https://github.com/w3c/webcrypto" },
+                                { value: "See existing bugs", href: "https://github.com/w3c/webcrypto/issues" } ] } ]
+                        };
+    </script>
+  </head>
+  <body>
+    <section id='abstract'>
+      <p>This note describes a JavaScript API for discovering named, origin-specific pre-provisioned
+      cryptographic keys for use with the Web Cryptography API. Pre-provisioned keys are keys which have been made
+      available to the UA by means other than the generation, derivation, importation and unwrapping functions of the
+      Web Cryptography API. Origin-specific keys are keys that are available only to a specified origin. Named keys
+      are identified by a name assumed to be known to the origin in question and provisioned with the key itself.
+      This note concerns only keys which have all three of these properties.
+      </p>
+    </section>
+    
+    <section id="sotd">
+      <p>This document defines an API that provides access to named origin-specific pre-provisioned keys.
+      The privacy issues associated with such keys require special attention and
+      the privacy related material in this document has not yet received thorough review by the community.</p>
+    </section>
+    
+    <section class="informative">
+      <h2>Introduction</h2>
+      <p>
+        The Web Cryptography API [[!WEBCRYPTO]] describes a JavaScript API for performing basic cryptographic
+        operations in web applications. Cryptographic keys in are represented in this API using
+        <a href='http://www.w3.org/TR/WebCryptoAPI/#cryptokey-interface'><code>CryptoKey</code></a> objects. The API provides methods to generate, derive, import and unwrap cryptographic
+        keying material, so creating <a href='http://www.w3.org/TR/WebCryptoAPI/#key-interface'><code>CryptoKey</code></a> objects.
+      </p>
+      <p>This document concerns the discovery of cryptographic keys which are made available to the UA by other means.
+        Specifically, this document provides an API for the discovery of cryptographic keys which have been pre-provisioned
+         into a UA or device for use by a specific origin. Such keys are identified by names which are assumed to be known to 
+         the origin in question and thus they are referred to as <dfn>named origin-specific pre-provisioned keys</dfn>.</p>
+      <p>This enables web applications to establish secure proof that the UA has access to a particular
+        pre-provisioned key. Depending on the nature of the key and its associated storage - for example within
+        a Hardware Security Module or available only within a Trusted Execution Environment - further properties of the
+        device on which the UA is running may be inferred.</p>
+      <p>The use of pre-provisioned keys requires the informed consent of the user, because such keys may be used for tracking
+      and may reveal information about the users device. The privacy implications of origin-specific pre-provisioned
+      keys are discussed further in <a href="#privacy-considerations">Security and Privacy Considerations</a>.
+      </p>
+    </section>
+    
+    <section id="conformance">
+      
+      <p>
+          The following conformance classes are defined by this note:
+        </p>
+        <dl>
+          <dt><dfn>conforming user agent</dfn></dt>
+          <dd>
+            <p>
+              A user agent is considered to be a conforming user agent
+              if it satisfies all of the MUST-, REQUIRED- and SHALL-level
+              criteria in this note that apply to implementation. This note
+              uses both the terms "conforming user agent" and "user agent" to refer to this
+              product class.
+            </p>
+            <p>
+              User agents MAY implement algorithms in this
+              note in any way desired, so long as the end result is indistinguishable
+              from the result that would be obtained from the note's algorithms.
+            </p>
+          </dd>         
+        </dl>
+        <p>
+          User agents that use ECMAScript to implement the APIs defined in this note
+          MUST implement them in a manner consistent with the
+          ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]]
+          as this note uses that specification and terminology.
+        </p>
+      
+    </section>
+    
+    <section id="scope" class="informative">
+      <h2>Scope</h2>
+      <p>The considerations in the Scope section of [[!WEBCRYPTO]] apply to this note as well. In particular, although this note directly addresses the discovery of <a>named origin-specific pre-provisioned keys</a>, it does not address the processes used to provision those keys or the type and properties of the hardware or software components in which they are stored.</p>
+    </section>
+    <section class="informative">
+      <h2>Privacy considerations</h2>
+      <p>The Privacy considerations of [[!WEBCRYPTO]] apply to this note.</p>
+      <section>
+        <h3>Named origin-specific pre-provisioned keys</h3>
+        <section><h3>Comparison to cookies and persistent storage</h3>
+        <p>The privacy considerations associated with origin-specific pre-provisioned keys are similar to those that apply to cookies [[COOKIES]] and persistent storage, such as [[INDEXEDDB]]. The principle difference is that pre-provisioned keys are pre-existing, whereas cookies and persistent store are not. Thus sites can be relied upon to work (in an 'out-of-the-box' fashion) when cookies have been deleted and persistent store cleared. By contrast, sites that rely on pre-provisioned keys may not operate or may operate in a different fashion if the expected pre-provisioned keys are not available. Such sites may require users to choose whether to trade a certain amount of privacy for whatever service the site offers, or not access the service at all.</p></section>
+        
+        <section>
+          <h4>User tracking</h4>
+  
+          <p>A third-party host (or any object capable of getting content distributed to multiple sites) could use a named origin-specific pre-provisioned key to track a user across multiple sessions, building a profile of the user's activities. In conjunction with a site that is aware of the user's real identity (for example an e-commerce site that requires authenticated credentials), this could allow oppressive groups to target individuals with greater accuracy than in a world with purely anonymous Web usage.</p>
+          
+          <p>There are a number of techniques that can be used to mitigate this risk of tracking without user consent:
+            <dl>
+              <dt>Site-specific white-listing of access to named origin-specific pre-provisioned keys</dt>
+              <dd><p>User agents should require the user to explicitly authorize access to named origin-specific pre-provisioned keys before a site can use the keys.</p>
+              <p>User agents should enable users to revoke this authorization either temporarily or permanently.</p></dd>
+              <dt>Blocking access to named origin-specific pre-provisioned keys</dt>
+                <dd><p>User agents may restrict access to named origin-specific pre-provisioned keys to scripts originating at the domain of the top-level document of the browsing context, for instance returning empty key search results for pages from other domains running in iframes.</p></dd>
+                
+              <dt>Treating named origin-specific pre-provisioned keys as cookies</dt>
+              <dd>
+                <p>User agents should present the named origin-specific pre-provisioned keys feature to the user in a way that associates it strongly with HTTP session cookies. [[COOKIES]]</p>
+              
+                <p>This might encourage users to view such keys with healthy suspicion.</p>
+              </dd>
+              <dt>Origin-tracking of named origin-specific pre-provisioned keys</dt>
+              <dd>
+                <p>User agents may record the origins of sites that contained content from third-party origins that used pre-provisioned keys.</p>
+              
+                <p>If this information is then used to present a view of pre-provisioned keys to the user, it would allow the user to make informed decisions about authorizing sites to make use of keys. Combined with a blacklist ("delete this key" or "prevent this domain from ever accessing this key again"), the user can restrict the use of pre-provisioned keys to sites that he trusts.</p></dd>
+              <dt>Shared blacklists</dt>
+              <dd>
+                <p>User agents may allow users to share their pre-provisioned key domain blacklists.</p>
+              
+                <p>This would allow communities to act together to protect their privacy.</p>
+              </dd>
+            </dl>
+          </p>
+          <p>While these suggestions prevent trivial use of this feature for user tracking, they do not block it altogether. Where a browser supports a mode of operation intended to preserve user anonymity, access to pre-provisioned keys should be disabled in this mode. Even so, within a single domain, a site can continue to track the user during a session, and can then pass all this information to the third party along with any identifying information (names, credit card numbers, addresses) obtained by the site. If a third party cooperates with multiple sites to obtain such information, a profile can still be created.</p>
+  
+          <p>However, user tracking is to some extent possible even with no cooperation from the user agent whatsoever, for instance by using session identifiers in URLs, a technique already commonly used for innocuous purposes but easily repurposed for user tracking (even retroactively). This information can then be shared with other sites, using visitors' IP addresses and other user-specific data (e.g. user-agent headers and configuration settings) to combine separate sessions into coherent user profiles.</p>
+        </section>
+        <section>
+          <h4>Cookie resurrection</h4>
+  
+          <p>If the user interface for the origin-specific pre-provisioned keys feature described in this note presents data separately from data in HTTP session cookies or persistent storage, then users are likely to modify site authorization or delete data in one and not the others. This would allow sites to use the various features as redundant backup for each other, defeating a user's attempts to protect his privacy.</p>
+        </section>
+        <section>
+          <h4>Sensitivity of data</h4>
+  
+          <p>User agents should treat pre-provisioned keys and material generated using such keys as potentially sensitive; it is quite possible for the user privacy to be compromised by the release of this information.</p>
+  
+          <p>To this end, user agents should ensure that when deleting data, it is promptly deleted from the underlying storage.</p>
+        </section>
+      </section>
+    </section>
+    
+    <section class="section" id="dependencies">
+      <h3>Dependencies</h3>
+      <p>
+        This note relies on several other underlying specifications.
+      </p>
+      <dl>
+        <dt>HTML5</dt>
+        <dd>The terms and algorithms
+          <dfn><code>Window</code></dfn>,
+          <dfn><code>Worker</code></dfn>,
+          <dfn><code>Function</code></dfn>,
+          <dfn>origin</dfn>, <dfn>same origin</dfn>, <dfn>structured clone</dfn>,
+          and <dfn>structured clone algorithm</dfn> are defined by the HTML 5 
+          specification [[!HTML5]].
+        </dd>
+        <dt>Web Cryptography API</dt>
+        <dd><p>A <a>conforming user agent</a> MUST support the Web Cryptography API [[!WEBCRYPTO]].</p>
+          <p>The term <dfn><code>CryptoKey</code></dfn> is defined in [[!WEBCRYPTO]].</p>
+        </dd>
+        <dt>WebIDL</dt>
+        <dd>Many of the interface definitions and all of the IDL in this spec depends on [[!WEBIDL]].</dd>
+        <dt>WebWorkers</dt>
+        <dd>The term <dfn><a class="externalDFN"><code>WorkerGlobalScope</code></a></dfn> is defined by
+        the WebWorkers specification [[!WEBWORKERS]].</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>API definition</h2>
+      <section class="informative"><h3>Overview</h3>
+      <p>This note defines a new <a data-lt="cryptokeys"><code>cryptokeys</code></a> attribute on the <a><code>Window</code></a> and <a><code>WorkerGlobalScope</code></a>
+        objects. This attribute is an object supporting a method, <a data-lt="getKeyByName"><code>getKeyByName</code></a> which may be used to get the key with a given name. Keys are
+        returned as <a>NamedCryptoKey</a> objects which are subclasses of the <a><code>CryptoKey</code></a> class.</p></section>
+      
+      <section><h3>NamedCryptoKey interface</h3>
+        <dl title="interface NamedCryptoKey : CryptoKey" class="idl">
+          <dt>readonly attribute DOMString name</dt>
+          <dd><p>A local identifier for the key.</p></dd>
+          <dt>readonly attribute DOMString? id</dt>
+          <dd>
+            <p>A global identifier associated with the key.</p>
+            <p>Origin-specific pre-provisioned keys are frequently provisioned with associated identifiers. Where an identifier exists that uniquely identifies the key amongst all keys pre-provisoned with the same <a>origin</a> and <a><code>name</code></a> and if this identifier can be canonically expressed as a sequence of no more than 256 bytes, then this identifier SHOULD be exposed, base64 encoded, as the <a><code>id</code></a>. If no identifier matching these conditions exists, <a><code>id</code></a> MUST be <code>null</code>.</p>
+          </dd>
+        </dl>
+        <section><h4>Structured clone algorithm</h4>
+        <p>When a user agent is required to obtain a <a>structured clone</a> of a <a>NamedCryptoKey</a> object, it must run the following steps.</p>
+        <ol>
+          <li>Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the <a data-lt="structured clone algorithm">internal structured clone algorithm</a>, where <var>input</var> is a <a>NamedCryptoKey</a> object to be cloned.</li>
+          <li>Let <var>output</var> be a newly constructed <a>NamedCryptoKey</a> object, where the structured clone algorithm is followed for the base <code>CryptoKey</code> object.</li>
+          <li>Let the following attributes of <var>output</var> be equal to the value obtained by invoking the internal structured clone algorithm recursively, using  the corresponding attribute on <var>input</var> as the new "<var>input</var>" argument and <var>memory</var> as the new "<var>memory</var>" argument:
+            <ul>
+              <li><code>name</code></li>
+              <li><code>id</code></li>
+            </ul></li>
+        </ol>
+        </section>
+
+        <section><h4>Immutability of NamedCryptoKey objects</h4>
+          <p>The <code>name</code> and <code>id</code> attributes of a <a><code>NamedCryptoKey</code></a> object SHALL NOT change. The underlying cryptographic key SHALL NOT change, except that it MAY be removed altogether. In this case any attempt to use the <a><code>NamedCryptoKey</code></a> object shall return an error.</p>
+        </section>
+      </section>
+      <section><h3>CryptoKeys interface</h3>
+        <dl title="[NoInterfaceObject,Exposed=Window,Worker] interface CryptoKeys" class="idl">
+          <dt>Promise <dfn>getKeyByName</dfn>( DOMString name )</dt>
+          <dd>
+            <p>When invoked, this method must perform the following steps:
+              <ol>
+                <li>Let <var>promise</var> be a new <a><code>Promise</code></a>
+                <li>Make an asynchronous request to search for a key matching the name specifier provided in <code>name</code>. A name specifier matches the name of a key if they are identical when expressed as a string of unicode characters.
+                  <dl class="switch">
+                    <dt>If a key is found</dt>
+                    <dd>
+                      <ol>
+                        <li>Let the <var>result</var> be an object of type <code>NamedCryptoKey</code> representing the key.</li>
+                        <li>Resolve <var>promise</var> with <var>result</var>.</li>
+                      </ol>
+                    </dd>
+                    <dt>Otherwise</dt>
+                    <dd>Resolve <var>promise</var> with <code>null</code>.
+                  </dl>
+                </li>
+                <li>Return <var>promise</var>.</li>
+              </ol>
+            </p>
+          </dd>
+        </dl>
+      </section>
+      
+      <section><h3>Extension of Window interface</h3>
+      <dl title="partial interface Window" class="idl">
+        <dt>readonly attribute CryptoKeys <dfn>cryptokeys</dfn></dt>
+        <dd>The object that exposes the key discovery methods</dd>
+      </dl></section>
+      
+      <section><h3>Extension of WorkerGlobalScope interface</h3>
+      <dl title="partial interface WorkerGlobalScope" class="idl">
+        <dt>readonly attribute CryptoKeys cryptokeys</dt>
+        <dd>The object that exposes the key discovery methods</dd>
+      </dl></section>
+    </section>
+    
+    <section>
+      <h2>Example</h2>
+      <section>
+        <h3>Using a pre-provisioned AES-KW key to unwrap a session key</h3>
+          <pre class="example">
+            window.cryptokeys.getKeyByName( "Kunwrap" ).then( function( key ) {
+            
+              if ( key === null ) {
+                console.error( "Unwrapping key, 'Kunwrap', not found.");
+              } else {
+                // Call a function to get a wrapped session key from the server, based on key.id
+                getSessionKeyForId( key.id ).then( function( wrappedJwkKeyData ) {
+                  
+                  window.crypto.subtle.unwrapKey( 'jwk',
+                            wrappedJwkKeyData,            // the wrapped JWK session key
+                            key,                          // the pre-provisoned unwrapping key
+                            { name: 'AES-KW' },           // the key wrapping algorithm
+                            { name: 'AES-GCM' },          // the algorithm the unwrapped key will be used with
+                            false,                        // the result must not be extractable
+                            [ 'encrypt', 'decrypt' ]      // we'll use the result for encrypt and decrypt
+                            ).then( function( sessionKey ) {
+                            
+                      // use session key here for secure communication bound to the pre-provisioned key
+                            
+                   }, console.error.bind( console, "Unwrapping returned an error" ) );
+                }, console.error.bind( console, "Could not get session key from server" ) );
+              }
+            });
+          </pre>
+      </section>
+    </section>
+    <!--
+    <section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>
+        Many thanks to ...
+      </p>
+    </section>
+    -->
+  </body>
+</html>
