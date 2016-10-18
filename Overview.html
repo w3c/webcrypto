@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>13 September 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>17 October 2016</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/WebCryptoAPI/">http://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version(s):</dt><dd><a href="https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html">https://dvcs.w3.org/hg/webcrypto-api/raw-file/0fe9b34c13fb/spec/Overview.html</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -48,7 +48,7 @@
         communications.
       </p>
   
-      <div class="ednote"><div class="ednoteHeader">Editorial note</div><p>There are 6 further editorial notes in the document.</p></div>
+      <!--<?revision-note?>-->
     </div>
 
     <div class="section">
@@ -60,7 +60,7 @@
         report can be found in the <a href="http://www.w3.org/TR/">W3C technical
           reports index</a> at http://www.w3.org/TR/.
       </em></p><p>
-        This document is the 13 September 2016 <b>Editor’s Draft</b> of the
+        This document is the 17 October 2016 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -866,7 +866,7 @@
       <div id="crypto-interface" class="section">
         <h2>10. Crypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-[NoInterfaceObject]
+[NoInterfaceObject,Exposed=(Window,Worker)]
 interface <dfn id="dfn-GlobalCrypto">GlobalCrypto</dfn> {
   readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
 };
@@ -883,6 +883,7 @@ interface <dfn id="dfn-Crypto">Crypto</dfn> {
 
         <div id="Crypto-description" class="section">
           <h3>10.1. Description</h3>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <a href="#dfn-Crypto">Crypto</a> interface represents an interface to
             general purpose cryptographic functionality including a
@@ -1184,7 +1185,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </li>
           </ol>
           <div class="note"><div class="noteHeader">Note</div>
-            <strong>Implementation Note:</strong> When performing the structured clone algorithm in
+            When performing the structured clone algorithm in
             order to serialize a <code>CryptoKey</code> object, implementations must not allow the
             object to be deserialized as a different type. This is normatively required by the
             definition of structured clone, but it merits specific attention, as such
@@ -1226,11 +1227,11 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> derivedKeyType,
                          boolean extractable,
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  Promise&lt;<a href="#dfn-ArrayBuffer">ArrayBuffer</a>&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-CryptoKey">CryptoKey</a> baseKey,
                           unsigned long length);
   
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  Promise&lt;<a href="#dfn-CryptoKey">CryptoKey</a>&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          (BufferSource or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          boolean extractable,
@@ -1241,7 +1242,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                        <a href="#dfn-CryptoKey">CryptoKey</a> key,
                        <a href="#dfn-CryptoKey">CryptoKey</a> wrappingKey,
                        <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  Promise&lt;<a href="#dfn-CryptoKey">CryptoKey</a>&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          BufferSource wrappedKey,
                          <a href="#dfn-CryptoKey">CryptoKey</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
@@ -2180,9 +2181,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
             </ol>
             <div class="note"><div class="noteHeader">Note</div>
-              <p class="norm">
-                This note is non-normative.
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
               </p>
+            </div>
+            <div class="note"><div class="noteHeader">Note</div>
               <p>
                 For structured key formats, <code>"spki"</code>, <code>"pks8"</code>
                 and <code>"jwk"</code>, fields that are not explicitly referred to in the key
@@ -2249,6 +2253,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-wrapKey" class="section">
@@ -2394,9 +2404,6 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   </dd>
                 </dl>
                 <div class="note"><div class="noteHeader">Note</div>
-                  <p class="norm">
-                    This note is non-normative.
-                  </p>
                   <p>
                     The key wrapping operations for some algorithms place constraints on the payload
                     size. For example AES-KW requires the payload to be a multiple of 8 bytes in
@@ -2443,6 +2450,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
 
           <div id="SubtleCrypto-method-unwrapKey" class="section">
@@ -2626,6 +2639,12 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 </p>
               </li>
             </ol>
+            <div class="note"><div class="noteHeader">Note</div>
+              <p>
+                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                detailed information on implementations support of other key formats.
+              </p>
+            </div>
           </div>
         </div>
         <div id="SubtleCrypto-Exceptions" class="section">
@@ -2739,7 +2758,7 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
         </p>
 
         <div class="note"><div class="noteHeader">Note</div>
-          <strong>Implementation Note:</strong> Since the integer is unsigned, the highest order bit
+          Since the integer is unsigned, the highest order bit
           is NOT a sign bit. Implementors should take care when mapping to big integer
           implementations that expected signed integers.
         </div>
@@ -3210,19 +3229,6 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           document to better understand the risks and concerns that may arise when using certain
           algorithms.
         </p>
-        <div class="ednote"><div class="ednoteHeader">Editorial note</div>
-          <p>
-            Note: All algorithms listed should be considered as "features at risk",
-            barring implementors adopting them. Their inclusion in the Editor's Draft
-            reflects requests for their inclusion by members of the community, and are
-            included as an exercise to ensure the robustness of the API defined in this
-            specification.
-          </p>
-          <p>
-            As such, the list of algorithms, and the recommendations, may be significantly
-            altered in future revisions.
-          </p>
-        </div>
         <table>
           <thead>
             <tr>
@@ -3490,6 +3496,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
         <h3>20. RSASSA-PKCS1-v1_5</h3>
         <div id="rsassa-pkcs1-description" class="section">
           <h4>20.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSASSA-PKCS1-v1_5"</code> algorithm identifier is used to perform
             signing and verification using the RSASSA-PKCS1-v1_5 algorithm specified in
@@ -4588,7 +4595,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 RSA private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                              <div class="note"><div class="noteHeader">Note</div>
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -4763,6 +4770,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
         <h3>21. RSA-PSS</h3>
         <div id="rsa-pss-description" class="section">
           <h4>21.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSA-PSS"</code> algorithm identifier is used to perform signing
             and verification using the RSASSA-PSS algorithm specified in
@@ -6190,7 +6198,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                 RSA private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                              <div class="note"><div class="noteHeader">Note</div>
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -6358,6 +6366,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
         <h3>22. RSA-OAEP</h3>
         <div id="rsa-oaep-description" class="section">
           <h4>22.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"RSA-OAEP"</code> algorithm identifier is used to perform encryption
             and decryption ordering to the RSAES-OAEP algorithm specified in
@@ -7776,7 +7785,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                                 RSA private key represented by the [[<a href="#dfn-CryptoKey-slot-handle">handle</a>]] internal slot of
                                 <var>key</var>
                               </p>
-                              <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+                              <div class="note"><div class="noteHeader">Note</div>
                                 <a href="#RFC5208">RFC 5208</a> specifies that the encoding of
                                 this field should be <em>BER</em> encoded in Section 5 (as a "for
                                 example"). However, to avoid requiring WebCrypto implementations
@@ -7953,6 +7962,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
         <h3>23. ECDSA</h3>
         <div id="ecdsa-description" class="section">
           <h4>23.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             The <code>"ECDSA"</code> algorithm identifier is used to perform signing
             and verification using the ECDSA algorithm specified in
@@ -8530,7 +8540,8 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                               <p>
                                 Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                 object that represents the Elliptic Curve public key identified by
-                                performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a>.
+                                performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a> to the <code>subjectPublicKey</code>
+                                field of <var>spki</var>.
                                 If a decode error occurs or an identity point is found,
                                 <a href="#concept-throw">throw</a> a
                                 <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -8538,7 +8549,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                 If the implementation does not support the compressed point format and
                                 a compressed point is provided, 
                                 <a href="#concept-throw">throw</a> a
-                                <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -9081,7 +9092,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                   <p>
                                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                     object that represents the Elliptic Curve public key identified by
-                                    performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a>.
+                                    performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a> to <var>keyData</var>.
                                     If a decode error occurs or an identity point is found,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -9683,6 +9694,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
         <h3>24. ECDH</h3>
         <div id="ecdh-description" class="section">
           <h4>24.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             This describes using Elliptic Curve Diffie-Hellman (ECDH) for key generation and key
             agreement, as specified by <a href="#RFC6090">RFC6090</a>.
@@ -10140,7 +10152,8 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                               <p>
                                 Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                 object that represents the Elliptic Curve public key identified by
-                                performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a>.
+                                performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a> to the <code>subjectPublicKey</code>
+                                field of <var>spki</var>.
                                 If a decode error occurs or an identity point is found,
                                 <a href="#concept-throw">throw</a> a
                                 <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10148,7 +10161,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                 If the implementation does not support the compressed point format and
                                 a compressed point is provided, 
                                 <a href="#concept-throw">throw</a> a
-                                <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                                <a href="#dfn-DataError"><code>DataError</code></a>.
                               </p>
                             </dd>
                             <dt>Otherwise:</dt>
@@ -10646,7 +10659,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                   <p>
                                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a>
                                     object that represents the Elliptic Curve public key identified by
-                                    performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a>.
+                                    performing the conversion steps defined in Section 2.3.4 of <a href="#SEC1">SEC 1</a> to <var>keyData</var>.
                                     If a decode error occurs or an identity point is found,
                                     <a href="#concept-throw">throw</a> a
                                     <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -10654,7 +10667,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                                     If the implementation does not support the compressed point format and
                                     a compressed point is provided, 
                                     <a href="#concept-throw">throw</a> a
-                                    <a href="#dfn-NotSupportedError"><code>NotSupportedError</code></a>.
+                                    <a href="#dfn-DataError"><code>DataError</code></a>.
                                   </p>
                                 </li>
                               </ol>
@@ -14116,6 +14129,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
         <h3>30. SHA</h3>
         <div id="sha-description" class="section">
           <h4>30.1. Description</h4>
+          <p class="norm">This section is non-normative.</p>
           <p>
             This describes the SHA-1 and SHA-2 families, as specified by
             [<a href="#FIPS180-4">FIPS PUB 180-4</a>].
@@ -14844,9 +14858,8 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
            <dl>
              <dt id="DOM4">DOM4</dt>
              <dd>
-               <cite><a href="https://dom.spec.whatwg.org/">DOM (Living Standard)</a></cite>,
-               A. Gregor, A. van Kesteren, Ms2ger. WHATWG.
-               <div class="ednote"><div class="ednoteHeader">Editorial note</div>This will be updated to W3C DOM4 once Promises are incorporated.</div>
+               <cite><a href="https://www.w3.org/TR/dom/">W3C DOM4</a></cite>,
+               A. Gregor, A. van Kesteren, Ms2ger, Alex Russell, Robin Berjon.
              </dd>
              <dt id="ECMA-262">ECMA262</dt>
              <dd>
@@ -15650,18 +15663,18 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             </tr>
           </tbody>
         </table>
-        <div class="ednote"><div class="ednoteHeader">Editorial note</div>
+        <div class="note"><div class="noteHeader">Note</div>
           <p>
-            The handling of "id-RSASSA-PSS" and "id-RSAES-OAEP" are tricky.
+            For "id-RSASSA-PSS" and "id-RSAES-OAEP",
             <a href="#RFC5756">RFC 5756</a> recommends implementations should not include parameters
-            when PSS is used with a subjectPublicKeyInfo, and MUST NOT include parameters when OAEP
-            is used. However, when OAEP is used as part of a key transport (as an AlgorithmIdentifier),
+            when PSS is used with a <code>subjectPublicKeyInfo</code>, and MUST NOT include parameters when OAEP
+            is used. However, when OAEP is used as part of a key transport (as an <code>AlgorithmIdentifier</code>),
             implementations MUST include the parameters.
           </p>
           <p>
-            The natural conflict is in deciding when a key is being exported as part of a
-            subjectPublicKeyInfo (which is what "spki" implies) and when it's being used as an
-            algorithmIdentifier for transport.
+            The <code>"spki"</code> key format in this specification implies
+            <code>subjectPublicKeyInfo</code> and thus may not be appropriate when what is needed is an
+            <code>AlgorithmIdentifier</code> for transport.
           </p>
         </div>
       </div>
