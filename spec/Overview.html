@@ -1227,11 +1227,11 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> derivedKeyType,
                          boolean extractable,
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
+  Promise&lt;<a href="#dfn-ArrayBuffer">ArrayBuffer</a>&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-CryptoKey">CryptoKey</a> baseKey,
                           unsigned long length);
   
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  Promise&lt;<a href="#dfn-CryptoKey">CryptoKey</a>&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          (BufferSource or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                          boolean extractable,
@@ -1242,7 +1242,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                        <a href="#dfn-CryptoKey">CryptoKey</a> key,
                        <a href="#dfn-CryptoKey">CryptoKey</a> wrappingKey,
                        <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> wrapAlgorithm);
-  Promise&lt;any&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
+  Promise&lt;<a href="#dfn-CryptoKey">CryptoKey</a>&gt; <a href="#dfn-SubtleCrypto-method-unwrapKey">unwrapKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          BufferSource wrappedKey,
                          <a href="#dfn-CryptoKey">CryptoKey</a> unwrappingKey,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> unwrapAlgorithm,
