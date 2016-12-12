@@ -88,7 +88,7 @@
 
   <xsl:template match='processing-instruction("top")'>
     <div class='head'>
-      <p><a class="logo" href="http://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C"></img></a></p>
+      <p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C"></img></a></p>
       <h1><xsl:value-of select='/*/h:head/h:title'/></h1>
       <h2>
         <xsl:text>W3C </xsl:text>
@@ -135,7 +135,7 @@
           </xsl:otherwise>
         </xsl:choose>
         <xsl:if test='$options/x:versions/x:previous[@href!=""]'>
-          <dt>Previous Version(s)<xsl:if test='count($options/x:versions/x:previous[@href!=""]) > 1'>s</xsl:if>:</dt>
+          <dt>Previous Version<xsl:if test='count($options/x:versions/x:previous[@href!=""]) > 1'>s</xsl:if>:</dt>
           <xsl:if test='$options/x:versions/x:previous/@href != ""'>
             <xsl:for-each select='$options/x:versions/x:previous/@href'>
               <dd><a href='{$options/x:versions/x:previous/@href}'><xsl:value-of select='$options/x:versions/x:previous/@href'/></a></dd>
@@ -185,7 +185,7 @@
           </dd>
         </xsl:if>
       </dl>
-      <p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a><xsl:text disable-output-escaping='yes'> &amp;copy; </xsl:text><xsl:value-of select='concat(substring($options/x:versions/x:this/@href, string-length($options/x:versions/x:this/@href) - 8, 4), " ")'/><a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup><xsl:text disable-output-escaping='yes'>&amp;reg;</xsl:text></sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.org/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a><xsl:text disable-output-escaping='yes'> &amp;copy; </xsl:text><xsl:value-of select='concat(substring($options/x:versions/x:this/@href, string-length($options/x:versions/x:this/@href) - 8, 4), " ")'/><a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup><xsl:text disable-output-escaping='yes'>&amp;reg;</xsl:text></sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
     </div>
     <hr/>
   </xsl:template>
@@ -255,8 +255,8 @@
         This section describes the status of this document at the time of
         its publication.  Other documents may supersede this document. A list
         of current W3C publications and the latest revision of this technical
-        report can be found in the <a href="http://www.w3.org/TR/">W3C technical
-          reports index</a> at http://www.w3.org/TR/.
+        report can be found in the <a href="https://www.w3.org/TR/">W3C technical
+          reports index</a> at https://www.w3.org/TR/.
       </em>
     </p>
     <p>
@@ -295,18 +295,19 @@
     </p>
     <p>
       This document was produced by a group operating under the
-      <a href='http://www.w3.org/Consortium/Patent-Policy-20040205/'>5 February
+      <a href='https://www.w3.org/Consortium/Patent-Policy-20040205/'>5 February
         2004 W3C Patent Policy</a>. W3C maintains a
-      <a href='{$ipp}'>public list of
+      <a rel='disclosure' href='{$ipp}'>public list of
         any patent disclosures</a> made in connection with the deliverables of
       the group; that page also includes instructions for disclosing a patent.
       An individual who has actual knowledge of a patent which the individual
       believes contains
-      <a href='http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential'>Essential
+      <a href='https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential'>Essential
         Claim(s)</a> must disclose the information in accordance with
-      <a href='http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure'>section
+      <a href='https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure'>section
         6 of the W3C Patent Policy</a>.
     </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 W3C Process Document</a>. </p>
   </xsl:template>
 
   <xsl:template match='processing-instruction("productions")'>
