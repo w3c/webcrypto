@@ -15,18 +15,10 @@ of contents, section numbers, certain processing instructions).
   <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <title>Web Cryptography API</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel='stylesheet' href='webcrypto.css' type='text/css'/>
     <script src='section-links.js' type='application/ecmascript'/>
     <script src='dfn.js' type='application/ecmascript'/>
-    <!--[if IE]>
-        <style type='text/css'>
-        .ignore {
-        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-        filter: alpha(opacity=50);
-        }
-        </style>
-        <![endif]-->
 
     <options xmlns='http://mcc.id.au/ns/local'>
       <versions>
@@ -49,7 +41,7 @@ of contents, section numbers, certain processing instructions).
   <body>
     <?top?>
 
-    <div class='section'>
+    <section id='abstract' class='section'>
       <h2>Abstract</h2>
       <p>
         This specification describes a JavaScript API for performing basic
@@ -63,18 +55,18 @@ of contents, section numbers, certain processing instructions).
       </p>
   
       <!--<?revision-note?>-->
-    </div>
+    </section>
 
-    <div class='section'>
+    <section  id='sotd' class='section'>
       <h2>Status of this Document</h2>
       <?sotd-top public-webcrypto-comments@w3.org http://lists.w3.org/Archives/Public/public-webcrypto-comments/ ?>
 
       <p>
         This document is produced by the <a href="https://www.w3.org/2012/webcrypto/">Web Cryptography
-        <acronym title="Working Group">WG</acronym></a> of the <acronym title="World Wide Web Consortium">W3C</acronym>.
+        <abbr title="Working Group">WG</abbr></a> of the <abbr title="World Wide Web Consortium">W3C</abbr>.
       </p>
 
-      <p class="XXX">
+<!--      <p class="XXX">
         Implementors should be aware that this specification is not stable.
         <strong>Implementors who are not taking part in the discussions are likely to find the
         specification changing out from under them in incompatible ways.</strong> Vendors interested
@@ -92,6 +84,28 @@ of contents, section numbers, certain processing instructions).
         <li>comments on open issues the WG is currently dealing with, highlighted in this working draft;</li>
         <li>potential missing functionalities to deploy secure web applications.</li>
       </ul>
+      -->
+      <p>Changes made to this document can be found in the
+        <a href='https://github.com/w3c/webcrypto/commits/master/spec/Overview-WebCryptoAPI.xml'>GitHub repository</a>. The changes since the previous version include:</p>
+      <ul>
+        <li>The algorithms AES-CMAC, AES-CFB, Diffie-Hellman and Concat KDF have been removed.</li>
+      <li>
+        HKDF-CTR was replaced with HKDF, both using the extraction-then-expansion approach.
+      </li>
+      </ul>
+      <p>
+        An <a href='https://rawgit.com/w3c/webcrypto/master/PR-test-report.html'>implementation report</a> is also available (as well as <a href="https://www.w3.org/Search/Mail/Public/search?type-index=public-webcrypto&amp;index-type=t&amp;keywords=testing&amp;search=Search">reports sent to the mailing list</a>).
+      </p>
+      
+      <p>
+        Web content and browser developers are encouraged to review this draft. Please send comments
+        to <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
+        the <abbr title="World Wide Web Consortium">W3C</abbr>'s public email list for issues
+        related to Web Cryptography. <a
+        href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the
+        public list and <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>
+        of the member's-only list are available.
+      </p>
       <p>
         Previous discussion of this specification has taken place on three other
         mailing lists: <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a>
@@ -102,23 +116,9 @@ of contents, section numbers, certain processing instructions).
         Ongoing discussion will be on the <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a>
         mailing list.
       </p>
-      
-      <p>
-        Web content and browser developers are encouraged to review this draft. Please send comments
-        to <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
-        the <acronym title="World Wide Web Consortium">W3C</acronym>'s public email list for issues
-        related to Web Cryptography. <a
-        href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the
-        public list and <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>
-        of the member's-only list are available.
-      </p>
-      <p>
-        Changes made to this document can be found in the
-        <a href='https://dvcs.w3.org/hg/webcrypto-api/file/tip/spec/'>W3C public Mercurial server</a>.
-      </p>
 
-      <?sotd-bottom http://www.w3.org/2004/01/pp-impl/54174/status?>
-    </div>
+      <?sotd-bottom https://www.w3.org/2004/01/pp-impl/54174/status?>
+    </section>
 
     <nav id='toc'>
       <h2 class='introductory'>Table of Contents</h2>
@@ -16464,6 +16464,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         </table>
       </div>
     </div>
+    <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
   </body>
 </html>
 
