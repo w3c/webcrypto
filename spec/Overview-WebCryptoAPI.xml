@@ -1328,7 +1328,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>data</var> be the result of
                   <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
-                  getting a copy of the bytes</a> held by the <code>data</code> parameter passed to the
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method.
                 </p>
               </li>
@@ -1411,7 +1411,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>algorithm</var> and <var>key</var> be the
-                  <code>algorithm</code> and <code>key</code>parameters
+                  <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method,
                   respectively.
                 </p>
@@ -3200,11 +3200,11 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               </li>
               <li>
                   <a href="#rsa-pss">RSA-PSS</a> using <a href="#alg-sha-256">SHA-256</a>
-                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>
               </li>
               <li>
                   <a href="#rsa-oaep">RSA-OAEP</a> using <a href="#alg-sha-256">SHA-256</a>
-                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>
               </li>
               <li>
                   <a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a>
@@ -15426,10 +15426,12 @@ var aesAlgorithmEncrypt = {
 <span class="comment">// Create a key generator to produce a one-time-use AES key to encrypt some data</span>
 window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [clearDataArrayBufferView]);
   }
-).then(console.log.bind(console, "The ciphertext is: "),
-       console.error.bind(console, "Unable to encrypt"));
+).then(
+  console.log.bind(console, "The ciphertext is: "),
+  console.error.bind(console, "Unable to encrypt")
+);
         </x:codeblock>
       </div>
     </div>
