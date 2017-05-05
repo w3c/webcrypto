@@ -266,9 +266,8 @@ of contents, section numbers, certain processing instructions).
             signatures or MACs (JWS), or decrypt messages that have been encrypted (JWE).
           </p>
         </div>
-
       </div>
-      
+
       <div id='conformance' class='section'>
         <h2>Conformance</h2>
         <p>
@@ -411,8 +410,7 @@ of contents, section numbers, certain processing instructions).
         </div>
       </div>
 
-
-      <div class='section' id='concepts'>
+      <div id='concepts' class='section'>
         <h2>Concepts</h2>
         <p class='norm'>This section is non-normative.</p>
         <div class='section' id='concepts-underlying-implementation'>
@@ -647,7 +645,7 @@ of contents, section numbers, certain processing instructions).
           </dd>
         </dl>
       </div>
-   
+
       <div id='terminology' class='section'>
         <h2>Terminology</h2>
         <p>
@@ -849,7 +847,7 @@ of contents, section numbers, certain processing instructions).
           </li>
         </ol>
       </div>
-      
+
       <div id="crypto-interface" class="section">
         <h2>Crypto interface</h2>
         <x:codeblock language="idl">
@@ -859,8 +857,8 @@ interface <dfn id="dfn-GlobalCrypto">GlobalCrypto</dfn> {
 };
 
 Window implements GlobalCrypto;
-WorkerGlobalScope implements GlobalCrypto;        
-        
+WorkerGlobalScope implements GlobalCrypto;
+
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-Crypto">Crypto</dfn> {
   [SecureContext] readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
@@ -1012,7 +1010,7 @@ dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
           </dl>
         </div>
       </div>
-          
+
       <div id="cryptokey-interface" class="section">
         <h2>CryptoKey interface</h2>
         <p>
@@ -1078,7 +1076,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </dd>
           </dl>
         </div>
-        
+
         <div id="cryptokey-interface-internal-slots" class="section">
           <h3>CryptoKey internal slots</h3>
           <p>
@@ -1328,7 +1326,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   Let <var>data</var> be the result of
                   <a href="http://heycam.github.io/webidl/#dfn-get-buffer-source-copy">
-                  getting a copy of the bytes</a> held by the <code>data</code> parameter passed to the
+                  getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a href="#dfn-SubtleCrypto-method-encrypt">encrypt</a> method.
                 </p>
               </li>
@@ -1411,7 +1409,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               <li>
                 <p>
                   Let <var>algorithm</var> and <var>key</var> be the
-                  <code>algorithm</code> and <code>key</code>parameters
+                  <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a href="#dfn-SubtleCrypto-method-decrypt">decrypt</a> method,
                   respectively.
                 </p>
@@ -1844,7 +1842,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
             </ol>
           </div>
-          
+
           <div id="SubtleCrypto-method-deriveKey" class="section">
             <h4>The deriveKey method</h4>
             <p>
@@ -2069,7 +2067,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>The <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method</h4>
-            <p>                  
+            <p>
               When invoked, the <dfn
               id="dfn-SubtleCrypto-method-importKey"><code>importKey</code></dfn> method <span
               class="RFC2119">MUST</span> perform the following steps:
@@ -3200,11 +3198,11 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               </li>
               <li>
                   <a href="#rsa-pss">RSA-PSS</a> using <a href="#alg-sha-256">SHA-256</a>
-                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>
               </li>
               <li>
                   <a href="#rsa-oaep">RSA-OAEP</a> using <a href="#alg-sha-256">SHA-256</a>
-                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>.
+                  and MGF1 with <a href="#alg-sha-256">SHA-256</a>
               </li>
               <li>
                   <a href="#ecdsa">ECDSA</a> using <a href="#dfn-NamedCurve-p256">P-256</a>
@@ -3215,7 +3213,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           </div>
         </div>
       </div>
-      
+
       <div id="algorithm-overview" class="section">
         <h2>Algorithm Overview</h2>
         <p class="norm">The following section is non-normative.</p>
@@ -4708,7 +4706,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 are produced or accepted.
                               </div>
                             </li>
-                          </ul>                              
+                          </ul>
                         </li>
                         <li>
                           <p>
@@ -5355,7 +5353,6 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dd>
                                   </dl>
                                 </li>
-                              
                                 <li>
                                   <p>
                                     If the <code>algorithm</code> object identifier field of the
@@ -8341,7 +8338,6 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                 <td>None</td>
                 <td>object</td>
               </tr>
-
             </tbody>
           </table>
         </div>
@@ -10515,7 +10511,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
               </ol>
             </dd>
-          
+
             <dt>Import Key</dt>
             <dd>
               <ol>
@@ -13250,7 +13246,6 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                     <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
                 </li>
-
                 <li>
                   <p>
                     Generate an AES key of length
@@ -14281,7 +14276,6 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                     </dd>
                   </dl>
                 </li>
-
                 <li>
                   <p>
                     Generate a key of length <var>length</var> bits.
@@ -14932,7 +14926,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
           </dl>
         </div>
       </div>
-      
+
       <div id="hkdf" class="section">
         <h3>HKDF</h3>
         <div id="hkdf-description" class="section">
@@ -15367,7 +15361,6 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         </div>
       </div>
 
-
       <div id="examples-section" class="section">
         <h2>JavaScript Example Code</h2>
         <div id="examples-signing" class="section">
@@ -15426,10 +15419,12 @@ var aesAlgorithmEncrypt = {
 <span class="comment">// Create a key generator to produce a one-time-use AES key to encrypt some data</span>
 window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [clearDataArrayBufferView]);
   }
-).then(console.log.bind(console, "The ciphertext is: "),
-       console.error.bind(console, "Unable to encrypt"));
+).then(
+  console.log.bind(console, "The ciphertext is: "),
+  console.error.bind(console, "Unable to encrypt")
+);
         </x:codeblock>
       </div>
     </div>
@@ -15790,7 +15785,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
         </div>
       </div>
     </div>
-    
+
     <div id="appendices">
       <div id="jwk-mapping" class="section">
         <h2>Mapping between JSON Web Key / JSON Web Algorithm</h2>
@@ -15811,13 +15806,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RS1" }
+{
+  kty: "RSA",
+  alg: "RS1"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSASSA-PKCS1-v1_5",
+{
+  name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-1" }
 }
 </x:codeblock>
@@ -15826,13 +15824,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RS256" }
+{
+  kty: "RSA",
+  alg: "RS256"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSASSA-PKCS1-v1_5",
+{
+  name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-256" }
 }
 </x:codeblock>
@@ -15841,13 +15842,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RS384" }
+{
+  kty: "RSA",
+  alg: "RS384"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSASSA-PKCS1-v1_5",
+{
+  name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-384" }
 }
 </x:codeblock>
@@ -15856,13 +15860,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RS512" }
+{
+  kty: "RSA",
+  alg: "RS512"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSASSA-PKCS1-v1_5",
+{
+  name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-512" }
 }
 </x:codeblock>
@@ -15872,13 +15879,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "PS256" }
+{
+  kty: "RSA",
+  alg: "PS256"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-PSS",
+{
+  name: "RSA-PSS",
   hash: { name: "SHA-256" }
 }
 </x:codeblock>
@@ -15887,13 +15897,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "PS384" }
+{
+  kty: "RSA",
+  alg: "PS384"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-PSS",
+{
+  name: "RSA-PSS",
   hash: { name: "SHA-384" }
 }
 </x:codeblock>
@@ -15902,13 +15915,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "PS512" }
+{
+  kty: "RSA",
+  alg: "PS512"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-PSS",
+{
+  name: "RSA-PSS",
   hash: { name: "SHA-512" }
 }
 </x:codeblock>
@@ -15918,13 +15934,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RSA-OAEP" }
+{
+  kty: "RSA",
+  alg: "RSA-OAEP"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-OAEP",
+{
+  name: "RSA-OAEP",
   hash: { name: "SHA-1" }
 }
 </x:codeblock>
@@ -15933,13 +15952,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RSA-OAEP-256" }
+{
+  kty: "RSA",
+  alg: "RSA-OAEP-256"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-OAEP",
+{
+  name: "RSA-OAEP",
   hash: { name: "SHA-256" }
 }
 </x:codeblock>
@@ -15948,13 +15970,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RSA-OAEP-384" }
+{
+  kty: "RSA",
+  alg: "RSA-OAEP-384"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-OAEP",
+{
+  name: "RSA-OAEP",
   hash: { name: "SHA-384" }
 }
 </x:codeblock>
@@ -15963,13 +15988,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "RSA",
-  alg: "RSA-OAEP-512" }
+{
+  kty: "RSA",
+  alg: "RSA-OAEP-512"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "RSA-OAEP",
+{
+  name: "RSA-OAEP",
   hash: { name: "SHA-512" }
 }
 </x:codeblock>
@@ -15979,13 +16007,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "EC",
-  alg: "ES256" }
+{
+  kty: "EC",
+  alg: "ES256"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "ECDSA",
+{
+  name: "ECDSA",
   namedCurve: "P-256"
   hash: { name: "SHA-256" }
 }
@@ -15995,13 +16026,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "EC",
-  alg: "ES384" }
+{
+  kty: "EC",
+  alg: "ES384"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "ECDSA",
+{
+  name: "ECDSA",
   namedCurve: "P-384"
   hash: { name: "SHA-384" }
 }
@@ -16011,13 +16045,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "EC",
-  alg: "ES512" }
+{
+  kty: "EC",
+  alg: "ES512"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "ECDSA",
+{
+  name: "ECDSA",
   namedCurve: "P-521"
   hash: { name: "SHA-512" }
 }
@@ -16027,223 +16064,286 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A128CTR" }
+{
+  kty: "oct",
+  alg: "A128CTR"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-CTR",
-  length: 128 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A192CTR" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-CTR",
-  length: 192 }
+{
+  name: "AES-CTR",
+  length: 128
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A256CTR" }
+{
+  kty: "oct",
+  alg: "A192CTR"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-CTR",
-  length: 256 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A128CBC" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-CBC",
-  length: 128 }
+{
+  name: "AES-CTR",
+  length: 192
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A192CBC" }
+{
+  kty: "oct",
+  alg: "A256CTR"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-CBC",
-  length: 192 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A256CBC" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-CBC",
-  length: 256 }
+{
+  name: "AES-CTR",
+  length: 256
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A128KW" }
+{
+  kty: "oct",
+  alg: "A128CBC"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-KW",
-  length: 128 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A192KW" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-KW",
-  length: 192 }
+{
+  name: "AES-CBC",
+  length: 128
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A256KW" }
+{
+  kty: "oct",
+  alg: "A192CBC"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-KW",
-  length: 256 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A128GCM" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 128 }
+{
+  name: "AES-CBC",
+  length: 192
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A192GCM" }
+{
+  kty: "oct",
+  alg: "A256CBC"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 192 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A256GCM" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 256 }
+{
+  name: "AES-CBC",
+  length: 256
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A128GCMKW" }
+{
+  kty: "oct",
+  alg: "A128KW"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 128 }
-</x:codeblock>
-                </td>
-              </tr>
-              <tr>
-                <td>
-<x:codeblock language="es">
-{ kty: "oct",
-  alg: "A192GCMKW" }
-</x:codeblock>
-                </td>
-                <td>
-<x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 192 }
+{
+  name: "AES-KW",
+  length: 128
+}
 </x:codeblock>
                 </td>
               </tr>
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "A256GCMKW" }
+{
+  kty: "oct",
+  alg: "A192KW"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "AES-GCM",
-  length: 256 }
+{
+  name: "AES-KW",
+  length: 192
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A256KW"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-KW",
+  length: 256
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A128GCM"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 128
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A192GCM"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 192
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A256GCM"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 256
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A128GCMKW"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 128
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A192GCMKW"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 192
+}
+</x:codeblock>
+                </td>
+              </tr>
+              <tr>
+                <td>
+<x:codeblock language="es">
+{
+  kty: "oct",
+  alg: "A256GCMKW"
+}
+</x:codeblock>
+                </td>
+                <td>
+<x:codeblock language="es">
+{
+  name: "AES-GCM",
+  length: 256
+}
 </x:codeblock>
                 </td>
               </tr>
             <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "HS1" }
+{
+  kty: "oct",
+  alg: "HS1"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "HMAC",
+{
+  name: "HMAC",
   hash: { name: "SHA-1" }
 }
 </x:codeblock>
@@ -16252,13 +16352,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "HS256" }
+{
+  kty: "oct",
+  alg: "HS256"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "HMAC",
+{
+  name: "HMAC",
   hash: { name: "SHA-256" }
 }
 </x:codeblock>
@@ -16267,13 +16370,16 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "HS384" }
+{
+  kty: "oct",
+  alg: "HS384"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "HMAC",
+{
+  name: "HMAC",
   hash: { name: "SHA-384" }
 }
 </x:codeblock>
@@ -16282,14 +16388,18 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
               <tr>
                 <td>
 <x:codeblock language="es">
-{ kty: "oct",
-  alg: "HS512" }
+{
+  kty: "oct",
+  alg: "HS512"
+}
 </x:codeblock>
                 </td>
                 <td>
 <x:codeblock language="es">
-{ name: "HMAC",
-  hash: "SHA-512" }
+{
+  name: "HMAC",
+  hash: "SHA-512"
+}
 </x:codeblock>
                 </td>
               </tr>
@@ -16462,4 +16572,3 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
     <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to top">↑</abbr></a></p>
   </body>
 </html>
-
