@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>21 December 2017</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/">https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>11 May 2018</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/">https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -52,7 +52,7 @@
         report can be found in the <a href="https://www.w3.org/TR/">W3C technical
           reports index</a> at https://www.w3.org/TR/.
       </em></p><p>
-        This document is the 21 December 2017 <b>Editor’s Draft</b> of the
+        This document is the 11 May 2018 <b>Editor’s Draft</b> of the
         <cite>Web Cryptography API</cite> specification.
       
       Please send comments about this document to
@@ -866,12 +866,9 @@
       <div id="crypto-interface" class="section">
         <h2>10. Crypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
-interface mixin <dfn id="dfn-GlobalCrypto">GlobalCrypto</dfn> {
+partial interface mixin WindowOrWorkerGlobalScope {
   readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
 };
-
-Window includes GlobalCrypto;
-WorkerGlobalScope includes GlobalCrypto;
         
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-Crypto">Crypto</dfn> {

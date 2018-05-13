@@ -853,12 +853,9 @@ of contents, section numbers, certain processing instructions).
       <div id="crypto-interface" class="section">
         <h2>Crypto interface</h2>
         <x:codeblock language="idl">
-interface mixin <dfn id="dfn-GlobalCrypto">GlobalCrypto</dfn> {
+partial interface mixin WindowOrWorkerGlobalScope {
   readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
 };
-
-Window includes GlobalCrypto;
-WorkerGlobalScope includes GlobalCrypto;
         
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-Crypto">Crypto</dfn> {
