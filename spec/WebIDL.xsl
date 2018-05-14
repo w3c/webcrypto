@@ -130,7 +130,7 @@
             <dd>
               <xsl:variable name='href' select='$options/x:versions/x:cvs/@href'/>
               <a href='{$href}'><xsl:value-of select='$href'/></a>
-            </dd>  
+            </dd>
             </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
@@ -185,7 +185,7 @@
           </dd>
         </xsl:if>
       </dl>
-      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a><xsl:text disable-output-escaping='yes'> &amp;copy; </xsl:text><xsl:value-of select='concat(substring($options/x:versions/x:this/@href, string-length($options/x:versions/x:this/@href) - 8, 4), " ")'/><a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup><xsl:text disable-output-escaping='yes'>&amp;reg;</xsl:text></sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+      <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2018 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
     </div>
     <hr/>
   </xsl:template>
@@ -294,9 +294,7 @@
       </xsl:choose>
     </p>
     <p>
-      This document was produced by a group operating under the
-      <a href='https://www.w3.org/Consortium/Patent-Policy-20040205/'>5 February
-        2004 W3C Patent Policy</a>. W3C maintains a
+      The Recommendation from which this document is derived was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>. W3C maintains a
       <a rel='disclosure' href='{$ipp}'>public list of
         any patent disclosures</a> made in connection with the deliverables of
       the group; that page also includes instructions for disclosing a patent.
@@ -307,7 +305,7 @@
       <a href='https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure'>section
         6 of the W3C Patent Policy</a>.
     </p>
-    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 W3C Process Document</a>. </p>
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2018/Process-20180201/">1 February 2018 W3C Process Document</a>. </p>
   </xsl:template>
 
   <xsl:template match='processing-instruction("productions")'>

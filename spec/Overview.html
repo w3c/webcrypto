@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>11 May 2018</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/">https://www.w3.org/TR/2014/CR-WebCryptoAPI-20141211/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>14 May 2018</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/">https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
           (see <a href="https://github.com/w3c/webcrypto/issues">existing bugs</a>).
-          </dd></dl><p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> &copy; 2016 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>&reg;</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
+          </dd></dl><p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2018 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p></div><hr />
 
     <section id="abstract" class="section">
       <h2>Abstract</h2>
@@ -34,34 +34,20 @@
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
         Additionally, it describes an API for applications to generate and/or
-        manage the keying material necessary to perform these operations. 
+        manage the keying material necessary to perform these operations.
         Uses for this API range from user or service authentication, document
         or code signing, and the confidentiality and integrity of
         communications.
       </p>
-  
+
       <!--<?revision-note?>-->
     </section>
 
     <section id="sotd" class="section">
       <h2>Status of this Document</h2>
-      <p><em>
-        This section describes the status of this document at the time of
-        its publication.  Other documents may supersede this document. A list
-        of current W3C publications and the latest revision of this technical
-        report can be found in the <a href="https://www.w3.org/TR/">W3C technical
-          reports index</a> at https://www.w3.org/TR/.
-      </em></p><p>
-        This document is the 11 May 2018 <b>Editor’s Draft</b> of the
-        <cite>Web Cryptography API</cite> specification.
-      
-      Please send comments about this document to
-      <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>
-      (<a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">archived</a>).
-    </p>
 
       <p>
-        This document is produced by the <a href="https://www.w3.org/2012/webcrypto/">Web Cryptography
+        The original document was produced by the <a href="https://www.w3.org/2012/webcrypto/">Web Cryptography
         <abbr title="Working Group">WG</abbr></a> of the <abbr title="World Wide Web Consortium">W3C</abbr>.
       </p>
 
@@ -85,45 +71,19 @@
       </ul>
       -->
       <p>Changes made to this document can be found in the
-        <a href="https://github.com/w3c/webcrypto/commits/master/spec/Overview-WebCryptoAPI.xml">GitHub repository</a>. The changes since the previous version include:</p>
-      <ul>
-        <li>The algorithms AES-CMAC, AES-CFB, Diffie-Hellman and Concat KDF have been removed.</li>
-      <li>
-        HKDF-CTR was replaced with HKDF, both using the extraction-then-expansion approach.
-      </li>
-      </ul>
-      <p>
-        An <a href="https://rawgit.com/w3c/webcrypto/master/PR-test-report.html">implementation report</a> is also available (as well as <a href="https://www.w3.org/Search/Mail/Public/search?type-index=public-webcrypto&amp;index-type=t&amp;keywords=testing&amp;search=Search">reports sent to the mailing list</a>).
-      </p>
-      
+        <a href="https://github.com/w3c/webcrypto/commits/master/spec/Overview-WebCryptoAPI.xml">GitHub repository</a>.</p>
+
       <p>
         Web content and browser developers are encouraged to review this draft. Please send comments
-        to <a href="mailto:public-webcrypto-comments@w3.org">public-webcrypto-comments@w3.org</a>,
-        the <abbr title="World Wide Web Consortium">W3C</abbr>'s public email list for issues
-        related to Web Cryptography. <a href="http://lists.w3.org/Archives/Public/public-webcrypto-comments/">Archives</a> of the
-        public list and <a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>
-        of the member's-only list are available.
+        to the <a href="https://github.com/w3c/webcrypto/issues">GitHub repository</a>. For future work on Web Crypto, you may also use <a href="mailto:public-web-security@w3.org">public-web-security@w3.org</a>.
       </p>
-      <p>
-        Previous discussion of this specification has taken place on three other
-        mailing lists: <a href="mailto:whatwg@whatwg.org">whatwg@whatwg.org</a>
-        (<a href="http://lists.whatwg.org/htdig.cgi/whatwg-whatwg.org/2011-May/031741.html">archive</a>)
-        , <a href="mailto:public-websecurity@w3.org">public-websecurity@w3.org</a>
-        (<a href="http://lists.w3.org/Archives/Public/public-web-security/2011Jun/0000.html">archive</a>), and 
-        <a href="mailto:public-identity@w3.org">public-identity@w3.org</a> (<a href="https://www.w3.org/Search/Mail/Public/search?type-index=public-identity&amp;index-type=t&amp;keywords=DOMCrypt&amp;search=Search">archive</a>).
-        Ongoing discussion will be on the <a href="mailto:public-webcrypto@w3.org">public-webcrypto@w3.org</a>
-        mailing list.
-      </p>
-
       <p>
           Publication as an Editor’s Draft does not imply endorsement by the
           W3C Membership.  This is a draft document and may be updated, replaced
           or obsoleted by other documents at any time. It is inappropriate to cite
           this document as other than work in progress.
         </p><p>
-      This document was produced by a group operating under the
-      <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February
-        2004 W3C Patent Policy</a>. W3C maintains a
+      The Recommendation from which this document is derived was produced by a group operating under the <a href="https://www.w3.org/Consortium/Patent-Policy/">W3C Patent Policy</a>. W3C maintains a
       <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/54174/status">public list of
         any patent disclosures</a> made in connection with the deliverables of
       the group; that page also includes instructions for disclosing a patent.
@@ -133,7 +93,7 @@
         Claim(s)</a> must disclose the information in accordance with
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
         6 of the W3C Patent Policy</a>.
-    </p><p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 W3C Process Document</a>. </p>
+    </p><p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2018/Process-20180201/">1 February 2018 W3C Process Document</a>. </p>
     </section>
 
     <nav id="toc">
@@ -155,7 +115,7 @@
         </p>
         <p>
           Cryptographic transformations are exposed via the
-          <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface, which defines a set of methods 
+          <a href="#dfn-SubtleCrypto">SubtleCrypto</a> interface, which defines a set of methods
           for performing common cryptographic operations. In addition to operations such as signature
           generation and verification, hashing and verification, and encryption and decryption,
           the API provides interfaces for key generation, key derivation and key import and export.
@@ -188,7 +148,7 @@
           <p>
             If a user does not already have a key associated with their account, the web application
             could direct the user agent to either generate a new key or to re-use an existing key of
-            the user's choice. 
+            the user's choice.
           </p>
         </div>
 
@@ -284,7 +244,7 @@
         </div>
 
       </div>
-      
+
       <div id="conformance" class="section">
         <h2>3. Conformance</h2>
         <p>
@@ -301,7 +261,7 @@
           <span class="RFC2119">RECOMMENDED</span>,
           <span class="RFC2119">MAY</span>,
           <span class="RFC2119">OPTIONAL</span>,
-          in this specification are to be interpreted as described in 
+          in this specification are to be interpreted as described in
           <cite><a href="http://www.ietf.org/rfc/rfc2119">Key words for use in RFCs to
           Indicate Requirement Levels</a></cite> [<a href="#RFC2119">RFC2119</a>].
         </p>
@@ -320,7 +280,7 @@
               uses both the terms "conforming user agent" and "user agent" to refer to this
               product class.
             </p>
-          </dd>         
+          </dd>
         </dl>
         <p>
           Conformance requirements phrased as algorithms or specific steps may be implemented in any
@@ -342,23 +302,23 @@
           <h3>3.1. Extensibility</h3>
           <p>
             Vendor-specific proprietary extensions to this specification are strongly discouraged.
-            Authors must not use such extensions, as doing so reduces interoperability and fragments 
-            the user base, allowing only users of specific user agents to access the content in 
+            Authors must not use such extensions, as doing so reduces interoperability and fragments
+            the user base, allowing only users of specific user agents to access the content in
             question.
           </p>
           <p>
-            If vendor-specific extensions are needed, the members should be prefixed by 
-            vendor-specific strings to prevent clashes with future versions of this specification. 
-            Extensions must be defined so that the use of extensions neither contradicts nor causes 
+            If vendor-specific extensions are needed, the members should be prefixed by
+            vendor-specific strings to prevent clashes with future versions of this specification.
+            Extensions must be defined so that the use of extensions neither contradicts nor causes
             the non-conformance of functionality defined in the specification.
           </p>
           <p>
-            When vendor-neutral extensions to this specification are needed, either this 
-            specification can be updated accordingly, or an extension specification can be written 
-            that overrides the requirements in this specification. When someone applying this 
-            specification to their activities decides that they will recognize the requirements of 
+            When vendor-neutral extensions to this specification are needed, either this
+            specification can be updated accordingly, or an extension specification can be written
+            that overrides the requirements in this specification. When someone applying this
+            specification to their activities decides that they will recognize the requirements of
             such an extension specification, it becomes an
-            <dfn id="dfn-applicable-specification">applicable specification</dfn> for the purposes 
+            <dfn id="dfn-applicable-specification">applicable specification</dfn> for the purposes
             of conformance requirements in this specification. Applicable specifications defined
             by the W3C Web Cryptography Working Group are listed in the table below.
           </p>
@@ -662,7 +622,7 @@
           </dd>
         </dl>
       </div>
-   
+
       <div id="terminology" class="section">
         <h2>9. Terminology</h2>
         <p>
@@ -862,14 +822,14 @@
           </li>
         </ol>
       </div>
-      
+
       <div id="crypto-interface" class="section">
         <h2>10. Crypto interface</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 partial interface mixin WindowOrWorkerGlobalScope {
   readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
 };
-        
+
 [Exposed=(Window,Worker)]
 interface <dfn id="dfn-Crypto">Crypto</dfn> {
   [SecureContext] readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
@@ -1021,7 +981,7 @@ dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
           </dl>
         </div>
       </div>
-          
+
       <div id="cryptokey-interface" class="section">
         <h2>13. CryptoKey interface</h2>
         <p>
@@ -1087,7 +1047,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
             </dd>
           </dl>
         </div>
-        
+
         <div id="cryptokey-interface-internal-slots" class="section">
           <h3>13.3. CryptoKey internal slots</h3>
           <p>
@@ -1226,7 +1186,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
   Promise&lt;<a href="#dfn-ArrayBuffer">ArrayBuffer</a>&gt; <a href="#dfn-SubtleCrypto-method-deriveBits">deriveBits</a>(<a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
                           <a href="#dfn-CryptoKey">CryptoKey</a> baseKey,
                           unsigned long length);
-  
+
   Promise&lt;<a href="#dfn-CryptoKey">CryptoKey</a>&gt; <a href="#dfn-SubtleCrypto-method-importKey">importKey</a>(<a href="#dfn-KeyFormat">KeyFormat</a> format,
                          (BufferSource or JsonWebKey) keyData,
                          <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> algorithm,
@@ -1314,7 +1274,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <p>
               The <dfn id="dfn-SubtleCrypto-method-encrypt"><code>encrypt</code></dfn>
               method returns a new Promise object that will encrypt data using
-              the specified 
+              the specified
               <a href="#dfn-AlgorithmIdentifier"><code>AlgorithmIdentifier</code></a> with
               the supplied <a href="#dfn-CryptoKey"><code>CryptoKey</code></a>. It must act
               as follows:
@@ -1813,7 +1773,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                       If the [[<a href="#dfn-CryptoKey-slot-type">type</a>]] internal slot of
                       <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
                       <var>usages</var> is empty, then <a href="#concept-throw">throw</a> a <a href="#dfn-SyntaxError">SyntaxError</a>.
-                    </p>                  
+                    </p>
                   </dd>
                   <dt>If <var>result</var> is a <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a> object:</dt>
                   <dd>
@@ -1834,7 +1794,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
               </li>
             </ol>
           </div>
-          
+
           <div id="SubtleCrypto-method-deriveKey" class="section">
             <h4>14.3.7. The deriveKey method</h4>
             <p>
@@ -2054,7 +2014,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
           <div id="SubtleCrypto-method-importKey" class="section">
             <h4>14.3.9. The <a href="#dfn-SubtleCrypto-method-importKey">importKey</a> method</h4>
-            <p>                  
+            <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-importKey"><code>importKey</code></dfn> method <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
@@ -2153,7 +2113,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                   Let <var>result</var> be the <a href="#dfn-CryptoKey">CryptoKey</a> object that
                   results from performing the import key operation specified by
                   <var>normalizedAlgorithm</var> using <var>keyData</var>,
-                  <var>algorithm</var>, 
+                  <var>algorithm</var>,
                   <var>format</var>, <var>extractable</var> and <var>usages</var>.
                 </p>
               </li>
@@ -2241,7 +2201,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                 <p>
                   If the [[<a href="#dfn-CryptoKey-slot-extractable">extractable</a>]] internal slot
                   of <var>key</var> is false, then <a href="#concept-throw">throw</a> an <a href="#dfn-InvalidAccessError"><code>InvalidAccessError</code></a>.
-                </p>         
+                </p>
               </li>
               <li>
                 <p>
@@ -2466,7 +2426,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
             <h4>14.3.12. The unwrapKey method</h4>
             <p>
               When invoked, the <dfn id="dfn-SubtleCrypto-method-unwrapKey">unwrapKey</dfn> method
-              <span class="RFC2119">MUST</span> perform the following steps: 
+              <span class="RFC2119">MUST</span> perform the following steps:
             </p>
             <ol>
             <li>
@@ -2770,7 +2730,7 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
           implementations that expected signed integers.
         </div>
       </div>
-      
+
       <div id="keypair" class="section">
         <h2>17. CryptoKeyPair dictionary</h2>
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
@@ -2878,7 +2838,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
             the supported operations, registering their IDL parameter type as indicated.
           </p>
         </div>
-      
+
         <div id="algorithm-normalization" class="section">
           <h3>18.4. Algorithm Normalization</h3>
           <div id="algorithm-normalization-description" class="section">
@@ -3170,7 +3130,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           </div>
         </div>
       </div>
-      
+
       <div id="algorithm-overview" class="section">
         <h2>19. Algorithm Overview</h2>
         <p class="norm">The following section is non-normative.</p>
@@ -3294,7 +3254,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
               <td></td>
               <td>✔</td>
               <td></td>
-              <td></td> 
+              <td></td>
               <td>✔</td>
               <td>✔</td>
               <td>✔</td>
@@ -3576,7 +3536,7 @@ dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-A
           <h4>20.4. RsaHashedKeyGenParams dictionary</h4>
           <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
 dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> {
-  <span class="comment">// The hash algorithm to use</span> 
+  <span class="comment">// The hash algorithm to use</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
 };
           </code></pre></div></div>
@@ -3609,7 +3569,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
 };
           </code></pre></div></div>
-         
+
         </div>
         <div id="rsassa-pkcs1-operations" class="section">
           <h4>20.8. Operations</h4>
@@ -3792,7 +3752,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                   <p>
                     Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -4630,7 +4590,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
                                 are produced or accepted.
                               </div>
                             </li>
-                          </ul>                              
+                          </ul>
                         </li>
                         <li>
                           <p>
@@ -5019,7 +4979,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -5052,7 +5012,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -5260,7 +5220,7 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
                                     </dd>
                                   </dl>
                                 </li>
-                              
+
                                 <li>
                                   <p>
                                     If the <code>algorithm</code> object identifier field of the
@@ -6535,7 +6495,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>ciphertext</var>.
                   </p>
                 </li>
@@ -6589,7 +6549,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>plaintext</var>.
                   </p>
                 </li>
@@ -6666,7 +6626,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -6700,7 +6660,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
                   <p>
                     Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -8049,7 +8009,7 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
             may specify the use of additional elliptic curves and hash algorithms with ECDSA. To
             specify additional hash algorithms to be used with ECDSA, a specification must define
             a <a href="#algorithms">registered algorithm</a> that supports the digest operation.
-            To specify an additional elliptic curve a specification must define 
+            To specify an additional elliptic curve a specification must define
             <dfn id="dfn-ecdsa-extended-namedcurve-values">the curve name</dfn>,
             <dfn id="dfn-ecdsa-extended-signature-steps">ECDSA signature steps</dfn>,
             <dfn id="dfn-ecdsa-extended-verification-steps">ECDSA verification steps</dfn>,
@@ -8314,7 +8274,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                       <p>
                         Perform the ECDSA verifying process, as specified in <a href="#RFC6090">RFC6090</a>, Section 5.3, with <var>M</var> as the received
                         message, <var>signature</var> as the received signature and using
-                        <var>params</var> as the EC domain parameters, and 
+                        <var>params</var> as the EC domain parameters, and
                         <var>Q</var> as the public key.
                       </p>
                     </dd>
@@ -8426,7 +8386,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <p>
                     Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -8459,7 +8419,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                   <p>
                     Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -9542,7 +9502,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
                                         <dd>
                                           <p>
                                             Set <var>parameters</var> to the <code>namedCurve</code> choice
-                                            with value equal to the object identifier 
+                                            with value equal to the object identifier
                                             <code>secp256r1</code> defined in <a href="#RFC5480">RFC
                                             5480</a>
                                           </p>
@@ -9834,7 +9794,7 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
           <p>
             <a href="#dfn-applicable-specification">Other specifications</a>
             may specify the use of additional elliptic curves with ECDH.
-            To specify an additional elliptic curve a specification must define 
+            To specify an additional elliptic curve a specification must define
             <dfn id="dfn-ecdh-extended-namedcurve-values">the curve name</dfn>,
             <dfn id="dfn-ecdh-extended-generation-steps">ECDH generation steps</dfn>,
             <dfn id="dfn-ecdh-extended-derivation-steps">ECDH derivation steps</dfn>,
@@ -9971,7 +9931,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <p>
                     Let <var>publicKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -10003,7 +9963,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                   <p>
                     Let <var>privateKey</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -10179,7 +10139,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
                 </li>
               </ol>
             </dd>
-          
+
             <dt>Import Key</dt>
             <dd>
               <ol>
@@ -11558,7 +11518,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>ciphertext</var>.
                   </p>
                 </li>
@@ -11601,7 +11561,7 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>plaintext</var>.
                   </p>
                 </li>
@@ -12093,7 +12053,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>ciphertext</var>.
                   </p>
                 </li>
@@ -12142,7 +12102,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>plaintext</var>.
                   </p>
                 </li>
@@ -12336,7 +12296,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
                           <p>
                             If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
-                            <a href="#jwk">JSON Web Key</a> or                           
+                            <a href="#jwk">JSON Web Key</a> or
                             does not contain all of the specified <var>usages</var> values,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
@@ -12674,7 +12634,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>ciphertext</var>.
                   </p>
                 </li>
@@ -12772,7 +12732,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Return a new <a href="#dfn-ArrayBuffer">ArrayBuffer</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     containing <var>plaintext</var>.
                   </p>
                 </li>
@@ -13281,7 +13241,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    If the key generation step fails, 
+                    If the key generation step fails,
                     then <a href="#concept-throw">throw</a> an
                     <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
@@ -13345,7 +13305,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     If <var>usages</var> contains an entry which is not
                      one of <code>"wrapKey"</code> or <code>"unwrapKey"</code>,
-                    
+
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                   </p>
@@ -13363,7 +13323,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the length in bits of <var>data</var> is not 128, 192 or 256
-                            
+
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -13384,7 +13344,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>, 
+                            <code>"oct"</code>,
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -13392,7 +13352,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -13407,17 +13367,17 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A128KW"</code>, 
+                            not  <code>"A128KW"</code>,
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A192KW"</code>, 
+                            not  <code>"A192KW"</code>,
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
-                            not  <code>"A256KW"</code>, 
+                            not  <code>"A256KW"</code>,
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.</dd>
                             <dt>Otherwise:</dt>
@@ -13430,7 +13390,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                         <li>
                           <p>
                             If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
-                            not  <code>"enc"</code>, 
+                            not  <code>"enc"</code>,
                               then <a href="#concept-throw">throw</a> a
                               <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -13465,7 +13425,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
                   <p>
                     Let <var>key</var> be a new <a href="#dfn-CryptoKey">CryptoKey</a> associated with the
                     <a href="https://www.w3.org/TR/html51/webappapis.html#relevant-global-object">relevant global object</a>
-                    of <code>this</code> [<a href="#HTML">HTML</a>], and 
+                    of <code>this</code> [<a href="#HTML">HTML</a>], and
                     representing an AES key with value <var>data</var>.
                   </p>
                 </li>
@@ -13816,7 +13776,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                 </li>
                 <li>
                   <p>
-                    If the key generation step fails, 
+                    If the key generation step fails,
                     then <a href="#concept-throw">throw</a> an
                     <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
@@ -13936,7 +13896,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                         <li>
                           <p>
                             If the <code>"kty"</code> field of <var>jwk</var> is not
-                            <code>"oct"</code>, 
+                            <code>"oct"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -13944,7 +13904,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                         <li>
                           <p>
                             If <var>jwk</var> does not meet the requirements of
-                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>, 
+                            Section 6.4 of <a href="#jwa">JSON Web Algorithms</a>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -14026,7 +13986,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                         <li>
                           <p>
                             If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
-                            not  <code>"sign"</code>, 
+                            not  <code>"sign"</code>,
                             then <a href="#concept-throw">throw</a> a
                             <a href="#dfn-DataError"><code>DataError</code></a>.
                           </p>
@@ -14219,7 +14179,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
                             <var>algorithm</var>.
                           </p>
                         </li>
-                        
+
                         <li>
                           <dl class="switch">
                             <dt>If the <a href="#dfn-KeyAlgorithm-name">name</a> attribute of
@@ -14451,7 +14411,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
           </dl>
         </div>
       </div>
-      
+
       <div id="hkdf" class="section">
         <h3>31. HKDF</h3>
         <div id="hkdf-description" class="section">
@@ -14607,9 +14567,9 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
                       <ol>
                         <li>
                           <p>
-                            If <var>usages</var> contains a value that is not 
+                            If <var>usages</var> contains a value that is not
                              <code>"deriveKey"</code> or <code>"deriveBits"</code>,
-                            
+
                                 then <a href="#concept-throw">throw</a> a
                                 <a href="#dfn-SyntaxError"><code>SyntaxError</code></a>.
                           </p>
@@ -14784,7 +14744,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
                 </li>
                 <li>
                   <p>
-                    If the key derivation operation fails, 
+                    If the key derivation operation fails,
                     then <a href="#concept-throw">throw</a> an
                     <a href="#dfn-OperationError"><code>OperationError</code></a>.
                   </p>
@@ -14882,7 +14842,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         <h2>33. JavaScript Example Code</h2>
         <div id="examples-signing" class="section">
           <h3>33.1. Generate a signing key pair, sign some data</h3>
-        
+
         <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
 var encoder = new TextEncoder('utf-8');
 
@@ -14993,7 +14953,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
-          </ul>            
+          </ul>
           <ul>
             <li>Algorithm Name: "A256CBC"</li>
             <li>Algorithm Description: AES CBC using 256 bit key</li>
@@ -15001,7 +14961,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
-          </ul>            
+          </ul>
           <ul>
             <li>Algorithm Name: "A128CTR"</li>
             <li>Algorithm Description: AES CTR using 128 bit key</li>
@@ -15009,7 +14969,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <li>JOSE Implementation Requirements: Prohibited</li>
             <li>Change Controller: W3C Web Cryptography Working Group</li>
             <li>Specification Document(s): [[ This Document ]]</li>
-          </ul>            
+          </ul>
           <ul>
             <li>Algorithm Name: "A192CTR"</li>
             <li>Algorithm Description: AES CTR using 192 bit key</li>
@@ -15109,8 +15069,8 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dt id="X690">ITU-T Recommendation X.690 (11/08)</dt>
              <dd>
                <cite>
-                 <a href="http://www.itu.int/rec/T-REC-X.690-200811-I/en">Information technology - 
-                 ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical 
+                 <a href="http://www.itu.int/rec/T-REC-X.690-200811-I/en">Information technology -
+                 ASN.1 encoding rules: Specification of Basic Encoding Rules (BER), Canonical
                  Encoding Rules (CER) and Distinguished Encoding Rules (DER)</a>
                </cite>, ITU-T.
              </dd>
@@ -15139,7 +15099,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <dt id="SP800-38D">NIST SP 800-38D</dt>
             <dd>
               <cite><a href="http://csrc.nist.gov/publications/nistpubs/800-38D/SP-800-38D.pdf">
-              NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: 
+              NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation:
               Galois/Counter Mode (GCM) and GMAC</a></cite>, November 2007, NIST.
             </dd>
             <dt id="SP800-56A">NIST SP 800-56A</dt>
@@ -15172,7 +15132,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
              <dt id="RFC3279">RFC 3279</dt>
              <dd>
                <cite><a href="http://www.ietf.org/rfc/rfc3279">Algorithms and Identifiers for the
-              Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List 
+              Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List
               (CRL) Profile</a></cite>,
               W. Polk, R. Housley, L. Bassham. IETF.
              </dd>
@@ -15280,26 +15240,26 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <dt id="RFC4055">RFC 4055</dt>
             <dd>
               <cite><a href="https://tools.ietf.org/html/rfc4055">Additional Algorithms and
-                Identifiers for RSA Cryptography for use in the Internet X.509 Public Key 
-                Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>, 
+                Identifiers for RSA Cryptography for use in the Internet X.509 Public Key
+                Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a></cite>,
                 J. Schaad, B. Kaliski, R. Housley. IETF.
             </dd>
             <dt id="RFC5756">RFC 5756</dt>
             <dd>
-              <cite><a href="https://tools.ietf.org/html/rfc5756">Updates for RSAES-OAEP and 
-              RSASSA-PSS Algorithm Parameters</a></cite>, 
+              <cite><a href="https://tools.ietf.org/html/rfc5756">Updates for RSAES-OAEP and
+              RSASSA-PSS Algorithm Parameters</a></cite>,
               S. Turner, D. Brown, K. Yiu, R. Housley, T. Polk. IETF.
             </dd>
             <dt id="RFC5958">RFC 5958</dt>
             <dd>
-              <cite><a href="https://tools.ietf.org/html/rfc5958">Asymmetric Key Packages</a></cite>, 
+              <cite><a href="https://tools.ietf.org/html/rfc5958">Asymmetric Key Packages</a></cite>,
               S. Turner. IETF.
             </dd>
           </dl>
         </div>
       </div>
     </div>
-    
+
     <div id="appendices">
       <div id="jwk-mapping" class="section">
         <h2>A. Mapping between JSON Web Key / JSON Web Algorithm</h2>
