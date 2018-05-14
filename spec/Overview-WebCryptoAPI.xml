@@ -3582,7 +3582,7 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
-  [EnforceRange] required unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
+  required [EnforceRange] unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
   required <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
 };
