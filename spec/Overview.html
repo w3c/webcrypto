@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="//www.w3.org/StyleSheets/TR/2016/W3C-ED" type="text/css" /></head>
 
   <body>
-    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>14 May 2018</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/">https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
+    <div class="head"><p><a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48" alt="W3C" /></a></p><h1>Web Cryptography API</h1><h2>W3C Editor’s Draft <em>6 July 2018</em></h2><dl><dt>Latest Editor’s Draft:</dt><dd><a href="http://w3c.github.io/webcrypto/Overview.html">http://w3c.github.io/webcrypto/Overview.html</a></dd><dt>Latest Published Version:</dt><dd><a href="https://www.w3.org/TR/WebCryptoAPI/">https://www.w3.org/TR/WebCryptoAPI/</a></dd><dt>Previous Version:</dt><dd><a href="https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/">https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/</a></dd><dt>Editor:</dt><dd><a href="http://www.netflix.com/">Mark Watson</a>, Netflix &lt;watsonm@netflix.com&gt;</dd><dt>Participate:</dt><dd><a href="https://github.com/w3c/webcrypto">We are on GitHub</a>.
           </dd><dd>
           Send feedback to <a href="mailto:public-webcrypto@w3.org?subject=%5BWebCryptoAPI%5D">public-webcrypto@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webcrypto/">archives</a>).
           </dd><dd><a href="https://github.com/w3c/webcrypto/issues/new">File a bug</a>
@@ -825,7 +825,7 @@
 
       <div id="crypto-interface" class="section">
         <h2>10. Crypto interface</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 partial interface mixin WindowOrWorkerGlobalScope {
   readonly attribute <a href="#dfn-Crypto">Crypto</a> crypto;
 };
@@ -835,7 +835,7 @@ interface <dfn id="dfn-Crypto">Crypto</dfn> {
   [SecureContext] readonly attribute <a href="#dfn-SubtleCrypto">SubtleCrypto</a> subtle;
   ArrayBufferView <a href="#dfn-Crypto-method-getRandomValues">getRandomValues</a>(ArrayBufferView array);
 };
-        </code></pre></div></div>
+        </pre>
 
         <div id="Crypto-description" class="section">
           <h3>10.1. Description</h3>
@@ -928,7 +928,7 @@ interface <dfn id="dfn-Crypto">Crypto</dfn> {
           which is used to specify an algorithm and any additional parameters required to fully
           specify the desired operation.
         </p>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 typedef (object or DOMString) <dfn id="dfn-AlgorithmIdentifier">AlgorithmIdentifier</dfn>;
 
 typedef <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> <dfn id="dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</dfn>;
@@ -936,7 +936,7 @@ typedef <a href="#dfn-AlgorithmIdentifier">AlgorithmIdentifier</a> <dfn id="dfn-
 dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
   required DOMString <a href="#dfn-Algorithm-name">name</a>;
 };
-        </code></pre></div></div>
+        </pre>
         <div id="algorithm-dictionary-members" class="section">
           <h3>11.1. <a href="#dfn-Algorithm">Algorithm</a> Dictionary Members</h3>
           <dl>
@@ -956,11 +956,11 @@ dictionary <dfn id="dfn-Algorithm">Algorithm</dfn> {
           The KeyAlgorithm dictionary represents information about the contents of a given
           <a href="#dfn-CryptoKey">CryptoKey</a> object.
         </p>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
   required DOMString <a href="#dfn-KeyAlgorithm-name">name</a>;
 };
-        </code></pre></div></div>
+        </pre>
         <div id="key-algorithm-dictionary-description" class="section">
           <h3>12.1. Description</h3>
           <p class="norm">This section is non-normative.</p>
@@ -988,7 +988,7 @@ dictionary <dfn id="dfn-KeyAlgorithm">KeyAlgorithm</dfn> {
           The CryptoKey object represents an opaque reference to keying material that is managed by
           the user agent.
         </p>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 enum <a href="#dfn-KeyType">KeyType</a> { "public", "private", "secret" };
 
 enum <a href="#dfn-KeyUsage">KeyUsage</a> { "encrypt", "decrypt", "sign", "verify", "deriveKey", "deriveBits", "wrapKey", "unwrapKey" };
@@ -1000,7 +1000,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
   readonly attribute object <a href="#dfn-CryptoKey-algorithm">algorithm</a>;
   readonly attribute object <a href="#dfn-CryptoKey-usages">usages</a>;
 };
-        </code></pre></div></div>
+        </pre>
         <div id="cryptokey-interface-description" class="section">
           <h3>13.1. Description</h3>
           <p class="norm">This section is non-normative.</p>
@@ -1154,7 +1154,7 @@ interface <dfn id="dfn-CryptoKey">CryptoKey</dfn> {
 
       <div id="subtlecrypto-interface" class="section">
         <h2>14. SubtleCrypto interface</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 enum <a href="#dfn-KeyFormat"><code>KeyFormat</code></a> { "raw", "spki", "pkcs8", "jwk" };
 
 [SecureContext,Exposed=(Window,Worker)]
@@ -1206,7 +1206,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
                          boolean extractable,
                          sequence&lt;<a href="#dfn-KeyUsage">KeyUsage</a>&gt; keyUsages );
 };
-        </code></pre></div></div>
+        </pre>
         <div id="subtlecrypto-interface-description" class="section">
           <h3>14.1. Description</h3>
           <p class="norm">This section is non-normative.</p>
@@ -2665,7 +2665,7 @@ interface <dfn id="dfn-SubtleCrypto">SubtleCrypto</dfn> {
 
       <div id="JsonWebKey-dictionary" class="section">
         <h2>15. JsonWebKey dictionary</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 dictionary <dfn id="dfn-RsaOtherPrimesInfo">RsaOtherPrimesInfo</dfn> {
   <span class="comment">// The following fields are defined in Section 6.3.2.7 of <a href="#jwa">JSON Web Algorithms</a></span>
   DOMString r;
@@ -2698,7 +2698,7 @@ dictionary <dfn id="dfn-JsonWebKey">JsonWebKey</dfn> {
   sequence&lt;RsaOtherPrimesInfo&gt; oth;
   DOMString k;
 };
-        </code></pre></div></div>
+        </pre>
         <div id="JsonWebKey-description">
           <h3>Description</h3>
           <p class="norm">The following section is non-normative.</p>
@@ -2713,9 +2713,9 @@ dictionary <dfn id="dfn-JsonWebKey">JsonWebKey</dfn> {
 
       <div id="big-integer" class="section">
         <h2>16. BigInteger</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
-        </code></pre></div></div>
+        </pre>
         <p>
           The <a href="#dfn-BigInteger">BigInteger</a> typedef is a <code>Uint8Array</code> that
           holds an arbitrary magnitude unsigned integer in big-endian order. Values read from
@@ -2733,12 +2733,12 @@ typedef Uint8Array <dfn id="dfn-BigInteger">BigInteger</dfn>;
 
       <div id="keypair" class="section">
         <h2>17. CryptoKeyPair dictionary</h2>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+        <pre class="def idl">
 dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
   <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKeyPair-publicKey">publicKey</dfn>;
   <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-CryptoKeyPair-privateKey">privateKey</dfn>;
 };
-        </code></pre></div></div>
+        </pre>
         <p>
           The <a href="#dfn-CryptoKeyPair">CryptoKeyPair</a> dictionary represents an
           asymmetric key pair that is comprised of both public and private keys.
@@ -3523,52 +3523,52 @@ dictionary <dfn id="dfn-CryptoKeyPair">CryptoKeyPair</dfn> {
         </div>
         <div id="RsaKeyGenParams-dictionary" class="section">
           <h4>20.3. RsaKeyGenParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaKeyGenParams">RsaKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
   required [EnforceRange] unsigned long <dfn id="dfn-RsaKeyGenParams-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
   required <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyGenParams-publicExponent">publicExponent</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="RsaHashedKeyGenParams-dictionary" class="section">
           <h4>20.4. RsaHashedKeyGenParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaHashedKeyGenParams">RsaHashedKeyGenParams</dfn> : <a href="#dfn-RsaKeyGenParams">RsaKeyGenParams</a> {
   <span class="comment">// The hash algorithm to use</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedKeyGenParams-hash">hash</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="RsaKeyAlgorithm-dictionary" class="section">
           <h4>20.5. RsaKeyAlgorithm dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the RSA modulus</span>
   required unsigned long <dfn id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn>;
   <span class="comment">// The RSA public exponent</span>
   required <a href="#dfn-BigInteger">BigInteger</a> <dfn id="dfn-RsaKeyAlgorithm-publicExponent">publicExponent</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="RsaHashedKeyAlgorithm-dictionary" class="section">
           <h4>20.6. RsaHashedKeyAlgorithm dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaHashedKeyAlgorithm">RsaHashedKeyAlgorithm</dfn> : <a href="#dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</a> {
   <span class="comment">// The hash algorithm that is used with this key</span>
   required <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> <dfn id="dfn-RsaHashedKeyAlgorithm-hash">hash</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="RsaHashedImportParams-dictionary" class="section">
           <h4>20.7. RsaHashedImportParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-RsaHashedImportParams-hash">hash</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
 
         </div>
         <div id="rsassa-pkcs1-operations" class="section">
@@ -4820,12 +4820,12 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
         </div>
         <div id="RsaPssParams-dictionary" class="section">
           <h4>21.3. RsaPssParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The desired length of the random salt</span>
   [EnforceRange] required unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="rsa-pss-operations" class="section">
           <h4>21.4. Operations</h4>
@@ -6437,12 +6437,12 @@ dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorit
 
         <div id="rsa-oaep-params" class="section">
           <h4>22.3. RsaOaepParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The optional label/application data to associate with the message</span>
   BufferSource <dfn id="dfn-RsaOaepParams-label">label</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="rsa-oaep-operations" class="section">
           <h4>22.4. Operations</h4>
@@ -8064,23 +8064,23 @@ dictionary <dfn id="dfn-RsaOaepParams">RsaOaepParams</dfn> : <a href="#dfn-Algor
         </div>
         <div id="EcdsaParams-dictionary" class="section">
           <h4>23.3. EcdsaParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-EcdsaParams">EcdsaParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The hash algorithm to use</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-EcdsaParams-hash">hash</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="EcKeyGenParams-dictionary" class="section">
           <h4>23.4. EcKeyGenParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 typedef DOMString <a href="#dfn-NamedCurve">NamedCurve</a>;
 
 dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
   required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyGenParams-namedCurve">namedCurve</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
           <p>
             The <dfn id="dfn-NamedCurve">NamedCurve</dfn> type represents named elliptic curves,
             which are a convenient way to specify the domain parameters of well-known elliptic
@@ -8101,21 +8101,21 @@ dictionary <dfn id="dfn-EcKeyGenParams">EcKeyGenParams</dfn> : <a href="#dfn-Alg
         </div>
         <div id="EcKeyAlgorithm-dictionary" class="section">
           <h4>23.5. EcKeyAlgorithm dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The named curve that the key uses</span>
   required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyAlgorithm-namedCurve">namedCurve</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="EcKeyImportParams-dictionary" class="section">
           <h4>23.6. EcKeyImportParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// A named curve</span>
   required <a href="#dfn-NamedCurve">NamedCurve</a> <dfn id="dfn-EcKeyImportParams-namedCurve">namedCurve</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
 
         <div id="ecdsa-operations" class="section">
@@ -9842,12 +9842,12 @@ dictionary <dfn id="dfn-EcKeyImportParams">EcKeyImportParams</dfn> : <a href="#d
         </div>
         <div id="dh-EcdhKeyDeriveParams" class="section">
           <h4>24.3. EcdhKeyDeriveParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The peer's EC public key.</span>
   required <a href="#dfn-CryptoKey">CryptoKey</a> <dfn id="dfn-EcdhKeyDeriveParams-public">public</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="ecdh-operations" class="section">
           <h4>24.4. Operations</h4>
@@ -11435,7 +11435,7 @@ dictionary <dfn id="dfn-EcdhKeyDeriveParams">EcdhKeyDeriveParams</dfn> : <a href
 
         <div id="aes-ctr-params" class="section">
           <h4>25.3. AesCtrParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initial value of the counter block. counter <span class="RFC2119">MUST</span> be 16 bytes
   // (the AES block size). The counter bits are the rightmost length
@@ -11449,33 +11449,33 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
   // that is incremented.</span>
   [EnforceRange] required octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="AesKeyAlgorithm-dictionary" class="section">
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
   required unsigned short <dfn id="dfn-AesKeyAlgorithm-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="aes-keygen-params" class="section">
           <h4>25.5. AesKeyGenParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
   [EnforceRange] required unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="aes-derivedkey-params" class="section">
           <h4>25.6. AesDerivedKeyParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
   [EnforceRange] required unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
 
         <div id="aes-ctr-operations" class="section">
@@ -12010,12 +12010,12 @@ dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href
         </div>
         <div id="aes-cbc-params" class="section">
           <h4>26.3. AesCbcParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector. <span class="RFC2119">MUST</span> be 16 bytes.</span>
   required BufferSource <dfn id="dfn-AesCbcParams-iv">iv</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="aes-cbc-operations" class="section">
           <h4>26.4. Operations</h4>
@@ -12546,7 +12546,7 @@ dictionary <dfn id="dfn-AesCbcParams">AesCbcParams</dfn> : <a href="#dfn-Algorit
          </div>
         <div id="aes-gcm-params" class="section">
           <h4>27.3. AesGcmParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The initialization vector to use. May be up to 2^64-1 bytes long.</span>
   required BufferSource <dfn id="dfn-AesGcmParams-iv">iv</dfn>;
@@ -12555,7 +12555,7 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
   <span class="comment">// The desired length of the authentication tag. May be 0 - 128.</span>
   [EnforceRange] octet <dfn id="dfn-AesGcmParams-tagLength">tagLength</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="aes-gcm-operations" class="section">
           <h4>27.4. Operations</h4>
@@ -13654,29 +13654,29 @@ dictionary <dfn id="dfn-AesGcmParams">AesGcmParams</dfn> : <a href="#dfn-Algorit
         </div>
         <div id="hmac-importparams" class="section">
           <h4>29.3. HmacImportParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-HmacImportParams">HmacImportParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacImportParams-hash">hash</dfn>;
   <span class="comment">// The length (in bits) of the key.</span>
   [EnforceRange] unsigned long <dfn id="dfn-HmacImportParams-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="HmacKeyAlgorithm-dictionary" class="section">
           <h4>29.4. HmacKeyAlgorithm dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> : <a href="#dfn-KeyAlgorithm">KeyAlgorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   required KeyAlgorithm <dfn id="dfn-HmacKeyAlgorithm-hash">hash</dfn>;
   <span class="comment">// The length (in bits) of the key.</span>
   required unsigned long <dfn id="dfn-HmacKeyAlgorithm-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="hmac-keygen-params" class="section">
           <h4>29.5. HmacKeyGenParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The inner hash function to use.</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HmacKeyGenParams-hash">hash</dfn>;
@@ -13685,7 +13685,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
   // size.</span>
   [EnforceRange] unsigned long <dfn id="dfn-HmacKeyGenParams-length">length</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="hmac-operations" class="section">
           <h4>29.6. Operations</h4>
@@ -14464,7 +14464,7 @@ dictionary <dfn id="dfn-HmacKeyGenParams">HmacKeyGenParams</dfn> : <a href="#dfn
         </div>
         <div id="hkdf-params" class="section">
           <h4>31.3. HkdfParams dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The algorithm to use with HMAC (e.g.: <a href="#alg-sha-256">SHA-256</a>)</span>
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-HkdfParams-hash">hash</dfn>;
@@ -14473,7 +14473,7 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
   <span class="comment">// A bit string that corresponds to the context and application specific context for the derived keying material.</span>
   required BufferSource <dfn id="dfn-HkdfParams-info">info</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="hkdf2-operations" class="section">
           <h4>31.4. Operations</h4>
@@ -14703,13 +14703,13 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
         </div>
         <div id="pbkdf2-params" class="section">
           <h4>32.3. Pbkdf2Params dictionary</h4>
-          <div class="block"><div class="blockTitleDiv"><span class="blockTitle">IDL</span></div><div class="blockContent"><pre class="code"><code class="idl-code">
+          <pre class="def idl">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   required BufferSource <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
   [EnforceRange] required unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
-          </code></pre></div></div>
+          </pre>
         </div>
         <div id="pbkdf2-operations" class="section">
           <h4>32.4. Operations</h4>
@@ -14843,7 +14843,7 @@ dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorit
         <div id="examples-signing" class="section">
           <h3>33.1. Generate a signing key pair, sign some data</h3>
 
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+        <pre class="def idl">
 var encoder = new TextEncoder('utf-8');
 
 <span class="comment">// Algorithm Object</span>
@@ -14873,11 +14873,11 @@ window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
   console.log.bind(console, "The signature is: "),
   console.error.bind(console, "Unable to sign")
 );
-        </code></pre></div></div>
+        </pre>
         </div>
         <div id="examples-symmetric-encryption" class="section">
           <h3>33.2. Symmetric Encryption</h3>
-        <div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+        <pre class="def idl">
 var encoder = new TextEncoder('utf-8');
 var clearDataArrayBufferView = encoder.encode("Plain Text Data");
 
@@ -14900,7 +14900,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   }
 ).then(console.log.bind(console, "The ciphertext is: "),
        console.error.bind(console, "Unable to encrypt"));
-        </code></pre></div></div>
+        </pre>
       </div>
     </div>
     <div id="iana-section" class="section">
@@ -15279,487 +15279,487 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             <tbody>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RS1" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-1" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RS256" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-256" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RS384" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-384" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RS512" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSASSA-PKCS1-v1_5",
   hash: { name: "SHA-512" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
 
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "PS256" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-PSS",
   hash: { name: "SHA-256" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "PS384" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-PSS",
   hash: { name: "SHA-384" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "PS512" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-PSS",
   hash: { name: "SHA-512" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
 
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RSA-OAEP" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-OAEP",
   hash: { name: "SHA-1" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RSA-OAEP-256" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-OAEP",
   hash: { name: "SHA-256" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RSA-OAEP-384" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-OAEP",
   hash: { name: "SHA-384" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "RSA",
   alg: "RSA-OAEP-512" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "RSA-OAEP",
   hash: { name: "SHA-512" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
 
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "EC",
   alg: "ES256" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "ECDSA",
   namedCurve: "P-256"
   hash: { name: "SHA-256" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "EC",
   alg: "ES384" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "ECDSA",
   namedCurve: "P-384"
   hash: { name: "SHA-384" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "EC",
   alg: "ES512" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "ECDSA",
   namedCurve: "P-521"
   hash: { name: "SHA-512" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A128CTR" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CTR",
   length: 128 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A192CTR" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CTR",
   length: 192 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A256CTR" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CTR",
   length: 256 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A128CBC" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CBC",
   length: 128 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A192CBC" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CBC",
   length: 192 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A256CBC" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-CBC",
   length: 256 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A128KW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-KW",
   length: 128 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A192KW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-KW",
   length: 192 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A256KW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-KW",
   length: 256 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A128GCM" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 128 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A192GCM" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 192 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A256GCM" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 256 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A128GCMKW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 128 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A192GCMKW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 192 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "A256GCMKW" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "AES-GCM",
   length: 256 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
             <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "HS1" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "HMAC",
   hash: { name: "SHA-1" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "HS256" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "HMAC",
   hash: { name: "SHA-256" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "HS384" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "HMAC",
   hash: { name: "SHA-384" }
 }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
               <tr>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { kty: "oct",
   alg: "HS512" }
-</code></pre></div></div>
+</pre>
                 </td>
                 <td>
-<div class="block"><div class="blockTitleDiv"><span class="blockTitle">ECMAScript</span></div><div class="blockContent"><pre class="code"><code class="es-code">
+<pre class="def idl">
 { name: "HMAC",
   hash: "SHA-512" }
-</code></pre></div></div>
+</pre>
                 </td>
               </tr>
             </tbody>

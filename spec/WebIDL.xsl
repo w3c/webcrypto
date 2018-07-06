@@ -526,24 +526,7 @@
   -->
 
   <xsl:template match='x:codeblock'>
-    <div class='block'>
-      <div class='blockTitleDiv'>
-        <span class='blockTitle'>
-          <xsl:choose>
-            <xsl:when test='@language="idl"'>IDL</xsl:when>
-            <xsl:when test='@language="es"'>ECMAScript</xsl:when>
-            <xsl:when test='@language="java"'>Java</xsl:when>
-            <xsl:when test='@language="c"'>C</xsl:when>
-            <xsl:when test='@language="abnf"'>ABNF</xsl:when>
-            <xsl:when test='@language="headers"'>HEADERS</xsl:when>
-            <xsl:otherwise>@@</xsl:otherwise>
-          </xsl:choose>
-        </span>
-      </div>
-      <div class='blockContent'>
-        <pre class='code'><code class='{@language}-code'><xsl:apply-templates select='node()'/></code></pre>
-      </div>
-    </div>
+    <pre class='def idl'><xsl:apply-templates select='node()'/></pre>
   </xsl:template>
 
   <xsl:template match='x:grammar'>
