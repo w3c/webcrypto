@@ -4915,7 +4915,7 @@ dictionary <dfn id="dfn-RsaHashedImportParams">RsaHashedImportParams</dfn> : <a 
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-RsaPssParams">RsaPssParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The desired length of the random salt</span>
-  [EnforceRange] required unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
+  required [EnforceRange] unsigned long <dfn id="dfn-RsaPssParams-saltLength">saltLength</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11864,7 +11864,7 @@ dictionary <dfn id="dfn-AesCtrParams">AesCtrParams</dfn> : <a href="#dfn-Algorit
   required BufferSource <dfn id="dfn-AesCtrParams-counter">counter</dfn>;
   <span class="comment">// The length, in bits, of the rightmost part of the counter block
   // that is incremented.</span>
-  [EnforceRange] required octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
+  required [EnforceRange] octet <dfn id="dfn-AesCtrParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11881,7 +11881,7 @@ dictionary <dfn id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> : <a href="#dfn-K
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
-  [EnforceRange] required unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
+  required [EnforceRange] unsigned short <dfn id="dfn-AesKeyGenParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -11890,7 +11890,7 @@ dictionary <dfn id="dfn-AesKeyGenParams">AesKeyGenParams</dfn> : <a href="#dfn-A
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-AesDerivedKeyParams">AesDerivedKeyParams</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   <span class="comment">// The length, in bits, of the key.</span>
-  [EnforceRange] required unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
+  required [EnforceRange] unsigned short <dfn id="dfn-AesDerivedKeyParams-length">length</dfn>;
 };
           </x:codeblock>
         </div>
@@ -15200,7 +15200,7 @@ dictionary <dfn id="dfn-HkdfParams">HkdfParams</dfn> : <a href="#dfn-Algorithm">
           <x:codeblock language="idl">
 dictionary <dfn id="dfn-Pbkdf2Params">Pbkdf2Params</dfn> : <a href="#dfn-Algorithm">Algorithm</a> {
   required BufferSource <dfn id="dfn-Pbkdf2Params-salt">salt</dfn>;
-  [EnforceRange] required unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
+  required [EnforceRange] unsigned long <dfn id="dfn-Pbkdf2Params-iterations">iterations</dfn>;
   required <a href="#dfn-HashAlgorithmIdentifier">HashAlgorithmIdentifier</a> <dfn id="dfn-Pbkdf2Params-hash">hash</dfn>;
 };
           </x:codeblock>
