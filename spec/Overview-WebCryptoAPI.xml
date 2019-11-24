@@ -15389,7 +15389,7 @@ var aesAlgorithmEncrypt = {
 <span class="comment">// Create a key generator to produce a one-time-use AES key to encrypt some data</span>
 window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
   function(aesKey) {
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, [ clearDataArrayBufferView ]);
+    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
   }
 ).then(console.log.bind(console, "The ciphertext is: "),
        console.error.bind(console, "Unable to encrypt"));
