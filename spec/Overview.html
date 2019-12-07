@@ -805,15 +805,15 @@ interface Crypto {
             cryptographically strong pseudo-random number generator seeded with truly random values.
           </p>
           <div class=note>
-            Implementations should generate cryptographically random values using
+            Implementations should generate cryptographically strong random values using
             well-established cryptographic pseudo-random number generators seeded with high-quality
             entropy, such as from an operating-system entropy source (e.g., "/dev/urandom"). This
             specification provides no lower-bound on the information theoretic entropy present in
-            cryptographically random values, but implementations should make a best effort to provide
+            cryptographically strong random values, but implementations should make a best effort to provide
             as much entropy as practicable.
           </div>
           <div class=note>
-            This interface defines a synchronous method for obtaining cryptographically random
+            This interface defines a synchronous method for obtaining cryptographically strong random
             values. While some devices and implementations may support truly random cryptographic
             number generators or provide interfaces that block when there is insufficient entropy,
             implementations are discouraged from using these sources when implementing
@@ -828,7 +828,7 @@ interface Crypto {
             <h4>The getRandomValues method</h4>
             <p>
               The <dfn id="dfn-Crypto-method-getRandomValues" data-dfn-for=Crypto>getRandomValues</dfn>
-              method generates cryptographically random values. It must act as follows:
+              method generates cryptographically strong random values. It must act as follows:
             </p>
             <ol>
               <li>
@@ -848,7 +848,7 @@ interface Crypto {
               </li>
               <li>
                 <p>
-                  Overwrite all elements of <var>array</var> with cryptographically random values of
+                  Overwrite all elements of <var>array</var> with cryptographically strong random values of
                   the appropriate type.
                 </p>
               </li>
