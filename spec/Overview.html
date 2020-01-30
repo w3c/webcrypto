@@ -726,7 +726,7 @@
           </li>
           <li>
             <p>
-              If the <code>"kty"</code> field of <var>key</var> is not defined, then [= exception/throw =] a {{DataError}}.
+              If the {{JsonWebKey/kty}} field of <var>key</var> is not defined, then [= exception/throw =] a {{DataError}}.
             </p>
           </li>
           <li>
@@ -4125,9 +4125,9 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/d}} field of <var>jwk</var> is present and
                             <var>usages</var> contains an entry which is not
-                            <code>"sign"</code>, or, if the <code>"d"</code> field of <var>jwk</var>
+                            <code>"sign"</code>, or, if the {{JsonWebKey/d}} field of <var>jwk</var>
                             is not present and
                             <var>usages</var> contains an entry which is not
                             <code>"verify"</code>
@@ -4137,7 +4137,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not a
                             case-sensitive string match to <code>"RSA"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -4145,7 +4145,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -4153,7 +4153,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -4163,7 +4163,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -4178,7 +4178,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <code>"alg"</code> field of <var>jwk</var> is not
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is not
                               present:
                             </dt>
                             <dd>
@@ -4187,7 +4187,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"RS1"</code>:
                             </dt>
                             <dd>
@@ -4196,7 +4196,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"RS256"</code>:
                             </dt>
                             <dd>
@@ -4205,7 +4205,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"RS384"</code>:
                             </dt>
                             <dd>
@@ -4214,7 +4214,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"RS512"</code>:
                             </dt>
                             <dd>
@@ -4275,7 +4275,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If the <code>"d"</code> field of <var>jwk</var> is present:</dt>
+                            <dt>If the {{JsonWebKey/d}} field of <var>jwk</var> is present:</dt>
                             <dd>
                               <ol>
                                 <li>
@@ -5494,9 +5494,9 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/d}} field of <var>jwk</var> is present and
                             <var>usages</var> contains an entry which is not
-                            <code>"sign"</code>, or, if the <code>"d"</code> field of <var>jwk</var>
+                            <code>"sign"</code>, or, if the {{JsonWebKey/d}} field of <var>jwk</var>
                             is not present and
                             <var>usages</var> contains an entry which is not
                             <code>"verify"</code>
@@ -5506,7 +5506,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not a
                             case-sensitive string match to <code>"RSA"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -5514,7 +5514,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"sig"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -5522,7 +5522,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -5532,7 +5532,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -5541,7 +5541,7 @@ dictionary RsaPssParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <code>"alg"</code> field of <var>jwk</var> is not
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is not
                               present:
                             </dt>
                             <dd>
@@ -5550,7 +5550,7 @@ dictionary RsaPssParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"PS1"</code>:
                             </dt>
                             <dd>
@@ -5559,7 +5559,7 @@ dictionary RsaPssParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"PS256"</code>:
                             </dt>
                             <dd>
@@ -5568,7 +5568,7 @@ dictionary RsaPssParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"PS384"</code>:
                             </dt>
                             <dd>
@@ -5577,7 +5577,7 @@ dictionary RsaPssParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the <code>"alg"</code> field is equal to the string
+                              If the {{JsonWebKey/alg}} field is equal to the string
                               <code>"PS512"</code>:
                             </dt>
                             <dd>
@@ -5637,7 +5637,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If the <code>"d"</code> field of <var>jwk</var> is present:</dt>
+                            <dt>If the {{JsonWebKey/d}} field of <var>jwk</var> is present:</dt>
                             <dd>
                               <ol>
                                 <li>
@@ -7131,7 +7131,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/d}} field of <var>jwk</var> is present and
                             <var>usages</var> contains an entry which is not
                             <code>"decrypt"</code> or <code>"unwrapKey"</code>,
                             then [= exception/throw =] a
@@ -7140,7 +7140,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field of <var>jwk</var> is not present and
+                            If the {{JsonWebKey/d}} field of <var>jwk</var> is not present and
                             <var>usages</var> contains an entry which is not
                             <code>"encrypt"</code> or <code>"wrapKey"</code>,
                             then [= exception/throw =] a
@@ -7149,7 +7149,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not a
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not a
                             case-sensitive string match to <code>"RSA"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -7157,7 +7157,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not a case-sensitive string match to <code>"enc"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -7165,7 +7165,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -7175,7 +7175,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -7257,7 +7257,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If the <code>"d"</code> field of <var>jwk</var> is present:</dt>
+                            <dt>If the {{JsonWebKey/d}} field of <var>jwk</var> is present:</dt>
                             <dd>
                               <ol>
                                 <li>
@@ -8827,10 +8827,10 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field is present and <var>usages</var> contains
+                            If the {{JsonWebKey/d}} field is present and <var>usages</var> contains
                             a value which is not
                             <code>"sign"</code>, or,
-                            if the <code>"d"</code> field is not present and <var>usages</var> contains
+                            if the {{JsonWebKey/d}} field is not present and <var>usages</var> contains
                             a value which is not
                             <code>"verify"</code>
                             then [= exception/throw =] a
@@ -8839,7 +8839,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                             <code>"EC"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -8847,7 +8847,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not  <code>"sig"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -8855,7 +8855,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of JSON Web
                             Key [[JWK]], or it does not contain all of the specified <var>usages</var>
                             values,
@@ -8865,7 +8865,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -8874,7 +8874,7 @@ dictionary EcKeyImportParams : Algorithm {
                         <li>
                           <p>
                             Let <var>namedCurve</var> be a string whose value is equal to the
-                            <code>"crv"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/crv}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
@@ -8899,24 +8899,24 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <dl class="switch">
-                                    <dt>If the <code>"alg"</code> field is not present:</dt>
+                                    <dt>If the {{JsonWebKey/alg}} field is not present:</dt>
                                     <dd>
                                       Let <var>algNamedCurve</var> be undefined.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field is equal to the string "ES256":
+                                      If the {{JsonWebKey/alg}} field is equal to the string "ES256":
                                     </dt>
                                     <dd>
                                       Let <var>algNamedCurve</var> be the string <code>"P-256"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field is equal to the string "ES384":
+                                      If the {{JsonWebKey/alg}} field is equal to the string "ES384":
                                     </dt>
                                     <dd>
                                       Let <var>algNamedCurve</var> be the string <code>"P-384"</code>.
                                     </dd>
                                     <dt>
-                                      If the <code>"alg"</code> field is equal to the string "ES512":
+                                      If the {{JsonWebKey/alg}} field is equal to the string "ES512":
                                     </dt>
                                     <dd>
                                       Let <var>algNamedCurve</var> be the string <code>"P-521"</code>.
@@ -8936,7 +8936,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <dl class="switch">
-                                    <dt>If the <code>"d"</code> field is present:</dt>
+                                    <dt>If the {{JsonWebKey/d}} field is present:</dt>
                                     <dd>
                                       <ol>
                                         <li>
@@ -10480,7 +10480,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field is present and if <var>usages</var>
+                            If the {{JsonWebKey/d}} field is present and if <var>usages</var>
                             contains an entry which is not
                             <code>"deriveKey"</code> or <code>"deriveBits"</code>
                             then [= exception/throw =] a
@@ -10489,7 +10489,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"d"</code> field is not present and if <var>usages</var> is not
+                            If the {{JsonWebKey/d}} field is not present and if <var>usages</var> is not
                             empty
                             then [= exception/throw =] a
                             {{SyntaxError}}.
@@ -10497,7 +10497,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is
                             not <code>"EC"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -10505,14 +10505,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present
                             and is not equal to <code>"enc"</code> then [= exception/throw =] a
                             {{DataError}}.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of JSON Web
                             Key [[JWK]], or it does not contain all of the specified <var>usages</var>
                             values, then [= exception/throw =] a {{DataError}}.
@@ -10520,7 +10520,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -10529,7 +10529,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Let <var>namedCurve</var> be a string whose value is equal to the
-                            <code>"crv"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/crv}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
@@ -10546,7 +10546,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                             </dt>
                             <dd>
                               <dl class="switch">
-                                <dt>If the <code>"d"</code> field is present:</dt>
+                                <dt>If the {{JsonWebKey/d}} field is present:</dt>
                                 <dd>
                                   <ol>
                                     <li>
@@ -11592,7 +11592,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                              <code>"oct"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -11609,24 +11609,24 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Let <var>data</var> be the [= octet string =] obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/k}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                               not <code>"A128CTR"</code>, then [= exception/throw =] a {{DataError}}.
                             </dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                               not <code>"A192CTR"</code>, then [= exception/throw =] a {{DataError}}.
                             </dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                               not <code>"A256CTR"</code>, then [= exception/throw =] a {{DataError}}.
                             </dd>
                             <dt>Otherwise:</dt>
@@ -11637,7 +11637,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not <code>"enc"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -11645,7 +11645,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -11655,7 +11655,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12132,7 +12132,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                             <code>"oct"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12149,23 +12149,23 @@ dictionary AesCbcParams : Algorithm {
                         <li>
                           <p>
                             Let <var>data</var> be the [= octet string =] obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/k}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A128CBC"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A192CBC"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A256CBC"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
@@ -12178,7 +12178,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12186,7 +12186,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -12196,7 +12196,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12761,7 +12761,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                             <code>"oct"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12778,23 +12778,23 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Let <var>data</var> be the [= octet string =] obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/k}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A128GCM"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A192GCM"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A256GCM"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
@@ -12807,7 +12807,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -12815,7 +12815,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -12825,7 +12825,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -13233,7 +13233,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                             <code>"oct"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13250,23 +13250,23 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Let <var>data</var> be the [= octet string =] obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/k}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
                             <dt>If <var>data</var> has length 128 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A128KW"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 192 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A192KW"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
                             <dt>If <var>data</var> has length 256 bits:</dt>
-                            <dd>If the <code>"alg"</code> field of <var>jwk</var> is present, and is
+                            <dd>If the {{JsonWebKey/alg}} field of <var>jwk</var> is present, and is
                             not  <code>"A256KW"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
@@ -13279,7 +13279,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not  <code>"enc"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13287,7 +13287,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -13297,7 +13297,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                               then [= exception/throw =] a
                               {{DataError}}.                          </p>
@@ -13782,7 +13782,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"kty"</code> field of <var>jwk</var> is not
+                            If the {{JsonWebKey/kty}} field of <var>jwk</var> is not
                             <code>"oct"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -13799,7 +13799,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         <li>
                           <p>
                             Let <var>data</var> be the [= octet string =] obtained by decoding the
-                            <code>"k"</code> field of <var>jwk</var>.
+                            {{JsonWebKey/k}} field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
@@ -13816,7 +13816,7 @@ dictionary HmacKeyGenParams : Algorithm {
                               <code>"SHA-1"</code>:
                             </dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present
                               and is not <code>"HS1"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13827,7 +13827,7 @@ dictionary HmacKeyGenParams : Algorithm {
                               <code>"SHA-256"</code>:
                             </dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present
                               and is not <code>"HS256"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13838,7 +13838,7 @@ dictionary HmacKeyGenParams : Algorithm {
                               <code>"SHA-384"</code>:
                             </dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present
                               and is not <code>"HS384"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13849,7 +13849,7 @@ dictionary HmacKeyGenParams : Algorithm {
                               <code>"SHA-512"</code>:
                             </dt>
                             <dd>
-                              If the <code>"alg"</code> field of <var>jwk</var> is present
+                              If the {{JsonWebKey/alg}} field of <var>jwk</var> is present
                               and is not <code>"HS512"</code>,
                               then [= exception/throw =] a
                               {{DataError}}.
@@ -13872,7 +13872,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If <var>usages</var> is non-empty and the <code>"use"</code> field of <var>jwk</var> is present and is
+                            If <var>usages</var> is non-empty and the {{JsonWebKey/use}} field of <var>jwk</var> is present and is
                             not  <code>"sign"</code>,
                             then [= exception/throw =] a
                             {{DataError}}.
@@ -13880,7 +13880,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"key_ops"</code> field of <var>jwk</var> is present, and
+                            If the {{JsonWebKey/key_ops}} field of <var>jwk</var> is present, and
                             is invalid according to the requirements of
                             JSON Web Key [[JWK]] or
                             does not contain all of the specified <var>usages</var> values,
@@ -13890,7 +13890,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the <code>"ext"</code> field of <var>jwk</var> is present and
+                            If the {{JsonWebKey/ext}} field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then [= exception/throw =] a
                             {{DataError}}.
