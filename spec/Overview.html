@@ -1009,14 +1009,14 @@ interface CryptoKey {
         <section id="cryptokey-interface-internal-slots">
           <h3>CryptoKey internal slots</h3>
           <p>
-            Every <code>CryptoKey</code> object has a set of internal slots that store information
+            Every {{CryptoKey}} object has a set of internal slots that store information
             about the key. These slots are not exposed as part of this specification; they
             represent internal state that an implementation uses to implement this specification.
             The notational convention used in [[ECMA-262]] is re-used here; internal
             slots are identified by names enclosed in double square brackets [[ ]].
           </p>
           <p>
-            All <code>CryptoKey</code> objects have internal slots named
+            All {{CryptoKey}} objects have internal slots named
             <dfn id="dfn-CryptoKey-slot-type">[[\type]]</dfn>,
             <dfn id="dfn-CryptoKey-slot-extractable">[[\extractable]]</dfn>,
             <dfn id="dfn-CryptoKey-slot-algorithm">[[\algorithm]]</dfn>,
@@ -1100,7 +1100,7 @@ interface CryptoKey {
           </ol>
           <div class=note>
             When performing the structured clone algorithm in
-            order to serialize a <code>CryptoKey</code> object, implementations must not allow the
+            order to serialize a {{CryptoKey}} object, implementations must not allow the
             object to be deserialized as a different type. This is normatively required by the
             definition of structured clone, but it merits specific attention, as such
             deserialization may expose the contents of the <a>[[\handle]]</a> internal slot, which in some
@@ -1170,7 +1170,7 @@ interface SubtleCrypto {
           <p>
             The <dfn data-idl id="dfn-SubtleCrypto">SubtleCrypto</dfn> interface provides a set of
             methods for dealing with low-level cryptographic primitives and algorithms. It is
-            named <code>SubtleCrypto</code> to reflect the fact that many of these algorithms
+            named {{SubtleCrypto}} to reflect the fact that many of these algorithms
             have subtle usage requirements in order to provide the required algorithmic
             security guarantees.
           </p>
@@ -1727,7 +1727,7 @@ interface SubtleCrypto {
                   <dd>
                     <p>
                       If the <a>[[\type]]</a> internal slot of
-                      <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                      <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                       <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                     </p>
                   </dd>
@@ -1869,7 +1869,7 @@ interface SubtleCrypto {
               <li>
                 <p>
                   If the <a>[[\type]]</a> internal slot of
-                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
@@ -1984,8 +1984,8 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the string <code>"raw"</code>,
-                    <code>"pkcs8"</code>, or <code>"spki"</code>:
+                    If <var>format</var> is equal to the string {{KeyFormat/"raw"}},
+                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
                     <ol>
@@ -1993,7 +1993,7 @@ interface SubtleCrypto {
                         <p>
                           If the <code>keyData</code> parameter passed to the
                           {{SubtleCrypto/importKey()}} method is a
-                          JsonWebKey dictionary, [= exception/throw =] a
+                          {{JsonWebKey}} dictionary, [= exception/throw =] a
                           {{TypeError}}.
                         </p>
                       </li>
@@ -2009,7 +2009,7 @@ interface SubtleCrypto {
                     </ol>
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>"jwk"</code>:
+                    If <var>format</var> is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     <ol>
@@ -2017,7 +2017,7 @@ interface SubtleCrypto {
                         <p>
                           If the <code>keyData</code> parameter passed to the
                           {{SubtleCrypto/importKey()}} method is not a
-                          JsonWebKey dictionary, [= exception/throw =] a
+                          {{JsonWebKey}} dictionary, [= exception/throw =] a
                           {{TypeError}}.
                         </p>
                       </li>
@@ -2076,7 +2076,7 @@ interface SubtleCrypto {
               <li>
                 <p>
                   If the <a>[[\type]]</a> internal slot of
-                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
@@ -2102,14 +2102,14 @@ interface SubtleCrypto {
             </ol>
             <div class=note>
               <p>
-                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                Support of {{KeyFormat/"raw"}} key formats is encouraged for interoperability. Web developers should consult the test-suite for
                 detailed information on implementations support of other key formats.
               </p>
             </div>
             <div class=note>
               <p>
-                For structured key formats, <code>"spki"</code>, <code>"pkcs8"</code>
-                and <code>"jwk"</code>, fields that are not explicitly referred to in the key
+                For structured key formats, {{KeyFormat/"spki"}}, {{KeyFormat/"pkcs8"}}
+                and {{KeyFormat/"jwk"}}, fields that are not explicitly referred to in the key
                 import procedures for an algorithm are ignored.
               </p>
             </div>
@@ -2175,7 +2175,7 @@ interface SubtleCrypto {
             </ol>
             <div class=note>
               <p>
-                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                Support of {{KeyFormat/"raw"}} key formats is encouraged for interoperability. Web developers should consult the test-suite for
                 detailed information on implementations support of other key formats.
               </p>
             </div>
@@ -2268,10 +2268,10 @@ interface SubtleCrypto {
                   <p>
                     Because the wrapKey method effectively exports the key, only keys marked as extractable
                     may be wrapped. In particular, this means that this API cannot create a wrapped JWK key
-                    that is marked as non-extractable using the <code>ext</code> JWK member.
+                    that is marked as non-extractable using the {{JsonWebKey/ext}} JWK member.
                   </p>
                   <p>
-                    However, the unwrapKey method <em>does</em> support the <code>ext</code> JWK member,
+                    However, the unwrapKey method <em>does</em> support the JsonWebKey/ext}} JWK member,
                     so that wrapped non-extractable keys created elsewhere, for example by a server, can be
                     unwrapped using this API.
                   </p>
@@ -2287,14 +2287,14 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the strings <code>"raw"</code>,
-                    <code>"pkcs8"</code>, or <code>"spki"</code>:
+                    If <var>format</var> is equal to the strings {{KeyFormat/"raw"}},
+                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
                     Set <var>bytes</var> be set to <var>key</var>.
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>"jwk"</code>:
+                    If <var>format</var> is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     <ol>
@@ -2372,7 +2372,7 @@ interface SubtleCrypto {
             </ol>
             <div class=note>
               <p>
-                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                Support of {{KeyFormat/"raw"}} key formats is encouraged for interoperability. Web developers should consult the test-suite for
                 detailed information on implementations support of other key formats.
               </p>
             </div>
@@ -2506,14 +2506,14 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If <var>format</var> is equal to the strings <code>"raw"</code>,
-                    <code>"pkcs8"</code>, or <code>"spki"</code>:
+                    If <var>format</var> is equal to the strings {{KeyFormat/"raw"}},
+                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
                     Set <var>bytes</var> be set to <var>key</var>.
                   </dd>
                   <dt>
-                    If <var>format</var> is equal to the string <code>"jwk"</code>:
+                    If <var>format</var> is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     Let <var>bytes</var> be the result of executing the
@@ -2535,7 +2535,7 @@ interface SubtleCrypto {
               <li>
                 <p>
                   If the <a>[[\type]]</a> internal slot of
-                  <var>result</var> is <code>"secret"</code> or <code>"private"</code> and
+                  <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
@@ -2561,7 +2561,7 @@ interface SubtleCrypto {
             </ol>
             <div class=note>
               <p>
-                Support of <code>"raw"</code> key formats is encouraged for interoperability. Web developers should consult the test-suite for
+                Support of {{KeyFormat/"raw"}} key formats is encouraged for interoperability. Web developers should consult the test-suite for
                 detailed information on implementations support of other key formats.
               </p>
             </div>
@@ -2672,7 +2672,7 @@ dictionary JsonWebKey {
 typedef Uint8Array BigInteger;
         </pre>
         <p>
-          The <dfn data-idl id="dfn-BigInteger">BigInteger</dfn> typedef is a <code>Uint8Array</code> that
+          The <dfn data-idl id="dfn-BigInteger">BigInteger</dfn> typedef is a {{Uint8Array}} that
           holds an arbitrary magnitude unsigned integer in big-endian order. Values read from
           the API SHALL have minimal typed array length (that is, at most 7 leading zero bits,
           except the value 0 which shall have length 8 bits). The API SHALL accept values with
@@ -3529,7 +3529,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 <li>
                   <p>
                     If the <a>[[\type]]</a> internal slot of
-                    <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                    <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
@@ -3708,7 +3708,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>privateKey</var> to <code>"private"</code>
+                    <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
@@ -3764,7 +3764,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -3938,7 +3938,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -4107,12 +4107,12 @@ dictionary RsaHashedImportParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot
-                            of <var>key</var> to <code>"private"</code>
+                            of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -4311,7 +4311,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <a>[[\type]]</a>
-                                    internal slot of <var>key</var> to <code>"private"</code>
+                                    internal slot of <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
                               </ol>
@@ -4425,7 +4425,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code></dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}</dt>
                     <dd>
                       <ol>
                         <li>
@@ -4482,13 +4482,13 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
                             If the <a>[[\type]]</a> internal slot
-                            of <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                            of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
@@ -4549,7 +4549,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ul>
                         <li>
@@ -4629,7 +4629,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the attributes <code>n</code> and <code>e</code> of <var>jwk</var>
+                            Set the attributes {{JsonWebKey/n}} and {{JsonWebKey/e}} of <var>jwk</var>
                             according to the corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.1.
                           </p>
                         </li>
@@ -4637,15 +4637,15 @@ dictionary RsaHashedImportParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the <a>[[\type]]</a> internal slot
-                              of <var>key</var> is <code>"private"</code>:
+                              of <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
                               <ol>
                                 <li>
                                   <p>
-                                    Set the attributes named <code>d</code>, <code>p</code>,
-                                    <code>q</code>, <code>dp</code>, <code>dq</code>, and
-                                    <code>qi</code> of <var>jwk</var> according to the
+                                    Set the attributes named {{JsonWebKey/d}}, {{JsonWebKey/p}},
+                                    {{JsonWebKey/q}}, {{JsonWebKey/dp}}, {{JsonWebKey/dq}}, and
+                                    {{JsonWebKey/qi}} of <var>jwk</var> according to the
                                     corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.2.
                                   </p>
                                 </li>
@@ -4653,7 +4653,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                   <p>
                                     If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
                                     of <var>key</var> is represented by more than two primes, set
-                                    the attribute named <code>oth</code> of <var>jwk</var>
+                                    the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
                                   </p>
                                 </li>
@@ -4780,7 +4780,7 @@ dictionary RsaPssParams : Algorithm {
                 <li>
                   <p>
                     If the <a>[[\type]]</a> internal slot of
-                    <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                    <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
@@ -4963,7 +4963,7 @@ dictionary RsaPssParams : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>privateKey</var> to <code>"private"</code>
+                    <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
@@ -5020,7 +5020,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -5252,7 +5252,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -5476,12 +5476,12 @@ dictionary RsaPssParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot
-                            of <var>key</var> to <code>"private"</code>
+                            of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -5672,7 +5672,7 @@ dictionary RsaPssParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <a>[[\type]]</a>
-                                    internal slot of <var>key</var> to <code>"private"</code>
+                                    internal slot of <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
                               </ol>
@@ -5786,7 +5786,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code></dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}</dt>
                     <dd>
                       <ol>
                         <li>
@@ -5969,13 +5969,13 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
                             If the <a>[[\type]]</a> internal slot
-                            of <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                            of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
@@ -6162,7 +6162,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ul>
                         <li>
@@ -6235,7 +6235,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the attributes <code>n</code> and <code>e</code> of <var>jwk</var>
+                            Set the attributes {{JsonWebKey/n}} and {{JsonWebKey/e}} of <var>jwk</var>
                             according to the corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.1.
                           </p>
                         </li>
@@ -6243,15 +6243,15 @@ dictionary RsaPssParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the <a>[[\type]]</a> internal slot of
-                              <var>key</var> is <code>"private"</code>:
+                              <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
                               <ol>
                                 <li>
                                   <p>
-                                    Set the attributes named <code>d</code>, <code>p</code>,
-                                    <code>q</code>, <code>dp</code>, <code>dq</code>, and
-                                    <code>qi</code> of <var>jwk</var> according to the
+                                    Set the attributes named {{JsonWebKey/d}}, {{JsonWebKey/p}},
+                                    {{JsonWebKey/q}}, {{JsonWebKey/dp}}, {{JsonWebKey/dq}}, and
+                                    {{JsonWebKey/qi}} of <var>jwk</var> according to the
                                     corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.2.
                                   </p>
                                 </li>
@@ -6259,7 +6259,7 @@ dictionary RsaPssParams : Algorithm {
                                   <p>
                                     If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
                                     of <var>key</var> is represented by more than two primes, set
-                                    the attribute named <code>oth</code> of <var>jwk</var>
+                                    the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
                                   </p>
                                 </li>
@@ -6441,7 +6441,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     If the <a>[[\type]]</a> internal slot of <var>key</var>
-                    is not <code>"private"</code>,
+                    is not {{KeyType/"private"}},
                     then [= exception/throw =] an
                     {{InvalidAccessError}}.
                   </p>
@@ -6601,7 +6601,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>privateKey</var> to <code>"private"</code>
+                    <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
@@ -6659,7 +6659,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -6891,7 +6891,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -7113,12 +7113,12 @@ dictionary RsaOaepParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot of
-                            <var>key</var> to <code>"private"</code>
+                            <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -7289,7 +7289,7 @@ dictionary RsaOaepParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <a>[[\type]]</a> internal slot of
-                                    <var>key</var> to <code>"private"</code>
+                                    <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
                               </ol>
@@ -7403,7 +7403,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code></dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}</dt>
                     <dd>
                       <ol>
                         <li>
@@ -7578,13 +7578,13 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
                             If the <a>[[\type]]</a> internal slot of
-                            <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                            <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
@@ -7763,7 +7763,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ul>
                         <li>
@@ -7845,7 +7845,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the attributes <code>n</code> and <code>e</code> of <var>jwk</var>
+                            Set the attributes {{JsonWebKey/n}} and {{JsonWebKey/e}} of <var>jwk</var>
                             according to the corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.1.
                           </p>
                         </li>
@@ -7853,15 +7853,15 @@ dictionary RsaOaepParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the <a>[[\type]]</a> internal slot
-                              of <var>key</var> is <code>"private"</code>:
+                              of <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
                               <ol>
                                 <li>
                                   <p>
-                                    Set the attributes named <code>d</code>, <code>p</code>,
-                                    <code>q</code>, <code>dp</code>, <code>dq</code>, and
-                                    <code>qi</code> of <var>jwk</var> according to the
+                                    Set the attributes named {{JsonWebKey/d}}, {{JsonWebKey/p}},
+                                    {{JsonWebKey/q}}, {{JsonWebKey/dp}}, {{JsonWebKey/dq}}, and
+                                    {{JsonWebKey/qi}} of <var>jwk</var> according to the
                                     corresponding definitions in JSON Web Algorithms [[JWA]], Section 6.3.2.
                                   </p>
                                 </li>
@@ -7869,7 +7869,7 @@ dictionary RsaOaepParams : Algorithm {
                                   <p>
                                     If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
                                     of <var>key</var> is represented by more than two primes, set
-                                    the attribute named <code>oth</code> of <var>jwk</var>
+                                    the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
                                   </p>
                                 </li>
@@ -8050,7 +8050,7 @@ dictionary EcKeyImportParams : Algorithm {
                 <li>
                   <p>
                     If the <a>[[\type]]</a> internal slot of
-                    <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                    <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
@@ -8348,7 +8348,7 @@ dictionary EcKeyImportParams : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>privateKey</var> to <code>"private"</code>
+                    <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
@@ -8405,7 +8405,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -8607,7 +8607,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -8786,7 +8786,7 @@ dictionary EcKeyImportParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot
-                            of <var>key</var> to <code>"private"</code>
+                            of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
                         <li>
@@ -8814,7 +8814,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -8955,7 +8955,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         <li>
                                           <p>
                                             Set the <a>[[\type]]</a>
-                                            internal slot of <var>Key</var> to <code>"private"</code>.
+                                            internal slot of <var>Key</var> to {{KeyType/"private"}}.
                                           </p>
                                         </li>
                                       </ol>
@@ -9046,7 +9046,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -9200,7 +9200,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -9335,13 +9335,13 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
                             If the <a>[[\type]]</a> internal slot
-                            of <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                            of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
@@ -9492,7 +9492,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -9525,7 +9525,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       of <var>key</var> is <code>"P-256"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-256"</code>
                                     </dd>
                                     <dt>
@@ -9534,7 +9534,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       of <var>key</var> is <code>"P-384"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-384"</code>
                                     </dd>
                                     <dt>
@@ -9543,20 +9543,20 @@ dictionary EcKeyImportParams : Algorithm {
                                       of <var>key</var> is <code>"P-521"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-521"</code>
                                     </dd>
                                   </dl>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>x</code> attribute of <var>jwk</var> according to the
+                                    Set the {{JsonWebKey/x}} attribute of <var>jwk</var> according to the
                                     definition in Section 6.2.1.2 of JSON Web Algorithms [[JWA]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>y</code> attribute of <var>jwk</var> according to the
+                                    Set the {{JsonWebKey/y}} attribute of <var>jwk</var> according to the
                                     definition in Section 6.2.1.3 of JSON Web Algorithms [[JWA]].
                                   </p>
                                 </li>
@@ -9564,11 +9564,11 @@ dictionary EcKeyImportParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the <a>[[\type]]</a> internal slot
-                                      of <var>key</var> is <code>"private"</code>
+                                      of <var>key</var> is {{KeyType/"private"}}
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set the <code>d</code> attribute of <var>jwk</var> according to
+                                        Set the {{JsonWebKey/d}} attribute of <var>jwk</var> according to
                                         the definition in Section 6.2.2.1 of JSON Web Algorithms [[JWA]].
                                       </p>
                                     </dd>
@@ -9594,7 +9594,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>crv</code> attribute of <var>jwk</var> to
+                                    Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                     <var>namedCurve</var>.
                                   </p>
                                 </li>
@@ -9622,7 +9622,7 @@ dictionary EcKeyImportParams : Algorithm {
                       </ol>
                     </dd>
                     <dt>
-                      If <var>format</var> is <code>"raw"</code>:
+                      If <var>format</var> is {{KeyFormat/"raw"}}:
                     </dt>
                     <dd>
                       <ol>
@@ -9878,7 +9878,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>privateKey</var> to <code>"private"</code>
+                    <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
@@ -9933,7 +9933,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <li>
                   <p>
                     If the <a>[[\type]]</a> internal slot of
-                    <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                    <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
@@ -10056,7 +10056,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -10257,7 +10257,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -10439,7 +10439,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot
-                            of <var>key</var> to <code>"private"</code>.
+                            of <var>key</var> to {{KeyType/"private"}}.
                           </p>
                         </li>
                         <li>
@@ -10467,7 +10467,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -10565,7 +10565,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     <li>
                                       <p>
                                         Set the <a>[[\type]]</a>
-                                        internal slot of <var>Key</var> to <code>"private"</code>.
+                                        internal slot of <var>Key</var> to {{KeyType/"private"}}.
                                       </p>
                                     </li>
                                   </ol>
@@ -10652,7 +10652,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -10798,7 +10798,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"spki"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"spki"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -10924,13 +10924,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"pkcs8"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"pkcs8"}}:</dt>
                     <dd>
                       <ol>
                         <li>
                           <p>
                             If the <a>[[\type]]</a> internal slot
-                            of <var>key</var> is not <code>"private"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
+                            of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
@@ -11073,7 +11073,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -11106,7 +11106,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                       of <var>key</var> is <code>"P-256"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-256"</code>
                                     </dd>
                                     <dt>
@@ -11115,7 +11115,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                       of <var>key</var> is <code>"P-384"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-384"</code>
                                     </dd>
                                     <dt>
@@ -11124,20 +11124,20 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                       of <var>key</var> is <code>"P-521"</code>:
                                     </dt>
                                     <dd>
-                                      Set the <code>crv</code> attribute of <var>jwk</var> to
+                                      Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                       <code>"P-521"</code>
                                     </dd>
                                   </dl>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>x</code> attribute of <var>jwk</var> according to the
+                                    Set the {{JsonWebKey/x}} attribute of <var>jwk</var> according to the
                                     definition in Section 6.2.1.2 of JSON Web Algorithms [[JWA]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>y</code> attribute of <var>jwk</var> according to the
+                                    Set the {{JsonWebKey/y}} attribute of <var>jwk</var> according to the
                                     definition in Section 6.2.1.3 of JSON Web Algorithms [[JWA]].
                                   </p>
                                 </li>
@@ -11145,11 +11145,11 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the <a>[[\type]]</a> internal slot
-                                      of <var>key</var> is <code>"private"</code>
+                                      of <var>key</var> is {{KeyType/"private"}}
                                     </dt>
                                     <dd>
                                       <p>
-                                        Set the <code>d</code> attribute of <var>jwk</var> according to the
+                                        Set the {{JsonWebKey/d}} attribute of <var>jwk</var> according to the
                                         definition in Section 6.2.2.1 of JSON Web Algorithms [[JWA]].
                                       </p>
                                     </dd>
@@ -11175,7 +11175,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <code>crv</code> attribute of <var>jwk</var> to
+                                    Set the {{JsonWebKey/crv}} attribute of <var>jwk</var> to
                                     <var>namedCurve</var>.
                                   </p>
                                 </li>
@@ -11204,7 +11204,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </ol>
                     </dd>
                     <dt>
-                      If <var>format</var> is <code>"raw"</code>:
+                      If <var>format</var> is {{KeyFormat/"raw"}}:
                     </dt>
                     <dd>
                       <ol>
@@ -11562,7 +11562,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -11579,7 +11579,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -11718,7 +11718,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -11737,7 +11737,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -11754,7 +11754,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>k</code> attribute of <var>jwk</var> to be a string
+                            Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
                             containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
@@ -12102,7 +12102,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12119,7 +12119,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12259,7 +12259,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12278,7 +12278,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12297,7 +12297,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>k</code> attribute of <var>jwk</var> to be a string
+                            Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
                             containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
@@ -12731,7 +12731,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12748,7 +12748,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12888,7 +12888,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12907,7 +12907,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -12924,7 +12924,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>k</code> attribute of <var>jwk</var> to be a string
+                            Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
                             containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
@@ -13202,7 +13202,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -13220,7 +13220,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -13361,7 +13361,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -13380,7 +13380,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -13397,7 +13397,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>k</code> attribute of <var>jwk</var> to be a string
+                            Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
                             containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
@@ -13753,7 +13753,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -13769,7 +13769,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -14020,7 +14020,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If <var>format</var> is <code>"raw"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"raw"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -14032,7 +14032,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                       </ol>
                     </dd>
-                    <dt>If <var>format</var> is <code>"jwk"</code>:</dt>
+                    <dt>If <var>format</var> is {{KeyFormat/"jwk"}}:</dt>
                     <dd>
                       <ol>
                         <li>
@@ -14049,7 +14049,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>k</code> attribute of <var>jwk</var> to be a string
+                            Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
                             containing <var>data</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -14438,7 +14438,7 @@ dictionary HkdfParams : Algorithm {
                 <li>
                   <dl class="switch">
                     <dt>
-                      If <var>format</var> is <code>"raw"</code>:
+                      If <var>format</var> is {{KeyFormat/"raw"}}:
                     </dt>
                     <dd>
                       <ol>
@@ -14469,7 +14469,7 @@ dictionary HkdfParams : Algorithm {
                         <li>
                           <p>
                             Set the <a>[[\type]]</a> internal slot of
-                            <var>key</var> to <code>"secret"</code>.
+                            <var>key</var> to {{KeyType/"secret"}}.
                           </p>
                         </li>
                         <li>
@@ -14638,7 +14638,7 @@ dictionary Pbkdf2Params : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If <var>format</var> is not <code>"raw"</code>, [= exception/throw =] a {{NotSupportedError}}
+                    If <var>format</var> is not {{KeyFormat/"raw"}}, [= exception/throw =] a {{NotSupportedError}}
                   </p>
                 </li>
                 <li>
@@ -14666,7 +14666,7 @@ dictionary Pbkdf2Params : Algorithm {
                 <li>
                   <p>
                     Set the <a>[[\type]]</a> internal slot of
-                    <var>key</var> to <code>"secret"</code>.
+                    <var>key</var> to {{KeyType/"secret"}}.
                   </p>
                 </li>
                 <li>
@@ -15494,7 +15494,7 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
             implementations MUST include the parameters.
           </p>
           <p>
-            The <code>"spki"</code> key format in this specification implies
+            The {{KeyFormat/"spki"}} key format in this specification implies
             <code>subjectPublicKeyInfo</code> and thus may not be appropriate when what is needed is an
             <code>AlgorithmIdentifier</code> for transport.
           </p>
