@@ -14360,7 +14360,7 @@ dictionary HkdfParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If <var>length</var> is null, then [= exception/throw =] an {{OperationError}}.
+                    If <var>length</var> is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
                 <li>
@@ -14410,7 +14410,7 @@ dictionary HkdfParams : Algorithm {
                     </li>
                     <li>
                       <p>
-                        <var>length</var> as the value of <var>L</var>,
+                        <var>length</var> divided by 8 as the value of <var>L</var>,
                       </p>
                     </li>
                   </ul>
