@@ -785,6 +785,11 @@
 
       <section id="crypto-interface">
         <h2>Crypto interface</h2>
+        <p>
+          The <dfn data-idl id="dfn-Crypto">Crypto</dfn> interface represents an interface to
+          general purpose cryptographic functionality including a
+          cryptographically strong pseudo-random number generator seeded with truly random values.
+        </p>
         <pre class=idl>
 partial interface mixin WindowOrWorkerGlobalScope {
   [SameObject] readonly attribute Crypto crypto;
@@ -797,31 +802,24 @@ interface Crypto {
 };
         </pre>
 
-        <section id="Crypto-description" class="informative">
-          <h3>Description</h3>
-          <p>
-            The <dfn data-idl id="dfn-Crypto">Crypto</dfn> interface represents an interface to
-            general purpose cryptographic functionality including a
-            cryptographically strong pseudo-random number generator seeded with truly random values.
-          </p>
-          <div class=note>
-            Implementations should generate cryptographically strong random values using
-            well-established cryptographic pseudo-random number generators seeded with high-quality
-            entropy, such as from an operating-system entropy source (e.g., "/dev/urandom"). This
-            specification provides no lower-bound on the information theoretic entropy present in
-            cryptographically strong random values, but implementations should make a best effort to provide
-            as much entropy as practicable.
-          </div>
-          <div class=note>
-            This interface defines a synchronous method for obtaining cryptographically strong random
-            values. While some devices and implementations may support truly random cryptographic
-            number generators or provide interfaces that block when there is insufficient entropy,
-            implementations are discouraged from using these sources when implementing
-            getRandomValues, both for performance and to avoid depleting the system of entropy.
-            Instead, these sources should be used to seed a cryptographic pseudo-random number
-            generator that can then return suitable values efficiently.
-          </div>
-        </section>
+        <div class=note>
+          Implementations should generate cryptographically strong random values using
+          well-established cryptographic pseudo-random number generators seeded with high-quality
+          entropy, such as from an operating-system entropy source (e.g., "/dev/urandom"). This
+          specification provides no lower-bound on the information theoretic entropy present in
+          cryptographically strong random values, but implementations should make a best effort to provide
+          as much entropy as practicable.
+        </div>
+        <div class=note>
+          This interface defines a synchronous method for obtaining cryptographically strong random
+          values. While some devices and implementations may support truly random cryptographic
+          number generators or provide interfaces that block when there is insufficient entropy,
+          implementations are discouraged from using these sources when implementing
+          getRandomValues, both for performance and to avoid depleting the system of entropy.
+          Instead, these sources should be used to seed a cryptographic pseudo-random number
+          generator that can then return suitable values efficiently.
+        </div>
+
         <section id="Crypto-interface-methods">
           <h3>Methods and Parameters</h3>
           <section id="Crypto-method-getRandomValues">
@@ -1112,6 +1110,10 @@ interface CryptoKey {
 
       <section id="subtlecrypto-interface">
         <h2>SubtleCrypto interface</h2>
+        <p>
+          The <dfn data-idl id="dfn-SubtleCrypto">SubtleCrypto</dfn> interface provides a set of
+          methods for dealing with low-level cryptographic primitives and algorithms.
+        </p>
         <pre class=idl>
 enum KeyFormat { "raw", "spki", "pkcs8", "jwk" };
 
@@ -1165,14 +1167,11 @@ interface SubtleCrypto {
                          sequence&lt;KeyUsage> keyUsages );
 };
         </pre>
-        <section id="subtlecrypto-interface-description" class="informative">
-          <h3>Description</h3>
+        <div class=note>
           <p>
-            The <dfn data-idl id="dfn-SubtleCrypto">SubtleCrypto</dfn> interface provides a set of
-            methods for dealing with low-level cryptographic primitives and algorithms. It is
-            named {{SubtleCrypto}} to reflect the fact that many of these algorithms
-            have subtle usage requirements in order to provide the required algorithmic
-            security guarantees.
+            The {{SubtleCrypto}} interface is named "SubtleCrypto" to reflect the fact that many
+            of these algorithms have subtle usage requirements in order to provide the required
+            algorithmic security guarantees.
           </p>
           <p>
             For example, the direct use of an unauthenticated encryption scheme, such as
@@ -1191,7 +1190,7 @@ interface SubtleCrypto {
             which may represent the composition and security parameters in a unique manner that
             necessitate the use of the raw algorithms.
           </p>
-        </section>
+        </div>
 
         <section id="subtlecrypto-interface-datatypes">
           <h3>Data Types</h3>
@@ -2653,17 +2652,15 @@ dictionary JsonWebKey {
   DOMString qi;
   sequence&lt;RsaOtherPrimesInfo> oth;
   DOMString k;
-};        </pre>
-        <section id="JsonWebKey-description" class="informative">
-          <h3>Description</h3>
-          <p>The members of the <dfn data-idl id="dfn-RsaOtherPrimesInfo">RsaOtherPrimesInfo</dfn> are defined in Section 6.3.2.7 of JSON Web Algorithms.</p>
-          <p>
-            The <dfn data-idl id="dfn-JsonWebKey">JsonWebKey</dfn> dictionary provides a way to represent
-            and exchange cryptographic keys represented by the JSON Web Key [[JWK]]
-            structure, while allowing native and efficient use within Web Cryptography API
-            applications.
-          </p>
-        </section>
+};
+        </pre>
+        <p>
+          The <dfn data-idl id="dfn-JsonWebKey">JsonWebKey</dfn> dictionary provides a way to represent
+          and exchange cryptographic keys represented by the JSON Web Key [[JWK]]
+          structure, while allowing native and efficient use within Web Cryptography API
+          applications.
+        </p>
+        <p>The members of the <dfn data-idl id="dfn-RsaOtherPrimesInfo">RsaOtherPrimesInfo</dfn> are defined in Section 6.3.2.7 of JSON Web Algorithms.</p>
       </section>
 
       <section id="big-integer">
