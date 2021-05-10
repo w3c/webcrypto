@@ -1066,43 +1066,61 @@ interface CryptoKey {
           </dl>
         </section>
 
-        <section id="cryptokey-interface-clone">
-          <h3>Structured clone algorithm</h3>
+        <section id="cryptokey-interface-serializable">
+          <h3>Serialization and deserialization steps</h3>
           <p>
-            When a user agent is required to obtain a [= structured clone =]
-            of a {{CryptoKey}} object, it must run the following steps.
+            {{CryptoKey}} objects are serializable objects. Their [= serialization steps =],
+            given <var>value</var> and <var>serialized</var>, are:
           </p>
           <ol>
             <li>
-              Let <var>input</var> and <var>memory</var> be the corresponding inputs defined by the
-              [= structured clone | internal structured cloning algorithm =], where
-              <var>input</var> represents a {{CryptoKey}} object to be
-              cloned.
+              Set <var>serialized</var>.[[\Type]] to the <a>[[\type]]</a> internal slot of <var>value</var>.
             </li>
             <li>
-              Let <var>output</var> be a newly constructed {{CryptoKey}}
-              object.
+              Set <var>serialized</var>.[[\Extractable]] to the <a>[[\extractable]]</a> internal slot of <var>value</var>.
             </li>
             <li>
-              Let the <a>[[\type]]</a>, <a>[[\extractable]]</a>, <a>[[\algorithm]]</a>, and <a>[[\usages]]</a> internal slots of <var>output</var>
-              be set to the result of invoking the internal structured clone algorithm recursively
-              on the corresponding internal slots of <var>input</var>, with the slot contents as the
-              new "<var>input</var>" argument and <var>memory</var> as the new "<var>memory</var>"
-              argument.
+              Set <var>serialized</var>.[[\Algorithm]] to the [= sub-serialization =] of the
+              <a>[[\algorithm]]</a> internal slot of <var>value</var>.
             </li>
             <li>
-              Let the <a>[[\handle]]</a> internal slot of
-              <var>output</var> refer to the same cryptographic key data represented by the
-              <a>[[\handle]]</a> internal slot of <var>input</var>.
+              Set <var>serialized</var>.[[\Usages]] to the [= sub-serialization =] of the
+              <a>[[\usages]]</a> internal slot of <var>value</var>.
+            </li>
+            <li>
+              Set <var>serialized</var>.[[\Key]] to a serialized representation of the
+              cryptographic key data represented by the <a>[[\handle]]</a> internal slot of <var>value</var>.
+            </li>
+          </ol>
+          <p>
+            Their [= deserialization steps =], given <var>serialized</var> and <var>value</var>, are:
+          </p>
+          <ol>
+            <li>
+              Initialize the <a>[[\type]]</a> internal slot of <var>value</var> to <var>serialized</var>.[[\Type]].
+            </li>
+            <li>
+              Initialize the <a>[[\extractable]]</a> internal slot of <var>value</var> to <var>serialized</var>.[[\Extractable]].
+            </li>
+            <li>
+              Initialize the <a>[[\algorithm]]</a> internal slot of <var>value</var> to the
+              [= sub-deserialization =] of <var>serialized</var>.[[\Algorithm]].
+            </li>
+            <li>
+              Initialize the <a>[[\usages]]</a> internal slot of <var>value</var> to the
+              [= sub-deserialization =] of <var>serialized</var>.[[\Usages]].
+            </li>
+            <li>
+              Initialize the <a>[[\handle]]</a> internal slot of <var>value</var> to refer to the
+              cryptographic key data represented by <var>serialized</var>.[[\Key]].
             </li>
           </ol>
           <div class=note>
-            When performing the structured clone algorithm in
-            order to serialize a {{CryptoKey}} object, implementations must not allow the
+            When deserializing a serialized {{CryptoKey}} object, implementations must not allow the
             object to be deserialized as a different type. This is normatively required by the
-            definition of structured clone, but it merits specific attention, as such
-            deserialization may expose the contents of the <a>[[\handle]]</a> internal slot, which in some
-            implementations may contain cryptographic key data that should not be exposed to
+            definition of the [= deserialization steps =], but it merits specific attention, as such
+            deserialization may expose the contents of the key material, which in some cases
+            (such as when the <a>[[\extractable]]</a> internal slot is false) should not be exposed to
             applications.
           </div>
         </section>
