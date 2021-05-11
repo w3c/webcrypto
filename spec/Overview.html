@@ -393,10 +393,10 @@
           <h3>Key Storage</h3>
           <p>
             This specification does not explicitly provide any new storage mechanisms for
-            {{CryptoKey}} objects. Instead, by allowing the
-            {{CryptoKey}} to be used with the structured clone algorithm,
-            any existing or future web storage mechanisms that support storing structured clonable
-            objects can be used to store {{CryptoKey}} objects.
+            {{CryptoKey}} objects. Instead, by defining
+            <a href="#cryptokey-interface-serializable">serialization and deserialization steps</a>
+            for {{CryptoKey}} objects, any existing or future web storage mechanisms that support
+            storing <a>serializable objects</a> can be used to store {{CryptoKey}} objects.
           </p>
           <p>
             In practice, it is expected that most authors will make use of the
@@ -566,8 +566,7 @@
               A [= conforming user agent =] MUST support at
               least the subset of the functionality defined in HTML that this specification relies
               upon; in particular, it MUST support the
-              {{ArrayBufferView}} typedef and the
-              <a>structured clone</a> algorithm.
+              {{ArrayBufferView}} typedef and <a>serializable objects</a>.
               [[HTML]]
             </p>
           </dd>
@@ -585,11 +584,10 @@
       <section id="terminology">
         <h2>Terminology</h2>
         <p>
-          The terms and algorithms
+          The terms
           {{ArrayBuffer}},
           {{ArrayBufferView}}, and
-          <!-- TODO: structured clone is no longer defined https://html.spec.whatwg.org/#structuredclone -->
-          <dfn id="dfn-structured-clone">structured clone</dfn>,
+          <dfn id="dfn-serializable-objects">serializable objects</dfn>,
           are defined by the HTML specification [[HTML]].
         </p>
         <p>
@@ -1069,7 +1067,7 @@ interface CryptoKey {
         <section id="cryptokey-interface-serializable">
           <h3>Serialization and deserialization steps</h3>
           <p>
-            {{CryptoKey}} objects are serializable objects. Their [= serialization steps =],
+            {{CryptoKey}} objects are <a>serializable objects</a>. Their [= serialization steps =],
             given <var>value</var> and <var>serialized</var>, are:
           </p>
           <ol>
