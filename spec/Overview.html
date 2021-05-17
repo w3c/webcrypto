@@ -1114,12 +1114,12 @@ interface CryptoKey {
             </li>
           </ol>
           <div class=note>
-            When deserializing a serialized {{CryptoKey}} object, implementations must not allow the
-            object to be deserialized as a different type. This is normatively required by the
-            definition of the [= deserialization steps =], but it merits specific attention, as such
-            deserialization may expose the contents of the key material, which in some cases
-            (such as when the <a>[[\extractable]]</a> internal slot is false) should not be exposed to
-            applications.
+            When deserializing a serialized {{CryptoKey}} object, it is important that the
+            object is not deserialized as a different type. This is normatively required by the
+            definition of the [= deserialization steps =], but it merits specific attention, as
+            such deserialization may expose the contents of the key material, which in some
+            cases (such as when the <a>[[\extractable]]</a> internal slot is false) should not
+            be exposed to applications.
           </div>
         </section>
       </section>
