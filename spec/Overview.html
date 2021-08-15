@@ -14598,6 +14598,11 @@ dictionary Pbkdf2Params : Algorithm {
                     If <var>length</var> is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
+		<li>
+		  <p>
+		   If the {{Pbkdf2Params/iterations}} member of <var>normalizedAlgorithm</var> is zero, then [= exception/throw =] an {{OperationError}}.
+		  </p>
+		</li>
                 <li>
                   <p>
                     Let <var>prf</var> be the MAC Generation function described in Section 4 of
