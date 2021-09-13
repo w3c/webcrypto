@@ -8153,7 +8153,7 @@ dictionary EcKeyImportParams : Algorithm {
                       </ol>
                     </dd>
                     <dt>
-                      Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
+                      Otherwise, if the {{EcKeyAlgorithm/namedCurve}} attribute
                       of the <a>[[\algorithm]]</a> internal slot of
                       <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a>:
@@ -8163,6 +8163,13 @@ dictionary EcKeyImportParams : Algorithm {
                         Perform the [= ECDSA signature steps =]
                         specified in that specification, passing in <var>M</var>, <var>params</var>
                         and <var>d</var> and resulting in <var>result</var>.
+                      </p>
+                    </dd>
+                    <dt>Otherwise:</dt>
+                    <dd>
+                      <p>
+                        [= exception/throw =] a
+                        {{NotSupportedError}}
                       </p>
                     </dd>
                   </dl>
@@ -8227,7 +8234,7 @@ dictionary EcKeyImportParams : Algorithm {
                       </p>
                     </dd>
                     <dt>
-                      Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
+                      Otherwise, if the {{EcKeyAlgorithm/namedCurve}} attribute
                       of the <a>[[\algorithm]]</a> internal slot of
                       <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a>:
@@ -8238,6 +8245,13 @@ dictionary EcKeyImportParams : Algorithm {
                         specified in that specification passing in <var>M</var>, <var>signature</var>,
                         <var>params</var> and <var>Q</var> and resulting in an indication of whether
                         or not the purported signature is valid.
+                      </p>
+                    </dd>
+                    <dt>Otherwise:</dt>
+                    <dd>
+                      <p>
+                        [= exception/throw =] a
+                        {{NotSupportedError}}
                       </p>
                     </dd>
                   </dl>
@@ -8282,7 +8296,7 @@ dictionary EcKeyImportParams : Algorithm {
                       </p>
                     </dd>
                     <dt>
-                      If the {{EcKeyGenParams/namedCurve}} member of
+                      Otherwise, if the {{EcKeyGenParams/namedCurve}} member of
                       <var>normalizedAlgorithm</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a>:
                     </dt>
@@ -9812,7 +9826,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </p>
                     </dd>
                     <dt>
-                      If the {{EcKeyGenParams/namedCurve}} member of
+                      Otherwise, if the {{EcKeyGenParams/namedCurve}} member of
                       <var>normalizedAlgorithm</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a> that
                       specifies the use of that value with ECDH:
@@ -10019,7 +10033,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </ol>
                     </dd>
                     <dt>
-                      If the {{EcKeyAlgorithm/namedCurve}} property of the <a>[[\algorithm]]</a> internal slot of
+                      Otherwise, if the {{EcKeyAlgorithm/namedCurve}} property of the <a>[[\algorithm]]</a> internal slot of
                     <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a> that
                       specifies the use of that value with ECDH:
@@ -14119,7 +14133,7 @@ dictionary HmacKeyGenParams : Algorithm {
                             <dd>Set the <code>alg</code> attribute of <var>jwk</var> to
                             the string <code>"HS512"</code>.</dd>
                             <dt>
-                              Otherwise, the {{KeyAlgorithm/name}} attribute
+                              Otherwise, if the {{KeyAlgorithm/name}} attribute
                               of <var>hash</var> is defined in
                               <a href="#dfn-applicable-specification">another applicable
                               specification</a>:
