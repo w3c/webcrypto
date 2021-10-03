@@ -550,6 +550,16 @@
             underlying key data, such APIs may represent a real risk of being used as a permanent
             identifier against the user's wishes.
           </dd>
+          <dt>
+            Use of {{Crypto/randomUUID}} as user ID
+          </dt>
+          <dd>
+            {{Crypto/randomUUID}} is useful for generating <a href=
+            "https://w3cping.github.io/privacy-threat-model/#user-id">user
+            IDs</a>, but does not directly give any ability to generate <a href=
+            "https://w3cping.github.io/privacy-threat-model/#global-identifier">global
+            identifiers</a>.
+          </dd>
         </dl>
       </section>
 
@@ -804,6 +814,7 @@ partial interface mixin WindowOrWorkerGlobalScope {
 interface Crypto {
   [SecureContext] readonly attribute SubtleCrypto subtle;
   ArrayBufferView getRandomValues(ArrayBufferView array);
+  [SecureContext] DOMString randomUUID();
 };
         </pre>
 
@@ -869,6 +880,75 @@ interface Crypto {
                 instead.
               </p>
             </div>
+          </section>
+          <section id="Crypto-method-randomUUID">
+            <h4>The randomUUID method</h4>
+            <p>
+            The <dfn id="dfn-Crypto-method-randomUUID" data-dfn-for=Crypto>randomUUID</dfn>
+            method generates a new <a data-cite="RFC4122#section-4.4">version 4 UUID</a>
+            and returns its <a data-cite="RFC2141#section-2.2">namespace specific string representation</a>
+            as described in <a data-cite="RFC4122#section-3">section 3</a> of [[RFC4122]].
+            To <dfn data-local-lt="generating a random UUID" data-export=
+            "">generate a random UUID</dfn>:
+            </p>
+            <ol>
+              <li>Let |array| be a [=list=] with 16 elements of the type byte.
+              </li>
+              <li>Overwrite all elements of |array| with cryptographically secure
+              random values of the type byte.
+              </li>
+              <li>Set the 4 most significant bits of |array|[6], which represent the
+              UUID <a data-cite="RFC4122#section-4.1.3">version</a>, to `0b0100`.
+              </li>
+              <li>Set the 2 most significant bits of |array|[8], which represent the
+              UUID <a data-cite="RFC4122#section-4.1.1">variant</a>, to `0b10`.
+              </li>
+              <li>
+                <p>
+                  Return the <a data-cite="INFRA#string-concatenate">concatenation</a> of «
+                </p>
+                <ol style="list-style-type: none">
+                  <li>[=hexadecimal representation=] of |array|[0], [=hexadecimal
+                  representation=] of |array|[1], [=hexadecimal representation=] of
+                  |array|[2], [=hexadecimal representation=] of |array|[3],
+                  </li>
+                  <li>`"-"`,
+                  </li>
+                  <li>[=hexadecimal representation=] of |array|[4], [=hexadecimal
+                  representation=] of |array|[5],
+                  </li>
+                  <li>`"-"`,
+                  </li>
+                  <li>[=hexadecimal representation=] of |array|[6], [=hexadecimal
+                  representation=] of |array|[7],
+                  </li>
+                  <li>`"-"`,
+                  </li>
+                  <li>[=hexadecimal representation=] of |array|[8], [=hexadecimal
+                  representation=] of |array|[9],
+                  </li>
+                  <li>`"-"`,
+                  </li>
+                  <li>[=hexadecimal representation=] of |array|[10], [=hexadecimal
+                  representation=] of |array|[11], [=hexadecimal representation=] of
+                  |array|[12], [=hexadecimal representation=] of |array|[13],
+                  [=hexadecimal representation=] of |array|[14], [=hexadecimal
+                  representation=] of |array|[15]
+                  </li>
+                </ol>
+                <p>
+                  ».
+                </p>
+              </li>
+            </ol>
+            <p>
+              For the steps described in the [=generate a random UUID=] algorithm,
+              the <dfn>hexadecimal representation</dfn> of a byte |value| is the
+              two-character string created by expressing |value| in hexadecimal using
+              <a data-cite="INFRA#ascii-lower-hex-digit">ASCII lower hex digits</a>,
+              left-padded with `"0"` to reach two
+              <a data-cite="INFRA#ascii-digit">ASCII digits</a>.
+            </p>
           </section>
         </section>
         <section id="Crypto-interface-attributes">
@@ -14812,6 +14892,12 @@ window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
        console.error.bind(console, "Unable to encrypt"));
 </pre>
       </section>
+      <section id="examples-random-uuid">
+        <h3>Generate unique name for download</h3>
+        <pre class=js>
+const filename = `${crypto.randomUUID()}.txt`;
+// do something with filename.
+</pre>
     </section>
     <section id="iana-section">
     <h2>IANA Considerations</h2>
