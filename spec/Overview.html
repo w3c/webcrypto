@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8">
       <title>Web Cryptography API</title>
-      <script 
-     src='https://www.w3.org/Tools/respec/respec-w3c-common' 
-     class='remove'></script>
+      <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"></script>
       <link rel="stylesheet" href="webcrypto.css" type="text/css" />
       <script class=remove>
         var respecConfig = {
@@ -28,11 +26,7 @@
         ],
         github: "https://github.com/w3c/webcrypto",
         shortName: "WebCryptoAPI",
-        wg:           "Web Cryptocraphy Working Group",
-        wgURI:        "https://www.w3.org/2012/webcrypto/",
-        // name (without the @w3c.org) of the public mailing to which comments are due
-        wgPublicList: "public-webappsec",
-        wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/54174/status",
+        group: "webappsec",
         xref: ['html', 'dom', 'webidl'],
         localBiblio: {
         "JWA": {
@@ -378,12 +372,12 @@
           <p>
             The {{CryptoKey}} object represents the bridge between the
             JavaScript execution environment and these underlying libraries, through the use of the
-            internal slot named <a>[[\handle]]</a>. The handle
+            internal slot named {{CryptoKey/[[handle]]}}. The handle
             represents an opaque type that is implementation specific, which may not be represented
             within a JavaScript type, nor is it ever exposed to script authors. In this way, the
             {{CryptoKey}} object is the conceptual equivalent to the
             JavaScript executing environment as the
-            <a>[[\handle]]</a> is to the underlying cryptographic
+            {{CryptoKey/[[handle]]}} is to the underlying cryptographic
             implementation.
           </p>
           <p>
@@ -1027,22 +1021,22 @@ interface CryptoKey {
           </p>
           <p>
             All {{CryptoKey}} objects have internal slots named
-            <dfn id="dfn-CryptoKey-slot-type">[[\type]]</dfn>,
-            <dfn id="dfn-CryptoKey-slot-extractable">[[\extractable]]</dfn>,
-            <dfn id="dfn-CryptoKey-slot-algorithm">[[\algorithm]]</dfn>,
-            <dfn id="dfn-CryptoKey-slot-algorithm_cached">[[\algorithm_cached]]</dfn>,
-            <dfn id="dfn-CryptoKey-slot-usages">[[\usages]]</dfn>,
-            <dfn id="dfn-CryptoKey-slot-usages_cached">[[\usages_cached]]</dfn>, and
-            <dfn id="dfn-CryptoKey-slot-handle">[[\handle]]</dfn>.
+            <dfn id="dfn-CryptoKey-slot-type" data-dfn-for=CryptoKey>[[\type]]</dfn>,
+            <dfn id="dfn-CryptoKey-slot-extractable" data-dfn-for=CryptoKey>[[\extractable]]</dfn>,
+            <dfn id="dfn-CryptoKey-slot-algorithm" data-dfn-for=CryptoKey>[[\algorithm]]</dfn>,
+            <dfn id="dfn-CryptoKey-slot-algorithm_cached" data-dfn-for=CryptoKey>[[\algorithm_cached]]</dfn>,
+            <dfn id="dfn-CryptoKey-slot-usages" data-dfn-for=CryptoKey>[[\usages]]</dfn>,
+            <dfn id="dfn-CryptoKey-slot-usages_cached" data-dfn-for=CryptoKey>[[\usages_cached]]</dfn>, and
+            <dfn id="dfn-CryptoKey-slot-handle" data-dfn-for=CryptoKey>[[\handle]]</dfn>.
           </p>
           <p>
-            The contents of the <a>[[\algorithm]]</a> internal
+            The contents of the {{CryptoKey/[[algorithm]]}} internal
             slot shall be, or be derived from, a {{KeyAlgorithm}}.
-            The contents of the <a>[[\usages]]</a> internal
+            The contents of the {{CryptoKey/[[usages]]}} internal
             slot shall be of type Sequence&lt;KeyUsage&gt;.
           </p>
           <p class="note">
-            The <a>[[\handle]]</a> slot is an opaque type that
+            The {{CryptoKey/[[handle]]}} slot is an opaque type that
             contains whatever data the underlying cryptographic implementation uses to represent a
             logical key. Different cryptographic implementations may use different types, ranging
             from opaque identifiers represented as integers, pointer types, or structures that
@@ -1055,24 +1049,24 @@ interface CryptoKey {
           <dl>
             <dt id="dfn-CryptoKey-type"><dfn data-dfn-for=CryptoKey>type</dfn></dt>
             <dd>
-              Reflects the <a>[[\type]]</a> internal slot,
+              Reflects the {{CryptoKey/[[type]]}} internal slot,
               which contains the type of the underlying key.
             </dd>
             <dt id="dfn-CryptoKey-extractable"><dfn data-dfn-for=CryptoKey>extractable</dfn></dt>
             <dd>
-              Reflects the <a>[[\extractable]]</a> internal
+              Reflects the {{CryptoKey/[[extractable]]}} internal
               slot, which indicates whether or not the raw keying material may be exported by the
               application.
             </dd>
             <dt id="dfn-CryptoKey-algorithm"><dfn data-dfn-for=CryptoKey>algorithm</dfn></dt>
             <dd>
               Returns the [= cached ECMAScript object =]
-              associated with the <a>[[\algorithm]]</a> internal slot.
+              associated with the {{CryptoKey/[[algorithm]]}} internal slot.
             </dd>
             <dt id="dfn-CryptoKey-usages"><dfn data-dfn-for=CryptoKey>usages</dfn></dt>
             <dd>
               Returns the [= cached ECMAScript object =]
-              associated with the <a>[[\usages]]</a> internal slot,
+              associated with the {{CryptoKey/[[usages]]}} internal slot,
               which indicates which cryptographic operations are permissible to be used with this key.
             </dd>
           </dl>
@@ -1086,21 +1080,21 @@ interface CryptoKey {
           </p>
           <ol>
             <li>
-              Set <var>serialized</var>.[[\Type]] to the <a>[[\type]]</a> internal slot of <var>value</var>.
+              Set <var>serialized</var>.[[\Type]] to the {{CryptoKey/[[type]]}} internal slot of <var>value</var>.
             </li>
             <li>
-              Set <var>serialized</var>.[[\Extractable]] to the <a>[[\extractable]]</a> internal slot of <var>value</var>.
+              Set <var>serialized</var>.[[\Extractable]] to the {{CryptoKey/[[extractable]]}} internal slot of <var>value</var>.
             </li>
             <li>
               Set <var>serialized</var>.[[\Algorithm]] to the [= sub-serialization =] of the
-              <a>[[\algorithm]]</a> internal slot of <var>value</var>.
+              {{CryptoKey/[[algorithm]]}} internal slot of <var>value</var>.
             </li>
             <li>
               Set <var>serialized</var>.[[\Usages]] to the [= sub-serialization =] of the
-              <a>[[\usages]]</a> internal slot of <var>value</var>.
+              {{CryptoKey/[[usages]]}} internal slot of <var>value</var>.
             </li>
             <li>
-              Set <var>serialized</var>.[[\Handle]] to the <a>[[\handle]]</a> internal slot of <var>value</var>.
+              Set <var>serialized</var>.[[\Handle]] to the {{CryptoKey/[[handle]]}} internal slot of <var>value</var>.
             </li>
           </ol>
           <p>
@@ -1108,21 +1102,21 @@ interface CryptoKey {
           </p>
           <ol>
             <li>
-              Initialize the <a>[[\type]]</a> internal slot of <var>value</var> to <var>serialized</var>.[[\Type]].
+              Initialize the {{CryptoKey/[[type]]}} internal slot of <var>value</var> to <var>serialized</var>.[[\Type]].
             </li>
             <li>
-              Initialize the <a>[[\extractable]]</a> internal slot of <var>value</var> to <var>serialized</var>.[[\Extractable]].
+              Initialize the {{CryptoKey/[[extractable]]}} internal slot of <var>value</var> to <var>serialized</var>.[[\Extractable]].
             </li>
             <li>
-              Initialize the <a>[[\algorithm]]</a> internal slot of <var>value</var> to the
+              Initialize the {{CryptoKey/[[algorithm]]}} internal slot of <var>value</var> to the
               [= sub-deserialization =] of <var>serialized</var>.[[\Algorithm]].
             </li>
             <li>
-              Initialize the <a>[[\usages]]</a> internal slot of <var>value</var> to the
+              Initialize the {{CryptoKey/[[usages]]}} internal slot of <var>value</var> to the
               [= sub-deserialization =] of <var>serialized</var>.[[\Usages]].
             </li>
             <li>
-              Initialize the <a>[[\handle]]</a> internal slot of <var>value</var> to <var>serialized</var>.[[\Handle]].
+              Initialize the {{CryptoKey/[[handle]]}} internal slot of <var>value</var> to <var>serialized</var>.[[\Handle]].
             </li>
           </ol>
           <div class=note>
@@ -1130,7 +1124,7 @@ interface CryptoKey {
             object is not deserialized as a different type. This is normatively required by the
             definition of the [= deserialization steps =], but it merits specific attention, as
             such deserialization may expose the contents of the key material, which in some
-            cases (such as when the <a>[[\extractable]]</a> internal slot is false) should not
+            cases (such as when the {{CryptoKey/[[extractable]]}} internal slot is false) should not
             be exposed to applications.
           </div>
         </section>
@@ -1318,13 +1312,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>key</var> does not contain an entry that is <code>"encrypt"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
@@ -1407,13 +1401,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>key</var> does not contain an entry that is <code>"decrypt"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
@@ -1496,13 +1490,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>key</var> does not contain an entry that is <code>"sign"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
@@ -1592,13 +1586,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>key</var> does not contain an entry that is <code>"verify"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
@@ -1753,7 +1747,7 @@ interface SubtleCrypto {
                   <dt>If <var>result</var> is a {{CryptoKey}} object:</dt>
                   <dd>
                     <p>
-                      If the <a>[[\type]]</a> internal slot of
+                      If the {{CryptoKey/[[type]]}} internal slot of
                       <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                       <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                     </p>
@@ -1761,7 +1755,7 @@ interface SubtleCrypto {
                   <dt>If <var>result</var> is a {{CryptoKeyPair}} object:</dt>
                   <dd>
                     <p>
-                      If the <a>[[\usages]]</a> internal slot of the
+                      If the {{CryptoKey/[[usages]]}} internal slot of the
                       {{CryptoKeyPair/privateKey}} attribute of
                       <var>result</var> is the empty sequence, then
                       [= exception/throw =] a {{SyntaxError}}.
@@ -1859,13 +1853,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>baseKey</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>baseKey</var> does not contain an entry that is <code>"deriveKey"</code>,
                   then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
@@ -1895,7 +1889,7 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  If the <a>[[\type]]</a> internal slot of
+                  If the {{CryptoKey/[[type]]}} internal slot of
                   <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
@@ -1964,13 +1958,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>baseKey</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>baseKey</var> does not contain an entry that is <code>"deriveBits"</code>,
                   then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
@@ -2102,20 +2096,20 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  If the <a>[[\type]]</a> internal slot of
+                  If the {{CryptoKey/[[type]]}} internal slot of
                   <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a>[[\extractable]]</a> internal
+                  Set the {{CryptoKey/[[extractable]]}} internal
                   slot of <var>result</var> to <var>extractable</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a>[[\usages]]</a> internal
+                  Set the {{CryptoKey/[[usages]]}} internal
                   slot of <var>result</var> to the [= normalized
                     value =] of <var>usages</var>.
                 </p>
@@ -2175,21 +2169,21 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  If the {{Algorithm/name}} member of the <a>[[\algorithm]]</a> internal slot of
+                  If the {{Algorithm/name}} member of the {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> does not identify a <a href="#algorithms">registered algorithm</a>
                   that supports the export key operation, then [= exception/throw =] a {{NotSupportedError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\extractable]]</a> internal slot
+                  If the {{CryptoKey/[[extractable]]}} internal slot
                   of <var>key</var> is false, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
                   Let <var>result</var> be the result of performing the export key operation
-                  specified by the <a>[[\algorithm]]</a>
+                  specified by the {{CryptoKey/[[algorithm]]}}
                   internal slot of <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
               </li>
@@ -2269,26 +2263,26 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>wrappingKey</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>wrappingKey</var> does not contain an entry that is <code>"wrapKey"</code>,
                   then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the algorithm identified by the <a>[[\algorithm]]</a> internal slot of
+                  If the algorithm identified by the {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> does not support the export key operation, then [= exception/throw =] a  {{NotSupportedError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\extractable]]</a> internal slot
+                  If the {{CryptoKey/[[extractable]]}} internal slot
                   of <var>key</var> is false, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
                 <div class=note>
@@ -2307,7 +2301,7 @@ interface SubtleCrypto {
               <li>
                 <p>
                   Let <var>key</var> be the result of performing the export key operation specified
-                  the <a>[[\algorithm]]</a> internal slot of
+                  the {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
               </li>
@@ -2493,13 +2487,13 @@ interface SubtleCrypto {
                   If the {{Algorithm/name}} member of
                   <var>normalizedAlgorithm</var> is not equal to the
                   {{KeyAlgorithm/name}} attribute of the
-                  <a>[[\algorithm]]</a> internal slot of
+                  {{CryptoKey/[[algorithm]]}} internal slot of
                   <var>unwrappingKey</var> then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  If the <a>[[\usages]]</a> internal slot of
+                  If the {{CryptoKey/[[usages]]}} internal slot of
                   <var>unwrappingKey</var> does not contain an entry that is
                   <code>"unwrapKey"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
@@ -2561,20 +2555,20 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  If the <a>[[\type]]</a> internal slot of
+                  If the {{CryptoKey/[[type]]}} internal slot of
                   <var>result</var> is {{KeyType/"secret"}} or {{KeyType/"private"}} and
                   <var>usages</var> is empty, then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a>[[\extractable]]</a> internal
+                  Set the {{CryptoKey/[[extractable]]}} internal
                   slot of <var>result</var> to <var>extractable</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a>[[\usages]]</a> internal
+                  Set the {{CryptoKey/[[usages]]}} internal
                   slot of <var>result</var> to the [= normalized
                     value =] of <var>usages</var>.
                 </p>
@@ -2844,7 +2838,7 @@ dictionary CryptoKeyPair {
             <h4>Internal State Objects</h4>
             <p>
               This specification makes use of an internal object,
-              <dfn id="dfn-supportedAlgorithms">[[\supportedAlgorithms]]</dfn>. This internal object is
+              <dfn id="dfn-supportedAlgorithms" data-dfn-for=SubtleCrypto>[[\supportedAlgorithms]]</dfn>. This internal object is
               not exposed to applications.
             </p>
             <p>
@@ -2859,7 +2853,7 @@ dictionary CryptoKeyPair {
               <li>
                 <p>
                   For each value, <var>v</var> in the List of <a href="#supported-operation">supported operations</a>, set the <var>v</var> key of
-                   the internal object <a>[[\supportedAlgorithms]]</a>
+                   the internal object {{SubtleCrypto/[[supportedAlgorithms]]}}
                    to a new associative container.
                 </p>
               </li>
@@ -2878,7 +2872,7 @@ dictionary CryptoKeyPair {
             <ol>
               <li>
                 Let <var>registeredAlgorithms</var> be the associative container stored at the
-                <var>op</var> key of <a>[[\supportedAlgorithms]]</a>..
+                <var>op</var> key of {{SubtleCrypto/[[supportedAlgorithms]]}}.
               </li>
               <li>
                 Set the <var>alg</var> key of <var>registeredAlgorithms</var> to the IDL dictionary
@@ -2912,7 +2906,7 @@ dictionary CryptoKeyPair {
                 <ol>
                   <li>
                     Let <var>registeredAlgorithms</var> be the associative container stored at the
-                    <code>op</code> key of <a>[[\supportedAlgorithms]]</a>.
+                    <code>op</code> key of {{SubtleCrypto/[[supportedAlgorithms]]}}.
                   </li>
                   <li>
                     Let <var>initialAlg</var> be the result of converting the ECMAScript object
@@ -3554,15 +3548,15 @@ dictionary RsaHashedImportParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Perform the signature generation operation defined in Section 8.2 of [[RFC3447]] with the key represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    Perform the signature generation operation defined in Section 8.2 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     as the signer's private key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
-                    <var>M</var> and using the hash function specified in the {{RsaHashedKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot of
+                    <var>M</var> and using the hash function specified in the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
                   </p>
                 </li>
@@ -3595,7 +3589,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -3603,12 +3597,12 @@ dictionary RsaHashedImportParams : Algorithm {
                   <p>
                     Perform the signature verification operation defined in Section 8.2 of
                     [[RFC3447]] with the key represented by the
-                    <a>[[\handle]]</a> internal slot of
+                    {{CryptoKey/[[handle]]}} internal slot of
                     <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
                     <var>M</var> and the <a href="#concept-contents-of-arraybuffer">contents of
                     <var>signature</var></a> as <var>S</var> and using the hash function specified
                     in the {{RsaHashedKeyAlgorithm/hash}} attribute of the
-                    <a>[[\algorithm]]</a> internal slot of
+                    {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
                   </p>
                 </li>
@@ -3700,25 +3694,25 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> to <code>"public"</code>
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>publicKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>publicKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
@@ -3733,25 +3727,25 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>privateKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>privateKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
@@ -3958,7 +3952,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
@@ -4132,7 +4126,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -4336,7 +4330,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
@@ -4373,7 +4367,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of <var>key</var> to <code>"public"</code>
                                   </p>
                                 </li>
@@ -4425,7 +4419,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -4445,7 +4439,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -4456,7 +4450,7 @@ dictionary RsaHashedImportParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -4492,7 +4486,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                 Set the <var>subjectPublicKey</var> field to the result of
                                 DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
                                 in [[RFC3447]], Appendix A.1.1, that
-                                represents the RSA public key represented by the <a>[[\handle]]</a> internal slot of
+                                represents the RSA public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                             </li>
@@ -4513,7 +4507,7 @@ dictionary RsaHashedImportParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -4552,7 +4546,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               <p>
                                 Set the <var>privateKey</var> field to the result of DER-encoding
                                 an <code>RSAPrivateKey</code> ASN.1 type, as defined in [[RFC3447]], Appendix A.1.2, that represents the
-                                RSA private key represented by the <a>[[\handle]]</a> internal slot of
+                                RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                               <div class=note>
@@ -4662,7 +4656,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <a>[[\type]]</a> internal slot
+                              If the {{CryptoKey/[[type]]}} internal slot
                               of <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
@@ -4677,7 +4671,7 @@ dictionary RsaHashedImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
+                                    If the underlying RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot
                                     of <var>key</var> is represented by more than two primes, set
                                     the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
@@ -4694,7 +4688,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -4805,17 +4799,17 @@ dictionary RsaPssParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Perform the signature generation operation defined in Section 8.1 of [[RFC3447]] with the key represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    Perform the signature generation operation defined in Section 8.1 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     as the signer's private key, <var>K</var>, and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
                     the message to be signed, <var>M</var>, and using the hash function specified
                     by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
-                    <a>[[\algorithm]]</a> internal slot of
+                    {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option, MGF1 (defined in Section B.2.1 of [[RFC3447]]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
                     <var>normalizedAlgorithm</var> as the salt length option for the
                     EMSA-PSS-ENCODE operation.
@@ -4850,7 +4844,7 @@ dictionary RsaPssParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -4858,12 +4852,12 @@ dictionary RsaPssParams : Algorithm {
                   <p>
                     Perform the signature verification operation defined in Section 8.1 of
                     [[RFC3447]] with the key represented by the
-                    <a>[[\handle]]</a> internal slot of
+                    {{CryptoKey/[[handle]]}} internal slot of
                     <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of <var>message</var></a> as
                     <var>M</var> and <a href="#concept-contents-of-arraybuffer">the contents of
                     <var>signature</var></a> as <var>S</var> and using the hash function specified
                     by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
-                    <a>[[\algorithm]]</a> internal slot of
+                    {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option, MGF1 (defined in Section B.2.1 of [[RFC3447]]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
                     <var>normalizedAlgorithm</var> as the salt length option for the
                     EMSA-PSS-VERIFY operation.
@@ -4955,25 +4949,25 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> to <code>"public"</code>
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>publicKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>publicKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
@@ -4988,25 +4982,25 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>privateKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>privateKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
@@ -5272,7 +5266,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
@@ -5501,7 +5495,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -5697,7 +5691,7 @@ dictionary RsaPssParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
@@ -5734,7 +5728,7 @@ dictionary RsaPssParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of <var>key</var> to <code>"public"</code>
                                   </p>
                                 </li>
@@ -5786,7 +5780,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>
                   </p>
                 </li>
@@ -5806,7 +5800,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -5817,7 +5811,7 @@ dictionary RsaPssParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -5859,7 +5853,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
@@ -5872,7 +5866,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
@@ -5885,7 +5879,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
@@ -5898,7 +5892,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
@@ -5917,7 +5911,7 @@ dictionary RsaPssParams : Algorithm {
                                                 defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the <a>[[\algorithm]]</a>
+                                                the {{CryptoKey/[[algorithm]]}}
                                                 internal slot of <var>key</var>
                                                 and obtaining <var>hashOid</var> and <var>hashParams</var>.
                                               </p>
@@ -5966,7 +5960,7 @@ dictionary RsaPssParams : Algorithm {
                                       <p>
                                         Set the <var>saltLength</var> field to the length in
                                         octets of the digest algorithm identified by the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute
-                                        of the <a>[[\algorithm]]</a>
+                                        of the {{CryptoKey/[[algorithm]]}}
                                         internal slot of <var>key</var>.
                                       </p>
                                     </li>
@@ -5979,7 +5973,7 @@ dictionary RsaPssParams : Algorithm {
                                 Set the <var>subjectPublicKey</var> field to the result of
                                 DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
                                 in [[RFC3447]], Appendix A.1.1, that
-                                represents the RSA public key represented by the <a>[[\handle]]</a> internal slot of
+                                represents the RSA public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                             </li>
@@ -6000,7 +5994,7 @@ dictionary RsaPssParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -6046,7 +6040,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
@@ -6059,7 +6053,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
@@ -6072,7 +6066,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
@@ -6085,7 +6079,7 @@ dictionary RsaPssParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
@@ -6104,7 +6098,7 @@ dictionary RsaPssParams : Algorithm {
                                                 defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the <a>[[\algorithm]]</a>
+                                                the {{CryptoKey/[[algorithm]]}}
                                                 internal slot of <var>key</var>
                                                 and obtaining <var>hashOid</var> and <var>hashParams</var>.
                                               </p>
@@ -6153,7 +6147,7 @@ dictionary RsaPssParams : Algorithm {
                                       <p>
                                         Set the <var>saltLength</var> field to the length in
                                         octets of the digest algorithm identified by the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute
-                                        of the <a>[[\algorithm]]</a>
+                                        of the {{CryptoKey/[[algorithm]]}}
                                         internal slot of <var>key</var>.
                                       </p>
                                     </li>
@@ -6165,7 +6159,7 @@ dictionary RsaPssParams : Algorithm {
                               <p>
                                 Set the <var>privateKey</var> field to the result of DER-encoding
                                 an <code>RSAPrivateKey</code> ASN.1 type, as defined in [[RFC3447]], Appendix A.1.2, that represents the
-                                RSA private key represented by the <a>[[\handle]]</a> internal slot of
+                                RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                               <div class=note>
@@ -6202,7 +6196,7 @@ dictionary RsaPssParams : Algorithm {
                           <p>
                             Let <var>hash</var> be the {{KeyAlgorithm/name}}
                             attribute of the {{RsaHashedKeyAlgorithm/hash}}
-                            attribute of the <a>[[\algorithm]]</a> internal slot of
+                            attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -6245,7 +6239,7 @@ dictionary RsaPssParams : Algorithm {
                                     defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                    the <a>[[\algorithm]]</a>
+                                    the {{CryptoKey/[[algorithm]]}}
                                     internal slot of <var>key</var>
                                     and obtaining <var>alg</var>.
                                   </p>
@@ -6268,7 +6262,7 @@ dictionary RsaPssParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <a>[[\type]]</a> internal slot of
+                              If the {{CryptoKey/[[type]]}} internal slot of
                               <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
@@ -6283,7 +6277,7 @@ dictionary RsaPssParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
+                                    If the underlying RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot
                                     of <var>key</var> is represented by more than two primes, set
                                     the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
@@ -6300,7 +6294,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -6412,7 +6406,7 @@ dictionary RsaOaepParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of <var>key</var>
+                    If the {{CryptoKey/[[type]]}} internal slot of <var>key</var>
                     is not <code>"public"</code>,
                     then [= exception/throw =] an
                     {{InvalidAccessError}}.
@@ -6433,7 +6427,7 @@ dictionary RsaOaepParams : Algorithm {
                     as the message to be encrypted, <var>M</var> and <var>label</var>
                     as the label, <var>L</var>, and with the hash
                     function specified by the {{RsaHashedKeyAlgorithm/hash}}
-                    attribute of the <a>[[\algorithm]]</a> internal slot of
+                    attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
                     [[RFC3447]]) as the MGF option.
                   </p>
@@ -6466,7 +6460,7 @@ dictionary RsaOaepParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of <var>key</var>
+                    If the {{CryptoKey/[[type]]}} internal slot of <var>key</var>
                     is not {{KeyType/"private"}},
                     then [= exception/throw =] an
                     {{InvalidAccessError}}.
@@ -6487,7 +6481,7 @@ dictionary RsaOaepParams : Algorithm {
                     as the ciphertext to be decrypted, C, and <var>label</var>
                     as the label, <var>L</var>, and with the hash
                     function specified by the {{RsaHashedKeyAlgorithm/hash}}
-                    attribute of the <a>[[\algorithm]]</a> internal slot of
+                    attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> as the Hash option and MGF1 (defined in Section B.2.1 of
                     [[RFC3447]]) as the MGF option.
                   </p>
@@ -6592,25 +6586,25 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> to <code>"public"</code>
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal slot of
+                    Set the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>publicKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal slot of
+                    Set the {{CryptoKey/[[extractable]]}} internal slot of
                     <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>publicKey</var> to be the
                     [= usage intersection =] of
                     <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
@@ -6626,25 +6620,25 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal slot of
+                    Set the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>privateKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal slot of
+                    Set the {{CryptoKey/[[extractable]]}} internal slot of
                     <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>privateKey</var> to be the
                     [= usage intersection =] of
                     <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
@@ -6911,7 +6905,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot of
+                            Set the {{CryptoKey/[[type]]}} internal slot of
                             <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
@@ -7138,7 +7132,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot of
+                            Set the {{CryptoKey/[[type]]}} internal slot of
                             <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -7314,7 +7308,7 @@ dictionary RsaOaepParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a> internal slot of
+                                    Set the {{CryptoKey/[[type]]}} internal slot of
                                     <var>key</var> to {{KeyType/"private"}}
                                   </p>
                                 </li>
@@ -7351,7 +7345,7 @@ dictionary RsaOaepParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a>[[\type]]</a> internal slot of
+                                    Set the {{CryptoKey/[[type]]}} internal slot of
                                     <var>key</var> to <code>"public"</code>
                                   </p>
                                 </li>
@@ -7403,7 +7397,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal slot of
+                    Set the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> to <var>algorithm</var>
                   </p>
                 </li>
@@ -7423,7 +7417,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -7434,7 +7428,7 @@ dictionary RsaOaepParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot of
+                            If the {{CryptoKey/[[type]]}} internal slot of
                             <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -7476,7 +7470,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
@@ -7489,7 +7483,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
@@ -7502,7 +7496,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
@@ -7515,7 +7509,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
@@ -7534,7 +7528,7 @@ dictionary RsaOaepParams : Algorithm {
                                                 defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the <a>[[\algorithm]]</a>
+                                                the {{CryptoKey/[[algorithm]]}}
                                                 internal slot of <var>key</var>
                                                 and obtaining <var>hashOid</var> and <var>hashParams</var>.
                                               </p>
@@ -7588,7 +7582,7 @@ dictionary RsaOaepParams : Algorithm {
                                 Set the <var>subjectPublicKey</var> field to the result of
                                 DER-encoding an <code>RSAPublicKey</code> ASN.1 type, as defined
                                 in [[RFC3447]], Appendix A.1.1, that
-                                represents the RSA public key represented by the <a>[[\handle]]</a> internal slot of
+                                represents the RSA public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                             </li>
@@ -7609,7 +7603,7 @@ dictionary RsaOaepParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot of
+                            If the {{CryptoKey/[[type]]}} internal slot of
                             <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -7655,7 +7649,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-1"</code>:
                                         </dt>
                                         <dd>
@@ -7668,7 +7662,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-256"</code>:
                                         </dt>
                                         <dd>
@@ -7681,7 +7675,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-384"</code>:
                                         </dt>
                                         <dd>
@@ -7694,7 +7688,7 @@ dictionary RsaOaepParams : Algorithm {
                                         <dt>
                                           If the {{KeyAlgorithm/name}}
                                           attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the <a>[[\algorithm]]</a>
+                                          the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"SHA-512"</code>:
                                         </dt>
                                         <dd>
@@ -7713,7 +7707,7 @@ dictionary RsaOaepParams : Algorithm {
                                                 defined by <a href="#dfn-applicable-specification">other applicable
                                                 specifications</a>, passing <var>format</var> and the
                                                 {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the <a>[[\algorithm]]</a>
+                                                the {{CryptoKey/[[algorithm]]}}
                                                 internal slot of <var>key</var>
                                                 and obtaining <var>hashOid</var> and <var>hashParams</var>.
                                               </p>
@@ -7766,7 +7760,7 @@ dictionary RsaOaepParams : Algorithm {
                               <p>
                                 Set the <var>privateKey</var> field to the result of DER-encoding
                                 an <code>RSAPrivateKey</code> ASN.1 type, as defined in [[RFC3447]], Appendix A.1.2, that represents the
-                                RSA private key represented by the <a>[[\handle]]</a> internal slot of
+                                RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var>
                               </p>
                               <div class=note>
@@ -7807,7 +7801,7 @@ dictionary RsaOaepParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot
+                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"SHA-1"</code>:
                             </dt>
                             <dd>
@@ -7817,7 +7811,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot
+                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"SHA-256"</code>:
                             </dt>
                             <dd>
@@ -7827,7 +7821,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot
+                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"SHA-384"</code>:
                             </dt>
                             <dd>
@@ -7837,7 +7831,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot
+                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"SHA-512"</code>:
                             </dt>
                             <dd>
@@ -7855,7 +7849,7 @@ dictionary RsaOaepParams : Algorithm {
                                     defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                    the <a>[[\algorithm]]</a>
+                                    the {{CryptoKey/[[algorithm]]}}
                                     internal slot of <var>key</var>
                                     and obtaining <var>alg</var>.
                                   </p>
@@ -7878,7 +7872,7 @@ dictionary RsaOaepParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <a>[[\type]]</a> internal slot
+                              If the {{CryptoKey/[[type]]}} internal slot
                               of <var>key</var> is {{KeyType/"private"}}:
                             </dt>
                             <dd>
@@ -7893,7 +7887,7 @@ dictionary RsaOaepParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    If the underlying RSA private key represented by the <a>[[\handle]]</a> internal slot
+                                    If the underlying RSA private key represented by the {{CryptoKey/[[handle]]}} internal slot
                                     of <var>key</var> is represented by more than two primes, set
                                     the attribute named {{JsonWebKey/oth}} of <var>jwk</var>
                                     according to the corresponding definition in JSON Web Algorithms [[JWA]], Section 6.3.2.7
@@ -7910,7 +7904,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -8075,7 +8069,7 @@ dictionary EcKeyImportParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -8106,7 +8100,7 @@ dictionary EcKeyImportParams : Algorithm {
                   <dl class="switch">
                     <dt>
                       If the {{EcKeyAlgorithm/namedCurve}} attribute of the
-                      <a>[[\algorithm]]</a> internal slot of
+                      {{CryptoKey/[[algorithm]]}} internal slot of
                       <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or <code>"P-521"</code>:
                     </dt>
                     <dd>
@@ -8154,7 +8148,7 @@ dictionary EcKeyImportParams : Algorithm {
                     </dd>
                     <dt>
                       Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
-                      of the <a>[[\algorithm]]</a> internal slot of
+                      of the {{CryptoKey/[[algorithm]]}} internal slot of
                       <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a>:
                     </dt>
@@ -8183,7 +8177,7 @@ dictionary EcKeyImportParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -8215,7 +8209,7 @@ dictionary EcKeyImportParams : Algorithm {
                   <dl class="switch">
                     <dt>
                       If the {{EcKeyAlgorithm/namedCurve}} attribute of the
-                      <a>[[\algorithm]]</a> internal slot of
+                      {{CryptoKey/[[algorithm]]}} internal slot of
                       <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or <code>"P-521"</code>:
                     </dt>
                     <dd>
@@ -8228,7 +8222,7 @@ dictionary EcKeyImportParams : Algorithm {
                     </dd>
                     <dt>
                       Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
-                      of the <a>[[\algorithm]]</a> internal slot of
+                      of the {{CryptoKey/[[algorithm]]}} internal slot of
                       <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a>:
                     </dt>
@@ -8340,25 +8334,25 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> to <code>"public"</code>
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>publicKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>publicKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
@@ -8373,25 +8367,25 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>privateKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>privateKey</var> to be the [= usage
                     intersection =] of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
@@ -8604,7 +8598,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
@@ -8627,7 +8621,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -8811,7 +8805,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -8834,7 +8828,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -8980,7 +8974,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </li>
                                         <li>
                                           <p>
-                                            Set the <a>[[\type]]</a>
+                                            Set the {{CryptoKey/[[type]]}}
                                             internal slot of <var>Key</var> to {{KeyType/"private"}}.
                                           </p>
                                         </li>
@@ -9004,7 +8998,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </li>
                                         <li>
                                           <p>
-                                            Set the <a>[[\type]]</a>
+                                            Set the {{CryptoKey/[[type]]}}
                                             internal slot of <var>Key</var> to <code>"public"</code>.
                                           </p>
                                         </li>
@@ -9066,7 +9060,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -9180,13 +9174,13 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -9220,7 +9214,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -9231,7 +9225,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -9264,7 +9258,7 @@ dictionary EcKeyImportParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a>
+                                      attribute of the {{CryptoKey/[[algorithm]]}}
                                       internal slot of <var>key</var> is <code>"P-256"</code>,
                                       <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
@@ -9272,7 +9266,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       <p>
                                         Let <var>keyData</var> be the
                                         [= octet string =] that
-                                        represents the Elliptic Curve public key represented by the <a>[[\handle]]</a> internal slot of
+                                        represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         <var>key</var> according to the encoding rules specified in
                                         Section 2.2 of [[RFC5480]] and using the
                                         uncompressed form. and <var>keyData</var>.
@@ -9280,7 +9274,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       <dl class="switch">
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-256"</code>:
                                         </dt>
                                         <dd>
@@ -9292,7 +9286,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-384"</code>:
                                         </dt>
                                         <dd>
@@ -9304,7 +9298,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-521"</code>:
                                         </dt>
                                         <dd>
@@ -9327,7 +9321,7 @@ dictionary EcKeyImportParams : Algorithm {
                                             defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             {{EcKeyAlgorithm/namedCurve}} attribute of
-                                            the <a>[[\algorithm]]</a>
+                                            the {{CryptoKey/[[algorithm]]}}
                                             internal slot of <var>key</var>
                                             and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
@@ -9366,7 +9360,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -9404,7 +9398,7 @@ dictionary EcKeyImportParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a>
+                                      attribute of the {{CryptoKey/[[algorithm]]}}
                                       internal slot of <var>key</var> is <code>"P-256"</code>,
                                       <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
@@ -9413,7 +9407,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         Let <var>keyData</var> be the result of DER-encoding
                                         an instance of the <code>ECPrivateKey</code> structure defined in
                                         Section 3 of [[RFC5915]] for the Elliptic
-                                        Curve private key represented by the <a>[[\handle]]</a> internal slot of
+                                        Curve private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         <var>key</var> and that conforms to the following:
                                       </p>
                                       <ul>
@@ -9429,7 +9423,7 @@ dictionary EcKeyImportParams : Algorithm {
                                           <p>
                                             The <var>publicKey</var> field is present and represents the
                                             Elliptic Curve public key associated with the Elliptic Curve
-                                            private key represented by the <a>[[\handle]]</a> internal slot
+                                            private key represented by the {{CryptoKey/[[handle]]}} internal slot
                                             of <var>key</var>.
                                           </p>
                                         </li>
@@ -9437,7 +9431,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       <dl class="switch">
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-256"</code>:
                                         </dt>
                                         <dd>
@@ -9449,7 +9443,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-384"</code>:
                                         </dt>
                                         <dd>
@@ -9461,7 +9455,7 @@ dictionary EcKeyImportParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-521"</code>:
                                         </dt>
                                         <dd>
@@ -9484,7 +9478,7 @@ dictionary EcKeyImportParams : Algorithm {
                                             defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             {{EcKeyAlgorithm/namedCurve}} attribute of
-                                            the <a>[[\algorithm]]</a>
+                                            the {{CryptoKey/[[algorithm]]}}
                                             internal slot of <var>key</var>
                                             and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
@@ -9537,7 +9531,7 @@ dictionary EcKeyImportParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the {{EcKeyAlgorithm/namedCurve}}
-                              attribute of the <a>[[\algorithm]]</a> internal slot
+                              attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code> or
                               <code>"P-521"</code>:
                             </dt>
@@ -9547,7 +9541,7 @@ dictionary EcKeyImportParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-256"</code>:
                                     </dt>
                                     <dd>
@@ -9556,7 +9550,7 @@ dictionary EcKeyImportParams : Algorithm {
                                     </dd>
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-384"</code>:
                                     </dt>
                                     <dd>
@@ -9565,7 +9559,7 @@ dictionary EcKeyImportParams : Algorithm {
                                     </dd>
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-521"</code>:
                                     </dt>
                                     <dd>
@@ -9589,7 +9583,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 <li>
                                   <dl class="switch">
                                     <dt>
-                                      If the <a>[[\type]]</a> internal slot
+                                      If the {{CryptoKey/[[type]]}} internal slot
                                       of <var>key</var> is {{KeyType/"private"}}
                                     </dt>
                                     <dd>
@@ -9613,7 +9607,7 @@ dictionary EcKeyImportParams : Algorithm {
                                     defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     {{EcKeyAlgorithm/namedCurve}} attribute of
-                                    the <a>[[\algorithm]]</a>
+                                    the {{CryptoKey/[[algorithm]]}}
                                     internal slot of <var>key</var>
                                     and obtaining <var>namedCurve</var> and a new value of <var>jwk</var>.
                                   </p>
@@ -9635,7 +9629,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -9654,7 +9648,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -9662,14 +9656,14 @@ dictionary EcKeyImportParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the {{EcKeyAlgorithm/namedCurve}}
-                              attribute of the <a>[[\algorithm]]</a> internal slot
+                              attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
                               or <code>"P-521"</code>:
                             </dt>
                             <dd>
                               <p>
                                 Let <var>data</var> be an [= octet string =] representing the Elliptic Curve
-                                point <var>Q</var> represented by <a>[[\handle]]</a> internal slot of
+                                point <var>Q</var> represented by {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var> according to [[SEC1]] 2.3.3 using the uncompressed format.
                               </p>
                             </dd>
@@ -9680,7 +9674,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 defined by <a href="#dfn-applicable-specification">other applicable
                                 specifications</a>, passing <var>format</var> and the
                                 {{EcKeyAlgorithm/namedCurve}} attribute of
-                                the <a>[[\algorithm]]</a>
+                                the {{CryptoKey/[[algorithm]]}}
                                 internal slot of <var>key</var>
                                 and obtaining <var>namedCurve</var> and <var>data</var>.
                               </p>
@@ -9871,25 +9865,25 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> to <code>"public"</code>
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>publicKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>publicKey</var> to be the empty list.
                   </p>
                 </li>
@@ -9903,25 +9897,25 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>privateKey</var> to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>privateKey</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>privateKey</var> to be the
                     [= usage intersection =] of
                     <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
@@ -9958,7 +9952,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -9971,30 +9965,30 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the <a>[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     <var>publicKey</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <p>
                     If the {{KeyAlgorithm/name}} attribute of
-                    the <a>[[\algorithm]]</a> internal slot of
-                    <var>publicKey</var> is not equal to the {{KeyAlgorithm/name}} property of the <a>[[\algorithm]]</a> internal slot of
+                    the {{CryptoKey/[[algorithm]]}} internal slot of
+                    <var>publicKey</var> is not equal to the {{KeyAlgorithm/name}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <p>
                     If the {{EcKeyAlgorithm/namedCurve}} attribute of
-                    the <a>[[\algorithm]]</a> internal slot of
-                    <var>publicKey</var> is not equal to the {{EcKeyAlgorithm/namedCurve}} property of the <a>[[\algorithm]]</a> internal slot of
+                    the {{CryptoKey/[[algorithm]]}} internal slot of
+                    <var>publicKey</var> is not equal to the {{EcKeyAlgorithm/namedCurve}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var>, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <dl class="switch">
                     <dt>
-                      If the {{EcKeyAlgorithm/namedCurve}} property of the <a>[[\algorithm]]</a> internal slot of
+                      If the {{EcKeyAlgorithm/namedCurve}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
                       or <code>"P-521"</code>:
                     </dt>
@@ -10004,7 +9998,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                           <p>
                             Perform the ECDH primitive specified in [[RFC6090]] Section
                             4 with <var>key</var> as the EC private key <var>d</var> and the EC public
-                            key represented by the <a>[[\handle]]</a>
+                            key represented by the {{CryptoKey/[[handle]]}}
                             internal slot of <var>publicKey</var> as the EC public key.
                           </p>
                         </li>
@@ -10019,7 +10013,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </ol>
                     </dd>
                     <dt>
-                      If the {{EcKeyAlgorithm/namedCurve}} property of the <a>[[\algorithm]]</a> internal slot of
+                      If the {{EcKeyAlgorithm/namedCurve}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> is a value specified in an
                       <a href="#dfn-applicable-specification">applicable specification</a> that
                       specifies the use of that value with ECDH:
@@ -10254,7 +10248,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
@@ -10277,7 +10271,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -10464,7 +10458,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to {{KeyType/"private"}}.
                           </p>
                         </li>
@@ -10487,7 +10481,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -10590,7 +10584,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     </li>
                                     <li>
                                       <p>
-                                        Set the <a>[[\type]]</a>
+                                        Set the {{CryptoKey/[[type]]}}
                                         internal slot of <var>Key</var> to {{KeyType/"private"}}.
                                       </p>
                                     </li>
@@ -10614,7 +10608,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     </li>
                                     <li>
                                       <p>
-                                        Set the <a>[[\type]]</a>
+                                        Set the {{CryptoKey/[[type]]}}
                                         internal slot of <var>Key</var> to <code>"public"</code>.
                                       </p>
                                     </li>
@@ -10672,7 +10666,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -10785,13 +10779,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> to <code>"public"</code>
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -10818,7 +10812,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -10829,7 +10823,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -10862,14 +10856,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a>
+                                      attribute of the {{CryptoKey/[[algorithm]]}}
                                       internal slot of <var>key</var> is <code>"P-256"</code>,
                                       <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
                                     <dd>
                                       <p>
                                         Let <var>keyData</var> be the [= octet string =] that
-                                        represents the Elliptic Curve public key represented by the <a>[[\handle]]</a> internal slot of
+                                        represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         <var>key</var> according to the encoding rules specified in
                                         Section 2.3.3 of [[SEC1]] and using the
                                         uncompressed form.
@@ -10877,7 +10871,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                       <dl class="switch">
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-256"</code>:
                                         </dt>
                                         <dd>
@@ -10889,7 +10883,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-384"</code>:
                                         </dt>
                                         <dd>
@@ -10901,7 +10895,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-521"</code>:
                                         </dt>
                                         <dd>
@@ -10924,7 +10918,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                             defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             {{EcKeyAlgorithm/namedCurve}} attribute of
-                                            the <a>[[\algorithm]]</a>
+                                            the {{CryptoKey/[[algorithm]]}}
                                             internal slot of <var>key</var>
                                             and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
@@ -10955,7 +10949,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -10993,7 +10987,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a>
+                                      attribute of the {{CryptoKey/[[algorithm]]}}
                                       internal slot of <var>key</var> is <code>"P-256"</code>,
                                       <code>"P-384"</code> or <code>"P-521"</code>:
                                     </dt>
@@ -11002,7 +10996,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                         Let <var>keyData</var> be the result of DER-encoding
                                         an instance of the <code>ECPrivateKey</code> structure defined in
                                         Section 3 of [[RFC5915]] for the Elliptic
-                                        Curve private key represented by the <a>[[\handle]]</a> internal slot of
+                                        Curve private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         <var>key</var> and that conforms to the following:
                                       </p>
                                       <ul>
@@ -11018,7 +11012,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                           <p>
                                             The <var>publicKey</var> field is present and represents the
                                             Elliptic Curve public key associated with the Elliptic Curve
-                                            private key represented by the <a>[[\handle]]</a> internal slot
+                                            private key represented by the {{CryptoKey/[[handle]]}} internal slot
                                             of <var>key</var>.
                                           </p>
                                         </li>
@@ -11026,7 +11020,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                       <dl class="switch">
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-256"</code>:
                                         </dt>
                                         <dd>
@@ -11038,7 +11032,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-384"</code>:
                                         </dt>
                                         <dd>
@@ -11050,7 +11044,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                         </dd>
                                         <dt>
                                           If the {{EcKeyAlgorithm/namedCurve}}
-                                          attribute of the <a>[[\algorithm]]</a>
+                                          attribute of the {{CryptoKey/[[algorithm]]}}
                                           internal slot of <var>key</var> is <code>"P-521"</code>:
                                         </dt>
                                         <dd>
@@ -11073,7 +11067,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                             defined by <a href="#dfn-applicable-specification">other applicable
                                             specifications</a>, passing <var>format</var> and the
                                             {{EcKeyAlgorithm/namedCurve}} attribute of
-                                            the <a>[[\algorithm]]</a>
+                                            the {{CryptoKey/[[algorithm]]}}
                                             internal slot of <var>key</var>
                                             and obtaining <var>namedCurveOid</var> and <var>keyData</var>.
                                           </p>
@@ -11118,7 +11112,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the {{EcKeyAlgorithm/namedCurve}}
-                              attribute of the <a>[[\algorithm]]</a> internal slot
+                              attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
                               or <code>"P-521"</code>:
                             </dt>
@@ -11128,7 +11122,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   <dl class="switch">
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-256"</code>:
                                     </dt>
                                     <dd>
@@ -11137,7 +11131,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     </dd>
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-384"</code>:
                                     </dt>
                                     <dd>
@@ -11146,7 +11140,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     </dd>
                                     <dt>
                                       If the {{EcKeyAlgorithm/namedCurve}}
-                                      attribute of the <a>[[\algorithm]]</a> internal slot
+                                      attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                                       of <var>key</var> is <code>"P-521"</code>:
                                     </dt>
                                     <dd>
@@ -11170,7 +11164,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 <li>
                                   <dl class="switch">
                                     <dt>
-                                      If the <a>[[\type]]</a> internal slot
+                                      If the {{CryptoKey/[[type]]}} internal slot
                                       of <var>key</var> is {{KeyType/"private"}}
                                     </dt>
                                     <dd>
@@ -11194,7 +11188,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     defined by <a href="#dfn-applicable-specification">other applicable
                                     specifications</a>, passing <var>format</var> and the
                                     {{EcKeyAlgorithm/namedCurve}} attribute of
-                                    the <a>[[\algorithm]]</a>
+                                    the {{CryptoKey/[[algorithm]]}}
                                     internal slot of <var>key</var>
                                     and obtaining <var>namedCurve</var> and a new value of <var>jwk</var>.
                                   </p>
@@ -11217,7 +11211,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -11236,7 +11230,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a>[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of <var>key</var> is not <code>"public"</code>, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -11244,14 +11238,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                           <dl class="switch">
                             <dt>
                               If the {{EcKeyAlgorithm/namedCurve}}
-                              attribute of the <a>[[\algorithm]]</a> internal slot
+                              attribute of the {{CryptoKey/[[algorithm]]}} internal slot
                               of <var>key</var> is <code>"P-256"</code>, <code>"P-384"</code>
                               or <code>"P-521"</code>:
                             </dt>
                             <dd>
                               <p>
                                 Let <var>data</var> be the [= octet string =] that
-                                represents the Elliptic Curve public key represented by the <a>[[\handle]]</a> internal slot of
+                                represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 <var>key</var> according to the encoding rules specified in
                                 Section 2.3.3 of [[SEC1]] and using the
                                 uncompressed form.
@@ -11264,7 +11258,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 defined by <a href="#dfn-applicable-specification">other applicable
                                 specifications</a>, passing <var>format</var> and the
                                 {{EcKeyAlgorithm/namedCurve}} attribute of
-                                the <a>[[\algorithm]]</a>
+                                the {{CryptoKey/[[algorithm]]}}
                                 internal slot of <var>key</var>
                                 and obtaining <var>namedCurve</var> and <var>data</var>.
                               </p>
@@ -11551,19 +11545,19 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -11722,7 +11716,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -11738,7 +11732,7 @@ dictionary AesDerivedKeyParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -11749,7 +11743,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            Let <var>data</var> be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -11781,7 +11775,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -11804,13 +11798,13 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Set the <code>key_ops</code> attribute of <var>jwk</var> to equal the
-                            <a>[[\usages]]</a> internal slot of
+                            {{CryptoKey/[[usages]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -12091,19 +12085,19 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -12263,7 +12257,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -12279,7 +12273,7 @@ dictionary AesCbcParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -12290,7 +12284,7 @@ dictionary AesCbcParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            Let <var>data</var> be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -12324,7 +12318,7 @@ dictionary AesCbcParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -12352,7 +12346,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -12720,19 +12714,19 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -12892,7 +12886,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -12908,7 +12902,7 @@ dictionary AesGcmParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -12919,7 +12913,7 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            Let <var>data</var> be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -12951,7 +12945,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -12980,7 +12974,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -13198,19 +13192,19 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -13372,7 +13366,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -13388,7 +13382,7 @@ dictionary AesGcmParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -13399,7 +13393,7 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            Let <var>data</var> be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -13431,7 +13425,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a>[[\handle]]</a> internal slot of
+                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -13459,7 +13453,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -13617,8 +13611,8 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let <var>mac</var> be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by <a>[[\handle]]</a>
-                    internal slot of <var>key</var>, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot of
+                    the key represented by {{CryptoKey/[[handle]]}}
+                    internal slot of <var>key</var>, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> and <var>message</var> as the input data <var>text</var>.
                   </p>
                 </li>
@@ -13639,8 +13633,8 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let <var>mac</var> be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by <a>[[\handle]]</a>
-                    internal slot of <var>key</var>, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the <a>[[\algorithm]]</a> internal slot of
+                    the key represented by {{CryptoKey/[[handle]]}}
+                    internal slot of <var>key</var>, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     <var>key</var> and <var>message</var> as the input data <var>text</var>.
                   </p>
                 </li>
@@ -13742,19 +13736,19 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -14020,7 +14014,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
@@ -14036,13 +14030,13 @@ dictionary HmacKeyGenParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a>[[\handle]]</a> internal slot of <var>key</var>
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Let <var>bits</var> be the raw bits of the key represented by <a>[[\handle]]</a> internal slot of
+                    Let <var>bits</var> be the raw bits of the key represented by {{CryptoKey/[[handle]]}} internal slot of
                     <var>key</var>.
                   </p>
                 </li>
@@ -14088,7 +14082,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let <var>algorithm</var> be the <a>[[\algorithm]]</a> internal slot of
+                            Let <var>algorithm</var> be the {{CryptoKey/[[algorithm]]}} internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -14152,7 +14146,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a>[[\extractable]]</a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the {{CryptoKey/[[extractable]]}} internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -14406,7 +14400,7 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let <var>keyDerivationKey</var> be the secret represented by <a>[[\handle]]</a> internal slot of <var>key</var>
+                    Let <var>keyDerivationKey</var> be the secret represented by {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     as the message.
                   </p>
                 </li>
@@ -14501,13 +14495,13 @@ dictionary HkdfParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\type]]</a> internal slot of
+                            Set the {{CryptoKey/[[type]]}} internal slot of
                             <var>key</var> to {{KeyType/"secret"}}.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\extractable]]</a> internal slot of
+                            Set the {{CryptoKey/[[extractable]]}} internal slot of
                             <var>key</var> to <code>false</code>.
                           </p>
                         </li>
@@ -14525,7 +14519,7 @@ dictionary HkdfParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a>[[\algorithm]]</a> internal
+                            Set the {{CryptoKey/[[algorithm]]}} internal
                             slot of <var>key</var> to <var>algorithm</var>.
                           </p>
                         </li>
@@ -14650,7 +14644,7 @@ dictionary Pbkdf2Params : Algorithm {
                   <p>
                     Let <var>result</var> be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [[RFC8018]] using <var>prf</var> as the
-                    pseudo-random function, <var>PRF</var>, the password represented by <a>[[\handle]]</a> internal slot of <var>key</var>
+                    pseudo-random function, <var>PRF</var>, the password represented by {{CryptoKey/[[handle]]}} internal slot of <var>key</var>
                     as the password, <var>P</var>, <a href="#concept-contents-of-arraybuffer">the
                     contents of</a> the {{Pbkdf2Params/salt}} attribute of
                     <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the {{Pbkdf2Params/iterations}} attribute of
@@ -14704,13 +14698,13 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     <var>key</var> to {{KeyType/"secret"}}.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\extractable]]</a> internal slot of
+                    Set the {{CryptoKey/[[extractable]]}} internal slot of
                     <var>key</var> to <code>false</code>.
                   </p>
                 </li>
@@ -14728,7 +14722,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a>[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of <var>key</var> to <var>algorithm</var>.
                   </p>
                 </li>
