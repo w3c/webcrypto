@@ -2838,7 +2838,7 @@ dictionary CryptoKeyPair {
             <h4>Internal State Objects</h4>
             <p>
               This specification makes use of an internal object,
-              <dfn id="dfn-supportedAlgorithms" data-dfn-for=SubtleCrypto>[[\supportedAlgorithms]]</dfn>. This internal object is
+              <dfn id="dfn-supportedAlgorithms">supportedAlgorithms</dfn>. This internal object is
               not exposed to applications.
             </p>
             <p>
@@ -2853,7 +2853,7 @@ dictionary CryptoKeyPair {
               <li>
                 <p>
                   For each value, <var>v</var> in the List of <a href="#supported-operation">supported operations</a>, set the <var>v</var> key of
-                   the internal object {{SubtleCrypto/[[supportedAlgorithms]]}}
+                   the internal object {{supportedAlgorithms}}
                    to a new associative container.
                 </p>
               </li>
@@ -2872,7 +2872,7 @@ dictionary CryptoKeyPair {
             <ol>
               <li>
                 Let <var>registeredAlgorithms</var> be the associative container stored at the
-                <var>op</var> key of {{SubtleCrypto/[[supportedAlgorithms]]}}.
+                <var>op</var> key of {{supportedAlgorithms}}.
               </li>
               <li>
                 Set the <var>alg</var> key of <var>registeredAlgorithms</var> to the IDL dictionary
@@ -2906,7 +2906,7 @@ dictionary CryptoKeyPair {
                 <ol>
                   <li>
                     Let <var>registeredAlgorithms</var> be the associative container stored at the
-                    <code>op</code> key of {{SubtleCrypto/[[supportedAlgorithms]]}}.
+                    <code>op</code> key of {{supportedAlgorithms}}.
                   </li>
                   <li>
                     Let <var>initialAlg</var> be the result of converting the ECMAScript object
