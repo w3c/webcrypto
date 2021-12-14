@@ -4471,7 +4471,8 @@ dictionary RsaHashedImportParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>1.2.840.113549.1.1.1</code>
+                                    <code>rsaEncryption</code> defined in
+                                    [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
@@ -4532,7 +4533,8 @@ dictionary RsaHashedImportParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>1.2.840.113549.1.1.1</code>
+                                    <code>rsaEncryption</code> defined in
+                                    [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
@@ -5833,139 +5835,14 @@ dictionary RsaPssParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>id-RSASSA-PSS</code> defined in
+                                    <code>rsaEncryption</code> defined in
                                     [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <var>params</var> field to an instance of the
-                                    <code>RSASSA-PSS-params</code> ASN.1 type with the following
-                                    properties:
+                                    Set the <var>params</var> field to the ASN.1 type NULL.
                                   </p>
-                                  <ul>
-                                    <li>
-                                      <p>
-                                        Set the <var>hashAlgorithm</var> field to an instance of
-                                        the <code>HashAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <dl class="switch">
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha256</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha384</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha512</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>Otherwise:</dt>
-                                        <dd>
-                                          <ol>
-                                            <li>
-                                              <p>
-                                                Perform any [= RSA-PSS key export steps | key export steps =]
-                                                defined by <a href="#dfn-applicable-specification">other applicable
-                                                specifications</a>, passing <var>format</var> and the
-                                                {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the {{CryptoKey/[[algorithm]]}}
-                                                internal slot of <var>key</var>
-                                                and obtaining <var>hashOid</var> and <var>hashParams</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>algorithm</var> object identifier
-                                                of <var>hashAlgorithm</var> to <var>hashOid</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>params</var> field of <var>hashAlgorithm</var>
-                                                to
-                                                <var>hashParams</var> if <var>hashParams</var> is not
-                                                undefined and omit the <var>params</var> field otherwise.
-                                              </p>
-                                            </li>
-                                          </ol>
-                                        </dd>
-                                      </dl>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>maskGenAlgorithm</var> field to an instance
-                                        of the <code>MaskGenAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <ul>
-                                        <li>
-                                          <p>
-                                            Set the <var>algorithm</var> field to the OID
-                                            <code>id-mgf1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            Set the <var>params</var> field to an instance of the
-                                            <code>HashAlgorithm</code> ASN.1 type that is
-                                            identical to the <var>hashAlgorithm</var> field.
-                                          </p>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>saltLength</var> field to the length in
-                                        octets of the digest algorithm identified by the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute
-                                        of the {{CryptoKey/[[algorithm]]}}
-                                        internal slot of <var>key</var>.
-                                      </p>
-                                    </li>
-                                  </ul>
                                 </li>
                               </ul>
                             </li>
@@ -6020,139 +5897,14 @@ dictionary RsaPssParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>id-RSASSA-PSS</code> defined in
+                                    <code>rsaEncryption</code> defined in
                                     [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <var>params</var> field to an instance of the
-                                    <code>RSASSA-PSS-params</code> ASN.1 type with the following
-                                    properties:
+                                    Set the <var>params</var> field to the ASN.1 type NULL.
                                   </p>
-                                  <ul>
-                                    <li>
-                                      <p>
-                                        Set the <var>hashAlgorithm</var> field to an instance of
-                                        the <code>HashAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <dl class="switch">
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha256</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha384</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha512</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>Otherwise:</dt>
-                                        <dd>
-                                          <ol>
-                                            <li>
-                                              <p>
-                                                Perform any [= RSA-PSS key export steps | key export steps =]
-                                                defined by <a href="#dfn-applicable-specification">other applicable
-                                                specifications</a>, passing <var>format</var> and the
-                                                {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the {{CryptoKey/[[algorithm]]}}
-                                                internal slot of <var>key</var>
-                                                and obtaining <var>hashOid</var> and <var>hashParams</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>algorithm</var> object identifier
-                                                of <var>hashAlgorithm</var> to <var>hashOid</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>params</var> field of <var>hashAlgorithm</var>
-                                                to
-                                                <var>hashParams</var> if <var>hashParams</var> is not
-                                                undefined and omit the <var>params</var> field otherwise.
-                                              </p>
-                                            </li>
-                                          </ol>
-                                        </dd>
-                                      </dl>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>maskGenAlgorithm</var> field to an instance
-                                        of the <code>MaskGenAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <ul>
-                                        <li>
-                                          <p>
-                                            Set the <var>algorithm</var> field to the OID
-                                            <code>id-mgf1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            Set the <var>params</var> field to an instance of the
-                                            <code>HashAlgorithm</code> ASN.1 type that is
-                                            identical to the <var>hashAlgorithm</var> field.
-                                          </p>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>saltLength</var> field to the length in
-                                        octets of the digest algorithm identified by the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute
-                                        of the {{CryptoKey/[[algorithm]]}}
-                                        internal slot of <var>key</var>.
-                                      </p>
-                                    </li>
-                                  </ul>
                                 </li>
                               </ul>
                             </li>
@@ -7450,131 +7202,14 @@ dictionary RsaOaepParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>id-RSAES-OAEP</code> defined in
+                                    <code>rsaEncryption</code> defined in
                                     [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <var>params</var> field to an instance of the
-                                    <code>RSAES-OAEP-params</code> ASN.1 type with the following
-                                    properties:
+                                    Set the <var>params</var> field to the ASN.1 type NULL.
                                   </p>
-                                  <ul>
-                                    <li>
-                                      <p>
-                                        Set the <var>hashAlgorithm</var> field to an instance of
-                                        the <code>HashAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <dl class="switch">
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha256</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha384</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha512</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>Otherwise:</dt>
-                                        <dd>
-                                          <ol>
-                                            <li>
-                                              <p>
-                                                Perform any [= RSA-PSS key export steps | key export steps =]
-                                                defined by <a href="#dfn-applicable-specification">other applicable
-                                                specifications</a>, passing <var>format</var> and the
-                                                {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the {{CryptoKey/[[algorithm]]}}
-                                                internal slot of <var>key</var>
-                                                and obtaining <var>hashOid</var> and <var>hashParams</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>algorithm</var> object identifier
-                                                of <var>hashAlgorithm</var> to <var>hashOid</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>params</var> field of <var>hashAlgorithm</var>
-                                                to
-                                                <var>hashParams</var> if <var>hashParams</var> is not
-                                                undefined and omit the <var>params</var> field otherwise.
-                                              </p>
-                                            </li>
-                                          </ol>
-                                        </dd>
-                                      </dl>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>maskGenAlgorithm</var> field to an instance
-                                        of the <code>MaskGenAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <ul>
-                                        <li>
-                                          <p>
-                                            Set the <var>algorithm</var> field to the OID
-                                            <code>id-mgf1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            Set the <var>params</var> field to an instance of the
-                                            <code>HashAlgorithm</code> ASN.1 type that is
-                                            identical to the <var>hashAlgorithm</var> field.
-                                          </p>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                  </ul>
                                 </li>
                               </ul>
                             </li>
@@ -7629,131 +7264,14 @@ dictionary RsaOaepParams : Algorithm {
                                 <li>
                                   <p>
                                     Set the <var>algorithm</var> field to the OID
-                                    <code>id-RSAES-OAEP</code> defined in
+                                    <code>rsaEncryption</code> defined in
                                     [[RFC3447]].
                                   </p>
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <var>params</var> field to an instance of the
-                                    <code>RSAES-OAEP-params</code> ASN.1 type with the following
-                                    properties:
+                                    Set the <var>params</var> field to the ASN.1 type NULL.
                                   </p>
-                                  <ul>
-                                    <li>
-                                      <p>
-                                        Set the <var>hashAlgorithm</var> field to an instance of
-                                        the <code>HashAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <dl class="switch">
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-1"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-256"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha256</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-384"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha384</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>
-                                          If the {{KeyAlgorithm/name}}
-                                          attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                          the {{CryptoKey/[[algorithm]]}}
-                                          internal slot of <var>key</var> is <code>"SHA-512"</code>:
-                                        </dt>
-                                        <dd>
-                                          <p>
-                                            Set the <var>algorithm</var> object identifier
-                                            of <var>hashAlgorithm</var> to the
-                                            OID <code>id-sha512</code> defined in [[RFC3447]].
-                                          </p>
-                                        </dd>
-                                        <dt>Otherwise:</dt>
-                                        <dd>
-                                          <ol>
-                                            <li>
-                                              <p>
-                                                Perform any [= RSA-OAEP key export steps | key export steps =]
-                                                defined by <a href="#dfn-applicable-specification">other applicable
-                                                specifications</a>, passing <var>format</var> and the
-                                                {{RsaHashedKeyAlgorithm/hash}} attribute of
-                                                the {{CryptoKey/[[algorithm]]}}
-                                                internal slot of <var>key</var>
-                                                and obtaining <var>hashOid</var> and <var>hashParams</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>algorithm</var> object identifier
-                                                of <var>hashAlgorithm</var> to <var>hashOid</var>.
-                                              </p>
-                                            </li>
-                                            <li>
-                                              <p>
-                                                Set the <var>params</var> field of <var>hashAlgorithm</var>
-                                                to
-                                                <var>hashParams</var> if <var>hashParams</var> is not
-                                                undefined and omit the <var>params</var> field otherwise.
-                                              </p>
-                                            </li>
-                                          </ol>
-                                        </dd>
-                                      </dl>
-                                    </li>
-                                    <li>
-                                      <p>
-                                        Set the <var>maskGenAlgorithm</var> field to an instance
-                                        of the <code>MaskGenAlgorithm</code> ASN.1 type with the
-                                        following properties:
-                                      </p>
-                                      <ul>
-                                        <li>
-                                          <p>
-                                            Set the <var>algorithm</var> field to the OID
-                                            <code>id-mgf1</code> defined in [[RFC3447]].
-                                          </p>
-                                        </li>
-                                        <li>
-                                          <p>
-                                            Set the <var>params</var> field to an instance of the
-                                            <code>HashAlgorithm</code> ASN.1 type that is
-                                            identical to the <var>hashAlgorithm</var> field.
-                                          </p>
-                                        </li>
-                                      </ul>
-                                    </li>
-                                  </ul>
                                 </li>
                               </ul>
                             </li>
@@ -9250,8 +8768,9 @@ dictionary EcKeyImportParams : Algorithm {
                               <ul>
                                 <li>
                                   <p>
-                                    Set the <var>algorithm</var> object identifier to the OID
-                                    <code>1.2.840.10045.2.1</code>.
+                                    Set the <var>algorithm</var> field to the OID
+                                    <code>id-ecPublicKey</code> defined in
+                                    [[RFC5480]].
                                   </p>
                                 </li>
                                 <li>
@@ -9390,8 +8909,9 @@ dictionary EcKeyImportParams : Algorithm {
                               <ul>
                                 <li>
                                   <p>
-                                    Set the <var>algorithm</var> object identifier to the OID
-                                    <code>1.2.840.10045.2.1</code>.
+                                    Set the <var>algorithm</var> field to the OID
+                                    <code>id-ecPublicKey</code> defined in
+                                    [[RFC5480]].
                                   </p>
                                 </li>
                                 <li>
@@ -10848,8 +10368,9 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               <ul>
                                 <li>
                                   <p>
-                                    Set the <var>algorithm</var> object identifier to the OID
-                                    <code>1.3.132.1.12</code>.
+                                    Set the <var>algorithm</var> field to the OID
+                                    <code>id-ecPublicKey</code> defined in
+                                    [[RFC5480]].
                                   </p>
                                 </li>
                                 <li>
@@ -10979,8 +10500,9 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               <ul>
                                 <li>
                                   <p>
-                                    Set the <var>algorithm</var> object identifier to the OID
-                                    <code>1.3.132.1.12</code>.
+                                    Set the <var>algorithm</var> field to the OID
+                                    <code>id-ecPublicKey</code> defined in
+                                    [[RFC5480]].
                                   </p>
                                 </li>
                                 <li>
