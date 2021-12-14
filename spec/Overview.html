@@ -7800,10 +7800,17 @@ dictionary RsaOaepParams : Algorithm {
                           </p>
                         </li>
                         <li>
+                          <p>
+                            Let <var>hash</var> be the {{KeyAlgorithm/name}}
+                            attribute of the {{RsaHashedKeyAlgorithm/hash}}
+                            attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
+                            <var>key</var>.
+                          </p>
+                        </li>
+                        <li>
                           <dl class="switch">
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
-                              of <var>key</var> is <code>"SHA-1"</code>:
+                              If <var>hash</var> is <code>"SHA-1"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7812,8 +7819,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
-                              of <var>key</var> is <code>"SHA-256"</code>:
+                              If <var>hash</var> is <code>"SHA-256"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7822,8 +7828,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
-                              of <var>key</var> is <code>"SHA-384"</code>:
+                              If <var>hash</var> is <code>"SHA-384"</code>:
                             </dt>
                             <dd>
                               <p>
@@ -7832,8 +7837,7 @@ dictionary RsaOaepParams : Algorithm {
                               </p>
                             </dd>
                             <dt>
-                              If the {{KeyAlgorithm/name}} attribute of the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot
-                              of <var>key</var> is <code>"SHA-512"</code>:
+                              If <var>hash</var> is <code>"SHA-512"</code>:
                             </dt>
                             <dd>
                               <p>
