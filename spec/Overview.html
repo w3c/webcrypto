@@ -14266,16 +14266,11 @@ const filename = `${crypto.randomUUID()}.txt`;
         </table>
         <div class=note>
           <p>
-            For "id-RSASSA-PSS" and "id-RSAES-OAEP",
-            [[RFC5756]] recommends implementations should not include parameters
-            when PSS is used with a `subjectPublicKeyInfo`, and MUST NOT include parameters when OAEP
-            is used. However, when OAEP is used as part of a key transport (as an `AlgorithmIdentifier`),
-            implementations MUST include the parameters.
-          </p>
-          <p>
-            The {{KeyFormat/"spki"}} key format in this specification implies
-            `subjectPublicKeyInfo` and thus may not be appropriate when what is needed is an
-            `AlgorithmIdentifier` for transport.
+            The object identifiers used by this specification do not
+            include information about the specific algorithm and hash
+            that the key is intended to be used with. If this is
+            required, it's recommended that the {{KeyFormat/"jwk"}}
+            key format is used instead.
           </p>
         </div>
       </section>
