@@ -8808,24 +8808,17 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <dl class="switch">
-                    <dt>If |length| is null:</dt>
-                    <dd>Return |secret|</dd>
-                    <dt>Otherwise:</dt>
+                    <dt>
+                      If |length| is not null, and not equal to the length of |secret| in bits:
+                    </dt>
                     <dd>
-                      <dl class="switch">
-                        <dt>
-                          If the length of |secret| in bits is less than
-                          |length|:
-                        </dt>
-                        <dd>
-                          [= exception/throw =] an
-                          {{OperationError}}.
-                        </dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Return an [= octet string containing =] the first |length| bits of |secret|.
-                        </dd>
-                      </dl>
+                      [= exception/throw =] an {{OperationError}}.
+                    </dd>
+                    <dt>
+                      Otherwise:
+                    </dt>
+                    <dd>
+                      Return |secret|.
                     </dd>
                   </dl>
                 </li>
