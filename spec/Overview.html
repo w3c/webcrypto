@@ -1328,8 +1328,7 @@ interface SubtleCrypto {
           <h3>Methods and Parameters</h3>
           <p>
             Unless otherwise stated, objects created by the methods defined in this section shall be associated with the
-            [= relevant global object =]
-            of `this` [[HTML]].
+            [= relevant realm =] of [= this =].
           </p>
           <div class=note>
             <p>
@@ -2061,10 +2060,7 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be a new {{ArrayBuffer}}
-                  associated with the
-                  [= relevant global object =]
-                  of `this` [[HTML]], and
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
                   containing the result of performing the derive bits operation
                   specified by |normalizedAlgorithm| using |baseKey|,
                   |algorithm| and |length|.
@@ -2426,7 +2422,7 @@ interface SubtleCrypto {
                       </li>
                       <li>
                         <p>
-                          Let |bytes| be the byte sequence the results from converting
+                          Let |bytes| be the [= byte sequence =] containing the result of converting
                           |json|, a JavaScript String comprised of UTF-16 code points, to
                           UTF-8 code points.
                         </p>
@@ -2724,8 +2720,7 @@ interface SubtleCrypto {
             this results in termination of execution of the sub-algorithm and all ancestor algorithms
             until one is reached that explicitly describes procedures for catching exceptions.
             The error object thrown shall be associated with the
-            [= relevant global object =]</a>
-            of `this` [[HTML]].
+            [= relevant realm =] of [= this =].
           </p>
         </section>
       </section>
@@ -2900,6 +2895,10 @@ dictionary CryptoKeyPair {
             Additionally, upon initialization, conforming User Agents must perform the
             [= define an algorithm =] steps for each of
             the supported operations, registering their IDL parameter type as indicated.
+          </p>
+          <p>
+            Unless otherwise stated, objects created by the operations defined in this specification
+            shall be associated with the [= relevant realm =] of [= this =].
           </p>
         </section>
 
@@ -3665,10 +3664,8 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of |signature|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |signature|.
                   </p>
                 </li>
               </ol>
@@ -3777,9 +3774,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 <li>
                   <p>
                     Let |publicKey| be a new {{CryptoKey}}
-                    object, associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and representing the public key of the generated key pair.
+                    representing the public key of the generated key pair.
                   </p>
                 </li>
                 <li>
@@ -3809,9 +3804,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -3929,9 +3922,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA public key identified by
                             |publicKey|.
                           </p>
@@ -3999,9 +3990,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA private key identified by
                             |rsaPrivateKey|.
                           </p>
@@ -4377,10 +4366,8 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -4445,10 +4432,8 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -4715,10 +4700,8 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of |signature|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |signature|.
                   </p>
                 </li>
               </ol>
@@ -4826,9 +4809,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -4859,9 +4840,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -4980,9 +4959,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA public key identified by
                             |publicKey|.
                           </p>
@@ -5048,9 +5025,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA private key identified by
                             |rsaPrivateKey|.
                           </p>
@@ -5418,10 +5393,8 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -5486,10 +5459,8 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -5759,10 +5730,8 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |ciphertext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -5813,10 +5782,8 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |plaintext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -5890,9 +5857,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -5924,9 +5889,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -6047,9 +6010,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA public key identified by
                             |publicKey|.
                           </p>
@@ -6115,9 +6076,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             that represents the RSA private key identified by
                             |rsaPrivateKey|.
                           </p>
@@ -6465,10 +6424,8 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -6533,10 +6490,8 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -6882,9 +6837,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new empty {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]].
+                            Let |result| be an empty [= byte sequence =].
                           </p>
                         </li>
                         <li>
@@ -6925,10 +6878,8 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of |result|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |result|.
                   </p>
                 </li>
               </ol>
@@ -7088,9 +7039,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -7121,9 +7070,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -7313,9 +7260,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
+                                    Let |key| be a new {{CryptoKey}}
                                     that represents |publicKey|.
                                   </p>
                                 </li>
@@ -7519,9 +7464,7 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
+                                    Let |key| be a new {{CryptoKey}}
                                     that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of [[RFC5915]] using |ecPrivateKey|.
                                   </p>
@@ -7884,10 +7827,8 @@ dictionary EcKeyImportParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
-                                    that represents |Q|
+                                    Let |key| be a new {{CryptoKey}}
+                                    that represents |Q|.
                                   </p>
                                 </li>
                               </ol>
@@ -8110,10 +8051,8 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -8268,10 +8207,8 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -8447,10 +8384,8 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -8621,9 +8556,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -8653,9 +8586,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -8965,9 +8896,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
+                                    Let |key| be a new {{CryptoKey}}
                                     that represents |publicKey|.
                                   </p>
                                 </li>
@@ -9174,9 +9103,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
+                                    Let |key| be a new {{CryptoKey}}
                                     that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of [[RFC5915]] using |ecPrivateKey|.
                                   </p>
@@ -9491,9 +9418,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Let |key| be a new {{CryptoKey}} associated with the
-                                    [= relevant global object =]
-                                    of `this` [[HTML]], and
+                                    Let |key| be a new {{CryptoKey}}
                                     that represents |Q|.
                                   </p>
                                 </li>
@@ -10033,10 +9958,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -10195,10 +10118,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |ciphertext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -10238,10 +10159,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |plaintext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -10515,10 +10434,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -10729,10 +10646,8 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |ciphertext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -10778,10 +10693,8 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |plaintext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -11056,10 +10969,8 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -11309,10 +11220,8 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |ciphertext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -11407,10 +11316,8 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
-                    containing |plaintext|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -11685,10 +11592,8 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -12106,9 +12011,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |key| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |key| be a new {{CryptoKey}}
                     representing an AES key with value |data|.
                   </p>
                 </li>
@@ -12165,10 +12068,8 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -12384,10 +12285,8 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} object, associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of |mac|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |mac|.
                   </p>
                 </li>
               </ol>
@@ -12818,9 +12717,8 @@ dictionary HmacKeyGenParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing |data|.
+                            Let |result| be the result of [= ArrayBuffer/create | creating =]
+                            an {{ArrayBuffer}} containing |data|.
                           </p>
                         </li>
                       </ol>
@@ -13253,9 +13151,7 @@ dictionary HkdfParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |key| be a new {{CryptoKey}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and
+                            Let |key| be a new {{CryptoKey}}
                             representing the key data provided in |keyData|.
                           </p>
                         </li>
@@ -13456,9 +13352,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |key| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |key| be a new {{CryptoKey}}
                     representing |keyData|.
                   </p>
                 </li>
