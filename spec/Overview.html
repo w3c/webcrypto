@@ -8645,6 +8645,11 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <ol>
                 <li>
                   <p>
+                    If |length| is zero, then [= exception/throw =] an {{OperationError}}.
+                  </p>
+                </li>
+                <li>
+                  <p>
                     If the {{CryptoKey/[[type]]}} internal slot of
                     |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
