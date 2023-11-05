@@ -15146,7 +15146,7 @@ dictionary Pbkdf2Params : Algorithm {
       <section id="examples-section">
         <h2>JavaScript Example Code</h2>
         <section id="example-key-exchange">
-          <h2>Usage Example</h2>
+          <h2>Generate two key pairs, derive a shared key, encrypt some data</h2>
           <p>
             This example generates two X25519 key pairs, one for Alice and one for Bob, performs
             a key agreement between them, derives a 256-bit AES-GCM key from the result using
@@ -15194,71 +15194,38 @@ dictionary Pbkdf2Params : Algorithm {
         <section id="examples-signing">
           <h3>Generate a signing key pair, sign some data</h3>
 
-        <pre class="js">
-var encoder = new TextEncoder('utf-8');
-
-// Algorithm Object
-var algorithmKeyGen = {
-  name: "RSASSA-PKCS1-v1_5",
-  // RsaHashedKeyGenParams
-  modulusLength: 2048,
-  publicExponent: new Uint8Array([0x01, 0x00, 0x01]),  // Equivalent to 65537
-  hash: {
-    name: "SHA-256"
-  }
-};
-
-var algorithmSign = {
-  name: "RSASSA-PKCS1-v1_5"
-};
-
-window.crypto.subtle.generateKey(algorithmKeyGen, false, ["sign"]).then(
-  function(key) {
-    var dataPart1 = encoder.encode("hello,");
-    var dataPart2 = encoder.encode(" world!");
-
-    return window.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPart2]);
-  },
-  console.error.bind(console, "Unable to generate a key")
-).then(
-  console.log.bind(console, "The signature is: "),
-  console.error.bind(console, "Unable to sign")
-);
-        </pre>
+          <pre class="example js" title="Ed25519 signing">
+            const data = new TextEncoder().encode('Hello, world!');
+            const key = await crypto.subtle.generateKey('Ed25519', false, ['sign']);
+            const signature = await crypto.subtle.sign('Ed25519', key.privateKey, data);
+          </pre>
         </section>
         <section id="examples-symmetric-encryption">
-          <h3>Symmetric Encryption</h3>
-        <pre class=js>
-var encoder = new TextEncoder('utf-8');
-var clearDataArrayBufferView = encoder.encode("Plain Text Data");
-
-var aesAlgorithmKeyGen = {
-  name: "AES-CBC",
-  // AesKeyGenParams
-  length: 128
-};
-
-var aesAlgorithmEncrypt = {
-  name: "AES-CBC",
-  // AesCbcParams
-  iv: window.crypto.getRandomValues(new Uint8Array(16))
-};
-
-// Create a key generator to produce a one-time-use AES key to encrypt some data
-window.crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ["encrypt"]).then(
-  function(aesKey) {
-    return window.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
-  }
-).then(console.log.bind(console, "The ciphertext is: "),
-       console.error.bind(console, "Unable to encrypt"));
-</pre>
+          <h3>Generate a symmetric key, encrypt some data</h3>
+          <pre class="example js" title="AES-GCM encryption">
+            const data = new TextEncoder().encode('Hello, world!');
+            const aesAlgorithmKeyGen = {
+              name: 'AES-GCM',
+              // AesKeyGenParams
+              length: 256
+            };
+            const aesAlgorithmEncrypt = {
+              name: 'AES-GCM',
+              // AesGcmParams
+              iv: crypto.getRandomValues(new Uint8Array(16))
+            };
+            const key = await crypto.subtle.generateKey(aesAlgorithmKeyGen, false, ['encrypt']);
+            const encrypted = await crypto.subtle.encrypt(aesAlgorithmEncrypt, key, data);
+          </pre>
+        </section>
+        <section id="examples-random-uuid">
+          <h3>Generate unique name for download</h3>
+          <pre class="example js" title="Random UUID generation">
+            const filename = `${crypto.randomUUID()}.txt`;
+          </pre>
+        </section>
       </section>
-      <section id="examples-random-uuid">
-        <h3>Generate unique name for download</h3>
-        <pre class=js>
-const filename = `${crypto.randomUUID()}.txt`;
-</pre>
-    </section>
+
     <section id="iana-section">
     <h2>IANA Considerations</h2>
         <section id="iana-section-jws-jwa">
