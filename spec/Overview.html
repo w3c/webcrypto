@@ -804,7 +804,7 @@ partial interface mixin WindowOrWorkerGlobalScope {
   [SameObject] readonly attribute Crypto crypto;
 };
 
-[Exposed=(Window,Worker)]
+[Exposed=*]
 interface Crypto {
   [SecureContext] readonly attribute SubtleCrypto subtle;
   ArrayBufferView getRandomValues(ArrayBufferView array);
