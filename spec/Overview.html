@@ -10018,15 +10018,15 @@ dictionary EcdhKeyDeriveParams : Algorithm {
         <section id="ed25519-registration">
           <h4>Registration</h4>
           <p>
-            The <a data-cite="WebCryptoAPI#recognized-algorithm-name">recognized algorithm name</a>
-            for this algorithm is "`Ed25519`".
+            The [= recognized algorithm name =] for
+            this algorithm is "`Ed25519`".
           </p>
           <table>
             <thead>
               <tr>
-                <th><a data-cite="WebCryptoAPI#supported-operations">Operation</a></th>
-                <th><a data-cite="WebCryptoAPI#algorithm-specific-params">Parameters</a></th>
-                <th><a data-cite="WebCryptoAPI#algorithm-result">Result</a></th>
+                <th><a href="#supported-operations">Operation</a></th>
+                <th><a href="#algorithm-specific-params">Parameters</a></th>
+                <th><a href="#algorithm-result">Result</a></th>
               </tr>
             </thead>
             <tbody>
@@ -10068,7 +10068,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -10096,7 +10096,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -10171,26 +10171,26 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     |publicKey| to "`public`"
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of |publicKey| to |algorithm|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of |publicKey| to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-usages">[[\usages]]</a> internal slot of
-                    |publicKey| to be the <a data-cite="WebCryptoAPI#concept-usage-intersection">usage intersection</a>
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
+                    |publicKey| to be the [= usage intersection =]
                     of |usages| and `[ "verify" ]`.
                   </p>
                 </li>
@@ -10204,26 +10204,26 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     |privateKey| to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of |privateKey| to |algorithm|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of |privateKey| to |extractable|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-usages">[[\usages]]</a> internal slot of
-                    |privateKey| to be the <a data-cite="WebCryptoAPI#concept-usage-intersection">usage intersection</a>
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
+                    |privateKey| to be the [= usage intersection =]
                     of |usages| and `[ "sign" ]`.
                   </p>
                 </li>
@@ -10276,7 +10276,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Let |spki| be the result of running the
-                            <a data-cite="WebCryptoAPI#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
+                            [= parse a subjectPublicKeyInfo =]
                             algorithm over |keyData|.
                           </p>
                         </li>
@@ -10321,7 +10321,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to "`public`"
                           </p>
                         </li>
@@ -10338,7 +10338,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -10358,7 +10358,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Let |privateKeyInfo| be the result of running the
-                            <a data-cite="WebCryptoAPI#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
+                            [= parse a privateKeyInfo =]
                             algorithm over |keyData|.
                           </p>
                         </li>
@@ -10390,7 +10390,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |curvePrivateKey| be the result of performing the <a data-cite="WebCryptoAPI#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                            Let |curvePrivateKey| be the result of performing the
+                            [= parse an ASN.1 structure =]
                             algorithm, with |data| as the `privateKey` field
                             of |privateKeyInfo|, |structure| as the ASN.1
                             `CurvePrivateKey` structure specified in Section 7 of [[RFC8410]], and |exactData| set to true.
@@ -10413,7 +10414,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -10430,7 +10431,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -10521,7 +10522,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of |Key| to {{KeyType/"private"}}.
                                   </p>
                                 </li>
@@ -10545,7 +10546,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of |Key| to {{KeyType/"public"}}.
                                   </p>
                                 </li>
@@ -10566,7 +10567,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -10604,13 +10605,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to "`public`"
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -10644,7 +10645,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of |key|
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -10655,7 +10656,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -10703,7 +10704,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -10738,7 +10739,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               <p>
                                 Set the |privateKey| field to the result of DER-encoding
                                 a `CurvePrivateKey` ASN.1 type, as defined in Section 7 of [[RFC8410]], that represents the
-                                Ed25519 private key represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of
+                                Ed25519 private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 |key|
                               </p>
                             </li>
@@ -10784,7 +10785,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                              If the {{CryptoKey/[[type]]}} internal slot
                               of |key| is {{KeyType/"private"}}
                             </dt>
                             <dd>
@@ -10800,7 +10801,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the `ext` attribute of |jwk| to the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal slot
+                            Set the `ext` attribute of |jwk| to the {{CryptoKey/[[extractable]]}} internal slot
                             of |key|.
                           </p>
                         </li>
@@ -10819,14 +10820,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Let |data| be an <a data-cite="WebCryptoAPI#dfn-octet-string">octet string</a> representing the Ed25519
-                            public key represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of
+                            Let |data| be an [= octet string =] representing the Ed25519
+                            public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -10873,22 +10874,22 @@ dictionary EcdhKeyDeriveParams : Algorithm {
         <section id="x25519-registration">
           <h4>Registration</h4>
           <p>
-            The <a data-cite="WebCryptoAPI#recognized-algorithm-name">recognized algorithm name</a>
-            for this algorithm is "`X25519`".
+            The [= recognized algorithm name =] for
+            this algorithm is "`X25519`".
           </p>
           <table>
             <thead>
               <tr>
-                <th><a data-cite="WebCryptoAPI#supported-operations">Operation</a></th>
-                <th><a data-cite="WebCryptoAPI#algorithm-specific-params">Parameters</a></th>
-                <th><a data-cite="WebCryptoAPI#algorithm-result">Result</a></th>
+                <th><a href="#supported-operations">Operation</a></th>
+                <th><a href="#algorithm-specific-params">Parameters</a></th>
+                <th><a href="#algorithm-result">Result</a></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>deriveBits</td>
                 <td>{{EcdhKeyDeriveParams}}</td>
-                <td><a data-cite="WebCryptoAPI#dfn-octet-string">octet string</a></td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -10917,7 +10918,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -10930,15 +10931,15 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    If the {{CryptoKey/[[type]]}} internal slot of
                     |publicKey| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
                 <li>
                   <p>
                     If the {{KeyAlgorithm/name}} attribute of
-                    the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal slot of
-                    |publicKey| is not equal to the {{KeyAlgorithm/name}} property of the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal slot of
+                    the {{CryptoKey/[[algorithm]]}} internal slot of
+                    |publicKey| is not equal to the {{KeyAlgorithm/name}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key|, then [= exception/throw =] an {{InvalidAccessError}}.
                   </p>
                 </li>
@@ -10946,7 +10947,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                   <p>
                     Let |secret| be the result of performing the X25519 function specified in
                     [[RFC7748]] Section 5 with |key| as the X25519 private key |k|
-                    and the X25519 public key represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a>
+                    and the X25519 public key represented by the {{CryptoKey/[[handle]]}}
                     internal slot of |publicKey| as the X25519 public key |u|.
                   </p>
                 </li>
@@ -10974,7 +10975,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Return an <a data-cite="WebCryptoAPI#octet-string-containing">octet string containing</a> the first |length| bits of |secret|.
+                          Return an [= octet string containing =] the first |length| bits of |secret|.
                         </dd>
                       </dl>
                     </dd>
@@ -11021,25 +11022,25 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     |publicKey| to "`public`"
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of |publicKey| to |algorithm|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of |publicKey| to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-usages">[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     |publicKey| to be the empty list.
                   </p>
                 </li>
@@ -11053,27 +11054,27 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot of
+                    Set the {{CryptoKey/[[type]]}} internal slot of
                     |privateKey| to {{KeyType/"private"}}
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a> internal
+                    Set the {{CryptoKey/[[algorithm]]}} internal
                     slot of |privateKey| to |algorithm|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal
+                    Set the {{CryptoKey/[[extractable]]}} internal
                     slot of |privateKey| to |extractable|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-usages">[[\usages]]</a> internal slot of
+                    Set the {{CryptoKey/[[usages]]}} internal slot of
                     |privateKey| to be the
-                    <a data-cite="WebCryptoAPI#concept-usage-intersection">usage intersection</a> of
+                    [= usage intersection =] of
                     |usages| and `[ "deriveKey", "deriveBits" ]`.
                   </p>
                 </li>
@@ -11125,7 +11126,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Let |spki| be the result of running the
-                            <a data-cite="WebCryptoAPI#concept-parse-a-spki">parse a subjectPublicKeyInfo</a>
+                            [= parse a subjectPublicKeyInfo =]
                             algorithm over |keyData|.
                           </p>
                         </li>
@@ -11170,7 +11171,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to "`public`"
                           </p>
                         </li>
@@ -11187,7 +11188,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -11207,7 +11208,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <p>
                             Let |privateKeyInfo| be the result of running the
-                            <a data-cite="WebCryptoAPI#concept-parse-a-privateKeyInfo">parse a privateKeyInfo</a>
+                            [= parse a privateKeyInfo =]
                             algorithm over |keyData|.
                           </p>
                         </li>
@@ -11239,7 +11240,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |curvePrivateKey| be the result of performing the <a data-cite="WebCryptoAPI#concept-parse-an-asn1-structure">parse an ASN.1 structure</a>
+                            Let |curvePrivateKey| be the result of performing the
+                            [= parse an ASN.1 structure =]
                             algorithm, with |data| as the `privateKey` field
                             of |privateKeyInfo|, |structure| as the ASN.1
                             `CurvePrivateKey` structure specified in Section 7 of [[RFC8410]], and |exactData| set to true.
@@ -11262,7 +11264,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to {{KeyType/"private"}}
                           </p>
                         </li>
@@ -11279,7 +11281,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -11374,7 +11376,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of |Key| to {{KeyType/"private"}}.
                                   </p>
                                 </li>
@@ -11398,7 +11400,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                 </li>
                                 <li>
                                   <p>
-                                    Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a>
+                                    Set the {{CryptoKey/[[type]]}}
                                     internal slot of |Key| to {{KeyType/"public"}}.
                                   </p>
                                 </li>
@@ -11419,7 +11421,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -11456,13 +11458,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            Set the {{CryptoKey/[[type]]}} internal slot
                             of |key| to "`public`"
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-algorithm">[[\algorithm]]</a>
+                            Set the {{CryptoKey/[[algorithm]]}}
                             internal slot of |key| to |algorithm|.
                           </p>
                         </li>
@@ -11496,7 +11498,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If the underlying cryptographic key material represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of |key|
+                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
                     cannot be accessed, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
@@ -11507,7 +11509,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -11555,7 +11557,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
@@ -11590,7 +11592,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               <p>
                                 Set the |privateKey| field to the result of DER-encoding
                                 a `CurvePrivateKey` ASN.1 type, as defined in Section 7 of [[RFC8410]], that represents the
-                                X25519 private key represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of
+                                X25519 private key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 |key|
                               </p>
                             </li>
@@ -11636,7 +11638,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         <li>
                           <dl class="switch">
                             <dt>
-                              If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                              If the {{CryptoKey/[[type]]}} internal slot
                               of |key| is {{KeyType/"private"}}
                             </dt>
                             <dd>
@@ -11652,7 +11654,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Set the `ext` attribute of |jwk| to the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-extractable">[[\extractable]]</a> internal slot
+                            Set the `ext` attribute of |jwk| to the {{CryptoKey/[[extractable]]}} internal slot
                             of |key|.
                           </p>
                         </li>
@@ -11671,14 +11673,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            If the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-type">[[\type]]</a> internal slot
+                            If the {{CryptoKey/[[type]]}} internal slot
                             of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Let |data| be an <a data-cite="WebCryptoAPI#dfn-octet-string">octet string</a> representing the X25519
-                            public key represented by the <a data-cite="WebCryptoAPI#dfn-CryptoKey-slot-handle">[[\handle]]</a> internal slot of
+                            Let |data| be an [= octet string =] representing the X25519
+                            public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
