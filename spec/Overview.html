@@ -800,15 +800,15 @@
           cryptographically strong pseudo-random number generator seeded with truly random values.
         </p>
         <pre class=idl>
-partial interface mixin WindowOrWorkerGlobalScope {
+partial interface mixin UniversalGlobalScope {
   [SameObject] readonly attribute Crypto crypto;
 };
 
 [Exposed=*]
 interface Crypto {
-  [SecureContext] readonly attribute SubtleCrypto subtle;
+  [Exposed=(Window,Worker), SecureContext] readonly attribute SubtleCrypto subtle;
   ArrayBufferView getRandomValues(ArrayBufferView array);
-  [SecureContext] DOMString randomUUID();
+  [Exposed=(Window,Worker), SecureContext] DOMString randomUUID();
 };
         </pre>
 
