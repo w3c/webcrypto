@@ -10078,6 +10078,16 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     Section 5.1.6, with |message| as |M|,
                     using the Ed25519 private key associated with |key|.
                   </p>
+                  <div class="issue">
+                    <p>
+                      Some implementations may (wish to) generate randomized signatures
+                      as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
+                      instead of deterministic signatures as per [[RFC8032]].
+                    </p>
+                    <p>
+                      See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/28">WICG/webcrypto-secure-curves issue 28</a>.
+                    </p>
+                  </div>
                 </li>
                 <li>
                   <p>
@@ -10105,6 +10115,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     If the key data of |key| represents an invalid point or a small-order element
                     on the Elliptic Curve of Ed25519, return `false`.
                   </p>
+                  <div class="issue">
+                    <p>
+                      Not all implementations perform this check.
+                    </p>
+                    <p>
+                      See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/27">WICG/webcrypto-secure-curves issue 27</a>.
+                    </p>
+                  </div>
                 </li>
                 <li>
                   <p>
@@ -10112,6 +10130,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     represents an invalid point or a small-order element
                     on the Elliptic Curve of Ed25519, return `false`.
                   </p>
+                  <div class="issue">
+                    <p>
+                      Not all implementations perform this check.
+                    </p>
+                    <p>
+                      See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/27">WICG/webcrypto-secure-curves issue 27</a>.
+                    </p>
+                  </div>
                 </li>
                 <li>
                   <p>
