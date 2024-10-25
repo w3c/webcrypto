@@ -13281,6 +13281,13 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
+                    If |length| is zero, return the result of
+                    [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                    containing an empty [= byte sequence =].
+                  </p>
+                </li>
+                <li>
+                  <p>
                     Let |prf| be the MAC Generation function described in Section 4 of
                     [[FIPS-198-1]] using the hash function
                     described by the {{Pbkdf2Params/hash}} member of
