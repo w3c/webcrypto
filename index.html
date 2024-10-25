@@ -116,7 +116,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="4a6e3e8f9f910a9d104812cc238f837e832944f4">
+<meta name="revision" content="4c8ebc796de3c9d96a86b4e0167f2c527ba03f3b">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -216,9 +216,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "4a6e3e8f9f910a9d104812cc238f837e832944f4",
-  "publishISODate": "2024-09-17T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 17 September 2024"
+  "gitRevision": "4c8ebc796de3c9d96a86b4e0167f2c527ba03f3b",
+  "publishISODate": "2024-10-25T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 25 October 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -226,7 +226,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-09-17">17 September 2024</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-10-25">25 October 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -13210,16 +13210,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>extractKey</var> be a key equal to <var>n</var> zero bits where
-                    <var>n</var> is the size of the output of the hash function described by the
-                    <a data-link-type="idl" href="#dfn-HkdfParams-hash" class="internalDFN" id="ref-for-dfn-HkdfParams-hash-2"><code>hash</code></a> member of
-                    <var>normalizedAlgorithm</var>.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let <var>keyDerivationKey</var> be the secret represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-49"><code>[[handle]]</code></a> internal slot of <var>key</var>
-                    as the message.
+                    Let <var>keyDerivationKey</var> be the secret represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-49"><code>[[handle]]</code></a> internal slot of <var>key</var>.
                   </p>
                 </li>
                 <li>
@@ -13231,7 +13222,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <ul>
                     <li>
                       <p>
-                        the <a data-link-type="idl" href="#dfn-HkdfParams-hash" class="internalDFN" id="ref-for-dfn-HkdfParams-hash-3"><code>hash</code></a> member of
+                        the <a data-link-type="idl" href="#dfn-HkdfParams-hash" class="internalDFN" id="ref-for-dfn-HkdfParams-hash-2"><code>hash</code></a> member of
                         <var>normalizedAlgorithm</var> as <var>Hash</var>,
                       </p>
                     </li>
@@ -13565,14 +13556,14 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
         <section id="examples-signing"><div class="header-wrapper"><h3 id="x33-1-generate-a-signing-key-pair-sign-some-data"><bdi class="secno">33.1 </bdi>Generate a signing key pair, sign some data</h3><a class="self-link" href="#examples-signing" aria-label="Permalink for Section 33.1"></a></div>
           
 
-        <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">var</span> encoder = <span class="hljs-keyword">new</span> TextEncoder(<span class="hljs-string">'utf-8'</span>);
+        <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">var</span> encoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextEncoder</span>(<span class="hljs-string">'utf-8'</span>);
 
 <span class="hljs-comment">// Algorithm Object</span>
 <span class="hljs-keyword">var</span> algorithmKeyGen = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">"RSASSA-PKCS1-v1_5"</span>,
   <span class="hljs-comment">// RsaHashedKeyGenParams</span>
   <span class="hljs-attr">modulusLength</span>: <span class="hljs-number">2048</span>,
-  <span class="hljs-attr">publicExponent</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>([<span class="hljs-number">0x01</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x01</span>]),  <span class="hljs-comment">// Equivalent to 65537</span>
+  <span class="hljs-attr">publicExponent</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>([<span class="hljs-number">0x01</span>, <span class="hljs-number">0x00</span>, <span class="hljs-number">0x01</span>]),  <span class="hljs-comment">// Equivalent to 65537</span>
   <span class="hljs-attr">hash</span>: {
     <span class="hljs-attr">name</span>: <span class="hljs-string">"SHA-256"</span>
   }
@@ -13582,23 +13573,23 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
   <span class="hljs-attr">name</span>: <span class="hljs-string">"RSASSA-PKCS1-v1_5"</span>
 };
 
-<span class="hljs-built_in">window</span>.crypto.subtle.generateKey(algorithmKeyGen, <span class="hljs-literal">false</span>, [<span class="hljs-string">"sign"</span>]).then(
-  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>) </span>{
-    <span class="hljs-keyword">var</span> dataPart1 = encoder.encode(<span class="hljs-string">"hello,"</span>);
-    <span class="hljs-keyword">var</span> dataPart2 = encoder.encode(<span class="hljs-string">" world!"</span>);
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">crypto</span>.<span class="hljs-property">subtle</span>.<span class="hljs-title function_">generateKey</span>(algorithmKeyGen, <span class="hljs-literal">false</span>, [<span class="hljs-string">"sign"</span>]).<span class="hljs-title function_">then</span>(
+  <span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>) {
+    <span class="hljs-keyword">var</span> dataPart1 = encoder.<span class="hljs-title function_">encode</span>(<span class="hljs-string">"hello,"</span>);
+    <span class="hljs-keyword">var</span> dataPart2 = encoder.<span class="hljs-title function_">encode</span>(<span class="hljs-string">" world!"</span>);
 
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.crypto.subtle.sign(algorithmSign, key.privateKey, [dataPart1, dataPart2]);
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">window</span>.<span class="hljs-property">crypto</span>.<span class="hljs-property">subtle</span>.<span class="hljs-title function_">sign</span>(algorithmSign, key.<span class="hljs-property">privateKey</span>, [dataPart1, dataPart2]);
   },
-  <span class="hljs-built_in">console</span>.error.bind(<span class="hljs-built_in">console</span>, <span class="hljs-string">"Unable to generate a key"</span>)
-).then(
-  <span class="hljs-built_in">console</span>.log.bind(<span class="hljs-built_in">console</span>, <span class="hljs-string">"The signature is: "</span>),
-  <span class="hljs-built_in">console</span>.error.bind(<span class="hljs-built_in">console</span>, <span class="hljs-string">"Unable to sign"</span>)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-property">error</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">console</span>, <span class="hljs-string">"Unable to generate a key"</span>)
+).<span class="hljs-title function_">then</span>(
+  <span class="hljs-variable language_">console</span>.<span class="hljs-property">log</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">console</span>, <span class="hljs-string">"The signature is: "</span>),
+  <span class="hljs-variable language_">console</span>.<span class="hljs-property">error</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">console</span>, <span class="hljs-string">"Unable to sign"</span>)
 );</code></pre>
         </section>
         <section id="examples-symmetric-encryption"><div class="header-wrapper"><h3 id="x33-2-symmetric-encryption"><bdi class="secno">33.2 </bdi>Symmetric Encryption</h3><a class="self-link" href="#examples-symmetric-encryption" aria-label="Permalink for Section 33.2"></a></div>
           
-        <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">var</span> encoder = <span class="hljs-keyword">new</span> TextEncoder(<span class="hljs-string">'utf-8'</span>);
-<span class="hljs-keyword">var</span> clearDataArrayBufferView = encoder.encode(<span class="hljs-string">"Plain Text Data"</span>);
+        <pre aria-busy="false"><code class="hljs js"><span class="hljs-keyword">var</span> encoder = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TextEncoder</span>(<span class="hljs-string">'utf-8'</span>);
+<span class="hljs-keyword">var</span> clearDataArrayBufferView = encoder.<span class="hljs-title function_">encode</span>(<span class="hljs-string">"Plain Text Data"</span>);
 
 <span class="hljs-keyword">var</span> aesAlgorithmKeyGen = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">"AES-CBC"</span>,
@@ -13609,16 +13600,16 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
 <span class="hljs-keyword">var</span> aesAlgorithmEncrypt = {
   <span class="hljs-attr">name</span>: <span class="hljs-string">"AES-CBC"</span>,
   <span class="hljs-comment">// AesCbcParams</span>
-  <span class="hljs-attr">iv</span>: <span class="hljs-built_in">window</span>.crypto.getRandomValues(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Uint8Array</span>(<span class="hljs-number">16</span>))
+  <span class="hljs-attr">iv</span>: <span class="hljs-variable language_">window</span>.<span class="hljs-property">crypto</span>.<span class="hljs-title function_">getRandomValues</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(<span class="hljs-number">16</span>))
 };
 
 <span class="hljs-comment">// Create a key generator to produce a one-time-use AES key to encrypt some data</span>
-<span class="hljs-built_in">window</span>.crypto.subtle.generateKey(aesAlgorithmKeyGen, <span class="hljs-literal">false</span>, [<span class="hljs-string">"encrypt"</span>]).then(
-  <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">aesKey</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">window</span>.crypto.subtle.encrypt(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">crypto</span>.<span class="hljs-property">subtle</span>.<span class="hljs-title function_">generateKey</span>(aesAlgorithmKeyGen, <span class="hljs-literal">false</span>, [<span class="hljs-string">"encrypt"</span>]).<span class="hljs-title function_">then</span>(
+  <span class="hljs-keyword">function</span>(<span class="hljs-params">aesKey</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">window</span>.<span class="hljs-property">crypto</span>.<span class="hljs-property">subtle</span>.<span class="hljs-title function_">encrypt</span>(aesAlgorithmEncrypt, aesKey, clearDataArrayBufferView);
   }
-).then(<span class="hljs-built_in">console</span>.log.bind(<span class="hljs-built_in">console</span>, <span class="hljs-string">"The ciphertext is: "</span>),
-       <span class="hljs-built_in">console</span>.error.bind(<span class="hljs-built_in">console</span>, <span class="hljs-string">"Unable to encrypt"</span>));</code></pre>
+).<span class="hljs-title function_">then</span>(<span class="hljs-variable language_">console</span>.<span class="hljs-property">log</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">console</span>, <span class="hljs-string">"The ciphertext is: "</span>),
+       <span class="hljs-variable language_">console</span>.<span class="hljs-property">error</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">console</span>, <span class="hljs-string">"Unable to encrypt"</span>));</code></pre>
       </section>
       <section id="examples-random-uuid"><div class="header-wrapper"><h3 id="x33-3-generate-unique-name-for-download"><bdi class="secno">33.3 </bdi>Generate unique name for download</h3><a class="self-link" href="#examples-random-uuid" aria-label="Permalink for Section 33.3"></a></div>
         
@@ -14231,7 +14222,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     </dd><dt id="bib-fips-198-1">[FIPS-198-1]</dt><dd>
       <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf"><cite>The Keyed-Hash Message Authentication Code (HMAC)</cite></a>.  NIST. July 2008. URL: <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf</a>
     </dd><dt id="bib-html">[HTML]</dt><dd>
-      <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+      <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Dominic Farolino; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
     </dd><dt id="bib-infra">[infra]</dt><dd>
       <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Anne van Kesteren; Domenic Denicola.  WHATWG. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
     </dd><dt id="bib-jwa">[JWA]</dt><dd>
@@ -17799,7 +17790,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     <li>
       <a href="#ref-for-dfn-HkdfParams-hash-1" title="§ 31.3 HkdfParams dictionary">§ 31.3 HkdfParams dictionary</a> 
     </li><li>
-      <a href="#ref-for-dfn-HkdfParams-hash-2" title="§ 31.4 Operations">§ 31.4 Operations</a> <a href="#ref-for-dfn-HkdfParams-hash-3" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-HkdfParams-hash-2" title="§ 31.4 Operations">§ 31.4 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-HkdfParams-salt" aria-label="Links in this document to definition: salt">
