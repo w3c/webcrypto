@@ -13105,7 +13105,7 @@ dictionary HkdfParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If |length| is null or zero, or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
+                    If |length| is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
                 <li>
@@ -13160,7 +13160,8 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return |result|.
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |result|.
                   </p>
                 </li>
               </ol>
@@ -13324,13 +13325,20 @@ dictionary Pbkdf2Params : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If |length| is null or zero, or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
+                    If |length| is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
                   </p>
                 </li>
                 <li>
                   <p>
                     If the {{Pbkdf2Params/iterations}} member of |normalizedAlgorithm| is zero,
                     then [= exception/throw =] an {{OperationError}}.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If |length| is zero, return the result of
+                    [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                    containing an empty [= byte sequence =].
                   </p>
                 </li>
                 <li>
@@ -13362,7 +13370,8 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return |result|
+                    Return the result of [= ArrayBuffer/create | creating =]
+                    an {{ArrayBuffer}} containing |result|.
                   </p>
                 </li>
               </ol>
