@@ -116,7 +116,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="85a4826977731f0e7952f6876946a042d5697098">
+<meta name="revision" content="d4ffcadeba2d6d9e71550b4dd3ee0877ba760e39">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -216,9 +216,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "85a4826977731f0e7952f6876946a042d5697098",
-  "publishISODate": "2024-10-25T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 25 October 2024"
+  "gitRevision": "d4ffcadeba2d6d9e71550b4dd3ee0877ba760e39",
+  "publishISODate": "2024-11-08T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 08 November 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -226,7 +226,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-10-25">25 October 2024</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-11-08">08 November 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -13260,7 +13260,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    If <var>length</var> is null or zero, or is not a multiple of 8, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
+                    If <var>length</var> is null or is not a multiple of 8, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
@@ -13315,7 +13315,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Return <var>result</var>.
+                    Return the result of <a data-link-type="dfn|abstract-op" data-lt="create" data-type="dfn" href="https://webidl.spec.whatwg.org/#arraybuffer-create">creating</a>
+                    an <a data-link-type="idl" data-lt="ArrayBuffer" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer"><code>ArrayBuffer</code></a> containing <var>result</var>.
                   </p>
                 </li>
               </ol>
@@ -13477,13 +13478,20 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    If <var>length</var> is null or zero, or is not a multiple of 8, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
+                    If <var>length</var> is null or is not a multiple of 8, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
                 </li>
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-Pbkdf2Params-iterations" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-iterations-2"><code>iterations</code></a> member of <var>normalizedAlgorithm</var> is zero,
                     then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="OperationError" data-type="exception" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    If <var>length</var> is zero, return the result of
+                    <a data-link-type="dfn|abstract-op" data-lt="create" data-type="dfn" href="https://webidl.spec.whatwg.org/#arraybuffer-create">creating</a> an <a data-link-type="idl" data-lt="ArrayBuffer" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer"><code>ArrayBuffer</code></a>
+                    containing an empty <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a>.
                   </p>
                 </li>
                 <li>
@@ -13515,7 +13523,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Return <var>result</var>
+                    Return the result of <a data-link-type="dfn|abstract-op" data-lt="create" data-type="dfn" href="https://webidl.spec.whatwg.org/#arraybuffer-create">creating</a>
+                    an <a data-link-type="idl" data-lt="ArrayBuffer" data-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer"><code>ArrayBuffer</code></a> containing <var>result</var>.
                   </p>
                 </li>
               </ol>
