@@ -116,7 +116,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="d4ffcadeba2d6d9e71550b4dd3ee0877ba760e39">
+<meta name="revision" content="b21575f5bdbbd4989d06bbbb34da9318c377fa5c">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -216,9 +216,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "d4ffcadeba2d6d9e71550b4dd3ee0877ba760e39",
-  "publishISODate": "2024-11-08T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 08 November 2024"
+  "gitRevision": "b21575f5bdbbd4989d06bbbb34da9318c377fa5c",
+  "publishISODate": "2024-11-15T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 15 November 2024"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -226,7 +226,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-11-08">08 November 2024</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2024-11-15">15 November 2024</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -2208,6 +2208,18 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
+                  Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-5"><code>[[extractable]]</code></a> internal
+                  slot of <var>result</var> to <var>extractable</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-11"><code>[[usages]]</code></a> internal
+                  slot of <var>result</var> to the <a data-link-type="dfn|abstract-op" href="#concept-normalized-usages" class="internalDFN" id="ref-for-concept-normalized-usages-1">normalized value</a> of <var>usages</var>.
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve <var>promise</var> with
                   <var>result</var>.
                 </p>
@@ -2276,7 +2288,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-11"><code>[[usages]]</code></a> internal slot of
+                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-12"><code>[[usages]]</code></a> internal slot of
                   <var>baseKey</var> does not contain an entry that is "<code>deriveBits</code>",
                   then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a>.
                 </p>
@@ -2411,14 +2423,14 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-5"><code>[[extractable]]</code></a> internal
+                  Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-6"><code>[[extractable]]</code></a> internal
                   slot of <var>result</var> to <var>extractable</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-12"><code>[[usages]]</code></a> internal
-                  slot of <var>result</var> to the <a data-link-type="dfn|abstract-op" href="#concept-normalized-usages" class="internalDFN" id="ref-for-concept-normalized-usages-1">normalized value</a> of <var>usages</var>.
+                  Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-13"><code>[[usages]]</code></a> internal
+                  slot of <var>result</var> to the <a data-link-type="dfn|abstract-op" href="#concept-normalized-usages" class="internalDFN" id="ref-for-concept-normalized-usages-2">normalized value</a> of <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -2483,7 +2495,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  If the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-6"><code>[[extractable]]</code></a> internal slot
+                  If the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-7"><code>[[extractable]]</code></a> internal slot
                   of <var>key</var> is false, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a>.
                 </p>
               </li>
@@ -2576,7 +2588,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-13"><code>[[usages]]</code></a> internal slot of
+                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-14"><code>[[usages]]</code></a> internal slot of
                   <var>wrappingKey</var> does not contain an entry that is "<code>wrapKey</code>",
                   then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a>.
                 </p>
@@ -2589,7 +2601,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  If the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-7"><code>[[extractable]]</code></a> internal slot
+                  If the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-8"><code>[[extractable]]</code></a> internal slot
                   of <var>key</var> is false, then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a>.
                 </p>
                 <div class="note" role="note" id="issue-container-generatedID-10"><div role="heading" class="note-title marker" id="h-note-10" aria-level="5"><span>Note</span></div><div class="">
@@ -2797,7 +2809,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-14"><code>[[usages]]</code></a> internal slot of
+                  If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-15"><code>[[usages]]</code></a> internal slot of
                   <var>unwrappingKey</var> does not contain an entry that is
                   "<code>unwrapKey</code>", then <a data-link-type="dfn|abstract-op" data-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an <a data-link-type="idl" data-lt="InvalidAccessError" data-type="exception" href="https://webidl.spec.whatwg.org/#invalidaccesserror"><code>InvalidAccessError</code></a>.
                 </p>
@@ -2866,14 +2878,14 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-8"><code>[[extractable]]</code></a> internal
+                  Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-9"><code>[[extractable]]</code></a> internal
                   slot of <var>result</var> to <var>extractable</var>.
                 </p>
               </li>
               <li>
                 <p>
-                  Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-15"><code>[[usages]]</code></a> internal
-                  slot of <var>result</var> to the <a data-link-type="dfn|abstract-op" href="#concept-normalized-usages" class="internalDFN" id="ref-for-concept-normalized-usages-2">normalized value</a> of <var>usages</var>.
+                  Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-16"><code>[[usages]]</code></a> internal
+                  slot of <var>result</var> to the <a data-link-type="dfn|abstract-op" href="#concept-normalized-usages" class="internalDFN" id="ref-for-concept-normalized-usages-3">normalized value</a> of <var>usages</var>.
                 </p>
               </li>
               <li>
@@ -3990,13 +4002,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-9"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-10"><code>[[extractable]]</code></a> internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-16"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-17"><code>[[usages]]</code></a> internal slot of
                     <var>publicKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-2">usage intersection</a> of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
                 </li>
@@ -4020,13 +4032,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-10"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-11"><code>[[extractable]]</code></a> internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-17"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-18"><code>[[usages]]</code></a> internal slot of
                     <var>privateKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-3">usage intersection</a> of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
                 </li>
@@ -4753,7 +4765,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-11"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-12"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -5020,13 +5032,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-12"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-13"><code>[[extractable]]</code></a> internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-18"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-19"><code>[[usages]]</code></a> internal slot of
                     <var>publicKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-4">usage intersection</a> of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
                 </li>
@@ -5050,13 +5062,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-13"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-14"><code>[[extractable]]</code></a> internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-19"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-20"><code>[[usages]]</code></a> internal slot of
                     <var>privateKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-5">usage intersection</a> of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
                 </li>
@@ -5768,7 +5780,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-14"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-15"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -6064,13 +6076,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-15"><code>[[extractable]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-16"><code>[[extractable]]</code></a> internal slot of
                     <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-20"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-21"><code>[[usages]]</code></a> internal slot of
                     <var>publicKey</var> to be the
                     <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-6">usage intersection</a> of
                     <var>usages</var> and <code>[ "encrypt", "wrapKey" ]</code>.
@@ -6096,13 +6108,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-16"><code>[[extractable]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-17"><code>[[extractable]]</code></a> internal slot of
                     <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-21"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-22"><code>[[usages]]</code></a> internal slot of
                     <var>privateKey</var> to be the
                     <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-7">usage intersection</a> of
                     <var>usages</var> and <code>[ "decrypt", "unwrapKey" ]</code>.
@@ -6810,7 +6822,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-17"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-18"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -7237,13 +7249,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-18"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-19"><code>[[extractable]]</code></a> internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-22"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-23"><code>[[usages]]</code></a> internal slot of
                     <var>publicKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-8">usage intersection</a> of <var>usages</var> and <code>[ "verify" ]</code>.
                   </p>
                 </li>
@@ -7267,13 +7279,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-19"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-20"><code>[[extractable]]</code></a> internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-23"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-24"><code>[[usages]]</code></a> internal slot of
                     <var>privateKey</var> to be the <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-9">usage intersection</a> of <var>usages</var> and <code>[ "sign" ]</code>.
                   </p>
                 </li>
@@ -8508,7 +8520,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-20"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-21"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -8749,13 +8761,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-21"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-22"><code>[[extractable]]</code></a> internal
                     slot of <var>publicKey</var> to true.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-24"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-25"><code>[[usages]]</code></a> internal slot of
                     <var>publicKey</var> to be the empty list.
                   </p>
                 </li>
@@ -8779,13 +8791,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-22"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-23"><code>[[extractable]]</code></a> internal
                     slot of <var>privateKey</var> to <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-25"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-26"><code>[[usages]]</code></a> internal slot of
                     <var>privateKey</var> to be the
                     <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-10">usage intersection</a> of
                     <var>usages</var> and <code>[ "deriveKey", "deriveBits" ]</code>.
@@ -10076,7 +10088,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-23"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-24"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -10408,13 +10420,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-24"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-25"><code>[[extractable]]</code></a> internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-26"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-27"><code>[[usages]]</code></a> internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -10659,13 +10671,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <p>
                             Set the <code>key_ops</code> attribute of <var>jwk</var> to equal the
-                            <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-27"><code>[[usages]]</code></a> internal slot of
+                            <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-28"><code>[[usages]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-25"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-26"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -10952,13 +10964,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-26"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-27"><code>[[extractable]]</code></a> internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-28"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-29"><code>[[usages]]</code></a> internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -11206,7 +11218,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-27"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-28"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -11580,13 +11592,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-28"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-29"><code>[[extractable]]</code></a> internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-29"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-30"><code>[[usages]]</code></a> internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -11838,7 +11850,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-29"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-30"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -12068,13 +12080,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-30"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-31"><code>[[extractable]]</code></a> internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-30"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-31"><code>[[usages]]</code></a> internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -12325,7 +12337,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-31"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-32"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -12612,13 +12624,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-32"><code>[[extractable]]</code></a> internal
+                    Set the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-33"><code>[[extractable]]</code></a> internal
                     slot of <var>key</var> to be <var>extractable</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-31"><code>[[usages]]</code></a> internal slot of
+                    Set the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-32"><code>[[usages]]</code></a> internal slot of
                     <var>key</var> to be <var>usages</var>.
                   </p>
                 </li>
@@ -13020,7 +13032,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-33"><code>[[extractable]]</code></a> internal slot
+                            Set the <code>ext</code> attribute of <var>jwk</var> to equal the <a data-link-type="attribute" data-lt="[[extractable]]" href="#dfn-CryptoKey-slot-extractable" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-extractable-34"><code>[[extractable]]</code></a> internal slot
                             of <var>key</var>.
                           </p>
                         </li>
@@ -14642,9 +14654,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-concept-normalized-usages-1" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
+      <a href="#ref-for-concept-normalized-usages-1" title="§ 14.2.7 The deriveKey method">§ 14.2.7 The deriveKey method</a> 
     </li><li>
-      <a href="#ref-for-concept-normalized-usages-2" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> 
+      <a href="#ref-for-concept-normalized-usages-2" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
+    </li><li>
+      <a href="#ref-for-concept-normalized-usages-3" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-concept-cached-object" aria-label="Links in this document to definition: cached ECMAScript object">
@@ -15362,33 +15376,35 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     </li><li>
       <a href="#ref-for-dfn-CryptoKey-slot-extractable-2" title="§ 13.5 Serialization and deserialization steps">§ 13.5 Serialization and deserialization steps</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-4" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-5" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-5" title="§ 14.2.7 The deriveKey method">§ 14.2.7 The deriveKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-6" title="§ 14.2.10 The exportKey() method">§ 14.2.10 The exportKey() method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-6" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-7" title="§ 14.2.11 The wrapKey method">§ 14.2.11 The wrapKey method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-7" title="§ 14.2.10 The exportKey() method">§ 14.2.10 The exportKey() method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-8" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-8" title="§ 14.2.11 The wrapKey method">§ 14.2.11 The wrapKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-9" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-10" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-11" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-9" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-12" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-13" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-14" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-10" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-11" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-12" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-15" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-16" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-17" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-13" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-14" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-15" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-18" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-19" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-20" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-16" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-17" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-18" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-21" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-22" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-23" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-19" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-20" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-21" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-24" title="§ 25.7 Operations">§ 25.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-25" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-22" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-23" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-24" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-26" title="§ 26.4 Operations">§ 26.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-27" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-25" title="§ 25.7 Operations">§ 25.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-26" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-28" title="§ 27.4 Operations">§ 27.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-29" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-27" title="§ 26.4 Operations">§ 26.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-28" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-30" title="§ 28.3 Operations">§ 28.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-31" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-29" title="§ 27.4 Operations">§ 27.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-30" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-extractable-32" title="§ 29.6 Operations">§ 29.6 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-33" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-31" title="§ 28.3 Operations">§ 28.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-32" title="Reference 2">(2)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-CryptoKey-slot-extractable-33" title="§ 29.6 Operations">§ 29.6 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-extractable-34" title="Reference 2">(2)</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-CryptoKey-slot-algorithm" aria-label="Links in this document to definition: [[algorithm]]">
@@ -15484,35 +15500,35 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     </li><li>
       <a href="#ref-for-dfn-CryptoKey-slot-usages-9" title="§ 14.2.6 The generateKey method">§ 14.2.6 The generateKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-10" title="§ 14.2.7 The deriveKey method">§ 14.2.7 The deriveKey method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-10" title="§ 14.2.7 The deriveKey method">§ 14.2.7 The deriveKey method</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-11" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-11" title="§ 14.2.8 The deriveBits method">§ 14.2.8 The deriveBits method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-12" title="§ 14.2.8 The deriveBits method">§ 14.2.8 The deriveBits method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-12" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-13" title="§ 14.2.9 The importKey() method">§ 14.2.9 The importKey() method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-13" title="§ 14.2.11 The wrapKey method">§ 14.2.11 The wrapKey method</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-14" title="§ 14.2.11 The wrapKey method">§ 14.2.11 The wrapKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-14" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-15" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-15" title="§ 14.2.12 The unwrapKey method">§ 14.2.12 The unwrapKey method</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-16" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-16" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-17" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-17" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-18" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-18" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-19" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-19" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-20" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-20" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-21" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-21" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-22" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-22" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-23" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-23" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-24" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-24" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-25" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-25" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-26" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-26" title="§ 25.7 Operations">§ 25.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-27" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-27" title="§ 25.7 Operations">§ 25.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-slot-usages-28" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-28" title="§ 26.4 Operations">§ 26.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-29" title="§ 26.4 Operations">§ 26.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-29" title="§ 27.4 Operations">§ 27.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-30" title="§ 27.4 Operations">§ 27.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-30" title="§ 28.3 Operations">§ 28.3 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-31" title="§ 28.3 Operations">§ 28.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-slot-usages-31" title="§ 29.6 Operations">§ 29.6 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-slot-usages-32" title="§ 29.6 Operations">§ 29.6 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-CryptoKey-slot-usages_cached" aria-label="Links in this document to definition: [[usages_cached]]">
