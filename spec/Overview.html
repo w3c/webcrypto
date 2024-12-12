@@ -1324,12 +1324,30 @@ interface SubtleCrypto {
           </dl>
         </section>
 
+        <section id="subtlecrypto-interface-tasksource">
+          <h3>Task Source</h3>
+          <dl>
+            <dt id="dfn-crypto-task-source">The <dfn>crypto task source</dfn></dt>
+            <dd>
+              This [= task source =] is used to queue tasks to resolve
+              or reject promises created in response to calls to methods
+              of {{SubtleCrypto}}.
+            </dd>
+          </dl>
+          <div class=note>
+            This specification makes no specific requirements on the
+            ordering of responses to calls to methods of {{SubtleCrypto}},
+            neither between multiple calls, nor between calls and tasks
+            from other [= task source | task sources =].
+            This task source is merely used to [= queue a task =] to
+            resolve or reject the relevant promise whenever the
+            cryptographic operation is completed, in order to
+            <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-for-spec-authors">prevent race conditions</a>.
+          </div>
+        </section>
+
         <section id="subtlecrypto-interface-methods">
           <h3>Methods and Parameters</h3>
-          <p>
-            Unless otherwise stated, objects created by the methods defined in this section shall be associated with the
-            [= relevant realm =] of [= this =].
-          </p>
           <div class=note>
             <p>
               All errors are reported asynchronously by rejecting the returned
@@ -1379,6 +1397,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1391,9 +1414,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1420,8 +1444,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |ciphertext|.
+                  in |realm|, containing |ciphertext|.
                 </p>
               </li>
               <li>
@@ -1474,21 +1504,27 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
                 <p>
-                  Return |promise| and the remaining steps [= in parallel =].
+                  Return |promise| and perform the remaining steps [= in parallel =].
                 </p>
               </li>
               <li>
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1516,8 +1552,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |plaintext|.
+                  in |realm|, containing |plaintext|.
                 </p>
               </li>
               <li>
@@ -1569,6 +1611,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1581,9 +1628,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1610,8 +1658,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |signature|.
+                  in |realm|, containing |signature|.
                 </p>
               </li>
               <li>
@@ -1671,21 +1725,27 @@ interface SubtleCrypto {
 
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
                 <p>
-                  Return |promise| and perform the remaining steps[= in parallel =].
+                  Return |promise| and perform the remaining steps [= in parallel =].
                 </p>
               </li>
               <li>
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1709,6 +1769,12 @@ interface SubtleCrypto {
                   specified by |normalizedAlgorithm| using |key|,
                   |algorithm| and
                   |signature| and with |data| as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
                 </p>
               </li>
               <li>
@@ -1759,6 +1825,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1771,9 +1842,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1786,8 +1858,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |digest|.
+                  in |realm|, containing |digest|.
                 </p>
               </li>
               <li>
@@ -1831,6 +1909,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1843,9 +1926,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1878,7 +1962,13 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                   as defined by [[WebIDL]].
                 </p>
               </li>
@@ -1950,6 +2040,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1962,9 +2057,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2028,7 +2124,13 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                   as defined by [[WebIDL]].
                 </p>
               </li>
@@ -2074,7 +2176,12 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |promise| be a new Promise object.
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
@@ -2086,9 +2193,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2116,8 +2224,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |bits|.
+                  in |realm|, containing |bits|.
                 </p>
               </li>
               <li>
@@ -2208,6 +2322,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2220,9 +2339,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2256,7 +2376,13 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                   as defined by [[WebIDL]].
                 </p>
               </li>
@@ -2296,6 +2422,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2308,9 +2439,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2334,6 +2466,12 @@ interface SubtleCrypto {
                 </p>
               </li>
               <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
                 <dl class="switch">
                   <dt>
                     If |format| is equal to the strings {{KeyFormat/"raw"}},
@@ -2341,13 +2479,13 @@ interface SubtleCrypto {
                   </dt>
                   <dd>
                     Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                    containing |result|.
+                    in |realm|, containing |result|.
                   </dd>
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
-                    Let |result| be the result of converting |result| to an ECMAScript Object,
+                    Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                     as defined by [[WebIDL]].
                   </dd>
                 </dl>
@@ -2406,6 +2544,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2418,9 +2561,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2542,8 +2686,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing |result|.
+                  in |realm|, containing |result|.
                 </p>
               </li>
               <li>
@@ -2627,6 +2777,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2639,9 +2794,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2737,7 +2893,13 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                   as defined by [[WebIDL]].
                 </p>
               </li>
