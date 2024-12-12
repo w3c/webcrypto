@@ -1878,6 +1878,12 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  as defined by [[WebIDL]].
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve |promise| with
                   |result|.
                 </p>
@@ -2018,6 +2024,12 @@ interface SubtleCrypto {
                   Set the {{CryptoKey/[[usages]]}} internal
                   slot of |result| to the [= normalized
                     value =] of |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  as defined by [[WebIDL]].
                 </p>
               </li>
               <li>
@@ -2244,6 +2256,12 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  as defined by [[WebIDL]].
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve |promise| with
                   |result|.
                 </p>
@@ -2314,6 +2332,25 @@ interface SubtleCrypto {
                   specified by the {{CryptoKey/[[algorithm]]}}
                   internal slot of |key| using |key| and |format|.
                 </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If |format| is equal to the strings {{KeyFormat/"raw"}},
+                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
+                  </dt>
+                  <dd>
+                    Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                    containing |result|.
+                  </dd>
+                  <dt>
+                    If |format| is equal to the string {{KeyFormat/"jwk"}}:
+                  </dt>
+                  <dd>
+                    Let |result| be the result of converting |result| to an ECMAScript Object,
+                    as defined by [[WebIDL]].
+                  </dd>
+                </dl>
               </li>
               <li>
                 <p>
@@ -2703,6 +2740,12 @@ interface SubtleCrypto {
                   Set the {{CryptoKey/[[usages]]}} internal
                   slot of |result| to the [= normalized
                     value =] of |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object,
+                  as defined by [[WebIDL]].
                 </p>
               </li>
               <li>
@@ -4441,8 +4484,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -4507,8 +4549,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -4639,8 +4680,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -4963,8 +5003,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object,
-                    as defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -5467,8 +5506,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -5533,8 +5571,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -5657,8 +5694,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -6011,8 +6047,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -6496,8 +6531,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -6562,8 +6596,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -6699,8 +6732,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -7190,8 +7222,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -8122,8 +8153,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -8278,8 +8308,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -8407,8 +8436,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -8455,8 +8483,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -8707,8 +8734,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -9979,8 +10005,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -10029,8 +10054,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -10229,9 +10253,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -10262,9 +10284,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -10313,8 +10333,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -10759,10 +10778,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -10815,10 +10831,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -10875,8 +10888,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -10901,10 +10913,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -11082,9 +11091,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -11114,9 +11121,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -11166,8 +11171,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -11614,10 +11618,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -11670,10 +11671,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -11730,8 +11728,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -11756,10 +11753,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -12251,8 +12245,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -12310,8 +12303,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -12796,8 +12788,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -12851,8 +12842,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -13424,8 +13414,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -13483,8 +13472,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -13912,8 +13900,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -13970,8 +13957,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -14572,8 +14558,7 @@ dictionary HmacKeyGenParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be set to |data|.
                           </p>
                         </li>
                       </ol>
@@ -14671,8 +14656,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be set to |jwk|.
                           </p>
                         </li>
                       </ol>
