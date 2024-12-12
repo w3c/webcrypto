@@ -2664,7 +2664,7 @@ interface SubtleCrypto {
                 <dl class="switch">
                   <dt>If |normalizedAlgorithm| supports an unwrap key operation:</dt>
                   <dd>
-                    Let |key| be the result of performing the unwrap key operation
+                    Let |bytes| be the result of performing the unwrap key operation
                     specified by |normalizedAlgorithm| using |algorithm|,
                     |unwrappingKey| as |key| and |wrappedKey| as
                     |ciphertext|.
@@ -2674,7 +2674,7 @@ interface SubtleCrypto {
                     operation:
                   </dt>
                   <dd>
-                    Let |key| be the result of performing the decrypt operation specified
+                    Let |bytes| be the result of performing the decrypt operation specified
                     by |normalizedAlgorithm| using |algorithm|,
                     |unwrappingKey| as |key| and |wrappedKey| as
                     |ciphertext|.
@@ -2693,14 +2693,14 @@ interface SubtleCrypto {
                     {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
-                    Set |bytes| be set to |key|.
+                    Let |key| be set to |bytes|.
                   </dd>
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
-                    Let |bytes| be the result of executing the
-                    [= parse a JWK =] algorithm, with |key|
+                    Let |key| be the result of executing the
+                    [= parse a JWK =] algorithm, with |bytes|
                     as the `data` to be parsed.
                   </dd>
                 </dl>
@@ -2712,7 +2712,7 @@ interface SubtleCrypto {
                   |unwrappedKeyAlgorithm| as |algorithm|, |format|,
                   |usages|
                   and |extractable| and with
-                  |bytes| as |keyData|.
+                  |key| as |keyData|.
                 </p>
               </li>
               <li>
