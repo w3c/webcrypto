@@ -1420,7 +1420,13 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Resolve |promise| with |ciphertext|.
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |ciphertext|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Resolve |promise| with |result|.
                 </p>
               </li>
             </ol>
@@ -1510,8 +1516,14 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |plaintext|.
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve |promise| with
-                  |plaintext|.
+                  |result|.
                 </p>
               </li>
             </ol>
@@ -1591,9 +1603,15 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of performing the sign operation
+                  Let |signature| be the result of performing the sign operation
                   specified by |normalizedAlgorithm| using |key| and
                   |algorithm| and with |data| as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |signature|.
                 </p>
               </li>
               <li>
@@ -1760,10 +1778,16 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of performing the digest
+                  Let |digest| be the result of performing the digest
                   operation specified by |normalizedAlgorithm| using
                   |algorithm|, with |data|
                   as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |digest|.
                 </p>
               </li>
               <li>
@@ -2073,10 +2097,15 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing the result of performing the derive bits operation
+                  Let |bits| be the result of performing the derive bits operation
                   specified by |normalizedAlgorithm| using |baseKey|,
                   |algorithm| and |length|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |bits|.
                 </p>
               </li>
               <li>
@@ -2480,6 +2509,12 @@ interface SubtleCrypto {
                     {{NotSupportedError}}.
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  containing |result|.
+                </p>
               </li>
               <li>
                 <p>
@@ -3596,7 +3631,7 @@ dictionary CryptoKeyPair {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -3705,8 +3740,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |signature|.
+                    Return |signature|.
                   </p>
                 </li>
               </ol>
@@ -4668,7 +4702,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{RsaPssParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -4741,8 +4775,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |signature|.
+                    Return |signature|.
                   </p>
                 </li>
               </ol>
@@ -5687,12 +5720,12 @@ dictionary RsaPssParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -5771,8 +5804,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -5823,8 +5855,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -6736,7 +6767,7 @@ dictionary RsaOaepParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{EcdsaParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -6919,8 +6950,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -10046,7 +10076,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -10087,7 +10117,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Perform the Ed25519 signing process, as specified in [[RFC8032]],
+                    Let |result| be the result of performing the Ed25519
+                    signing process, as specified in [[RFC8032]],
                     Section 5.1.6, with |message| as |M|,
                     using the Ed25519 private key associated with |key|.
                   </p>
@@ -10104,11 +10135,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of the signature resulting from performing
-                    the Ed25519 signing process.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -11785,12 +11812,12 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -11898,8 +11925,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -11939,8 +11965,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -12365,12 +12390,12 @@ dictionary AesDerivedKeyParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12438,8 +12463,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -12485,8 +12509,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -12901,12 +12924,12 @@ dictionary AesCbcParams : Algorithm {
                <tr>
                  <td>encrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>{{ArrayBuffer}}</td>
+                 <td>[= octet string =]</td>
                </tr>
                <tr>
                  <td>decrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>{{ArrayBuffer}}</td>
+                 <td>[= octet string =]</td>
                </tr>
                <tr>
                  <td>generateKey</td>
@@ -13019,8 +13042,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -13115,8 +13137,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -13533,12 +13554,12 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>wrapKey</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>unwrapKey</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -14028,7 +14049,7 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -14108,8 +14129,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |mac|.
+                    Return |mac|.
                   </p>
                 </li>
               </ol>
@@ -14745,7 +14765,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>digest</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
             </tbody>
           </table>
@@ -14807,8 +14827,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -14851,7 +14870,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{HkdfParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -14942,8 +14961,7 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -15073,7 +15091,7 @@ dictionary HkdfParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{Pbkdf2Params}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15118,9 +15136,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If |length| is zero, return the result of
-                    [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                    containing an empty [= byte sequence =].
+                    If |length| is zero, return an empty [= byte sequence =].
                   </p>
                 </li>
                 <li>
@@ -15152,8 +15168,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
