@@ -4438,7 +4438,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -4493,13 +4493,14 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
@@ -5460,7 +5461,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -5515,18 +5516,19 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -6485,7 +6487,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -6540,18 +6542,19 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -8029,7 +8032,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -8162,8 +8165,8 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
-                            ASN.1 structure defined in [[RFC5280]]
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
@@ -8174,7 +8177,7 @@ dictionary EcKeyImportParams : Algorithm {
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -9608,7 +9611,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -9735,8 +9738,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
-                            ASN.1 structure defined in [[RFC5280]]
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
@@ -9747,7 +9750,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -10742,7 +10745,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -10787,7 +10790,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
+                            Let |data| be an instance of the `PrivateKeyInfo`
                             ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
@@ -11582,7 +11585,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -11627,7 +11630,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
+                            Let |data| be an instance of the `PrivateKeyInfo`
                             ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
