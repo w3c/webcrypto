@@ -1324,12 +1324,30 @@ interface SubtleCrypto {
           </dl>
         </section>
 
+        <section id="subtlecrypto-interface-tasksource">
+          <h3>Task Source</h3>
+          <dl>
+            <dt id="dfn-crypto-task-source">The <dfn>crypto task source</dfn></dt>
+            <dd>
+              This [= task source =] is used to queue tasks to resolve
+              or reject promises created in response to calls to methods
+              of {{SubtleCrypto}}.
+            </dd>
+          </dl>
+          <div class=note>
+            This specification makes no specific requirements on the
+            ordering of responses to calls to methods of {{SubtleCrypto}},
+            neither between multiple calls, nor between calls and tasks
+            from other [= task source | task sources =].
+            This task source is merely used to [= queue a task =] to
+            resolve or reject the relevant promise whenever the
+            cryptographic operation is completed, in order to
+            <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-for-spec-authors">prevent race conditions</a>.
+          </div>
+        </section>
+
         <section id="subtlecrypto-interface-methods">
           <h3>Methods and Parameters</h3>
-          <p>
-            Unless otherwise stated, objects created by the methods defined in this section shall be associated with the
-            [= relevant realm =] of [= this =].
-          </p>
           <div class=note>
             <p>
               All errors are reported asynchronously by rejecting the returned
@@ -1379,6 +1397,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1391,9 +1414,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1420,7 +1444,19 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Resolve |promise| with |ciphertext|.
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |ciphertext|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Resolve |promise| with |result|.
                 </p>
               </li>
             </ol>
@@ -1468,21 +1504,27 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
                 <p>
-                  Return |promise| and the remaining steps [= in parallel =].
+                  Return |promise| and perform the remaining steps [= in parallel =].
                 </p>
               </li>
               <li>
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1510,8 +1552,20 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |plaintext|.
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve |promise| with
-                  |plaintext|.
+                  |result|.
                 </p>
               </li>
             </ol>
@@ -1557,6 +1611,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1569,9 +1628,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1591,9 +1651,21 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of performing the sign operation
+                  Let |signature| be the result of performing the sign operation
                   specified by |normalizedAlgorithm| using |key| and
                   |algorithm| and with |data| as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |signature|.
                 </p>
               </li>
               <li>
@@ -1653,21 +1725,27 @@ interface SubtleCrypto {
 
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
                 <p>
-                  Return |promise| and perform the remaining steps[= in parallel =].
+                  Return |promise| and perform the remaining steps [= in parallel =].
                 </p>
               </li>
               <li>
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1691,6 +1769,12 @@ interface SubtleCrypto {
                   specified by |normalizedAlgorithm| using |key|,
                   |algorithm| and
                   |signature| and with |data| as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
                 </p>
               </li>
               <li>
@@ -1741,6 +1825,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1753,17 +1842,30 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
                 <p>
-                  Let |result| be the result of performing the digest
+                  Let |digest| be the result of performing the digest
                   operation specified by |normalizedAlgorithm| using
                   |algorithm|, with |data|
                   as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |digest|.
                 </p>
               </li>
               <li>
@@ -1807,6 +1909,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1819,9 +1926,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1851,6 +1959,18 @@ interface SubtleCrypto {
                     </p>
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
+                  as defined by [[WebIDL]].
+                </p>
               </li>
               <li>
                 <p>
@@ -1920,6 +2040,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -1932,9 +2057,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -1998,6 +2124,18 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
+                  as defined by [[WebIDL]].
+                </p>
+              </li>
+              <li>
+                <p>
                   Resolve |promise| with
                   |result|.
                 </p>
@@ -2038,7 +2176,12 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |promise| be a new Promise object.
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |promise| be a new Promise.
                 </p>
               </li>
               <li>
@@ -2050,9 +2193,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2073,10 +2217,21 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  containing the result of performing the derive bits operation
+                  Let |bits| be the result of performing the derive bits operation
                   specified by |normalizedAlgorithm| using |baseKey|,
                   |algorithm| and |length|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |bits|.
                 </p>
               </li>
               <li>
@@ -2167,6 +2322,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2179,9 +2339,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2211,6 +2372,18 @@ interface SubtleCrypto {
                   Set the {{CryptoKey/[[usages]]}} internal
                   slot of |result| to the [= normalized
                     value =] of |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
+                  as defined by [[WebIDL]].
                 </p>
               </li>
               <li>
@@ -2249,6 +2422,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2261,9 +2439,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2285,6 +2464,31 @@ interface SubtleCrypto {
                   specified by the {{CryptoKey/[[algorithm]]}}
                   internal slot of |key| using |key| and |format|.
                 </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If |format| is equal to the strings {{KeyFormat/"raw"}},
+                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
+                  </dt>
+                  <dd>
+                    Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                    in |realm|, containing |result|.
+                  </dd>
+                  <dt>
+                    If |format| is equal to the string {{KeyFormat/"jwk"}}:
+                  </dt>
+                  <dd>
+                    Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
+                    as defined by [[WebIDL]].
+                  </dd>
+                </dl>
               </li>
               <li>
                 <p>
@@ -2340,6 +2544,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2352,9 +2561,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2411,20 +2621,13 @@ interface SubtleCrypto {
                     {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
-                    Set |bytes| be set to |key|.
+                    Let |bytes| be |key|.
                   </dd>
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     <ol>
-                      <li>
-                        <p>
-                          Convert |key| to an ECMAScript Object, as specified in [[WEBIDL]],
-                          performing the conversion in the
-                          context of a new global object.
-                        </p>
-                      </li>
                       <li>
                         <p>
                           Let |json| be the result of representing |key| as a
@@ -2480,6 +2683,18 @@ interface SubtleCrypto {
                     {{NotSupportedError}}.
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |result|.
+                </p>
               </li>
               <li>
                 <p>
@@ -2562,6 +2777,11 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |promise| be a new Promise.
                 </p>
               </li>
@@ -2574,9 +2794,10 @@ interface SubtleCrypto {
                 <p>
                   If the following steps or referenced procedures say to
                   [= exception/throw =] an error,
-                  reject |promise| with
-                  the returned error and then
-                  [= terminate the algorithm =].
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
                 </p>
               </li>
               <li>
@@ -2599,7 +2820,7 @@ interface SubtleCrypto {
                 <dl class="switch">
                   <dt>If |normalizedAlgorithm| supports an unwrap key operation:</dt>
                   <dd>
-                    Let |key| be the result of performing the unwrap key operation
+                    Let |bytes| be the result of performing the unwrap key operation
                     specified by |normalizedAlgorithm| using |algorithm|,
                     |unwrappingKey| as |key| and |wrappedKey| as
                     |ciphertext|.
@@ -2609,7 +2830,7 @@ interface SubtleCrypto {
                     operation:
                   </dt>
                   <dd>
-                    Let |key| be the result of performing the decrypt operation specified
+                    Let |bytes| be the result of performing the decrypt operation specified
                     by |normalizedAlgorithm| using |algorithm|,
                     |unwrappingKey| as |key| and |wrappedKey| as
                     |ciphertext|.
@@ -2628,14 +2849,14 @@ interface SubtleCrypto {
                     {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
-                    Set |bytes| be set to |key|.
+                    Let |key| be |bytes|.
                   </dd>
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
-                    Let |bytes| be the result of executing the
-                    [= parse a JWK =] algorithm, with |key|
+                    Let |key| be the result of executing the
+                    [= parse a JWK =] algorithm, with |bytes|
                     as the `data` to be parsed.
                   </dd>
                 </dl>
@@ -2647,7 +2868,7 @@ interface SubtleCrypto {
                   |unwrappedKeyAlgorithm| as |algorithm|, |format|,
                   |usages|
                   and |extractable| and with
-                  |bytes| as |keyData|.
+                  |key| as |keyData|.
                 </p>
               </li>
               <li>
@@ -2668,6 +2889,18 @@ interface SubtleCrypto {
                   Set the {{CryptoKey/[[usages]]}} internal
                   slot of |result| to the [= normalized
                     value =] of |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
+                  as defined by [[WebIDL]].
                 </p>
               </li>
               <li>
@@ -3596,7 +3829,7 @@ dictionary CryptoKeyPair {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -3705,8 +3938,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |signature|.
+                    Return |signature|.
                   </p>
                 </li>
               </ol>
@@ -4368,7 +4600,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -4407,8 +4639,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -4424,13 +4655,14 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
@@ -4473,8 +4705,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -4605,8 +4836,7 @@ dictionary RsaHashedImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -4668,7 +4898,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{RsaPssParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -4741,8 +4971,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |signature|.
+                    Return |signature|.
                   </p>
                 </li>
               </ol>
@@ -4930,8 +5159,7 @@ dictionary RsaPssParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object,
-                    as defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -5395,7 +5623,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -5434,8 +5662,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -5451,18 +5678,19 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -5500,8 +5728,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -5624,8 +5851,7 @@ dictionary RsaPssParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -5687,12 +5913,12 @@ dictionary RsaPssParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -5771,8 +5997,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -5823,8 +6048,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -5980,8 +6204,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -6426,7 +6649,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -6465,8 +6688,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -6482,18 +6704,19 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the result of encoding a privateKeyInfo structure
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
                             <li>
                               <p>
-                                Set the |version| field to 0.
+                                Set the |version| field to `0`.
                               </p>
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -6531,8 +6754,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -6668,8 +6890,7 @@ dictionary RsaOaepParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -6736,7 +6957,7 @@ dictionary RsaOaepParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{EcdsaParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -6919,8 +7140,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -7160,8 +7380,7 @@ dictionary EcKeyImportParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -7975,7 +8194,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -8092,8 +8311,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -8109,8 +8327,8 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
-                            ASN.1 structure defined in [[RFC5280]]
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
@@ -8121,7 +8339,7 @@ dictionary EcKeyImportParams : Algorithm {
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -8248,8 +8466,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -8377,8 +8594,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -8425,8 +8641,7 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -8677,8 +8892,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -9559,7 +9773,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -9686,8 +9900,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
-                            ASN.1 structure defined in [[RFC5280]]
+                            Let |data| be an instance of the `PrivateKeyInfo`
+                            ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
                           <ul>
@@ -9698,7 +9912,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                             </li>
                             <li>
                               <p>
-                                Set the |privateKeyAlgorithm| field to an
+                                Set the |privateKeyAlgorithm| field to a
                                 `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
                                 following properties:
                               </p>
@@ -9949,8 +10163,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -9999,8 +10212,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -10046,7 +10258,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -10087,7 +10299,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Perform the Ed25519 signing process, as specified in [[RFC8032]],
+                    Let |result| be the result of performing the Ed25519
+                    signing process, as specified in [[RFC8032]],
                     Section 5.1.6, with |message| as |M|,
                     using the Ed25519 private key associated with |key|.
                   </p>
@@ -10104,11 +10317,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return a new {{ArrayBuffer}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and containing the
-                    bytes of the signature resulting from performing
-                    the Ed25519 signing process.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -10202,9 +10411,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -10235,9 +10442,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -10286,8 +10491,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -10703,7 +10907,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -10732,10 +10936,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -10751,7 +10952,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
+                            Let |data| be an instance of the `PrivateKeyInfo`
                             ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
@@ -10788,10 +10989,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -10848,8 +11046,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -10874,10 +11071,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -11055,9 +11249,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |publicKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |publicKey| be a new {{CryptoKey}}
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -11087,9 +11279,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |privateKey| be a new {{CryptoKey}} associated with the
-                    [= relevant global object =]
-                    of `this` [[HTML]], and
+                    Let |privateKey| be a new {{CryptoKey}}
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -11139,8 +11329,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of converting |result| to an ECMAScript Object, as
-                    defined by [[WebIDL]].
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -11558,7 +11747,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `subjectPublicKeyInfo`
+                            Let |data| be an instance of the `SubjectPublicKeyInfo`
                             ASN.1 structure defined in [[RFC5280]]
                             with the following properties:
                           </p>
@@ -11587,10 +11776,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -11606,7 +11792,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an instance of the `privateKeyInfo`
+                            Let |data| be an instance of the `PrivateKeyInfo`
                             ASN.1 structure defined in [[RFC5208]]
                             with the following properties:
                           </p>
@@ -11643,10 +11829,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be the result of DER-encoding |data|.
                           </p>
                         </li>
                       </ol>
@@ -11703,8 +11886,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -11729,10 +11911,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be a new {{ArrayBuffer}} associated with the
-                            [= relevant global object =]
-                            of `this` [[HTML]], and containing
-                            |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -11785,12 +11964,12 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -11898,8 +12077,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -11939,8 +12117,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -12226,8 +12403,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -12285,8 +12461,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -12365,12 +12540,12 @@ dictionary AesDerivedKeyParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12438,8 +12613,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -12485,8 +12659,7 @@ dictionary AesCbcParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -12773,8 +12946,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -12828,8 +13000,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -12901,12 +13072,12 @@ dictionary AesCbcParams : Algorithm {
                <tr>
                  <td>encrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>{{ArrayBuffer}}</td>
+                 <td>[= octet string =]</td>
                </tr>
                <tr>
                  <td>decrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>{{ArrayBuffer}}</td>
+                 <td>[= octet string =]</td>
                </tr>
                <tr>
                  <td>generateKey</td>
@@ -13019,8 +13190,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |ciphertext|.
+                    Return |ciphertext|.
                   </p>
                 </li>
               </ol>
@@ -13115,8 +13285,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |plaintext|.
+                    Return |plaintext|.
                   </p>
                 </li>
               </ol>
@@ -13403,8 +13572,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -13462,8 +13630,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -13533,12 +13700,12 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>wrapKey</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>unwrapKey</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -13891,8 +14058,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -13949,8 +14115,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -14028,7 +14193,7 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -14108,8 +14273,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |mac|.
+                    Return |mac|.
                   </p>
                 </li>
               </ol>
@@ -14552,8 +14716,7 @@ dictionary HmacKeyGenParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |result| be the result of [= ArrayBuffer/create | creating =]
-                            an {{ArrayBuffer}} containing |data|.
+                            Let |result| be |data|.
                           </p>
                         </li>
                       </ol>
@@ -14651,8 +14814,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |result| be the result of converting |jwk|
-                            to an ECMAScript Object, as defined by [[WebIDL]].
+                            Let |result| be |jwk|.
                           </p>
                         </li>
                       </ol>
@@ -14745,7 +14907,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>digest</td>
                 <td>None</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
             </tbody>
           </table>
@@ -14807,8 +14969,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -14851,7 +15012,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{HkdfParams}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -14942,8 +15103,7 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
@@ -15073,7 +15233,7 @@ dictionary HkdfParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{Pbkdf2Params}}</td>
-                <td>{{ArrayBuffer}}</td>
+                <td>[= octet string =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15118,9 +15278,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If |length| is zero, return the result of
-                    [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                    containing an empty [= byte sequence =].
+                    If |length| is zero, return an empty [= byte sequence =].
                   </p>
                 </li>
                 <li>
@@ -15152,8 +15310,7 @@ dictionary Pbkdf2Params : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Return the result of [= ArrayBuffer/create | creating =]
-                    an {{ArrayBuffer}} containing |result|.
+                    Return |result|.
                   </p>
                 </li>
               </ol>
