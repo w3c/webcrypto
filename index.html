@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="90feb1eb52cfd5f63720f99b9ece980c923239aa">
+<meta name="revision" content="0ac8c1ba1dd1311ceb78b66fafd50e302fc6f355">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "90feb1eb52cfd5f63720f99b9ece980c923239aa",
+  "gitRevision": "0ac8c1ba1dd1311ceb78b66fafd50e302fc6f355",
   "publishISODate": "2024-12-19T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 19 December 2024"
 }</script>
@@ -1464,56 +1464,81 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Cry
           The <dfn data-idl="interface" id="dfn-SubtleCrypto" data-export="" data-dfn-type="interface" data-title="SubtleCrypto" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>SubtleCrypto</code></dfn> interface provides a set of
           methods for dealing with low-level cryptographic primitives and algorithms.
         </p>
-        <pre class="idl def" id="webidl-579813499"><span class="idlHeader"><a class="self-link" href="#webidl-579813499">WebIDL</a></span><code><span data-idl="" class="idlEnum" id="idl-def-keyformat" data-title="KeyFormat">enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-keyformat" id="ref-for-dom-keyformat-1"><code>KeyFormat</code></a> { <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-raw" id="ref-for-dom-keyformat-raw-1"><code>raw</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-spki" id="ref-for-dom-keyformat-spki-1"><code>spki</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-pkcs8" id="ref-for-dom-keyformat-pkcs8-1"><code>pkcs8</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-jwk" id="ref-for-dom-keyformat-jwk-1"><code>jwk</code></a>"</span> };</span><span data-idl="" class="idlInterface" id="idl-def-subtlecrypto" data-title="SubtleCrypto">
+        <pre class="idl def" id="webidl-869991736"><span class="idlHeader"><a class="self-link" href="#webidl-869991736">WebIDL</a></span><code><span data-idl="" class="idlEnum" id="idl-def-keyformat" data-title="KeyFormat">enum <a class="internalDFN idlID" data-link-type="enum" href="#dom-keyformat" id="ref-for-dom-keyformat-1"><code>KeyFormat</code></a> { <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-raw" id="ref-for-dom-keyformat-raw-1"><code>raw</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-spki" id="ref-for-dom-keyformat-spki-1"><code>spki</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-pkcs8" id="ref-for-dom-keyformat-pkcs8-1"><code>pkcs8</code></a>"</span>, <span class="idlEnumItem">"<a class="internalDFN" data-link-type="enum-value" href="#dom-keyformat-jwk" id="ref-for-dom-keyformat-jwk-1"><code>jwk</code></a>"</span> };</span><span data-idl="" class="idlInterface" id="idl-def-subtlecrypto" data-title="SubtleCrypto">
 
 [<span class="extAttr"><a data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SecureContext">SecureContext</a></span>,<span class="extAttr"><a data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed">Exposed</a>=(Window,Worker)</span>]
 interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-SubtleCrypto" id="ref-for-dfn-SubtleCrypto-4"><code>SubtleCrypto</code></a> {<span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-encrypt-algorithm-key-data" data-title="encrypt" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-encrypt" id="ref-for-dfn-SubtleCrypto-method-encrypt-1"><code>encrypt</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-2"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                       <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-21"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
-                       <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-decrypt-algorithm-key-data" data-title="decrypt" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-decrypt" id="ref-for-dfn-SubtleCrypto-method-decrypt-1"><code>decrypt</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-3"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                       <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-22"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
-                       <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-sign-algorithm-key-data" data-title="sign" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-sign" id="ref-for-dfn-SubtleCrypto-method-sign-1"><code>sign</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-4"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-23"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
-                    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-verify-algorithm-key-signature-data" data-title="verify" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-verify" id="ref-for-dfn-SubtleCrypto-method-verify-1"><code>verify</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-5"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                      <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-24"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
-                      <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">signature</span>,<span class="idlType">
-                      <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-digest-algorithm-data" data-title="digest" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-digest" id="ref-for-dfn-SubtleCrypto-method-digest-1"><code>digest</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-6"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                      <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-generatekey-algorithm-extractable-keyusages" data-title="generateKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-encrypt" id="ref-for-dfn-SubtleCrypto-method-encrypt-1"><code>encrypt</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-2"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-21"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-decrypt-algorithm-key-data" data-title="decrypt" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-decrypt" id="ref-for-dfn-SubtleCrypto-method-decrypt-1"><code>decrypt</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-3"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-22"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-sign-algorithm-key-data" data-title="sign" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-sign" id="ref-for-dfn-SubtleCrypto-method-sign-1"><code>sign</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-4"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-23"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-verify-algorithm-key-signature-data" data-title="verify" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-verify" id="ref-for-dfn-SubtleCrypto-method-verify-1"><code>verify</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-5"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-24"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">signature</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-digest-algorithm-data" data-title="digest" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-digest" id="ref-for-dfn-SubtleCrypto-method-digest-1"><code>digest</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-6"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">data</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-generatekey-algorithm-extractable-keyusages" data-title="generateKey" data-dfn-for="SubtleCrypto"><span class="idlType">
 
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-generateKey" id="ref-for-dfn-SubtleCrypto-method-generateKey-2"><code>generateKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-7"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                          <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
-                          <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-2"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span> );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-derivekey-algorithm-basekey-derivedkeytype-extractable-keyusages" data-title="deriveKey" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-deriveKey" id="ref-for-dfn-SubtleCrypto-method-deriveKey-1"><code>deriveKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-8"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-25"><code>CryptoKey</code></a></span> <span class="idlParamName">baseKey</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-9"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">derivedKeyType</span>,<span class="idlType">
-                         <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
-                         <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-3"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span> );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-derivebits-algorithm-basekey-length" data-title="deriveBits" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-deriveBits" id="ref-for-dfn-SubtleCrypto-method-deriveBits-1"><code>deriveBits</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-10"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                          <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-26"><code>CryptoKey</code></a></span> <span class="idlParamName">baseKey</span>,
-                          optional<span class="idlType"> <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long">unsigned long</a>?</span> <span class="idlParamName">length</span> = null);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-importkey-format-keydata-algorithm-extractable-keyusages" data-title="importKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;(<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-25"><code>CryptoKey</code></a> or <a data-link-type="idl" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-1"><code>CryptoKeyPair</code></a>)&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-generateKey" id="ref-for-dfn-SubtleCrypto-method-generateKey-2"><code>generateKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-7"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-2"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-derivekey-algorithm-basekey-derivedkeytype-extractable-keyusages" data-title="deriveKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-26"><code>CryptoKey</code></a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-deriveKey" id="ref-for-dfn-SubtleCrypto-method-deriveKey-1"><code>deriveKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-8"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-27"><code>CryptoKey</code></a></span> <span class="idlParamName">baseKey</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-9"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">derivedKeyType</span>,<span class="idlType">
+    <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-3"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-derivebits-algorithm-basekey-length" data-title="deriveBits" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-deriveBits" id="ref-for-dfn-SubtleCrypto-method-deriveBits-1"><code>deriveBits</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-10"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-28"><code>CryptoKey</code></a></span> <span class="idlParamName">baseKey</span>,
+    optional<span class="idlType"> <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long">unsigned long</a>?</span> <span class="idlParamName">length</span> = null
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-importkey-format-keydata-algorithm-extractable-keyusages" data-title="importKey" data-dfn-for="SubtleCrypto"><span class="idlType">
 
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-27"><code>CryptoKey</code></a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-importKey" id="ref-for-dfn-SubtleCrypto-method-importKey-1"><code>importKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-2"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
-                         (<a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a> or <a data-link-type="idl" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-2"><code>JsonWebKey</code></a>)</span> <span class="idlParamName">keyData</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-11"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
-                         <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
-                         <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-4"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span> );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-exportkey-format-key" data-title="exportKey" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-exportKey" id="ref-for-dfn-SubtleCrypto-method-exportKey-2"><code>exportKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-3"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType"> <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-28"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-wrapkey-format-key-wrappingkey-wrapalgorithm" data-title="wrapKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-29"><code>CryptoKey</code></a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-importKey" id="ref-for-dfn-SubtleCrypto-method-importKey-1"><code>importKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-2"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
+    (<a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a> or <a data-link-type="idl" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-2"><code>JsonWebKey</code></a>)</span> <span class="idlParamName">keyData</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-11"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">algorithm</span>,<span class="idlType">
+    <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-4"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-exportkey-format-key" data-title="exportKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;(<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a> or <a data-link-type="idl" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-3"><code>JsonWebKey</code></a>)&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-exportKey" id="ref-for-dfn-SubtleCrypto-method-exportKey-2"><code>exportKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-3"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-30"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-wrapkey-format-key-wrappingkey-wrapalgorithm" data-title="wrapKey" data-dfn-for="SubtleCrypto"><span class="idlType">
 
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-any">any</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-wrapKey" id="ref-for-dfn-SubtleCrypto-method-wrapKey-2"><code>wrapKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-4"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
-                       <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-29"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
-                       <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-30"><code>CryptoKey</code></a></span> <span class="idlParamName">wrappingKey</span>,<span class="idlType">
-                       <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-12"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">wrapAlgorithm</span>);</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-unwrapkey-format-wrappedkey-unwrappingkey-unwrapalgorithm-unwrappedkeyalgorithm-extractable-keyusages" data-title="unwrapKey" data-dfn-for="SubtleCrypto"><span class="idlType">
-  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-31"><code>CryptoKey</code></a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-unwrapKey" id="ref-for-dfn-SubtleCrypto-method-unwrapKey-1"><code>unwrapKey</code></a>(<span class="idlType"><a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-5"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
-                         <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">wrappedKey</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-32"><code>CryptoKey</code></a></span> <span class="idlParamName">unwrappingKey</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-13"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">unwrapAlgorithm</span>,<span class="idlType">
-                         <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-14"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">unwrappedKeyAlgorithm</span>,<span class="idlType">
-                         <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
-                         <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-5"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span> );</span>
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-ArrayBuffer">ArrayBuffer</a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-wrapKey" id="ref-for-dfn-SubtleCrypto-method-wrapKey-2"><code>wrapKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-4"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-31"><code>CryptoKey</code></a></span> <span class="idlParamName">key</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-32"><code>CryptoKey</code></a></span> <span class="idlParamName">wrappingKey</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-12"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">wrapAlgorithm</span>
+  );</span><span data-idl="" class="idlMethod" id="idl-def-subtlecrypto-unwrapkey-format-wrappedkey-unwrappingkey-unwrapalgorithm-unwrappedkeyalgorithm-extractable-keyusages" data-title="unwrapKey" data-dfn-for="SubtleCrypto"><span class="idlType">
+  <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise">Promise</a>&lt;<a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-33"><code>CryptoKey</code></a>&gt;</span> <a class="internalDFN idlName" data-link-type="method" href="#dfn-SubtleCrypto-method-unwrapKey" id="ref-for-dfn-SubtleCrypto-method-unwrapKey-1"><code>unwrapKey</code></a>(<span class="idlType">
+    <a data-link-type="idl" href="#dom-keyformat" class="internalDFN" id="ref-for-dom-keyformat-5"><code>KeyFormat</code></a></span> <span class="idlParamName">format</span>,<span class="idlType">
+    <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <span class="idlParamName">wrappedKey</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-34"><code>CryptoKey</code></a></span> <span class="idlParamName">unwrappingKey</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-13"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">unwrapAlgorithm</span>,<span class="idlType">
+    <a data-link-type="idl" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-14"><code>AlgorithmIdentifier</code></a></span> <span class="idlParamName">unwrappedKeyAlgorithm</span>,<span class="idlType">
+    <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-boolean">boolean</a></span> <span class="idlParamName">extractable</span>,<span class="idlType">
+    <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#idl-sequence">sequence</a>&lt;<a data-link-type="idl" href="#dom-keyusage" class="internalDFN" id="ref-for-dom-keyusage-5"><code>KeyUsage</code></a>&gt;</span> <span class="idlParamName">keyUsages</span>
+  );</span>
 };</span></code></pre>
         <div class="note" role="note" id="issue-container-generatedID-5"><div role="heading" class="note-title marker" id="h-note-5" aria-level="3"><span>Note</span></div><div class="">
           <p>
@@ -1554,7 +1579,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <dt><dfn data-idl="enum-value" data-export="" data-dfn-type="enum-value" id="dom-keyformat-spki" data-title="spki" data-dfn-for="KeyFormat" tabindex="0" aria-haspopup="dialog"><code>spki</code></dfn></dt>
                 <dd>The DER encoding of the SubjectPublicKeyInfo structure from [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc5280" title="Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile">RFC5280</a></cite>].</dd>
                 <dt><dfn data-idl="enum-value" data-export="" data-dfn-type="enum-value" id="dom-keyformat-jwk" data-title="jwk" data-dfn-for="KeyFormat" tabindex="0" aria-haspopup="dialog"><code>jwk</code></dfn></dt>
-                <dd>The key is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-3"><code>JsonWebKey</code></a> dictionary encoded as a JavaScript object</dd>
+                <dd>The key is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-4"><code>JsonWebKey</code></a> dictionary encoded as a JavaScript object</dd>
               </dl>
             </dd>
           </dl>
@@ -1597,7 +1622,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               method returns a new Promise object that will encrypt data using
               the specified
               <a data-link-type="idl" data-lt="AlgorithmIdentifier" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-15"><code>AlgorithmIdentifier</code></a> with
-              the supplied <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-33"><code>CryptoKey</code></a>. It must act
+              the supplied <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-35"><code>CryptoKey</code></a>. It must act
               as follows:
             </p>
             <ol>
@@ -1703,7 +1728,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               The <dfn id="dfn-SubtleCrypto-method-decrypt" data-dfn-for="SubtleCrypto" data-export="" data-dfn-type="method" data-idl="operation" data-title="decrypt" data-type="Promise" data-lt="decrypt()|decrypt(algorithm, key, data)" data-local-lt="SubtleCrypto.decrypt|SubtleCrypto.decrypt()|decrypt" tabindex="0" aria-haspopup="dialog"><code>decrypt</code></dfn>
               method returns a new Promise object that will decrypt data using the specified
               <a data-link-type="idl" data-lt="AlgorithmIdentifier" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-16"><code>AlgorithmIdentifier</code></a> with
-              the supplied <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-34"><code>CryptoKey</code></a>. It must act
+              the supplied <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-36"><code>CryptoKey</code></a>. It must act
               as follows:
             </p>
             <ol>
@@ -1810,7 +1835,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
             <p>
               The <dfn id="dfn-SubtleCrypto-method-sign" data-dfn-for="SubtleCrypto" data-export="" data-dfn-type="method" data-idl="operation" data-title="sign" data-type="Promise" data-lt="sign()|sign(algorithm, key, data)" data-local-lt="SubtleCrypto.sign|SubtleCrypto.sign()|sign" tabindex="0" aria-haspopup="dialog"><code>sign</code></dfn> method returns a
               new Promise object that will sign data using the specified <a data-link-type="idl" data-lt="AlgorithmIdentifier" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-17"><code>AlgorithmIdentifier</code></a> with the supplied
-              <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-35"><code>CryptoKey</code></a>. It must act as follows:
+              <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-37"><code>CryptoKey</code></a>. It must act as follows:
             </p>
             <ol>
               <li>
@@ -1915,7 +1940,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
             <p>
               The <dfn id="dfn-SubtleCrypto-method-verify" data-dfn-for="SubtleCrypto" data-export="" data-dfn-type="method" data-idl="operation" data-title="verify" data-type="Promise" data-lt="verify()|verify(algorithm, key, signature, data)" data-local-lt="SubtleCrypto.verify|SubtleCrypto.verify()|verify" tabindex="0" aria-haspopup="dialog"><code>verify</code></dfn> method returns
               a new Promise object that will verify data using the specified <a data-link-type="idl" data-lt="AlgorithmIdentifier" href="#dom-algorithmidentifier" class="internalDFN" id="ref-for-dom-algorithmidentifier-18"><code>AlgorithmIdentifier</code></a> with the supplied
-              <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-36"><code>CryptoKey</code></a>. It must act as follows:
+              <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-38"><code>CryptoKey</code></a>. It must act as follows:
             </p>
             <ol>
               <li>
@@ -2171,7 +2196,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <dl class="switch">
-                  <dt>If <var>result</var> is a <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-37"><code>CryptoKey</code></a> object:</dt>
+                  <dt>If <var>result</var> is a <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-39"><code>CryptoKey</code></a> object:</dt>
                   <dd>
                     <p>
                       If the <a data-link-type="attribute" data-lt="[[type]]" href="#dfn-CryptoKey-slot-type" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-type-4"><code>[[type]]</code></a> internal slot of
@@ -2179,7 +2204,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                       <var>usages</var> is empty, then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="SyntaxError" href="https://webidl.spec.whatwg.org/#syntaxerror"><code>SyntaxError</code></a>.
                     </p>
                   </dd>
-                  <dt>If <var>result</var> is a <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-1"><code>CryptoKeyPair</code></a> object:</dt>
+                  <dt>If <var>result</var> is a <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-2"><code>CryptoKeyPair</code></a> object:</dt>
                   <dd>
                     <p>
                       If the <a data-link-type="attribute" data-lt="[[usages]]" href="#dfn-CryptoKey-slot-usages" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-usages-9"><code>[[usages]]</code></a> internal slot of the
@@ -2497,7 +2522,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                         <p>
                           If the <code>keyData</code> parameter passed to the
                           <a data-link-type="idl" data-lt="importKey()" href="#dfn-SubtleCrypto-method-importKey" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-importKey-4"><code>importKey</code></a><code>()</code> method is a
-                          <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-4"><code>JsonWebKey</code></a> dictionary, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                          <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-5"><code>JsonWebKey</code></a> dictionary, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="TypeError" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror"><code>TypeError</code></a>.
                         </p>
                       </li>
@@ -2520,7 +2545,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                         <p>
                           If the <code>keyData</code> parameter passed to the
                           <a data-link-type="idl" data-lt="importKey()" href="#dfn-SubtleCrypto-method-importKey" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-importKey-6"><code>importKey</code></a><code>()</code> method is not a
-                          <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-5"><code>JsonWebKey</code></a> dictionary, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                          <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-6"><code>JsonWebKey</code></a> dictionary, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="TypeError" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror"><code>TypeError</code></a>.
                         </p>
                       </li>
@@ -2575,7 +2600,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>result</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-38"><code>CryptoKey</code></a> object that
+                  Let <var>result</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-40"><code>CryptoKey</code></a> object that
                   results from performing the import key operation specified by
                   <var>normalizedAlgorithm</var> using <var>keyData</var>,
                   <var>algorithm</var>,
@@ -3203,7 +3228,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
   <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <dfn data-export="" data-dfn-type="dict-member" id="dom-rsaotherprimesinfo-t" data-idl="field" data-title="t" data-dfn-for="RsaOtherPrimesInfo" data-type="DOMString" class="idlName" tabindex="0" aria-haspopup="dialog"><code>t</code></dfn>;</span>
 };</span><span data-idl="" class="idlDictionary" id="idl-def-jsonwebkey" data-title="JsonWebKey">
 
-dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-JsonWebKey" id="ref-for-dfn-JsonWebKey-6"><code>JsonWebKey</code></a> {<span data-idl="" class="idlMember" id="idl-def-jsonwebkey-kty" data-title="kty" data-dfn-for="JsonWebKey"><span class="idlType"><span class="idlSectionComment">
+dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-JsonWebKey" id="ref-for-dfn-JsonWebKey-7"><code>JsonWebKey</code></a> {<span data-idl="" class="idlMember" id="idl-def-jsonwebkey-kty" data-title="kty" data-dfn-for="JsonWebKey"><span class="idlType"><span class="idlSectionComment">
   // The following fields are defined in Section 3.1 of JSON Web Key
   </span><a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <dfn data-export="" data-dfn-type="dict-member" id="dom-jsonwebkey-kty" data-idl="field" data-title="kty" data-dfn-for="JsonWebKey" data-type="DOMString" class="idlName" tabindex="0" aria-haspopup="dialog"><code>kty</code></dfn>;</span><span data-idl="" class="idlMember" id="idl-def-jsonwebkey-use" data-title="use" data-dfn-for="JsonWebKey"><span class="idlType">
   <a data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <dfn data-export="" data-dfn-type="dict-member" id="dom-jsonwebkey-use" data-idl="field" data-title="use" data-dfn-for="JsonWebKey" data-type="DOMString" class="idlName" tabindex="0" aria-haspopup="dialog"><code>use</code></dfn>;</span><span data-idl="" class="idlMember" id="idl-def-jsonwebkey-key_ops" data-title="key_ops" data-dfn-for="JsonWebKey"><span class="idlType">
@@ -3257,9 +3282,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
 
       <section id="keypair"><div class="header-wrapper"><h2 id="x17-cryptokeypair-dictionary"><bdi class="secno">17. </bdi>CryptoKeyPair dictionary</h2><a class="self-link" href="#keypair" aria-label="Permalink for Section 17."></a></div>
         
-        <pre class="idl def" id="webidl-1948446941"><span class="idlHeader"><a class="self-link" href="#webidl-1948446941">WebIDL</a></span><code><span data-idl="" class="idlDictionary" id="idl-def-cryptokeypair" data-title="CryptoKeyPair">dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-CryptoKeyPair" id="ref-for-dfn-CryptoKeyPair-2"><code>CryptoKeyPair</code></a> {<span data-idl="" class="idlMember" id="idl-def-cryptokeypair-publickey" data-title="publicKey" data-dfn-for="CryptoKeyPair"><span class="idlType">
-  <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-39"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-CryptoKeyPair-publicKey" id="ref-for-dfn-CryptoKeyPair-publicKey-1"><code>publicKey</code></a>;</span><span data-idl="" class="idlMember" id="idl-def-cryptokeypair-privatekey" data-title="privateKey" data-dfn-for="CryptoKeyPair"><span class="idlType">
-  <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-40"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-CryptoKeyPair-privateKey" id="ref-for-dfn-CryptoKeyPair-privateKey-2"><code>privateKey</code></a>;</span>
+        <pre class="idl def" id="webidl-1948446941"><span class="idlHeader"><a class="self-link" href="#webidl-1948446941">WebIDL</a></span><code><span data-idl="" class="idlDictionary" id="idl-def-cryptokeypair" data-title="CryptoKeyPair">dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-CryptoKeyPair" id="ref-for-dfn-CryptoKeyPair-3"><code>CryptoKeyPair</code></a> {<span data-idl="" class="idlMember" id="idl-def-cryptokeypair-publickey" data-title="publicKey" data-dfn-for="CryptoKeyPair"><span class="idlType">
+  <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-41"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-CryptoKeyPair-publicKey" id="ref-for-dfn-CryptoKeyPair-publicKey-1"><code>publicKey</code></a>;</span><span data-idl="" class="idlMember" id="idl-def-cryptokeypair-privatekey" data-title="privateKey" data-dfn-for="CryptoKeyPair"><span class="idlType">
+  <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-42"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-CryptoKeyPair-privateKey" id="ref-for-dfn-CryptoKeyPair-privateKey-2"><code>privateKey</code></a>;</span>
 };</span></code></pre>
         <p>
           The <dfn data-idl="dictionary" id="dfn-CryptoKeyPair" data-export="" data-dfn-type="dictionary" data-title="CryptoKeyPair" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>CryptoKeyPair</code></dfn> dictionary represents an
@@ -4056,12 +4081,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedKeyGenParams" href="#dfn-RsaHashedKeyGenParams" class="internalDFN" id="ref-for-dfn-RsaHashedKeyGenParams-1"><code>RsaHashedKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-3"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-4"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedImportParams" href="#dfn-RsaHashedImportParams" class="internalDFN" id="ref-for-dfn-RsaHashedImportParams-1"><code>RsaHashedImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-41"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-43"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -4253,7 +4278,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-42"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-44"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -4283,7 +4308,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-43"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-45"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -4313,7 +4338,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-4"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-5"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -4400,7 +4425,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-44"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-46"><code>CryptoKey</code></a>
                             that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
@@ -4468,7 +4493,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-45"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-47"><code>CryptoKey</code></a>
                             that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
@@ -4486,7 +4511,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-7"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-8"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -4672,7 +4697,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-46"><code>CryptoKey</code></a> object that represents
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-48"><code>CryptoKey</code></a> object that represents
                                     <var>privateKey</var>.
                                   </p>
                                 </li>
@@ -4710,7 +4735,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-47"><code>CryptoKey</code></a> representing <var>publicKey</var>.
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-49"><code>CryptoKey</code></a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -4918,7 +4943,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                     <dd>
                       <ol>
                         <li>
-                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-8"><code>JsonWebKey</code></a>
+                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-9"><code>JsonWebKey</code></a>
                           dictionary.</p>
                         </li>
                         <li>
@@ -5111,12 +5136,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedKeyGenParams" href="#dfn-RsaHashedKeyGenParams" class="internalDFN" id="ref-for-dfn-RsaHashedKeyGenParams-3"><code>RsaHashedKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-5"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-6"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedImportParams" href="#dfn-RsaHashedImportParams" class="internalDFN" id="ref-for-dfn-RsaHashedImportParams-3"><code>RsaHashedImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-48"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-50"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -5280,7 +5305,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-49"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-51"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -5310,7 +5335,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-50"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-52"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -5340,7 +5365,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-6"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-7"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -5427,7 +5452,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-51"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-53"><code>CryptoKey</code></a>
                             that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
@@ -5493,7 +5518,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-52"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-54"><code>CryptoKey</code></a>
                             that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
@@ -5511,7 +5536,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-9"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-10"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -5691,7 +5716,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-53"><code>CryptoKey</code></a> representing <var>privateKey</var>.
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-55"><code>CryptoKey</code></a> representing <var>privateKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -5728,7 +5753,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-54"><code>CryptoKey</code></a> representing <var>publicKey</var>.
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-56"><code>CryptoKey</code></a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -5936,7 +5961,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                     <dd>
                       <ol>
                         <li>
-                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-10"><code>JsonWebKey</code></a> dictionary.</p>
+                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-11"><code>JsonWebKey</code></a> dictionary.</p>
                         </li>
                         <li>
                           <p>Set the <code>kty</code> attribute of <var>jwk</var> to the string
@@ -6122,12 +6147,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedKeyGenParams" href="#dfn-RsaHashedKeyGenParams" class="internalDFN" id="ref-for-dfn-RsaHashedKeyGenParams-4"><code>RsaHashedKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-7"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-8"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="RsaHashedImportParams" href="#dfn-RsaHashedImportParams" class="internalDFN" id="ref-for-dfn-RsaHashedImportParams-4"><code>RsaHashedImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-55"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-57"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -6319,7 +6344,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-56"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-58"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -6351,7 +6376,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-57"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-59"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -6383,7 +6408,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-8"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-9"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -6471,7 +6496,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-58"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-60"><code>CryptoKey</code></a>
                             that represents the RSA public key identified by
                             <var>publicKey</var>.
                           </p>
@@ -6537,7 +6562,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-59"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-61"><code>CryptoKey</code></a>
                             that represents the RSA private key identified by
                             <var>rsaPrivateKey</var>.
                           </p>
@@ -6555,7 +6580,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-11"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-12"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -6715,7 +6740,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-60"><code>CryptoKey</code></a> representing <var>privateKey</var>.
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-62"><code>CryptoKey</code></a> representing <var>privateKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -6752,7 +6777,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-61"><code>CryptoKey</code></a> representing <var>publicKey</var>.
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-63"><code>CryptoKey</code></a> representing <var>publicKey</var>.
                                   </p>
                                 </li>
                                 <li>
@@ -6961,7 +6986,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-12"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-13"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -7164,12 +7189,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="EcKeyGenParams" href="#dfn-EcKeyGenParams" class="internalDFN" id="ref-for-dfn-EcKeyGenParams-1"><code>EcKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-9"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-10"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="EcKeyImportParams" href="#dfn-EcKeyImportParams" class="internalDFN" id="ref-for-dfn-EcKeyImportParams-1"><code>EcKeyImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-62"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-64"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -7488,7 +7513,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-63"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-65"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -7518,7 +7543,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-64"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-66"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -7548,7 +7573,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-10"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-11"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -7706,7 +7731,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-65"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-67"><code>CryptoKey</code></a>
                                     that represents <var>publicKey</var>.
                                   </p>
                                 </li>
@@ -7910,7 +7935,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-66"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-68"><code>CryptoKey</code></a>
                                     that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc5915" title="Elliptic Curve Private Key Structure">RFC5915</a></cite>] using <var>ecPrivateKey</var>.
                                   </p>
@@ -7990,7 +8015,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-13"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-14"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -8118,7 +8143,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                         </li>
                                         <li>
                                           <p>
-                                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-67"><code>CryptoKey</code></a> object that represents the
+                                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-69"><code>CryptoKey</code></a> object that represents the
                                             Elliptic Curve private key identified by interpreting
                                             <var>jwk</var> according to Section 6.2.2 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                                           </p>
@@ -8142,7 +8167,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                         </li>
                                         <li>
                                           <p>
-                                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-68"><code>CryptoKey</code></a> object that represents the
+                                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-70"><code>CryptoKey</code></a> object that represents the
                                             Elliptic Curve public key identified by interpreting
                                             <var>jwk</var> according to Section 6.2.1 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                                           </p>
@@ -8273,7 +8298,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-69"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-71"><code>CryptoKey</code></a>
                                     that represents <var>Q</var>.
                                   </p>
                                 </li>
@@ -8357,7 +8382,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-70"><code>CryptoKey</code></a> to be
+                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-72"><code>CryptoKey</code></a> to be
                     exported.
                   </p>
                 </li>
@@ -8662,7 +8687,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-14"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-15"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -8889,7 +8914,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="EcKeyGenParams" href="#dfn-EcKeyGenParams" class="internalDFN" id="ref-for-dfn-EcKeyGenParams-4"><code>EcKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-11"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-12"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>deriveBits</td>
@@ -8899,7 +8924,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="EcKeyImportParams" href="#dfn-EcKeyImportParams" class="internalDFN" id="ref-for-dfn-EcKeyImportParams-3"><code>EcKeyImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-71"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-73"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -8912,7 +8937,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
         <section id="dh-EcdhKeyDeriveParams"><div class="header-wrapper"><h3 id="x24-3-ecdhkeyderiveparams-dictionary"><bdi class="secno">24.3 </bdi><dfn data-idl="dictionary" id="dfn-EcdhKeyDeriveParams" data-export="" data-dfn-type="dictionary" data-title="EcdhKeyDeriveParams" data-dfn-for="" tabindex="0" aria-haspopup="dialog"><code>EcdhKeyDeriveParams</code></dfn> dictionary</h3><a class="self-link" href="#dh-EcdhKeyDeriveParams" aria-label="Permalink for Section 24.3"></a></div>
           
           <pre class="idl def" id="webidl-1522123379"><span class="idlHeader"><a class="self-link" href="#webidl-1522123379">WebIDL</a></span><code><span data-idl="" class="idlDictionary" id="idl-def-ecdhkeyderiveparams" data-title="EcdhKeyDeriveParams">dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-EcdhKeyDeriveParams" id="ref-for-dfn-EcdhKeyDeriveParams-2"><code>EcdhKeyDeriveParams</code></a> : <span class="idlSuperclass"><a data-link-type="idl" href="#dfn-Algorithm" class="internalDFN" id="ref-for-dfn-Algorithm-13"><code>Algorithm</code></a></span> {<span data-idl="" class="idlMember" id="idl-def-ecdhkeyderiveparams-public" data-title="public" data-dfn-for="EcdhKeyDeriveParams">
-  required<span class="idlType"> <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-72"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-EcdhKeyDeriveParams-public" id="ref-for-dfn-EcdhKeyDeriveParams-public-1"><code>public</code></a>;</span>
+  required<span class="idlType"> <a data-link-type="idl" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-74"><code>CryptoKey</code></a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-EcdhKeyDeriveParams-public" id="ref-for-dfn-EcdhKeyDeriveParams-public-1"><code>public</code></a>;</span>
 };</span></code></pre>
           <p>The <dfn data-dfn-for="EcdhKeyDeriveParams" id="dfn-EcdhKeyDeriveParams-public" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="public" data-type="CryptoKey" tabindex="0" aria-haspopup="dialog"><code>public</code></dfn> member represents the peer's EC public key.</p>
         </section>
@@ -8995,7 +9020,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-73"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-75"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -9025,7 +9050,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-74"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-76"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -9057,7 +9082,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-12"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-13"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -9333,7 +9358,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-75"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-77"><code>CryptoKey</code></a>
                                     that represents <var>publicKey</var>.
                                   </p>
                                 </li>
@@ -9540,7 +9565,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-76"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-78"><code>CryptoKey</code></a>
                                     that represents the Elliptic Curve private key identified by
                                     performing the conversion steps defined in Section 3 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc5915" title="Elliptic Curve Private Key Structure">RFC5915</a></cite>] using <var>ecPrivateKey</var>.
                                   </p>
@@ -9620,7 +9645,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-15"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-16"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -9705,7 +9730,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                     </li>
                                     <li>
                                       <p>
-                                        Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-77"><code>CryptoKey</code></a> object that represents the
+                                        Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-79"><code>CryptoKey</code></a> object that represents the
                                         Elliptic Curve private key identified by interpreting
                                         <var>jwk</var> according to Section 6.2.2 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                                       </p>
@@ -9729,7 +9754,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                     </li>
                                     <li>
                                       <p>
-                                        Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-78"><code>CryptoKey</code></a> object that represents the
+                                        Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-80"><code>CryptoKey</code></a> object that represents the
                                         Elliptic Curve public key identified by interpreting
                                         <var>jwk</var> according to Section 6.2.1 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                                       </p>
@@ -9855,7 +9880,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-79"><code>CryptoKey</code></a>
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-81"><code>CryptoKey</code></a>
                                     that represents <var>Q</var>.
                                   </p>
                                 </li>
@@ -9932,7 +9957,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-80"><code>CryptoKey</code></a> to be
+                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-82"><code>CryptoKey</code></a> to be
                     exported.
                   </p>
                 </li>
@@ -10226,7 +10251,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-16"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-17"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -10450,12 +10475,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-13"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-14"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-81"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-83"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -10593,7 +10618,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-82"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-84"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -10624,7 +10649,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-83"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-85"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -10655,7 +10680,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-14"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-15"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -10738,7 +10763,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-84"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-86"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             that represents <var>publicKey</var>.
@@ -10831,7 +10856,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-85"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-87"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             that represents the Ed25519 private key identified by <var>curvePrivateKey</var>.
@@ -10867,7 +10892,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-17"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-18"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -10941,7 +10966,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-86"><code>CryptoKey</code></a> object that represents the
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-88"><code>CryptoKey</code></a> object that represents the
                                     Ed25519 private key identified by interpreting
                                     <var>jwk</var> according to Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8037" title="CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures in JSON Object Signing and Encryption (JOSE)">RFC8037</a></cite>].
                                   </p>
@@ -10966,7 +10991,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-87"><code>CryptoKey</code></a> object that represents the
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-89"><code>CryptoKey</code></a> object that represents the
                                     Ed25519 public key identified by interpreting
                                     <var>jwk</var> according to Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8037" title="CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures in JSON Object Signing and Encryption (JOSE)">RFC8037</a></cite>].
                                   </p>
@@ -11024,7 +11049,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-88"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-90"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             representing the key data provided in <var>keyData</var>.
@@ -11066,7 +11091,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-89"><code>CryptoKey</code></a> to be
+                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-91"><code>CryptoKey</code></a> to be
                     exported.
                   </p>
                 </li>
@@ -11181,7 +11206,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-18"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-19"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -11311,12 +11336,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-15"><code>CryptoKeyPair</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-16"><code>CryptoKeyPair</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-90"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-92"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -11431,7 +11456,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-91"><code>CryptoKey</code></a>
+                    Let <var>publicKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-93"><code>CryptoKey</code></a>
                     representing the public key of the generated key pair.
                   </p>
                 </li>
@@ -11461,7 +11486,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-92"><code>CryptoKey</code></a>
+                    Let <var>privateKey</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-94"><code>CryptoKey</code></a>
                     representing the private key of the generated key pair.
                   </p>
                 </li>
@@ -11493,7 +11518,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-16"><code>CryptoKeyPair</code></a>
+                    Let <var>result</var> be a new <a data-link-type="idl" data-lt="CryptoKeyPair" href="#dfn-CryptoKeyPair" class="internalDFN" id="ref-for-dfn-CryptoKeyPair-17"><code>CryptoKeyPair</code></a>
                     dictionary.
                   </p>
                 </li>
@@ -11575,7 +11600,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-93"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-95"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             that represents <var>publicKey</var>.
@@ -11668,7 +11693,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-94"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-96"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             that represents the X25519 private key identified by <var>curvePrivateKey</var>.
@@ -11704,7 +11729,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-19"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-20"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -11782,7 +11807,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-95"><code>CryptoKey</code></a> object that represents the
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-97"><code>CryptoKey</code></a> object that represents the
                                     X25519 private key identified by interpreting
                                     <var>jwk</var> according to Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8037" title="CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures in JSON Object Signing and Encryption (JOSE)">RFC8037</a></cite>].
                                   </p>
@@ -11807,7 +11832,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                 </li>
                                 <li>
                                   <p>
-                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-96"><code>CryptoKey</code></a> object that represents the
+                                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-98"><code>CryptoKey</code></a> object that represents the
                                     X25519 public key identified by interpreting
                                     <var>jwk</var> according to Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8037" title="CFRG Elliptic Curve Diffie-Hellman (ECDH) and Signatures in JSON Object Signing and Encryption (JOSE)">RFC8037</a></cite>].
                                   </p>
@@ -11864,7 +11889,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-97"><code>CryptoKey</code></a> associated with the
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-99"><code>CryptoKey</code></a> associated with the
                             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global">relevant global object</a>
                             of <code>this</code> [<cite><a class="bibref" data-link-type="biblio" href="#bib-html" title="HTML Standard">HTML</a></cite>], and
                             representing the key data provided in <var>keyData</var>.
@@ -11906,7 +11931,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-98"><code>CryptoKey</code></a> to be
+                    Let <var>key</var> be the <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-100"><code>CryptoKey</code></a> to be
                     exported.
                   </p>
                 </li>
@@ -12021,7 +12046,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-20"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-21"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -12156,12 +12181,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="AesKeyGenParams" href="#dfn-AesKeyGenParams" class="internalDFN" id="ref-for-dfn-AesKeyGenParams-1"><code>AesKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-99"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-101"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-100"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-102"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -12335,7 +12360,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>key</var> be a new
-                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-101"><code>CryptoKey</code></a> object representing the
+                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-103"><code>CryptoKey</code></a> object representing the
                     generated AES key.
                   </p>
                 </li>
@@ -12426,7 +12451,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-21"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-22"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -12514,7 +12539,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-102"><code>CryptoKey</code></a> object representing an AES key with
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-104"><code>CryptoKey</code></a> object representing an AES key with
                     value <var>data</var>.
                   </p>
                 </li>
@@ -12587,7 +12612,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-22"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-23"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -12724,12 +12749,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="AesKeyGenParams" href="#dfn-AesKeyGenParams" class="internalDFN" id="ref-for-dfn-AesKeyGenParams-3"><code>AesKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-103"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-105"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-104"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-106"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -12875,7 +12900,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>key</var> be a new
-                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-105"><code>CryptoKey</code></a> object representing the
+                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-107"><code>CryptoKey</code></a> object representing the
                     generated AES key.
                   </p>
                 </li>
@@ -12966,7 +12991,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-23"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-24"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -13055,7 +13080,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-106"><code>CryptoKey</code></a>
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-108"><code>CryptoKey</code></a>
                     object representing an AES key with value <var>data</var>.
                   </p>
                 </li>
@@ -13127,7 +13152,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     <dd>
                       <ol>
                         <li>
-                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-24"><code>JsonWebKey</code></a> dictionary.</p>
+                          <p>Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-25"><code>JsonWebKey</code></a> dictionary.</p>
                         </li>
                         <li>
                           <p>
@@ -13254,12 +13279,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                <tr>
                  <td>generateKey</td>
                  <td><a data-link-type="idl" data-lt="AesKeyGenParams" href="#dfn-AesKeyGenParams" class="internalDFN" id="ref-for-dfn-AesKeyGenParams-4"><code>AesKeyGenParams</code></a></td>
-                 <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-107"><code>CryptoKey</code></a></td>
+                 <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-109"><code>CryptoKey</code></a></td>
                </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-108"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-110"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -13499,7 +13524,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>key</var> be a new
-                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-109"><code>CryptoKey</code></a> object representing the
+                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-111"><code>CryptoKey</code></a> object representing the
                     generated AES key.
                   </p>
                 </li>
@@ -13590,7 +13615,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-25"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-26"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -13679,7 +13704,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-110"><code>CryptoKey</code></a>
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-112"><code>CryptoKey</code></a>
                     object representing an AES key with value <var>data</var>.
                   </p>
                 </li>
@@ -13752,7 +13777,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-26"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-27"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -13880,12 +13905,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="AesKeyGenParams" href="#dfn-AesKeyGenParams" class="internalDFN" id="ref-for-dfn-AesKeyGenParams-5"><code>AesKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-111"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-113"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-112"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-114"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -13985,7 +14010,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>key</var> be a new
-                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-113"><code>CryptoKey</code></a> object representing the
+                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-115"><code>CryptoKey</code></a> object representing the
                     generated AES key.
                   </p>
                 </li>
@@ -14077,7 +14102,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-27"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-28"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -14165,7 +14190,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-114"><code>CryptoKey</code></a>
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-116"><code>CryptoKey</code></a>
                     representing an AES key with value <var>data</var>.
                   </p>
                 </li>
@@ -14238,7 +14263,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-28"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-29"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -14373,12 +14398,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>generateKey</td>
                 <td><a data-link-type="idl" data-lt="HmacKeyGenParams" href="#dfn-HmacKeyGenParams" class="internalDFN" id="ref-for-dfn-HmacKeyGenParams-1"><code>HmacKeyGenParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-115"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-117"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>importKey</td>
                 <td><a data-link-type="idl" data-lt="HmacImportParams" href="#dfn-HmacImportParams" class="internalDFN" id="ref-for-dfn-HmacImportParams-1"><code>HmacImportParams</code></a></td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-116"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-118"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>exportKey</td>
@@ -14514,7 +14539,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>key</var> be a new
-                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-117"><code>CryptoKey</code></a> object representing the
+                    <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-119"><code>CryptoKey</code></a> object representing the
                     generated key.
                   </p>
                 </li>
@@ -14623,7 +14648,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-29"><code>JsonWebKey</code></a> dictionary:</dt>
+                            <dt>If <var>keyData</var> is a <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-30"><code>JsonWebKey</code></a> dictionary:</dt>
                             <dd><p>Let <var>jwk</var> equal <var>keyData</var>.</p></dd>
                             <dt>Otherwise:</dt>
                             <dd><p><a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">Throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</p></dd>
@@ -14804,7 +14829,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-118"><code>CryptoKey</code></a>
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-120"><code>CryptoKey</code></a>
                     object representing an HMAC key with the first <var>length</var>
                     bits of <var>data</var>.
                   </p>
@@ -14889,7 +14914,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-30"><code>JsonWebKey</code></a>
+                            Let <var>jwk</var> be a new <a data-link-type="idl" data-lt="JsonWebKey" href="#dfn-JsonWebKey" class="internalDFN" id="ref-for-dfn-JsonWebKey-31"><code>JsonWebKey</code></a>
                             dictionary.
                           </p>
                         </li>
@@ -15180,7 +15205,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-119"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-121"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>Get key length</td>
@@ -15300,7 +15325,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-120"><code>CryptoKey</code></a>
+                            Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-122"><code>CryptoKey</code></a>
                             representing the key data provided in <var>keyData</var>.
                           </p>
                         </li>
@@ -15399,7 +15424,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>importKey</td>
                 <td>None</td>
-                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-121"><code>CryptoKey</code></a></td>
+                <td><a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-123"><code>CryptoKey</code></a></td>
               </tr>
               <tr>
                 <td>Get key length</td>
@@ -15498,7 +15523,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-122"><code>CryptoKey</code></a>
+                    Let <var>key</var> be a new <a data-link-type="idl" data-lt="CryptoKey" href="#dfn-CryptoKey" class="internalDFN" id="ref-for-dfn-CryptoKey-124"><code>CryptoKey</code></a>
                     representing <var>keyData</var>.
                   </p>
                 </li>
@@ -17114,79 +17139,79 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     </li><li>
       <a href="#ref-for-dfn-CryptoKey-19" title="§ 13.5 Serialization and deserialization steps">§ 13.5 Serialization and deserialization steps</a> <a href="#ref-for-dfn-CryptoKey-20" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-21" title="§ 14. SubtleCrypto interface">§ 14. SubtleCrypto interface</a> <a href="#ref-for-dfn-CryptoKey-22" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-23" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-24" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-25" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-26" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-27" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-28" title="Reference 8">(8)</a> <a href="#ref-for-dfn-CryptoKey-29" title="Reference 9">(9)</a> <a href="#ref-for-dfn-CryptoKey-30" title="Reference 10">(10)</a> <a href="#ref-for-dfn-CryptoKey-31" title="Reference 11">(11)</a> <a href="#ref-for-dfn-CryptoKey-32" title="Reference 12">(12)</a> 
+      <a href="#ref-for-dfn-CryptoKey-21" title="§ 14. SubtleCrypto interface">§ 14. SubtleCrypto interface</a> <a href="#ref-for-dfn-CryptoKey-22" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-23" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-24" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-25" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-26" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-27" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-28" title="Reference 8">(8)</a> <a href="#ref-for-dfn-CryptoKey-29" title="Reference 9">(9)</a> <a href="#ref-for-dfn-CryptoKey-30" title="Reference 10">(10)</a> <a href="#ref-for-dfn-CryptoKey-31" title="Reference 11">(11)</a> <a href="#ref-for-dfn-CryptoKey-32" title="Reference 12">(12)</a> <a href="#ref-for-dfn-CryptoKey-33" title="Reference 13">(13)</a> <a href="#ref-for-dfn-CryptoKey-34" title="Reference 14">(14)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-33" title="§ 14.3.1 The encrypt method">§ 14.3.1 The encrypt method</a> 
+      <a href="#ref-for-dfn-CryptoKey-35" title="§ 14.3.1 The encrypt method">§ 14.3.1 The encrypt method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-34" title="§ 14.3.2 The decrypt method">§ 14.3.2 The decrypt method</a> 
+      <a href="#ref-for-dfn-CryptoKey-36" title="§ 14.3.2 The decrypt method">§ 14.3.2 The decrypt method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-35" title="§ 14.3.3 The sign method">§ 14.3.3 The sign method</a> 
+      <a href="#ref-for-dfn-CryptoKey-37" title="§ 14.3.3 The sign method">§ 14.3.3 The sign method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-36" title="§ 14.3.4 The verify method">§ 14.3.4 The verify method</a> 
+      <a href="#ref-for-dfn-CryptoKey-38" title="§ 14.3.4 The verify method">§ 14.3.4 The verify method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-37" title="§ 14.3.6 The generateKey method">§ 14.3.6 The generateKey method</a> 
+      <a href="#ref-for-dfn-CryptoKey-39" title="§ 14.3.6 The generateKey method">§ 14.3.6 The generateKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-38" title="§ 14.3.9 The importKey() method">§ 14.3.9 The importKey() method</a> 
+      <a href="#ref-for-dfn-CryptoKey-40" title="§ 14.3.9 The importKey() method">§ 14.3.9 The importKey() method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-39" title="§ 17. CryptoKeyPair dictionary">§ 17. CryptoKeyPair dictionary</a> <a href="#ref-for-dfn-CryptoKey-40" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-41" title="§ 17. CryptoKeyPair dictionary">§ 17. CryptoKeyPair dictionary</a> <a href="#ref-for-dfn-CryptoKey-42" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-41" title="§ 20.2 Registration">§ 20.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-43" title="§ 20.2 Registration">§ 20.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-42" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-43" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-44" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-45" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-46" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-47" title="Reference 6">(6)</a> 
+      <a href="#ref-for-dfn-CryptoKey-44" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-CryptoKey-45" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-46" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-47" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-48" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-49" title="Reference 6">(6)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-48" title="§ 21.2 Registration">§ 21.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-50" title="§ 21.2 Registration">§ 21.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-49" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-50" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-51" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-52" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-53" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-54" title="Reference 6">(6)</a> 
+      <a href="#ref-for-dfn-CryptoKey-51" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-52" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-53" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-54" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-55" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-56" title="Reference 6">(6)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-55" title="§ 22.2 Registration">§ 22.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-57" title="§ 22.2 Registration">§ 22.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-56" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-57" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-58" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-59" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-60" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-61" title="Reference 6">(6)</a> 
+      <a href="#ref-for-dfn-CryptoKey-58" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-59" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-60" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-61" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-62" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-63" title="Reference 6">(6)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-62" title="§ 23.2 Registration">§ 23.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-64" title="§ 23.2 Registration">§ 23.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-63" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-64" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-65" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-66" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-67" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-68" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-69" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-70" title="Reference 8">(8)</a> 
+      <a href="#ref-for-dfn-CryptoKey-65" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-66" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-67" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-68" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-69" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-70" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-71" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-72" title="Reference 8">(8)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-71" title="§ 24.2 Registration">§ 24.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-73" title="§ 24.2 Registration">§ 24.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-72" title="§ 24.3 EcdhKeyDeriveParams dictionary">§ 24.3 EcdhKeyDeriveParams dictionary</a> 
+      <a href="#ref-for-dfn-CryptoKey-74" title="§ 24.3 EcdhKeyDeriveParams dictionary">§ 24.3 EcdhKeyDeriveParams dictionary</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-73" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-74" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-75" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-76" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-77" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-78" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-79" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-80" title="Reference 8">(8)</a> 
+      <a href="#ref-for-dfn-CryptoKey-75" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-76" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-77" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-78" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-79" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-80" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-81" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-82" title="Reference 8">(8)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-81" title="§ 25.2 Registration">§ 25.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-83" title="§ 25.2 Registration">§ 25.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-82" title="§ 25.3 Operations">§ 25.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-83" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-84" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-85" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-86" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-87" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-88" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-89" title="Reference 8">(8)</a> 
+      <a href="#ref-for-dfn-CryptoKey-84" title="§ 25.3 Operations">§ 25.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-85" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-86" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-87" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-88" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-89" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-90" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-91" title="Reference 8">(8)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-90" title="§ 26.2 Registration">§ 26.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-92" title="§ 26.2 Registration">§ 26.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-91" title="§ 26.3 Operations">§ 26.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-92" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-93" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-94" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-95" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-96" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-97" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-98" title="Reference 8">(8)</a> 
+      <a href="#ref-for-dfn-CryptoKey-93" title="§ 26.3 Operations">§ 26.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-94" title="Reference 2">(2)</a> <a href="#ref-for-dfn-CryptoKey-95" title="Reference 3">(3)</a> <a href="#ref-for-dfn-CryptoKey-96" title="Reference 4">(4)</a> <a href="#ref-for-dfn-CryptoKey-97" title="Reference 5">(5)</a> <a href="#ref-for-dfn-CryptoKey-98" title="Reference 6">(6)</a> <a href="#ref-for-dfn-CryptoKey-99" title="Reference 7">(7)</a> <a href="#ref-for-dfn-CryptoKey-100" title="Reference 8">(8)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-99" title="§ 27.2 Registration">§ 27.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-100" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-101" title="§ 27.2 Registration">§ 27.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-102" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-101" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-102" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-103" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-CryptoKey-104" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-103" title="§ 28.2 Registration">§ 28.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-104" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-105" title="§ 28.2 Registration">§ 28.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-106" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-105" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-106" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-107" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-108" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-107" title="§ 29.2 Registration">§ 29.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-108" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-109" title="§ 29.2 Registration">§ 29.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-110" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-109" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-110" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-111" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-CryptoKey-112" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-111" title="§ 30.2 Registration">§ 30.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-112" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-113" title="§ 30.2 Registration">§ 30.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-114" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-113" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-114" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-115" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-CryptoKey-116" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-115" title="§ 31.2 Registration">§ 31.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-116" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-117" title="§ 31.2 Registration">§ 31.2 Registration</a> <a href="#ref-for-dfn-CryptoKey-118" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-117" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dfn-CryptoKey-118" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-CryptoKey-119" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dfn-CryptoKey-120" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-119" title="§ 33.2 Registration">§ 33.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-121" title="§ 33.2 Registration">§ 33.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-120" title="§ 33.4 Operations">§ 33.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-122" title="§ 33.4 Operations">§ 33.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-121" title="§ 34.2 Registration">§ 34.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKey-123" title="§ 34.2 Registration">§ 34.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKey-122" title="§ 34.4 Operations">§ 34.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKey-124" title="§ 34.4 Operations">§ 34.4 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-keytype" aria-label="Links in this document to definition: KeyType">
@@ -17775,7 +17800,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto" aria-label="Permalink for definition: SubtleCrypto. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -17801,7 +17826,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dom-keyformat" aria-label="Permalink for definition: KeyFormat. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -17823,7 +17848,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dom-keyformat-raw" aria-label="Permalink for definition: raw. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -17865,7 +17890,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dom-keyformat-pkcs8" aria-label="Permalink for definition: pkcs8. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -17899,7 +17924,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dom-keyformat-spki" aria-label="Permalink for definition: spki. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -17933,7 +17958,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dom-keyformat-jwk" aria-label="Permalink for definition: jwk. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18013,7 +18038,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-encrypt" aria-label="Permalink for definition: encrypt. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18029,7 +18054,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-decrypt" aria-label="Permalink for definition: decrypt. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18045,7 +18070,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-sign" aria-label="Permalink for definition: sign. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18061,7 +18086,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-verify" aria-label="Permalink for definition: verify. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18077,7 +18102,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-digest" aria-label="Permalink for definition: digest. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18093,7 +18118,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-generateKey" aria-label="Permalink for definition: generateKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18111,7 +18136,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-deriveKey" aria-label="Permalink for definition: deriveKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18127,7 +18152,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-deriveBits" aria-label="Permalink for definition: deriveBits. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18143,7 +18168,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-importKey" aria-label="Permalink for definition: importKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18159,7 +18184,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-exportKey" aria-label="Permalink for definition: exportKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18177,7 +18202,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-wrapKey" aria-label="Permalink for definition: wrapKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18195,7 +18220,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <span class="caret"></span>
       <div>
         <a class="self-link" href="#dfn-SubtleCrypto-method-unwrapKey" aria-label="Permalink for definition: unwrapKey. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-579813499">IDL</a>
+        <span class="marker dfn-exported" title="Definition can be referenced by other specifications">exported</span> <a class="marker idl-block" title="Jump to IDL declaration" href="#webidl-869991736">IDL</a>
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
@@ -18636,37 +18661,37 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     <li>
       <a href="#ref-for-dfn-JsonWebKey-1" title="§ 9. Terminology">§ 9. Terminology</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-2" title="§ 14. SubtleCrypto interface">§ 14. SubtleCrypto interface</a> 
+      <a href="#ref-for-dfn-JsonWebKey-2" title="§ 14. SubtleCrypto interface">§ 14. SubtleCrypto interface</a> <a href="#ref-for-dfn-JsonWebKey-3" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-3" title="§ 14.1 Data Types">§ 14.1 Data Types</a> 
+      <a href="#ref-for-dfn-JsonWebKey-4" title="§ 14.1 Data Types">§ 14.1 Data Types</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-4" title="§ 14.3.9 The importKey() method">§ 14.3.9 The importKey() method</a> <a href="#ref-for-dfn-JsonWebKey-5" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-5" title="§ 14.3.9 The importKey() method">§ 14.3.9 The importKey() method</a> <a href="#ref-for-dfn-JsonWebKey-6" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-6" title="§ 15. JsonWebKey dictionary">§ 15. JsonWebKey dictionary</a> 
+      <a href="#ref-for-dfn-JsonWebKey-7" title="§ 15. JsonWebKey dictionary">§ 15. JsonWebKey dictionary</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-7" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-JsonWebKey-8" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-8" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-dfn-JsonWebKey-9" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-9" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-10" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-10" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-11" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-11" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-12" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-12" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-13" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-13" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-JsonWebKey-14" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-14" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-JsonWebKey-15" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-15" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-16" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-16" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-17" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-17" title="§ 25.3 Operations">§ 25.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-18" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-18" title="§ 25.3 Operations">§ 25.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-19" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-19" title="§ 26.3 Operations">§ 26.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-20" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-20" title="§ 26.3 Operations">§ 26.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-21" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-21" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-JsonWebKey-22" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-22" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-JsonWebKey-23" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-23" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-24" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-24" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-25" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-25" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-26" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-26" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-JsonWebKey-27" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-27" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-28" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-28" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-JsonWebKey-29" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dfn-JsonWebKey-29" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dfn-JsonWebKey-30" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-JsonWebKey-30" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dfn-JsonWebKey-31" title="Reference 2">(2)</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-RsaOtherPrimesInfo" aria-label="Links in this document to definition: RsaOtherPrimesInfo">
@@ -18712,37 +18737,39 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-dfn-CryptoKeyPair-1" title="§ 14.3.6 The generateKey method">§ 14.3.6 The generateKey method</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-1" title="§ 14. SubtleCrypto interface">§ 14. SubtleCrypto interface</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-2" title="§ 17. CryptoKeyPair dictionary">§ 17. CryptoKeyPair dictionary</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-2" title="§ 14.3.6 The generateKey method">§ 14.3.6 The generateKey method</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-3" title="§ 20.2 Registration">§ 20.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-3" title="§ 17. CryptoKeyPair dictionary">§ 17. CryptoKeyPair dictionary</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-4" title="§ 20.8 Operations">§ 20.8 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-4" title="§ 20.2 Registration">§ 20.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-5" title="§ 21.2 Registration">§ 21.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-5" title="§ 20.8 Operations">§ 20.8 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-6" title="§ 21.4 Operations">§ 21.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-6" title="§ 21.2 Registration">§ 21.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-7" title="§ 22.2 Registration">§ 22.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-7" title="§ 21.4 Operations">§ 21.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-8" title="§ 22.4 Operations">§ 22.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-8" title="§ 22.2 Registration">§ 22.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-9" title="§ 23.2 Registration">§ 23.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-9" title="§ 22.4 Operations">§ 22.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-10" title="§ 23.7 Operations">§ 23.7 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-10" title="§ 23.2 Registration">§ 23.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-11" title="§ 24.2 Registration">§ 24.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-11" title="§ 23.7 Operations">§ 23.7 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-12" title="§ 24.4 Operations">§ 24.4 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-12" title="§ 24.2 Registration">§ 24.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-13" title="§ 25.2 Registration">§ 25.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-13" title="§ 24.4 Operations">§ 24.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-14" title="§ 25.3 Operations">§ 25.3 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-14" title="§ 25.2 Registration">§ 25.2 Registration</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-15" title="§ 26.2 Registration">§ 26.2 Registration</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-15" title="§ 25.3 Operations">§ 25.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-CryptoKeyPair-16" title="§ 26.3 Operations">§ 26.3 Operations</a> 
+      <a href="#ref-for-dfn-CryptoKeyPair-16" title="§ 26.2 Registration">§ 26.2 Registration</a> 
+    </li><li>
+      <a href="#ref-for-dfn-CryptoKeyPair-17" title="§ 26.3 Operations">§ 26.3 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-CryptoKeyPair-publicKey" aria-label="Links in this document to definition: publicKey">
