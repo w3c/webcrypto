@@ -1231,52 +1231,77 @@ enum KeyFormat { "raw", "spki", "pkcs8", "jwk" };
 
 [SecureContext,Exposed=(Window,Worker)]
 interface SubtleCrypto {
-  Promise&lt;any> encrypt(AlgorithmIdentifier algorithm,
-                       CryptoKey key,
-                       BufferSource data);
-  Promise&lt;any> decrypt(AlgorithmIdentifier algorithm,
-                       CryptoKey key,
-                       BufferSource data);
-  Promise&lt;any> sign(AlgorithmIdentifier algorithm,
-                    CryptoKey key,
-                    BufferSource data);
-  Promise&lt;any> verify(AlgorithmIdentifier algorithm,
-                      CryptoKey key,
-                      BufferSource signature,
-                      BufferSource data);
-  Promise&lt;any> digest(AlgorithmIdentifier algorithm,
-                      BufferSource data);
+  Promise&lt;ArrayBuffer> encrypt(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource data
+  );
+  Promise&lt;ArrayBuffer> decrypt(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource data
+  );
+  Promise&lt;ArrayBuffer> sign(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource data
+  );
+  Promise&lt;boolean> verify(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource signature,
+    BufferSource data
+  );
+  Promise&lt;ArrayBuffer> digest(
+    AlgorithmIdentifier algorithm,
+    BufferSource data
+  );
 
-  Promise&lt;any> generateKey(AlgorithmIdentifier algorithm,
-                          boolean extractable,
-                          sequence&lt;KeyUsage> keyUsages );
-  Promise&lt;any> deriveKey(AlgorithmIdentifier algorithm,
-                         CryptoKey baseKey,
-                         AlgorithmIdentifier derivedKeyType,
-                         boolean extractable,
-                         sequence&lt;KeyUsage> keyUsages );
-  Promise&lt;ArrayBuffer> deriveBits(AlgorithmIdentifier algorithm,
-                          CryptoKey baseKey,
-                          optional unsigned long? length = null);
+  Promise&lt;(CryptoKey or CryptoKeyPair)> generateKey(
+    AlgorithmIdentifier algorithm,
+    boolean extractable,
+    sequence&lt;KeyUsage> keyUsages
+  );
+  Promise&lt;CryptoKey> deriveKey(
+    AlgorithmIdentifier algorithm,
+    CryptoKey baseKey,
+    AlgorithmIdentifier derivedKeyType,
+    boolean extractable,
+    sequence&lt;KeyUsage> keyUsages
+  );
+  Promise&lt;ArrayBuffer> deriveBits(
+    AlgorithmIdentifier algorithm,
+    CryptoKey baseKey,
+    optional unsigned long? length = null
+  );
 
-  Promise&lt;CryptoKey> importKey(KeyFormat format,
-                         (BufferSource or JsonWebKey) keyData,
-                         AlgorithmIdentifier algorithm,
-                         boolean extractable,
-                         sequence&lt;KeyUsage> keyUsages );
-  Promise&lt;any> exportKey(KeyFormat format, CryptoKey key);
+  Promise&lt;CryptoKey> importKey(
+    KeyFormat format,
+    (BufferSource or JsonWebKey) keyData,
+    AlgorithmIdentifier algorithm,
+    boolean extractable,
+    sequence&lt;KeyUsage> keyUsages
+  );
+  Promise&lt;(ArrayBuffer or JsonWebKey)> exportKey(
+    KeyFormat format,
+    CryptoKey key
+  );
 
-  Promise&lt;any> wrapKey(KeyFormat format,
-                       CryptoKey key,
-                       CryptoKey wrappingKey,
-                       AlgorithmIdentifier wrapAlgorithm);
-  Promise&lt;CryptoKey> unwrapKey(KeyFormat format,
-                         BufferSource wrappedKey,
-                         CryptoKey unwrappingKey,
-                         AlgorithmIdentifier unwrapAlgorithm,
-                         AlgorithmIdentifier unwrappedKeyAlgorithm,
-                         boolean extractable,
-                         sequence&lt;KeyUsage> keyUsages );
+  Promise&lt;ArrayBuffer> wrapKey(
+    KeyFormat format,
+    CryptoKey key,
+    CryptoKey wrappingKey,
+    AlgorithmIdentifier wrapAlgorithm
+  );
+  Promise&lt;CryptoKey> unwrapKey(
+    KeyFormat format,
+    BufferSource wrappedKey,
+    CryptoKey unwrappingKey,
+    AlgorithmIdentifier unwrapAlgorithm,
+    AlgorithmIdentifier unwrappedKeyAlgorithm,
+    boolean extractable,
+    sequence&lt;KeyUsage> keyUsages
+  );
 };
         </pre>
         <div class=note>
