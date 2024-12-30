@@ -2634,7 +2634,7 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |key| be the result of performing the export key operation specified by
+                  Let |exportedKey| be the result of performing the export key operation specified by
                   the {{CryptoKey/[[algorithm]]}} internal slot of
                   |key| using |key| and |format|.
                 </p>
@@ -2646,7 +2646,7 @@ interface SubtleCrypto {
                     {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
                   </dt>
                   <dd>
-                    Let |bytes| be |key|.
+                    Let |bytes| be |exportedKey|.
                   </dd>
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
@@ -2655,7 +2655,7 @@ interface SubtleCrypto {
                     <ol>
                       <li>
                         <p>
-                          Let |json| be the result of representing |key| as a
+                          Let |json| be the result of representing |exportedKey| as a
                           UTF-16 string conforming to the JSON grammar; for example, by executing
                           the `JSON.stringify` algorithm specified in
                           [[ECMA-262]] in the context of a new global object.
