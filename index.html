@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="37f3dd8b3ab8bba9b550a2244ed22b36a7f426c6">
+<meta name="revision" content="2fecff88501b98c401e885075a2d930e7b252349">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "37f3dd8b3ab8bba9b550a2244ed22b36a7f426c6",
+  "gitRevision": "2fecff88501b98c401e885075a2d930e7b252349",
   "publishISODate": "2024-12-30T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 30 December 2024"
 }</script>
@@ -2853,7 +2853,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                     that is marked as non-extractable using the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-1"><code>ext</code></a> JWK member.
                   </p>
                   <p>
-                    However, the unwrapKey method <em>does</em> support the JsonWebKey/ext}} JWK member,
+                    However, the unwrapKey method <em>does</em> support the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-2"><code>ext</code></a> JWK member,
                     so that wrapped non-extractable keys created elsewhere, for example by a server, can be
                     unwrapped using this API.
                   </p>
@@ -2861,7 +2861,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>key</var> be the result of performing the export key operation specified
+                  Let <var>exportedKey</var> be the result of performing the export key operation specified by
                   the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-15"><code>[[algorithm]]</code></a> internal slot of
                   <var>key</var> using <var>key</var> and <var>format</var>.
                 </p>
@@ -2873,7 +2873,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                     "<a data-link-type="idl" href="#dom-keyformat-pkcs8" class="internalDFN" id="ref-for-dom-keyformat-pkcs8-5"><code>pkcs8</code></a>", or "<a data-link-type="idl" href="#dom-keyformat-spki" class="internalDFN" id="ref-for-dom-keyformat-spki-5"><code>spki</code></a>":
                   </dt>
                   <dd>
-                    Let <var>bytes</var> be <var>key</var>.
+                    Let <var>bytes</var> be <var>exportedKey</var>.
                   </dd>
                   <dt>
                     If <var>format</var> is equal to the string "<a data-link-type="idl" href="#dom-keyformat-jwk" class="internalDFN" id="ref-for-dom-keyformat-jwk-5"><code>jwk</code></a>":
@@ -2882,7 +2882,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                     <ol>
                       <li>
                         <p>
-                          Let <var>json</var> be the result of representing <var>key</var> as a
+                          Let <var>json</var> be the result of representing <var>exportedKey</var> as a
                           UTF-16 string conforming to the JSON grammar; for example, by executing
                           the <code>JSON.stringify</code> algorithm specified in
                           [<cite><a class="bibref" data-link-type="biblio" href="#bib-ecma-262" title="ECMAScript Language Specification">ECMA-262</a></cite>] in the context of a new global object.
@@ -4557,7 +4557,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-2"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-3"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -5582,7 +5582,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-3"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-4"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -6632,7 +6632,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-4"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-5"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -8061,7 +8061,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-5"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-6"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -9693,7 +9693,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-6"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-7"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -10946,7 +10946,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-7"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-8"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -11787,7 +11787,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-8"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-9"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -12522,7 +12522,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-9"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-10"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -13063,7 +13063,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-10"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-11"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -13687,7 +13687,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-11"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-12"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -14174,7 +14174,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-12"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-13"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.                          </p>
@@ -14763,7 +14763,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-13"><code>ext</code></a> field of <var>jwk</var> is present and
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-ext" class="internalDFN" id="ref-for-dom-jsonwebkey-ext-14"><code>ext</code></a> field of <var>jwk</var> is present and
                             has the value false and <var>extractable</var> is true,
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -18401,31 +18401,31 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-dom-jsonwebkey-ext-1" title="§ 14.3.11 The wrapKey method">§ 14.3.11 The wrapKey method</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-1" title="§ 14.3.11 The wrapKey method">§ 14.3.11 The wrapKey method</a> <a href="#ref-for-dom-jsonwebkey-ext-2" title="Reference 2">(2)</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-2" title="§ 20.8 Operations">§ 20.8 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-3" title="§ 20.8 Operations">§ 20.8 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-3" title="§ 21.4 Operations">§ 21.4 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-4" title="§ 21.4 Operations">§ 21.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-4" title="§ 22.4 Operations">§ 22.4 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-5" title="§ 22.4 Operations">§ 22.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-5" title="§ 23.7 Operations">§ 23.7 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-6" title="§ 23.7 Operations">§ 23.7 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-6" title="§ 24.4 Operations">§ 24.4 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-7" title="§ 24.4 Operations">§ 24.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-7" title="§ 25.3 Operations">§ 25.3 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-8" title="§ 25.3 Operations">§ 25.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-8" title="§ 26.3 Operations">§ 26.3 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-9" title="§ 26.3 Operations">§ 26.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-9" title="§ 27.7 Operations">§ 27.7 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-10" title="§ 27.7 Operations">§ 27.7 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-10" title="§ 28.4 Operations">§ 28.4 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-11" title="§ 28.4 Operations">§ 28.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-11" title="§ 29.4 Operations">§ 29.4 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-12" title="§ 29.4 Operations">§ 29.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-12" title="§ 30.3 Operations">§ 30.3 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-13" title="§ 30.3 Operations">§ 30.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-ext-13" title="§ 31.6 Operations">§ 31.6 Operations</a> 
+      <a href="#ref-for-dom-jsonwebkey-ext-14" title="§ 31.6 Operations">§ 31.6 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-jsonwebkey-crv" aria-label="Links in this document to definition: crv">
