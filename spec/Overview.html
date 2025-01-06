@@ -1910,7 +1910,7 @@ interface SubtleCrypto {
                       </li>
                       <li>
                         <p>
-                          While <code>|iterator|.[[\Done]]</code> is false:
+                          Repeat:
                         </p>
                         <ol>
                           <li>
@@ -1923,6 +1923,11 @@ interface SubtleCrypto {
                             <p>
                               If an error occurred, reject |promise| with
                               |value| and then terminate these steps.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If |value| is `DONE`, terminate these steps.
                             </p>
                           </li>
                           <li>
