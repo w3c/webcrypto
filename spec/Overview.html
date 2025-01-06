@@ -1880,11 +1880,18 @@ interface SubtleCrypto {
                     </p>
                   </dd>
                   <dt>
-                    Otherwise, if |data| conforms to the
-                    <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a> or
-                    <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>:
+                    Otherwise:
                   </dt>
                   <dd>
+                    <div class=note>
+                      <p>
+                        In this case, |data| should <a data-cite="ECMAScript/control-abstraction-objects.html#sec-common-iteration-interfaces">conform</a> to the
+                        <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a> or
+                        <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>.
+                        Otherwise, the call to <a data-cite="ECMAScript/abstract-operations.html#sec-getiterator">`GetIterator`</a> below
+                        will throw a `TypeError`.
+                      </p>
+                    </div>
                     <ol>
                       <li>
                         <p>
@@ -1971,12 +1978,6 @@ interface SubtleCrypto {
                         the stream to the [= in parallel | parallel =] steps below.
                       </p>
                     </div>
-                  </dd>
-                  <dt>Otherwise:</dt>
-                  <dd>
-                    <p>
-                      Return a Promise rejected with a {{TypeError}}.
-                    </p>
                   </dd>
                 </dl>
               </li>
