@@ -1220,16 +1220,18 @@ interface CryptoKey {
         </section>
       </section>
 
-      <section id="iterable-interfaces">
-        <h2>Iterable interfaces</h2>
+      <section id="buffersources">
+        <h2>BufferSources</h2>
         <p>
-          The <dfn id="dfn-IterableOfBufferSources">IterableOfBufferSources</dfn> type represents objects that conform to the <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a>, and produce {{BufferSource}} values when iterated over.
-          The <dfn id="dfn-AsyncIterableOfBufferSources">AsyncIterableOfBufferSources</dfn> type represents objects that conform to the <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>, and produce {{BufferSource}} values when asynchronously iterated over.
+          The <dfn id="dfn-BufferSources" data-lt-no-plural>BufferSources</dfn> type represents objects that either are a {{BufferSource}},
+          or <a data-cite="ECMAScript/control-abstraction-objects.html#sec-common-iteration-interfaces">conform</a>
+          to the <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a>
+          or <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>
+          and produce {{BufferSource}} values when iterated over.
           This is checked by the calling functions rather than by Web IDL.
         </p>
         <pre class=idl>
-typedef object IterableOfBufferSources;
-typedef object AsyncIterableOfBufferSources;
+typedef object BufferSources;
         </pre>
       </section>
 
@@ -1267,7 +1269,7 @@ interface SubtleCrypto {
   );
   Promise&lt;ArrayBuffer> digest(
     AlgorithmIdentifier algorithm,
-    (BufferSource or IterableOfBufferSources or AsyncIterableOfBufferSources) data
+    BufferSources data
   );
 
   Promise&lt;(CryptoKey or CryptoKeyPair)> generateKey(
