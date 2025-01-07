@@ -615,6 +615,10 @@
           The term [= byte sequence =] is defined in [[Infra]].
         </p>
         <p>
+          The <dfn id="dfn-length-in-bits" data-lt="length in bits">length in bits</dfn> of a [= byte sequence =]
+          is its [= byte sequence/length =] multiplied by 8.
+        </p>
+        <p>
           A <dfn id="dfn-byte-sequence-containing" data-lt="byte sequence containing">byte sequence containing a bit sequence</dfn> |b| is the
           [= byte sequence =] obtained by first appending zero or more
           bits of value zero to |b| such that the length of the resulting bit sequence is minimal and an integer multiple of 8
@@ -9030,7 +9034,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     <dd>
                       <dl class="switch">
                         <dt>
-                          If the length of |secret| in bits is less than
+                          If the [= length in bits =] of |secret| is less than
                           |length|:
                         </dt>
                         <dd>
@@ -12258,7 +12262,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -12300,17 +12304,17 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A128CTR`", then [= exception/throw =] a {{DataError}}.
                             </dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A192CTR`", then [= exception/throw =] a {{DataError}}.
                             </dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A256CTR`", then [= exception/throw =] a {{DataError}}.
@@ -12801,7 +12805,7 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -12843,17 +12847,17 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128CBC`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192CBC`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256CBC`",
                               then [= exception/throw =] a
@@ -13237,7 +13241,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If |ciphertext| has a length less than |tagLength| bits,
+                    If |ciphertext| has a [= length in bits =] less than |tagLength|,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13428,7 +13432,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -13470,17 +13474,17 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128GCM`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192GCM`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256GCM`",
                               then [= exception/throw =] a
@@ -13915,7 +13919,7 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -13957,17 +13961,17 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128KW`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192KW`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256KW`",
                               then [= exception/throw =] a
@@ -14619,8 +14623,8 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |length| be equivalent to the length, in octets, of
-                    |data|, multiplied by 8.
+                    Let |length| be the [= length in bits =] of
+                    |data|.
                   </p>
                 </li>
                 <li>
