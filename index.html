@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="f08c702a10e6b2d8353f09e0c062b94e2f933116">
+<meta name="revision" content="1a2a4310090d2ca2bde8e42b857dfa1ee5b6b3ad">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "f08c702a10e6b2d8353f09e0c062b94e2f933116",
+  "gitRevision": "1a2a4310090d2ca2bde8e42b857dfa1ee5b6b3ad",
   "publishISODate": "2025-01-07T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 07 January 2025"
 }</script>
@@ -1106,29 +1106,15 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Cry
               </li>
               <li>
                 <p>
-                  Let <var>byteLength</var> be the <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#buffersource-byte-length">byte length</a> of <var>array</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If <var>byteLength</var> is greater than 65536, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                  If the <code>byteLength</code> of <var>array</var> is greater than 65536, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                   <a data-link-type="exception" data-lt="QuotaExceededError" href="https://webidl.spec.whatwg.org/#quotaexceedederror"><code>QuotaExceededError</code></a> and
                   <a data-link-type="dfn|abstract-op" href="#terminate-the-algorithm" class="internalDFN" id="ref-for-terminate-the-algorithm-2">terminate the algorithm</a>.
                 </p>
               </li>
               <li>
                 <p>
-                  Let <var>bytes</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> of length <var>byteLength</var>.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Fill <var>bytes</var> with cryptographically secure random bytes.
-                </p>
-              </li>
-              <li>
-                <p>
-                  <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#arraybufferview-write">Write</a> <var>bytes</var> into <var>array</var>.
+                  Overwrite all elements of <var>array</var> with cryptographically strong random values of
+                  the appropriate type.
                 </p>
               </li>
               <li>
