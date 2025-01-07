@@ -615,9 +615,9 @@
           The term [= byte sequence =] is defined in [[Infra]].
         </p>
         <p>
-          A <dfn id="dfn-byte-sequence-containing" data-lt="byte sequence containing">byte sequence containing a bit string</dfn> |b| is the
+          A <dfn id="dfn-byte-sequence-containing" data-lt="byte sequence containing">byte sequence containing a bit sequence</dfn> |b| is the
           [= byte sequence =] obtained by first appending zero or more
-          bits of value zero to |b| such that the length of the resulting bit string is minimal and an integer multiple of 8
+          bits of value zero to |b| such that the length of the resulting bit sequence is minimal and an integer multiple of 8
           and then considering each consecutive sequence of 8 bits in that string as a byte.
         </p>
         <p>
@@ -625,9 +625,9 @@
           integer |i| to a byte sequence of length |n|</dfn>, where |n| * 8
           is greater than the logarithm to base 2 of |i|, the user agent must
           first calculate the binary representation of |i|, most significant bit first,
-          prefix this with sufficient zero bits to form a bit string of length |n| * 8, and
+          prefix this with sufficient zero bits to form a bit sequence of length |n| * 8, and
           then return the [= byte sequence =] formed by considering each consecutive
-          sequence of 8 bits in that bit string as a byte.
+          sequence of 8 bits in that bit sequence as a byte.
         </p>
         <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
@@ -15064,8 +15064,8 @@ dictionary HkdfParams : Algorithm {
 };
           </pre>
           <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-hash">hash</dfn> member represents the algorithm to use with HMAC (e.g.: SHA-256).</p>
-          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-salt">salt</dfn> member represents a bit string that corresponds to the salt used in the extract step.</p>
-          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-info">info</dfn> member represents a bit string that corresponds to the context and application specific context for the derived keying material.</p>
+          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-salt">salt</dfn> member represents the salt used in the extract step.</p>
+          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-info">info</dfn> member represents application specific context for the derived keying material.</p>
         </section>
         <section id="hkdf-operations">
           <h4>Operations</h4>
