@@ -751,14 +751,6 @@
           </li>
         </ol>
         <p>
-          When this specification states to supply the <dfn id="concept-contents-of-arraybuffer">
-          contents of an ArrayBuffer</dfn> named |data| to an underlying cryptographic
-          implementation, the User Agent shall supply a contiguous sequence of bytes that is equal
-          to the result of
-          [= get a copy of the buffer source | getting a copy of the bytes =]
-          held |data|.
-        </p>
-        <p>
           When this specification says to calculate the <dfn id="concept-usage-intersection">usage
           intersection</dfn> of two sequences, |a| and |b| the result shall be a
           sequence containing each [= recognized key usage value =]
@@ -1402,7 +1394,7 @@ interface SubtleCrypto {
                 <p>
                   Let |data| be the result of
                   [= get a copy of the buffer source |
-                  getting a copy of the bytes =] held by the `data` parameter passed to the
+                  getting a copy of the bytes held by =] the `data` parameter passed to the
                   {{SubtleCrypto/encrypt()}} method.
                 </p>
               </li>
@@ -1500,7 +1492,7 @@ interface SubtleCrypto {
               <li>
                 <p>
                   Let |algorithm| and |key| be the
-                  `algorithm` and `key`parameters
+                  `algorithm` and `key` parameters
                   passed to the {{SubtleCrypto/decrypt()}} method,
                   respectively.
                 </p>
@@ -3943,7 +3935,7 @@ dictionary RsaHashedImportParams : Algorithm {
                 <li>
                   <p>
                     Perform the signature generation operation defined in Section 8.2 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
-                    as the signer's private key and the <a href="#concept-contents-of-arraybuffer">contents of |message|</a> as
+                    as the signer's private key and |message| as
                     |M| and using the hash function specified in the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
                   </p>
@@ -3983,9 +3975,9 @@ dictionary RsaHashedImportParams : Algorithm {
                     Perform the signature verification operation defined in Section 8.2 of
                     [[RFC3447]] with the key represented by the
                     {{CryptoKey/[[handle]]}} internal slot of
-                    |key| as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of |message|</a> as
-                    |M| and the <a href="#concept-contents-of-arraybuffer">contents of
-                    |signature|</a> as |S| and using the hash function specified
+                    |key| as the signer's RSA public key and |message| as
+                    |M| and
+                    |signature| as |S| and using the hash function specified
                     in the {{RsaHashedKeyAlgorithm/hash}} attribute of the
                     {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
@@ -4972,7 +4964,7 @@ dictionary RsaPssParams : Algorithm {
                 <li>
                   <p>
                     Perform the signature generation operation defined in Section 8.1 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
-                    as the signer's private key, |K|, and the <a href="#concept-contents-of-arraybuffer">contents of |message|</a> as
+                    as the signer's private key, |K|, and |message| as
                     the message to be signed, |M|, and using the hash function specified
                     by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
                     {{CryptoKey/[[algorithm]]}} internal slot of
@@ -5016,9 +5008,9 @@ dictionary RsaPssParams : Algorithm {
                     Perform the signature verification operation defined in Section 8.1 of
                     [[RFC3447]] with the key represented by the
                     {{CryptoKey/[[handle]]}} internal slot of
-                    |key| as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer">contents of |message|</a> as
-                    |M| and <a href="#concept-contents-of-arraybuffer">the contents of
-                    |signature|</a> as |S| and using the hash function specified
+                    |key| as the signer's RSA public key and |message| as
+                    |M| and
+                    |signature| as |S| and using the hash function specified
                     by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
                     {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| as the Hash option, MGF1 (defined in Section B.2.1 of [[RFC3447]]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
@@ -5989,7 +5981,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |label| be the <a href="#concept-contents-of-arraybuffer">contents of</a> the {{RsaOaepParams/label}} member of
+                    Let |label| be the {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| or the empty octet string if the
                     {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| is not present.
@@ -5998,7 +5990,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     Perform the encryption operation defined in Section 7.1 of [[RFC3447]] with the key represented by |key|
-                    as the recipient's RSA public key, the <a href="#concept-contents-of-arraybuffer">contents of |plaintext|</a>
+                    as the recipient's RSA public key, |plaintext|
                     as the message to be encrypted, |M| and |label|
                     as the label, |L|, and with the hash
                     function specified by the {{RsaHashedKeyAlgorithm/hash}}
@@ -6040,7 +6032,7 @@ dictionary RsaOaepParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |label| be the <a href="#concept-contents-of-arraybuffer">contents of</a> the {{RsaOaepParams/label}} member of
+                    Let |label| be the {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| or the empty octet string if the
                     {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| is not present.
@@ -6049,7 +6041,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     Perform the decryption operation defined in Section 7.1 of [[RFC3447]] with the key represented by |key|
-                    as the recipient's RSA private key, the <a href="#concept-contents-of-arraybuffer">contents of |ciphertext|</a>
+                    as the recipient's RSA private key, |ciphertext|
                     as the ciphertext to be decrypted, C, and |label|
                     as the label, |L|, and with the hash
                     function specified by the {{RsaHashedKeyAlgorithm/hash}}
@@ -12079,13 +12071,13 @@ dictionary AesDerivedKeyParams : Algorithm {
                 <li>
                   <p>
                     Let |ciphertext| be the result of performing the CTR Encryption
-                    operation described in Section 6.5 of [[NIST-SP800-38A]] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesCtrParams/counter}} member of
+                    operation described in Section 6.5 of [[NIST-SP800-38A]] using AES as the block cipher, the {{AesCtrParams/counter}} member of
                     |normalizedAlgorithm| as the initial value of the counter block, the
                     {{AesCtrParams/length}} member of
                     |normalizedAlgorithm| as the input parameter |m| to the
                     standard counter block incrementing function defined in Appendix B.1 of
-                    [[NIST-SP800-38A]] and <a href="#concept-contents-of-arraybuffer">the contents of
-                    |plaintext|</a> as the input plaintext.
+                    [[NIST-SP800-38A]] and
+                    |plaintext| as the input plaintext.
                   </p>
                 </li>
                 <li>
@@ -12119,13 +12111,13 @@ dictionary AesDerivedKeyParams : Algorithm {
                 <li>
                   <p>
                     Let |plaintext| be the result of performing the CTR Decryption
-                    operation described in Section 6.5 of [[NIST-SP800-38A]] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesCtrParams/counter}} member of
+                    operation described in Section 6.5 of [[NIST-SP800-38A]] using AES as the block cipher, the {{AesCtrParams/counter}} member of
                     |normalizedAlgorithm| as the initial value of the counter block, the
                     {{AesCtrParams/length}} member of
                     |normalizedAlgorithm| as the input parameter |m| to the
                     standard counter block incrementing function defined in Appendix B.1 of
-                    [[NIST-SP800-38A]] and <a href="#concept-contents-of-arraybuffer">the contents of
-                    |ciphertext|</a> as the input ciphertext.
+                    [[NIST-SP800-38A]] and
+                    |ciphertext| as the input ciphertext.
                   </p>
                 </li>
                 <li>
@@ -12610,7 +12602,7 @@ dictionary AesCbcParams : Algorithm {
                 <li>
                   <p>
                     Let |paddedPlaintext| be the result of adding padding octets to
-                    the <a href="#concept-contents-of-arraybuffer">contents of |plaintext|</a>
+                    |plaintext|
                     according to the procedure defined in Section 10.3
                     of [[RFC2315]], step 2, with a value of
                     |k| of 16.
@@ -12619,7 +12611,7 @@ dictionary AesCbcParams : Algorithm {
                 <li>
                   <p>
                     Let |ciphertext| be the result of performing the CBC Encryption
-                    operation described in Section 6.2 of [[NIST-SP800-38A]] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesCbcParams/iv}} member of |normalizedAlgorithm| as
+                    operation described in Section 6.2 of [[NIST-SP800-38A]] using AES as the block cipher, the {{AesCbcParams/iv}} member of |normalizedAlgorithm| as
                     the |IV| input parameter and |paddedPlaintext|
                     as the input plaintext.
                   </p>
@@ -12646,9 +12638,9 @@ dictionary AesCbcParams : Algorithm {
                 <li>
                   <p>
                     Let |paddedPlaintext| be the result of performing the CBC Decryption
-                    operation described in Section 6.2 of [[NIST-SP800-38A]] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesCbcParams/iv}} member of |normalizedAlgorithm| as
-                    the |IV| input parameter and <a href="#concept-contents-of-arraybuffer">the contents of
-                    |ciphertext|</a> as the input ciphertext.
+                    operation described in Section 6.2 of [[NIST-SP800-38A]] using AES as the block cipher, the {{AesCbcParams/iv}} member of |normalizedAlgorithm| as
+                    the |IV| input parameter and
+                    |ciphertext| as the input ciphertext.
                   </p>
                 </li>
                 <li>
@@ -13179,7 +13171,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |additionalData| be <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesGcmParams/additionalData}} member of
+                    Let |additionalData| be the {{AesGcmParams/additionalData}} member of
                     |normalizedAlgorithm| if present or the empty octet
                     string otherwise.
                   </p>
@@ -13188,11 +13180,11 @@ dictionary AesGcmParams : Algorithm {
                   <p>
                     Let |C| and |T| be the outputs that result from performing
                     the Authenticated Encryption Function described in Section 7.1 of
-                    [[NIST-SP800-38D]] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
-                    the |IV| input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
-                    |additionalData|</a> as the |A| input parameter,
-                    |tagLength| as the |t| pre-requisite and <a href="#concept-contents-of-arraybuffer">the contents of
-                    |plaintext|</a> as the input plaintext.
+                    [[NIST-SP800-38D]] using AES as the block cipher, the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
+                    the |IV| input parameter,
+                    |additionalData| as the |A| input parameter,
+                    |tagLength| as the |t| pre-requisite and
+                    |plaintext| as the input plaintext.
                   </p>
                 </li>
                 <li>
@@ -13268,7 +13260,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |additionalData| be <a href="#concept-contents-of-arraybuffer">the contents</a> of the {{AesGcmParams/additionalData}} member of
+                    Let |additionalData| be the {{AesGcmParams/additionalData}} member of
                     |normalizedAlgorithm| if present or the empty octet
                     string otherwise.
                   </p>
@@ -13277,11 +13269,11 @@ dictionary AesGcmParams : Algorithm {
                   <p>
                     Perform the Authenticated Decryption Function described in Section 7.2 of
                     [[NIST-SP800-38D]] using AES as the block cipher,
-                    <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
-                    the |IV| input parameter, <a href="#concept-contents-of-arraybuffer">the contents of
-                    |additionalData|</a> as the |A| input parameter,
-                    |tagLength| as the |t| pre-requisite, <a href="#concept-contents-of-arraybuffer">the contents of
-                    |actualCiphertext|</a> as the input ciphertext, |C| and <a href="#concept-contents-of-arraybuffer">the contents of |tag|</a> as
+                    the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
+                    the |IV| input parameter,
+                    |additionalData| as the |A| input parameter,
+                    |tagLength| as the |t| pre-requisite,
+                    |actualCiphertext| as the input ciphertext, |C| and |tag| as
                     the authentication tag, |T|.
                   </p>
                   <dl class="switch">
@@ -15096,13 +15088,13 @@ dictionary HkdfParams : Algorithm {
                     </li>
                     <li>
                       <p>
-                        <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{HkdfParams/salt}} member of
+                        the {{HkdfParams/salt}} member of
                         |normalizedAlgorithm| as |salt|,
                       </p>
                     </li>
                     <li>
                       <p>
-                        <a href="#concept-contents-of-arraybuffer">the contents of</a> the {{HkdfParams/info}} member of
+                        the {{HkdfParams/info}} member of
                         |normalizedAlgorithm| as |info|,
                       </p>
                     </li>
@@ -15313,8 +15305,8 @@ dictionary Pbkdf2Params : Algorithm {
                     Let |result| be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [[RFC8018]] using |prf| as the
                     pseudo-random function, |PRF|, the password represented by {{CryptoKey/[[handle]]}} internal slot of |key|
-                    as the password, |P|, <a href="#concept-contents-of-arraybuffer">the
-                    contents of</a> the {{Pbkdf2Params/salt}} attribute of
+                    as the password, |P|,
+                    the {{Pbkdf2Params/salt}} attribute of
                     |normalizedAlgorithm| as the salt, |S|, the value of the {{Pbkdf2Params/iterations}} attribute of
                     |normalizedAlgorithm| as the iteration count, |c|, and
                     |length| divided by 8 as the intended key length, |dkLen|.
