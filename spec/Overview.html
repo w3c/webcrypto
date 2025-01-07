@@ -775,25 +775,25 @@
         </p>
         <p>
           When this specification refers to the <dfn id="concept-cached-object">cached ECMAScript
-          object</dfn> associated with an internal slot [[|slot|]] of |object|,
+          object</dfn> associated with an internal slot [[<var>slot</var>]] of |object|,
           the user agent must run the following steps:
         </p>
         <ol>
           <li>
             <dl class="switch">
               <dt>
-                If the [[|slot|_cached]] internal slot of |object| is undefined:
+                If the [[<var>slot</var>_cached]] internal slot of |object| is undefined:
               </dt>
               <dd>
-                Set the [[|slot|_cached]] internal slot of |object| to the result
+                Set the [[<var>slot</var>_cached]] internal slot of |object| to the result
                 of performing type conversion to an ECMAScript object as defined in
-                [[WebIDL]] to the contents of the [[|slot|]]
+                [[WebIDL]] to the contents of the [[<var>slot</var>]]
                 internal slot of |object|.
               </dd>
             </dl>
           </li>
           <li>
-            Return the contents of the [[|slot|_cached]] internal slot of |object|.
+            Return the contents of the [[<var>slot</var>_cached]] internal slot of |object|.
           </li>
         </ol>
       </section>
