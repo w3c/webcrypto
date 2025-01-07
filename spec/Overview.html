@@ -8650,7 +8650,7 @@ dictionary EcKeyImportParams : Algorithm {
                             <dd>
                               <p>
                                 Let |data| be a [= byte sequence =] representing the Elliptic Curve
-                                point |Q| represented by {{CryptoKey/[[handle]]}} internal slot of
+                                point |Q| represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 |key| according to [[SEC1]] 2.3.3 using the uncompressed format.
                               </p>
                             </dd>
@@ -12416,7 +12416,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Let |data| be a [= byte sequence =] containing
-                            the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -12445,7 +12445,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -12960,7 +12960,7 @@ dictionary AesCbcParams : Algorithm {
                         <li>
                           <p>
                             Let |data| be a [= byte sequence =] containing
-                            the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -12986,7 +12986,7 @@ dictionary AesCbcParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -13587,7 +13587,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Let |data| be a [= byte sequence =] containing
-                            the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -13616,7 +13616,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -14073,7 +14073,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Let |data| be a [= byte sequence =] containing
-                            the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -14102,7 +14102,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -14287,7 +14287,7 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let |mac| be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by {{CryptoKey/[[handle]]}}
+                    the key represented by the {{CryptoKey/[[handle]]}}
                     internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| and |message| as the input data |text|.
                   </p>
@@ -14306,7 +14306,7 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let |mac| be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by {{CryptoKey/[[handle]]}}
+                    the key represented by the {{CryptoKey/[[handle]]}}
                     internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| and |message| as the input data |text|.
                   </p>
@@ -14727,7 +14727,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |bits| be the raw bits of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                    Let |bits| be the raw bits of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                     |key|.
                   </p>
                 </li>
@@ -15080,7 +15080,7 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |keyDerivationKey| be the secret represented by {{CryptoKey/[[handle]]}} internal slot of |key|.
+                    Let |keyDerivationKey| be the secret represented by the {{CryptoKey/[[handle]]}} internal slot of |key|.
                   </p>
                 </li>
                 <li>
@@ -15320,7 +15320,7 @@ dictionary Pbkdf2Params : Algorithm {
                   <p>
                     Let |result| be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [[RFC8018]] using |prf| as the
-                    pseudo-random function, |PRF|, the password represented by {{CryptoKey/[[handle]]}} internal slot of |key|
+                    pseudo-random function, |PRF|, the password represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
                     as the password, |P|,
                     the {{Pbkdf2Params/salt}} attribute of
                     |normalizedAlgorithm| as the salt, |S|, the value of the {{Pbkdf2Params/iterations}} attribute of
