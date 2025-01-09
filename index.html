@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="25d2b15422f098b51add783dda51681e1e4b95f0">
+<meta name="revision" content="b965a99f91e8b2235c139abed8d768078292886f">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "25d2b15422f098b51add783dda51681e1e4b95f0",
+  "gitRevision": "b965a99f91e8b2235c139abed8d768078292886f",
   "publishISODate": "2025-01-09T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 09 January 2025"
 }</script>
@@ -1003,14 +1003,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           </li>
         </ol>
         <p>
-          When this specification states to supply the <dfn id="concept-contents-of-arraybuffer" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">
-          contents of an ArrayBuffer</dfn> named <var>data</var> to an underlying cryptographic
-          implementation, the User Agent shall supply a contiguous sequence of bytes that is equal
-          to the result of
-          <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes</a>
-          held <var>data</var>.
-        </p>
-        <p>
           When this specification says to calculate the <dfn id="concept-usage-intersection" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">usage
           intersection</dfn> of two sequences, <var>a</var> and <var>b</var> the result shall be a
           sequence containing each <a data-link-type="dfn|abstract-op" href="#dfn-RecognizedKeyUsage" class="internalDFN" id="ref-for-dfn-RecognizedKeyUsage-1">recognized key usage value</a>
@@ -1651,7 +1643,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               <li>
                 <p>
                   Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes</a> held by the <code>data</code> parameter passed to the
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
                   <a data-link-type="idl" data-lt="encrypt()" href="#dfn-SubtleCrypto-method-encrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-encrypt-3"><code>encrypt</code></a><code>()</code> method.
                 </p>
               </li>
@@ -1749,7 +1741,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               <li>
                 <p>
                   Let <var>algorithm</var> and <var>key</var> be the
-                  <code>algorithm</code> and <code>key</code>parameters
+                  <code>algorithm</code> and <code>key</code> parameters
                   passed to the <a data-link-type="idl" data-lt="decrypt()" href="#dfn-SubtleCrypto-method-decrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-decrypt-2"><code>decrypt</code></a><code>()</code> method,
                   respectively.
                 </p>
@@ -4164,7 +4156,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Perform the signature generation operation defined in Section 8.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-6"><code>[[handle]]</code></a> internal slot of <var>key</var>
-                    as the signer's private key and the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-1">contents of <var>message</var></a> as
+                    as the signer's private key and <var>message</var> as
                     <var>M</var> and using the hash function specified in the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-2"><code>hash</code></a> attribute of the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-17"><code>[[algorithm]]</code></a> internal slot of
                     <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
                   </p>
@@ -4204,9 +4196,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                     Perform the signature verification operation defined in Section 8.2 of
                     [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by the
                     <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-7"><code>[[handle]]</code></a> internal slot of
-                    <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-2">contents of <var>message</var></a> as
-                    <var>M</var> and the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-3">contents of
-                    <var>signature</var></a> as <var>S</var> and using the hash function specified
+                    <var>key</var> as the signer's RSA public key and <var>message</var> as
+                    <var>M</var> and
+                    <var>signature</var> as <var>S</var> and using the hash function specified
                     in the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-3"><code>hash</code></a> attribute of the
                     <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-18"><code>[[algorithm]]</code></a> internal slot of
                     <var>key</var> as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
@@ -5187,7 +5179,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Perform the signature generation operation defined in Section 8.1 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-12"><code>[[handle]]</code></a> internal slot of <var>key</var>
-                    as the signer's private key, <var>K</var>, and the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-4">contents of <var>message</var></a> as
+                    as the signer's private key, <var>K</var>, and <var>message</var> as
                     the message to be signed, <var>M</var>, and using the hash function specified
                     by the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-7"><code>hash</code></a> attribute of the
                     <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-23"><code>[[algorithm]]</code></a> internal slot of
@@ -5231,9 +5223,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                     Perform the signature verification operation defined in Section 8.1 of
                     [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by the
                     <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-13"><code>[[handle]]</code></a> internal slot of
-                    <var>key</var> as the signer's RSA public key and the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-5">contents of <var>message</var></a> as
-                    <var>M</var> and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-6">the contents of
-                    <var>signature</var></a> as <var>S</var> and using the hash function specified
+                    <var>key</var> as the signer's RSA public key and <var>message</var> as
+                    <var>M</var> and
+                    <var>signature</var> as <var>S</var> and using the hash function specified
                     by the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-8"><code>hash</code></a> attribute of the
                     <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-24"><code>[[algorithm]]</code></a> internal slot of
                     <var>key</var> as the Hash option, MGF1 (defined in Section B.2.1 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength" id="ref-for-dfn-RsaPssParams-saltLength-3">saltLength</a> member of
@@ -6200,7 +6192,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>label</var> be the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-7">contents of</a> the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-2"><code>label</code></a> member of
+                    Let <var>label</var> be the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-2"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> or the empty octet string if the
                     <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-3"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> is not present.
@@ -6209,7 +6201,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Perform the encryption operation defined in Section 7.1 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by <var>key</var>
-                    as the recipient's RSA public key, the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-8">contents of <var>plaintext</var></a>
+                    as the recipient's RSA public key, <var>plaintext</var>
                     as the message to be encrypted, <var>M</var> and <var>label</var>
                     as the label, <var>L</var>, and with the hash
                     function specified by the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-13"><code>hash</code></a>
@@ -6251,7 +6243,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 </li>
                 <li>
                   <p>
-                    Let <var>label</var> be the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-9">contents of</a> the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-4"><code>label</code></a> member of
+                    Let <var>label</var> be the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-4"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> or the empty octet string if the
                     <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-5"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> is not present.
@@ -6260,7 +6252,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Perform the decryption operation defined in Section 7.1 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc3447" title="Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1">RFC3447</a></cite>] with the key represented by <var>key</var>
-                    as the recipient's RSA private key, the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-10">contents of <var>ciphertext</var></a>
+                    as the recipient's RSA private key, <var>ciphertext</var>
                     as the ciphertext to be decrypted, C, and <var>label</var>
                     as the label, <var>L</var>, and with the hash
                     function specified by the <a data-link-type="idl" href="#dfn-RsaHashedKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-RsaHashedKeyAlgorithm-hash-14"><code>hash</code></a>
@@ -12267,13 +12259,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CTR Encryption
-                    operation described in Section 6.5 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-11">the contents of</a> the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-4"><code>counter</code></a> member of
+                    operation described in Section 6.5 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-4"><code>counter</code></a> member of
                     <var>normalizedAlgorithm</var> as the initial value of the counter block, the
                     <a data-link-type="idl" href="#dfn-AesCtrParams-length" class="internalDFN" id="ref-for-dfn-AesCtrParams-length-3"><code>length</code></a> member of
                     <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
                     standard counter block incrementing function defined in Appendix B.1 of
-                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-12">the contents of
-                    <var>plaintext</var></a> as the input plaintext.
+                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] and
+                    <var>plaintext</var> as the input plaintext.
                   </p>
                 </li>
                 <li>
@@ -12307,13 +12299,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>plaintext</var> be the result of performing the CTR Decryption
-                    operation described in Section 6.5 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-13">the contents of</a> the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-6"><code>counter</code></a> member of
+                    operation described in Section 6.5 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-6"><code>counter</code></a> member of
                     <var>normalizedAlgorithm</var> as the initial value of the counter block, the
                     <a data-link-type="idl" href="#dfn-AesCtrParams-length" class="internalDFN" id="ref-for-dfn-AesCtrParams-length-5"><code>length</code></a> member of
                     <var>normalizedAlgorithm</var> as the input parameter <var>m</var> to the
                     standard counter block incrementing function defined in Appendix B.1 of
-                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-14">the contents of
-                    <var>ciphertext</var></a> as the input ciphertext.
+                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] and
+                    <var>ciphertext</var> as the input ciphertext.
                   </p>
                 </li>
                 <li>
@@ -12796,7 +12788,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>paddedPlaintext</var> be the result of adding padding octets to
-                    the <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-15">contents of <var>plaintext</var></a>
+                    <var>plaintext</var>
                     according to the procedure defined in Section 10.3
                     of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2315" title="PKCS #7: Cryptographic Message Syntax Version 1.5">RFC2315</a></cite>], step 2, with a value of
                     <var>k</var> of 16.
@@ -12805,7 +12797,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>ciphertext</var> be the result of performing the CBC Encryption
-                    operation described in Section 6.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-16">the contents of</a> the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-3"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
+                    operation described in Section 6.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-3"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
                     the <var>IV</var> input parameter and <var>paddedPlaintext</var>
                     as the input plaintext.
                   </p>
@@ -12832,9 +12824,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>paddedPlaintext</var> be the result of performing the CBC Decryption
-                    operation described in Section 6.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-17">the contents of</a> the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-5"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
-                    the <var>IV</var> input parameter and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-18">the contents of
-                    <var>ciphertext</var></a> as the input ciphertext.
+                    operation described in Section 6.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38a" title="NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques">NIST-SP800-38A</a></cite>] using AES as the block cipher, the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-5"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
+                    the <var>IV</var> input parameter and
+                    <var>ciphertext</var> as the input ciphertext.
                   </p>
                 </li>
                 <li>
@@ -13363,7 +13355,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>additionalData</var> be <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-19">the contents of</a> the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-3"><code>additionalData</code></a> member of
+                    Let <var>additionalData</var> be the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-3"><code>additionalData</code></a> member of
                     <var>normalizedAlgorithm</var> if present or the empty octet
                     string otherwise.
                   </p>
@@ -13372,11 +13364,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <p>
                     Let <var>C</var> and <var>T</var> be the outputs that result from performing
                     the Authenticated Encryption Function described in Section 7.1 of
-                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38d" title="NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC">NIST-SP800-38D</a></cite>] using AES as the block cipher, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-20">the contents of</a> the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-3"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
-                    the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-21">the contents of
-                    <var>additionalData</var></a> as the <var>A</var> input parameter,
-                    <var>tagLength</var> as the <var>t</var> pre-requisite and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-22">the contents of
-                    <var>plaintext</var></a> as the input plaintext.
+                    [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38d" title="NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC">NIST-SP800-38D</a></cite>] using AES as the block cipher, the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-3"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
+                    the <var>IV</var> input parameter,
+                    <var>additionalData</var> as the <var>A</var> input parameter,
+                    <var>tagLength</var> as the <var>t</var> pre-requisite and
+                    <var>plaintext</var> as the input plaintext.
                   </p>
                 </li>
                 <li>
@@ -13452,7 +13444,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>additionalData</var> be <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-23">the contents</a> of the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-5"><code>additionalData</code></a> member of
+                    Let <var>additionalData</var> be the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-5"><code>additionalData</code></a> member of
                     <var>normalizedAlgorithm</var> if present or the empty octet
                     string otherwise.
                   </p>
@@ -13461,11 +13453,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <p>
                     Perform the Authenticated Decryption Function described in Section 7.2 of
                     [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-38d" title="NIST Special Publication 800-38D: Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC">NIST-SP800-38D</a></cite>] using AES as the block cipher,
-                    <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-24">the contents of</a> the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-5"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
-                    the <var>IV</var> input parameter, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-25">the contents of
-                    <var>additionalData</var></a> as the <var>A</var> input parameter,
-                    <var>tagLength</var> as the <var>t</var> pre-requisite, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-26">the contents of
-                    <var>actualCiphertext</var></a> as the input ciphertext, <var>C</var> and <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-27">the contents of <var>tag</var></a> as
+                    the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-5"><code>iv</code></a> member of <var>normalizedAlgorithm</var> as
+                    the <var>IV</var> input parameter,
+                    <var>additionalData</var> as the <var>A</var> input parameter,
+                    <var>tagLength</var> as the <var>t</var> pre-requisite,
+                    <var>actualCiphertext</var> as the input ciphertext, <var>C</var> and <var>tag</var> as
                     the authentication tag, <var>T</var>.
                   </p>
                   <dl class="switch">
@@ -15271,13 +15263,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     </li>
                     <li>
                       <p>
-                        <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-28">the contents of</a> the <a data-link-type="idl" href="#dfn-HkdfParams-salt" class="internalDFN" id="ref-for-dfn-HkdfParams-salt-2"><code>salt</code></a> member of
+                        the <a data-link-type="idl" href="#dfn-HkdfParams-salt" class="internalDFN" id="ref-for-dfn-HkdfParams-salt-2"><code>salt</code></a> member of
                         <var>normalizedAlgorithm</var> as <var>salt</var>,
                       </p>
                     </li>
                     <li>
                       <p>
-                        <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-29">the contents of</a> the <a data-link-type="idl" href="#dfn-HkdfParams-info" class="internalDFN" id="ref-for-dfn-HkdfParams-info-2"><code>info</code></a> member of
+                        the <a data-link-type="idl" href="#dfn-HkdfParams-info" class="internalDFN" id="ref-for-dfn-HkdfParams-info-2"><code>info</code></a> member of
                         <var>normalizedAlgorithm</var> as <var>info</var>,
                       </p>
                     </li>
@@ -15486,8 +15478,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     Let <var>result</var> be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8018" title="PKCS #5: Password-Based Cryptography Specification Version 2.1">RFC8018</a></cite>] using <var>prf</var> as the
                     pseudo-random function, <var>PRF</var>, the password represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-57"><code>[[handle]]</code></a> internal slot of <var>key</var>
-                    as the password, <var>P</var>, <a href="#concept-contents-of-arraybuffer" id="ref-for-concept-contents-of-arraybuffer-30">the
-                    contents of</a> the <a data-link-type="idl" href="#dfn-Pbkdf2Params-salt" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-salt-2"><code>salt</code></a> attribute of
+                    as the password, <var>P</var>,
+                    the <a data-link-type="idl" href="#dfn-Pbkdf2Params-salt" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-salt-2"><code>salt</code></a> attribute of
                     <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the <a data-link-type="idl" href="#dfn-Pbkdf2Params-iterations" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-iterations-3"><code>iterations</code></a> attribute of
                     <var>normalizedAlgorithm</var> as the iteration count, <var>c</var>, and
                     <var>length</var> divided by 8 as the intended key length, <var>dkLen</var>.
@@ -16700,32 +16692,6 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <ul>
     <li>
       <a href="#ref-for-concept-parse-a-jwk-1" title="§ 14.3.12 The unwrapKey method">§ 14.3.12 The unwrapKey method</a> 
-    </li>
-  </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-concept-contents-of-arraybuffer" aria-label="Links in this document to definition: contents of an ArrayBuffer">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="#concept-contents-of-arraybuffer" aria-label="Permalink for definition: contents of an ArrayBuffer. Activate to close this dialog.">Permalink</a>
-         
-      </div>
-      <p><b>Referenced in:</b></p>
-      <ul>
-    <li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-1" title="§ 20.8 Operations">§ 20.8 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-2" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-3" title="Reference 3">(3)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-4" title="§ 21.4 Operations">§ 21.4 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-5" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-6" title="Reference 3">(3)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-7" title="§ 22.4 Operations">§ 22.4 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-8" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-9" title="Reference 3">(3)</a> <a href="#ref-for-concept-contents-of-arraybuffer-10" title="Reference 4">(4)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-11" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-12" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-13" title="Reference 3">(3)</a> <a href="#ref-for-concept-contents-of-arraybuffer-14" title="Reference 4">(4)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-15" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-16" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-17" title="Reference 3">(3)</a> <a href="#ref-for-concept-contents-of-arraybuffer-18" title="Reference 4">(4)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-19" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-20" title="Reference 2">(2)</a> <a href="#ref-for-concept-contents-of-arraybuffer-21" title="Reference 3">(3)</a> <a href="#ref-for-concept-contents-of-arraybuffer-22" title="Reference 4">(4)</a> <a href="#ref-for-concept-contents-of-arraybuffer-23" title="Reference 5">(5)</a> <a href="#ref-for-concept-contents-of-arraybuffer-24" title="Reference 6">(6)</a> <a href="#ref-for-concept-contents-of-arraybuffer-25" title="Reference 7">(7)</a> <a href="#ref-for-concept-contents-of-arraybuffer-26" title="Reference 8">(8)</a> <a href="#ref-for-concept-contents-of-arraybuffer-27" title="Reference 9">(9)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-28" title="§ 33.4 Operations">§ 33.4 Operations</a> <a href="#ref-for-concept-contents-of-arraybuffer-29" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-concept-contents-of-arraybuffer-30" title="§ 34.4 Operations">§ 34.4 Operations</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-concept-usage-intersection" aria-label="Links in this document to definition: usage intersection">
