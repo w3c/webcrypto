@@ -612,24 +612,26 @@
           {{BufferSource}} are defined in [[WEBIDL]].
         </p>
         <p>
-          An <dfn id="dfn-octet-string">octet string</dfn> is an ordered sequence of zero or more
-          integers, each in the range 0 to 255 inclusive.
+          The term [= byte sequence =] is defined in [[Infra]].
         </p>
         <p>
-          An <dfn id="dfn-octet-string-containing" data-lt="octet string containing">octet string containing a bit string</dfn> |b| is the
-          [= octet string =] obtained by first appending zero or more
-          bits of value zero to |b| such that the length of the resulting bit string is minimal and an integer multiple of 8
-          and then considering each consecutive sequence of 8 bits in that string as a binary integer, most significant
-          bit first.
+          The <dfn id="dfn-length-in-bits" data-lt="length in bits">length in bits</dfn> of a [= byte sequence =]
+          is its [= byte sequence/length =] multiplied by 8.
         </p>
         <p>
-          When this specification says to <dfn id="dfn-convert-integer-to-octet-string">convert a non-negative
-          integer |i| to an octet string of length |n|</dfn>, where |n| * 8
+          A <dfn id="dfn-byte-sequence-containing" data-lt="byte sequence containing">byte sequence containing a bit sequence</dfn> |b| is the
+          [= byte sequence =] obtained by first appending zero or more
+          bits of value zero to |b| such that the length of the resulting bit sequence is minimal and an integer multiple of 8
+          and then considering each consecutive sequence of 8 bits in that string as a byte.
+        </p>
+        <p>
+          When this specification says to <dfn id="dfn-convert-integer-to-byte-sequence">convert a non-negative
+          integer |i| to a byte sequence of length |n|</dfn>, where |n| * 8
           is greater than the logarithm to base 2 of |i|, the user agent must
           first calculate the binary representation of |i|, most significant bit first,
-          prefix this with sufficient zero bits to form a bit string of length |n| * 8, and
-          then return the [= octet string =] formed by considering each consecutive
-          sequence of 8 bits in that bit string as a binary integer, most significant bit first.
+          prefix this with sufficient zero bits to form a bit sequence of length |n| * 8, and
+          then return the [= byte sequence =] formed by considering each consecutive
+          sequence of 8 bits in that bit sequence as a byte.
         </p>
         <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
@@ -3860,7 +3862,7 @@ dictionary CryptoKeyPair {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -4929,7 +4931,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{RsaPssParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -5944,12 +5946,12 @@ dictionary RsaPssParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{RsaOaepParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -5996,7 +5998,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     Let |label| be the {{RsaOaepParams/label}} member of
-                    |normalizedAlgorithm| or the empty octet string if the
+                    |normalizedAlgorithm| or the empty byte sequence if the
                     {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| is not present.
                   </p>
@@ -6047,7 +6049,7 @@ dictionary RsaOaepParams : Algorithm {
                 <li>
                   <p>
                     Let |label| be the {{RsaOaepParams/label}} member of
-                    |normalizedAlgorithm| or the empty octet string if the
+                    |normalizedAlgorithm| or the empty byte sequence if the
                     {{RsaOaepParams/label}} member of
                     |normalizedAlgorithm| is not present.
                   </p>
@@ -6988,7 +6990,7 @@ dictionary RsaOaepParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>{{EcdsaParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -7142,14 +7144,14 @@ dictionary EcKeyImportParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            <a href="#dfn-convert-integer-to-octet-string">Convert |r| to an octet string of
-                            length |n|</a> and append this sequence of bytes to |result|.
+                            <a href="#dfn-convert-integer-to-byte-sequence">Convert |r| to a byte sequence of
+                            length |n|</a> and append it to |result|.
                           </p>
                         </li>
                         <li>
                           <p>
-                            <a href="#dfn-convert-integer-to-octet-string">Convert |s| to an octet string of
-                            length |n|</a> and append this sequence of bytes to |result|.
+                            <a href="#dfn-convert-integer-to-byte-sequence">Convert |s| to a byte sequence of
+                            length |n|</a> and append it to |result|.
                           </p>
                         </li>
                       </ol>
@@ -8260,7 +8262,7 @@ dictionary EcKeyImportParams : Algorithm {
                                     <dd>
                                       <p>
                                         Let |keyData| be the
-                                        [= octet string =] that
+                                        [= byte sequence =] that
                                         represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         |key| according to the encoding rules specified in
                                         Section 2.2 of [[RFC5480]] and using the
@@ -8651,8 +8653,8 @@ dictionary EcKeyImportParams : Algorithm {
                             </dt>
                             <dd>
                               <p>
-                                Let |data| be an [= octet string =] representing the Elliptic Curve
-                                point |Q| represented by {{CryptoKey/[[handle]]}} internal slot of
+                                Let |data| be a [= byte sequence =] representing the Elliptic Curve
+                                point |Q| represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 |key| according to [[SEC1]] 2.3.3 using the uncompressed format.
                               </p>
                             </dd>
@@ -8739,7 +8741,7 @@ dictionary EcKeyImportParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{EcdhKeyDeriveParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -8985,8 +8987,9 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |secret| be the result of applying the field element to
-                            [= octet string =] conversion defined in Section
+                            Let |secret| be a [= byte sequence =] containing
+                            the result of applying the field element to
+                            octet string conversion defined in Section
                             6.2 of [[RFC6090]]
                             to the output of the ECDH primitive.
                           </p>
@@ -9031,7 +9034,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     <dd>
                       <dl class="switch">
                         <dt>
-                          If the length of |secret| in bits is less than
+                          If the [= length in bits =] of |secret| is less than
                           |length|:
                         </dt>
                         <dd>
@@ -9040,7 +9043,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Return an [= octet string containing =] the first |length| bits of |secret|.
+                          Return a [= byte sequence containing =] the first |length| bits of |secret|.
                         </dd>
                       </dl>
                     </dd>
@@ -9838,7 +9841,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let |keyData| be the [= octet string =] that
+                                        Let |keyData| be the [= byte sequence =] that
                                         represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                         |key| according to the encoding rules specified in
                                         Section 2.3.3 of [[SEC1]] and using the
@@ -10220,7 +10223,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                             </dt>
                             <dd>
                               <p>
-                                Let |data| be the [= octet string =] that
+                                Let |data| be the [= byte sequence =] that
                                 represents the Elliptic Curve public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                                 |key| according to the encoding rules specified in
                                 Section 2.3.3 of [[SEC1]] and using the
@@ -10289,7 +10292,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -11089,7 +11092,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an [= octet string =] representing the Ed25519
+                            Let |data| be a [= byte sequence =] representing the Ed25519
                             public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
@@ -11149,7 +11152,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{EcdhKeyDeriveParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -11235,7 +11238,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Return an [= octet string containing =] the first |length| bits of |secret|.
+                          Return a [= byte sequence containing =] the first |length| bits of |secret|.
                         </dd>
                       </dl>
                     </dd>
@@ -11923,7 +11926,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be an [= octet string =] representing the X25519
+                            Let |data| be a [= byte sequence =] representing the X25519
                             public key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
@@ -11983,12 +11986,12 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCtrParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12067,8 +12070,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesCtrParams/counter}} member of
-                    |normalizedAlgorithm| does not have length 16
-                    bytes,
+                    |normalizedAlgorithm| does not have
+                    a [= byte sequence/length =] of 16 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -12107,8 +12110,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesCtrParams/counter}} member of
-                    |normalizedAlgorithm| does not have length 16
-                    bytes,
+                    |normalizedAlgorithm| does not have
+                    a [= byte sequence/length =] of 16 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -12254,12 +12257,12 @@ dictionary AesDerivedKeyParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] contained in |keyData|.
+                            Let |data| be |keyData|.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -12295,23 +12298,23 @@ dictionary AesDerivedKeyParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] obtained by decoding the
+                            Let |data| be the [= byte sequence =] obtained by decoding the
                             {{JsonWebKey/k}} field of |jwk|.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A128CTR`", then [= exception/throw =] a {{DataError}}.
                             </dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A192CTR`", then [= exception/throw =] a {{DataError}}.
                             </dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>
                               If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                               not "`A256CTR`", then [= exception/throw =] a {{DataError}}.
@@ -12416,7 +12419,8 @@ dictionary AesDerivedKeyParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            Let |data| be a [= byte sequence =] containing
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -12445,7 +12449,7 @@ dictionary AesDerivedKeyParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -12559,12 +12563,12 @@ dictionary AesDerivedKeyParams : Algorithm {
               <tr>
                 <td>encrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td>{{AesCbcParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12607,8 +12611,8 @@ dictionary AesCbcParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesCbcParams/iv}} member of
-                    |normalizedAlgorithm| does not have length 16
-                    bytes,
+                    |normalizedAlgorithm| does not have
+                    a [= byte sequence/length =] of 16 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -12643,8 +12647,8 @@ dictionary AesCbcParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesCbcParams/iv}} member of
-                    |normalizedAlgorithm| does not have length 16
-                    bytes,
+                    |normalizedAlgorithm| does not have
+                    a [= byte sequence/length =] of 16 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -12796,12 +12800,12 @@ dictionary AesCbcParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] contained in |keyData|.
+                            Let |data| be |keyData|.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -12837,23 +12841,23 @@ dictionary AesCbcParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] obtained by decoding the
+                            Let |data| be the [= byte sequence =] obtained by decoding the
                             {{JsonWebKey/k}} field of |jwk|.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128CBC`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192CBC`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256CBC`",
                               then [= exception/throw =] a
@@ -12959,7 +12963,8 @@ dictionary AesCbcParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            Let |data| be a [= byte sequence =] containing
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -12985,7 +12990,7 @@ dictionary AesCbcParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -13091,12 +13096,12 @@ dictionary AesCbcParams : Algorithm {
                <tr>
                  <td>encrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>[= octet string =]</td>
+                 <td>[= byte sequence =]</td>
                </tr>
                <tr>
                  <td>decrypt</td>
                  <td>{{AesGcmParams}}</td>
-                 <td>[= octet string =]</td>
+                 <td>[= byte sequence =]</td>
                </tr>
                <tr>
                  <td>generateKey</td>
@@ -13142,8 +13147,8 @@ dictionary AesGcmParams : Algorithm {
               <ol>
                 <li>
                   <p>
-                    If |plaintext| has a length greater than 2^39 - 256
-                    bytes,
+                    If |plaintext| has a [= byte sequence/length =]
+                    greater than 2^39 - 256 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13151,8 +13156,8 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesGcmParams/iv}} member of
-                    |normalizedAlgorithm| has a length greater than 2^64 - 1
-                    bytes,
+                    |normalizedAlgorithm| has a [= byte sequence/length =]
+                    greater than 2^64 - 1 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13160,7 +13165,8 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesGcmParams/additionalData}} member
-                    of |normalizedAlgorithm| is present and has a length
+                    of |normalizedAlgorithm| is present and has a
+                    [= byte sequence/length =]
                     greater than 2^64 - 1 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
@@ -13186,8 +13192,8 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     Let |additionalData| be the {{AesGcmParams/additionalData}} member of
-                    |normalizedAlgorithm| if present or the empty octet
-                    string otherwise.
+                    |normalizedAlgorithm| if present or an empty [= byte sequence =]
+                    otherwise.
                   </p>
                 </li>
                 <li>
@@ -13236,7 +13242,7 @@ dictionary AesGcmParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    If |ciphertext| has a length less than |tagLength| bits,
+                    If |ciphertext| has a [= length in bits =] less than |tagLength|,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13244,8 +13250,8 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesGcmParams/iv}} member of
-                    |normalizedAlgorithm| has a length greater than 2^64 - 1
-                    bytes,
+                    |normalizedAlgorithm| has a [= byte sequence/length =]
+                    greater than 2^64 - 1 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13253,9 +13259,9 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     If the {{AesGcmParams/additionalData}} member
-                    of |normalizedAlgorithm| is present and has a length
-                    greater than 2^64 - 1
-                    bytes,
+                    of |normalizedAlgorithm| is present and has a
+                    [= byte sequence/length =]
+                    greater than 2^64 - 1 bytes,
                     then [= exception/throw =] an
                     {{OperationError}}.
                   </p>
@@ -13275,8 +13281,8 @@ dictionary AesGcmParams : Algorithm {
                 <li>
                   <p>
                     Let |additionalData| be the {{AesGcmParams/additionalData}} member of
-                    |normalizedAlgorithm| if present or the empty octet
-                    string otherwise.
+                    |normalizedAlgorithm| if present or an empty [= byte sequence =]
+                    otherwise.
                   </p>
                 </li>
                 <li>
@@ -13422,12 +13428,12 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] contained in |keyData|.
+                            Let |data| be |keyData|.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -13463,23 +13469,23 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] obtained by decoding the
+                            Let |data| be the [= byte sequence =] obtained by decoding the
                             {{JsonWebKey/k}} field of |jwk|.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128GCM`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192GCM`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256GCM`",
                               then [= exception/throw =] a
@@ -13585,7 +13591,8 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            Let |data| be a [= byte sequence =] containing
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -13614,7 +13621,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -13719,12 +13726,12 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>wrapKey</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>unwrapKey</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -13908,13 +13915,12 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] contained in |keyData|.
+                            Let |data| be |keyData|.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of |data| is not 128, 192 or 256
-
+                            If the [= length in bits =] of |data| is not 128, 192 or 256
                             then [= exception/throw =] a
                             {{DataError}}.
                           </p>
@@ -13950,23 +13956,23 @@ dictionary AesGcmParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] obtained by decoding the
+                            Let |data| be the [= byte sequence =] obtained by decoding the
                             {{JsonWebKey/k}} field of |jwk|.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If |data| has length 128 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 128:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A128KW`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 192 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 192:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A192KW`",
                               then [= exception/throw =] a
                               {{DataError}}.</dd>
-                            <dt>If |data| has length 256 bits:</dt>
+                            <dt>If the [= length in bits =] of |data| is 256:</dt>
                             <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
                             not  "`A256KW`",
                               then [= exception/throw =] a
@@ -14071,7 +14077,8 @@ dictionary AesGcmParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            Let |data| be a [= byte sequence =] containing
+                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|.
                           </p>
                         </li>
@@ -14100,7 +14107,7 @@ dictionary AesGcmParams : Algorithm {
                         <li>
                           <p>
                             Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                             |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
                           </p>
                         </li>
@@ -14212,7 +14219,7 @@ dictionary AesGcmParams : Algorithm {
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -14285,7 +14292,7 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let |mac| be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by {{CryptoKey/[[handle]]}}
+                    the key represented by the {{CryptoKey/[[handle]]}}
                     internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| and |message| as the input data |text|.
                   </p>
@@ -14304,7 +14311,7 @@ dictionary HmacKeyGenParams : Algorithm {
                   <p>
                     Let |mac| be the result of performing the MAC Generation operation
                     described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by {{CryptoKey/[[handle]]}}
+                    the key represented by the {{CryptoKey/[[handle]]}}
                     internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
                     |key| and |message| as the input data |text|.
                   </p>
@@ -14468,7 +14475,7 @@ dictionary HmacKeyGenParams : Algorithm {
                       <ol>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] contained in |keyData|.
+                            Let |data| be |keyData|.
                           </p>
                         </li>
                         <li>
@@ -14508,7 +14515,7 @@ dictionary HmacKeyGenParams : Algorithm {
                         </li>
                         <li>
                           <p>
-                            Let |data| be the [= octet string =] obtained by decoding the
+                            Let |data| be the [= byte sequence =] obtained by decoding the
                             {{JsonWebKey/k}} field of |jwk|.
                           </p>
                         </li>
@@ -14617,8 +14624,8 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |length| be equivalent to the length, in octets, of
-                    |data|, multiplied by 8.
+                    Let |length| be the [= length in bits =] of
+                    |data|.
                   </p>
                 </li>
                 <li>
@@ -14725,13 +14732,13 @@ dictionary HmacKeyGenParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |bits| be the raw bits of the key represented by {{CryptoKey/[[handle]]}} internal slot of
+                    Let |bits| be the raw bits of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
                     |key|.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Let |data| be an [= octet string containing =] |bits|.
+                    Let |data| be a [= byte sequence containing =] |bits|.
                   </p>
                 </li>
                 <li>
@@ -14932,7 +14939,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>digest</td>
                 <td>None</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
             </tbody>
           </table>
@@ -15037,7 +15044,7 @@ dictionary HmacKeyGenParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{HkdfParams}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15062,8 +15069,8 @@ dictionary HkdfParams : Algorithm {
 };
           </pre>
           <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-hash">hash</dfn> member represents the algorithm to use with HMAC (e.g.: SHA-256).</p>
-          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-salt">salt</dfn> member represents a bit string that corresponds to the salt used in the extract step.</p>
-          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-info">info</dfn> member represents a bit string that corresponds to the context and application specific context for the derived keying material.</p>
+          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-salt">salt</dfn> member represents the salt used in the extract step.</p>
+          <p>The <dfn data-dfn-for=HkdfParams id="dfn-HkdfParams-info">info</dfn> member represents application specific context for the derived keying material.</p>
         </section>
         <section id="hkdf-operations">
           <h4>Operations</h4>
@@ -15078,7 +15085,7 @@ dictionary HkdfParams : Algorithm {
                 </li>
                 <li>
                   <p>
-                    Let |keyDerivationKey| be the secret represented by {{CryptoKey/[[handle]]}} internal slot of |key|.
+                    Let |keyDerivationKey| be the secret represented by the {{CryptoKey/[[handle]]}} internal slot of |key|.
                   </p>
                 </li>
                 <li>
@@ -15258,7 +15265,7 @@ dictionary HkdfParams : Algorithm {
               <tr>
                 <td>deriveBits</td>
                 <td>{{Pbkdf2Params}}</td>
-                <td>[= octet string =]</td>
+                <td>[= byte sequence =]</td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15318,7 +15325,7 @@ dictionary Pbkdf2Params : Algorithm {
                   <p>
                     Let |result| be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [[RFC8018]] using |prf| as the
-                    pseudo-random function, |PRF|, the password represented by {{CryptoKey/[[handle]]}} internal slot of |key|
+                    pseudo-random function, |PRF|, the password represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
                     as the password, |P|,
                     the {{Pbkdf2Params/salt}} attribute of
                     |normalizedAlgorithm| as the salt, |S|, the value of the {{Pbkdf2Params/iterations}} attribute of
