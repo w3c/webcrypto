@@ -856,15 +856,29 @@ interface Crypto {
               </li>
               <li>
                 <p>
-                  If the `byteLength` of |array| is greater than 65536, [= exception/throw =] a
+                  Let |byteLength| be the [= BufferSource/byte length =] of |array|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |byteLength| is greater than 65536, [= exception/throw =] a
                   {{QuotaExceededError}} and
                   [= terminate the algorithm =].
                 </p>
               </li>
               <li>
                 <p>
-                  Overwrite all elements of |array| with cryptographically strong random values of
-                  the appropriate type.
+                  Let |bytes| be a [= byte sequence =] of length |byteLength|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Fill |bytes| with cryptographically secure random bytes.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= ArrayBufferView/Write =] |bytes| into |array|.
                 </p>
               </li>
               <li>
