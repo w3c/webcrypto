@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="b965a99f91e8b2235c139abed8d768078292886f">
+<meta name="revision" content="efe2685dcd70231f0fbe8e1ad6fa01475168add1">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "b965a99f91e8b2235c139abed8d768078292886f",
+  "gitRevision": "efe2685dcd70231f0fbe8e1ad6fa01475168add1",
   "publishISODate": "2025-01-09T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 09 January 2025"
 }</script>
@@ -865,24 +865,26 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           <a data-link-type="typedef" data-lt="BufferSource" href="https://webidl.spec.whatwg.org/#BufferSource"><code>BufferSource</code></a> are defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-webidl" title="Web IDL Standard">WEBIDL</a></cite>].
         </p>
         <p>
-          An <dfn id="dfn-octet-string" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">octet string</dfn> is an ordered sequence of zero or more
-          integers, each in the range 0 to 255 inclusive.
+          The term <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> is defined in [<cite><a class="bibref" data-link-type="biblio" href="#bib-infra" title="Infra Standard">Infra</a></cite>].
         </p>
         <p>
-          An <dfn id="dfn-octet-string-containing" data-lt="octet string containing|octet string containing a bit string" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">octet string containing a bit string</dfn> <var>b</var> is the
-          <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-1">octet string</a> obtained by first appending zero or more
-          bits of value zero to <var>b</var> such that the length of the resulting bit string is minimal and an integer multiple of 8
-          and then considering each consecutive sequence of 8 bits in that string as a binary integer, most significant
-          bit first.
+          The <dfn id="dfn-length-in-bits" data-lt="length in bits" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">length in bits</dfn> of a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a>
+          is its <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> multiplied by 8.
         </p>
         <p>
-          When this specification says to <dfn id="dfn-convert-integer-to-octet-string" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">convert a non-negative
-          integer <var>i</var> to an octet string of length <var>n</var></dfn>, where <var>n</var> * 8
+          A <dfn id="dfn-byte-sequence-containing" data-lt="byte sequence containing|byte sequence containing a bit sequence" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">byte sequence containing a bit sequence</dfn> <var>b</var> is the
+          <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by first appending zero or more
+          bits of value zero to <var>b</var> such that the length of the resulting bit sequence is minimal and an integer multiple of 8
+          and then considering each consecutive sequence of 8 bits in that string as a byte.
+        </p>
+        <p>
+          When this specification says to <dfn id="dfn-convert-integer-to-byte-sequence" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">convert a non-negative
+          integer <var>i</var> to a byte sequence of length <var>n</var></dfn>, where <var>n</var> * 8
           is greater than the logarithm to base 2 of <var>i</var>, the user agent must
           first calculate the binary representation of <var>i</var>, most significant bit first,
-          prefix this with sufficient zero bits to form a bit string of length <var>n</var> * 8, and
-          then return the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-2">octet string</a> formed by considering each consecutive
-          sequence of 8 bits in that bit string as a binary integer, most significant bit first.
+          prefix this with sufficient zero bits to form a bit sequence of length <var>n</var> * 8, and
+          then return the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> formed by considering each consecutive
+          sequence of 8 bits in that bit sequence as a byte.
         </p>
         <p>
           Comparing two strings in a <dfn id="case-sensitive" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">case-sensitive</dfn>
@@ -4077,7 +4079,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-3">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -5132,7 +5134,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>sign</td>
                 <td><a data-link-type="idl" data-lt="RsaPssParams" href="#dfn-RsaPssParams" class="internalDFN" id="ref-for-dfn-RsaPssParams-1"><code>RsaPssParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-4">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -6143,12 +6145,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>encrypt</td>
                 <td><a data-link-type="idl" data-lt="RsaOaepParams" href="#dfn-RsaOaepParams" class="internalDFN" id="ref-for-dfn-RsaOaepParams-1"><code>RsaOaepParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-5">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a data-link-type="idl" data-lt="RsaOaepParams" href="#dfn-RsaOaepParams" class="internalDFN" id="ref-for-dfn-RsaOaepParams-2"><code>RsaOaepParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-6">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -6193,7 +6195,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Let <var>label</var> be the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-2"><code>label</code></a> member of
-                    <var>normalizedAlgorithm</var> or the empty octet string if the
+                    <var>normalizedAlgorithm</var> or the empty byte sequence if the
                     <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-3"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> is not present.
                   </p>
@@ -6244,7 +6246,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
                 <li>
                   <p>
                     Let <var>label</var> be the <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-4"><code>label</code></a> member of
-                    <var>normalizedAlgorithm</var> or the empty octet string if the
+                    <var>normalizedAlgorithm</var> or the empty byte sequence if the
                     <a data-link-type="idl" href="#dfn-RsaOaepParams-label" class="internalDFN" id="ref-for-dfn-RsaOaepParams-label-5"><code>label</code></a> member of
                     <var>normalizedAlgorithm</var> is not present.
                   </p>
@@ -7185,7 +7187,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-J
               <tr>
                 <td>sign</td>
                 <td><a data-link-type="idl" data-lt="EcdsaParams" href="#dfn-EcdsaParams" class="internalDFN" id="ref-for-dfn-EcdsaParams-1"><code>EcdsaParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-7">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -7331,14 +7333,14 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            <a href="#dfn-convert-integer-to-octet-string" id="ref-for-dfn-convert-integer-to-octet-string-1">Convert <var>r</var> to an octet string of
-                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
+                            <a href="#dfn-convert-integer-to-byte-sequence" id="ref-for-dfn-convert-integer-to-byte-sequence-1">Convert <var>r</var> to a byte sequence of
+                            length <var>n</var></a> and append it to <var>result</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            <a href="#dfn-convert-integer-to-octet-string" id="ref-for-dfn-convert-integer-to-octet-string-2">Convert <var>s</var> to an octet string of
-                            length <var>n</var></a> and append this sequence of bytes to <var>result</var>.
+                            <a href="#dfn-convert-integer-to-byte-sequence" id="ref-for-dfn-convert-integer-to-byte-sequence-2">Convert <var>s</var> to a byte sequence of
+                            length <var>n</var></a> and append it to <var>result</var>.
                           </p>
                         </li>
                       </ol>
@@ -8446,7 +8448,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                     <dd>
                                       <p>
                                         Let <var>keyData</var> be the
-                                        <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-8">octet string</a> that
+                                        <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> that
                                         represents the Elliptic Curve public key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-23"><code>[[handle]]</code></a> internal slot of
                                         <var>key</var> according to the encoding rules specified in
                                         Section 2.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc5480" title="Elliptic Curve Cryptography Subject Public Key Information">RFC5480</a></cite>] and using the
@@ -8837,8 +8839,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                             </dt>
                             <dd>
                               <p>
-                                Let <var>data</var> be an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-9">octet string</a> representing the Elliptic Curve
-                                point <var>Q</var> represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-26"><code>[[handle]]</code></a> internal slot of
+                                Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> representing the Elliptic Curve
+                                point <var>Q</var> represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-26"><code>[[handle]]</code></a> internal slot of
                                 <var>key</var> according to [<cite><a class="bibref" data-link-type="biblio" href="#bib-sec1" title="SEC 1: Elliptic Curve Cryptography">SEC1</a></cite>] 2.3.3 using the uncompressed format.
                               </p>
                             </dd>
@@ -8925,7 +8927,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>deriveBits</td>
                 <td><a data-link-type="idl" data-lt="EcdhKeyDeriveParams" href="#dfn-EcdhKeyDeriveParams" class="internalDFN" id="ref-for-dfn-EcdhKeyDeriveParams-1"><code>EcdhKeyDeriveParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-10">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -9168,8 +9170,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>secret</var> be the result of applying the field element to
-                            <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-11">octet string</a> conversion defined in Section
+                            Let <var>secret</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> containing
+                            the result of applying the field element to
+                            octet string conversion defined in Section
                             6.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6090" title="Fundamental Elliptic Curve Cryptography Algorithms">RFC6090</a></cite>]
                             to the output of the ECDH primitive.
                           </p>
@@ -9213,7 +9216,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     <dd>
                       <dl class="switch">
                         <dt>
-                          If the length of <var>secret</var> in bits is less than
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-1">length in bits</a> of <var>secret</var> is less than
                           <var>length</var>:
                         </dt>
                         <dd>
@@ -9222,7 +9225,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Return an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string-containing" class="internalDFN" id="ref-for-dfn-octet-string-containing-1">octet string containing</a> the first <var>length</var> bits of <var>secret</var>.
+                          Return a <a data-link-type="dfn|abstract-op" href="#dfn-byte-sequence-containing" class="internalDFN" id="ref-for-dfn-byte-sequence-containing-1">byte sequence containing</a> the first <var>length</var> bits of <var>secret</var>.
                         </dd>
                       </dl>
                     </dd>
@@ -10020,7 +10023,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                                     </dt>
                                     <dd>
                                       <p>
-                                        Let <var>keyData</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-12">octet string</a> that
+                                        Let <var>keyData</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> that
                                         represents the Elliptic Curve public key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-29"><code>[[handle]]</code></a> internal slot of
                                         <var>key</var> according to the encoding rules specified in
                                         Section 2.3.3 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-sec1" title="SEC 1: Elliptic Curve Cryptography">SEC1</a></cite>] and using the
@@ -10402,7 +10405,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                             </dt>
                             <dd>
                               <p>
-                                Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-13">octet string</a> that
+                                Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> that
                                 represents the Elliptic Curve public key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-32"><code>[[handle]]</code></a> internal slot of
                                 <var>key</var> according to the encoding rules specified in
                                 Section 2.3.3 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-sec1" title="SEC 1: Elliptic Curve Cryptography">SEC1</a></cite>] and using the
@@ -10471,7 +10474,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-14">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -11271,7 +11274,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-15">octet string</a> representing the Ed25519
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> representing the Ed25519
                             public key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-35"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
@@ -11331,7 +11334,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>deriveBits</td>
                 <td><a data-link-type="idl" data-lt="EcdhKeyDeriveParams" href="#dfn-EcdhKeyDeriveParams" class="internalDFN" id="ref-for-dfn-EcdhKeyDeriveParams-3"><code>EcdhKeyDeriveParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-16">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -11417,7 +11420,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </dd>
                         <dt>Otherwise:</dt>
                         <dd>
-                          Return an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string-containing" class="internalDFN" id="ref-for-dfn-octet-string-containing-2">octet string containing</a> the first <var>length</var> bits of <var>secret</var>.
+                          Return a <a data-link-type="dfn|abstract-op" href="#dfn-byte-sequence-containing" class="internalDFN" id="ref-for-dfn-byte-sequence-containing-2">byte sequence containing</a> the first <var>length</var> bits of <var>secret</var>.
                         </dd>
                       </dl>
                     </dd>
@@ -12105,7 +12108,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-17">octet string</a> representing the X25519
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> representing the X25519
                             public key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-39"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
@@ -12165,12 +12168,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>encrypt</td>
                 <td><a data-link-type="idl" data-lt="AesCtrParams" href="#dfn-AesCtrParams" class="internalDFN" id="ref-for-dfn-AesCtrParams-1"><code>AesCtrParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-18">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a data-link-type="idl" data-lt="AesCtrParams" href="#dfn-AesCtrParams" class="internalDFN" id="ref-for-dfn-AesCtrParams-2"><code>AesCtrParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-19">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12241,8 +12244,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-3"><code>counter</code></a> member of
-                    <var>normalizedAlgorithm</var> does not have length 16
-                    bytes,
+                    <var>normalizedAlgorithm</var> does not have
+                    a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> of 16 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -12281,8 +12284,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesCtrParams-counter" class="internalDFN" id="ref-for-dfn-AesCtrParams-counter-5"><code>counter</code></a> member of
-                    <var>normalizedAlgorithm</var> does not have length 16
-                    bytes,
+                    <var>normalizedAlgorithm</var> does not have
+                    a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> of 16 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -12428,12 +12431,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-20">octet string</a> contained in <var>keyData</var>.
+                            Let <var>data</var> be <var>keyData</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of <var>data</var> is not 128, 192 or 256
+                            If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-2">length in bits</a> of <var>data</var> is not 128, 192 or 256
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </p>
@@ -12469,23 +12472,23 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-21">octet string</a> obtained by decoding the
+                            Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by decoding the
                             <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-1"><code>k</code></a> field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-3">length in bits</a> of <var>data</var> is 128:</dt>
                             <dd>
                               If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-15"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A128CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                             </dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-4">length in bits</a> of <var>data</var> is 192:</dt>
                             <dd>
                               If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-16"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A192CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                             </dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-5">length in bits</a> of <var>data</var> is 256:</dt>
                             <dd>
                               If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-17"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A256CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -12590,7 +12593,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-41"><code>[[handle]]</code></a> internal slot of
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> containing
+                            the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-41"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -12619,7 +12623,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <p>
                             Set the <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-2"><code>k</code></a> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-42"><code>[[handle]]</code></a> internal slot of
+                            containing the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-42"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                           </p>
                         </li>
@@ -12733,12 +12737,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>encrypt</td>
                 <td><a data-link-type="idl" data-lt="AesCbcParams" href="#dfn-AesCbcParams" class="internalDFN" id="ref-for-dfn-AesCbcParams-1"><code>AesCbcParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-22">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>decrypt</td>
                 <td><a data-link-type="idl" data-lt="AesCbcParams" href="#dfn-AesCbcParams" class="internalDFN" id="ref-for-dfn-AesCbcParams-2"><code>AesCbcParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-23">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -12779,8 +12783,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-2"><code>iv</code></a> member of
-                    <var>normalizedAlgorithm</var> does not have length 16
-                    bytes,
+                    <var>normalizedAlgorithm</var> does not have
+                    a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> of 16 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -12815,8 +12819,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesCbcParams-iv" class="internalDFN" id="ref-for-dfn-AesCbcParams-iv-4"><code>iv</code></a> member of
-                    <var>normalizedAlgorithm</var> does not have length 16
-                    bytes,
+                    <var>normalizedAlgorithm</var> does not have
+                    a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> of 16 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -12968,12 +12972,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-24">octet string</a> contained in <var>keyData</var>.
+                            Let <var>data</var> be <var>keyData</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of <var>data</var> is not 128, 192 or 256
+                            If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-6">length in bits</a> of <var>data</var> is not 128, 192 or 256
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </p>
@@ -13009,23 +13013,23 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-25">octet string</a> obtained by decoding the
+                            Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by decoding the
                             <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-3"><code>k</code></a> field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-7">length in bits</a> of <var>data</var> is 128:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-18"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-8">length in bits</a> of <var>data</var> is 192:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-19"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-9">length in bits</a> of <var>data</var> is 256:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-20"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -13131,7 +13135,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-44"><code>[[handle]]</code></a> internal slot of
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> containing
+                            the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-44"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -13157,7 +13162,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <p>
                             Set the <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-4"><code>k</code></a> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-45"><code>[[handle]]</code></a> internal slot of
+                            containing the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-45"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                           </p>
                         </li>
@@ -13263,12 +13268,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                <tr>
                  <td>encrypt</td>
                  <td><a data-link-type="idl" data-lt="AesGcmParams" href="#dfn-AesGcmParams" class="internalDFN" id="ref-for-dfn-AesGcmParams-1"><code>AesGcmParams</code></a></td>
-                 <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-26">octet string</a></td>
+                 <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
                </tr>
                <tr>
                  <td>decrypt</td>
                  <td><a data-link-type="idl" data-lt="AesGcmParams" href="#dfn-AesGcmParams" class="internalDFN" id="ref-for-dfn-AesGcmParams-2"><code>AesGcmParams</code></a></td>
-                 <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-27">octet string</a></td>
+                 <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
                </tr>
                <tr>
                  <td>generateKey</td>
@@ -13312,8 +13317,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <ol>
                 <li>
                   <p>
-                    If <var>plaintext</var> has a length greater than 2^39 - 256
-                    bytes,
+                    If <var>plaintext</var> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a>
+                    greater than 2^39 - 256 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -13321,8 +13326,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-2"><code>iv</code></a> member of
-                    <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
-                    bytes,
+                    <var>normalizedAlgorithm</var> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a>
+                    greater than 2^64 - 1 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -13330,7 +13335,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-2"><code>additionalData</code></a> member
-                    of <var>normalizedAlgorithm</var> is present and has a length
+                    of <var>normalizedAlgorithm</var> is present and has a
+                    <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a>
                     greater than 2^64 - 1 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
@@ -13356,8 +13362,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>additionalData</var> be the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-3"><code>additionalData</code></a> member of
-                    <var>normalizedAlgorithm</var> if present or the empty octet
-                    string otherwise.
+                    <var>normalizedAlgorithm</var> if present or an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a>
+                    otherwise.
                   </p>
                 </li>
                 <li>
@@ -13406,7 +13412,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    If <var>ciphertext</var> has a length less than <var>tagLength</var> bits,
+                    If <var>ciphertext</var> has a <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-10">length in bits</a> less than <var>tagLength</var>,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -13414,8 +13420,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesGcmParams-iv" class="internalDFN" id="ref-for-dfn-AesGcmParams-iv-4"><code>iv</code></a> member of
-                    <var>normalizedAlgorithm</var> has a length greater than 2^64 - 1
-                    bytes,
+                    <var>normalizedAlgorithm</var> has a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a>
+                    greater than 2^64 - 1 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -13423,9 +13429,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     If the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-4"><code>additionalData</code></a> member
-                    of <var>normalizedAlgorithm</var> is present and has a length
-                    greater than 2^64 - 1
-                    bytes,
+                    of <var>normalizedAlgorithm</var> is present and has a
+                    <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a>
+                    greater than 2^64 - 1 bytes,
                     then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                     <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                   </p>
@@ -13445,8 +13451,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <li>
                   <p>
                     Let <var>additionalData</var> be the <a data-link-type="idl" href="#dfn-AesGcmParams-additionalData" class="internalDFN" id="ref-for-dfn-AesGcmParams-additionalData-5"><code>additionalData</code></a> member of
-                    <var>normalizedAlgorithm</var> if present or the empty octet
-                    string otherwise.
+                    <var>normalizedAlgorithm</var> if present or an empty <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a>
+                    otherwise.
                   </p>
                 </li>
                 <li>
@@ -13592,12 +13598,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-28">octet string</a> contained in <var>keyData</var>.
+                            Let <var>data</var> be <var>keyData</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of <var>data</var> is not 128, 192 or 256
+                            If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-11">length in bits</a> of <var>data</var> is not 128, 192 or 256
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </p>
@@ -13633,23 +13639,23 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-29">octet string</a> obtained by decoding the
+                            Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by decoding the
                             <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-5"><code>k</code></a> field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-12">length in bits</a> of <var>data</var> is 128:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-21"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-13">length in bits</a> of <var>data</var> is 192:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-22"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-14">length in bits</a> of <var>data</var> is 256:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-23"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -13755,7 +13761,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-47"><code>[[handle]]</code></a> internal slot of
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> containing
+                            the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-47"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -13784,7 +13791,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <p>
                             Set the <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-6"><code>k</code></a> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-48"><code>[[handle]]</code></a> internal slot of
+                            containing the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-48"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                           </p>
                         </li>
@@ -13889,12 +13896,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>wrapKey</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-30">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>unwrapKey</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-31">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>generateKey</td>
@@ -14078,13 +14085,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-32">octet string</a> contained in <var>keyData</var>.
+                            Let <var>data</var> be <var>keyData</var>.
                           </p>
                         </li>
                         <li>
                           <p>
-                            If the length in bits of <var>data</var> is not 128, 192 or 256
-
+                            If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-15">length in bits</a> of <var>data</var> is not 128, 192 or 256
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </p>
@@ -14120,23 +14126,23 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-33">octet string</a> obtained by decoding the
+                            Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by decoding the
                             <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-7"><code>k</code></a> field of <var>jwk</var>.
                           </p>
                         </li>
                         <li>
                           <dl class="switch">
-                            <dt>If <var>data</var> has length 128 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-16">length in bits</a> of <var>data</var> is 128:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-24"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 192 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-17">length in bits</a> of <var>data</var> is 192:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-25"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                            <dt>If <var>data</var> has length 256 bits:</dt>
+                            <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-18">length in bits</a> of <var>data</var> is 256:</dt>
                             <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-26"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -14241,7 +14247,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-50"><code>[[handle]]</code></a> internal slot of
+                            Let <var>data</var> be a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> containing
+                            the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-50"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>.
                           </p>
                         </li>
@@ -14270,7 +14277,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <p>
                             Set the <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-8"><code>k</code></a> attribute of <var>jwk</var> to be a string
-                            containing the raw octets of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-51"><code>[[handle]]</code></a> internal slot of
+                            containing the raw octets of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-51"><code>[[handle]]</code></a> internal slot of
                             <var>key</var>, encoded according to Section 6.4 of JSON Web Algorithms [<cite><a class="bibref" data-link-type="biblio" href="#bib-jwa" title="JSON Web Algorithms (JWA)">JWA</a></cite>].
                           </p>
                         </li>
@@ -14382,7 +14389,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>sign</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-34">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>verify</td>
@@ -14449,7 +14456,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <p>
                     Let <var>mac</var> be the result of performing the MAC Generation operation
                     described in Section 4 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>] using
-                    the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-52"><code>[[handle]]</code></a>
+                    the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-52"><code>[[handle]]</code></a>
                     internal slot of <var>key</var>, the hash function identified by the <a data-link-type="idl" href="#dfn-HmacKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-HmacKeyAlgorithm-hash-2"><code>hash</code></a> attribute of the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-115"><code>[[algorithm]]</code></a> internal slot of
                     <var>key</var> and <var>message</var> as the input data <var>text</var>.
                   </p>
@@ -14468,7 +14475,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <p>
                     Let <var>mac</var> be the result of performing the MAC Generation operation
                     described in Section 4 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>] using
-                    the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-53"><code>[[handle]]</code></a>
+                    the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-53"><code>[[handle]]</code></a>
                     internal slot of <var>key</var>, the hash function identified by the <a data-link-type="idl" href="#dfn-HmacKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-HmacKeyAlgorithm-hash-3"><code>hash</code></a> attribute of the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-116"><code>[[algorithm]]</code></a> internal slot of
                     <var>key</var> and <var>message</var> as the input data <var>text</var>.
                   </p>
@@ -14632,7 +14639,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <ol>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-35">octet string</a> contained in <var>keyData</var>.
+                            Let <var>data</var> be <var>keyData</var>.
                           </p>
                         </li>
                         <li>
@@ -14672,7 +14679,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
-                            Let <var>data</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-36">octet string</a> obtained by decoding the
+                            Let <var>data</var> be the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> obtained by decoding the
                             <a data-link-type="idl" href="#dom-jsonwebkey-k" class="internalDFN" id="ref-for-dom-jsonwebkey-k-9"><code>k</code></a> field of <var>jwk</var>.
                           </p>
                         </li>
@@ -14780,8 +14787,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>length</var> be equivalent to the length, in octets, of
-                    <var>data</var>, multiplied by 8.
+                    Let <var>length</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-19">length in bits</a> of
+                    <var>data</var>.
                   </p>
                 </li>
                 <li>
@@ -14888,13 +14895,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>bits</var> be the raw bits of the key represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-55"><code>[[handle]]</code></a> internal slot of
+                    Let <var>bits</var> be the raw bits of the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-55"><code>[[handle]]</code></a> internal slot of
                     <var>key</var>.
                   </p>
                 </li>
                 <li>
                   <p>
-                    Let <var>data</var> be an <a data-link-type="dfn|abstract-op" href="#dfn-octet-string-containing" class="internalDFN" id="ref-for-dfn-octet-string-containing-3">octet string containing</a> <var>bits</var>.
+                    Let <var>data</var> be a <a data-link-type="dfn|abstract-op" href="#dfn-byte-sequence-containing" class="internalDFN" id="ref-for-dfn-byte-sequence-containing-3">byte sequence containing</a> <var>bits</var>.
                   </p>
                 </li>
                 <li>
@@ -15095,7 +15102,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>digest</td>
                 <td>None</td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-37">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
             </tbody>
           </table>
@@ -15200,7 +15207,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>deriveBits</td>
                 <td><a data-link-type="idl" data-lt="HkdfParams" href="#dfn-HkdfParams" class="internalDFN" id="ref-for-dfn-HkdfParams-1"><code>HkdfParams</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-38">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15223,8 +15230,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
   required<span class="idlType"> <a data-link-type="typedef" href="https://webidl.spec.whatwg.org/#BufferSource">BufferSource</a></span> <a class="internalDFN idlName" data-link-type="dict-member" href="#dfn-HkdfParams-info" id="ref-for-dfn-HkdfParams-info-1"><code>info</code></a>;</span>
 };</span></code></pre>
           <p>The <dfn data-dfn-for="HkdfParams" id="dfn-HkdfParams-hash" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="hash" data-type="HashAlgorithmIdentifier" tabindex="0" aria-haspopup="dialog"><code>hash</code></dfn> member represents the algorithm to use with HMAC (e.g.: SHA-256).</p>
-          <p>The <dfn data-dfn-for="HkdfParams" id="dfn-HkdfParams-salt" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="salt" data-type="BufferSource" tabindex="0" aria-haspopup="dialog"><code>salt</code></dfn> member represents a bit string that corresponds to the salt used in the extract step.</p>
-          <p>The <dfn data-dfn-for="HkdfParams" id="dfn-HkdfParams-info" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="info" data-type="BufferSource" tabindex="0" aria-haspopup="dialog"><code>info</code></dfn> member represents a bit string that corresponds to the context and application specific context for the derived keying material.</p>
+          <p>The <dfn data-dfn-for="HkdfParams" id="dfn-HkdfParams-salt" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="salt" data-type="BufferSource" tabindex="0" aria-haspopup="dialog"><code>salt</code></dfn> member represents the salt used in the extract step.</p>
+          <p>The <dfn data-dfn-for="HkdfParams" id="dfn-HkdfParams-info" data-export="" data-dfn-type="dict-member" data-idl="field" data-title="info" data-type="BufferSource" tabindex="0" aria-haspopup="dialog"><code>info</code></dfn> member represents application specific context for the derived keying material.</p>
         </section>
         <section id="hkdf-operations"><div class="header-wrapper"><h3 id="x33-4-operations"><bdi class="secno">33.4 </bdi>Operations</h3><a class="self-link" href="#hkdf-operations" aria-label="Permalink for Section 33.4"></a></div>
           
@@ -15239,7 +15246,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 </li>
                 <li>
                   <p>
-                    Let <var>keyDerivationKey</var> be the secret represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-56"><code>[[handle]]</code></a> internal slot of <var>key</var>.
+                    Let <var>keyDerivationKey</var> be the secret represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-56"><code>[[handle]]</code></a> internal slot of <var>key</var>.
                   </p>
                 </li>
                 <li>
@@ -15419,7 +15426,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>deriveBits</td>
                 <td><a data-link-type="idl" data-lt="Pbkdf2Params" href="#dfn-Pbkdf2Params" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-1"><code>Pbkdf2Params</code></a></td>
-                <td><a data-link-type="dfn|abstract-op" href="#dfn-octet-string" class="internalDFN" id="ref-for-dfn-octet-string-39">octet string</a></td>
+                <td><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a></td>
               </tr>
               <tr>
                 <td>importKey</td>
@@ -15477,7 +15484,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <p>
                     Let <var>result</var> be the result of performing the PBKDF2 operation defined
                     in Section 5.2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8018" title="PKCS #5: Password-Based Cryptography Specification Version 2.1">RFC8018</a></cite>] using <var>prf</var> as the
-                    pseudo-random function, <var>PRF</var>, the password represented by <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-57"><code>[[handle]]</code></a> internal slot of <var>key</var>
+                    pseudo-random function, <var>PRF</var>, the password represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-57"><code>[[handle]]</code></a> internal slot of <var>key</var>
                     as the password, <var>P</var>,
                     the <a data-link-type="idl" href="#dfn-Pbkdf2Params-salt" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-salt-2"><code>salt</code></a> attribute of
                     <var>normalizedAlgorithm</var> as the salt, <var>S</var>, the value of the <a data-link-type="idl" href="#dfn-Pbkdf2Params-iterations" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-iterations-3"><code>iterations</code></a> attribute of
@@ -16330,7 +16337,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf"><cite>The Keyed-Hash Message Authentication Code (HMAC)</cite></a>.  NIST. July 2008. URL: <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf</a>
     </dd><dt id="bib-html">[HTML]</dt><dd>
       <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Dominic Farolino; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
-    </dd><dt id="bib-infra">[infra]</dt><dd>
+    </dd><dt id="bib-infra">[Infra]</dt><dd>
       <a href="https://infra.spec.whatwg.org/"><cite>Infra Standard</cite></a>. Anne van Kesteren; Domenic Denicola.  WHATWG. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
     </dd><dt id="bib-jwa">[JWA]</dt><dd>
       <a href="https://www.rfc-editor.org/rfc/rfc7518"><cite>JSON Web Algorithms (JWA)</cite></a>. M. Jones.  IETF. May 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc7518">https://www.rfc-editor.org/rfc/rfc7518</a>
@@ -16460,92 +16467,54 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="#ref-for-dfn-serializable-objects-3" title="§ 13.5 Serialization and deserialization steps">§ 13.5 Serialization and deserialization steps</a> 
     </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-octet-string" aria-label="Links in this document to definition: octet string">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-length-in-bits" aria-label="Links in this document to definition: length in bits">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dfn-octet-string" aria-label="Permalink for definition: octet string. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="#dfn-length-in-bits" aria-label="Permalink for definition: length in bits. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-dfn-octet-string-1" title="§ 9. Terminology">§ 9. Terminology</a> <a href="#ref-for-dfn-octet-string-2" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-length-in-bits-1" title="§ 24.4 Operations">§ 24.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-3" title="§ 20.2 Registration">§ 20.2 Registration</a> 
+      <a href="#ref-for-dfn-length-in-bits-2" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-length-in-bits-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-5" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-4" title="§ 21.2 Registration">§ 21.2 Registration</a> 
+      <a href="#ref-for-dfn-length-in-bits-6" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-length-in-bits-7" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-8" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-9" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-5" title="§ 22.2 Registration">§ 22.2 Registration</a> <a href="#ref-for-dfn-octet-string-6" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-length-in-bits-10" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-length-in-bits-11" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-12" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-13" title="Reference 4">(4)</a> <a href="#ref-for-dfn-length-in-bits-14" title="Reference 5">(5)</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-7" title="§ 23.2 Registration">§ 23.2 Registration</a> 
+      <a href="#ref-for-dfn-length-in-bits-15" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-length-in-bits-16" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-17" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-18" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-8" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-octet-string-9" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-10" title="§ 24.2 Registration">§ 24.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-11" title="§ 24.4 Operations">§ 24.4 Operations</a> <a href="#ref-for-dfn-octet-string-12" title="Reference 2">(2)</a> <a href="#ref-for-dfn-octet-string-13" title="Reference 3">(3)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-14" title="§ 25.2 Registration">§ 25.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-15" title="§ 25.3 Operations">§ 25.3 Operations</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-16" title="§ 26.2 Registration">§ 26.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-17" title="§ 26.3 Operations">§ 26.3 Operations</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-18" title="§ 27.2 Registration">§ 27.2 Registration</a> <a href="#ref-for-dfn-octet-string-19" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-20" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dfn-octet-string-21" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-22" title="§ 28.2 Registration">§ 28.2 Registration</a> <a href="#ref-for-dfn-octet-string-23" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-24" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dfn-octet-string-25" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-26" title="§ 29.2 Registration">§ 29.2 Registration</a> <a href="#ref-for-dfn-octet-string-27" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-28" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dfn-octet-string-29" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-30" title="§ 30.2 Registration">§ 30.2 Registration</a> <a href="#ref-for-dfn-octet-string-31" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-32" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dfn-octet-string-33" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-34" title="§ 31.2 Registration">§ 31.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-35" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dfn-octet-string-36" title="Reference 2">(2)</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-37" title="§ 32.2 Registration">§ 32.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-38" title="§ 33.2 Registration">§ 33.2 Registration</a> 
-    </li><li>
-      <a href="#ref-for-dfn-octet-string-39" title="§ 34.2 Registration">§ 34.2 Registration</a> 
+      <a href="#ref-for-dfn-length-in-bits-19" title="§ 31.6 Operations">§ 31.6 Operations</a> 
     </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-octet-string-containing" aria-label="Links in this document to definition: octet string containing a bit string">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-byte-sequence-containing" aria-label="Links in this document to definition: byte sequence containing a bit sequence">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dfn-octet-string-containing" aria-label="Permalink for definition: octet string containing a bit string. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="#dfn-byte-sequence-containing" aria-label="Permalink for definition: byte sequence containing a bit sequence. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-dfn-octet-string-containing-1" title="§ 24.4 Operations">§ 24.4 Operations</a> 
+      <a href="#ref-for-dfn-byte-sequence-containing-1" title="§ 24.4 Operations">§ 24.4 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-containing-2" title="§ 26.3 Operations">§ 26.3 Operations</a> 
+      <a href="#ref-for-dfn-byte-sequence-containing-2" title="§ 26.3 Operations">§ 26.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dfn-octet-string-containing-3" title="§ 31.6 Operations">§ 31.6 Operations</a> 
+      <a href="#ref-for-dfn-byte-sequence-containing-3" title="§ 31.6 Operations">§ 31.6 Operations</a> 
     </li>
   </ul>
-    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-convert-integer-to-octet-string" aria-label="Links in this document to definition: convert a non-negative integer i to an octet string of length n">
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-convert-integer-to-byte-sequence" aria-label="Links in this document to definition: convert a non-negative integer i to a byte sequence of length n">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dfn-convert-integer-to-octet-string" aria-label="Permalink for definition: convert a non-negative integer i to an octet string of length n. Activate to close this dialog.">Permalink</a>
+        <a class="self-link" href="#dfn-convert-integer-to-byte-sequence" aria-label="Permalink for definition: convert a non-negative integer i to a byte sequence of length n. Activate to close this dialog.">Permalink</a>
          
       </div>
       <p><b>Referenced in:</b></p>
       <ul>
     <li>
-      <a href="#ref-for-dfn-convert-integer-to-octet-string-1" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-convert-integer-to-octet-string-2" title="Reference 2">(2)</a> 
+      <a href="#ref-for-dfn-convert-integer-to-byte-sequence-1" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dfn-convert-integer-to-byte-sequence-2" title="Reference 2">(2)</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-case-sensitive" aria-label="Links in this document to definition: case-sensitive">
