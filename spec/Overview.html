@@ -808,7 +808,7 @@ partial interface mixin UniversalGlobalScope {
 interface Crypto {
   [Exposed=(Window,Worker), SecureContext] readonly attribute SubtleCrypto subtle;
   ArrayBufferView getRandomValues(ArrayBufferView array);
-  [Exposed=*, SecureContext] DOMString randomUUID();
+  [SecureContext] DOMString randomUUID();
 };
         </pre>
 
