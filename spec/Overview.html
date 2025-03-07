@@ -15037,67 +15037,67 @@ dictionary HmacKeyGenParams : Algorithm {
         </section>
         <section id="sha-operations">
           <h4>Operations</h4>
-          <dl>
-            <dt>Digest</dt>
-            <dd>
-              <ol>
-                <li>
-                  <dl class="switch">
-                    <dt>
-                      If the {{Algorithm/name}} member of
-                      |normalizedAlgorithm| is a cases-sensitive string match for
-                      "`SHA-1`":
-                    </dt>
-                    <dd>
-                      Let |result| be the result of performing the SHA-1 hash function
-                      defined in Section 6.1 of [[FIPS-180-4]] using
-                      |message| as the input message, |M|.
-                    </dd>
-                    <dt>
-                      If the {{Algorithm/name}} member of
-                      |normalizedAlgorithm| is a cases-sensitive string match for
-                      "`SHA-256`":
-                    </dt>
-                    <dd>
-                      Let |result| be the result of performing the SHA-256 hash function
-                      defined in Section 6.2 of [[FIPS-180-4]] using
-                      |message| as the input message, |M|.
-                    </dd>
-                    <dt>
-                      If the {{Algorithm/name}} member of
-                      |normalizedAlgorithm| is a cases-sensitive string match for
-                      "`SHA-384`":
-                    </dt>
-                    <dd>
-                      Let |result| be the result of performing the SHA-384 hash function
-                      defined in Section 6.5 of [[FIPS-180-4]] using
-                      |message| as the input message, |M|.
-                    </dd>
-                    <dt>
-                      If the {{Algorithm/name}} member of
-                      |normalizedAlgorithm| is a cases-sensitive string match for
-                      "`SHA-512`":
-                    </dt>
-                    <dd>
-                      Let |result| be the result of performing the SHA-512 hash function
-                      defined in Section 6.4 of [[FIPS-180-4]] using
-                      |message| as the input message, |M|.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    If performing the operation results in an error, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-          </dl>
+
+          <section id="sha-operations-digest">
+            <h5>Digest</h5>
+
+            <ol>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{Algorithm/name}} member of
+                    |normalizedAlgorithm| is a cases-sensitive string match for
+                    "`SHA-1`":
+                  </dt>
+                  <dd>
+                    Let |result| be the result of performing the SHA-1 hash function
+                    defined in Section 6.1 of [[FIPS-180-4]] using
+                    |message| as the input message, |M|.
+                  </dd>
+                  <dt>
+                    If the {{Algorithm/name}} member of
+                    |normalizedAlgorithm| is a cases-sensitive string match for
+                    "`SHA-256`":
+                  </dt>
+                  <dd>
+                    Let |result| be the result of performing the SHA-256 hash function
+                    defined in Section 6.2 of [[FIPS-180-4]] using
+                    |message| as the input message, |M|.
+                  </dd>
+                  <dt>
+                    If the {{Algorithm/name}} member of
+                    |normalizedAlgorithm| is a cases-sensitive string match for
+                    "`SHA-384`":
+                  </dt>
+                  <dd>
+                    Let |result| be the result of performing the SHA-384 hash function
+                    defined in Section 6.5 of [[FIPS-180-4]] using
+                    |message| as the input message, |M|.
+                  </dd>
+                  <dt>
+                    If the {{Algorithm/name}} member of
+                    |normalizedAlgorithm| is a cases-sensitive string match for
+                    "`SHA-512`":
+                  </dt>
+                  <dd>
+                    Let |result| be the result of performing the SHA-512 hash function
+                    defined in Section 6.4 of [[FIPS-180-4]] using
+                    |message| as the input message, |M|.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  If performing the operation results in an error, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
         </section>
       </section>
 
