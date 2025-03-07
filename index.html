@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="4a2c845b8a4b9aa8c45f28f70aff67981d7ec51d">
+<meta name="revision" content="e3459a5fe72c7b2d8a1d710c4827fe687424c33b">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -223,7 +223,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "4a2c845b8a4b9aa8c45f28f70aff67981d7ec51d",
+  "gitRevision": "e3459a5fe72c7b2d8a1d710c4827fe687424c33b",
   "publishISODate": "2025-03-07T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 07 March 2025"
 }</script>
@@ -10933,6 +10933,14 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         </li>
                         <li>
                           <p>
+                            If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-15"><code>alg</code></a> field of <var>jwk</var> is present and is
+                            not "<code>Ed25519</code>" or "<code>EdDSA</code>",
+                            then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                            <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             If <var>usages</var> is non-empty and the <a data-link-type="idl" href="#dom-jsonwebkey-use" class="internalDFN" id="ref-for-dom-jsonwebkey-use-6"><code>use</code></a> field of <var>jwk</var> is present and is
                             not "<code>sig</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -11217,6 +11225,12 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                           <p>
                             Set the <code>kty</code> attribute of <var>jwk</var> to
                             "<code>OKP</code>".
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the <code>alg</code> attribute of <var>jwk</var> to
+                            "<code>Ed25519</code>".
                           </p>
                         </li>
                         <li>
@@ -12480,17 +12494,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                           <dl class="switch">
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-3">length in bits</a> of <var>data</var> is 128:</dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-15"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-16"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A128CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                             </dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-4">length in bits</a> of <var>data</var> is 192:</dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-16"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-17"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A192CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                             </dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-5">length in bits</a> of <var>data</var> is 256:</dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-17"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-18"><code>alg</code></a> field of <var>jwk</var> is present, and is
                               not "<code>A256CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                             </dd>
                             <dt>Otherwise:</dt>
@@ -13020,17 +13034,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <dl class="switch">
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-7">length in bits</a> of <var>data</var> is 128:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-18"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-19"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-8">length in bits</a> of <var>data</var> is 192:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-19"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-20"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-9">length in bits</a> of <var>data</var> is 256:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-20"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-21"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256CBC</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
@@ -13646,17 +13660,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <dl class="switch">
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-12">length in bits</a> of <var>data</var> is 128:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-21"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-22"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-13">length in bits</a> of <var>data</var> is 192:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-22"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-23"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-14">length in bits</a> of <var>data</var> is 256:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-23"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-24"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256GCM</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
@@ -14133,17 +14147,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                         <li>
                           <dl class="switch">
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-16">length in bits</a> of <var>data</var> is 128:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-24"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-25"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A128KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-17">length in bits</a> of <var>data</var> is 192:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-25"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-26"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A192KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
                             <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-18">length in bits</a> of <var>data</var> is 256:</dt>
-                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-26"><code>alg</code></a> field of <var>jwk</var> is present, and is
+                            <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-27"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not  "<code>A256KW</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
@@ -14697,7 +14711,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                               "<code>SHA-1</code>":
                             </dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-27"><code>alg</code></a> field of <var>jwk</var> is present
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-28"><code>alg</code></a> field of <var>jwk</var> is present
                               and is not "<code>HS1</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -14708,7 +14722,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                               "<code>SHA-256</code>":
                             </dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-28"><code>alg</code></a> field of <var>jwk</var> is present
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-29"><code>alg</code></a> field of <var>jwk</var> is present
                               and is not "<code>HS256</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -14719,7 +14733,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                               "<code>SHA-384</code>":
                             </dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-29"><code>alg</code></a> field of <var>jwk</var> is present
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-30"><code>alg</code></a> field of <var>jwk</var> is present
                               and is not "<code>HS384</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -14730,7 +14744,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                               "<code>SHA-512</code>":
                             </dt>
                             <dd>
-                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-30"><code>alg</code></a> field of <var>jwk</var> is present
+                              If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-31"><code>alg</code></a> field of <var>jwk</var> is present
                               and is not "<code>HS512</code>",
                               then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                               <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -15983,7 +15997,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               <tr>
                 <td>
 <pre aria-busy="false"><code class="hljs js">{ <span class="hljs-attr">kty</span>: <span class="hljs-string">"OKP"</span>,
-  <span class="hljs-attr">crv</span>: <span class="hljs-string">"Ed25519"</span> }</code></pre>
+  <span class="hljs-attr">crv</span>: <span class="hljs-string">"Ed25519"</span>,
+  <span class="hljs-attr">alg</span>: <span class="hljs-string">"Ed25519"</span> }</code></pre>
                 </td>
                 <td>
 <pre aria-busy="false"><code class="hljs js">{ <span class="hljs-attr">name</span>: <span class="hljs-string">"Ed25519"</span> }</code></pre>
@@ -18324,15 +18339,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     </li><li>
       <a href="#ref-for-dom-jsonwebkey-alg-11" title="§ 23.7 Operations">§ 23.7 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-12" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-13" title="Reference 3">(3)</a> <a href="#ref-for-dom-jsonwebkey-alg-14" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-alg-15" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-16" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-17" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dom-jsonwebkey-alg-15" title="§ 25.3 Operations">§ 25.3 Operations</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-alg-18" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-19" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-20" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dom-jsonwebkey-alg-16" title="§ 27.7 Operations">§ 27.7 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-17" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-18" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-alg-21" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-22" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-23" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dom-jsonwebkey-alg-19" title="§ 28.4 Operations">§ 28.4 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-20" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-21" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-alg-24" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-25" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-26" title="Reference 3">(3)</a> 
+      <a href="#ref-for-dom-jsonwebkey-alg-22" title="§ 29.4 Operations">§ 29.4 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-23" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-24" title="Reference 3">(3)</a> 
     </li><li>
-      <a href="#ref-for-dom-jsonwebkey-alg-27" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-28" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-29" title="Reference 3">(3)</a> <a href="#ref-for-dom-jsonwebkey-alg-30" title="Reference 4">(4)</a> 
+      <a href="#ref-for-dom-jsonwebkey-alg-25" title="§ 30.3 Operations">§ 30.3 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-26" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-27" title="Reference 3">(3)</a> 
+    </li><li>
+      <a href="#ref-for-dom-jsonwebkey-alg-28" title="§ 31.6 Operations">§ 31.6 Operations</a> <a href="#ref-for-dom-jsonwebkey-alg-29" title="Reference 2">(2)</a> <a href="#ref-for-dom-jsonwebkey-alg-30" title="Reference 3">(3)</a> <a href="#ref-for-dom-jsonwebkey-alg-31" title="Reference 4">(4)</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dom-jsonwebkey-ext" aria-label="Links in this document to definition: ext">
