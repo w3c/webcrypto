@@ -14364,629 +14364,639 @@ dictionary HmacKeyGenParams : Algorithm {
         </section>
         <section id="hmac-operations">
           <h4>Operations</h4>
-          <dl>
-            <dt>Sign</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    Let |mac| be the result of performing the MAC Generation operation
-                    described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by the {{CryptoKey/[[handle]]}}
-                    internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
-                    |key| and |message| as the input data |text|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |mac|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Verify</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    Let |mac| be the result of performing the MAC Generation operation
-                    described in Section 4 of [[FIPS-198-1]] using
-                    the key represented by the {{CryptoKey/[[handle]]}}
-                    internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
-                    |key| and |message| as the input data |text|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return true if |mac| is equal to |signature| and false
-                    otherwise.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Generate Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |usages| contains any entry which is not "`sign`" or
-                    "`verify`", then [= exception/throw =] a {{SyntaxError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>
-                      If the {{HmacKeyGenParams/length}} member of
-                      |normalizedAlgorithm| is not present:
-                    </dt>
-                    <dd>
-                      Let |length| be the block size in bits of the hash function
-                      identified by the {{HmacKeyGenParams/hash}} member
-                      of |normalizedAlgorithm|.
-                    </dd>
-                    <dt>
-                      Otherwise, if the {{HmacKeyGenParams/length}}
-                      member of |normalizedAlgorithm| is non-zero:
-                    </dt>
-                    <dd>
-                      Let |length| be equal to the
-                      {{HmacKeyGenParams/length}}
-                      member of |normalizedAlgorithm|.
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      [= exception/throw =] an
-                      {{OperationError}}.
-                    </dd>
-                  </dl>
-                </li>
 
-                <li>
-                  <p>
-                    Generate a key of length |length| bits.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the key generation step fails,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |key| be a new
-                    {{CryptoKey}} object representing the
-                    generated key.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |algorithm| be a new
-                    {{HmacKeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |algorithm| to "`HMAC`".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{HmacKeyAlgorithm/length}} attribute of
-                    |algorithm| to |length|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |hash| be a new
-                    {{KeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |hash| to equal the {{Algorithm/name}}
-                    member of the {{HmacKeyGenParams/hash}}
+          <section id="hmac-operations-sign">
+            <h5>Sign</h5>
+
+            <ol>
+              <li>
+                <p>
+                  Let |mac| be the result of performing the MAC Generation operation
+                  described in Section 4 of [[FIPS-198-1]] using
+                  the key represented by the {{CryptoKey/[[handle]]}}
+                  internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| and |message| as the input data |text|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |mac|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hmac-operations-verify">
+            <h5>Verify</h5>
+
+            <ol>
+              <li>
+                <p>
+                  Let |mac| be the result of performing the MAC Generation operation
+                  described in Section 4 of [[FIPS-198-1]] using
+                  the key represented by the {{CryptoKey/[[handle]]}}
+                  internal slot of |key|, the hash function identified by the {{HmacKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| and |message| as the input data |text|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return true if |mac| is equal to |signature| and false
+                  otherwise.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hmac-operations-generate-key">
+            <h5>Generate Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |usages| contains any entry which is not "`sign`" or
+                  "`verify`", then [= exception/throw =] a {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{HmacKeyGenParams/length}} member of
+                    |normalizedAlgorithm| is not present:
+                  </dt>
+                  <dd>
+                    Let |length| be the block size in bits of the hash function
+                    identified by the {{HmacKeyGenParams/hash}} member
+                    of |normalizedAlgorithm|.
+                  </dd>
+                  <dt>
+                    Otherwise, if the {{HmacKeyGenParams/length}}
+                    member of |normalizedAlgorithm| is non-zero:
+                  </dt>
+                  <dd>
+                    Let |length| be equal to the
+                    {{HmacKeyGenParams/length}}
                     member of |normalizedAlgorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{HmacKeyAlgorithm/hash}} attribute
-                    of |algorithm| to |hash|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |key| to {{KeyType/"secret"}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |key| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[extractable]]}} internal
-                    slot of |key| to be |extractable|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[usages]]}} internal slot of
-                    |key| to be |usages|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |key|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Import Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>Let |keyData| be the key data to be imported.</p>
-                </li>
-                <li>
-                  <p>
-                    If |usages| contains an entry which is not
-                    "`sign`" or "`verify`",
-                    then [= exception/throw =] a
-                    {{SyntaxError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |hash| be a new {{KeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |data| be |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set |hash| to equal the {{HmacImportParams/hash}}
-                              member of |normalizedAlgorithm|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <dl class="switch">
-                            <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
-                            <dd><p>Let |jwk| equal |keyData|.</p></dd>
-                            <dt>Otherwise:</dt>
-                            <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/kty}} field of |jwk| is not
-                            "`oct`",
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] an
+                    {{OperationError}}.
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <p>
+                  Generate a key of length |length| bits.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the key generation step fails,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |key| be a new
+                  {{CryptoKey}} object representing the
+                  generated key.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |algorithm| be a new
+                  {{HmacKeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |algorithm| to "`HMAC`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{HmacKeyAlgorithm/length}} attribute of
+                  |algorithm| to |length|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |hash| be a new
+                  {{KeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |hash| to equal the {{Algorithm/name}}
+                  member of the {{HmacKeyGenParams/hash}}
+                  member of |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{HmacKeyAlgorithm/hash}} attribute
+                  of |algorithm| to |hash|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |key| to {{KeyType/"secret"}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |key| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[extractable]]}} internal
+                  slot of |key| to be |extractable|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[usages]]}} internal slot of
+                  |key| to be |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |key|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hmac-operations-import-key">
+            <h5>Import Key</h5>
+
+            <ol>
+              <li>
+                <p>Let |keyData| be the key data to be imported.</p>
+              </li>
+              <li>
+                <p>
+                  If |usages| contains an entry which is not
+                  "`sign`" or "`verify`",
+                  then [= exception/throw =] a
+                  {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |hash| be a new {{KeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |data| be |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set |hash| to equal the {{HmacImportParams/hash}}
+                            member of |normalizedAlgorithm|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <dl class="switch">
+                          <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
+                          <dd><p>Let |jwk| equal |keyData|.</p></dd>
+                          <dt>Otherwise:</dt>
+                          <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/kty}} field of |jwk| is not
+                          "`oct`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |jwk| does not meet the requirements of
+                          Section 6.4 of JSON Web Algorithms [[JWA]],
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |data| be the [= byte sequence =] obtained by decoding the
+                          {{JsonWebKey/k}} field of |jwk|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the |hash| to equal the {{HmacImportParams/hash}} member of
+                          |normalizedAlgorithm|.
+                        </p>
+                      </li>
+                      <li>
+                        <dl class="switch">
+                          <dt>
+                            If the {{KeyAlgorithm/name}} attribute
+                            of |hash| is
+                            "`SHA-1`":
+                          </dt>
+                          <dd>
+                            If the {{JsonWebKey/alg}} field of |jwk| is present
+                            and is not "`HS1`",
                             then [= exception/throw =] a
                             {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If |jwk| does not meet the requirements of
-                            Section 6.4 of JSON Web Algorithms [[JWA]],
+                          </dd>
+                          <dt>
+                            If the {{KeyAlgorithm/name}} attribute
+                            of |hash| is
+                            "`SHA-256`":
+                          </dt>
+                          <dd>
+                            If the {{JsonWebKey/alg}} field of |jwk| is present
+                            and is not "`HS256`",
                             then [= exception/throw =] a
                             {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |data| be the [= byte sequence =] obtained by decoding the
-                            {{JsonWebKey/k}} field of |jwk|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the |hash| to equal the {{HmacImportParams/hash}} member of
-                            |normalizedAlgorithm|.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>
-                              If the {{KeyAlgorithm/name}} attribute
-                              of |hash| is
-                              "`SHA-1`":
-                            </dt>
-                            <dd>
-                              If the {{JsonWebKey/alg}} field of |jwk| is present
-                              and is not "`HS1`",
-                              then [= exception/throw =] a
-                              {{DataError}}.
-                            </dd>
-                            <dt>
-                              If the {{KeyAlgorithm/name}} attribute
-                              of |hash| is
-                              "`SHA-256`":
-                            </dt>
-                            <dd>
-                              If the {{JsonWebKey/alg}} field of |jwk| is present
-                              and is not "`HS256`",
-                              then [= exception/throw =] a
-                              {{DataError}}.
-                            </dd>
-                            <dt>
-                              If the {{KeyAlgorithm/name}} attribute
-                              of |hash| is
-                              "`SHA-384`":
-                            </dt>
-                            <dd>
-                              If the {{JsonWebKey/alg}} field of |jwk| is present
-                              and is not "`HS384`",
-                              then [= exception/throw =] a
-                              {{DataError}}.
-                            </dd>
-                            <dt>
-                              If the {{KeyAlgorithm/name}} attribute
-                              of |hash| is
-                              "`SHA-512`":
-                            </dt>
-                            <dd>
-                              If the {{JsonWebKey/alg}} field of |jwk| is present
-                              and is not "`HS512`",
-                              then [= exception/throw =] a
-                              {{DataError}}.
-                            </dd>
-                            <dt>
-                              Otherwise, if the {{KeyAlgorithm/name}} attribute
-                              of |hash| is defined in
-                              <a href="#dfn-applicable-specification">another applicable
-                              specification</a>:
-                            </dt>
-                            <dd>
-                              Perform any [= HMAC key import steps | key
-                              import steps =] defined by
-                              <a href="#dfn-applicable-specification">other applicable
-                              specifications</a>, passing |format|, |jwk|
-                              and |hash|
-                              and obtaining |hash|.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present and is
-                            not  "`sign`",
+                          </dd>
+                          <dt>
+                            If the {{KeyAlgorithm/name}} attribute
+                            of |hash| is
+                            "`SHA-384`":
+                          </dt>
+                          <dd>
+                            If the {{JsonWebKey/alg}} field of |jwk| is present
+                            and is not "`HS384`",
                             then [= exception/throw =] a
                             {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
-                            is invalid according to the requirements of
-                            JSON Web Key [[JWK]] or
-                            does not contain all of the specified |usages| values,
+                          </dd>
+                          <dt>
+                            If the {{KeyAlgorithm/name}} attribute
+                            of |hash| is
+                            "`SHA-512`":
+                          </dt>
+                          <dd>
+                            If the {{JsonWebKey/alg}} field of |jwk| is present
+                            and is not "`HS512`",
                             then [= exception/throw =] a
                             {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/ext}} field of |jwk| is present and
-                            has the value false and |extractable| is true,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
+                          </dd>
+                          <dt>
+                            Otherwise, if the {{KeyAlgorithm/name}} attribute
+                            of |hash| is defined in
+                            <a href="#dfn-applicable-specification">another applicable
+                            specification</a>:
+                          </dt>
+                          <dd>
+                            Perform any [= HMAC key import steps | key
+                            import steps =] defined by
+                            <a href="#dfn-applicable-specification">other applicable
+                            specifications</a>, passing |format|, |jwk|
+                            and |hash|
+                            and obtaining |hash|.
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present and is
+                          not  "`sign`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
+                          is invalid according to the requirements of
+                          JSON Web Key [[JWK]] or
+                          does not contain all of the specified |usages| values,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/ext}} field of |jwk| is present and
+                          has the value false and |extractable| is true,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] a
+                    {{NotSupportedError}}.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Let |length| be the [= length in bits =] of
+                  |data|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is zero
+                  then [= exception/throw =] a
+                  {{DataError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{HmacImportParams/length}} member of
+                    |normalizedAlgorithm| is present:
+                  </dt>
+                  <dd>
+                    <dl class="switch">
+                      <dt>
+                        If the {{HmacImportParams/length}} member of
+                        |normalizedAlgorithm| is greater than |length|:
+                      </dt>
+                      <dd>
+                        [= exception/throw =] a
+                        {{DataError}}.
+                      </dd>
+                      <dt>
+                        If the {{HmacImportParams/length}} member of
+                        |normalizedAlgorithm|, is less than or equal to
+                        |length| minus eight:
+                      </dt>
+                      <dd>
+                        [= exception/throw =] a
+                        {{DataError}}.
+                      </dd>
+                      <dt>
+                        Otherwise:
+                      </dt>
+                      <dd>
+                        Set |length| equal to the {{HmacImportParams/length}}
+                        member of |normalizedAlgorithm|.
+                      </dd>
+                    </dl>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Let |key| be a new {{CryptoKey}}
+                  object representing an HMAC key with the first |length|
+                  bits of |data|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |key| to {{KeyType/"secret"}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |algorithm| be a new
+                  {{HmacKeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |algorithm| to "`HMAC`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{HmacKeyAlgorithm/length}} attribute of
+                  |algorithm| to |length|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{HmacKeyAlgorithm/hash}} attribute of
+                  |algorithm| to |hash|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |key| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |key|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hmac-operations-export-key">
+            <h5>Export Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
+                  cannot be accessed, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |bits| be the raw bits of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
+                  |key|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be a [= byte sequence containing =] |bits|.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |result| be |data|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |jwk| be a new {{JsonWebKey}}
+                          dictionary.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `kty` attribute of |jwk| to the
+                          string "`oct`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
+                          containing |data|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be the {{CryptoKey/[[algorithm]]}} internal slot of
+                          |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |hash| be the
+                          {{HmacKeyAlgorithm/hash}} attribute of
+                          |algorithm|.
+                        </p>
+                      </li>
+
+                      <li>
+                        <dl class="switch">
+                          <dt>If the {{KeyAlgorithm/name}} attribute of
+                          |hash| is "`SHA-1`":</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`HS1`".</dd>
+                          <dt>If the {{KeyAlgorithm/name}} attribute of
+                          |hash| is "`SHA-256`":</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`HS256`".</dd>
+                          <dt>If the {{KeyAlgorithm/name}} attribute of
+                          |hash| is "`SHA-384`":</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`HS384`".</dd>
+                          <dt>If the {{KeyAlgorithm/name}} attribute of
+                          |hash| is "`SHA-512`":</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`HS512`".</dd>
+                          <dt>
+                            Otherwise, the {{KeyAlgorithm/name}} attribute
+                            of |hash| is defined in
+                            <a href="#dfn-applicable-specification">another applicable
+                            specification</a>:
+                          </dt>
+                          <dd>
+                            <ol>
+                              <li>
+                                <p>
+                                  Perform any [= HMAC key export steps | key export steps =] defined by
+                                  <a href="#dfn-applicable-specification">other applicable
+                                  specifications</a>, passing |format| and |key|
+                                  and obtaining |alg|.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the `alg` attribute of |jwk| to
+                                  |alg|.
+                                </p>
+                              </li>
+                            </ol>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `key_ops` attribute of |jwk| to equal the
+                          {{CryptoKey/usages}} attribute of |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `ext` attribute of |jwk| to equal the {{CryptoKey/[[extractable]]}} internal slot
+                          of |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be |jwk|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <p>
                       [= exception/throw =] a
                       {{NotSupportedError}}.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Let |length| be the [= length in bits =] of
-                    |data|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If |length| is zero
-                    then [= exception/throw =] a
-                    {{DataError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>
-                      If the {{HmacImportParams/length}} member of
-                      |normalizedAlgorithm| is present:
-                    </dt>
-                    <dd>
-                      <dl class="switch">
-                        <dt>
-                          If the {{HmacImportParams/length}} member of
-                          |normalizedAlgorithm| is greater than |length|:
-                        </dt>
-                        <dd>
-                          [= exception/throw =] a
-                          {{DataError}}.
-                        </dd>
-                        <dt>
-                          If the {{HmacImportParams/length}} member of
-                          |normalizedAlgorithm|, is less than or equal to
-                          |length| minus eight:
-                        </dt>
-                        <dd>
-                          [= exception/throw =] a
-                          {{DataError}}.
-                        </dd>
-                        <dt>
-                          Otherwise:
-                        </dt>
-                        <dd>
-                          Set |length| equal to the {{HmacImportParams/length}}
-                          member of |normalizedAlgorithm|.
-                        </dd>
-                      </dl>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Let |key| be a new {{CryptoKey}}
-                    object representing an HMAC key with the first |length|
-                    bits of |data|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |key| to {{KeyType/"secret"}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |algorithm| be a new
-                    {{HmacKeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |algorithm| to "`HMAC`".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{HmacKeyAlgorithm/length}} attribute of
-                    |algorithm| to |length|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{HmacKeyAlgorithm/hash}} attribute of
-                    |algorithm| to |hash|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |key| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |key|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Export Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
-                    cannot be accessed, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |bits| be the raw bits of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
-                    |key|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |data| be a [= byte sequence containing =] |bits|.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |result| be |data|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |jwk| be a new {{JsonWebKey}}
-                            dictionary.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `kty` attribute of |jwk| to the
-                            string "`oct`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing |data|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be the {{CryptoKey/[[algorithm]]}} internal slot of
-                            |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |hash| be the
-                            {{HmacKeyAlgorithm/hash}} attribute of
-                            |algorithm|.
-                          </p>
-                        </li>
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
 
-                        <li>
-                          <dl class="switch">
-                            <dt>If the {{KeyAlgorithm/name}} attribute of
-                            |hash| is "`SHA-1`":</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`HS1`".</dd>
-                            <dt>If the {{KeyAlgorithm/name}} attribute of
-                            |hash| is "`SHA-256`":</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`HS256`".</dd>
-                            <dt>If the {{KeyAlgorithm/name}} attribute of
-                            |hash| is "`SHA-384`":</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`HS384`".</dd>
-                            <dt>If the {{KeyAlgorithm/name}} attribute of
-                            |hash| is "`SHA-512`":</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`HS512`".</dd>
-                            <dt>
-                              Otherwise, the {{KeyAlgorithm/name}} attribute
-                              of |hash| is defined in
-                              <a href="#dfn-applicable-specification">another applicable
-                              specification</a>:
-                            </dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    Perform any [= HMAC key export steps | key export steps =] defined by
-                                    <a href="#dfn-applicable-specification">other applicable
-                                    specifications</a>, passing |format| and |key|
-                                    and obtaining |alg|.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Set the `alg` attribute of |jwk| to
-                                    |alg|.
-                                  </p>
-                                </li>
-                              </ol>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `key_ops` attribute of |jwk| to equal the
-                            {{CryptoKey/usages}} attribute of |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `ext` attribute of |jwk| to equal the {{CryptoKey/[[extractable]]}} internal slot
-                            of |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be |jwk|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      <p>
-                        [= exception/throw =] a
-                        {{NotSupportedError}}.
-                      </p>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Get key length</dt>
-            <dd>
-              <ol>
-                <li>
-                  <dl class="switch">
-                    <dt>
-                      If the {{HmacImportParams/length}} member of
-                      |normalizedDerivedKeyAlgorithm| is not present:
-                    </dt>
-                    <dd>
-                      <p>
-                        Let |length| be the block size in bits of the hash function
-                        identified by the {{HmacImportParams/hash}} member
-                        of |normalizedDerivedKeyAlgorithm|.
-                      </p>
-                    </dd>
-                    <dt>
-                      Otherwise, if the {{HmacImportParams/length}}
-                      member of |normalizedDerivedKeyAlgorithm| is non-zero:
-                    </dt>
-                    <dd>
-                      Let |length| be equal to the
-                      {{HmacImportParams/length}}
-                      member of |normalizedDerivedKeyAlgorithm|.
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      [= exception/throw =] a
-                      {{TypeError}}.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |length|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-          </dl>
+          <section id="hmac-operations-get-key-length">
+            <h5>Get key length</h5>
+
+            <ol>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{HmacImportParams/length}} member of
+                    |normalizedDerivedKeyAlgorithm| is not present:
+                  </dt>
+                  <dd>
+                    <p>
+                      Let |length| be the block size in bits of the hash function
+                      identified by the {{HmacImportParams/hash}} member
+                      of |normalizedDerivedKeyAlgorithm|.
+                    </p>
+                  </dd>
+                  <dt>
+                    Otherwise, if the {{HmacImportParams/length}}
+                    member of |normalizedDerivedKeyAlgorithm| is non-zero:
+                  </dt>
+                  <dd>
+                    Let |length| be equal to the
+                    {{HmacImportParams/length}}
+                    member of |normalizedDerivedKeyAlgorithm|.
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] a
+                    {{TypeError}}.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |length|.
+                </p>
+              </li>
+            </ol>
+          </section>
         </section>
       </section>
 
