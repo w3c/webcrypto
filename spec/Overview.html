@@ -13201,560 +13201,570 @@ dictionary AesGcmParams : Algorithm {
         </section>
         <section id="aes-gcm-operations">
           <h4>Operations</h4>
-          <dl>
-            <dt>Encrypt</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |plaintext| has a [= byte sequence/length =]
-                    greater than 2^39 - 256 bytes,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{AesGcmParams/iv}} member of
-                    |normalizedAlgorithm| has a [= byte sequence/length =]
-                    greater than 2^64 - 1 bytes,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{AesGcmParams/additionalData}} member
-                    of |normalizedAlgorithm| is present and has a
-                    [= byte sequence/length =]
-                    greater than 2^64 - 1 bytes,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If the {{AesGcmParams/tagLength}} member of
-                    |normalizedAlgorithm| is not present:</dt>
-                    <dd>Let |tagLength| be 128.</dd>
-                    <dt>If the {{AesGcmParams/tagLength}} member of
-                    |normalizedAlgorithm| is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
-                    <dd>Let |tagLength| be equal to the
-                    {{AesGcmParams/tagLength}} member of
-                     |normalizedAlgorithm|</dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      [= exception/throw =] an
-                      {{OperationError}}.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Let |additionalData| be the {{AesGcmParams/additionalData}} member of
-                    |normalizedAlgorithm| if present or an empty [= byte sequence =]
-                    otherwise.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |C| and |T| be the outputs that result from performing
-                    the Authenticated Encryption Function described in Section 7.1 of
-                    [[NIST-SP800-38D]] using AES as the block cipher, the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
-                    the |IV| input parameter,
-                    |additionalData| as the |A| input parameter,
-                    |tagLength| as the |t| pre-requisite and
-                    |plaintext| as the input plaintext.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |ciphertext| be equal to |C| | |T|,
-                    where '|' denotes concatenation.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |ciphertext|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Decrypt</dt>
-            <dd>
-              <ol>
-                <li>
-                  <dl class="switch">
-                    <dt>If the {{AesGcmParams/tagLength}} member of
-                    |normalizedAlgorithm| is not present:</dt>
-                    <dd>Let |tagLength| be 128.</dd>
-                    <dt>If the {{AesGcmParams/tagLength}} member of
-                    |normalizedAlgorithm| is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
-                    <dd>Let |tagLength| be equal to the
-                    {{AesGcmParams/tagLength}} member of
-                     |normalizedAlgorithm|</dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      [= exception/throw =] an
-                      {{OperationError}}.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    If |ciphertext| has a [= length in bits =] less than |tagLength|,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{AesGcmParams/iv}} member of
-                    |normalizedAlgorithm| has a [= byte sequence/length =]
-                    greater than 2^64 - 1 bytes,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{AesGcmParams/additionalData}} member
-                    of |normalizedAlgorithm| is present and has a
-                    [= byte sequence/length =]
-                    greater than 2^64 - 1 bytes,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |tag| be the last |tagLength| bits of
-                    |ciphertext|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |actualCiphertext| be the result of removing the last |tagLength| bits
-                    from |ciphertext|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |additionalData| be the {{AesGcmParams/additionalData}} member of
-                    |normalizedAlgorithm| if present or an empty [= byte sequence =]
-                    otherwise.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Perform the Authenticated Decryption Function described in Section 7.2 of
-                    [[NIST-SP800-38D]] using AES as the block cipher,
-                    the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
-                    the |IV| input parameter,
-                    |additionalData| as the |A| input parameter,
-                    |tagLength| as the |t| pre-requisite,
-                    |actualCiphertext| as the input ciphertext, |C| and |tag| as
-                    the authentication tag, |T|.
-                  </p>
-                  <dl class="switch">
-                    <dt>If the result of the algorithm is the indication of inauthenticity,
-                    "|FAIL|":</dt>
-                    <dd>
-                      [= exception/throw =] an
-                      {{OperationError}}
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>Let |plaintext| be the output |P| of the Authenticated
-                    Decryption Function.</dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |plaintext|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Generate Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |usages| contains any entry which is not
-                    one of "`encrypt`", "`decrypt`",
-                    "`wrapKey`" or "`unwrapKey`",
-                    then [= exception/throw =] a
-                    {{SyntaxError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{AesKeyGenParams/length}} member of
-                    |normalizedAlgorithm| is not equal to one of
-                    128, 192 or 256,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
 
-                <li>
-                  <p>
-                    Generate an AES key of length
-                    equal to the {{AesKeyGenParams/length}} member of
-                    |normalizedAlgorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the key generation step fails,
-                    then [= exception/throw =] an
+          <section id="aes-gcm-operations-encrypt">
+            <h5>Encrypt</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |plaintext| has a [= byte sequence/length =]
+                  greater than 2^39 - 256 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{AesGcmParams/iv}} member of
+                  |normalizedAlgorithm| has a [= byte sequence/length =]
+                  greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{AesGcmParams/additionalData}} member
+                  of |normalizedAlgorithm| is present and has a
+                  [= byte sequence/length =]
+                  greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If the {{AesGcmParams/tagLength}} member of
+                  |normalizedAlgorithm| is not present:</dt>
+                  <dd>Let |tagLength| be 128.</dd>
+                  <dt>If the {{AesGcmParams/tagLength}} member of
+                  |normalizedAlgorithm| is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
+                  <dd>Let |tagLength| be equal to the
+                  {{AesGcmParams/tagLength}} member of
+                   |normalizedAlgorithm|</dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] an
                     {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |key| be a new
-                    {{CryptoKey}} object representing the
-                    generated AES key.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |algorithm| be a new
-                    {{AesKeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |algorithm| to "`AES-GCM`".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{AesKeyAlgorithm/length}} attribute of
-                    |algorithm| to equal the
-                    {{AesKeyGenParams/length}} member of
-                    |normalizedAlgorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |key| to {{KeyType/"secret"}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |key| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[extractable]]}} internal
-                    slot of |key| to be |extractable|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[usages]]}} internal slot of
-                    |key| to be |usages|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |key|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Import Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |usages| contains an entry which is not
-                    one of "`encrypt`", "`decrypt`",
-                    "`wrapKey`" or "`unwrapKey`",
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Let |additionalData| be the {{AesGcmParams/additionalData}} member of
+                  |normalizedAlgorithm| if present or an empty [= byte sequence =]
+                  otherwise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |C| and |T| be the outputs that result from performing
+                  the Authenticated Encryption Function described in Section 7.1 of
+                  [[NIST-SP800-38D]] using AES as the block cipher, the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
+                  the |IV| input parameter,
+                  |additionalData| as the |A| input parameter,
+                  |tagLength| as the |t| pre-requisite and
+                  |plaintext| as the input plaintext.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |ciphertext| be equal to |C| | |T|,
+                  where '|' denotes concatenation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |ciphertext|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="aes-gcm-operations-decrypt">
+            <h5>Decrypt</h5>
+
+            <ol>
+              <li>
+                <dl class="switch">
+                  <dt>If the {{AesGcmParams/tagLength}} member of
+                  |normalizedAlgorithm| is not present:</dt>
+                  <dd>Let |tagLength| be 128.</dd>
+                  <dt>If the {{AesGcmParams/tagLength}} member of
+                  |normalizedAlgorithm| is one of 32, 64, 96, 104, 112, 120 or 128:</dt>
+                  <dd>Let |tagLength| be equal to the
+                  {{AesGcmParams/tagLength}} member of
+                   |normalizedAlgorithm|</dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] an
+                    {{OperationError}}.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  If |ciphertext| has a [= length in bits =] less than |tagLength|,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{AesGcmParams/iv}} member of
+                  |normalizedAlgorithm| has a [= byte sequence/length =]
+                  greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{AesGcmParams/additionalData}} member
+                  of |normalizedAlgorithm| is present and has a
+                  [= byte sequence/length =]
+                  greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |tag| be the last |tagLength| bits of
+                  |ciphertext|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |actualCiphertext| be the result of removing the last |tagLength| bits
+                  from |ciphertext|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |additionalData| be the {{AesGcmParams/additionalData}} member of
+                  |normalizedAlgorithm| if present or an empty [= byte sequence =]
+                  otherwise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the Authenticated Decryption Function described in Section 7.2 of
+                  [[NIST-SP800-38D]] using AES as the block cipher,
+                  the {{AesGcmParams/iv}} member of |normalizedAlgorithm| as
+                  the |IV| input parameter,
+                  |additionalData| as the |A| input parameter,
+                  |tagLength| as the |t| pre-requisite,
+                  |actualCiphertext| as the input ciphertext, |C| and |tag| as
+                  the authentication tag, |T|.
+                </p>
+                <dl class="switch">
+                  <dt>If the result of the algorithm is the indication of inauthenticity,
+                  "|FAIL|":</dt>
+                  <dd>
+                    [= exception/throw =] an
+                    {{OperationError}}
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>Let |plaintext| be the output |P| of the Authenticated
+                  Decryption Function.</dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |plaintext|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="aes-gcm-operations-generate-key">
+            <h5>Generate Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |usages| contains any entry which is not
+                  one of "`encrypt`", "`decrypt`",
+                  "`wrapKey`" or "`unwrapKey`",
+                  then [= exception/throw =] a
+                  {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{AesKeyGenParams/length}} member of
+                  |normalizedAlgorithm| is not equal to one of
+                  128, 192 or 256,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+
+              <li>
+                <p>
+                  Generate an AES key of length
+                  equal to the {{AesKeyGenParams/length}} member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the key generation step fails,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |key| be a new
+                  {{CryptoKey}} object representing the
+                  generated AES key.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |algorithm| be a new
+                  {{AesKeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |algorithm| to "`AES-GCM`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{AesKeyAlgorithm/length}} attribute of
+                  |algorithm| to equal the
+                  {{AesKeyGenParams/length}} member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |key| to {{KeyType/"secret"}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |key| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[extractable]]}} internal
+                  slot of |key| to be |extractable|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[usages]]}} internal slot of
+                  |key| to be |usages|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |key|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="aes-gcm-operations-import-key">
+            <h5>Import Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |usages| contains an entry which is not
+                  one of "`encrypt`", "`decrypt`",
+                  "`wrapKey`" or "`unwrapKey`",
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |data| be |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the [= length in bits =] of |data| is not 128, 192 or 256
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <dl class="switch">
+                          <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
+                          <dd><p>Let |jwk| equal |keyData|.</p></dd>
+                          <dt>Otherwise:</dt>
+                          <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/kty}} field of |jwk| is not
+                          "`oct`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |jwk| does not meet the requirements of
+                          Section 6.4 of JSON Web Algorithms [[JWA]],
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |data| be the [= byte sequence =] obtained by decoding the
+                          {{JsonWebKey/k}} field of |jwk|.
+                        </p>
+                      </li>
+                      <li>
+                        <dl class="switch">
+                          <dt>If the [= length in bits =] of |data| is 128:</dt>
+                          <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
+                          not  "`A128GCM`",
                             then [= exception/throw =] a
-                            {{SyntaxError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |data| be |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the [= length in bits =] of |data| is not 128, 192 or 256
+                            {{DataError}}.</dd>
+                          <dt>If the [= length in bits =] of |data| is 192:</dt>
+                          <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
+                          not  "`A192GCM`",
                             then [= exception/throw =] a
+                            {{DataError}}.</dd>
+                          <dt>If the [= length in bits =] of |data| is 256:</dt>
+                          <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
+                          not  "`A256GCM`",
+                            then [= exception/throw =] a
+                            {{DataError}}.</dd>
+                          <dt>Otherwise:</dt>
+                          <dd>
+                            [= exception/throw =] a
                             {{DataError}}.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <dl class="switch">
-                            <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
-                            <dd><p>Let |jwk| equal |keyData|.</p></dd>
-                            <dt>Otherwise:</dt>
-                            <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/kty}} field of |jwk| is not
-                            "`oct`",
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If |jwk| does not meet the requirements of
-                            Section 6.4 of JSON Web Algorithms [[JWA]],
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |data| be the [= byte sequence =] obtained by decoding the
-                            {{JsonWebKey/k}} field of |jwk|.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If the [= length in bits =] of |data| is 128:</dt>
-                            <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
-                            not  "`A128GCM`",
-                              then [= exception/throw =] a
-                              {{DataError}}.</dd>
-                            <dt>If the [= length in bits =] of |data| is 192:</dt>
-                            <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
-                            not  "`A192GCM`",
-                              then [= exception/throw =] a
-                              {{DataError}}.</dd>
-                            <dt>If the [= length in bits =] of |data| is 256:</dt>
-                            <dd>If the {{JsonWebKey/alg}} field of |jwk| is present, and is
-                            not  "`A256GCM`",
-                              then [= exception/throw =] a
-                              {{DataError}}.</dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              [= exception/throw =] a
-                              {{DataError}}.
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present and is
-                            not  "`enc`",
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
-                            is invalid according to the requirements of
-                            JSON Web Key [[JWK]] or
-                            does not contain all of the specified |usages| values,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/ext}} field of |jwk| is present and
-                            has the value false and |extractable| is true,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present and is
+                          not  "`enc`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
+                          is invalid according to the requirements of
+                          JSON Web Key [[JWK]] or
+                          does not contain all of the specified |usages| values,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/ext}} field of |jwk| is present and
+                          has the value false and |extractable| is true,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] a
+                    {{NotSupportedError}}.
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Let |key| be a new {{CryptoKey}}
+                  object representing an AES key with value |data|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |key| to {{KeyType/"secret"}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |algorithm| be a new
+                  {{AesKeyAlgorithm}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |algorithm| to "`AES-GCM`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{AesKeyAlgorithm/length}} attribute of
+                  |algorithm| to the length, in bits, of |data|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |key| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |key|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="aes-gcm-operations-export-key">
+            <h5>Export Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
+                  cannot be accessed, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |data| be a [= byte sequence =] containing
+                          the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
+                          |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be |data|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |jwk| be a new {{JsonWebKey}}
+                          dictionary.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `kty` attribute of |jwk| to the
+                          string "`oct`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
+                          containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
+                          |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
+                        </p>
+                      </li>
+                      <li>
+                        <dl class="switch">
+                          <dt>If the {{AesKeyAlgorithm/length}} attribute of
+                          |key| is 128:</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`A128GCM`".</dd>
+                          <dt>If the {{AesKeyAlgorithm/length}} attribute of
+                          |key| is 192:</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`A192GCM`".</dd>
+                          <dt>If the {{AesKeyAlgorithm/length}} attribute of
+                          |key| is 256:</dt>
+                          <dd>Set the `alg` attribute of |jwk| to
+                          the string "`A256GCM`".</dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `key_ops` attribute of |jwk| to equal the
+                          {{CryptoKey/usages}} attribute of
+                          |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `ext` attribute of |jwk| to equal the {{CryptoKey/[[extractable]]}} internal slot
+                          of |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be |jwk|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <p>
                       [= exception/throw =] a
                       {{NotSupportedError}}.
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Let |key| be a new {{CryptoKey}}
-                    object representing an AES key with value |data|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |key| to {{KeyType/"secret"}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |algorithm| be a new
-                    {{AesKeyAlgorithm}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |algorithm| to "`AES-GCM`".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{AesKeyAlgorithm/length}} attribute of
-                    |algorithm| to the length, in bits, of |data|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |key| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |key|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Export Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
-                    cannot be accessed, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |data| be a [= byte sequence =] containing
-                            the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
-                            |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be |data|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |jwk| be a new {{JsonWebKey}}
-                            dictionary.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `kty` attribute of |jwk| to the
-                            string "`oct`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{JsonWebKey/k}} attribute of |jwk| to be a string
-                            containing the raw octets of the key represented by the {{CryptoKey/[[handle]]}} internal slot of
-                            |key|, encoded according to Section 6.4 of JSON Web Algorithms [[JWA]].
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If the {{AesKeyAlgorithm/length}} attribute of
-                            |key| is 128:</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`A128GCM`".</dd>
-                            <dt>If the {{AesKeyAlgorithm/length}} attribute of
-                            |key| is 192:</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`A192GCM`".</dd>
-                            <dt>If the {{AesKeyAlgorithm/length}} attribute of
-                            |key| is 256:</dt>
-                            <dd>Set the `alg` attribute of |jwk| to
-                            the string "`A256GCM`".</dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `key_ops` attribute of |jwk| to equal the
-                            {{CryptoKey/usages}} attribute of
-                            |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `ext` attribute of |jwk| to equal the {{CryptoKey/[[extractable]]}} internal slot
-                            of |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be |jwk|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      <p>
-                        [= exception/throw =] a
-                        {{NotSupportedError}}.
-                      </p>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Get key length</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If the {{AesDerivedKeyParams/length}} member of
-                    |normalizedDerivedKeyAlgorithm| is not 128, 192 or 256, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return the {{AesDerivedKeyParams/length}} member of
-                    |normalizedDerivedKeyAlgorithm|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-          </dl>
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="aes-gcm-operations-get-key-length">
+            <h5>Get key length</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{AesDerivedKeyParams/length}} member of
+                  |normalizedDerivedKeyAlgorithm| is not 128, 192 or 256, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return the {{AesDerivedKeyParams/length}} member of
+                  |normalizedDerivedKeyAlgorithm|.
+                </p>
+              </li>
+            </ol>
+          </section>
         </section>
       </section>
 
