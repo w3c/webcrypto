@@ -10751,6 +10751,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                         </li>
                         <li>
                           <p>
+                            If the {{JsonWebKey/alg}} field of |jwk| is present and is
+                            not "`Ed25519`" or "`EdDSA`",
+                            then [= exception/throw =] a
+                            {{DataError}}.
+                          </p>
+                        </li>
+                        <li>
+                          <p>
                             If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present and is
                             not "`sig`",
                             then [= exception/throw =] a
@@ -11035,6 +11043,12 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                           <p>
                             Set the `kty` attribute of |jwk| to
                             "`OKP`".
+                          </p>
+                        </li>
+                        <li>
+                          <p>
+                            Set the `alg` attribute of |jwk| to
+                            "`Ed25519`".
                           </p>
                         </li>
                         <li>
@@ -15873,7 +15887,8 @@ dictionary Pbkdf2Params : Algorithm {
                 <td>
 <pre class=js>
 { kty: "OKP",
-  crv: "Ed25519" }
+  crv: "Ed25519",
+  alg: "Ed25519" }
 </pre>
                 </td>
                 <td>
