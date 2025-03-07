@@ -12712,6 +12712,12 @@ dictionary AesCbcParams : Algorithm {
               </li>
               <li>
                 <p>
+                  If the length of |ciphertext| is zero or is not a multiple
+                  of 16 bytes, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |paddedPlaintext| be the result of performing the CBC Decryption
                   operation described in Section 6.2 of [[NIST-SP800-38A]] using AES as the block cipher, the {{AesCbcParams/iv}} member of |normalizedAlgorithm| as
                   the |IV| input parameter and
