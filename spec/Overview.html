@@ -11211,786 +11211,790 @@ dictionary EcdhKeyDeriveParams : Algorithm {
 
         <section id="x25519-operations">
           <h4>Operations</h4>
-          <dl>
-            <dt>Derive Bits</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If the {{CryptoKey/[[type]]}} internal slot of
-                    |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |publicKey| be the
-                    {{EcdhKeyDeriveParams/public}} member of
-                    |normalizedAlgorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{CryptoKey/[[type]]}} internal slot of
-                    |publicKey| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the {{KeyAlgorithm/name}} attribute of
-                    the {{CryptoKey/[[algorithm]]}} internal slot of
-                    |publicKey| is not equal to the {{KeyAlgorithm/name}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
-                    |key|, then [= exception/throw =] an {{InvalidAccessError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |secret| be the result of performing the X25519 function specified in
-                    [[RFC7748]] Section 5 with |key| as the X25519 private key |k|
-                    and the X25519 public key represented by the {{CryptoKey/[[handle]]}}
-                    internal slot of |publicKey| as the X25519 public key |u|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If |secret| is the all-zero value,
-                    then [= exception/throw =] a {{OperationError}}.
-                    This check must be performed in constant-time, as per [[RFC7748]] Section 6.1.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |length| is null:</dt>
-                    <dd>Return |secret|</dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      <dl class="switch">
-                        <dt>
-                          If the length of |secret| in bits is less than
-                          |length|:
-                        </dt>
-                        <dd>
-                          [= exception/throw =] an
-                          {{OperationError}}.
-                        </dd>
-                        <dt>Otherwise:</dt>
-                        <dd>
-                          Return a [= byte sequence containing =] the first |length| bits of |secret|.
-                        </dd>
-                      </dl>
-                    </dd>
-                  </dl>
-                </li>
-              </ol>
-            </dd>
-            <dt>Generate Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |usages| contains an entry which is not
-                    "`deriveKey`" or "`deriveBits`"
-                    then [= exception/throw =] a
-                    {{SyntaxError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Generate an X25519 key pair, with the private key being 32 random bytes,
-                    and the public key being `X25519(a, 9)`,
-                    as defined in [[RFC7748]], section 6.1.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |algorithm| be a new {{KeyAlgorithm}} object.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{KeyAlgorithm/name}} attribute of
-                    |algorithm| to "`X25519`".
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |publicKey| be a new {{CryptoKey}}
-                    representing the public key of the generated key pair.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |publicKey| to "`public`"
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |publicKey| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[extractable]]}} internal
-                    slot of |publicKey| to true.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[usages]]}} internal slot of
-                    |publicKey| to be the empty list.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |privateKey| be a new {{CryptoKey}}
-                    representing the private key of the generated key pair.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[type]]}} internal slot of
-                    |privateKey| to {{KeyType/"private"}}
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[algorithm]]}} internal
-                    slot of |privateKey| to |algorithm|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[extractable]]}} internal
-                    slot of |privateKey| to |extractable|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKey/[[usages]]}} internal slot of
-                    |privateKey| to be the
-                    [= usage intersection =] of
-                    |usages| and `[ "deriveKey", "deriveBits" ]`.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |result| be a new {{CryptoKeyPair}}
-                    dictionary.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKeyPair/publicKey}} attribute
-                    of |result| to be |publicKey|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Set the {{CryptoKeyPair/privateKey}} attribute
-                    of |result| to be |privateKey|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
 
-            <dt>Import Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>Let |keyData| be the key data to be imported.</p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"spki"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If |usages| is not empty
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |spki| be the result of running the
-                            [= parse a subjectPublicKeyInfo =]
-                            algorithm over |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurred while parsing,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the `algorithm` object identifier field of the
-                            `algorithm` AlgorithmIdentifier field of |spki| is
-                            not equal to the `id-X25519`
-                            object identifier defined in [[RFC8410]],
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the `parameters` field of the `algorithm`
-                            AlgorithmIdentifier field of |spki| is present,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |publicKey| be the X25519 public key identified by
-                            the `subjectPublicKey` field of |spki|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |key| be a new {{CryptoKey}}
-                            that represents |publicKey|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[type]]}} internal slot
-                            of |key| to "`public`"
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be a new {{KeyAlgorithm}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{KeyAlgorithm/name}} attribute of
-                            |algorithm| to "`X25519`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[algorithm]]}}
-                            internal slot of |key| to |algorithm|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"pkcs8"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If |usages| contains an entry which is not
-                            "`deriveKey`" or "`deriveBits`"
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |privateKeyInfo| be the result of running the
-                            [= parse a privateKeyInfo =]
-                            algorithm over |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurs while parsing,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the `algorithm` object identifier field of the
-                            `privateKeyAlgorithm` PrivateKeyAlgorithm field of
-                            |privateKeyInfo| is not equal to the
-                            `id-X25519` object identifier defined in [[RFC8410]],
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the `parameters` field of the
-                            `privateKeyAlgorithm` PrivateKeyAlgorithmIdentifier field
-                            of |privateKeyInfo| is present,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |curvePrivateKey| be the result of performing the
-                            [= parse an ASN.1 structure =]
-                            algorithm, with |data| as the `privateKey` field
-                            of |privateKeyInfo|, |structure| as the ASN.1
-                            `CurvePrivateKey` structure specified in Section 7 of [[RFC8410]], and |exactData| set to true.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If an error occurred while parsing,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |key| be a new {{CryptoKey}}
-                            that represents the X25519 private key identified by |curvePrivateKey|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[type]]}} internal slot
-                            of |key| to {{KeyType/"private"}}
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be a new {{KeyAlgorithm}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{KeyAlgorithm/name}} attribute of
-                            |algorithm| to "`X25519`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[algorithm]]}}
-                            internal slot of |key| to |algorithm|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <dl class="switch">
-                            <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
-                            <dd><p>Let |jwk| equal |keyData|.</p></dd>
-                            <dt>Otherwise:</dt>
-                            <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/d}} field is present and if |usages|
-                            contains an entry which is not
-                            "`deriveKey`" or "`deriveBits`"
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/d}} field is not present and if |usages| is not
-                            empty
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/kty}} field of |jwk| is not
-                            "`OKP`",
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/crv}} field of |jwk| is not
-                            "`X25519`",
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present
-                            and is not equal to "`enc`" then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
-                            is invalid according to the requirements of JSON Web
-                            Key [[JWK]], or it does not contain all of the specified |usages|
-                            values,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If the {{JsonWebKey/ext}} field of |jwk| is present and
-                            has the value false and |extractable| is true,
-                            then [= exception/throw =] a
-                            {{DataError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>If the {{JsonWebKey/d}} field is present:</dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If |jwk| does not meet the requirements of
-                                    the JWK private key format described in Section 2
-                                    of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Let |key| be a new {{CryptoKey}} object that represents the
-                                    X25519 private key identified by interpreting
-                                    |jwk| according to Section 2 of [[RFC8037]].
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Set the {{CryptoKey/[[type]]}}
-                                    internal slot of |Key| to {{KeyType/"private"}}.
-                                  </p>
-                                </li>
-                              </ol>
-                            </dd>
-                            <dt>Otherwise:</dt>
-                            <dd>
-                              <ol>
-                                <li>
-                                  <p>
-                                    If |jwk| does not meet the requirements of
-                                    the JWK public key format described in Section 2
-                                    of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Let |key| be a new {{CryptoKey}} object that represents the
-                                    X25519 public key identified by interpreting
-                                    |jwk| according to Section 2 of [[RFC8037]].
-                                  </p>
-                                </li>
-                                <li>
-                                  <p>
-                                    Set the {{CryptoKey/[[type]]}}
-                                    internal slot of |Key| to {{KeyType/"public"}}.
-                                  </p>
-                                </li>
-                              </ol>
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be a new instance of a {{KeyAlgorithm}} object.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{KeyAlgorithm/name}} attribute of
-                            |algorithm| to "`X25519`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[algorithm]]}}
-                            internal slot of |key| to |algorithm|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If |usages| is not empty
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be a new {{KeyAlgorithm}} object.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{KeyAlgorithm/name}} attribute of
-                            |algorithm| to "`X25519`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |key| be a new {{CryptoKey}}
-                            representing the key data provided in |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[type]]}} internal slot
-                            of |key| to "`public`"
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[algorithm]]}}
-                            internal slot of |key| to |algorithm|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      <p>
-                        [= exception/throw =] a
-                        {{NotSupportedError}}.
-                      </p>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |key|
-                  </p>
-                </li>
-              </ol>
-            </dd>
+          <section id="x25519-operations-derive-bits">
+            <h5>Derive Bits</h5>
 
-            <dt>Export Key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    Let |key| be the {{CryptoKey}} to be
-                    exported.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
-                    cannot be accessed, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>If |format| is {{KeyFormat/"spki"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |publicKey| be the
+                  {{EcdhKeyDeriveParams/public}} member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |publicKey| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{KeyAlgorithm/name}} attribute of
+                  the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |publicKey| is not equal to the {{KeyAlgorithm/name}} property of the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key|, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |secret| be the result of performing the X25519 function specified in
+                  [[RFC7748]] Section 5 with |key| as the X25519 private key |k|
+                  and the X25519 public key represented by the {{CryptoKey/[[handle]]}}
+                  internal slot of |publicKey| as the X25519 public key |u|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |secret| is the all-zero value,
+                  then [= exception/throw =] a {{OperationError}}.
+                  This check must be performed in constant-time, as per [[RFC7748]] Section 6.1.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |length| is null:</dt>
+                  <dd>Return |secret|</dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <dl class="switch">
+                      <dt>
+                        If the length of |secret| in bits is less than
+                        |length|:
+                      </dt>
+                      <dd>
+                        [= exception/throw =] an
+                        {{OperationError}}.
+                      </dd>
+                      <dt>Otherwise:</dt>
+                      <dd>
+                        Return a [= byte sequence containing =] the first |length| bits of |secret|.
+                      </dd>
+                    </dl>
+                  </dd>
+                </dl>
+              </li>
+            </ol>
+          </section>
+
+          <section id="x25519-operations-generate-key">
+            <h5>Generate Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |usages| contains an entry which is not
+                  "`deriveKey`" or "`deriveBits`"
+                  then [= exception/throw =] a
+                  {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Generate an X25519 key pair, with the private key being 32 random bytes,
+                  and the public key being `X25519(a, 9)`,
+                  as defined in [[RFC7748]], section 6.1.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |algorithm| be a new {{KeyAlgorithm}} object.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{KeyAlgorithm/name}} attribute of
+                  |algorithm| to "`X25519`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |publicKey| be a new {{CryptoKey}}
+                  representing the public key of the generated key pair.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |publicKey| to "`public`"
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |publicKey| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[extractable]]}} internal
+                  slot of |publicKey| to true.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[usages]]}} internal slot of
+                  |publicKey| to be the empty list.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |privateKey| be a new {{CryptoKey}}
+                  representing the private key of the generated key pair.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[type]]}} internal slot of
+                  |privateKey| to {{KeyType/"private"}}
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[algorithm]]}} internal
+                  slot of |privateKey| to |algorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[extractable]]}} internal
+                  slot of |privateKey| to |extractable|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKey/[[usages]]}} internal slot of
+                  |privateKey| to be the
+                  [= usage intersection =] of
+                  |usages| and `[ "deriveKey", "deriveBits" ]`.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be a new {{CryptoKeyPair}}
+                  dictionary.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKeyPair/publicKey}} attribute
+                  of |result| to be |publicKey|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Set the {{CryptoKeyPair/privateKey}} attribute
+                  of |result| to be |privateKey|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="x25519-operations-import-key">
+            <h5>Import Key</h5>
+
+            <ol>
+              <li>
+                <p>Let |keyData| be the key data to be imported.</p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"spki"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If |usages| is not empty
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |spki| be the result of running the
+                          [= parse a subjectPublicKeyInfo =]
+                          algorithm over |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurred while parsing,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the `algorithm` object identifier field of the
+                          `algorithm` AlgorithmIdentifier field of |spki| is
+                          not equal to the `id-X25519`
+                          object identifier defined in [[RFC8410]],
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the `parameters` field of the `algorithm`
+                          AlgorithmIdentifier field of |spki| is present,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |publicKey| be the X25519 public key identified by
+                          the `subjectPublicKey` field of |spki|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |key| be a new {{CryptoKey}}
+                          that represents |publicKey|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[type]]}} internal slot
+                          of |key| to "`public`"
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be a new {{KeyAlgorithm}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{KeyAlgorithm/name}} attribute of
+                          |algorithm| to "`X25519`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[algorithm]]}}
+                          internal slot of |key| to |algorithm|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"pkcs8"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If |usages| contains an entry which is not
+                          "`deriveKey`" or "`deriveBits`"
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |privateKeyInfo| be the result of running the
+                          [= parse a privateKeyInfo =]
+                          algorithm over |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurs while parsing,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the `algorithm` object identifier field of the
+                          `privateKeyAlgorithm` PrivateKeyAlgorithm field of
+                          |privateKeyInfo| is not equal to the
+                          `id-X25519` object identifier defined in [[RFC8410]],
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the `parameters` field of the
+                          `privateKeyAlgorithm` PrivateKeyAlgorithmIdentifier field
+                          of |privateKeyInfo| is present,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |curvePrivateKey| be the result of performing the
+                          [= parse an ASN.1 structure =]
+                          algorithm, with |data| as the `privateKey` field
+                          of |privateKeyInfo|, |structure| as the ASN.1
+                          `CurvePrivateKey` structure specified in Section 7 of [[RFC8410]], and |exactData| set to true.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurred while parsing,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |key| be a new {{CryptoKey}}
+                          that represents the X25519 private key identified by |curvePrivateKey|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[type]]}} internal slot
+                          of |key| to {{KeyType/"private"}}
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be a new {{KeyAlgorithm}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{KeyAlgorithm/name}} attribute of
+                          |algorithm| to "`X25519`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[algorithm]]}}
+                          internal slot of |key| to |algorithm|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <dl class="switch">
+                          <dt>If |keyData| is a {{JsonWebKey}} dictionary:</dt>
+                          <dd><p>Let |jwk| equal |keyData|.</p></dd>
+                          <dt>Otherwise:</dt>
+                          <dd><p>[= exception/Throw =] a {{DataError}}.</p></dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/d}} field is present and if |usages|
+                          contains an entry which is not
+                          "`deriveKey`" or "`deriveBits`"
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/d}} field is not present and if |usages| is not
+                          empty
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/kty}} field of |jwk| is not
+                          "`OKP`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/crv}} field of |jwk| is not
+                          "`X25519`",
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |usages| is non-empty and the {{JsonWebKey/use}} field of |jwk| is present
+                          and is not equal to "`enc`" then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/key_ops}} field of |jwk| is present, and
+                          is invalid according to the requirements of JSON Web
+                          Key [[JWK]], or it does not contain all of the specified |usages|
+                          values,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the {{JsonWebKey/ext}} field of |jwk| is present and
+                          has the value false and |extractable| is true,
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <dl class="switch">
+                          <dt>If the {{JsonWebKey/d}} field is present:</dt>
+                          <dd>
+                            <ol>
+                              <li>
+                                <p>
+                                  If |jwk| does not meet the requirements of
+                                  the JWK private key format described in Section 2
+                                  of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |key| be a new {{CryptoKey}} object that represents the
+                                  X25519 private key identified by interpreting
+                                  |jwk| according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the {{CryptoKey/[[type]]}}
+                                  internal slot of |Key| to {{KeyType/"private"}}.
+                                </p>
+                              </li>
+                            </ol>
+                          </dd>
+                          <dt>Otherwise:</dt>
+                          <dd>
+                            <ol>
+                              <li>
+                                <p>
+                                  If |jwk| does not meet the requirements of
+                                  the JWK public key format described in Section 2
+                                  of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |key| be a new {{CryptoKey}} object that represents the
+                                  X25519 public key identified by interpreting
+                                  |jwk| according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Set the {{CryptoKey/[[type]]}}
+                                  internal slot of |Key| to {{KeyType/"public"}}.
+                                </p>
+                              </li>
+                            </ol>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be a new instance of a {{KeyAlgorithm}} object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{KeyAlgorithm/name}} attribute of
+                          |algorithm| to "`X25519`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[algorithm]]}}
+                          internal slot of |key| to |algorithm|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"raw"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If |usages| is not empty
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be a new {{KeyAlgorithm}} object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{KeyAlgorithm/name}} attribute of
+                          |algorithm| to "`X25519`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |key| be a new {{CryptoKey}}
+                          representing the key data provided in |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[type]]}} internal slot
+                          of |key| to "`public`"
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[algorithm]]}}
+                          internal slot of |key| to |algorithm|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <p>
+                      [= exception/throw =] a
+                      {{NotSupportedError}}.
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |key|
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="x25519-operations-export-key">
+            <h5>Export Key</h5>
+
+            <ol>
+              <li>
+                <p>
+                  Let |key| be the {{CryptoKey}} to be
+                  exported.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the underlying cryptographic key material represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
+                  cannot be accessed, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |format| is {{KeyFormat/"spki"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the {{CryptoKey/[[type]]}} internal slot
+                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |data| be an instance of the `SubjectPublicKeyInfo`
+                          ASN.1 structure defined in [[RFC5280]]
+                          with the following properties:
+                        </p>
+                        <ul>
+                          <li>
+                            <p>
+                              Set the |algorithm| field to an
+                              `AlgorithmIdentifier` ASN.1 type with the following
+                              properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the |algorithm| object identifier to the
+                                  `id-X25519` OID defined in [[RFC8410]].
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <p>
+                              Set the |subjectPublicKey| field to |keyData|.
+                            </p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be the result of DER-encoding |data|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"pkcs8"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the {{CryptoKey/[[type]]}} internal slot
+                          of |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |data| be an instance of the `PrivateKeyInfo`
+                          ASN.1 structure defined in [[RFC5208]]
+                          with the following properties:
+                        </p>
+                        <ul>
+                          <li>
+                            <p>
+                              Set the |version| field to `0`.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Set the |privateKeyAlgorithm| field to a
+                              `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
+                              following properties:
+                            </p>
+                            <ul>
+                              <li>
+                                <p>
+                                  Set the |algorithm| object identifier to the
+                                  `id-X25519` OID defined in [[RFC8410]].
+                                </p>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <p>
+                              Set the |privateKey| field to the result of DER-encoding
+                              a `CurvePrivateKey` ASN.1 type, as defined in Section 7 of [[RFC8410]], that represents the
+                              X25519 private key represented by the {{CryptoKey/[[handle]]}} internal slot of
+                              |key|
+                            </p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be the result of DER-encoding |data|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |jwk| be a new {{JsonWebKey}}
+                          dictionary.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `kty` attribute of |jwk| to
+                          "`OKP`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `crv` attribute of |jwk| to
+                          "`X25519`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{JsonWebKey/x}} attribute of |jwk| according to the
+                          definition in Section 2 of [[RFC8037]].
+                        </p>
+                      </li>
+                      <li>
+                        <dl class="switch">
+                          <dt>
                             If the {{CryptoKey/[[type]]}} internal slot
-                            of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |data| be an instance of the `SubjectPublicKeyInfo`
-                            ASN.1 structure defined in [[RFC5280]]
-                            with the following properties:
-                          </p>
-                          <ul>
-                            <li>
-                              <p>
-                                Set the |algorithm| field to an
-                                `AlgorithmIdentifier` ASN.1 type with the following
-                                properties:
-                              </p>
-                              <ul>
-                                <li>
-                                  <p>
-                                    Set the |algorithm| object identifier to the
-                                    `id-X25519` OID defined in [[RFC8410]].
-                                  </p>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <p>
-                                Set the |subjectPublicKey| field to |keyData|.
-                              </p>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be the result of DER-encoding |data|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"pkcs8"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If the {{CryptoKey/[[type]]}} internal slot
-                            of |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |data| be an instance of the `PrivateKeyInfo`
-                            ASN.1 structure defined in [[RFC5208]]
-                            with the following properties:
-                          </p>
-                          <ul>
-                            <li>
-                              <p>
-                                Set the |version| field to `0`.
-                              </p>
-                            </li>
-                            <li>
-                              <p>
-                                Set the |privateKeyAlgorithm| field to a
-                                `PrivateKeyAlgorithmIdentifier` ASN.1 type with the
-                                following properties:
-                              </p>
-                              <ul>
-                                <li>
-                                  <p>
-                                    Set the |algorithm| object identifier to the
-                                    `id-X25519` OID defined in [[RFC8410]].
-                                  </p>
-                                </li>
-                              </ul>
-                            </li>
-                            <li>
-                              <p>
-                                Set the |privateKey| field to the result of DER-encoding
-                                a `CurvePrivateKey` ASN.1 type, as defined in Section 7 of [[RFC8410]], that represents the
-                                X25519 private key represented by the {{CryptoKey/[[handle]]}} internal slot of
-                                |key|
-                              </p>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be the result of DER-encoding |data|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>If |format| is {{KeyFormat/"jwk"}}:</dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            Let |jwk| be a new {{JsonWebKey}}
-                            dictionary.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `kty` attribute of |jwk| to
-                            "`OKP`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `crv` attribute of |jwk| to
-                            "`X25519`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{JsonWebKey/x}} attribute of |jwk| according to the
+                            of |key| is {{KeyType/"private"}}
+                          </dt>
+                          <dd>
+                            Set the {{JsonWebKey/d}} attribute of |jwk| according to the
                             definition in Section 2 of [[RFC8037]].
-                          </p>
-                        </li>
-                        <li>
-                          <dl class="switch">
-                            <dt>
-                              If the {{CryptoKey/[[type]]}} internal slot
-                              of |key| is {{KeyType/"private"}}
-                            </dt>
-                            <dd>
-                              Set the {{JsonWebKey/d}} attribute of |jwk| according to the
-                              definition in Section 2 of [[RFC8037]].
-                            </dd>
-                          </dl>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `key_ops` attribute of |jwk| to the {{CryptoKey/usages}} attribute of |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the `ext` attribute of |jwk| to the {{CryptoKey/[[extractable]]}} internal slot
-                            of |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be |jwk|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>
-                      If |format| is {{KeyFormat/"raw"}}:
-                    </dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If the {{CryptoKey/[[type]]}} internal slot
-                            of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |data| be a [= byte sequence =] representing the X25519
-                            public key represented by the {{CryptoKey/[[handle]]}} internal slot of
-                            |key|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |result| be |data|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      <p>
-                        [= exception/throw =] a
-                        {{NotSupportedError}}.
-                      </p>
-                    </dd>
-                  </dl>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-          </dl>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `key_ops` attribute of |jwk| to the {{CryptoKey/usages}} attribute of |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the `ext` attribute of |jwk| to the {{CryptoKey/[[extractable]]}} internal slot
+                          of |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be |jwk|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>
+                    If |format| is {{KeyFormat/"raw"}}:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the {{CryptoKey/[[type]]}} internal slot
+                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |data| be a [= byte sequence =] representing the X25519
+                          public key represented by the {{CryptoKey/[[handle]]}} internal slot of
+                          |key|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be |data|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    <p>
+                      [= exception/throw =] a
+                      {{NotSupportedError}}.
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
         </section>
       </section>
 
