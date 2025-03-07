@@ -15165,158 +15165,162 @@ dictionary HkdfParams : Algorithm {
         </section>
         <section id="hkdf-operations">
           <h4>Operations</h4>
-          <dl>
-            <dt>Derive Bits</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    If |length| is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |keyDerivationKey| be the secret represented by the {{CryptoKey/[[handle]]}} internal slot of |key|.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Let |result| be the result of performing the HKDF extract and then
-                    the HKDF expand step described in Section 2 of
-                    [[RFC5869]] using:
-                  </p>
-                  <ul>
-                    <li>
-                      <p>
-                        the {{HkdfParams/hash}} member of
-                        |normalizedAlgorithm| as |Hash|,
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        |keyDerivationKey| as the input keying material,
-                        |IKM|,
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        the {{HkdfParams/salt}} member of
-                        |normalizedAlgorithm| as |salt|,
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        the {{HkdfParams/info}} member of
-                        |normalizedAlgorithm| as |info|,
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        |length| divided by 8 as the value of |L|,
-                      </p>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <p>
-                    If the key derivation operation fails,
-                    then [= exception/throw =] an
-                    {{OperationError}}.
-                  </p>
-                </li>
-                <li>
-                  <p>
-                    Return |result|.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-            <dt>Import key</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>Let |keyData| be the key data to be imported.</p>
-                </li>
-                <li>
-                  <dl class="switch">
-                    <dt>
-                      If |format| is {{KeyFormat/"raw"}}:
-                    </dt>
-                    <dd>
-                      <ol>
-                        <li>
-                          <p>
-                            If |usages| contains a value that is not
-                             "`deriveKey`" or "`deriveBits`",
 
-                                then [= exception/throw =] a
-                                {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            If |extractable| is not `false`,
-                            then [= exception/throw =] a
-                            {{SyntaxError}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |key| be a new {{CryptoKey}}
-                            representing the key data provided in |keyData|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[type]]}} internal slot of
-                            |key| to {{KeyType/"secret"}}.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Let |algorithm| be a new
-                            {{KeyAlgorithm}} object.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{KeyAlgorithm/name}} attribute of
-                            |algorithm| to "`HKDF`".
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Set the {{CryptoKey/[[algorithm]]}} internal
-                            slot of |key| to |algorithm|.
-                          </p>
-                        </li>
-                        <li>
-                          <p>
-                            Return |key|.
-                          </p>
-                        </li>
-                      </ol>
-                    </dd>
-                    <dt>Otherwise:</dt>
-                    <dd>
-                      [= exception/throw =] a
-                      {{NotSupportedError}}.
-                    </dd>
-                  </dl>
-                </li>
-              </ol>
-            </dd>
-            <dt>Get key length</dt>
-            <dd>
-              <ol>
-                <li>
-                  <p>
-                    Return null.
-                  </p>
-                </li>
-              </ol>
-            </dd>
-          </dl>
+          <section id="hkdf-operations-derive-bits">
+            <h5>Derive Bits</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If |length| is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |keyDerivationKey| be the secret represented by the {{CryptoKey/[[handle]]}} internal slot of |key|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of performing the HKDF extract and then
+                  the HKDF expand step described in Section 2 of
+                  [[RFC5869]] using:
+                </p>
+                <ul>
+                  <li>
+                    <p>
+                      the {{HkdfParams/hash}} member of
+                      |normalizedAlgorithm| as |Hash|,
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      |keyDerivationKey| as the input keying material,
+                      |IKM|,
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      the {{HkdfParams/salt}} member of
+                      |normalizedAlgorithm| as |salt|,
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      the {{HkdfParams/info}} member of
+                      |normalizedAlgorithm| as |info|,
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      |length| divided by 8 as the value of |L|,
+                    </p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>
+                  If the key derivation operation fails,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hkdf-operations-import-key">
+            <h5>Import key</h5>
+
+            <ol>
+              <li>
+                <p>Let |keyData| be the key data to be imported.</p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If |format| is {{KeyFormat/"raw"}}:
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If |usages| contains a value that is not
+                           "`deriveKey`" or "`deriveBits`",
+
+                              then [= exception/throw =] a
+                              {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |extractable| is not `false`,
+                          then [= exception/throw =] a
+                          {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |key| be a new {{CryptoKey}}
+                          representing the key data provided in |keyData|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[type]]}} internal slot of
+                          |key| to {{KeyType/"secret"}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |algorithm| be a new
+                          {{KeyAlgorithm}} object.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{KeyAlgorithm/name}} attribute of
+                          |algorithm| to "`HKDF`".
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Set the {{CryptoKey/[[algorithm]]}} internal
+                          slot of |key| to |algorithm|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Return |key|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    [= exception/throw =] a
+                    {{NotSupportedError}}.
+                  </dd>
+                </dl>
+              </li>
+            </ol>
+          </section>
+
+          <section id="hkdf-operations-get-key-length">
+            <h5>Get key length</h5>
+
+            <ol>
+              <li>
+                <p>
+                  Return null.
+                </p>
+              </li>
+            </ol>
+          </section>
         </section>
       </section>
 
