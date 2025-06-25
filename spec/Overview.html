@@ -634,6 +634,13 @@
           sequence of 8 bits in that bit sequence as a byte.
         </p>
         <p>
+          To <dfn id="dfn-convert-byte-sequence-to-integer">convert a byte sequence
+          to a non-negative integer</dfn>,
+          interpret the byte sequence as a big-endian non-negative integer
+          (most significant bit first),
+          and return that integer.
+        </p>
+        <p>
           Comparing two strings in a <dfn id="case-sensitive">case-sensitive</dfn>
           manner means comparing them exactly, code point for code point.
         </p>
@@ -7235,12 +7242,41 @@ dictionary EcKeyImportParams : Algorithm {
                     |key| is "`P-256`", "`P-384`" or "`P-521`":
                   </dt>
                   <dd>
-                    <p>
-                      Perform the ECDSA verifying process, as specified in [[RFC6090]], Section 5.4.3, with |M| as the received
-                      message, |signature| as the received signature and using
-                      |params| as the EC domain parameters, and
-                      |Q| as the public key.
-                    </p>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |n| be the smallest integer such that |n| * 8 is greater than
+                          the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                          by |params|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |signature| does not have a [= byte sequence/length =] of |n| * 2 bytes,
+                          then return false.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |r| be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer">converting the first |n| bytes of |signature| to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |s| be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer">converting the last |n| bytes of |signature| to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Perform the ECDSA verifying process, as specified in [[RFC6090]], Section 5.4.3, with |M| as the received
+                          message, (|r|, |s|) as the signature and using
+                          |params| as the EC domain parameters, and
+                          |Q| as the public key.
+                        </p>
+                      </li>
+                    </ol>
                   </dd>
                   <dt>
                     Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
