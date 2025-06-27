@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 35.2.2">
+<meta name="generator" content="ReSpec 35.4.1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -90,7 +90,7 @@ a.bibref{text-decoration:none}
 .respec-offending-element{background:url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x}
 }
 #references :target{background:#eaf3ff;animation:pop .4s ease-in-out 0s 1}
-cite .bibref{font-style:normal}
+cite .bibref{font-style:italic}
 a[href].orcid{padding-left:4px;padding-right:4px}
 a[href].orcid>svg{margin-bottom:-2px}
 ol.tof,ul.tof{list-style:none outside none}
@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="43f2f628838877af40fee7d1f1b35d5efa67ddd7">
+<meta name="revision" content="0326ba6afc2b8ce4c27c5a2a9282c01a8e480f70">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -149,6 +149,23 @@ dd{margin-left:0}
 .hljs-emphasis{font-style:italic}
 .hljs-strong{font-weight:700}
 .hljs-link{text-decoration:underline}
+</style>
+<style>
+var:hover{text-decoration:underline;cursor:pointer}
+var.respec-hl{color:var(--color,#000);background-color:var(--bg-color);box-shadow:0 0 0 2px var(--bg-color)}
+@media (prefers-color-scheme:dark){
+var.respec-hl{filter:saturate(.9) brightness(.9)}
+}
+var.respec-hl-c1{--bg-color:#f4d200}
+var.respec-hl-c2{--bg-color:#ff87a2}
+var.respec-hl-c3{--bg-color:#96e885}
+var.respec-hl-c4{--bg-color:#3eeed2}
+var.respec-hl-c5{--bg-color:#eacfb6}
+var.respec-hl-c6{--bg-color:#82ddff}
+var.respec-hl-c7{--bg-color:#ffbcf2}
+@media print{
+var.respec-hl{background:0 0;color:#000;box-shadow:unset}
+}
 </style>
 <style>
 var{position:relative;cursor:pointer}
@@ -223,9 +240,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "43f2f628838877af40fee7d1f1b35d5efa67ddd7",
-  "publishISODate": "2025-03-07T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 07 March 2025"
+  "gitRevision": "0326ba6afc2b8ce4c27c5a2a9282c01a8e480f70",
+  "publishISODate": "2025-06-27T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 27 June 2025"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -233,7 +250,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2025-03-07">07 March 2025</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2025-06-27">27 June 2025</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -245,8 +262,6 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
               </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/webcrypto/">https://w3c.github.io/webcrypto/</a></dd>
         <dt>History:</dt><dd>
-                    <a href="https://www.w3.org/standards/history/WebCryptoAPI/">https://www.w3.org/standards/history/WebCryptoAPI/</a>
-                  </dd><dd>
                     <a href="https://github.com/w3c/webcrypto/commits/">Commit history</a>
                   </dd>
         
@@ -308,7 +323,8 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <section id="sotd" class="introductory"><h2>Status of This Document</h2><p><em>This section describes the status of this
       document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr>
       publications and the latest revision of this technical report can be found
-      in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at
+      in the
+      <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> standards and drafts index</a> at
       https://www.w3.org/TR/.</em></p>
 
     <p>
@@ -316,7 +332,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     an Editor's Draft. 
   </p><p>Publication as an Editor's Draft does not
   imply endorsement by <abbr title="World Wide Web Consortium">W3C</abbr> and its Members. </p><p>
-    This is a draft document and may be updated, replaced or obsoleted by other
+    This is a draft document and may be updated, replaced, or obsoleted by other
     documents at any time. It is inappropriate to cite this document as other
     than work in progress.
     
@@ -486,9 +502,10 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       <section id="conformance"><div class="header-wrapper"><h2 id="x3-conformance"><bdi class="secno">3. </bdi>Conformance</h2><a class="self-link" href="#conformance" aria-label="Permalink for Section 3."></a></div><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p><p>
         The key words <em class="rfc2119">MUST</em>, <em class="rfc2119">REQUIRED</em>, and <em class="rfc2119">SHALL</em> in this document
         are to be interpreted as described in
-        <a href="https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
+        <a href="https://www.rfc-editor.org/info/bcp14">BCP 14</a>
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>] [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174" title="Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words">RFC8174</a></cite>]
-        when, and only when, they appear in all capitals, as shown here.
+        when, and only when, they appear in all
+        capitals, as shown here.
       </p>
         <p>
           The following conformance classes are defined by this specification:
@@ -878,13 +895,20 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           and then considering each consecutive sequence of 8 bits in that string as a byte.
         </p>
         <p>
-          When this specification says to <dfn id="dfn-convert-integer-to-byte-sequence" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">convert a non-negative
+          To <dfn id="dfn-convert-integer-to-byte-sequence" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">convert a non-negative
           integer <var>i</var> to a byte sequence of length <var>n</var></dfn>, where <var>n</var> * 8
-          is greater than the logarithm to base 2 of <var>i</var>, the user agent must
-          first calculate the binary representation of <var>i</var>, most significant bit first,
+          is greater than the logarithm to base 2 of <var>i</var>,
+          calculate the binary representation of <var>i</var>, most significant bit first,
           prefix this with sufficient zero bits to form a bit sequence of length <var>n</var> * 8, and
           then return the <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence">byte sequence</a> formed by considering each consecutive
           sequence of 8 bits in that bit sequence as a byte.
+        </p>
+        <p>
+          To <dfn id="dfn-convert-byte-sequence-to-integer" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">convert a byte sequence
+          to a non-negative integer</dfn>,
+          interpret the byte sequence as a big-endian non-negative integer
+          (most significant bit first),
+          and return that integer.
         </p>
         <p>
           Comparing two strings in a <dfn id="case-sensitive" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">case-sensitive</dfn>
@@ -7324,7 +7348,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       <li>
                         <p>
                           Perform the ECDSA signing process, as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6090" title="Fundamental Elliptic Curve Cryptography Algorithms">RFC6090</a></cite>],
-                          Section 5.4, with <var>M</var> as the message, using <var>params</var> as the
+                          Section 5.4.2, with <var>M</var> as the message, using <var>params</var> as the
                           EC domain parameters, and with <var>d</var> as the private key.
                         </p>
                       </li>
@@ -7424,12 +7448,41 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     <var>key</var> is "<code>P-256</code>", "<code>P-384</code>" or "<code>P-521</code>":
                   </dt>
                   <dd>
-                    <p>
-                      Perform the ECDSA verifying process, as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6090" title="Fundamental Elliptic Curve Cryptography Algorithms">RFC6090</a></cite>], Section 5.3, with <var>M</var> as the received
-                      message, <var>signature</var> as the received signature and using
-                      <var>params</var> as the EC domain parameters, and
-                      <var>Q</var> as the public key.
-                    </p>
+                    <ol>
+                      <li>
+                        <p>
+                          Let <var>n</var> be the smallest integer such that <var>n</var> * 8 is greater than
+                          the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                          by <var>params</var>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If <var>signature</var> does not have a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence-length">length</a> of <var>n</var> * 2 bytes,
+                          then return false.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>r</var> be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer" id="ref-for-dfn-convert-byte-sequence-to-integer-1">converting the first <var>n</var> bytes of <var>signature</var> to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let <var>s</var> be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer" id="ref-for-dfn-convert-byte-sequence-to-integer-2">converting the last <var>n</var> bytes of <var>signature</var> to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Perform the ECDSA verifying process, as specified in [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc6090" title="Fundamental Elliptic Curve Cryptography Algorithms">RFC6090</a></cite>], Section 5.4.3, with <var>M</var> as the received
+                          message, (<var>r</var>, <var>s</var>) as the signature and using
+                          <var>params</var> as the EC domain parameters, and
+                          <var>Q</var> as the public key.
+                        </p>
+                      </li>
+                    </ol>
                   </dd>
                   <dt>
                     Otherwise, the <a data-link-type="idl" href="#dfn-EcKeyAlgorithm-namedCurve" class="internalDFN" id="ref-for-dfn-EcKeyAlgorithm-namedCurve-5"><code>namedCurve</code></a> attribute
@@ -16651,6 +16704,18 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="#ref-for-dfn-convert-integer-to-byte-sequence-1" title="§ 23.7.1 Sign">§ 23.7.1 Sign</a> <a href="#ref-for-dfn-convert-integer-to-byte-sequence-2" title="Reference 2">(2)</a> 
     </li>
   </ul>
+    </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-convert-byte-sequence-to-integer" aria-label="Links in this document to definition: convert a byte sequence to a non-negative integer">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dfn-convert-byte-sequence-to-integer" aria-label="Permalink for definition: convert a byte sequence to a non-negative integer. Activate to close this dialog.">Permalink</a>
+         
+      </div>
+      <p><b>Referenced in:</b></p>
+      <ul>
+    <li>
+      <a href="#ref-for-dfn-convert-byte-sequence-to-integer-1" title="§ 23.7.2 Verify">§ 23.7.2 Verify</a> <a href="#ref-for-dfn-convert-byte-sequence-to-integer-2" title="Reference 2">(2)</a> 
+    </li>
+  </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-case-sensitive" aria-label="Links in this document to definition: case-sensitive">
       <span class="caret"></span>
       <div>
@@ -20853,7 +20918,104 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="#ref-for-dfn-Pbkdf2Params-hash-2" title="§ 34.4.1 Derive Bits">§ 34.4.1 Derive Bits</a> 
     </li>
   </ul>
-    </div><script id="respec-dfn-panel">(() => {
+    </div><script id="respec-highlight-vars">(() => {
+// @ts-check
+
+if (document.respec) {
+  document.respec.ready.then(setupVarHighlighter);
+} else {
+  setupVarHighlighter();
+}
+
+function setupVarHighlighter() {
+  document
+    .querySelectorAll("var")
+    .forEach(varElem => varElem.addEventListener("click", highlightListener));
+}
+
+function highlightListener(ev) {
+  ev.stopPropagation();
+  const { target: varElem } = ev;
+  const hightligtedElems = highlightVars(varElem);
+  const resetListener = () => {
+    const hlColor = getHighlightColor(varElem);
+    hightligtedElems.forEach(el => removeHighlight(el, hlColor));
+    [...HL_COLORS.keys()].forEach(key => HL_COLORS.set(key, true));
+  };
+  if (hightligtedElems.length) {
+    document.body.addEventListener("click", resetListener, { once: true });
+  }
+}
+
+// availability of highlight colors. colors from var.css
+const HL_COLORS = new Map([
+  ["respec-hl-c1", true],
+  ["respec-hl-c2", true],
+  ["respec-hl-c3", true],
+  ["respec-hl-c4", true],
+  ["respec-hl-c5", true],
+  ["respec-hl-c6", true],
+  ["respec-hl-c7", true],
+]);
+
+function getHighlightColor(target) {
+  // return current colors if applicable
+  const { value } = target.classList;
+  const re = /respec-hl-\w+/;
+  const activeClass = re.test(value) && value.match(re);
+  if (activeClass) return activeClass[0];
+
+  // first color preference
+  if (HL_COLORS.get("respec-hl-c1") === true) return "respec-hl-c1";
+
+  // otherwise get some other available color
+  return [...HL_COLORS.keys()].find(c => HL_COLORS.get(c)) || "respec-hl-c1";
+}
+
+function highlightVars(varElem) {
+  const textContent = norm(varElem.textContent);
+  const parent = varElem.closest(".algorithm, section");
+  const highlightColor = getHighlightColor(varElem);
+
+  const varsToHighlight = [...parent.querySelectorAll("var")].filter(
+    el =>
+      norm(el.textContent) === textContent &&
+      el.closest(".algorithm, section") === parent
+  );
+
+  // update availability of highlight color
+  const colorStatus = varsToHighlight[0].classList.contains("respec-hl");
+  HL_COLORS.set(highlightColor, colorStatus);
+
+  // highlight vars
+  if (colorStatus) {
+    varsToHighlight.forEach(el => removeHighlight(el, highlightColor));
+    return [];
+  } else {
+    varsToHighlight.forEach(el => addHighlight(el, highlightColor));
+  }
+  return varsToHighlight;
+}
+
+function removeHighlight(el, highlightColor) {
+  el.classList.remove("respec-hl", highlightColor);
+  // clean up empty class attributes so they don't come in export
+  if (!el.classList.length) el.removeAttribute("class");
+}
+
+function addHighlight(elem, highlightColor) {
+  elem.classList.add("respec-hl", highlightColor);
+}
+
+/**
+ * Same as `norm` from src/core/utils, but our build process doesn't allow
+ * imports in runtime scripts, so duplicated here.
+ * @param {string} str
+ */
+function norm(str) {
+  return str.trim().replace(/\s+/g, " ");
+}
+})()</script><script id="respec-dfn-panel">(() => {
 // @ts-check
 if (document.respec) {
   document.respec.ready.then(setupPanel);
