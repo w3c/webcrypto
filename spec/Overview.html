@@ -29,7 +29,7 @@
         github: "https://github.com/w3c/webcrypto",
         shortName: "webcrypto",
         group: "webappsec",
-        xref: ['html', 'dom', 'webidl', 'infra', 'encoding'],
+        xref: ['html', 'dom', 'webidl', 'infra', 'encoding', 'streams'],
         localBiblio: {
         "JWA": {
         aliasOf: "RFC7518"
@@ -1237,6 +1237,21 @@ interface CryptoKey {
         </section>
       </section>
 
+      <section id="buffersources">
+        <h2>BufferSources</h2>
+        <p>
+          The <dfn id="dfn-BufferSources" data-lt-no-plural>BufferSources</dfn> type represents objects that either are a {{BufferSource}},
+          or <a data-cite="ECMAScript/control-abstraction-objects.html#sec-common-iteration-interfaces">conform</a>
+          to the <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a>
+          or <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>
+          and produce {{BufferSource}} values when iterated over.
+          This is checked by the calling functions rather than by Web IDL.
+        </p>
+        <pre class=idl>
+typedef object BufferSources;
+        </pre>
+      </section>
+
       <section id="subtlecrypto-interface">
         <h2>SubtleCrypto interface</h2>
         <p>
@@ -1271,7 +1286,7 @@ interface SubtleCrypto {
   );
   Promise&lt;ArrayBuffer> digest(
     AlgorithmIdentifier algorithm,
-    BufferSource data
+    BufferSources data
   );
 
   Promise&lt;(CryptoKey or CryptoKeyPair)> generateKey(
@@ -1845,9 +1860,7 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  Let |data| be the `data` parameter passed to the
                   {{SubtleCrypto/digest()}} method.
                 </p>
               </li>
@@ -1876,6 +1889,118 @@ interface SubtleCrypto {
                 </p>
               </li>
               <li>
+                <dl class="switch">
+                  <dt>If |data| is a {{BufferSource}}:</dt>
+                  <dd>
+                    <p>
+                      Let |bytes| be the result of
+                      [= get a copy of the buffer source |
+                      getting a copy of the bytes held by =] |data|.
+                    </p>
+                  </dd>
+                  <dt>
+                    Otherwise:
+                  </dt>
+                  <dd>
+                    <div class=note>
+                      <p>
+                        In this case, |data| should <a data-cite="ECMAScript/control-abstraction-objects.html#sec-common-iteration-interfaces">conform</a> to the
+                        <a data-cite="ECMAScript/control-abstraction-objects.html#sec-iterable-interface">iterable interface</a> or
+                        <a data-cite="ECMAScript/control-abstraction-objects.html#sec-asynciterable-interface">async iterable interface</a>.
+                        Otherwise, the call to <a data-cite="ECMAScript/abstract-operations.html#sec-getiterator">`GetIterator`</a> below
+                        will throw a `TypeError`.
+                      </p>
+                    </div>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |bytes| be an empty [= byte sequence =].
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |iterator| be the result of calling
+                          <code><a data-cite="ECMAScript/abstract-operations.html#sec-getiterator">GetIterator</a>(|data|, ASYNC)</code>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurred, return a Promise rejected with
+                          |iterator|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          [= Queue a microtask =] to perform the remaining steps.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Repeat:
+                        </p>
+                        <ol>
+                          <li>
+                            <p>
+                              Let |value| be the result of calling
+                              <code><a data-cite="ECMAScript/abstract-operations.html#sec-iteratorstepvalue">IteratorStepValue</a>(|iterator|)</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred, reject |promise| with
+                              |value| and then terminate these steps.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If |value| is `DONE`, terminate these steps.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Let |value| be the result of calling
+                              <code><a data-cite="ECMAScript/control-abstraction-objects.html#await">Await</a>(|value|)</code>.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If an error occurred, reject |promise| with
+                              |value| and then terminate these steps.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              If |value| is not a {{BufferSource}},
+                              reject |promise| with the result of calling
+                              <code><a data-cite="ECMAScript/abstract-operations.html#sec-asynciteratorclose">AsyncIteratorClose</a></code>
+                              with |iterator| and a {{TypeError}},
+                              and then terminate these steps.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              Append the result of [= get a copy of the buffer source |
+                              getting a copy of the bytes held by =] |value|
+                              to |bytes|.
+                            </p>
+                          </li>
+                        </ol>
+                      </li>
+                    </ol>
+                    <div class=note>
+                      <p>
+                        If the |iterator| returned by <code>GetIterator(|data|, ASYNC)</code>
+                        is the iterator defined by {{ReadableStream}},
+                        the implementation may wish to optimize the steps
+                        above, for example by reading the stream directly,
+                        and/or <a data-cite="streams#transferrable-streams">transferring</a>
+                        the stream to the [= in parallel | parallel =] steps below.
+                      </p>
+                    </div>
+                  </dd>
+                </dl>
+              </li>
+              <li>
                 <p>
                   Return |promise| and perform the remaining steps [= in parallel =].
                 </p>
@@ -1892,9 +2017,27 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Wait until the microtask queued above (if any) completes.
+                </p>
+                <div class=note>
+                  <p>
+                    The implementation may wish to compute the hash digest
+                    incrementally, instead of waiting until all data is
+                    available, in order to conserve memory.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <p>
+                  If |promise| was rejected with an error,
+                  [= terminate the algorithm =].
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |digest| be the result of performing the digest
                   operation specified by |normalizedAlgorithm| using
-                  |algorithm|, with |data|
+                  |algorithm|, with |bytes|
                   as |message|.
                 </p>
               </li>
