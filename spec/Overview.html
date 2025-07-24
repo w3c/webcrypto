@@ -11777,6 +11777,14 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </li>
                       <li>
                         <p>
+                          If the [= length in bits =] of the data
+                          represented by |keyData| is not 256
+                          then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
                           Let |algorithm| be a new {{KeyAlgorithm}} object.
                         </p>
                       </li>
