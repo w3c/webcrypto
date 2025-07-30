@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 35.4.2">
+<meta name="generator" content="ReSpec 35.4.3">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="37f41ce5462654a5135981fe93b64e5b3214296a">
+<meta name="revision" content="432f094cdb2f23c00dfb7ffaa487242c88c81469">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -242,9 +242,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "37f41ce5462654a5135981fe93b64e5b3214296a",
-  "publishISODate": "2025-07-03T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 03 July 2025"
+  "gitRevision": "432f094cdb2f23c00dfb7ffaa487242c88c81469",
+  "publishISODate": "2025-07-30T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 30 July 2025"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -252,7 +252,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API Level 2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2025-07-03">03 July 2025</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2025-07-30">30 July 2025</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -918,7 +918,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           manner means comparing them exactly, code point for code point.
         </p>
         <p>
-          Comparing two strings in a <dfn id="case-insensitive" data-local-lt="case-insensitive" data-lt="ASCII case-insensitive|case-insensitive" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">ASCII case-insensitive</dfn> manner
+          Comparing two strings in a <dfn id="case-insensitive" data-local-lt="case-insensitive" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">ASCII case-insensitive</dfn> manner
           means comparing them exactly, code point for code point, except that the codepoints in
           the range U+0041 .. U+005A (i.e. LATIN CAPITAL LETTER A to LATIN CAPITAL LETTER Z) and
           the corresponding codepoints in the range U+0061 .. U+007A
@@ -1041,7 +1041,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
           match for that value.
         </p>
         <p>
-          When this specification says to calculate the <dfn id="concept-normalized-usages" data-local-lt="normalized value" data-lt="normalized value of a usages list|normalized value" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">
+          When this specification says to calculate the <dfn id="concept-normalized-usages" data-local-lt="normalized value" tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">
           normalized value of a usages list</dfn>, <var>usages</var> the result shall be the
           <a data-link-type="dfn|abstract-op" href="#concept-usage-intersection" class="internalDFN" id="ref-for-concept-usage-intersection-1">usage intersection</a> of <var>usages</var> and a
           sequence containing all <a data-link-type="dfn|abstract-op" href="#dfn-RecognizedKeyUsage" class="internalDFN" id="ref-for-dfn-RecognizedKeyUsage-3">recognized key usage value</a>s.
@@ -1133,7 +1133,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Cry
               <li>
                 <p>
                   If <var>byteLength</var> is greater than 65536, <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
-                  <a data-link-type="exception" data-lt="QuotaExceededError" href="https://webidl.spec.whatwg.org/#quotaexceedederror"><code>QuotaExceededError</code></a> and
+                  <a data-link-type="interface" data-lt="QuotaExceededError" href="https://webidl.spec.whatwg.org/#quotaexceedederror"><code>QuotaExceededError</code></a> and
                   <a data-link-type="dfn|abstract-op" href="#terminate-the-algorithm" class="internalDFN" id="ref-for-terminate-the-algorithm-2">terminate the algorithm</a>.
                 </p>
               </li>
@@ -11133,6 +11133,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-2">length in bits</a> of <var>keyData</var>
+                          is not 256 then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                          <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
                           Let <var>algorithm</var> be a new <a data-link-type="idl" data-lt="KeyAlgorithm" href="#dfn-KeyAlgorithm" class="internalDFN" id="ref-for-dfn-KeyAlgorithm-11"><code>KeyAlgorithm</code></a> object.
                         </p>
                       </li>
@@ -11977,6 +11984,13 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-3">length in bits</a> of <var>keyData</var>
+                          is not 256 then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
+                          <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
                           Let <var>algorithm</var> be a new <a data-link-type="idl" data-lt="KeyAlgorithm" href="#dfn-KeyAlgorithm" class="internalDFN" id="ref-for-dfn-KeyAlgorithm-16"><code>KeyAlgorithm</code></a> object.
                         </p>
                       </li>
@@ -12543,7 +12557,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
-                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-2">length in bits</a> of <var>data</var> is not 128, 192 or 256
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-4">length in bits</a> of <var>data</var> is not 128, 192 or 256
                           then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                         </p>
@@ -12585,17 +12599,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <dl class="switch">
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-3">length in bits</a> of <var>data</var> is 128:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-5">length in bits</a> of <var>data</var> is 128:</dt>
                           <dd>
                             If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-16"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not "<code>A128CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-4">length in bits</a> of <var>data</var> is 192:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-6">length in bits</a> of <var>data</var> is 192:</dt>
                           <dd>
                             If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-17"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not "<code>A192CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                           </dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-5">length in bits</a> of <var>data</var> is 256:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-7">length in bits</a> of <var>data</var> is 256:</dt>
                           <dd>
                             If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-18"><code>alg</code></a> field of <var>jwk</var> is present, and is
                             not "<code>A256CTR</code>", then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
@@ -13100,7 +13114,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
-                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-6">length in bits</a> of <var>data</var> is not 128, 192 or 256
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-8">length in bits</a> of <var>data</var> is not 128, 192 or 256
                           then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                         </p>
@@ -13142,17 +13156,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <dl class="switch">
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-7">length in bits</a> of <var>data</var> is 128:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-9">length in bits</a> of <var>data</var> is 128:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-19"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A128CBC</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-8">length in bits</a> of <var>data</var> is 192:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-10">length in bits</a> of <var>data</var> is 192:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-20"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A192CBC</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-9">length in bits</a> of <var>data</var> is 256:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-11">length in bits</a> of <var>data</var> is 256:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-21"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A256CBC</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -13541,7 +13555,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               </li>
               <li>
                 <p>
-                  If <var>ciphertext</var> has a <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-10">length in bits</a> less than <var>tagLength</var>,
+                  If <var>ciphertext</var> has a <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-12">length in bits</a> less than <var>tagLength</var>,
                   then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> an
                   <a data-link-type="exception" data-lt="OperationError" href="https://webidl.spec.whatwg.org/#operationerror"><code>OperationError</code></a>.
                 </p>
@@ -13736,7 +13750,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
-                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-11">length in bits</a> of <var>data</var> is not 128, 192 or 256
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-13">length in bits</a> of <var>data</var> is not 128, 192 or 256
                           then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                         </p>
@@ -13778,17 +13792,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <dl class="switch">
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-12">length in bits</a> of <var>data</var> is 128:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-14">length in bits</a> of <var>data</var> is 128:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-22"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A128GCM</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-13">length in bits</a> of <var>data</var> is 192:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-15">length in bits</a> of <var>data</var> is 192:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-23"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A192GCM</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-14">length in bits</a> of <var>data</var> is 256:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-16">length in bits</a> of <var>data</var> is 256:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-24"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A256GCM</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -14233,7 +14247,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <p>
-                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-15">length in bits</a> of <var>data</var> is not 128, 192 or 256
+                          If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-17">length in bits</a> of <var>data</var> is not 128, 192 or 256
                           then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                           <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.
                         </p>
@@ -14275,17 +14289,17 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                       </li>
                       <li>
                         <dl class="switch">
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-16">length in bits</a> of <var>data</var> is 128:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-18">length in bits</a> of <var>data</var> is 128:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-25"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A128KW</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-17">length in bits</a> of <var>data</var> is 192:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-19">length in bits</a> of <var>data</var> is 192:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-26"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A192KW</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
                             <a data-link-type="exception" data-lt="DataError" href="https://webidl.spec.whatwg.org/#dataerror"><code>DataError</code></a>.</dd>
-                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-18">length in bits</a> of <var>data</var> is 256:</dt>
+                          <dt>If the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-20">length in bits</a> of <var>data</var> is 256:</dt>
                           <dd>If the <a data-link-type="idl" href="#dom-jsonwebkey-alg" class="internalDFN" id="ref-for-dom-jsonwebkey-alg-27"><code>alg</code></a> field of <var>jwk</var> is present, and is
                           not  "<code>A256KW</code>",
                             then <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#dfn-throw">throw</a> a
@@ -14940,7 +14954,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               </li>
               <li>
                 <p>
-                  Let <var>length</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-19">length in bits</a> of
+                  Let <var>length</var> be the <a data-link-type="dfn|abstract-op" href="#dfn-length-in-bits" class="internalDFN" id="ref-for-dfn-length-in-bits-21">length in bits</a> of
                   <var>data</var>.
                 </p>
               </li>
@@ -16666,17 +16680,21 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
     <li>
       <a href="#ref-for-dfn-length-in-bits-1" title="§ 24.4.2 Derive Bits">§ 24.4.2 Derive Bits</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-2" title="§ 27.7.4 Import Key">§ 27.7.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-3" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-4" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-5" title="Reference 4">(4)</a> 
+      <a href="#ref-for-dfn-length-in-bits-2" title="§ 25.3.4 Import Key">§ 25.3.4 Import Key</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-6" title="§ 28.4.4 Import Key">§ 28.4.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-7" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-8" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-9" title="Reference 4">(4)</a> 
+      <a href="#ref-for-dfn-length-in-bits-3" title="§ 26.3.3 Import Key">§ 26.3.3 Import Key</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-10" title="§ 29.4.2 Decrypt">§ 29.4.2 Decrypt</a> 
+      <a href="#ref-for-dfn-length-in-bits-4" title="§ 27.7.4 Import Key">§ 27.7.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-5" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-6" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-7" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-11" title="§ 29.4.4 Import Key">§ 29.4.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-12" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-13" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-14" title="Reference 4">(4)</a> 
+      <a href="#ref-for-dfn-length-in-bits-8" title="§ 28.4.4 Import Key">§ 28.4.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-9" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-10" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-11" title="Reference 4">(4)</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-15" title="§ 30.3.4 Import Key">§ 30.3.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-16" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-17" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-18" title="Reference 4">(4)</a> 
+      <a href="#ref-for-dfn-length-in-bits-12" title="§ 29.4.2 Decrypt">§ 29.4.2 Decrypt</a> 
     </li><li>
-      <a href="#ref-for-dfn-length-in-bits-19" title="§ 31.6.4 Import Key">§ 31.6.4 Import Key</a> 
+      <a href="#ref-for-dfn-length-in-bits-13" title="§ 29.4.4 Import Key">§ 29.4.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-14" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-15" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-16" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-length-in-bits-17" title="§ 30.3.4 Import Key">§ 30.3.4 Import Key</a> <a href="#ref-for-dfn-length-in-bits-18" title="Reference 2">(2)</a> <a href="#ref-for-dfn-length-in-bits-19" title="Reference 3">(3)</a> <a href="#ref-for-dfn-length-in-bits-20" title="Reference 4">(4)</a> 
+    </li><li>
+      <a href="#ref-for-dfn-length-in-bits-21" title="§ 31.6.4 Import Key">§ 31.6.4 Import Key</a> 
     </li>
   </ul>
     </div><div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id="dfn-panel-for-dfn-byte-sequence-containing" aria-label="Links in this document to definition: byte sequence containing a bit sequence">
