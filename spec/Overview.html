@@ -10933,6 +10933,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       </li>
                       <li>
                         <p>
+                          If the [= length in bits =] of |keyData|
+                          is not 256 then [= exception/throw =] a
+                          {{DataError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
                           Let |algorithm| be a new {{KeyAlgorithm}} object.
                         </p>
                       </li>
@@ -11773,6 +11780,13 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                           If |usages| is not empty
                           then [= exception/throw =] a
                           {{SyntaxError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If the [= length in bits =] of |keyData|
+                          is not 256 then [= exception/throw =] a
+                          {{DataError}}.
                         </p>
                       </li>
                       <li>
