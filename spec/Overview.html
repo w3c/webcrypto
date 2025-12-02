@@ -2301,9 +2301,27 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If |format| is equal to the string {{KeyFormat/"raw"}},
-                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
+                    If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          If the `keyData` parameter passed to the
+                          {{SubtleCrypto/importKey()}} method is not a
+                          {{JsonWebKey}} dictionary, [= exception/throw =] a
+                          {{TypeError}}.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |keyData| be the `keyData` parameter passed to the
+                          {{SubtleCrypto/importKey()}} method.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
                   <dd>
                     <ol>
                       <li>
@@ -2320,27 +2338,6 @@ interface SubtleCrypto {
                           [= get a copy of the buffer source |
                           getting a copy of the bytes held by =] the
                           `keyData` parameter passed to the
-                          {{SubtleCrypto/importKey()}} method.
-                        </p>
-                      </li>
-                    </ol>
-                  </dd>
-                  <dt>
-                    If |format| is equal to the string {{KeyFormat/"jwk"}}:
-                  </dt>
-                  <dd>
-                    <ol>
-                      <li>
-                        <p>
-                          If the `keyData` parameter passed to the
-                          {{SubtleCrypto/importKey()}} method is not a
-                          {{JsonWebKey}} dictionary, [= exception/throw =] a
-                          {{TypeError}}.
-                        </p>
-                      </li>
-                      <li>
-                        <p>
-                          Let |keyData| be the `keyData` parameter passed to the
                           {{SubtleCrypto/importKey()}} method.
                         </p>
                       </li>
@@ -2516,19 +2513,16 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If |format| is equal to the strings {{KeyFormat/"raw"}},
-                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
-                  </dt>
-                  <dd>
-                    Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                    in |realm|, containing |result|.
-                  </dd>
-                  <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     Let |result| be the result of converting |result| to an ECMAScript Object in |realm|,
                     as defined by [[WebIDL]].
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                    in |realm|, containing |result|.
                   </dd>
                 </dl>
               </li>
@@ -2659,13 +2653,6 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If |format| is equal to the strings {{KeyFormat/"raw"}},
-                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
-                  </dt>
-                  <dd>
-                    Let |bytes| be |exportedKey|.
-                  </dd>
-                  <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
@@ -2684,6 +2671,10 @@ interface SubtleCrypto {
                         </p>
                       </li>
                     </ol>
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    Let |bytes| be |exportedKey|.
                   </dd>
                 </dl>
                 <div class=note>
@@ -2887,19 +2878,16 @@ interface SubtleCrypto {
               <li>
                 <dl class="switch">
                   <dt>
-                    If |format| is equal to the strings {{KeyFormat/"raw"}},
-                    {{KeyFormat/"pkcs8"}}, or {{KeyFormat/"spki"}}:
-                  </dt>
-                  <dd>
-                    Let |key| be |bytes|.
-                  </dd>
-                  <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
                   </dt>
                   <dd>
                     Let |key| be the result of executing the
                     [= parse a JWK =] algorithm, with |bytes|
                     as the `data` to be parsed.
+                  </dd>
+                  <dt>Otherwise:</dt>
+                  <dd>
+                    Let |key| be |bytes|.
                   </dd>
                 </dl>
               </li>
