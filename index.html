@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="6fac7a5a88129e4879725b46d609a7c9ca36982b">
+<meta name="revision" content="9d98db771af207ff2270175f71baad350742e4aa">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -242,9 +242,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "6fac7a5a88129e4879725b46d609a7c9ca36982b",
-  "publishISODate": "2025-12-02T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 02 December 2025"
+  "gitRevision": "9d98db771af207ff2270175f71baad350742e4aa",
+  "publishISODate": "2026-01-29T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 29 January 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -252,7 +252,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API Level 2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2025-12-02">02 December 2025</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2026-01-29">29 January 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -299,7 +299,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="copyright">
     <a href="https://www.w3.org/policies/#copyright">Copyright</a>
     ©
-    2025
+    2026
     
     <a href="https://www.w3.org/">World Wide Web Consortium</a>.
     <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup>
@@ -10586,16 +10586,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   Section 5.1.6, with <var>message</var> as <var>M</var>,
                   using the Ed25519 private key associated with <var>key</var>.
                 </p>
-                <div class="issue" id="issue-container-number-1"><div role="heading" class="issue-title marker" id="h-issue" aria-level="5"><span>Issue 1</span></div><div class="">
-                  <p>
-                    Some implementations may (wish to) generate randomized signatures
-                    as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
-                    instead of deterministic signatures as per [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8032" title="Edwards-Curve Digital Signature Algorithm (EdDSA)">RFC8032</a></cite>].
-                  </p>
-                  <p>
-                    See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/28">WICG/webcrypto-secure-curves issue 28</a>.
-                  </p>
-                </div></div>
+                <div class="issue" id="issue-container-number-424"><div role="heading" class="issue-title marker" id="h-issue" aria-level="5"><a href="https://github.com/w3c/webcrypto/issues/424"><span class="issue-number">Issue 424</span></a><span class="issue-label">: Allow creating randomized EdDSA signatures?</span></div><p class="">
+                  Some implementations may (wish to) generate randomized signatures
+                  as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
+                  instead of deterministic signatures as per [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8032" title="Edwards-Curve Digital Signature Algorithm (EdDSA)">RFC8032</a></cite>].
+                </p></div>
               </li>
               <li>
                 <p>
@@ -10620,14 +10615,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   If the key data of <var>key</var> represents an invalid point or a small-order element
                   on the Elliptic Curve of Ed25519, return <code>false</code>.
                 </p>
-                <div class="issue" id="issue-container-number-2"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="5"><span>Issue 2</span></div><div class="">
-                  <p>
-                    Not all implementations perform this check.
-                  </p>
-                  <p>
-                    See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/27">WICG/webcrypto-secure-curves issue 27</a>.
-                  </p>
-                </div></div>
+                <div class="issue" id="issue-container-number-423"><div role="heading" class="issue-title marker" id="h-issue-0" aria-level="5"><a href="https://github.com/w3c/webcrypto/issues/423"><span class="issue-number">Issue 423</span></a><span class="issue-label">: Make small-order checks in EdDSA optional?</span></div><p class="">
+                  Not all implementations perform this check.
+                </p></div>
               </li>
               <li>
                 <p>
@@ -10635,14 +10625,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   represents an invalid point or a small-order element
                   on the Elliptic Curve of Ed25519, return <code>false</code>.
                 </p>
-                <div class="issue" id="issue-container-number-3"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="5"><span>Issue 3</span></div><div class="">
-                  <p>
-                    Not all implementations perform this check.
-                  </p>
-                  <p>
-                    See <a href="https://github.com/WICG/webcrypto-secure-curves/issues/27">WICG/webcrypto-secure-curves issue 27</a>.
-                  </p>
-                </div></div>
+                <div class="issue" id="issue-container-number-423-0"><div role="heading" class="issue-title marker" id="h-issue-1" aria-level="5"><a href="https://github.com/w3c/webcrypto/issues/423"><span class="issue-number">Issue 423</span></a><span class="issue-label">: Make small-order checks in EdDSA optional?</span></div><p class="">
+                  Not all implementations perform this check.
+                </p></div>
               </li>
               <li>
                 <p>
