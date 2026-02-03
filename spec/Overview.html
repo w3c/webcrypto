@@ -1271,7 +1271,7 @@ interface SubtleCrypto {
   );
   Promise&lt;ArrayBuffer> digest(
     AlgorithmIdentifier algorithm,
-    BufferSource data
+    (BufferSource or async_sequence&lt;BufferSource>) data
   );
 
   Promise&lt;(CryptoKey or CryptoKeyPair)> generateKey(
@@ -1845,9 +1845,7 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  Let |data| be the `data` parameter passed to the
                   {{SubtleCrypto/digest()}} method.
                 </p>
               </li>
@@ -1864,6 +1862,133 @@ interface SubtleCrypto {
                   If an error occurred, return a Promise rejected with
                   |normalizedAlgorithm|.
                 </p>
+              </li>
+              <li>
+                <p>
+                  Let |bytesPromise| be a new Promise.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>If |data| is a {{BufferSource}}:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |bytes| be the result of
+                          [= get a copy of the buffer source |
+                          getting a copy of the bytes held by =] |data|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Resolve |bytesPromise| with |bytes|.
+                        </p>
+                      </li>
+                  </dd>
+                  <dt>
+                    Otherwise:
+                  </dt>
+                  <dd>
+                    <div class=note>
+                      <p>
+                        In this case, |data| is an [= async sequence type | async sequence =] of {{BufferSource}}s.
+                      </p>
+                    </div>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |bytes| be an empty [= byte sequence =].
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |iterator| be the result of [= open an async sequence | opening =] |data|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If an error occurred, reject |bytesPromise| with
+                          |iterator| and terminate these steps.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |getValueSteps| be the following list of steps:
+                        </p>
+                        <ol>
+                          <li>
+                            <p>
+                              Let |next| be the result of [= get an async iterator next value | getting the next value =] of |iterator|.
+                            </p>
+                          </li>
+                          <li>
+                            <p>
+                              [= promise/React =] to |next|:
+                            </p>
+                            <dl class="switch">
+                              <dt>If |next| was rejected with |reason|:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      Reject |bytesPromise| with |reason|.
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                              <dt>If |next| was fulfilled with |value|:</dt>
+                              <dd>
+                                <ol>
+                                  <li>
+                                    <p>
+                                      If |value| is [= end of iteration =],
+                                      resolve |bytesPromise| with |bytes|
+                                      and terminate these steps.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Append the result of [= get a copy of the buffer source |
+                                      getting a copy of the bytes held by =] |value|
+                                      to |bytes|.
+                                    </p>
+                                  </li>
+                                  <li>
+                                    <p>
+                                      Perform |getValueSteps|.
+                                    </p>
+                                  </li>
+                                </ol>
+                              </dd>
+                            </dl>
+                          </li>
+                        </ol>
+                      </li>
+                      <li>
+                        <p>
+                          [= Queue a microtask =] to perform |getValueSteps|.
+                        </p>
+                      </li>
+                    </ol>
+                    <div class=note>
+                      <p>
+                        The implementation may wish to compute the hash digest
+                        incrementally, instead of waiting until all data is
+                        available, in order to conserve memory.
+                      </p>
+                      <p>
+                        Additionally, if the |iterator| returned by
+                        [= open an async sequence | opening =] |data|
+                        is the iterator defined by <a data-cite="streams#readablestream">`ReadableStream`</a>,
+                        the implementation may wish to optimize the steps
+                        above, for example by reading the stream directly,
+                        and/or <a data-cite="streams#rs-transfer">transferring</a>
+                        the stream to the [= in parallel | parallel =] steps below.
+                      </p>
+                    </div>
+                  </dd>
+                </dl>
               </li>
               <li>
                 <p>
@@ -1892,29 +2017,51 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |digest| be the result of performing the digest
-                  operation specified by |normalizedAlgorithm| using
-                  |algorithm|, with |data|
-                  as |message|.
+                  [= promise/React =] to |bytesPromise|:
                 </p>
-              </li>
-              <li>
-                <p>
-                  [= Queue a global task =] on the [= crypto task source =],
-                  given |realm|'s global object, to perform the remaining steps.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
-                  in |realm|, containing |digest|.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Resolve |promise| with
-                  |result|.
-                </p>
+                <dl class="switch">
+                  <dt>If |bytesPromise| was rejected with |reason|:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          [= exception/Throw =] |reason|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>If |bytesPromise| was fulfilled with value |bytes|:</dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |digest| be the result of performing the digest
+                          operation specified by |normalizedAlgorithm| using
+                          |algorithm|, with |bytes|
+                          as |message|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          [= Queue a global task =] on the [= crypto task source =],
+                          given |realm|'s global object, to perform the remaining steps.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                          in |realm|, containing |digest|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Resolve |promise| with
+                          |result|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                </dl>
               </li>
             </ol>
           </section>
