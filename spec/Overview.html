@@ -10834,6 +10834,30 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               </li>
                               <li>
                                 <p>
+                                  Let |jwkPublic| be the {{JsonWebKey/x}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =] of |jwkPublic| is not 256,
+                                  then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |jwkPrivate| be the {{JsonWebKey/d}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =] of |jwkPrivate| is not 256,
+                                  then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
                                   Let |key| be a new {{CryptoKey}} object that represents the
                                   Ed25519 private key identified by interpreting
                                   |jwk| according to Section 2 of [[RFC8037]].
@@ -10855,6 +10879,18 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   If |jwk| does not meet the requirements of
                                   the JWK public key format described in Section 2
                                   of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |jwkPublic| be the {{JsonWebKey/x}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =] of |jwkPublic| is not 256,
+                                  then [= exception/throw =] a {{DataError}}.
                                 </p>
                               </li>
                               <li>
@@ -11686,6 +11722,30 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                               </li>
                               <li>
                                 <p>
+                                  Let |jwkPublic| be the {{JsonWebKey/x}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =] of |jwkPublic| is not 256,
+                                  then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |jwkPrivate| be the {{JsonWebKey/d}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =] of |jwkPrivate| is not 256,
+                                  then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
                                   Let |key| be a new {{CryptoKey}} object that represents the
                                   X25519 private key identified by interpreting
                                   |jwk| according to Section 2 of [[RFC8037]].
@@ -11707,6 +11767,18 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   If |jwk| does not meet the requirements of
                                   the JWK public key format described in Section 2
                                   of [[RFC8037]], then [= exception/throw =] a {{DataError}}.
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  Let |jwkPublic| be the {{JsonWebKey/x}} field of |jwk| interpreted
+                                  according to Section 2 of [[RFC8037]].
+                                </p>
+                              </li>
+                              <li>
+                                <p>
+                                  If the [= length in bits =]
+                                  of |jwkPublic| is not 256, then [= exception/throw =] a {{DataError}}.
                                 </p>
                               </li>
                               <li>
