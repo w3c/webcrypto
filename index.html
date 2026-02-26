@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="9d98db771af207ff2270175f71baad350742e4aa">
+<meta name="revision" content="5b57233c0a2c01a2638d7aaa427fd80a89b968f2">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -242,9 +242,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "9d98db771af207ff2270175f71baad350742e4aa",
-  "publishISODate": "2026-01-29T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 29 January 2026"
+  "gitRevision": "5b57233c0a2c01a2638d7aaa427fd80a89b968f2",
+  "publishISODate": "2026-02-26T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 26 February 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -252,7 +252,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API Level 2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2026-01-29">29 January 2026</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2026-02-26">26 February 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -1671,13 +1671,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="encrypt()" href="#dfn-SubtleCrypto-method-encrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-encrypt-3"><code>encrypt</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-1">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -1688,6 +1681,13 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <p>
                   If an error occurred, return a Promise rejected with
                   <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="encrypt()" href="#dfn-SubtleCrypto-method-encrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-encrypt-3"><code>encrypt</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
@@ -1777,13 +1777,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="decrypt()" href="#dfn-SubtleCrypto-method-decrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-decrypt-3"><code>decrypt</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-2">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -1794,6 +1787,13 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <p>
                   If an error occurred, return a Promise rejected with
                   <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="decrypt()" href="#dfn-SubtleCrypto-method-decrypt" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-decrypt-3"><code>decrypt</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
@@ -1883,13 +1883,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="sign()" href="#dfn-SubtleCrypto-method-sign" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-sign-3"><code>sign</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-3">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -1900,6 +1893,13 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <p>
                   If an error occurred, return a Promise rejected with
                   <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="sign()" href="#dfn-SubtleCrypto-method-sign" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-sign-3"><code>sign</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
@@ -1987,20 +1987,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>signature</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>signature</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="verify()" href="#dfn-SubtleCrypto-method-verify" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-verify-3"><code>verify</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="verify()" href="#dfn-SubtleCrypto-method-verify" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-verify-4"><code>verify</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-4">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -2013,7 +1999,20 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                   <var>normalizedAlgorithm</var>.
                 </p>
               </li>
-
+              <li>
+                <p>
+                  Let <var>signature</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>signature</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="verify()" href="#dfn-SubtleCrypto-method-verify" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-verify-3"><code>verify</code></a><code>()</code> method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="verify()" href="#dfn-SubtleCrypto-method-verify" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-verify-4"><code>verify</code></a><code>()</code> method.
+                </p>
+              </li>
               <li>
                 <p>
                   Let <var>realm</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm">relevant realm</a> of <a data-link-type="dfn" href="https://webidl.spec.whatwg.org/#this">this</a>.
@@ -2094,13 +2093,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               </li>
               <li>
                 <p>
-                  Let <var>data</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="digest()" href="#dfn-SubtleCrypto-method-digest" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-digest-3"><code>digest</code></a><code>()</code> method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let <var>normalizedAlgorithm</var> be the result of
                   <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-5">normalizing an algorithm</a>, with
                   <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
@@ -2111,6 +2103,13 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <p>
                   If an error occurred, return a Promise rejected with
                   <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>data</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the <code>data</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="digest()" href="#dfn-SubtleCrypto-method-digest" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-digest-3"><code>digest</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
@@ -2546,6 +2545,20 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 </p>
               </li>
               <li>
+                <p>
+                  Let <var>normalizedAlgorithm</var> be the result of
+                  <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-11">normalizing an algorithm</a>, with
+                  <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
+                  "<code>importKey</code>".
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  <var>normalizedAlgorithm</var>.
+                </p>
+              </li>
+              <li>
                 <dl class="switch">
                   <dt>
                     If <var>format</var> is equal to the string "<a data-link-type="idl" href="#dom-keyformat-jwk" class="internalDFN" id="ref-for-dom-keyformat-jwk-2"><code>jwk</code></a>":
@@ -2590,20 +2603,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                     </ol>
                   </dd>
                 </dl>
-              </li>
-              <li>
-                <p>
-                  Let <var>normalizedAlgorithm</var> be the result of
-                  <a href="#dfn-normalize-an-algorithm" id="ref-for-dfn-normalize-an-algorithm-11">normalizing an algorithm</a>, with
-                  <code>alg</code> set to <var>algorithm</var> and <code>op</code> set to
-                  "<code>importKey</code>".
-                </p>
-              </li>
-              <li>
-                <p>
-                  If an error occurred, return a Promise rejected with
-                  <var>normalizedAlgorithm</var>.
-                </p>
               </li>
               <li>
                 <p>
@@ -2996,7 +2995,7 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
               <em class="rfc2119">MUST</em> perform the following steps:
             </p>
             <ol>
-            <li>
+              <li>
                 <p>
                   Let <var>format</var>, <var>unwrappingKey</var>,
                   <var>algorithm</var>, <var>unwrappedKeyAlgorithm</var>,
@@ -3007,14 +3006,6 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                   parameters passed to the
                   <a data-link-type="idl" data-lt="unwrapKey()" href="#dfn-SubtleCrypto-method-unwrapKey" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-unwrapKey-2"><code>unwrapKey</code></a><code>()</code> method,
                   respectively.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let <var>wrappedKey</var> be the result of
-                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the
-                  <code>wrappedKey</code> parameter passed to the
-                  <a data-link-type="idl" data-lt="unwrapKey()" href="#dfn-SubtleCrypto-method-unwrapKey" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-unwrapKey-3"><code>unwrapKey</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
@@ -3050,6 +3041,14 @@ interface <a class="internalDFN idlID" data-link-type="interface" href="#dfn-Sub
                 <p>
                   If an error occurred, return a Promise rejected with
                   <var>normalizedKeyAlgorithm</var>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let <var>wrappedKey</var> be the result of
+                  <a data-link-type="dfn" data-lt="get a copy of the buffer source" href="https://webidl.spec.whatwg.org/#dfn-get-buffer-source-copy">getting a copy of the bytes held by</a> the
+                  <code>wrappedKey</code> parameter passed to the
+                  <a data-link-type="idl" data-lt="unwrapKey()" href="#dfn-SubtleCrypto-method-unwrapKey" class="internalDFN" id="ref-for-dfn-SubtleCrypto-method-unwrapKey-3"><code>unwrapKey</code></a><code>()</code> method.
                 </p>
               </li>
               <li>
