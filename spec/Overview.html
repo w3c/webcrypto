@@ -1417,14 +1417,6 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
-                  {{SubtleCrypto/encrypt()}} method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |normalizedAlgorithm| be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   `alg` set to |algorithm| and `op` set to
@@ -1435,6 +1427,14 @@ interface SubtleCrypto {
                 <p>
                   If an error occurred, return a Promise rejected with
                   |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  {{SubtleCrypto/encrypt()}} method.
                 </p>
               </li>
               <li>
@@ -1524,14 +1524,6 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
-                  {{SubtleCrypto/decrypt()}} method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |normalizedAlgorithm| be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   `alg` set to |algorithm| and `op` set to
@@ -1542,6 +1534,14 @@ interface SubtleCrypto {
                 <p>
                   If an error occurred, return a Promise rejected with
                   |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  {{SubtleCrypto/decrypt()}} method.
                 </p>
               </li>
               <li>
@@ -1631,14 +1631,6 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
-                  {{SubtleCrypto/sign()}} method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |normalizedAlgorithm| be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   `alg` set to |algorithm| and `op` set to
@@ -1649,6 +1641,14 @@ interface SubtleCrypto {
                 <p>
                   If an error occurred, return a Promise rejected with
                   |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  {{SubtleCrypto/sign()}} method.
                 </p>
               </li>
               <li>
@@ -1736,6 +1736,20 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
+                  Let |normalizedAlgorithm| be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  `alg` set to |algorithm| and `op` set to
+                  "`verify`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |signature| be the result of
                   [= get a copy of the buffer source |
                   getting a copy of the bytes held by =] the `signature` parameter passed to the
@@ -1750,21 +1764,6 @@ interface SubtleCrypto {
                   {{SubtleCrypto/verify()}} method.
                 </p>
               </li>
-              <li>
-                <p>
-                  Let |normalizedAlgorithm| be the result of
-                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
-                  `alg` set to |algorithm| and `op` set to
-                  "`verify`".
-                </p>
-              </li>
-              <li>
-                <p>
-                  If an error occurred, return a Promise rejected with
-                  |normalizedAlgorithm|.
-                </p>
-              </li>
-
               <li>
                 <p>
                   Let |realm| be the [= relevant realm =] of [= this =].
@@ -1845,14 +1844,6 @@ interface SubtleCrypto {
               </li>
               <li>
                 <p>
-                  Let |data| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the `data` parameter passed to the
-                  {{SubtleCrypto/digest()}} method.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |normalizedAlgorithm| be the result of
                   <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
                   `alg` set to |algorithm| and `op` set to
@@ -1863,6 +1854,14 @@ interface SubtleCrypto {
                 <p>
                   If an error occurred, return a Promise rejected with
                   |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `data` parameter passed to the
+                  {{SubtleCrypto/digest()}} method.
                 </p>
               </li>
               <li>
@@ -2299,6 +2298,20 @@ interface SubtleCrypto {
                 </p>
               </li>
               <li>
+                <p>
+                  Let |normalizedAlgorithm| be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  `alg` set to |algorithm| and `op` set to
+                  "`importKey`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
                 <dl class="switch">
                   <dt>
                     If |format| is equal to the string {{KeyFormat/"jwk"}}:
@@ -2344,20 +2357,6 @@ interface SubtleCrypto {
                     </ol>
                   </dd>
                 </dl>
-              </li>
-              <li>
-                <p>
-                  Let |normalizedAlgorithm| be the result of
-                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
-                  `alg` set to |algorithm| and `op` set to
-                  "`importKey`".
-                </p>
-              </li>
-              <li>
-                <p>
-                  If an error occurred, return a Promise rejected with
-                  |normalizedAlgorithm|.
-                </p>
               </li>
               <li>
                 <p>
@@ -2751,7 +2750,7 @@ interface SubtleCrypto {
               MUST perform the following steps:
             </p>
             <ol>
-            <li>
+              <li>
                 <p>
                   Let |format|, |unwrappingKey|,
                   |algorithm|, |unwrappedKeyAlgorithm|,
@@ -2762,15 +2761,6 @@ interface SubtleCrypto {
                   parameters passed to the
                   {{SubtleCrypto/unwrapKey()}} method,
                   respectively.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |wrappedKey| be the result of
-                  [= get a copy of the buffer source |
-                  getting a copy of the bytes held by =] the
-                  `wrappedKey` parameter passed to the
-                  {{SubtleCrypto/unwrapKey()}} method.
                 </p>
               </li>
               <li>
@@ -2806,6 +2796,15 @@ interface SubtleCrypto {
                 <p>
                   If an error occurred, return a Promise rejected with
                   |normalizedKeyAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |wrappedKey| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the
+                  `wrappedKey` parameter passed to the
+                  {{SubtleCrypto/unwrapKey()}} method.
                 </p>
               </li>
               <li>
