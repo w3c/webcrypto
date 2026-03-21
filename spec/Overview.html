@@ -1269,6 +1269,17 @@ interface SubtleCrypto {
     BufferSource signature,
     BufferSource data
   );
+  Promise&lt;ArrayBuffer> signDigest(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource digest
+  );
+  Promise&lt;boolean> verifyDigest(
+    AlgorithmIdentifier algorithm,
+    CryptoKey key,
+    BufferSource signature,
+    BufferSource digest
+  );
   Promise&lt;ArrayBuffer> digest(
     AlgorithmIdentifier algorithm,
     BufferSource data
@@ -1810,6 +1821,222 @@ interface SubtleCrypto {
                   specified by |normalizedAlgorithm| using |key|,
                   |algorithm| and
                   |signature| and with |data| as |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Resolve |promise| with
+                  |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="SubtleCrypto-method-signDigest">
+            <h4>The signDigest method</h4>
+            <p>
+              The <dfn id="dfn-SubtleCrypto-method-signDigest" data-dfn-for=SubtleCrypto>signDigest</dfn> method returns a
+              new Promise object that will sign a pre-computed digest using the specified {{AlgorithmIdentifier}} with the supplied
+              {{CryptoKey}}.
+              It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let |algorithm| and |key| be the
+                  `algorithm` and `key` parameters
+                  passed to the {{SubtleCrypto/signDigest()}} method,
+                  respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |normalizedAlgorithm| be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  `alg` set to |algorithm| and `op` set to
+                  "`signDigest`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `digest` parameter passed to the
+                  {{SubtleCrypto/signDigest()}} method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |promise| be a new Promise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |promise| and perform the remaining steps [= in parallel =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the following steps or referenced procedures say to
+                  [= exception/throw =] an error,
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{Algorithm/name}} member of
+                  |normalizedAlgorithm| is not equal to the
+                  {{KeyAlgorithm/name}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[usages]]}} internal slot of
+                  |key| does not contain an entry that is "`sign`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |signature| be the result of performing the signDigest operation
+                  specified by |normalizedAlgorithm| using |key| and
+                  |algorithm| and with |data| as |digest|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  [= Queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object, to perform the remaining steps.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of [= ArrayBuffer/create | creating =] an {{ArrayBuffer}}
+                  in |realm|, containing |signature|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Resolve |promise| with
+                  |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="SubtleCrypto-method-verifyDigest">
+            <h4>The verifyDigest method</h4>
+            <p>
+              The <dfn id="dfn-SubtleCrypto-method-verifyDigest" data-dfn-for=SubtleCrypto>verifyDigest</dfn> method returns
+              a new Promise object that will verify a signature against a pre-computed digest using the specified {{AlgorithmIdentifier}} with the supplied
+              {{CryptoKey}}.
+              It must act as follows:
+            </p>
+            <ol>
+              <li>
+                <p>
+                  Let |algorithm| and |key|
+                  be the `algorithm` and `key` parameters passed to the
+                  {{SubtleCrypto/verifyDigest()}} method, respectively.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |normalizedAlgorithm| be the result of
+                  <a href="#dfn-normalize-an-algorithm">normalizing an algorithm</a>, with
+                  `alg` set to |algorithm| and `op` set to
+                  "`verifyDigest`".
+                </p>
+              </li>
+              <li>
+                <p>
+                  If an error occurred, return a Promise rejected with
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |signature| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `signature` parameter passed to the
+                  {{SubtleCrypto/verifyDigest()}} method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |data| be the result of
+                  [= get a copy of the buffer source |
+                  getting a copy of the bytes held by =] the `digest` parameter passed to the
+                  {{SubtleCrypto/verifyDigest()}} method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |realm| be the [= relevant realm =] of [= this =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |promise| be a new Promise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |promise| and perform the remaining steps [= in parallel =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the following steps or referenced procedures say to
+                  [= exception/throw =] an error,
+                  [= queue a global task =] on the [= crypto task source =],
+                  given |realm|'s global object,
+                  to reject |promise| with the returned error;
+                  and then [= terminate the algorithm =].
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{Algorithm/name}} member of
+                  |normalizedAlgorithm| is not equal to the
+                  {{KeyAlgorithm/name}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[usages]]}} internal slot of
+                  |key| does not contain an entry that is "`verify`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of performing the verifyDigest operation
+                  specified by |normalizedAlgorithm| using |key|,
+                  |algorithm| and
+                  |signature| and with |data| as |digest|.
                 </p>
               </li>
               <li>
@@ -3118,6 +3345,8 @@ dictionary CryptoKeyPair {
               <li>decrypt</li>
               <li>sign</li>
               <li>verify</li>
+              <li>signDigest</li>
+              <li>verifyDigest</li>
               <li>digest</li>
               <li>deriveBits</li>
               <li>wrapKey</li>
@@ -3491,6 +3720,12 @@ dictionary CryptoKeyPair {
             <p>The {{SubtleCrypto/verify}} method requires the verify operation.</p>
           </li>
           <li>
+            <p>The {{SubtleCrypto/signDigest}} method requires the signDigest operation.</p>
+          </li>
+          <li>
+            <p>The {{SubtleCrypto/verifyDigest}} method requires the verifyDigest operation.</p>
+          </li>
+          <li>
             <p>The {{SubtleCrypto/generateKey}} method requires the generateKey operation.</p>
           </li>
           <li>
@@ -3537,6 +3772,8 @@ dictionary CryptoKeyPair {
               <th scope="col">decrypt</th>
               <th scope="col">sign</th>
               <th scope="col">verify</th>
+              <th scope="col">signDigest</th>
+              <th scope="col">verifyDigest</th>
               <th scope="col">digest</th>
               <th scope="col">generateKey</th>
               <th scope="col">deriveKey</th>
@@ -3554,6 +3791,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td>✔</td>
               <td>✔</td>
+              <td>✔</td>
+              <td>✔</td>
               <td></td>
               <td>✔</td>
               <td></td>
@@ -3567,6 +3806,8 @@ dictionary CryptoKeyPair {
               <td><a href="#rsa-pss">RSA-PSS</a></td>
               <td></td>
               <td></td>
+              <td>✔</td>
+              <td>✔</td>
               <td>✔</td>
               <td>✔</td>
               <td></td>
@@ -3585,6 +3826,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3599,6 +3842,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td>✔</td>
               <td>✔</td>
+              <td>✔</td>
+              <td>✔</td>
               <td></td>
               <td>✔</td>
               <td></td>
@@ -3610,6 +3855,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#ecdh">ECDH</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3629,6 +3876,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td>✔</td>
               <td>✔</td>
+              <td>✔</td>
+              <td>✔</td>
               <td></td>
               <td>✔</td>
               <td></td>
@@ -3640,6 +3889,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#x25519">X25519</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3660,6 +3911,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3672,6 +3925,8 @@ dictionary CryptoKeyPair {
               <td><a href="#aes-cbc">AES-CBC</a></td>
               <td>✔</td>
               <td>✔</td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3690,6 +3945,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3700,6 +3957,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#aes-kw">AES-KW</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3720,6 +3979,8 @@ dictionary CryptoKeyPair {
               <td>✔</td>
               <td>✔</td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3730,6 +3991,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#sha">SHA-1</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3749,6 +4012,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3764,6 +4029,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td></td>
               <td></td>
@@ -3775,6 +4042,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#sha">SHA-512</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3796,6 +4065,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
+              <td></td>
               <td>✔</td>
               <td>✔</td>
               <td>✔</td>
@@ -3805,6 +4076,8 @@ dictionary CryptoKeyPair {
             </tr>
             <tr>
               <td><a href="#pbkdf2">PBKDF2</a></td>
+              <td></td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -3862,6 +4135,16 @@ dictionary CryptoKeyPair {
               </tr>
               <tr>
                 <td>verify</td>
+                <td>None</td>
+                <td>boolean</td>
+              </tr>
+              <tr>
+                <td>signDigest</td>
+                <td>None</td>
+                <td>[= byte sequence =]</td>
+              </tr>
+              <tr>
+                <td>verifyDigest</td>
                 <td>None</td>
                 <td>boolean</td>
               </tr>
@@ -3995,6 +4278,99 @@ dictionary RsaHashedImportParams : Algorithm {
                   in the {{RsaHashedKeyAlgorithm/hash}} attribute of the
                   {{CryptoKey/[[algorithm]]}} internal slot of
                   |key| as the Hash option for the EMSA-PKCS1-v1_5 encoding method.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be a boolean with value true if the
+                  result of the operation was "valid signature" and the value
+                  false otherwise.
+                </p>
+              </li>
+              <li>
+                <p>Return |result|.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="rsassa-pkcs1-operations-sign-digest">
+            <h5>Sign Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by the
+                  {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of |key|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the signature generation operation defined in Section 8.2 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
+                  as the signer's private key and |digest| as
+                  the digest for the EMSA-PKCS1-v1_5 encoding method, and using the hash function specified in the {{RsaHashedKeyAlgorithm/hash}} attribute of the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| as the Hash option for identifying the hash in the DigestInfo encoding.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If performing the operation results in an error,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |signature| be the value |S| that results from
+                  performing the operation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |signature|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="rsassa-pkcs1-operations-verify-digest">
+            <h5>Verify Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by the
+                  {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of |key|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the signature verification operation defined in Section 8.2 of
+                  [[RFC3447]] with the key represented by the
+                  {{CryptoKey/[[handle]]}} internal slot of
+                  |key| as the signer's RSA public key and |digest| as
+                  the digest for the EMSA-PKCS1-v1_5 encoding method and
+                  |signature| as |S| and using the hash function specified
+                  in the {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| as the Hash option for identifying the hash in the DigestInfo encoding.
                 </p>
               </li>
               <li>
@@ -4940,6 +5316,16 @@ dictionary RsaHashedImportParams : Algorithm {
                 <td>boolean</td>
               </tr>
               <tr>
+                <td>signDigest</td>
+                <td>{{RsaPssParams}}</td>
+                <td>[= byte sequence =]</td>
+              </tr>
+              <tr>
+                <td>verifyDigest</td>
+                <td>{{RsaPssParams}}</td>
+                <td>boolean</td>
+              </tr>
+              <tr>
                 <td>generateKey</td>
                 <td>{{RsaHashedKeyGenParams}}</td>
                 <td>{{CryptoKeyPair}}</td>
@@ -5029,6 +5415,102 @@ dictionary RsaPssParams : Algorithm {
                   {{CryptoKey/[[handle]]}} internal slot of
                   |key| as the signer's RSA public key and |message| as
                   |M| and
+                  |signature| as |S| and using the hash function specified
+                  by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| as the Hash option, MGF1 (defined in Section B.2.1 of [[RFC3447]]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
+                  |normalizedAlgorithm| as the salt length option for the
+                  EMSA-PSS-VERIFY operation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be a boolean with the value true if the
+                  result of the operation was "valid signature" and the value
+                  false otherwise.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="rsa-pss-operations-sign-digest">
+            <h5>Sign Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by the
+                  {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of |key|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the signature generation operation defined in Section 8.1 of [[RFC3447]] with the key represented by the {{CryptoKey/[[handle]]}} internal slot of |key|
+                  as the signer's private key, |K|, and |digest| as
+                  the hash value for the EMSA-PSS-ENCODE operation, and using the hash function specified
+                  by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of
+                  |key| as the Hash option, MGF1 (defined in Section B.2.1 of [[RFC3447]]) as the MGF option and the <a href="#dfn-RsaPssParams-saltLength">saltLength</a> member of
+                  |normalizedAlgorithm| as the salt length option for the
+                  EMSA-PSS-ENCODE operation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If performing the operation results in an error,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |signature| be the
+                  signature, S, that results from performing the operation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |signature|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="rsa-pss-operations-verify-digest">
+            <h5>Verify Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by the
+                  {{RsaHashedKeyAlgorithm/hash}} attribute of the
+                  {{CryptoKey/[[algorithm]]}} internal slot of |key|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the signature verification operation defined in Section 8.1 of
+                  [[RFC3447]] with the key represented by the
+                  {{CryptoKey/[[handle]]}} internal slot of
+                  |key| as the signer's RSA public key and |digest| as
+                  the hash value for the EMSA-PSS-VERIFY operation and
                   |signature| as |S| and using the hash function specified
                   by the {{RsaHashedKeyAlgorithm/hash}} attribute of the
                   {{CryptoKey/[[algorithm]]}} internal slot of
@@ -7009,6 +7491,16 @@ dictionary RsaOaepParams : Algorithm {
                 <td>boolean</td>
               </tr>
               <tr>
+                <td>signDigest</td>
+                <td>{{EcdsaParams}}</td>
+                <td>[= byte sequence =]</td>
+              </tr>
+              <tr>
+                <td>verifyDigest</td>
+                <td>{{EcdsaParams}}</td>
+                <td>boolean</td>
+              </tr>
+              <tr>
                 <td>generateKey</td>
                 <td>{{EcKeyGenParams}}</td>
                 <td>{{CryptoKeyPair}}</td>
@@ -7210,6 +7702,231 @@ dictionary EcKeyImportParams : Algorithm {
                 <p>
                   Let |M| be the result of performing the digest operation specified by
                   |hashAlgorithm| using |message|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |Q| be the ECDSA public key associated with |key|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |params| be the EC domain parameters associated with
+                  |key|.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{EcKeyAlgorithm/namedCurve}} attribute of the
+                    {{CryptoKey/[[algorithm]]}} internal slot of
+                    |key| is "`P-256`", "`P-384`" or "`P-521`":
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Let |n| be the smallest integer such that |n| * 8 is greater than
+                          the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                          by |params|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          If |signature| does not have a [= byte sequence/length =] of |n| * 2 bytes,
+                          then return false.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |r| be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer">converting the first |n| bytes of |signature| to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |s| be the result of
+                          <a href="#dfn-convert-byte-sequence-to-integer">converting the last |n| bytes of |signature| to an integer</a>.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Perform the ECDSA verifying process, as specified in [[RFC6090]], Section 5.4.3, with |M| as the received
+                          message, (|r|, |s|) as the signature and using
+                          |params| as the EC domain parameters, and
+                          |Q| as the public key.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>
+                    Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
+                    of the {{CryptoKey/[[algorithm]]}} internal slot of
+                    |key| is a value specified in an
+                    <a href="#dfn-applicable-specification">applicable specification</a>:
+                  </dt>
+                  <dd>
+                    <p>
+                      Perform the [= ECDSA verification steps =]
+                      specified in that specification passing in |M|, |signature|,
+                      |params| and |Q| and resulting in an indication of whether
+                      or not the purported signature is valid.
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Let |result| be a boolean with the value `true` if the signature is valid
+                  and the value `false` otherwise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="ecdsa-operations-sign-digest">
+            <h5>Sign Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |hashAlgorithm| be the {{EcdsaParams/hash}}
+                  member of |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by
+                  |hashAlgorithm|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |M| be |digest|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |d| be the ECDSA private key associated with |key|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |params| be the EC domain parameters associated with
+                  |key|.
+                </p>
+              </li>
+              <li>
+                <dl class="switch">
+                  <dt>
+                    If the {{EcKeyAlgorithm/namedCurve}} attribute of the
+                    {{CryptoKey/[[algorithm]]}} internal slot of
+                    |key| is "`P-256`", "`P-384`" or "`P-521`":
+                  </dt>
+                  <dd>
+                    <ol>
+                      <li>
+                        <p>
+                          Perform the ECDSA signing process, as specified in [[RFC6090]],
+                          Section 5.4.2, with |M| as the message, using |params| as the
+                          EC domain parameters, and with |d| as the private key.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                        Let |r| and |s| be the pair of integers resulting from
+                        performing the ECDSA signing process.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |result| be an empty [= byte sequence =].
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          Let |n| be the smallest integer such that |n| * 8 is greater than
+                          the logarithm to base 2 of the order of the base point of the elliptic curve identified
+                          by |params|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <a href="#dfn-convert-integer-to-byte-sequence">Convert |r| to a byte sequence of
+                          length |n|</a> and append it to |result|.
+                        </p>
+                      </li>
+                      <li>
+                        <p>
+                          <a href="#dfn-convert-integer-to-byte-sequence">Convert |s| to a byte sequence of
+                          length |n|</a> and append it to |result|.
+                        </p>
+                      </li>
+                    </ol>
+                  </dd>
+                  <dt>
+                    Otherwise, the {{EcKeyAlgorithm/namedCurve}} attribute
+                    of the {{CryptoKey/[[algorithm]]}} internal slot of
+                    |key| is a value specified in an
+                    <a href="#dfn-applicable-specification">applicable specification</a>:
+                  </dt>
+                  <dd>
+                    <p>
+                      Perform the [= ECDSA signature steps =]
+                      specified in that specification, passing in |M|, |params|
+                      and |d| and resulting in |result|.
+                    </p>
+                  </dd>
+                </dl>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="ecdsa-operations-verify-digest">
+            <h5>Verify Digest</h5>
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |hashAlgorithm| be the {{EcdsaParams/hash}}
+                  member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not equal to
+                  the digest length of the hash function identified by
+                  |hashAlgorithm|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |M| be |digest|.
                 </p>
               </li>
               <li>
@@ -10347,6 +11064,16 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <td>boolean</td>
               </tr>
               <tr>
+                <td>signDigest</td>
+                <td>{{ContextParams}}</td>
+                <td>[= byte sequence =]</td>
+              </tr>
+              <tr>
+                <td>verifyDigest</td>
+                <td>{{ContextParams}}</td>
+                <td>boolean</td>
+              </tr>
+              <tr>
                 <td>generateKey</td>
                 <td>None</td>
                 <td>{{CryptoKeyPair}}</td>
@@ -10364,9 +11091,33 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             </tbody>
           </table>
         </section>
+        <section id="ContextParams-dictionary">
+          <h4><dfn data-idl id="dfn-ContextParams">ContextParams</dfn> dictionary</h4>
+          <pre class=idl>
+dictionary ContextParams : Algorithm {
+  BufferSource context;
+};
+          </pre>
+          <p>The <dfn data-dfn-for=ContextParams id=dfn-ContextParams-context>context</dfn> member represents the context to associate with the message.</p>
+        </section>
 
         <section id="ed25519-operations">
           <h4>Operations</h4>
+          <p class="note">
+            The <a href="#ed25519-operations-sign">sign</a> and
+            <a href="#ed25519-operations-verify">verify</a> operations
+            use Ed25519 (pure EdDSA), while the
+            <a href="#ed25519-operations-sign-digest">sign digest</a> and
+            <a href="#ed25519-operations-verify-digest">verify digest</a>
+            operations use Ed25519ph (prehashed EdDSA). These produce
+            cryptographically distinct signatures. A signature produced with
+            <a href="#ed25519-operations-sign">sign</a> cannot be verified
+            with <a href="#ed25519-operations-verify-digest">verify digest</a>,
+            and a signature produced with
+            <a href="#ed25519-operations-sign-digest">sign digest</a>
+            cannot be verified with
+            <a href="#ed25519-operations-verify">verify</a>.
+          </p>
 
           <section id="ed25519-operations-sign">
             <h5>Sign</h5>
@@ -10433,6 +11184,132 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                   Perform the Ed25519 verification steps, as specified in [[RFC8032]],
                   Section 5.1.7, using the cofactorless (unbatched) equation,
                   `[S]B = R + [k]A'`, on the |signature|, with |message| as |M|,
+                  using the Ed25519 public key associated with |key|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be a boolean with the value `true` if the signature is valid
+                  and the value `false` otherwise.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="ed25519-operations-sign-digest">
+            <h5>Sign Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not 64,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |context| be the {{ContextParams/context}} member of
+                  |normalizedAlgorithm|, or the empty octet string if
+                  the {{ContextParams/context}} member of
+                  |normalizedAlgorithm| is not present.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |context| is greater
+                  than 255 bytes,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |result| be the result of performing the Ed25519ph
+                  signing process, as specified in [[RFC8032]],
+                  Section 5.1, with |digest| as PH(M),
+                  phflag set to 1, and |context| as the context C,
+                  using the Ed25519 private key associated with |key|.
+                </p>
+                <p class="issue" data-number="424">
+                  Some implementations may (wish to) generate randomized signatures
+                  as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
+                  instead of deterministic signatures as per [[RFC8032]].
+                </p>
+              </li>
+              <li>
+                <p>
+                  Return |result|.
+                </p>
+              </li>
+            </ol>
+          </section>
+
+          <section id="ed25519-operations-verify-digest">
+            <h5>Verify Digest</h5>
+
+            <ol>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |digest| is not 64,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the key data of |key| represents an invalid point or a small-order element
+                  on the Elliptic Curve of Ed25519, return `false`.
+                </p>
+                <p class="issue" data-number="423">
+                  Not all implementations perform this check.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the point R, encoded in the first half of |signature|,
+                  represents an invalid point or a small-order element
+                  on the Elliptic Curve of Ed25519, return `false`.
+                </p>
+                <p class="issue" data-number="423">
+                  Not all implementations perform this check.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |context| be the {{ContextParams/context}} member of
+                  |normalizedAlgorithm|, or the empty octet string if
+                  the {{ContextParams/context}} member of
+                  |normalizedAlgorithm| is not present.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the [= byte sequence/length =] of |context| is greater
+                  than 255 bytes,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the Ed25519ph verification steps, as specified in [[RFC8032]],
+                  Section 5.1, using the cofactorless (unbatched) equation,
+                  `[S]B = R + [k]A'`, on the |signature|, with |digest| as PH(M),
+                  phflag set to 1, and |context| as the context C,
                   using the Ed25519 public key associated with |key|.
                 </p>
               </li>
