@@ -4357,7 +4357,7 @@ dictionary RsaHashedImportParams : Algorithm {
                   the digest length of the hash function identified by the
                   {{RsaHashedKeyAlgorithm/hash}} attribute of the
                   {{CryptoKey/[[algorithm]]}} internal slot of |key|,
-                  then [= exception/throw =] an {{OperationError}}.
+                  then return `false`.
                 </p>
               </li>
               <li>
@@ -5501,7 +5501,7 @@ dictionary RsaPssParams : Algorithm {
                   the digest length of the hash function identified by the
                   {{RsaHashedKeyAlgorithm/hash}} attribute of the
                   {{CryptoKey/[[algorithm]]}} internal slot of |key|,
-                  then [= exception/throw =] an {{OperationError}}.
+                  then return `false`.
                 </p>
               </li>
               <li>
@@ -7921,7 +7921,7 @@ dictionary EcKeyImportParams : Algorithm {
                   If the [= byte sequence/length =] of |digest| is not equal to
                   the digest length of the hash function identified by
                   |hashAlgorithm|,
-                  then [= exception/throw =] an {{OperationError}}.
+                  then return `false`.
                 </p>
               </li>
               <li>
@@ -11267,7 +11267,7 @@ dictionary ContextParams : Algorithm {
               <li>
                 <p>
                   If the [= byte sequence/length =] of |digest| is not 64,
-                  then [= exception/throw =] an {{OperationError}}.
+                  then return `false`.
                 </p>
               </li>
               <li>
