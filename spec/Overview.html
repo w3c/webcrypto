@@ -11209,6 +11209,13 @@ dictionary ContextParams : Algorithm {
 
           <section id="ed25519-operations-sign-digest">
             <h5>Sign Digest</h5>
+            <p class="note">
+              Ed25519ph, as defined in [[RFC8032]] Section 5.1,
+              uses SHA-512 as the pre-hash function PH. The |digest|
+              passed to this operation is therefore expected to be
+              a SHA-512 hash of the original message, which is 64 bytes
+              in length.
+            </p>
 
             <ol>
               <li>
@@ -11262,6 +11269,13 @@ dictionary ContextParams : Algorithm {
 
           <section id="ed25519-operations-verify-digest">
             <h5>Verify Digest</h5>
+            <p class="note">
+              Ed25519ph, as defined in [[RFC8032]] Section 5.1,
+              uses SHA-512 as the pre-hash function PH. The |digest|
+              passed to this operation is therefore expected to be
+              a SHA-512 hash of the original message, which is 64 bytes
+              in length.
+            </p>
 
             <ol>
               <li>
