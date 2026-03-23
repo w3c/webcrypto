@@ -3876,8 +3876,8 @@ dictionary CryptoKeyPair {
               <td></td>
               <td>✔</td>
               <td>✔</td>
-              <td>✔</td>
-              <td>✔</td>
+              <td></td>
+              <td></td>
               <td></td>
               <td>✔</td>
               <td></td>
@@ -11070,16 +11070,6 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <td>boolean</td>
               </tr>
               <tr>
-                <td>signDigest</td>
-                <td>{{ContextParams}}</td>
-                <td>[= byte sequence =]</td>
-              </tr>
-              <tr>
-                <td>verifyDigest</td>
-                <td>{{ContextParams}}</td>
-                <td>boolean</td>
-              </tr>
-              <tr>
                 <td>generateKey</td>
                 <td>None</td>
                 <td>{{CryptoKeyPair}}</td>
@@ -11097,33 +11087,8 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             </tbody>
           </table>
         </section>
-        <section id="ContextParams-dictionary">
-          <h4><dfn data-idl id="dfn-ContextParams">ContextParams</dfn> dictionary</h4>
-          <pre class=idl>
-dictionary ContextParams : Algorithm {
-  BufferSource context;
-};
-          </pre>
-          <p>The <dfn data-dfn-for=ContextParams id=dfn-ContextParams-context>context</dfn> member represents the context to associate with the message.</p>
-        </section>
-
         <section id="ed25519-operations">
           <h4>Operations</h4>
-          <p class="note">
-            The <a href="#ed25519-operations-sign">sign</a> and
-            <a href="#ed25519-operations-verify">verify</a> operations
-            use Ed25519 (pure EdDSA), while the
-            <a href="#ed25519-operations-sign-digest">sign digest</a> and
-            <a href="#ed25519-operations-verify-digest">verify digest</a>
-            operations use Ed25519ph (prehashed EdDSA). These produce
-            cryptographically distinct signatures. A signature produced with
-            <a href="#ed25519-operations-sign">sign</a> cannot be verified
-            with <a href="#ed25519-operations-verify-digest">verify digest</a>,
-            and a signature produced with
-            <a href="#ed25519-operations-sign-digest">sign digest</a>
-            cannot be verified with
-            <a href="#ed25519-operations-verify">verify</a>.
-          </p>
 
           <section id="ed25519-operations-sign">
             <h5>Sign</h5>
@@ -11190,146 +11155,6 @@ dictionary ContextParams : Algorithm {
                   Perform the Ed25519 verification steps, as specified in [[RFC8032]],
                   Section 5.1.7, using the cofactorless (unbatched) equation,
                   `[S]B = R + [k]A'`, on the |signature|, with |message| as |M|,
-                  using the Ed25519 public key associated with |key|.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |result| be a boolean with the value `true` if the signature is valid
-                  and the value `false` otherwise.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return |result|.
-                </p>
-              </li>
-            </ol>
-          </section>
-
-          <section id="ed25519-operations-sign-digest">
-            <h5>Sign Digest</h5>
-            <p class="note">
-              Ed25519ph, as defined in [[RFC8032]] Section 5.1,
-              uses SHA-512 as the pre-hash function PH. The |digest|
-              passed to this operation is therefore expected to be
-              a SHA-512 hash of the original message, which is 64 bytes
-              in length.
-            </p>
-
-            <ol>
-              <li>
-                <p>
-                  If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the [= byte sequence/length =] of |digest| is not 64,
-                  then [= exception/throw =] an {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |context| be the {{ContextParams/context}} member of
-                  |normalizedAlgorithm|, or the empty octet string if
-                  the {{ContextParams/context}} member of
-                  |normalizedAlgorithm| is not present.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the [= byte sequence/length =] of |context| is greater
-                  than 255 bytes,
-                  then [= exception/throw =] an {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |result| be the result of performing the Ed25519ph
-                  signing process, as specified in [[RFC8032]],
-                  Section 5.1, with |digest| as PH(M),
-                  phflag set to 1, and |context| as the context C,
-                  using the Ed25519 private key associated with |key|.
-                </p>
-                <p class="issue" data-number="424">
-                  Some implementations may (wish to) generate randomized signatures
-                  as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
-                  instead of deterministic signatures as per [[RFC8032]].
-                </p>
-              </li>
-              <li>
-                <p>
-                  Return |result|.
-                </p>
-              </li>
-            </ol>
-          </section>
-
-          <section id="ed25519-operations-verify-digest">
-            <h5>Verify Digest</h5>
-            <p class="note">
-              Ed25519ph, as defined in [[RFC8032]] Section 5.1,
-              uses SHA-512 as the pre-hash function PH. The |digest|
-              passed to this operation is therefore expected to be
-              a SHA-512 hash of the original message, which is 64 bytes
-              in length.
-            </p>
-
-            <ol>
-              <li>
-                <p>
-                  If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the [= byte sequence/length =] of |digest| is not 64,
-                  then return false.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the key data of |key| represents an invalid point or a small-order element
-                  on the Elliptic Curve of Ed25519, return `false`.
-                </p>
-                <p class="issue" data-number="423">
-                  Not all implementations perform this check.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the point R, encoded in the first half of |signature|,
-                  represents an invalid point or a small-order element
-                  on the Elliptic Curve of Ed25519, return `false`.
-                </p>
-                <p class="issue" data-number="423">
-                  Not all implementations perform this check.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Let |context| be the {{ContextParams/context}} member of
-                  |normalizedAlgorithm|, or the empty octet string if
-                  the {{ContextParams/context}} member of
-                  |normalizedAlgorithm| is not present.
-                </p>
-              </li>
-              <li>
-                <p>
-                  If the [= byte sequence/length =] of |context| is greater
-                  than 255 bytes,
-                  then [= exception/throw =] an {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Perform the Ed25519ph verification steps, as specified in [[RFC8032]],
-                  Section 5.1, using the cofactorless (unbatched) equation,
-                  `[S]B = R + [k]A'`, on the |signature|, with |digest| as PH(M),
-                  phflag set to 1, and |context| as the context C,
                   using the Ed25519 public key associated with |key|.
                 </p>
               </li>
