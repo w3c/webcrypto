@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en" dir="ltr"><head>
 <meta charset="utf-8">
-<meta name="generator" content="ReSpec 35.6.1">
+<meta name="generator" content="ReSpec 35.8.0">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
 span.example-title{text-transform:none}
@@ -123,7 +123,7 @@ dd{margin-left:0}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="5b57233c0a2c01a2638d7aaa427fd80a89b968f2">
+<meta name="revision" content="da6a8b50f765fc007680d6382a8291a8d2b198b4">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -242,9 +242,9 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "5b57233c0a2c01a2638d7aaa427fd80a89b968f2",
-  "publishISODate": "2026-02-26T00:00:00.000Z",
-  "generatedSubtitle": "W3C Editor's Draft 26 February 2026"
+  "gitRevision": "da6a8b50f765fc007680d6382a8291a8d2b198b4",
+  "publishISODate": "2026-03-26T00:00:00.000Z",
+  "generatedSubtitle": "W3C Editor's Draft 26 March 2026"
 }</script>
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED"></head>
 
@@ -252,7 +252,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     <p class="logos"><a class="logo" href="https://www.w3.org/"><img crossorigin="" alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72">
   </a></p>
     <h1 id="title" class="title">Web Cryptography API Level 2</h1> 
-    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2026-02-26">26 February 2026</time></p>
+    <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">W3C Editor's Draft</a> <time class="dt-published" datetime="2026-03-26">26 March 2026</time></p>
     <details open="">
       <summary>More details about this document</summary>
       <dl>
@@ -10585,7 +10585,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   Section 5.1.6, with <var>message</var> as <var>M</var>,
                   using the Ed25519 private key associated with <var>key</var>.
                 </p>
-                <div class="issue" id="issue-container-number-424"><div role="heading" class="issue-title marker" id="h-issue" aria-level="5"><a href="https://github.com/w3c/webcrypto/issues/424"><span class="issue-number">Issue 424</span></a><span class="issue-label">: Allow creating randomized EdDSA signatures?</span></div><p class="">
+                <div class="issue" id="issue-container-number-424"><div role="heading" class="issue-title marker" id="h-issue" aria-level="5"><a href="https://github.com/w3c/webcrypto/issues/424"><span class="issue-number">Issue 424</span></a><span class="issue-label">: Allow creating hedged EdDSA signatures?</span></div><p class="">
                   Some implementations may (wish to) generate randomized signatures
                   as per <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-det-sigs-with-noise/">draft-irtf-cfrg-det-sigs-with-noise</a>
                   instead of deterministic signatures as per [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8032" title="Edwards-Curve Digital Signature Algorithm (EdDSA)">RFC8032</a></cite>].
@@ -14619,6 +14619,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                 <p>
                   Return true if <var>mac</var> is equal to <var>signature</var> and false
                   otherwise.
+                  This comparison must be performed in constant-time.
                 </p>
               </li>
             </ol>
