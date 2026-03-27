@@ -1096,7 +1096,7 @@ interface CryptoKey {
             <dt id="dfn-KeyType"><dfn data-idl>KeyType</dfn></dt>
             <dd data-dfn-for=KeyType>
               The type of a key. The <dfn id="dfn-RecognizedKeyType">recognized key type values</dfn>
-              are "`public`", "`private`" and "`secret`".
+              are "`public`", "`private`", and "`secret`".
               Opaque keying material, including that used for symmetric algorithms, is represented by
               <dfn data-idl>secret</dfn>, while keys used as part of asymmetric algorithms composed of
               public/private keypairs will be either <dfn data-idl>public</dfn> or <dfn data-idl>private</dfn>.
@@ -3981,7 +3981,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                  |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -4086,7 +4086,7 @@ dictionary RsaHashedImportParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -4237,7 +4237,7 @@ dictionary RsaHashedImportParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                     </ol>
@@ -4546,7 +4546,7 @@ dictionary RsaHashedImportParams : Algorithm {
                               <li>
                                 <p>
                                   Set the {{CryptoKey/[[type]]}}
-                                  internal slot of |key| to "`public`"
+                                  internal slot of |key| to {{KeyType/"public"}}
                                 </p>
                               </li>
                             </ol>
@@ -4630,7 +4630,7 @@ dictionary RsaHashedImportParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -5019,7 +5019,7 @@ dictionary RsaPssParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                  |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -5123,7 +5123,7 @@ dictionary RsaPssParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -5274,7 +5274,7 @@ dictionary RsaPssParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                     </ol>
@@ -5573,7 +5573,7 @@ dictionary RsaPssParams : Algorithm {
                               <li>
                                 <p>
                                   Set the {{CryptoKey/[[type]]}}
-                                  internal slot of |key| to "`public`"
+                                  internal slot of |key| to {{KeyType/"public"}}
                                 </p>
                               </li>
                             </ol>
@@ -5657,7 +5657,7 @@ dictionary RsaPssParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -5996,7 +5996,7 @@ dictionary RsaOaepParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of |key|
-                  is not "`public`",
+                  is not {{KeyType/"public"}},
                   then [= exception/throw =] an
                   {{InvalidAccessError}}.
                 </p>
@@ -6172,7 +6172,7 @@ dictionary RsaOaepParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -6326,7 +6326,7 @@ dictionary RsaOaepParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot of
-                          |key| to "`public`"
+                          |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                     </ol>
@@ -6605,7 +6605,7 @@ dictionary RsaOaepParams : Algorithm {
                               <li>
                                 <p>
                                   Set the {{CryptoKey/[[type]]}} internal slot of
-                                  |key| to "`public`"
+                                  |key| to {{KeyType/"public"}}
                                 </p>
                               </li>
                             </ol>
@@ -6689,7 +6689,7 @@ dictionary RsaOaepParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot of
-                          |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -7196,7 +7196,7 @@ dictionary EcKeyImportParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                  |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -7303,7 +7303,7 @@ dictionary EcKeyImportParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains a value which is not
+                  If |usages| contains an entry which is not
                   one of "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
@@ -7382,7 +7382,7 @@ dictionary EcKeyImportParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -7475,7 +7475,7 @@ dictionary EcKeyImportParams : Algorithm {
                     <ol>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`verify`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -7642,7 +7642,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -7675,7 +7675,7 @@ dictionary EcKeyImportParams : Algorithm {
                     <ol>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`sign`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -8040,7 +8040,7 @@ dictionary EcKeyImportParams : Algorithm {
                                       <li>
                                         <p>
                                           Set the {{CryptoKey/[[type]]}}
-                                          internal slot of |Key| to "`public`".
+                                          internal slot of |Key| to {{KeyType/"public"}}.
                                         </p>
                                       </li>
                                     </ol>
@@ -8121,7 +8121,7 @@ dictionary EcKeyImportParams : Algorithm {
                       </li>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`verify`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -8214,7 +8214,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -8236,7 +8236,7 @@ dictionary EcKeyImportParams : Algorithm {
               </li>
               <li>
                 <p>
-                  Return |key|
+                  Return |key|.
                 </p>
               </li>
             </ol>
@@ -8266,7 +8266,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -8684,7 +8684,7 @@ dictionary EcKeyImportParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -8896,7 +8896,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -8995,7 +8995,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                  |publicKey| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -9075,7 +9075,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <dl class="switch">
                   <dt>If |length| is null:</dt>
-                  <dd>Return |secret|</dd>
+                  <dd>Return |secret|.</dd>
                   <dt>Otherwise:</dt>
                   <dd>
                     <dl class="switch">
@@ -9278,7 +9278,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -9636,7 +9636,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                                   <li>
                                     <p>
                                       Set the {{CryptoKey/[[type]]}}
-                                      internal slot of |Key| to "`public`".
+                                      internal slot of |Key| to {{KeyType/"public"}}.
                                     </p>
                                   </li>
                                 </ol>
@@ -9805,7 +9805,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -9820,7 +9820,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               </li>
               <li>
                 <p>
-                  Return |key|
+                  Return |key|.
                 </p>
               </li>
             </ol>
@@ -9850,7 +9850,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -10258,7 +10258,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -10456,7 +10456,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains a value which is not
+                  If |usages| contains an entry which is not
                   one of "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
@@ -10487,7 +10487,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -10580,7 +10580,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     <ol>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`verify`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -10633,7 +10633,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -10660,7 +10660,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     <ol>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`sign`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -10897,7 +10897,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                     <ol>
                       <li>
                         <p>
-                          If |usages| contains a value which is not
+                          If |usages| contains an entry which is not
                           "`verify`"
                           then [= exception/throw =] a
                           {{SyntaxError}}.
@@ -10930,7 +10930,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -10952,7 +10952,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               </li>
               <li>
                 <p>
-                  Return |key|
+                  Return |key|.
                 </p>
               </li>
             </ol>
@@ -10982,7 +10982,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -11145,7 +11145,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -11253,7 +11253,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                  |publicKey| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -11282,7 +11282,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <dl class="switch">
                   <dt>If |length| is null:</dt>
-                  <dd>Return |secret|</dd>
+                  <dd>Return |secret|.</dd>
                   <dt>Otherwise:</dt>
                   <dd>
                     <dl class="switch">
@@ -11344,7 +11344,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               <li>
                 <p>
                   Set the {{CryptoKey/[[type]]}} internal slot of
-                  |publicKey| to "`public`"
+                  |publicKey| to {{KeyType/"public"}}
                 </p>
               </li>
               <li>
@@ -11489,7 +11489,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -11781,7 +11781,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           Set the {{CryptoKey/[[type]]}} internal slot
-                          of |key| to "`public`"
+                          of |key| to {{KeyType/"public"}}
                         </p>
                       </li>
                       <li>
@@ -11803,7 +11803,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
               </li>
               <li>
                 <p>
-                  Return |key|
+                  Return |key|.
                 </p>
               </li>
             </ol>
@@ -11833,7 +11833,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -11990,7 +11990,7 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                       <li>
                         <p>
                           If the {{CryptoKey/[[type]]}} internal slot
-                          of |key| is not "`public`", then [= exception/throw =] an {{InvalidAccessError}}.
+                          of |key| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                         </p>
                       </li>
                       <li>
@@ -12222,7 +12222,7 @@ dictionary AesDerivedKeyParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains any entry which is not
+                  If |usages| contains an entry which is not
                   one of "`encrypt`", "`decrypt`",
                   "`wrapKey`" or "`unwrapKey`",
                   then [= exception/throw =] a
@@ -12781,7 +12781,7 @@ dictionary AesCbcParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains any entry which is not
+                  If |usages| contains an entry which is not
                    one of "`encrypt`", "`decrypt`",
                   "`wrapKey`" or "`unwrapKey`",
                   then [= exception/throw =] a
@@ -13419,7 +13419,7 @@ dictionary AesGcmParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains any entry which is not
+                  If |usages| contains an entry which is not
                   one of "`encrypt`", "`decrypt`",
                   "`wrapKey`" or "`unwrapKey`",
                   then [= exception/throw =] a
@@ -13923,7 +13923,7 @@ dictionary AesGcmParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains any entry which is not one of
+                  If |usages| contains an entry which is not one of
                   "`wrapKey`" or "`unwrapKey`", then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
@@ -14449,7 +14449,7 @@ dictionary HmacKeyGenParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |usages| contains any entry which is not "`sign`" or
+                  If |usages| contains an entry which is not "`sign`" or
                   "`verify`", then [= exception/throw =] a {{SyntaxError}}.
                 </p>
               </li>
@@ -15178,7 +15178,7 @@ dictionary HmacKeyGenParams : Algorithm {
                 <td>{{CryptoKey}}</td>
               </tr>
               <tr>
-                <td>Get key length</td>
+                <td>get key length</td>
                 <td>None</td>
                 <td>null</td>
               </tr>
@@ -15403,7 +15403,7 @@ dictionary HkdfParams : Algorithm {
                 <td>{{CryptoKey}}</td>
               </tr>
               <tr>
-                <td>Get key length</td>
+                <td>get key length</td>
                 <td>None</td>
                 <td>null</td>
               </tr>
