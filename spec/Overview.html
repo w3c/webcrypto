@@ -1289,7 +1289,7 @@ interface SubtleCrypto {
   Promise&lt;ArrayBuffer> deriveBits(
     AlgorithmIdentifier algorithm,
     CryptoKey baseKey,
-    optional unsigned long? length = null
+    optional [EnforceRange] unsigned long? length = null
   );
 
   Promise&lt;CryptoKey> importKey(
@@ -3907,7 +3907,7 @@ dictionary RsaHashedKeyGenParams : RsaKeyGenParams {
           <h4><dfn data-idl id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary RsaKeyAlgorithm : KeyAlgorithm {
-  required unsigned long modulusLength;
+  required [EnforceRange] unsigned long modulusLength;
   required BigInteger publicExponent;
 };
           </pre>
@@ -12105,7 +12105,7 @@ dictionary AesCtrParams : Algorithm {
           <h4><dfn data-idl id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary AesKeyAlgorithm : KeyAlgorithm {
-  required unsigned short length;
+  required [EnforceRange] unsigned short length;
 };
           </pre>
           <p>The <dfn data-dfn-for=AesKeyAlgorithm id="dfn-AesKeyAlgorithm-length">length</dfn> member represents the length, in bits, of the key.</p>
@@ -14379,7 +14379,7 @@ dictionary HmacImportParams : Algorithm {
           <pre class=idl>
 dictionary HmacKeyAlgorithm : KeyAlgorithm {
   required KeyAlgorithm hash;
-  required unsigned long length;
+  required [EnforceRange] unsigned long length;
 };
           </pre>
           <p>The <dfn data-dfn-for=HmacKeyAlgorithm id=dfn-HmacKeyAlgorithm-hash>hash</dfn> member represents the inner hash function to use.</p>
