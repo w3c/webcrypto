@@ -14575,6 +14575,13 @@ dictionary HmacKeyGenParams : Algorithm {
 
             <ol>
               <li>
+                <p>
+                  If the {{HmacImportParams/length}} member of
+                  |normalizedAlgorithm| is present and is zero, then
+                  [= exception/throw =] a {{DataError}}.
+                </p>
+              </li>
+              <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
               <li>
