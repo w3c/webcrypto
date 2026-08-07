@@ -11296,12 +11296,6 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |publicKey| be the
                   {{EcdhKeyDeriveParams/public}} member of
                   |normalizedAlgorithm|.
@@ -11311,6 +11305,26 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
                   |publicKey| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{KeyAlgorithm/name}} attribute of
+                  the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |publicKey| is not equal to the {{Algorithm/name}} member of
+                  |normalizedAlgorithm|, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is not null and is greater than 256,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
