@@ -13242,14 +13242,6 @@ dictionary AesGcmParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |plaintext| has a [= byte sequence/length =]
-                  greater than 2^39 - 256 bytes,
-                  then [= exception/throw =] an
-                  {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   If the {{AesGcmParams/iv}} member of
                   |normalizedAlgorithm| has a [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
@@ -13283,6 +13275,14 @@ dictionary AesGcmParams : Algorithm {
                     {{OperationError}}.
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  If |plaintext| has a [= byte sequence/length =]
+                  greater than 2^39 - 256 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
               </li>
               <li>
                 <p>
@@ -13339,13 +13339,6 @@ dictionary AesGcmParams : Algorithm {
               </li>
               <li>
                 <p>
-                  If |ciphertext| has a [= length in bits =] less than |tagLength|,
-                  then [= exception/throw =] an
-                  {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   If the {{AesGcmParams/iv}} member of
                   |normalizedAlgorithm| has a [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
@@ -13359,6 +13352,13 @@ dictionary AesGcmParams : Algorithm {
                   of |normalizedAlgorithm| is present and has a
                   [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |ciphertext| has a [= length in bits =] less than |tagLength|,
                   then [= exception/throw =] an
                   {{OperationError}}.
                 </p>
