@@ -3903,6 +3903,45 @@ dictionary RsaHashedKeyGenParams : RsaKeyGenParams {
           </pre>
           <p>The <dfn data-dfn-for=RsaHashedKeyGenParams id=dfn-RsaHashedKeyGenParams-hash>hash</dfn> member represents the hash algorithm to use.</p>
         </section>
+        <section id="rsa-key-generation-parameter-validation">
+          <h4>RSA key generation parameter validation</h4>
+          <p>
+            The <dfn id="dfn-validate-rsa-key-generation-parameters">validate RSA key generation parameters</dfn>
+            algorithm takes a {{RsaKeyGenParams}} |normalizedAlgorithm| and
+            performs the following steps:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Let |modulusLength| be the {{RsaKeyGenParams/modulusLength}}
+                member of |normalizedAlgorithm|.
+              </p>
+            </li>
+            <li>
+              <p>
+                Let |publicExponent| be the result of
+                <a href="#dfn-convert-byte-sequence-to-integer">converting the
+                {{RsaKeyGenParams/publicExponent}} member of
+                |normalizedAlgorithm| to a non-negative integer</a>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If |modulusLength| is less than 4, or if |publicExponent| is
+                less than 3, is even, or is greater than or equal to
+                2^|modulusLength| - 1, then
+                [= exception/throw =] an {{OperationError}}.
+              </p>
+            </li>
+          </ol>
+          <p class="note">
+            These checks follow from the definition of a valid RSA public key
+            in [[RFC3447]]: the modulus is the product of at least two
+            distinct odd primes, and the public exponent is an integer
+            between 3 and the modulus minus one that is relatively prime to
+            the least common multiple of the values one less than each prime.
+          </p>
+        </section>
         <section id="RsaKeyAlgorithm-dictionary">
           <h4><dfn data-idl id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
@@ -4020,6 +4059,12 @@ dictionary RsaHashedImportParams : Algorithm {
                    "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
@@ -5057,6 +5102,12 @@ dictionary RsaPssParams : Algorithm {
                   "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
@@ -6106,6 +6157,12 @@ dictionary RsaOaepParams : Algorithm {
                   "`wrapKey`" or "`unwrapKey`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
