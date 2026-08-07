@@ -7523,6 +7523,16 @@ dictionary EcKeyImportParams : Algorithm {
 
             <ol>
               <li>
+                <p>
+                  If the {{EcKeyImportParams/namedCurve}} member of
+                  |normalizedAlgorithm| is not one of "`P-256`", "`P-384`" or
+                  "`P-521`", and is not a value specified in an
+                  <a href="#dfn-applicable-specification">applicable specification</a>
+                  that specifies the use of that value with ECDSA, then
+                  [= exception/throw =] a {{NotSupportedError}}.
+                </p>
+              </li>
+              <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
               <li>
@@ -9182,6 +9192,16 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <h5>Import Key</h5>
 
             <ol>
+              <li>
+                <p>
+                  If the {{EcKeyImportParams/namedCurve}} member of
+                  |normalizedAlgorithm| is not one of "`P-256`", "`P-384`" or
+                  "`P-521`", and is not a value specified in an
+                  <a href="#dfn-applicable-specification">applicable specification</a>
+                  that specifies the use of that value with ECDH, then
+                  [= exception/throw =] a {{NotSupportedError}}.
+                </p>
+              </li>
               <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
