@@ -15212,6 +15212,19 @@ dictionary HkdfParams : Algorithm {
               </li>
               <li>
                 <p>
+                  Let |hashLength| be the length in bits of the output of the
+                  hash function identified by the {{HkdfParams/hash}} member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is greater than 255 * |hashLength|,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
                   Let |keyDerivationKey| be the secret represented by the {{CryptoKey/[[handle]]}} internal slot of |key|.
                 </p>
               </li>
