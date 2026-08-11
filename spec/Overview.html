@@ -3903,6 +3903,45 @@ dictionary RsaHashedKeyGenParams : RsaKeyGenParams {
           </pre>
           <p>The <dfn data-dfn-for=RsaHashedKeyGenParams id=dfn-RsaHashedKeyGenParams-hash>hash</dfn> member represents the hash algorithm to use.</p>
         </section>
+        <section id="rsa-key-generation-parameter-validation">
+          <h4>RSA key generation parameter validation</h4>
+          <p>
+            The <dfn id="dfn-validate-rsa-key-generation-parameters">validate RSA key generation parameters</dfn>
+            algorithm takes a {{RsaKeyGenParams}} |normalizedAlgorithm| and
+            performs the following steps:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Let |modulusLength| be the {{RsaKeyGenParams/modulusLength}}
+                member of |normalizedAlgorithm|.
+              </p>
+            </li>
+            <li>
+              <p>
+                Let |publicExponent| be the result of
+                <a href="#dfn-convert-byte-sequence-to-integer">converting the
+                {{RsaKeyGenParams/publicExponent}} member of
+                |normalizedAlgorithm| to a non-negative integer</a>.
+              </p>
+            </li>
+            <li>
+              <p>
+                If |modulusLength| is less than 4, or if |publicExponent| is
+                less than 3, is even, or is greater than or equal to
+                2^|modulusLength| - 1, then
+                [= exception/throw =] an {{OperationError}}.
+              </p>
+            </li>
+          </ol>
+          <p class="note">
+            These checks follow from the definition of a valid RSA public key
+            in [[RFC3447]]: the modulus is the product of at least two
+            distinct odd primes, and the public exponent is an integer
+            between 3 and the modulus minus one that is relatively prime to
+            the least common multiple of the values one less than each prime.
+          </p>
+        </section>
         <section id="RsaKeyAlgorithm-dictionary">
           <h4><dfn data-idl id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
@@ -4020,6 +4059,12 @@ dictionary RsaHashedImportParams : Algorithm {
                    "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
@@ -5057,6 +5102,12 @@ dictionary RsaPssParams : Algorithm {
                   "`sign`" or "`verify`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
@@ -6106,6 +6157,12 @@ dictionary RsaOaepParams : Algorithm {
                   "`wrapKey`" or "`unwrapKey`",
                   then [= exception/throw =] a
                   {{SyntaxError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Perform the [= validate RSA key generation parameters =]
+                  algorithm with |normalizedAlgorithm|.
                 </p>
               </li>
               <li>
@@ -7465,6 +7522,16 @@ dictionary EcKeyImportParams : Algorithm {
             <h5>Import Key</h5>
 
             <ol>
+              <li>
+                <p>
+                  If the {{EcKeyImportParams/namedCurve}} member of
+                  |normalizedAlgorithm| is not one of "`P-256`", "`P-384`" or
+                  "`P-521`", and is not a value specified in an
+                  <a href="#dfn-applicable-specification">applicable specification</a>
+                  that specifies the use of that value with ECDSA, then
+                  [= exception/throw =] a {{NotSupportedError}}.
+                </p>
+              </li>
               <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
@@ -8981,12 +9048,6 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |publicKey| be the
                   {{EcdhKeyDeriveParams/public}} member of
                   |normalizedAlgorithm|.
@@ -8996,6 +9057,35 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
                   |publicKey| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{KeyAlgorithm/name}} attribute of
+                  the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |publicKey| is not equal to the {{Algorithm/name}} member of
+                  |normalizedAlgorithm|, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |maximumLength| be the length in bits of the output of
+                  the field element to octet string conversion defined in
+                  Section 6.2 of [[RFC6090]] for the EC domain parameters
+                  associated with |publicKey|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is not null and is greater than
+                  |maximumLength|, then
+                  [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -9102,6 +9192,16 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <h5>Import Key</h5>
 
             <ol>
+              <li>
+                <p>
+                  If the {{EcKeyImportParams/namedCurve}} member of
+                  |normalizedAlgorithm| is not one of "`P-256`", "`P-384`" or
+                  "`P-521`", and is not a value specified in an
+                  <a href="#dfn-applicable-specification">applicable specification</a>
+                  that specifies the use of that value with ECDH, then
+                  [= exception/throw =] a {{NotSupportedError}}.
+                </p>
+              </li>
               <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
@@ -11239,12 +11339,6 @@ dictionary EcdhKeyDeriveParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If the {{CryptoKey/[[type]]}} internal slot of
-                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   Let |publicKey| be the
                   {{EcdhKeyDeriveParams/public}} member of
                   |normalizedAlgorithm|.
@@ -11254,6 +11348,26 @@ dictionary EcdhKeyDeriveParams : Algorithm {
                 <p>
                   If the {{CryptoKey/[[type]]}} internal slot of
                   |publicKey| is not {{KeyType/"public"}}, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{KeyAlgorithm/name}} attribute of
+                  the {{CryptoKey/[[algorithm]]}} internal slot of
+                  |publicKey| is not equal to the {{Algorithm/name}} member of
+                  |normalizedAlgorithm|, then [= exception/throw =] an {{InvalidAccessError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is not null and is greater than 256,
+                  then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If the {{CryptoKey/[[type]]}} internal slot of
+                  |key| is not {{KeyType/"private"}}, then [= exception/throw =] an {{InvalidAccessError}}.
                 </p>
               </li>
               <li>
@@ -13242,14 +13356,6 @@ dictionary AesGcmParams : Algorithm {
             <ol>
               <li>
                 <p>
-                  If |plaintext| has a [= byte sequence/length =]
-                  greater than 2^39 - 256 bytes,
-                  then [= exception/throw =] an
-                  {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   If the {{AesGcmParams/iv}} member of
                   |normalizedAlgorithm| has a [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
@@ -13283,6 +13389,14 @@ dictionary AesGcmParams : Algorithm {
                     {{OperationError}}.
                   </dd>
                 </dl>
+              </li>
+              <li>
+                <p>
+                  If |plaintext| has a [= byte sequence/length =]
+                  greater than 2^39 - 256 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
               </li>
               <li>
                 <p>
@@ -13339,13 +13453,6 @@ dictionary AesGcmParams : Algorithm {
               </li>
               <li>
                 <p>
-                  If |ciphertext| has a [= length in bits =] less than |tagLength|,
-                  then [= exception/throw =] an
-                  {{OperationError}}.
-                </p>
-              </li>
-              <li>
-                <p>
                   If the {{AesGcmParams/iv}} member of
                   |normalizedAlgorithm| has a [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
@@ -13359,6 +13466,13 @@ dictionary AesGcmParams : Algorithm {
                   of |normalizedAlgorithm| is present and has a
                   [= byte sequence/length =]
                   greater than 2^64 - 1 bytes,
+                  then [= exception/throw =] an
+                  {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |ciphertext| has a [= length in bits =] less than |tagLength|,
                   then [= exception/throw =] an
                   {{OperationError}}.
                 </p>
@@ -14575,6 +14689,13 @@ dictionary HmacKeyGenParams : Algorithm {
 
             <ol>
               <li>
+                <p>
+                  If the {{HmacImportParams/length}} member of
+                  |normalizedAlgorithm| is present and is zero, then
+                  [= exception/throw =] a {{DataError}}.
+                </p>
+              </li>
+              <li>
                 <p>Let |keyData| be the key data to be imported.</p>
               </li>
               <li>
@@ -15208,6 +15329,19 @@ dictionary HkdfParams : Algorithm {
               <li>
                 <p>
                   If |length| is null or is not a multiple of 8, then [= exception/throw =] an {{OperationError}}.
+                </p>
+              </li>
+              <li>
+                <p>
+                  Let |hashLength| be the length in bits of the output of the
+                  hash function identified by the {{HkdfParams/hash}} member of
+                  |normalizedAlgorithm|.
+                </p>
+              </li>
+              <li>
+                <p>
+                  If |length| is greater than 255 * |hashLength|,
+                  then [= exception/throw =] an {{OperationError}}.
                 </p>
               </li>
               <li>
