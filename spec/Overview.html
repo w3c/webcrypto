@@ -818,6 +818,7 @@ interface Crypto {
   [SecureContext] readonly attribute SubtleCrypto subtle;
   ArrayBufferView getRandomValues(ArrayBufferView array);
   [SecureContext] DOMString randomUUID();
+  [SecureContext] DOMString randomUUIDv7();
 };
         </pre>
 
@@ -976,6 +977,109 @@ interface Crypto {
               [= ASCII lower hex digits =], left-padded with "`0`" to reach two
               [= ASCII lower hex digits =].
             </p>
+          </section>
+          <section id="Crypto-method-randomUUIDv7">
+            <h4>The randomUUIDv7 method</h4>
+            <p>
+              The <dfn id="dfn-Crypto-method-randomUUIDv7" data-dfn-for=Crypto>randomUUIDv7</dfn>
+              method generates a new <a data-cite="RFC9562#section-5.7">version 7 UUID</a>
+              and returns its <a data-cite="RFC2141#section-2.2">namespace specific string representation</a>
+              as described in <a data-cite="RFC9562#section-4">section 4</a> of [[RFC9562]].
+              Unlike {{Crypto/randomUUID}}, a version 7 UUID embeds a millisecond-precision
+              timestamp in its most significant bits, so that UUIDs [= generate a random UUIDv7 |
+              generated =] later sort after ones generated earlier when compared as unsigned
+              byte sequences or as their [= hexadecimal representation | lowercase hexadecimal =]
+              string form. To <dfn data-export="">generate a random UUIDv7</dfn>:
+            </p>
+            <ol>
+              <li>
+                Let |bytes| be a [= byte sequence =] of length 16.
+              </li>
+              <li>
+                Fill |bytes| with cryptographically secure random bytes.
+              </li>
+              <li>
+                <p>
+                  Let |timestamp| be the number of milliseconds since the [= Unix epoch =],
+                  as an unsigned 48-bit integer.
+                </p>
+                <div class=note>
+                  Implementations should not expose sub-millisecond timing information via
+                  |timestamp|, and should not increase the precision of the clock used here
+                  beyond what is already exposed to the document via other means (e.g.
+                  {{Performance/now()}}), in order to avoid introducing a new
+                  higher-resolution timing side channel.
+                </div>
+              </li>
+              <li>
+                Set |bytes|[0] through |bytes|[5] to the big-endian byte representation of
+                |timestamp|.
+              </li>
+              <li>
+                Set the 4 most significant bits of |bytes|[6], which represent the
+                UUID <a data-cite="RFC9562#section-4.2">version</a>, to `0111`.
+              </li>
+              <li>
+                Set the 2 most significant bits of |bytes|[8], which represent the
+                UUID <a data-cite="RFC9562#section-4.1">variant</a>, to `10`.
+              </li>
+              <li>
+                <p>
+                  Return the [= string/concatenate | string concatenation =] of «
+                </p>
+                <ol style="list-style-type: none">
+                  <li>
+                    [= hexadecimal representation =] of |bytes|[0], [= hexadecimal
+                    representation =] of |bytes|[1], [= hexadecimal representation =] of
+                    |bytes|[2], [= hexadecimal representation =] of |bytes|[3],
+                  </li>
+                  <li>
+                    "`-`",
+                  </li>
+                  <li>
+                    [= hexadecimal representation =] of |bytes|[4], [= hexadecimal
+                    representation =] of |bytes|[5],
+                  </li>
+                  <li>
+                    "`-`",
+                  </li>
+                  <li>
+                    [= hexadecimal representation =] of |bytes|[6], [= hexadecimal
+                    representation =] of |bytes|[7],
+                  </li>
+                  <li>
+                    "`-`",
+                  </li>
+                  <li>
+                    [= hexadecimal representation =] of |bytes|[8], [= hexadecimal
+                    representation =] of |bytes|[9],
+                  </li>
+                  <li>
+                    "`-`",
+                  </li>
+                  <li>
+                    [= hexadecimal representation =] of |bytes|[10], [= hexadecimal
+                    representation =] of |bytes|[11], [= hexadecimal representation =] of
+                    |bytes|[12], [= hexadecimal representation =] of |bytes|[13],
+                    [= hexadecimal representation =] of |bytes|[14], [= hexadecimal
+                    representation =] of |bytes|[15]
+                  </li>
+                </ol>
+                <p>
+                  ».
+                </p>
+              </li>
+            </ol>
+            <div class=note>
+              <p>
+                This algorithm does not specify a mechanism for guaranteeing that UUIDs
+                generated within the same millisecond sort in call order (a property some
+                server-side [[RFC9562]] implementations refer to as strict monotonicity).
+                Implementations and specifications wishing to add that guarantee are invited
+                to open an issue for discussion, since it requires per-realm state that is
+                not otherwise needed by this method.
+              </p>
+            </div>
           </section>
         </section>
         <section id="Crypto-interface-attributes">
@@ -15768,6 +15872,12 @@ dictionary Pbkdf2Params : Algorithm {
           <h3>Generate unique name for download</h3>
           <pre class="example js" title="Random UUID generation">
             const filename = `${crypto.randomUUID()}.txt`;
+          </pre>
+        </section>
+        <section id="examples-random-uuidv7">
+          <h3>Generate sortable primary key for IndexedDB</h3>
+          <pre class="example js" title="Random UUIDv7 generation">
+            const id = crypto.randomUUIDv7();
           </pre>
         </section>
       </section>
