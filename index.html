@@ -130,7 +130,7 @@ body:has(input[name=color-scheme][value=dark]:checked){color-scheme:dark}
       
 
 <meta name="color-scheme" content="light">
-<meta name="revision" content="b00c6df2a10f93f08a6fa7da13c64d91328529f8">
+<meta name="revision" content="84ce201266f605a92f9ae790763db9f70a026ffa">
 <meta name="description" content="This specification describes a JavaScript API for performing basic
         cryptographic operations in web applications, such as hashing,
         signature generation and verification, and encryption and decryption.
@@ -249,12 +249,12 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "date": "December 2001",
       "id": "nist-sp800-38a"
     },
-    "FIPS-198-1": {
-      "title": "The Keyed-Hash Message Authentication Code (HMAC)",
-      "href": "http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf",
+    "NIST-SP800-224": {
+      "title": "Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication",
+      "href": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-224.ipd.pdf",
       "publisher": "NIST",
-      "date": "July 2008",
-      "id": "fips-198-1"
+      "date": "June 2024",
+      "id": "nist-sp800-224"
     },
     "SEC1": {
       "title": "SEC 1: Elliptic Curve Cryptography",
@@ -276,7 +276,7 @@ var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
       "id": "x690"
     }
   },
-  "gitRevision": "b00c6df2a10f93f08a6fa7da13c64d91328529f8",
+  "gitRevision": "84ce201266f605a92f9ae790763db9f70a026ffa",
   "publishISODate": "2026-10-22T00:00:00.000Z",
   "generatedSubtitle": "W3C Editor's Draft 22 October 2026"
 }</script>
@@ -14643,7 +14643,7 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
           
           <p>
             The <code>HMAC</code> algorithm calculates and verifies hash-based message
-            authentication codes according to [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>]
+            authentication codes according to [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>]
             using the SHA hash functions defined in this specification.
           </p>
           <p>
@@ -14739,11 +14739,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
             <ol>
               <li>
                 <p>
-                  Let <var>mac</var> be the result of performing the MAC Generation operation
-                  described in Section 4 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>] using
+                  Let <var>mac</var> be the result of performing the HMAC function
+                  described in Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>] using
                   the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-52"><code>[[handle]]</code></a>
                   internal slot of <var>key</var>, the hash function identified by the <a data-link-type="idl" href="#dfn-HmacKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-HmacKeyAlgorithm-hash-2"><code>hash</code></a> attribute of the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-117"><code>[[algorithm]]</code></a> internal slot of
-                  <var>key</var> and <var>message</var> as the input data <var>text</var>.
+                  <var>key</var> and <var>message</var> as the message <var>M</var>.
                 </p>
               </li>
               <li>
@@ -14760,11 +14760,11 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
             <ol>
               <li>
                 <p>
-                  Let <var>mac</var> be the result of performing the MAC Generation operation
-                  described in Section 4 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>] using
+                  Let <var>mac</var> be the result of performing the HMAC function
+                  described in Section 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>] using
                   the key represented by the <a data-link-type="attribute" data-lt="[[handle]]" href="#dfn-CryptoKey-slot-handle" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-handle-53"><code>[[handle]]</code></a>
                   internal slot of <var>key</var>, the hash function identified by the <a data-link-type="idl" href="#dfn-HmacKeyAlgorithm-hash" class="internalDFN" id="ref-for-dfn-HmacKeyAlgorithm-hash-3"><code>hash</code></a> attribute of the <a data-link-type="attribute" data-lt="[[algorithm]]" href="#dfn-CryptoKey-slot-algorithm" class="internalDFN" id="ref-for-dfn-CryptoKey-slot-algorithm-118"><code>[[algorithm]]</code></a> internal slot of
-                  <var>key</var> and <var>message</var> as the input data <var>text</var>.
+                  <var>key</var> and <var>message</var> as the message <var>M</var>.
                 </p>
               </li>
               <li>
@@ -14796,7 +14796,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                   <dd>
                     Let <var>length</var> be the block size in bits of the hash function
                     identified by the <a data-link-type="idl" href="#dfn-HmacKeyGenParams-hash" class="internalDFN" id="ref-for-dfn-HmacKeyGenParams-hash-2"><code>hash</code></a> member
-                    of <var>normalizedAlgorithm</var>.
+                    of <var>normalizedAlgorithm</var>
+                    as specified by Table 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>],
+                    or 512 for SHA-1.
                   </dd>
                   <dt>
                     Otherwise, if the <a data-link-type="idl" href="#dfn-HmacKeyGenParams-length" class="internalDFN" id="ref-for-dfn-HmacKeyGenParams-length-3"><code>length</code></a>
@@ -15346,7 +15348,9 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
                     <p>
                       Let <var>length</var> be the block size in bits of the hash function
                       identified by the <a data-link-type="idl" href="#dfn-HmacImportParams-hash" class="internalDFN" id="ref-for-dfn-HmacImportParams-hash-4"><code>hash</code></a> member
-                      of <var>normalizedDerivedKeyAlgorithm</var>.
+                      of <var>normalizedDerivedKeyAlgorithm</var>
+                      as specified by Table 2 of [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>],
+                      or 512 for SHA-1.
                     </p>
                   </dd>
                   <dt>
@@ -15795,8 +15799,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
               </li>
               <li>
                 <p>
-                  Let <var>prf</var> be the MAC Generation function described in Section 4 of
-                  [<cite><a class="bibref" data-link-type="biblio" href="#bib-fips-198-1" title="The Keyed-Hash Message Authentication Code (HMAC)">FIPS-198-1</a></cite>] using the hash function
+                  Let <var>prf</var> be the HMAC function described in Section 2 of
+                  [<cite><a class="bibref" data-link-type="biblio" href="#bib-nist-sp800-224" title="Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication">NIST-SP800-224</a></cite>] using the hash function
                   described by the <a data-link-type="idl" href="#dfn-Pbkdf2Params-hash" class="internalDFN" id="ref-for-dfn-Pbkdf2Params-hash-2"><code>hash</code></a> member of
                   <var>normalizedAlgorithm</var>.
                 </p>
@@ -21320,8 +21324,6 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="https://encoding.spec.whatwg.org/"><cite>Encoding Standard</cite></a>. Anne van Kesteren.  WHATWG. Living Standard. URL: <a href="https://encoding.spec.whatwg.org/">https://encoding.spec.whatwg.org/</a>
     </dd><dt id="bib-fips-180-4">[FIPS-180-4]</dt><dd>
       <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf"><cite>FIPS PUB 180-4: Secure Hash Standard (SHS)</cite></a>.  U.S. Department of Commerce/National Institute of Standards and Technology. August 2015. National Standard. URL: <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf">https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf</a>
-    </dd><dt id="bib-fips-198-1">[FIPS-198-1]</dt><dd>
-      <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf"><cite>The Keyed-Hash Message Authentication Code (HMAC)</cite></a>.  NIST. July 2008. URL: <a href="http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf">http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf</a>
     </dd><dt id="bib-html">[HTML]</dt><dd>
       <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Dominic Farolino; Ian Hickson; Philip Jägenstedt; Simon Pieters.  WHATWG. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
     </dd><dt id="bib-infra">[Infra]</dt><dd>
@@ -21330,6 +21332,8 @@ dictionary <a class="internalDFN idlID" data-link-type="dictionary" href="#dfn-E
       <a href="https://www.rfc-editor.org/info/rfc7518/"><cite>JSON Web Algorithms (JWA)</cite></a>. M. Jones.  IETF. May 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc7518/">https://www.rfc-editor.org/info/rfc7518/</a>
     </dd><dt id="bib-jwk">[JWK]</dt><dd>
       <a href="https://www.rfc-editor.org/info/rfc7517/"><cite>JSON Web Key (JWK)</cite></a>. M. Jones.  IETF. May 2015. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc7517/">https://www.rfc-editor.org/info/rfc7517/</a>
+    </dd><dt id="bib-nist-sp800-224">[NIST-SP800-224]</dt><dd>
+      <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-224.ipd.pdf"><cite>Keyed-Hash Message Authentication Code (HMAC): Specification of HMAC and Recommendations for Message Authentication</cite></a>.  NIST. June 2024. URL: <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-224.ipd.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-224.ipd.pdf</a>
     </dd><dt id="bib-nist-sp800-38a">[NIST-SP800-38A]</dt><dd>
       <a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf"><cite>NIST Special Publication 800-38A: Recommendation for Block Cipher Modes of Operation, Methods and Techniques</cite></a>.  NIST. December 2001. URL: <a href="http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf">http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf</a>
     </dd><dt id="bib-nist-sp800-38d">[NIST-SP800-38D]</dt><dd>
