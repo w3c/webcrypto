@@ -1029,7 +1029,7 @@ dictionary Algorithm {
         </p>
         <pre class=idl>
 dictionary KeyAlgorithm {
-  required DOMString name;
+  DOMString name;
 };
         </pre>
         <section id="key-algorithm-dictionary-description" class="informative">
@@ -3946,8 +3946,8 @@ dictionary RsaHashedKeyGenParams : RsaKeyGenParams {
           <h4><dfn data-idl id="dfn-RsaKeyAlgorithm">RsaKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary RsaKeyAlgorithm : KeyAlgorithm {
-  required [EnforceRange] unsigned long modulusLength;
-  required BigInteger publicExponent;
+  unsigned long modulusLength;
+  BigInteger publicExponent;
 };
           </pre>
           <p>The <dfn data-idl data-dfn-for=RsaKeyAlgorithm id="dfn-RsaKeyAlgorithm-modulusLength">modulusLength</dfn> member contains the length, in bits, of the RSA modulus.</p>
@@ -7125,7 +7125,7 @@ dictionary EcKeyGenParams : Algorithm {
           <h4><dfn data-idl id="dfn-EcKeyAlgorithm">EcKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary EcKeyAlgorithm : KeyAlgorithm {
-  required NamedCurve namedCurve;
+  NamedCurve namedCurve;
 };
           </pre>
           <p>The <dfn data-dfn-for=EcKeyAlgorithm id=dfn-EcKeyAlgorithm-namedCurve>namedCurve</dfn> member represents the named curve that the key uses.</p>
@@ -12219,7 +12219,7 @@ dictionary AesCtrParams : Algorithm {
           <h4><dfn data-idl id="dfn-AesKeyAlgorithm">AesKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary AesKeyAlgorithm : KeyAlgorithm {
-  required [EnforceRange] unsigned short length;
+  unsigned short length;
 };
           </pre>
           <p>The <dfn data-dfn-for=AesKeyAlgorithm id="dfn-AesKeyAlgorithm-length">length</dfn> member represents the length, in bits, of the key.</p>
@@ -14492,8 +14492,8 @@ dictionary HmacImportParams : Algorithm {
           <h4><dfn data-idl id="dfn-HmacKeyAlgorithm">HmacKeyAlgorithm</dfn> dictionary</h4>
           <pre class=idl>
 dictionary HmacKeyAlgorithm : KeyAlgorithm {
-  required KeyAlgorithm hash;
-  required [EnforceRange] unsigned long length;
+  KeyAlgorithm hash;
+  unsigned long length;
 };
           </pre>
           <p>The <dfn data-dfn-for=HmacKeyAlgorithm id=dfn-HmacKeyAlgorithm-hash>hash</dfn> member represents the inner hash function to use.</p>
